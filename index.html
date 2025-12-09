@@ -312,12 +312,14 @@ class MainScene extends Phaser.Scene {
             
             let sprite = this.add.sprite(0, 0, textureKey);
             
-            // Face the correct direction
-            // Green (Left) faces Right. Red (Right) faces Left.
+            // Face the enemy
+            // Sprites are drawn facing Left, so:
+            // Red Team (Right) faces Left = no flip needed
+            // Green Team (Left) faces Right = flip needed
             if (type === 'player') { 
-                sprite.setFlipX(true); // Red faces Left
+                sprite.setFlipX(false); // Red already faces Left
             } else {
-                sprite.setFlipX(false); // Green faces Right (default)
+                sprite.setFlipX(true); // Green needs to flip to face Right
             }
             
             kid.add(sprite);
