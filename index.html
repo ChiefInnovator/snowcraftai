@@ -7,7 +7,8 @@
     <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.min.js"></script>
     <style>
         body { margin: 0; background: #222; overflow: hidden; display: flex; justify-content: center; align-items: center; height: 100vh; font-family: 'Arial', sans-serif; }
-        #game-container { box-shadow: 0 0 30px rgba(0,0,0,0.8); border: 4px solid #fff; border-radius: 8px; }
+        #game-container { box-shadow: 0 0 30px rgba(0,0,0,0.8); border: 4px solid #fff; border-radius: 8px; line-height: 0; }
+        #game-container canvas { display: block; }
     </style>
 </head>
 <body>
@@ -16,6 +17,8 @@
 
 <script>
 // --- CONFIGURATION ---
+const DEBUG_MODE = true; // Set to false to hide coordinate labels
+
 const LEVEL_CONFIG = [
     { level: 1, enemies: 3, fireInterval: 2000, errorMargin: 0.35 }, 
     { level: 2, enemies: 3, fireInterval: 1500, errorMargin: 0.25 },
@@ -31,7 +34,6 @@ class MainScene extends Phaser.Scene {
 
     preload() {
         // --- ASSET LOADING ---
-        // Loading full atlas images - frames defined manually in create()
         this.load.image('red_team_atlas', 'assets/player.png');
         this.load.image('green_team_atlas', 'assets/enemy.png');
         this.load.image('snowball', 'assets/snowball.png');
@@ -39,17 +41,19 @@ class MainScene extends Phaser.Scene {
         this.load.image('sink', 'assets/sink.png');
         this.load.image('puddle', 'assets/puddle.png');
         this.load.image('playfield', 'assets/playField.png');
+        this.load.image('shadow', 'assets/shadow.png');
+        this.load.image('snowball_shadow', 'assets/snowball_shadow.png');
+        this.load.image('hand', 'assets/smallHand.png');
         
         // Audio
         this.load.audio('sfx_throw', 'assets/throw.mp3');
-        this.load.audio('sfx_hit', 'assets/hit1.mp3');
-        this.load.audio('sfx_step', 'assets/hit2.mp3');
-
-        // Procedural Shadow - softer, wider for diagonal rotation
-        this.make.graphics({x: 0, y: 0, add: false})
-            .fillStyle(0x000000, 0.25) // Reduced alpha for softer look
-            .fillEllipse(20, 10, 40, 20) // Wider ellipse
-            .generateTexture('shadow', 40, 20);
+        this.load.audio('sfx_hit1', 'assets/hit1.mp3');
+        this.load.audio('sfx_hit2', 'assets/hit2.mp3');
+        this.load.audio('sfx_hit3', 'assets/hit3.mp3');
+        this.load.audio('sfx_deathHit', 'assets/deathHit.mp3');
+        this.load.audio('sfx_intro', 'assets/intro.mp3');
+        this.load.audio('sfx_introAlt', 'assets/introAlt.mp3');
+        this.load.audio('music', 'assets/musicAlt.mp3');
     }
 
     create() {
@@ -59,8 +63,7 @@ class MainScene extends Phaser.Scene {
         bg.fillRect(0, 0, 600, 320);
         bg.setDepth(-10);
 
-        // Add Playfield Overlay (if you have it)
-        // If this image fails to load, the gradient above will show instead.
+        // Add Playfield Overlay
         if (this.textures.exists('playfield')) {
             let pf = this.add.image(300, 160, 'playfield');
             pf.setDisplaySize(600, 320);
@@ -68,138 +71,49 @@ class MainScene extends Phaser.Scene {
         }
 
         // 2. Define Frames & Animations
-        // Red Team (Player) Frames
+        // Red Team
         const redTex = this.textures.get('red_team_atlas');
-        redTex.add('idle_0', 0, 148, 19, 26, 34);      // standing
-        redTex.add('walk_0', 0, 15, 19, 24, 34);       // walking
-        redTex.add('walk_1', 0, 59, 18, 30, 35);       // walkingAlt
-        redTex.add('throw_0', 0, 84, 99, 31, 35);      // cocked
-        redTex.add('throw_1', 0, 150, 98, 23, 36);     // throwing
-        // Hit reaction frames
-        redTex.add('hit_0', 0, 199, 24, 35, 30);       // hit
-        redTex.add('hit_1', 0, 258, 11, 32, 43);       // hit1
-        redTex.add('hit_2', 0, 312, 10, 36, 44);       // hit2
-        redTex.add('hit_3', 0, 368, 13, 35, 40);       // hit3
-        // Death frames
-        redTex.add('death_0', 0, 208, 109, 71, 32);    // normalDeath
-        redTex.add('death_1', 0, 290, 101, 68, 48);    // hardDeath
-        redTex.add('wipedOut', 0, 376, 98, 51, 53);    // wipedOut
+        redTex.add('idle_0', 0, 148, 19, 26, 34);
+        redTex.add('walking', 0, 15, 19, 24, 34);
+        redTex.add('walkingAlt', 0, 59, 18, 30, 35);
+        redTex.add('throw_0', 0, 84, 99, 31, 35);
+        redTex.add('throw_1', 0, 150, 98, 23, 36);
+        redTex.add('hit_0', 0, 199, 24, 35, 30);
+        redTex.add('hit_1', 0, 258, 11, 32, 43);
+        redTex.add('hit_2', 0, 312, 10, 36, 44);
+        redTex.add('hit_3', 0, 368, 13, 35, 40);
+        redTex.add('death_0', 0, 208, 109, 71, 32);
 
-        // Green Team (Enemy) Frames
+        // Green Team
         const greenTex = this.textures.get('green_team_atlas');
-        greenTex.add('idle_0', 0, 133, 18, 30, 36);    // walking
-        greenTex.add('idle_1', 0, 186, 18, 27, 34);    // walkingAlt
-        greenTex.add('throw_0', 0, 292, 23, 24, 31);   // gathering
-        greenTex.add('throw_1', 0, 332, 19, 34, 35);   // cocked
-        greenTex.add('throw_2', 0, 393, 20, 24, 34);   // throwing
-        // Hit reaction frames
-        greenTex.add('hit_0', 0, 26, 75, 25, 35);      // hit
-        greenTex.add('guard', 0, 74, 75, 29, 35);      // guard
-        greenTex.add('brushOff', 0, 124, 75, 29, 35);  // brushOff
-        greenTex.add('stunned', 0, 170, 76, 35, 34);   // stunned
-        // Death frames
-        greenTex.add('death_0', 0, 44, 145, 66, 42);   // normalDeath
-        greenTex.add('death_1', 0, 137, 142, 54, 46);  // hardDeath
-        greenTex.add('wipedOut', 0, 220, 145, 69, 42); // wipedOut
-        greenTex.add('minorDeath', 0, 317, 145, 49, 38); // minorDeath
-        // Victory frames
-        greenTex.add('victory_0', 0, 244, 78, 42, 35); // victory1
-        greenTex.add('victory_1', 0, 312, 77, 40, 37); // victory2
-        greenTex.add('victory_2', 0, 380, 76, 42, 37); // victory3
+        greenTex.add('idle_0', 0, 133, 18, 30, 36);
+        greenTex.add('idle_1', 0, 186, 18, 27, 34);
+        greenTex.add('walking', 0, 133, 18, 30, 36);
+        greenTex.add('walkingAlt', 0, 186, 18, 27, 34);
+        greenTex.add('throw_0', 0, 292, 23, 24, 31);
+        greenTex.add('throw_1', 0, 332, 19, 34, 35);
+        greenTex.add('throw_2', 0, 393, 20, 24, 34);
+        greenTex.add('hit_0', 0, 26, 75, 25, 35);
+        greenTex.add('guard', 0, 74, 75, 29, 35);
+        greenTex.add('brushOff', 0, 124, 75, 29, 35);
+        greenTex.add('stunned', 0, 170, 76, 35, 34);
+        greenTex.add('death_0', 0, 44, 145, 66, 42);
+        greenTex.add('victory_0', 0, 244, 78, 42, 35);
+        greenTex.add('victory_1', 0, 312, 77, 40, 37);
+        greenTex.add('victory_2', 0, 380, 76, 42, 37);
 
         // Animations
-        this.anims.create({
-            key: 'red_idle',
-            frames: [{ key: 'red_team_atlas', frame: 'idle_0' }],
-            frameRate: 1, repeat: -1
-        });
-        this.anims.create({
-            key: 'red_walk',
-            frames: [
-                { key: 'red_team_atlas', frame: 'walk_0' },
-                { key: 'red_team_atlas', frame: 'walk_1' }
-            ],
-            frameRate: 6, repeat: -1
-        });
-        this.anims.create({
-            key: 'red_throw',
-            frames: [
-                { key: 'red_team_atlas', frame: 'throw_0' },
-                { key: 'red_team_atlas', frame: 'throw_1' }
-            ],
-            frameRate: 10, repeat: 0
-        });
+        this.anims.create({ key: 'red_idle', frames: [{ key: 'red_team_atlas', frame: 'idle_0' }], frameRate: 1, repeat: -1 });
+        this.anims.create({ key: 'red_throw', frames: [{ key: 'red_team_atlas', frame: 'throw_0' }, { key: 'red_team_atlas', frame: 'throw_1' }], frameRate: 10, repeat: 0 });
         
-        this.anims.create({
-            key: 'green_idle',
-            frames: [
-                { key: 'green_team_atlas', frame: 'idle_0' },
-                { key: 'green_team_atlas', frame: 'idle_1' }
-            ],
-            frameRate: 4, repeat: -1
-        });
-        this.anims.create({
-            key: 'green_walk',
-            frames: [
-                { key: 'green_team_atlas', frame: 'idle_0' },
-                { key: 'green_team_atlas', frame: 'idle_1' }
-            ],
-            frameRate: 8, repeat: -1 // Faster for walking
-        });
-        this.anims.create({
-            key: 'green_throw',
-            frames: [
-                { key: 'green_team_atlas', frame: 'throw_0' },
-                { key: 'green_team_atlas', frame: 'throw_1' },
-                { key: 'green_team_atlas', frame: 'throw_2' }
-            ],
-            frameRate: 10, repeat: 0
-        });
+        this.anims.create({ key: 'green_idle', frames: [{ key: 'green_team_atlas', frame: 'idle_0' }, { key: 'green_team_atlas', frame: 'idle_1' }], frameRate: 4, repeat: -1 });
+        this.anims.create({ key: 'green_throw', frames: [{ key: 'green_team_atlas', frame: 'throw_0' }, { key: 'green_team_atlas', frame: 'throw_1' }, { key: 'green_team_atlas', frame: 'throw_2' }], frameRate: 10, repeat: 0 });
 
-        // Hit animations
-        this.anims.create({
-            key: 'red_hit',
-            frames: [
-                { key: 'red_team_atlas', frame: 'hit_0' },
-                { key: 'red_team_atlas', frame: 'hit_1' },
-                { key: 'red_team_atlas', frame: 'hit_2' },
-                { key: 'red_team_atlas', frame: 'hit_3' }
-            ],
-            frameRate: 8, repeat: 0
-        });
-        this.anims.create({
-            key: 'red_death',
-            frames: [{ key: 'red_team_atlas', frame: 'death_0' }],
-            frameRate: 1, repeat: 0
-        });
-        
-        this.anims.create({
-            key: 'green_hit',
-            frames: [
-                { key: 'green_team_atlas', frame: 'hit_0' },
-                { key: 'green_team_atlas', frame: 'guard' },
-                { key: 'green_team_atlas', frame: 'brushOff' }
-            ],
-            frameRate: 6, repeat: 0
-        });
-        this.anims.create({
-            key: 'green_stunned',
-            frames: [{ key: 'green_team_atlas', frame: 'stunned' }],
-            frameRate: 1, repeat: 0
-        });
-        this.anims.create({
-            key: 'green_death',
-            frames: [{ key: 'green_team_atlas', frame: 'death_0' }],
-            frameRate: 1, repeat: 0
-        });
-        this.anims.create({
-            key: 'green_victory',
-            frames: [
-                { key: 'green_team_atlas', frame: 'victory_0' },
-                { key: 'green_team_atlas', frame: 'victory_1' },
-                { key: 'green_team_atlas', frame: 'victory_2' }
-            ],
-            frameRate: 4, repeat: -1
+        this.anims.create({ key: 'red_death', frames: [{ key: 'red_team_atlas', frame: 'death_0' }], frameRate: 1, repeat: 0 });
+        this.anims.create({ 
+            key: 'green_victory', 
+            frames: [{ key: 'green_team_atlas', frame: 'victory_0' }, { key: 'green_team_atlas', frame: 'victory_1' }, { key: 'green_team_atlas', frame: 'victory_2' }], 
+            frameRate: 4, repeat: -1 
         });
 
         // 3. Game Groups & State
@@ -210,39 +124,39 @@ class MainScene extends Phaser.Scene {
         this.chargeDirection = 1;
         this.chargePower = 0;
         this.maxPower = 100;
-        this.chargeSpeed = 150; // Power units per second
+        this.chargeSpeed = 150; 
         
         // 4. UI Elements
         this.powerBarBg = this.add.rectangle(0, 0, 52, 10, 0x000000).setOrigin(0, 0.5).setDepth(99);
         this.powerBar = this.add.rectangle(0, 0, 0, 8, 0x00ff00).setOrigin(0, 0.5).setDepth(100);
         this.levelText = this.add.text(300, 160, '', { fontSize: '60px', color: '#cc0000', fontStyle: 'bold', stroke: '#fff', strokeThickness: 6 }).setOrigin(0.5).setDepth(200).setVisible(false);
 
+        // Custom Cursor
+        this.input.setDefaultCursor('url(assets/smallHand.png), pointer');
+        
+        // Music
+        this.music = this.sound.add('music', { loop: true, volume: 0.3 });
+        
         // 5. Inputs
-        this.input.mouse.disableContextMenu(); // Enable Right Click
+        this.input.mouse.disableContextMenu(); 
 
-        // LEFT CLICK: Select & Start Charging / Release to Throw
         this.input.on('pointerdown', (pointer) => {
             if (!this.isLevelActive) return;
 
             if (pointer.leftButtonDown()) {
-                // If already charging, ignore new clicks
                 if (this.isCharging) return;
                 
-                // Check if clicking on a player to select
                 let clickedPlayer = this.getClosestActive(this.redTeam, pointer, 40);
                 if (clickedPlayer) {
                     this.activePlayer = clickedPlayer;
                     this.isCharging = true;
                     this.chargePower = 0;
                     this.chargeDirection = 1;
-                    this.targetX = pointer.x; // Store initial click position as target
+                    this.targetX = pointer.x; 
                     this.targetY = pointer.y;
-                    
-                    // Visual Feedback
                     this.redTeam.forEach(k => k.bodySprite.setTint(0xffffff));
                     clickedPlayer.bodySprite.setTint(0xffff00); 
                 } else if (this.activePlayer && this.activePlayer.isAlive) {
-                    // Clicking elsewhere with selected player - start charging toward that point
                     this.isCharging = true;
                     this.chargePower = 0;
                     this.chargeDirection = 1;
@@ -250,7 +164,6 @@ class MainScene extends Phaser.Scene {
                     this.targetY = pointer.y;
                 }
             } else if (pointer.rightButtonDown()) {
-                // RIGHT CLICK: Move (cancel any charging)
                 this.isCharging = false;
                 if (this.activePlayer && this.activePlayer.isAlive) {
                     this.movePlayer(this.activePlayer, pointer.x, pointer.y);
@@ -258,7 +171,6 @@ class MainScene extends Phaser.Scene {
             }
         });
 
-        // Track mouse movement while charging to update target
         this.input.on('pointermove', (pointer) => {
             if (this.isCharging && this.activePlayer) {
                 this.targetX = pointer.x;
@@ -268,7 +180,6 @@ class MainScene extends Phaser.Scene {
 
         this.input.on('pointerup', (pointer) => {
             if (this.isCharging && this.activePlayer && this.isLevelActive && pointer.leftButtonReleased()) {
-                // Release to throw with current power
                 if (this.chargePower > 5) {
                     this.throwSnowball(this.activePlayer, this.chargePower, this.targetX, this.targetY);
                 }
@@ -286,22 +197,24 @@ class MainScene extends Phaser.Scene {
         let config = LEVEL_CONFIG[index] || LEVEL_CONFIG[LEVEL_CONFIG.length - 1];
         this.currentConfig = config;
         
-        // Is this the very first level?
         let isIntro = (index === 0);
+        
+        if (isIntro) {
+            this.sound.play('sfx_intro', { volume: 0.6 });
+            if (!this.music.isPlaying) {
+                this.music.play();
+            }
+        }
 
-        // Cleanup
         this.greenTeam.forEach(k => k.destroy());
         this.greenTeam = [];
         this.projectiles.clear(true, true);
 
-        // --- SPAWN TEAMS ---
-        // Destroy Red Team to re-animate them walking in for Level 1
         if (isIntro) {
             this.redTeam.forEach(k => k.destroy());
             this.redTeam = [];
-            this.createTeam('player', this.redTeam, 3, true); // True = Walk In
+            this.createTeam('player', this.redTeam, 3, true); 
         } else {
-            // Normal Level Reset (Revive or Keep Position)
             if (this.redTeam.length === 0) {
                 this.createTeam('player', this.redTeam, 3, false);
             } else {
@@ -316,10 +229,8 @@ class MainScene extends Phaser.Scene {
             }
         }
 
-        // Spawn Green Team (they always walk in on Level 1)
         this.createTeam('cpu', this.greenTeam, config.enemies, isIntro);
 
-        // --- LEVEL TEXT LOGIC ---
         let message = isIntro ? "Season's Greetings" : 'LEVEL ' + (index + 1);
         
         this.levelText.setText(message);
@@ -333,59 +244,91 @@ class MainScene extends Phaser.Scene {
         this.levelText.y = 160;
         this.isLevelActive = false;
 
-        // Fade In -> Hold -> Fade Out
+        this.walkingCount = 0; // Track walking players
+        this.textFadeComplete = false;
+        this.pendingFireInterval = config.fireInterval;
+
         this.tweens.add({
             targets: this.levelText,
             alpha: 1,
             duration: 1000,
-            hold: isIntro ? 2500 : 1500, // Longer hold for walk-in
+            hold: isIntro ? 2500 : 1500, 
             yoyo: true,
             onComplete: () => {
-                this.isLevelActive = true;
-                this.setupAITimer(config.fireInterval);
+                this.textFadeComplete = true;
+                this.checkLevelReady();
             }
         });
     }
 
-    createTeam(type, teamArray, count, isIntro = false) {
-        // COORDINATE SWAP (Match Original Game)
-        // Green (CPU) = LEFT SIDE | Red (Player) = RIGHT SIDE
-        const leftX = 100;
-        const rightX = 500;
-        
-        // CPU (Green) on Left, Player (Red) on Right
-        let finalX = (type === 'player') ? rightX : leftX;
-        
-        // --- DIAGONAL ENTRANCE LOGIC ---
-        // Start from Top-Right (Red) or Top-Left (Green)
-        let startX = (type === 'player') ? 650 : -50;
-        let startY = -100; // Start above the screen
+    checkLevelReady() {
+        // Only activate level when text has faded AND all walking is complete
+        if (this.textFadeComplete && this.walkingCount === 0) {
+            this.isLevelActive = true;
+            this.setupAITimer(this.pendingFireInterval);
+        }
+    }
 
-        // Y Slots (Mound positions)
-        const ySlots = [96, 211, 296, 140, 246, 172];
+    createTeam(type, teamArray, count, isIntro = false) {
         const textureKey = (type === 'player') ? 'red_team_atlas' : 'green_team_atlas';
         const prefix = (type === 'player') ? 'red' : 'green';
 
+        // Fixed positions matching original game (scaled to 600x320)
+        const playerPositions = [
+            { x: 500, y: 180 },  // Top-right red
+            { x: 360, y: 265 },  // Bottom-left red  
+            { x: 470, y: 275 },  // Bottom-middle red
+            { x: 500, y: 270 },  // Right-middle red
+            { x: 450, y: 275 },
+            { x: 420, y: 300 }
+        ];
+        const enemyPositions = [
+            { x: 95, y: 35 },    // Top-left green
+            { x: 200, y: 30 },   // Top-right green
+            { x: 70, y: 105 },   // Bottom-left green
+            { x: 140, y: 70 },   // Extra positions if needed
+            { x: 160, y: 120 },
+            { x: 100, y: 90 }
+        ];
+
         for (let i = 0; i < count; i++) {
-            let finalY = ySlots[i % ySlots.length];
+            // Use fixed positions from original game
+            let finalPos = (type === 'player') 
+                ? playerPositions[i % playerPositions.length]
+                : enemyPositions[i % enemyPositions.length];
+            let finalX = finalPos.x;
+            let finalY = finalPos.y;
             
-            // Intro: Spawn at top corners. Gameplay: Spawn at mound.
-            let spawnX = isIntro ? startX : finalX;
-            let spawnY = isIntro ? startY : finalY;
+            // --- DIAGONAL WALK-IN LOGIC ---
+            let spawnX, spawnY;
+            // Use a significant offset (e.g., 250px) to ensure they start well off-screen
+            // and walk a clear diagonal path roughly 45 degrees.
+            let offset = 250; 
+
+            if (isIntro) {
+                if (type === 'player') {
+                    // Red Team (Right Side)
+                    // Enters from Bottom-Right -> Walks Up-Left
+                    spawnX = finalX + offset; 
+                    spawnY = finalY + offset; 
+                } else {
+                    // Green Team (Left Side)
+                    // Enters from Top-Left -> Walks Down-Right
+                    spawnX = finalX - offset; 
+                    spawnY = finalY - offset; 
+                }
+            } else {
+                spawnX = finalX;
+                spawnY = finalY;
+            }
             
             let kid = this.add.container(spawnX, spawnY);
             
-            // Shadow setup - offset to bottom-right for diagonal lighting
-            let shadow = this.add.image(12, 22, 'shadow');
-            shadow.setRotation(0.5); // Rotate ~30 degrees to match diagonal light source
-            shadow.setScale(0.8, 0.6); // Flatten it slightly
-            shadow.setAlpha(0.25);
+            let shadow = this.add.image(2, 10, 'shadow');
             kid.add(shadow);
             
             let sprite = this.add.sprite(0, 0, textureKey);
-            
-            // No flip needed - both sprites face their natural direction
-            sprite.setFlipX(false);
+            sprite.setFlipX(false); // Assumes atlases are correctly oriented (Red=Left, Green=Right)
             
             kid.add(sprite);
             kid.isAlive = true;
@@ -393,36 +336,70 @@ class MainScene extends Phaser.Scene {
             kid.bodySprite = sprite;
             kid.setSize(30, 50);
 
+            // Debug label showing coordinates
+            if (DEBUG_MODE) {
+                kid.debugLabel = this.add.text(0, -45, '', { 
+                    fontSize: '10px', 
+                    color: '#000000', 
+                    backgroundColor: '#ffffff',
+                    padding: { x: 2, y: 1 }
+                }).setOrigin(0.5).setDepth(1000);
+            }
+
             teamArray.push(kid);
 
-            // --- DIAGONAL WALK ANIMATION ---
             if (isIntro) {
-                sprite.play(prefix + '_walk');
+                const walkingDistance = 3; 
                 
-                this.tweens.add({
-                    targets: kid,
-                    x: finalX,       // Move to Mound X
-                    y: finalY,       // Move to Mound Y (diagonal!)
-                    duration: 2500 + (i * 200),
-                    ease: 'Linear',
-                    onComplete: () => {
-                        sprite.play(prefix + '_idle');
-                    }
+                kid.walkFrame = 0;
+                kid.isWalking = true; 
+                kid.finalX = finalX;
+                kid.finalY = finalY;
+                this.walkingCount++;
+                
+                sprite.setFrame('walking');
+                
+                kid.walkTimer = this.time.addEvent({
+                    delay: 83, 
+                    callback: () => {
+                        let dx = kid.finalX - kid.x;
+                        let dy = kid.finalY - kid.y;
+                        
+                        // Check arrival
+                        if (Math.abs(dx) <= walkingDistance && Math.abs(dy) <= walkingDistance) {
+                            kid.x = kid.finalX;
+                            kid.y = kid.finalY;
+                            sprite.play(prefix + '_idle'); 
+                            kid.walkTimer.remove();
+                            this.walkingCount--;
+                            this.checkLevelReady();
+                            return;
+                        }
+                        
+                        // Move diagonally
+                        if (Math.abs(dx) > 0) {
+                            kid.x += (dx > 0) ? walkingDistance : -walkingDistance;
+                        }
+                        if (Math.abs(dy) > 0) {
+                            kid.y += (dy > 0) ? walkingDistance : -walkingDistance;
+                        }
+                        
+                        // Toggle animation
+                        kid.isWalking = !kid.isWalking;
+                        sprite.setFrame(kid.isWalking ? 'walking' : 'walkingAlt');
+                    },
+                    loop: true
                 });
             } else {
-                // Immediate spawn (Levels 2+)
                 sprite.playAfterDelay(prefix + '_idle', Math.random() * 1000);
             }
         }
     }
 
     update(time, delta) {
-        // Update power meter (oscillating charge)
         if (this.isCharging && this.activePlayer) {
-            // Oscillate power up and down
             this.chargePower += this.chargeDirection * this.chargeSpeed * (delta / 1000);
             
-            // Bounce at limits
             if (this.chargePower >= this.maxPower) {
                 this.chargePower = this.maxPower;
                 this.chargeDirection = -1;
@@ -431,24 +408,33 @@ class MainScene extends Phaser.Scene {
                 this.chargeDirection = 1;
             }
             
-            // Show power bar above player
             this.powerBarBg.setVisible(true);
             this.powerBar.setVisible(true);
             this.powerBarBg.setPosition(this.activePlayer.x - 26, this.activePlayer.y - 40);
             this.powerBar.setPosition(this.activePlayer.x - 25, this.activePlayer.y - 40);
             this.powerBar.width = (this.chargePower / this.maxPower) * 50;
             
-            // Color gradient: green -> yellow -> red
             if (this.chargePower < 33) {
-                this.powerBar.fillColor = 0x00ff00; // Green
+                this.powerBar.fillColor = 0x00ff00; 
             } else if (this.chargePower < 66) {
-                this.powerBar.fillColor = 0xffff00; // Yellow
+                this.powerBar.fillColor = 0xffff00; 
             } else {
-                this.powerBar.fillColor = 0xff0000; // Red
+                this.powerBar.fillColor = 0xff0000; 
             }
         } else {
             this.powerBarBg.setVisible(false);
             this.powerBar.setVisible(false);
+        }
+
+        // Update debug labels
+        if (DEBUG_MODE) {
+            [...this.redTeam, ...this.greenTeam].forEach(kid => {
+                if (kid.debugLabel) {
+                    kid.debugLabel.setPosition(kid.x, kid.y - 45);
+                    kid.debugLabel.setText(`${Math.round(kid.x)}, ${Math.round(kid.y)}`);
+                    kid.debugLabel.setVisible(kid.isAlive);
+                }
+            });
         }
 
         [...this.projectiles.getChildren()].forEach(ball => {
@@ -464,14 +450,11 @@ class MainScene extends Phaser.Scene {
                 ball.x += ball.vx;
                 ball.y += ball.vy;
                 
-                // 3D Visuals
                 let scale = 1 + (ball.z / 300);
                 ball.setScale(scale);
                 
-                // Shadow: diagonal offset to match player shadows (top-left light source)
-                ball.shadow.setPosition(ball.x + 15, (ball.y + ball.z) + 15);
-                ball.shadow.setRotation(0.5); // Match player shadow angle
-                ball.shadow.setAlpha(0.6 - (ball.z / 100)); // Fade out as ball goes higher
+                ball.shadow.setPosition(ball.x, ball.y + ball.z);
+                ball.shadow.setAlpha(Math.max(0.1, 0.6 - (ball.z / 100))); 
 
                 if (ball.z < 40 && ball.z > 5) {
                     let targetTeam = (ball.throwerTeam === 'player') ? this.greenTeam : this.redTeam;
@@ -486,20 +469,18 @@ class MainScene extends Phaser.Scene {
     }
 
     throwSnowball(thrower, power, targetX, targetY) {
-        // Power is 0-100 from the oscillating meter
-        let scaledPower = 200 + (power * 6); // Range: 200-800
+        let scaledPower = 200 + (power * 6); 
         
         let ball = this.add.image(thrower.x, thrower.y - 20, 'snowball');
-        ball.shadow = this.add.image(thrower.x, thrower.y, 'shadow');
+        ball.shadow = this.add.image(thrower.x, thrower.y, 'snowball_shadow'); 
         ball.throwerTeam = thrower.teamType;
         
         ball.z = 35; 
-        ball.zSpeed = 4 + (power / 20); // Range: 4-9
+        ball.zSpeed = 4 + (power / 20); 
         
-        // Aim toward target position
         let angle = Phaser.Math.Angle.Between(thrower.x, thrower.y, targetX, targetY);
         
-        let speed = scaledPower / 40; // Range: 5-20
+        let speed = scaledPower / 40; 
         ball.vx = Math.cos(angle) * speed;
         ball.vy = Math.sin(angle) * speed;
 
@@ -518,28 +499,23 @@ class MainScene extends Phaser.Scene {
         ball.destroy();
         kid.isAlive = false;
         this.playRandomSound('sfx_hit', 1.0);
+        this.sound.play('sfx_deathHit', { volume: 0.8 }); 
         this.cameras.main.shake(100, 0.005);
         
         let prefix = (kid.teamType === 'player') ? 'red' : 'green';
         
-        // Play death animation from sprite sheet
         kid.bodySprite.play(prefix + '_death');
         
-        // Classic Snowcraft hit animation: kid falls over and sinks into snow
-        // 1. Show splash at impact point
         let splash = this.add.image(kid.x, kid.y + 10, 'splash').setDepth(kid.depth - 1);
         
-        // 2. Kid falls over (rotate and lower)
         this.tweens.add({ 
             targets: kid, 
             angle: 90, 
             y: kid.y + 15,
             duration: 300,
             onComplete: () => {
-                // 3. Transition splash to sink
                 splash.setTexture('sink');
                 
-                // 4. Kid sinks down and fades
                 this.tweens.add({
                     targets: kid,
                     alpha: 0,
@@ -549,10 +525,8 @@ class MainScene extends Phaser.Scene {
                     onComplete: () => {
                         kid.setVisible(false);
                         
-                        // 5. Show puddle where they sank
                         splash.setTexture('puddle');
                         
-                        // 6. Puddle fades slowly
                         this.tweens.add({
                             targets: splash,
                             alpha: 0,
@@ -579,7 +553,6 @@ class MainScene extends Phaser.Scene {
             this.isLevelActive = false;
             if (this.aiTimer) this.aiTimer.remove();
             
-            // Play victory animation for all surviving enemies
             this.greenTeam.forEach(enemy => {
                 if (enemy.isAlive) {
                     enemy.bodySprite.play('green_victory');
@@ -607,19 +580,16 @@ class MainScene extends Phaser.Scene {
         if (targets.length === 0) return;
         let target = targets[Phaser.Math.Between(0, targets.length - 1)];
 
-        // Calculate aim with some error
         let error = Phaser.Math.FloatBetween(-this.currentConfig.errorMargin, this.currentConfig.errorMargin);
         let targetX = target.x + (error * 100);
         let targetY = target.y + (error * 50);
 
-        // Random power between 50-90
         let power = Phaser.Math.Between(50, 90);
         
         this.throwSnowball(thrower, power, targetX, targetY);
     }
 
     createSnowSplash(x, y) {
-        // Play splash animation sequence: Splash -> Sink -> Puddle
         let splash = this.add.image(x, y, 'splash').setDepth(50);
         
         this.time.delayedCall(120, () => {
@@ -638,18 +608,25 @@ class MainScene extends Phaser.Scene {
     }
 
     playRandomSound(key, volume = 1) {
-        if (this.sound.get(key)) {
+        let soundKey = key;
+        
+        if (key === 'sfx_hit') {
+            const variation = Phaser.Math.Between(1, 3);
+            soundKey = key + variation;
+        }
+        
+        if (this.sound.get(soundKey)) {
              let detune = Phaser.Math.Between(-200, 200); 
-             this.sound.play(key, { detune: detune, volume: volume });
+             this.sound.play(soundKey, { detune: detune, volume: volume });
         }
     }
     
     movePlayer(kid, x, y) {
-        x = Phaser.Math.Clamp(x, 40, 260); // Keep on left side
+        x = Phaser.Math.Clamp(x, 40, 260); 
         y = Phaser.Math.Clamp(y, 70, 300);
 
-        this.createSnowSplash(x, y); // Visual feedback
-        this.playRandomSound('sfx_step', 0.2); // Sound feedback
+        this.createSnowSplash(x, y); 
+        this.playRandomSound('sfx_step', 0.2); 
 
         this.tweens.add({
             targets: kid,
@@ -681,7 +658,7 @@ const config = {
     width: 600,
     height: 320,
     parent: 'game-container',
-    backgroundColor: '#333',
+    backgroundColor: '#ffffff',
     physics: { default: 'arcade' },
     scene: MainScene
 };
