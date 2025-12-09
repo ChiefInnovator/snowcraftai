@@ -17,11 +17,11 @@
 <script>
 // --- CONFIGURATION ---
 const LEVEL_CONFIG = [
-    { level: 1, enemies: 3, fireInterval: 2000, errorMargin: 0.35 }, // Tutorial: Slow, bad aim
-    { level: 2, enemies: 3, fireInterval: 1500, errorMargin: 0.25 }, // Normal
-    { level: 3, enemies: 4, fireInterval: 1200, errorMargin: 0.15 }, // Hard: Faster
-    { level: 4, enemies: 5, fireInterval: 900,  errorMargin: 0.08 }, // Expert: Crowded
-    { level: 5, enemies: 6, fireInterval: 700,  errorMargin: 0.05 }, // Nightmare: Sniper mode
+    { level: 1, enemies: 3, fireInterval: 2000, errorMargin: 0.35 }, 
+    { level: 2, enemies: 3, fireInterval: 1500, errorMargin: 0.25 },
+    { level: 3, enemies: 4, fireInterval: 1200, errorMargin: 0.15 },
+    { level: 4, enemies: 5, fireInterval: 900,  errorMargin: 0.08 },
+    { level: 5, enemies: 6, fireInterval: 700,  errorMargin: 0.05 },
 ];
 
 class MainScene extends Phaser.Scene {
@@ -31,7 +31,7 @@ class MainScene extends Phaser.Scene {
 
     preload() {
         // --- ASSET LOADING ---
-        // Loading full atlas images instead of spritesheets because frames are irregular
+        // Loading full atlas images - frames defined manually in create()
         this.load.image('red_team_atlas', 'assets/player.png');
         this.load.image('green_team_atlas', 'assets/enemy.png');
         this.load.image('snowball', 'assets/snowball.png');
@@ -43,9 +43,9 @@ class MainScene extends Phaser.Scene {
         // Audio
         this.load.audio('sfx_throw', 'assets/throw.mp3');
         this.load.audio('sfx_hit', 'assets/hit1.mp3');
-        this.load.audio('sfx_step', 'assets/hit2.mp3'); // Using hit2 as placeholder for step
+        this.load.audio('sfx_step', 'assets/hit2.mp3');
 
-        // Procedural Shadow (Backup/Effect)
+        // Procedural Shadow
         this.make.graphics({x:0, y:0, add: false})
             .fillStyle(0x000000, 0.4)
             .fillEllipse(15, 5, 30, 10)
@@ -53,16 +53,19 @@ class MainScene extends Phaser.Scene {
     }
 
     create() {
-        // 1. Environment (simple gradient + playfield overlay for barriers)
+        // 1. Environment
         let bg = this.add.graphics();
         bg.fillGradientStyle(0xddeeff, 0xddeeff, 0xffffff, 0xffffff, 1);
         bg.fillRect(0, 0, 600, 320);
         bg.setDepth(-10);
 
-        // playfield overlay contains the snow barriers from the original game
-        let pf = this.add.image(300, 160, 'playfield');
-        pf.setDisplaySize(600, 320);
-        pf.setDepth(-5);
+        // Add Playfield Overlay (if you have it)
+        // If this image fails to load, the gradient above will show instead.
+        if (this.textures.exists('playfield')) {
+            let pf = this.add.image(300, 160, 'playfield');
+            pf.setDisplaySize(600, 320);
+            pf.setDepth(-5);
+        }
 
         // 2. Define Frames & Animations
         // Red Team (Player) Frames
@@ -131,54 +134,53 @@ class MainScene extends Phaser.Scene {
         
         // 4. UI Elements
         this.powerBar = this.add.rectangle(0, 0, 0, 8, 0xff0000).setOrigin(0, 0.5).setDepth(100);
-        
-        this.levelText = this.add.text(400, 300, '', {
-            fontSize: '60px', color: '#cc0000', fontStyle: 'bold', stroke: '#fff', strokeThickness: 6
-        }).setOrigin(0.5).setDepth(200).setVisible(false);
+        this.levelText = this.add.text(300, 160, '', { fontSize: '60px', color: '#cc0000', fontStyle: 'bold', stroke: '#fff', strokeThickness: 6 }).setOrigin(0.5).setDepth(200).setVisible(false);
 
         // 5. Inputs
+        this.input.mouse.disableContextMenu(); // Enable Right Click
+
+        // LEFT CLICK: Select & Throw
         this.input.on('pointerdown', (pointer) => {
             if (!this.isLevelActive) return;
-            
-            // Check if we clicked a player
-            let clickedPlayer = this.getClosestActive(this.redTeam, pointer, 40); // 40px hit radius
 
-            if (clickedPlayer) {
-                // Select / Start Drag
-                this.activePlayer = clickedPlayer;
-                this.isDragging = true;
-                this.dragStartPos.set(pointer.x, pointer.y);
-                
-                // Visual feedback for selection
-                this.redTeam.forEach(k => k.bodySprite.setTint(0xffffff));
-                clickedPlayer.bodySprite.setTint(0xffff00); // Highlight selected
-            } else if (this.activePlayer && !this.isDragging) {
-                // Move to position if we already have a player selected and clicked ground
-                this.movePlayer(this.activePlayer, pointer.x, pointer.y);
+            if (pointer.leftButtonDown()) {
+                // Check selection
+                let clickedPlayer = this.getClosestActive(this.redTeam, pointer, 40);
+                if (clickedPlayer) {
+                    this.activePlayer = clickedPlayer;
+                    this.isDragging = true;
+                    this.dragStartPos.set(pointer.x, pointer.y);
+                    
+                    // Visual Feedback
+                    this.redTeam.forEach(k => k.bodySprite.setTint(0xffffff));
+                    clickedPlayer.bodySprite.setTint(0xffff00); 
+                }
+            } else if (pointer.rightButtonDown()) {
+                // RIGHT CLICK: Move
+                if (this.activePlayer && this.activePlayer.isAlive) {
+                    this.movePlayer(this.activePlayer, pointer.x, pointer.y);
+                }
             }
         });
 
         this.input.on('pointerup', (pointer) => {
             if (this.isDragging && this.activePlayer && this.isLevelActive) {
-                // Only throw if we dragged far enough, otherwise it's just a selection click
+                // Throw Logic
                 let dist = Phaser.Math.Distance.Between(this.dragStartPos.x, this.dragStartPos.y, pointer.x, pointer.y);
                 if (dist > 20) {
                     this.throwSnowball(this.activePlayer, this.dragStartPos, pointer);
-                    this.activePlayer.bodySprite.setTint(0xffffff); // Deselect after throw
-                    // keep active selection for movement after throw
+                    this.activePlayer.bodySprite.setTint(0xffffff); // Deselect
+                    this.activePlayer = null;
                 }
             }
             this.isDragging = false;
         });
 
-        // 6. Start Game
         this.startLevel(0);
     }
 
     startLevel(index) {
         this.currentLevelIndex = index;
-        
-        // Loop back to Level 4 difficulty if we go past defined levels
         let config = LEVEL_CONFIG[index] || LEVEL_CONFIG[LEVEL_CONFIG.length - 1];
         this.currentConfig = config;
 
@@ -187,9 +189,8 @@ class MainScene extends Phaser.Scene {
         this.greenTeam = [];
         this.projectiles.clear(true, true);
 
-        // Reset Red Team (Revive dead players)
+        // Reset Red Team
         if (this.redTeam.length === 0) {
-            // Red Team on the LEFT (classic Snowcraft)
             this.createTeam('player', this.redTeam, 3);
         } else {
             this.redTeam.forEach(kid => {
@@ -200,11 +201,10 @@ class MainScene extends Phaser.Scene {
             });
         }
 
-        // Spawn Green Team on the RIGHT
+        // Spawn Green Team
         this.createTeam('cpu', this.greenTeam, config.enemies);
 
-        // Level Transition Text
-        this.levelText.y = 160;
+        // Level Text
         this.levelText.setText('LEVEL ' + (index + 1));
         this.levelText.setVisible(true);
         this.levelText.alpha = 1;
@@ -213,7 +213,7 @@ class MainScene extends Phaser.Scene {
         this.tweens.add({
             targets: this.levelText,
             alpha: 0,
-            delay: 2000,
+            delay: 1500,
             duration: 1000,
             onComplete: () => {
                 this.isLevelActive = true;
@@ -223,55 +223,40 @@ class MainScene extends Phaser.Scene {
     }
 
     createTeam(type, teamArray, count) {
-        // Predefined mound-aligned positions (matching playField.png 600x320)
-        const ySlots = [96, 211, 296, 140, 246, 172]; // extra slots for levels with more enemies
-        const leftX = 199;
-        const rightX = 600 - leftX; // 401
-
+        // Predefined slots matching the mounds in the background
+        const ySlots = [96, 211, 296, 140, 246, 172];
+        const leftX = 100;
+        const rightX = 500;
         const xPos = (type === 'player') ? leftX : rightX;
-        const prefix = (type === 'player') ? 'red' : 'green';
         const textureKey = (type === 'player') ? 'red_team_atlas' : 'green_team_atlas';
+        const prefix = (type === 'player') ? 'red' : 'green';
 
         for (let i = 0; i < count; i++) {
             let y = ySlots[i % ySlots.length];
             let kid = this.add.container(xPos, y);
             
-            // Shadow
             let shadow = this.add.image(0, 18, 'shadow');
-            kid.add(shadow);
-
-            // Sprite
             let sprite = this.add.sprite(0, 0, textureKey);
             sprite.play(prefix + '_idle');
             
-            // Face teams toward each other
-            if (type === 'cpu') {
-                sprite.setFlipX(true); // green on right faces left
-            } else {
-                sprite.setFlipX(false); // red on left faces right
-            }
+            if (type === 'cpu') sprite.setFlipX(true);
 
-            kid.add(sprite);
-
-            // Properties
+            kid.add([shadow, sprite]);
             kid.isAlive = true;
             kid.teamType = type;
             kid.bodySprite = sprite;
             kid.setSize(30, 50);
 
-            // Random start delay for breathing animation so they don't move in sync
+            // Offset start time
             sprite.playAfterDelay(prefix + '_idle', Math.random() * 1000);
-
             teamArray.push(kid);
         }
     }
 
     update() {
-        // UI Update
         if (this.isDragging && this.activePlayer) {
             let dist = Phaser.Math.Distance.Between(this.dragStartPos.x, this.dragStartPos.y, this.input.activePointer.x, this.input.activePointer.y);
             let charge = Phaser.Math.Clamp(dist, 0, 200);
-            
             this.powerBar.setVisible(true);
             this.powerBar.setPosition(this.activePlayer.x - 20, this.activePlayer.y - 40);
             this.powerBar.width = charge / 4;
@@ -280,29 +265,23 @@ class MainScene extends Phaser.Scene {
             this.powerBar.setVisible(false);
         }
 
-        // Physics Loop (2.5D Logic)
         [...this.projectiles.getChildren()].forEach(ball => {
             ball.z += ball.zSpeed;
-            ball.zSpeed -= 0.5; // Gravity
+            ball.zSpeed -= 0.5;
 
             if (ball.z <= 0) {
                 ball.z = 0;
-                // Hit Ground
                 this.createSnowSplash(ball.x, ball.y);
                 this.playRandomSound('sfx_step', 0.2);
                 ball.destroy();
             } else {
-                // Move in 2D
                 ball.x += ball.vx;
                 ball.y += ball.vy;
-
-                // 3D Visuals
                 let scale = 1 + (ball.z / 300);
                 ball.setScale(scale);
-                ball.shadow.setPosition(ball.x, ball.y + (ball.z * 1.2)); // Shadow offset
+                ball.shadow.setPosition(ball.x, ball.y + (ball.z * 1.2));
                 ball.shadow.setAlpha(1 - (ball.z/200));
 
-                // Hit Detection (Head Height)
                 if (ball.z < 40 && ball.z > 5) {
                     let targetTeam = (ball.throwerTeam === 'player') ? this.greenTeam : this.redTeam;
                     targetTeam.forEach(enemy => {
@@ -316,21 +295,18 @@ class MainScene extends Phaser.Scene {
     }
 
     throwSnowball(thrower, dragStart, dragEnd) {
-        // Calculate throw vector
         let dist = Phaser.Math.Distance.Between(dragStart.x, dragStart.y, dragEnd.x, dragEnd.y);
         let power = Phaser.Math.Clamp(dist, 50, 250) * 3.5; 
-
-        // Visuals
+        
         let ball = this.add.image(thrower.x, thrower.y - 20, 'snowball');
         ball.shadow = this.add.image(thrower.x, thrower.y, 'shadow');
         ball.throwerTeam = thrower.teamType;
         
-        // Physics Init
         ball.z = 35; 
-        ball.zSpeed = 6 + (power / 120); // Upward arc
+        ball.zSpeed = 6 + (power / 120);
         
         let angle = Phaser.Math.Angle.Between(dragStart.x, dragStart.y, dragEnd.x, dragEnd.y);
-        angle += Math.PI; // Drag back to shoot forward
+        angle += Math.PI; 
         
         let speed = power / 20;
         ball.vx = Math.cos(angle) * speed;
@@ -338,43 +314,30 @@ class MainScene extends Phaser.Scene {
 
         this.projectiles.add(ball);
 
-        // Animation & Sound
         let prefix = (thrower.teamType === 'player') ? 'red' : 'green';
         thrower.bodySprite.play(prefix + '_throw');
         thrower.bodySprite.once('animationcomplete', () => {
             if(thrower.isAlive) thrower.bodySprite.play(prefix + '_idle');
         });
-
         this.playRandomSound('sfx_throw', 0.8);
     }
 
     handleHit(kid, ball) {
         ball.shadow.destroy();
         ball.destroy();
-        
         kid.isAlive = false;
         kid.bodySprite.stop();
-        kid.bodySprite.setTint(0x555555); // Darken when out
-        
-        // KO Animation (Fall over)
-        this.tweens.add({
-            targets: kid,
-            angle: 90,
-            alpha: 0.6,
-            duration: 400
-        });
-
+        kid.bodySprite.setTint(0x555555);
+        this.tweens.add({ targets: kid, angle: 90, alpha: 0.6, duration: 400 });
         this.playRandomSound('sfx_hit', 1.0);
         this.cameras.main.shake(100, 0.005);
         this.createSnowSplash(ball.x, ball.y);
-
         this.checkWinCondition();
     }
 
     checkWinCondition() {
         let greenAlive = this.greenTeam.filter(k => k.isAlive).length;
         let redAlive = this.redTeam.filter(k => k.isAlive).length;
-
         if (greenAlive === 0) {
             this.isLevelActive = false;
             if (this.aiTimer) this.aiTimer.remove();
@@ -384,46 +347,36 @@ class MainScene extends Phaser.Scene {
             if (this.aiTimer) this.aiTimer.remove();
             this.levelText.setText("GAME OVER");
             this.levelText.setVisible(true);
-            this.levelText.alpha = 1;
             this.input.once('pointerdown', () => location.reload());
         }
     }
 
     setupAITimer(interval) {
         if (this.aiTimer) this.aiTimer.remove();
-        this.aiTimer = this.time.addEvent({
-            delay: interval,
-            callback: this.cpuThink,
-            callbackScope: this,
-            loop: true
-        });
+        this.aiTimer = this.time.addEvent({ delay: interval, callback: this.cpuThink, callbackScope: this, loop: true });
     }
 
     cpuThink() {
         if (!this.isLevelActive) return;
-
         let candidates = this.greenTeam.filter(k => k.isAlive);
         if (candidates.length === 0) return;
         let thrower = candidates[Phaser.Math.Between(0, candidates.length - 1)];
-
         let targets = this.redTeam.filter(k => k.isAlive);
         if (targets.length === 0) return;
         let target = targets[Phaser.Math.Between(0, targets.length - 1)];
 
         let angleToTarget = Phaser.Math.Angle.Between(thrower.x, thrower.y, target.x, target.y);
-        
-        // Apply Accuracy Error based on Difficulty
         let error = Phaser.Math.FloatBetween(-this.currentConfig.errorMargin, this.currentConfig.errorMargin);
         angleToTarget += error;
 
         let dist = Phaser.Math.Distance.Between(thrower.x, thrower.y, target.x, target.y);
         let dragDistance = (dist / 3.5) * Phaser.Math.FloatBetween(0.9, 1.1); 
-
-        // Calculate "Pull Back" coordinates
+        
         let dragX = thrower.x - (Math.cos(angleToTarget) * dragDistance);
         let dragY = thrower.y - (Math.sin(angleToTarget) * dragDistance);
         
-        this.throwSnowball(thrower, thrower, {x: dragX, y: dragY});
+        // Pass dragStart and dragEnd clearly
+        this.throwSnowball(thrower, {x: thrower.x, y: thrower.y}, {x: dragX, y: dragY});
     }
 
     createSnowSplash(x, y) {
@@ -446,26 +399,26 @@ class MainScene extends Phaser.Scene {
     }
 
     playRandomSound(key, volume = 1) {
-        let detune = Phaser.Math.Between(-200, 200); // Pitch shift
-        this.sound.play(key, { detune: detune, volume: volume });
+        if (this.sound.get(key)) {
+             let detune = Phaser.Math.Between(-200, 200); 
+             this.sound.play(key, { detune: detune, volume: volume });
+        }
     }
     
     movePlayer(kid, x, y) {
-        // Simple movement tween (player side only)
-        x = Phaser.Math.Clamp(x, 40, 260);
+        x = Phaser.Math.Clamp(x, 40, 260); // Keep on left side
         y = Phaser.Math.Clamp(y, 70, 300);
+
+        this.createSnowSplash(x, y); // Visual feedback
+        this.playRandomSound('sfx_step', 0.2); // Sound feedback
 
         this.tweens.add({
             targets: kid,
             x: x,
             y: y,
-            duration: Phaser.Math.Distance.Between(kid.x, kid.y, x, y) * 5, // Speed based on distance
-            onStart: () => {
-                kid.bodySprite.play('red_walk');
-            },
-            onComplete: () => {
-                kid.bodySprite.play('red_idle');
-            }
+            duration: Phaser.Math.Distance.Between(kid.x, kid.y, x, y) * 5,
+            onStart: () => { if(kid.bodySprite.anims.exists('red_walk')) kid.bodySprite.play('red_walk'); },
+            onComplete: () => { if(kid.isAlive) kid.bodySprite.play('red_idle'); }
         });
     }
 
