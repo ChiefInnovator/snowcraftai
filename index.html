@@ -375,11 +375,49 @@ class MainScene extends Phaser.Scene {
         ball.destroy();
         kid.isAlive = false;
         kid.bodySprite.stop();
-        kid.bodySprite.setTint(0x555555);
-        this.tweens.add({ targets: kid, angle: 90, alpha: 0.6, duration: 400 });
         this.playRandomSound('sfx_hit', 1.0);
         this.cameras.main.shake(100, 0.005);
-        this.createSnowSplash(ball.x, ball.y);
+        
+        // Classic Snowcraft hit animation: kid falls over and sinks into snow
+        // 1. Show splash at impact point
+        let splash = this.add.image(kid.x, kid.y + 10, 'splash').setDepth(kid.depth - 1);
+        
+        // 2. Kid falls over (rotate and lower)
+        this.tweens.add({ 
+            targets: kid, 
+            angle: 90, 
+            y: kid.y + 15,
+            duration: 300,
+            onComplete: () => {
+                // 3. Transition splash to sink
+                splash.setTexture('sink');
+                
+                // 4. Kid sinks down and fades
+                this.tweens.add({
+                    targets: kid,
+                    alpha: 0,
+                    scaleX: 0.5,
+                    scaleY: 0.5,
+                    duration: 600,
+                    onComplete: () => {
+                        kid.setVisible(false);
+                        
+                        // 5. Show puddle where they sank
+                        splash.setTexture('puddle');
+                        
+                        // 6. Puddle fades slowly
+                        this.tweens.add({
+                            targets: splash,
+                            alpha: 0,
+                            duration: 2000,
+                            delay: 1000,
+                            onComplete: () => splash.destroy()
+                        });
+                    }
+                });
+            }
+        });
+        
         this.checkWinCondition();
     }
 
