@@ -287,8 +287,10 @@ class MainScene extends Phaser.Scene {
         // CPU (Green) on Left, Player (Red) on Right
         let finalX = (type === 'player') ? rightX : leftX;
         
-        // Start off-screen for the "Walk In"
-        let startX = (type === 'player') ? 700 : -100;
+        // --- DIAGONAL ENTRANCE LOGIC ---
+        // Start from Top-Right (Red) or Top-Left (Green)
+        let startX = (type === 'player') ? 650 : -50;
+        let startY = -100; // Start above the screen
 
         // Y Slots (Mound positions)
         const ySlots = [96, 211, 296, 140, 246, 172];
@@ -296,12 +298,13 @@ class MainScene extends Phaser.Scene {
         const prefix = (type === 'player') ? 'red' : 'green';
 
         for (let i = 0; i < count; i++) {
-            let y = ySlots[i % ySlots.length];
+            let finalY = ySlots[i % ySlots.length];
             
-            // If it's an intro, spawn off-screen. Otherwise, spawn at final spot.
+            // Intro: Spawn at top corners. Gameplay: Spawn at mound.
             let spawnX = isIntro ? startX : finalX;
+            let spawnY = isIntro ? startY : finalY;
             
-            let kid = this.add.container(spawnX, y);
+            let kid = this.add.container(spawnX, spawnY);
             
             // Shadow setup - offset to bottom-right for diagonal lighting
             let shadow = this.add.image(12, 22, 'shadow');
@@ -323,17 +326,18 @@ class MainScene extends Phaser.Scene {
 
             teamArray.push(kid);
 
-            // --- ENTRANCE ANIMATION ---
+            // --- DIAGONAL WALK ANIMATION ---
             if (isIntro) {
-                sprite.play(prefix + '_walk'); // Start walking
+                sprite.play(prefix + '_walk');
                 
                 this.tweens.add({
                     targets: kid,
-                    x: finalX,
-                    duration: 2500 + (i * 200), // Stagger them slightly
+                    x: finalX,       // Move to Mound X
+                    y: finalY,       // Move to Mound Y (diagonal!)
+                    duration: 2500 + (i * 200),
                     ease: 'Linear',
                     onComplete: () => {
-                        sprite.play(prefix + '_idle'); // Stop walking when they arrive
+                        sprite.play(prefix + '_idle');
                     }
                 });
             } else {
