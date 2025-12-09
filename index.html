@@ -104,9 +104,11 @@ class MainScene extends Phaser.Scene {
 
         // Animations
         this.anims.create({ key: 'red_idle', frames: [{ key: 'red_team_atlas', frame: 'idle_0' }], frameRate: 1, repeat: -1 });
+        this.anims.create({ key: 'red_walk', frames: [{ key: 'red_team_atlas', frame: 'walking' }, { key: 'red_team_atlas', frame: 'walkingAlt' }], frameRate: 5, repeat: -1 });
         this.anims.create({ key: 'red_throw', frames: [{ key: 'red_team_atlas', frame: 'throw_0' }, { key: 'red_team_atlas', frame: 'throw_1' }], frameRate: 10, repeat: 0 });
         
         this.anims.create({ key: 'green_idle', frames: [{ key: 'green_team_atlas', frame: 'idle_0' }, { key: 'green_team_atlas', frame: 'idle_1' }], frameRate: 4, repeat: -1 });
+        this.anims.create({ key: 'green_walk', frames: [{ key: 'green_team_atlas', frame: 'walking' }, { key: 'green_team_atlas', frame: 'walkingAlt' }], frameRate: 5, repeat: -1 });
         this.anims.create({ key: 'green_throw', frames: [{ key: 'green_team_atlas', frame: 'throw_0' }, { key: 'green_team_atlas', frame: 'throw_1' }, { key: 'green_team_atlas', frame: 'throw_2' }], frameRate: 10, repeat: 0 });
 
         this.anims.create({ key: 'red_death', frames: [{ key: 'red_team_atlas', frame: 'death_0' }], frameRate: 1, repeat: 0 });
@@ -120,16 +122,40 @@ class MainScene extends Phaser.Scene {
         this.projectiles = this.add.group();
         this.redTeam = [];
         this.greenTeam = [];
-        this.isCharging = false;
-        this.chargeDirection = 1;
-        this.chargePower = 0;
-        this.maxPower = 100;
-        this.chargeSpeed = 150; 
+        this.isDragging = false;
+        this.dragStartX = 0;
+        this.dragStartY = 0;
+        this.dragOriginX = 0;
+        this.dragOriginY = 0;
+        this.activeStrength = 1;
+        this.maxStrength = 100;
         
         // 4. UI Elements
-        this.powerBarBg = this.add.rectangle(0, 0, 52, 10, 0x000000).setOrigin(0, 0.5).setDepth(99);
-        this.powerBar = this.add.rectangle(0, 0, 0, 8, 0x00ff00).setOrigin(0, 0.5).setDepth(100);
+        this.strengthText = this.add.text(0, 0, '', { fontSize: '8px', color: '#ff0000', fontFamily: 'Arial' }).setDepth(100).setVisible(false);
         this.levelText = this.add.text(300, 160, '', { fontSize: '60px', color: '#cc0000', fontStyle: 'bold', stroke: '#fff', strokeThickness: 6 }).setOrigin(0.5).setDepth(200).setVisible(false);
+
+        // Selection Circle (dashed blue circle like original)
+        this.selectionCircle = this.add.graphics();
+        this.selectionCircle.setDepth(-1);  // Draw behind player
+        this.selectionCircle.setVisible(false);
+        
+        // Power Meter Bars (green bars like original)
+        this.powerMeterBars = [];
+        this.powerMeterContainer = this.add.container(0, 0).setDepth(100).setVisible(false);
+        const barWidth = 12;
+        const barHeight = 4;
+        const barGap = 2;
+        const numBars = 8;
+        for (let i = 0; i < numBars; i++) {
+            let bar = this.add.graphics();
+            bar.fillStyle(0x00ff00, 1); // Green color
+            bar.fillRect(0, 0, barWidth, barHeight);
+            bar.lineStyle(1, 0x006600, 1); // Dark green border
+            bar.strokeRect(0, 0, barWidth, barHeight);
+            bar.y = -i * (barHeight + barGap);
+            this.powerMeterContainer.add(bar);
+            this.powerMeterBars.push(bar);
+        }
 
         // Custom Cursor
         this.input.setDefaultCursor('url(assets/smallHand.png), pointer');
@@ -144,47 +170,53 @@ class MainScene extends Phaser.Scene {
             if (!this.isLevelActive) return;
 
             if (pointer.leftButtonDown()) {
-                if (this.isCharging) return;
-                
                 let clickedPlayer = this.getClosestActive(this.redTeam, pointer, 40);
-                if (clickedPlayer) {
+                if (clickedPlayer && clickedPlayer.isAlive) {
                     this.activePlayer = clickedPlayer;
-                    this.isCharging = true;
-                    this.chargePower = 0;
-                    this.chargeDirection = 1;
-                    this.targetX = pointer.x; 
-                    this.targetY = pointer.y;
-                    this.redTeam.forEach(k => k.bodySprite.setTint(0xffffff));
-                    clickedPlayer.bodySprite.setTint(0xffff00); 
-                } else if (this.activePlayer && this.activePlayer.isAlive) {
-                    this.isCharging = true;
-                    this.chargePower = 0;
-                    this.chargeDirection = 1;
-                    this.targetX = pointer.x;
-                    this.targetY = pointer.y;
-                }
-            } else if (pointer.rightButtonDown()) {
-                this.isCharging = false;
-                if (this.activePlayer && this.activePlayer.isAlive) {
-                    this.movePlayer(this.activePlayer, pointer.x, pointer.y);
+                    this.isDragging = true;
+                    this.activeStrength = 1;
+                    // Store original position
+                    this.dragOriginX = clickedPlayer.x;
+                    this.dragOriginY = clickedPlayer.y;
+                    this.dragStartX = pointer.x;
+                    this.dragStartY = pointer.y;
+                    // Show cocked sprite
+                    clickedPlayer.bodySprite.setFrame('throw_0');
+                    // Show selection circle and power meter
+                    this.showSelectionUI(clickedPlayer);
+                    // Start increasing strength
+                    this.increaseStrength();
                 }
             }
         });
 
         this.input.on('pointermove', (pointer) => {
-            if (this.isCharging && this.activePlayer) {
-                this.targetX = pointer.x;
-                this.targetY = pointer.y;
+            if (this.isDragging && this.activePlayer && this.activePlayer.isAlive) {
+                // Move player centered on mouse position (like original setPlayerStatus)
+                this.activePlayer.x = Math.round(pointer.x);
+                this.activePlayer.y = Math.round(pointer.y);
+                // Keep cocked sprite while dragging
+                this.activePlayer.bodySprite.setFrame('throw_0');
+                // Update selection UI position
+                this.updateSelectionUI(this.activePlayer);
             }
         });
 
         this.input.on('pointerup', (pointer) => {
-            if (this.isCharging && this.activePlayer && this.isLevelActive && pointer.leftButtonReleased()) {
-                if (this.chargePower > 5) {
-                    this.throwSnowball(this.activePlayer, this.chargePower, this.targetX, this.targetY);
-                }
-                this.isCharging = false;
-                this.activePlayer.bodySprite.setTint(0xffffff);
+            if (this.isDragging && this.activePlayer && this.isLevelActive && pointer.leftButtonReleased()) {
+                // Original behavior: player stays where dragged, doesn't snap back
+                // Throw from current position with accumulated strength
+                this.throwSnowball(this.activePlayer, this.activeStrength, 0, 0);
+                
+                // Reset to idle animation (player stays at current position)
+                this.activePlayer.bodySprite.play('red_idle');
+                
+                // Hide selection UI
+                this.hideSelectionUI();
+                
+                this.isDragging = false;
+                this.activeStrength = 1;
+                this.strengthText.setVisible(false);
                 this.activePlayer = null;
             }
         });
@@ -396,41 +428,29 @@ class MainScene extends Phaser.Scene {
         }
     }
 
+    // Increase strength while dragging (like original)
+    increaseStrength() {
+        if (this.isDragging && this.activeStrength < this.maxStrength) {
+            this.activeStrength++;
+            this.time.delayedCall(30, () => this.increaseStrength());
+        }
+    }
+
     update(time, delta) {
-        if (this.isCharging && this.activePlayer) {
-            this.chargePower += this.chargeDirection * this.chargeSpeed * (delta / 1000);
-            
-            if (this.chargePower >= this.maxPower) {
-                this.chargePower = this.maxPower;
-                this.chargeDirection = -1;
-            } else if (this.chargePower <= 0) {
-                this.chargePower = 0;
-                this.chargeDirection = 1;
-            }
-            
-            this.powerBarBg.setVisible(true);
-            this.powerBar.setVisible(true);
-            this.powerBarBg.setPosition(this.activePlayer.x - 26, this.activePlayer.y - 40);
-            this.powerBar.setPosition(this.activePlayer.x - 25, this.activePlayer.y - 40);
-            this.powerBar.width = (this.chargePower / this.maxPower) * 50;
-            
-            if (this.chargePower < 33) {
-                this.powerBar.fillColor = 0x00ff00; 
-            } else if (this.chargePower < 66) {
-                this.powerBar.fillColor = 0xffff00; 
-            } else {
-                this.powerBar.fillColor = 0xff0000; 
-            }
-        } else {
-            this.powerBarBg.setVisible(false);
-            this.powerBar.setVisible(false);
+        // Update power meter while dragging
+        if (this.isDragging && this.activePlayer) {
+            this.updatePowerMeter();
+            // Update selection UI position to follow player
+            this.updateSelectionUI(this.activePlayer);
         }
 
         // Update debug labels
         if (DEBUG_MODE) {
             [...this.redTeam, ...this.greenTeam].forEach(kid => {
                 if (kid.debugLabel) {
-                    kid.debugLabel.setPosition(kid.x, kid.y - 45);
+                    // Position above player, or below if near top of screen
+                    let labelY = (kid.y - 45 < 10) ? kid.y + 35 : kid.y - 45;
+                    kid.debugLabel.setPosition(kid.x, labelY);
                     kid.debugLabel.setText(`${Math.round(kid.x)}, ${Math.round(kid.y)}`);
                     kid.debugLabel.setVisible(kid.isAlive);
                 }
@@ -438,57 +458,127 @@ class MainScene extends Phaser.Scene {
         }
 
         [...this.projectiles.getChildren()].forEach(ball => {
-            ball.z += ball.zSpeed;
-            ball.zSpeed -= 0.5;
-
-            if (ball.z <= 0) {
-                ball.z = 0;
-                this.createSnowSplash(ball.x, ball.y);
-                this.playRandomSound('sfx_step', 0.2);
-                ball.destroy();
-            } else {
-                ball.x += ball.vx;
-                ball.y += ball.vy;
+            // Bezier curve trajectory (like original)
+            if (ball.position !== undefined && ball.position < 1.0) {
+                let buffer = 0.006;
+                ball.position = (ball.position + buffer);
                 
-                let scale = 1 + (ball.z / 300);
-                ball.setScale(scale);
+                if (ball.position >= 1.0) {
+                    // Snowball landed
+                    this.createSnowSplash(ball.x, ball.y);
+                    if (ball.shadow) ball.shadow.destroy();
+                    ball.destroy();
+                    return;
+                }
                 
-                ball.shadow.setPosition(ball.x, ball.y + ball.z);
-                ball.shadow.setAlpha(Math.max(0.1, 0.6 - (ball.z / 100))); 
+                // Quadratic Bezier calculation
+                let t = ball.position;
+                let iT = 1 - t;
+                ball.x = Math.round(iT * iT * ball.startX + 2 * iT * t * ball.cpX + t * t * ball.endX);
+                ball.y = Math.round(iT * iT * ball.startY + 2 * iT * t * ball.cpY + t * t * ball.endY);
+                
+                // Shadow follows ground position
+                let groundY = (((ball.x - ball.startX) / (ball.endX - ball.startX) * (ball.endY - ball.startY)) + ball.startY);
+                if (ball.shadow) {
+                    ball.shadow.setPosition(ball.x, groundY);
+                    ball.shadow.setAlpha(0.6);
+                }
+                
+                // Check if out of bounds
+                if (ball.x < 0 || ball.y < 0 || ball.x > 600 || ball.y > 320) {
+                    if (ball.shadow) ball.shadow.destroy();
+                    ball.destroy();
+                    return;
+                }
+                
+                // Hit detection during arc
+                let targetTeam = (ball.throwerTeam === 'player') ? this.greenTeam : this.redTeam;
+                targetTeam.forEach(enemy => {
+                    if (enemy.isAlive && 
+                        ball.x > enemy.x - 10 &&
+                        ball.x < enemy.x + 30 &&
+                        ball.y > enemy.y - 10 &&
+                        ball.y < enemy.y + 50) {
+                        this.handleHit(enemy, ball);
+                    }
+                });
+            } else if (ball.zSpeed !== undefined) {
+                // Fallback for old-style physics (CPU throws)
+                ball.z += ball.zSpeed;
+                ball.zSpeed -= 0.5;
 
-                if (ball.z < 40 && ball.z > 5) {
-                    let targetTeam = (ball.throwerTeam === 'player') ? this.greenTeam : this.redTeam;
-                    targetTeam.forEach(enemy => {
-                        if (enemy.isAlive && Phaser.Math.Distance.Between(ball.x, ball.y, enemy.x, enemy.y) < 30) {
-                            this.handleHit(enemy, ball);
-                        }
-                    });
+                if (ball.z <= 0) {
+                    ball.z = 0;
+                    this.createSnowSplash(ball.x, ball.y);
+                    if (ball.shadow) ball.shadow.destroy();
+                    ball.destroy();
+                } else {
+                    ball.x += ball.vx;
+                    ball.y += ball.vy;
+                    
+                    let scale = 1 + (ball.z / 300);
+                    ball.setScale(scale);
+                    
+                    ball.shadow.setPosition(ball.x, ball.y + ball.z);
+                    ball.shadow.setAlpha(Math.max(0.1, 0.6 - (ball.z / 100))); 
+
+                    if (ball.z < 40 && ball.z > 5) {
+                        let targetTeam = (ball.throwerTeam === 'player') ? this.greenTeam : this.redTeam;
+                        targetTeam.forEach(enemy => {
+                            if (enemy.isAlive && Phaser.Math.Distance.Between(ball.x, ball.y, enemy.x, enemy.y) < 30) {
+                                this.handleHit(enemy, ball);
+                            }
+                        });
+                    }
                 }
             }
         });
     }
 
-    throwSnowball(thrower, power, targetX, targetY) {
-        let scaledPower = 200 + (power * 6); 
+    throwSnowball(thrower, strength, targetX, targetY) {
+        // Calculate distance based on strength (like original: baselineSnowballDistance * strength)
+        let baselineDistance = 5;
+        let distance = baselineDistance * strength;
         
-        let ball = this.add.image(thrower.x, thrower.y - 20, 'snowball');
-        ball.shadow = this.add.image(thrower.x, thrower.y, 'snowball_shadow'); 
+        let ball = this.add.image(thrower.x + 5, thrower.y, 'snowball');
+        ball.shadow = this.add.image(thrower.x + 5, thrower.y, 'snowball_shadow'); 
         ball.throwerTeam = thrower.teamType;
         
-        ball.z = 35; 
-        ball.zSpeed = 4 + (power / 20); 
+        // Arc trajectory parameters
+        ball.startX = thrower.x + 5;
+        ball.startY = thrower.y;
+        ball.strength = strength;
+        ball.distance = distance;
+        ball.position = 0.0;
         
         let angle = Phaser.Math.Angle.Between(thrower.x, thrower.y, targetX, targetY);
         
-        let speed = scaledPower / 40; 
-        ball.vx = Math.cos(angle) * speed;
-        ball.vy = Math.sin(angle) * speed;
+        // Calculate end point based on angle and distance
+        if (thrower.teamType === 'player') {
+            // Player always throws toward upper-left (toward enemies)
+            // Original: endX = startX - distance, endY = startY - distance + 30
+            ball.endX = ball.startX - distance;
+            ball.endY = ball.startY - distance + 30;
+            ball.cpX = ball.startX - (distance * 0.6);
+            ball.cpY = ball.startY - (distance * 0.6) - strength;
+        } else {
+            // Enemy throws toward player (right/down)
+            ball.endX = ball.startX + distance;
+            ball.endY = ball.startY + distance + 30;
+            ball.cpX = ball.startX + (distance * 0.6);
+            ball.cpY = ball.startY + (distance * 0.6) - strength;
+        }
+        
+        // For shadow tracking
+        ball.z = 0;
+        ball.zSpeed = 0;
 
         this.projectiles.add(ball);
 
         let prefix = (thrower.teamType === 'player') ? 'red' : 'green';
-        thrower.bodySprite.play(prefix + '_throw');
-        thrower.bodySprite.once('animationcomplete', () => {
+        // Show throwing frame
+        thrower.bodySprite.setFrame('throw_1');
+        this.time.delayedCall(100, () => {
             if(thrower.isAlive) thrower.bodySprite.play(prefix + '_idle');
         });
         this.playRandomSound('sfx_throw', 0.8);
@@ -639,17 +729,90 @@ class MainScene extends Phaser.Scene {
     }
 
     getClosestActive(team, pointer, maxDist = 1000) {
-        let closest = null;
-        let minDist = maxDist;
+        // Match original: check if click is within player bounding box
+        let clicked = null;
         team.forEach(kid => {
             if (!kid.isAlive) return;
-            let d = Phaser.Math.Distance.Between(pointer.x, pointer.y, kid.x, kid.y);
-            if (d < minDist) {
-                minDist = d;
-                closest = kid;
+            // Use bounding box detection like original game
+            // Original uses top-left origin, Phaser container is centered
+            // Player sprite is roughly 30x35, use slightly larger hitbox for better UX
+            let width = 35;
+            let height = 45;
+            // Offset to account for sprite alignment in container
+            let hitX = kid.x - width / 2;
+            let hitY = kid.y - height / 2;
+            if (pointer.x >= hitX &&
+                pointer.x <= hitX + width &&
+                pointer.y >= hitY &&
+                pointer.y <= hitY + height) {
+                clicked = kid;
             }
         });
-        return closest;
+        return clicked;
+    }
+
+    // Show selection circle and power meter when player is selected
+    showSelectionUI(player) {
+        // Draw selection circle (dashed orthogonal ellipse for ground perspective)
+        this.selectionCircle.clear();
+        this.selectionCircle.lineStyle(2, 0x0088cc, 1);
+        this.drawDashedEllipse(this.selectionCircle, 0, 0, 30, 15, 8, 6);
+        this.selectionCircle.setPosition(player.x, player.y + 15);
+        this.selectionCircle.setVisible(true);
+        
+        // Show power meter
+        this.powerMeterContainer.setPosition(player.x + 25, player.y + 20);
+        this.powerMeterContainer.setVisible(true);
+        this.updatePowerMeter();
+    }
+    
+    // Update selection UI position to follow player
+    updateSelectionUI(player) {
+        if (!player) return;
+        this.selectionCircle.setPosition(player.x, player.y + 15);
+        this.powerMeterContainer.setPosition(player.x + 25, player.y + 20);
+    }
+    
+    // Hide selection UI
+    hideSelectionUI() {
+        this.selectionCircle.setVisible(false);
+        this.powerMeterContainer.setVisible(false);
+    }
+    
+    // Update power meter bars based on current strength
+    updatePowerMeter() {
+        const barsToShow = Math.ceil((this.activeStrength / this.maxStrength) * this.powerMeterBars.length);
+        this.powerMeterBars.forEach((bar, index) => {
+            bar.setVisible(index < barsToShow);
+        });
+    }
+    
+    // Draw a dashed ellipse (orthogonal/ground perspective)
+    drawDashedEllipse(graphics, x, y, radiusX, radiusY, numDashes, gapAngle) {
+        const totalAngle = 2 * Math.PI;
+        const segmentAngle = totalAngle / numDashes;
+        const dashAngle = segmentAngle * 0.7; // 70% dash, 30% gap
+        
+        for (let i = 0; i < numDashes; i++) {
+            const startAngle = i * segmentAngle;
+            const endAngle = startAngle + dashAngle;
+            
+            // Draw ellipse arc segment using individual line segments
+            const steps = 12;
+            let firstPoint = true;
+            for (let j = 0; j <= steps; j++) {
+                const angle = startAngle + (endAngle - startAngle) * (j / steps);
+                const px = x + radiusX * Math.cos(angle);
+                const py = y + radiusY * Math.sin(angle);
+                
+                if (j < steps) {
+                    const nextAngle = startAngle + (endAngle - startAngle) * ((j + 1) / steps);
+                    const nx = x + radiusX * Math.cos(nextAngle);
+                    const ny = y + radiusY * Math.sin(nextAngle);
+                    graphics.lineBetween(px, py, nx, ny);
+                }
+            }
+        }
     }
 }
 
