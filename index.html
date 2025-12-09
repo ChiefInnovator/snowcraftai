@@ -312,11 +312,8 @@ class MainScene extends Phaser.Scene {
             
             let sprite = this.add.sprite(0, 0, textureKey);
             
-            // Both sprites are drawn facing left
-            // Red Team (Right) faces Left = no flip
-            // Green Team (Left) faces Right = flip
-            // But green sprite is also drawn facing left, so flip it
-            sprite.setFlipX(type === 'cpu'); // Only flip green/CPU
+            // No flip needed - both sprites face their natural direction
+            sprite.setFlipX(false);
             
             kid.add(sprite);
             kid.isAlive = true;
