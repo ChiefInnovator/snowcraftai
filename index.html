@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snowcraft Reforged</title>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.min.js"></script>
+    <style>
+        body { margin: 0; background: #222; overflow: hidden; display: flex; justify-content: center; align-items: center; height: 100vh; font-family: 'Arial', sans-serif; }
+        #game-container { box-shadow: 0 0 30px rgba(0,0,0,0.8); border: 4px solid #fff; border-radius: 8px; }
+    </style>
+</head>
+<body>
+
+<div id="game-container"></div>
+
+<script>
+// --- CONFIGURATION ---
+const LEVEL_CONFIG = [
+    { level: 1, enemies: 3, fireInterval: 2000, errorMargin: 0.35 }, // Tutorial: Slow, bad aim
+    { level: 2, enemies: 3, fireInterval: 1500, errorMargin: 0.25 }, // Normal
+    { level: 3, enemies: 4, fireInterval: 1200, errorMargin: 0.15 }, // Hard: Faster
+    { level: 4, enemies: 5, fireInterval: 900,  errorMargin: 0.08 }, // Expert: Crowded
+    { level: 5, enemies: 6, fireInterval: 700,  errorMargin: 0.05 }, // Nightmare: Sniper mode
+];
+
+class MainScene extends Phaser.Scene {
+    constructor() {
+        super({ key: 'MainScene' });
+    }
+
+    preload() {
+        // --- ASSET LOADING ---
+        // Loading full atlas images instead of spritesheets because frames are irregular
+        this.load.image('red_team_atlas', 'assets/player.png');
+        this.load.image('green_team_atlas', 'assets/enemy.png');
+        this.load.image('snowball', 'assets/snowball.png');
+        this.load.image('splash', 'assets/splash.png');
+        this.load.image('sink', 'assets/sink.png');
+        this.load.image('puddle', 'assets/puddle.png');
+        this.load.image('background', 'assets/back.jpg');
+        this.load.image('logo', 'assets/logo.png');
+        this.load.image('playfield', 'assets/playField.png');
+        
+        // Audio
+        this.load.audio('sfx_throw', 'assets/throw.mp3');
+        this.load.audio('sfx_hit', 'assets/hit1.mp3');
+        this.load.audio('sfx_step', 'assets/hit2.mp3'); // Using hit2 as placeholder for step
+
+        // Procedural Shadow (Backup/Effect)
+        this.make.graphics({x:0, y:0, add: false})
+            .fillStyle(0x000000, 0.4)
+            .fillEllipse(15, 5, 30, 10)
+            .generateTexture('shadow', 30, 10);
+    }
+
+    create() {
+        // 1. Environment
+        let bg = this.add.image(400, 300, 'background');
+        bg.setDisplaySize(800, 600);
+        bg.setDepth(-10);
+
+        // playfield overlay contains the snow barriers from the original game
+        let pf = this.add.image(400, 300, 'playfield');
+        pf.setDisplaySize(800, 600);
+        pf.setDepth(-5);
+
+        // 2. Define Frames & Animations
+        // Red Team (Player) Frames
+        const redTex = this.textures.get('red_team_atlas');
+        redTex.add('idle_0', 0, 148, 19, 26, 34);
+        redTex.add('walk_0', 0, 15, 19, 24, 34);
+        redTex.add('walk_1', 0, 59, 18, 30, 35);
+        redTex.add('throw_0', 0, 84, 99, 31, 35);
+        redTex.add('throw_1', 0, 150, 98, 23, 36);
+
+        // Green Team (Enemy) Frames
+        const greenTex = this.textures.get('green_team_atlas');
+        greenTex.add('idle_0', 0, 133, 18, 30, 36);
+        greenTex.add('idle_1', 0, 186, 18, 27, 34);
+        greenTex.add('throw_0', 0, 292, 23, 24, 31);
+        greenTex.add('throw_1', 0, 332, 19, 34, 35);
+        greenTex.add('throw_2', 0, 393, 20, 24, 34);
+
+        // Animations
+        this.anims.create({
+            key: 'red_idle',
+            frames: [{ key: 'red_team_atlas', frame: 'idle_0' }],
+            frameRate: 1, repeat: -1
+        });
+        this.anims.create({
+            key: 'red_walk',
+            frames: [
+                { key: 'red_team_atlas', frame: 'walk_0' },
+                { key: 'red_team_atlas', frame: 'walk_1' }
+            ],
+            frameRate: 6, repeat: -1
+        });
+        this.anims.create({
+            key: 'red_throw',
+            frames: [
+                { key: 'red_team_atlas', frame: 'throw_0' },
+                { key: 'red_team_atlas', frame: 'throw_1' }
+            ],
+            frameRate: 10, repeat: 0
+        });
+        
+        this.anims.create({
+            key: 'green_idle',
+            frames: [
+                { key: 'green_team_atlas', frame: 'idle_0' },
+                { key: 'green_team_atlas', frame: 'idle_1' }
+            ],
+            frameRate: 4, repeat: -1
+        });
+        this.anims.create({
+            key: 'green_throw',
+            frames: [
+                { key: 'green_team_atlas', frame: 'throw_0' },
+                { key: 'green_team_atlas', frame: 'throw_1' },
+                { key: 'green_team_atlas', frame: 'throw_2' }
+            ],
+            frameRate: 10, repeat: 0
+        });
+
+        // 3. Game Groups & State
+        this.projectiles = this.add.group();
+        this.redTeam = [];
+        this.greenTeam = [];
+        this.dragStartPos = new Phaser.Math.Vector2();
+        this.isDragging = false;
+        
+        // 4. UI Elements
+        this.powerBar = this.add.rectangle(0, 0, 0, 8, 0xff0000).setOrigin(0, 0.5).setDepth(100);
+        
+        this.levelText = this.add.text(400, 300, '', {
+            fontSize: '60px', color: '#cc0000', fontStyle: 'bold', stroke: '#fff', strokeThickness: 6
+        }).setOrigin(0.5).setDepth(200).setVisible(false);
+
+        // 5. Inputs
+        this.input.on('pointerdown', (pointer) => {
+            if (!this.isLevelActive) return;
+            
+            // Check if we clicked a player
+            let clickedPlayer = this.getClosestActive(this.redTeam, pointer, 40); // 40px hit radius
+
+            if (clickedPlayer) {
+                // Select / Start Drag
+                this.activePlayer = clickedPlayer;
+                this.isDragging = true;
+                this.dragStartPos.set(pointer.x, pointer.y);
+                
+                // Visual feedback for selection
+                this.redTeam.forEach(k => k.bodySprite.setTint(0xffffff));
+                clickedPlayer.bodySprite.setTint(0xffff00); // Highlight selected
+            } else if (this.activePlayer && !this.isDragging) {
+                // Move to position if we already have a player selected and clicked ground
+                this.movePlayer(this.activePlayer, pointer.x, pointer.y);
+            }
+        });
+
+        this.input.on('pointerup', (pointer) => {
+            if (this.isDragging && this.activePlayer && this.isLevelActive) {
+                // Only throw if we dragged far enough, otherwise it's just a selection click
+                let dist = Phaser.Math.Distance.Between(this.dragStartPos.x, this.dragStartPos.y, pointer.x, pointer.y);
+                if (dist > 20) {
+                    this.throwSnowball(this.activePlayer, this.dragStartPos, pointer);
+                    this.activePlayer.bodySprite.setTint(0xffffff); // Deselect after throw
+                    // keep active selection for movement after throw
+                }
+            }
+            this.isDragging = false;
+        });
+
+        // 6. Start Game
+        this.startLevel(0);
+    }
+
+    startLevel(index) {
+        this.currentLevelIndex = index;
+        
+        // Loop back to Level 4 difficulty if we go past defined levels
+        let config = LEVEL_CONFIG[index] || LEVEL_CONFIG[LEVEL_CONFIG.length - 1];
+        this.currentConfig = config;
+
+        // Cleanup
+        this.greenTeam.forEach(k => k.destroy());
+        this.greenTeam = [];
+        this.projectiles.clear(true, true);
+
+        // Reset Red Team (Revive dead players)
+        if (this.redTeam.length === 0) {
+            // Red Team on the LEFT (classic Snowcraft)
+            this.createTeam(100, 'red_team_atlas', this.redTeam, 'player', 3);
+        } else {
+            this.redTeam.forEach(kid => {
+                kid.isAlive = true;
+                kid.visible = true;
+                kid.bodySprite.play('red_idle');
+                kid.bodySprite.setTint(0xffffff);
+            });
+        }
+
+        // Spawn Green Team on the RIGHT
+        this.createTeam(700, 'green_team_atlas', this.greenTeam, 'cpu', config.enemies);
+
+        // Level Transition Text
+        this.levelText.setText('LEVEL ' + (index + 1));
+        this.levelText.setVisible(true);
+        this.levelText.alpha = 1;
+        this.isLevelActive = false;
+
+        // Show Logo on Level 1
+        if (index === 0) {
+            this.logo = this.add.image(400, 200, 'logo').setScale(0.8);
+            this.levelText.y = 400;
+        }
+
+        this.tweens.add({
+            targets: [this.levelText, this.logo],
+            alpha: 0,
+            delay: 2000,
+            duration: 1000,
+            onComplete: () => {
+                this.isLevelActive = true;
+                if (this.logo) this.logo.destroy();
+                this.setupAITimer(config.fireInterval);
+            }
+        });
+    }
+
+    createTeam(xBase, textureKey, teamArray, type, count) {
+        let spacing = 450 / count;
+        let startY = 300 - ((count * spacing) / 2) + (spacing / 2);
+
+        for (let i = 0; i < count; i++) {
+            let kid = this.add.container(xBase, startY + (i * spacing));
+            
+            // Shadow
+            let shadow = this.add.image(0, 18, 'shadow');
+            kid.add(shadow);
+
+            // Sprite
+            let sprite = this.add.sprite(0, 0, textureKey);
+            // Prefix idle animation with team type (red_idle / green_idle)
+            let prefix = (type === 'player') ? 'red' : 'green';
+            sprite.play(prefix + '_idle');
+            
+            // Face teams toward each other
+            if (type === 'cpu') {
+                sprite.setFlipX(true); // green on right faces left
+            } else {
+                sprite.setFlipX(false); // red on left faces right
+            }
+
+            kid.add(sprite);
+
+            // Properties
+            kid.isAlive = true;
+            kid.teamType = type;
+            kid.bodySprite = sprite;
+            kid.setSize(30, 50);
+
+            // Random start delay for breathing animation so they don't move in sync
+            sprite.playAfterDelay(prefix + '_idle', Math.random() * 1000);
+
+            teamArray.push(kid);
+        }
+    }
+
+    update() {
+        // UI Update
+        if (this.isDragging && this.activePlayer) {
+            let dist = Phaser.Math.Distance.Between(this.dragStartPos.x, this.dragStartPos.y, this.input.activePointer.x, this.input.activePointer.y);
+            let charge = Phaser.Math.Clamp(dist, 0, 200);
+            
+            this.powerBar.setVisible(true);
+            this.powerBar.setPosition(this.activePlayer.x - 20, this.activePlayer.y - 40);
+            this.powerBar.width = charge / 4;
+            this.powerBar.fillColor = (charge > 150) ? 0xff0000 : 0xffff00;
+        } else {
+            this.powerBar.setVisible(false);
+        }
+
+        // Physics Loop (2.5D Logic)
+        [...this.projectiles.getChildren()].forEach(ball => {
+            ball.z += ball.zSpeed;
+            ball.zSpeed -= 0.5; // Gravity
+
+            if (ball.z <= 0) {
+                ball.z = 0;
+                // Hit Ground
+                this.createSnowSplash(ball.x, ball.y);
+                this.playRandomSound('sfx_step', 0.2);
+                ball.destroy();
+            } else {
+                // Move in 2D
+                ball.x += ball.vx;
+                ball.y += ball.vy;
+
+                // 3D Visuals
+                let scale = 1 + (ball.z / 300);
+                ball.setScale(scale);
+                ball.shadow.setPosition(ball.x, ball.y + (ball.z * 1.2)); // Shadow offset
+                ball.shadow.setAlpha(1 - (ball.z/200));
+
+                // Hit Detection (Head Height)
+                if (ball.z < 40 && ball.z > 5) {
+                    let targetTeam = (ball.throwerTeam === 'player') ? this.greenTeam : this.redTeam;
+                    targetTeam.forEach(enemy => {
+                        if (enemy.isAlive && Phaser.Math.Distance.Between(ball.x, ball.y, enemy.x, enemy.y) < 30) {
+                            this.handleHit(enemy, ball);
+                        }
+                    });
+                }
+            }
+        });
+    }
+
+    throwSnowball(thrower, dragStart, dragEnd) {
+        // Calculate throw vector
+        let dist = Phaser.Math.Distance.Between(dragStart.x, dragStart.y, dragEnd.x, dragEnd.y);
+        let power = Phaser.Math.Clamp(dist, 50, 250) * 3.5; 
+
+        // Visuals
+        let ball = this.add.image(thrower.x, thrower.y - 20, 'snowball');
+        ball.shadow = this.add.image(thrower.x, thrower.y, 'shadow');
+        ball.throwerTeam = thrower.teamType;
+        
+        // Physics Init
+        ball.z = 35; 
+        ball.zSpeed = 6 + (power / 120); // Upward arc
+        
+        let angle = Phaser.Math.Angle.Between(dragStart.x, dragStart.y, dragEnd.x, dragEnd.y);
+        angle += Math.PI; // Drag back to shoot forward
+        
+        let speed = power / 20;
+        ball.vx = Math.cos(angle) * speed;
+        ball.vy = Math.sin(angle) * speed;
+
+        this.projectiles.add(ball);
+
+        // Animation & Sound
+        let prefix = (thrower.teamType === 'player') ? 'red' : 'green';
+        thrower.bodySprite.play(prefix + '_throw');
+        thrower.bodySprite.once('animationcomplete', () => {
+            if(thrower.isAlive) thrower.bodySprite.play(prefix + '_idle');
+        });
+
+        this.playRandomSound('sfx_throw', 0.8);
+    }
+
+    handleHit(kid, ball) {
+        ball.shadow.destroy();
+        ball.destroy();
+        
+        kid.isAlive = false;
+        kid.bodySprite.stop();
+        kid.bodySprite.setTint(0x555555); // Darken when out
+        
+        // KO Animation (Fall over)
+        this.tweens.add({
+            targets: kid,
+            angle: 90,
+            alpha: 0.6,
+            duration: 400
+        });
+
+        this.playRandomSound('sfx_hit', 1.0);
+        this.cameras.main.shake(100, 0.005);
+        this.createSnowSplash(ball.x, ball.y);
+
+        this.checkWinCondition();
+    }
+
+    checkWinCondition() {
+        let greenAlive = this.greenTeam.filter(k => k.isAlive).length;
+        let redAlive = this.redTeam.filter(k => k.isAlive).length;
+
+        if (greenAlive === 0) {
+            this.isLevelActive = false;
+            if (this.aiTimer) this.aiTimer.remove();
+            this.time.delayedCall(2000, () => this.startLevel(this.currentLevelIndex + 1));
+        } else if (redAlive === 0) {
+            this.isLevelActive = false;
+            if (this.aiTimer) this.aiTimer.remove();
+            this.levelText.setText("GAME OVER");
+            this.levelText.setVisible(true);
+            this.levelText.alpha = 1;
+            this.input.once('pointerdown', () => location.reload());
+        }
+    }
+
+    setupAITimer(interval) {
+        if (this.aiTimer) this.aiTimer.remove();
+        this.aiTimer = this.time.addEvent({
+            delay: interval,
+            callback: this.cpuThink,
+            callbackScope: this,
+            loop: true
+        });
+    }
+
+    cpuThink() {
+        if (!this.isLevelActive) return;
+
+        let candidates = this.greenTeam.filter(k => k.isAlive);
+        if (candidates.length === 0) return;
+        let thrower = candidates[Phaser.Math.Between(0, candidates.length - 1)];
+
+        let targets = this.redTeam.filter(k => k.isAlive);
+        if (targets.length === 0) return;
+        let target = targets[Phaser.Math.Between(0, targets.length - 1)];
+
+        let angleToTarget = Phaser.Math.Angle.Between(thrower.x, thrower.y, target.x, target.y);
+        
+        // Apply Accuracy Error based on Difficulty
+        let error = Phaser.Math.FloatBetween(-this.currentConfig.errorMargin, this.currentConfig.errorMargin);
+        angleToTarget += error;
+
+        let dist = Phaser.Math.Distance.Between(thrower.x, thrower.y, target.x, target.y);
+        let dragDistance = (dist / 3.5) * Phaser.Math.FloatBetween(0.9, 1.1); 
+
+        // Calculate "Pull Back" coordinates
+        let dragX = thrower.x - (Math.cos(angleToTarget) * dragDistance);
+        let dragY = thrower.y - (Math.sin(angleToTarget) * dragDistance);
+        
+        this.throwSnowball(thrower, thrower, {x: dragX, y: dragY});
+    }
+
+    createSnowSplash(x, y) {
+        // Play splash animation sequence: Splash -> Sink -> Puddle
+        let splash = this.add.image(x, y, 'splash').setDepth(50);
+        
+        this.time.delayedCall(120, () => {
+            splash.setTexture('sink');
+            this.time.delayedCall(120, () => {
+                splash.setTexture('puddle');
+                this.tweens.add({
+                    targets: splash,
+                    alpha: 0,
+                    duration: 1000,
+                    delay: 500,
+                    onComplete: () => splash.destroy()
+                });
+            });
+        });
+    }
+
+    playRandomSound(key, volume = 1) {
+        let detune = Phaser.Math.Between(-200, 200); // Pitch shift
+        this.sound.play(key, { detune: detune, volume: volume });
+    }
+    
+    movePlayer(kid, x, y) {
+        // Simple movement tween (player side only)
+        x = Phaser.Math.Clamp(x, 40, 380);
+        y = Phaser.Math.Clamp(y, 100, 550);
+
+        this.tweens.add({
+            targets: kid,
+            x: x,
+            y: y,
+            duration: Phaser.Math.Distance.Between(kid.x, kid.y, x, y) * 5, // Speed based on distance
+            onStart: () => {
+                kid.bodySprite.play('red_walk');
+            },
+            onComplete: () => {
+                kid.bodySprite.play('red_idle');
+            }
+        });
+    }
+
+    getClosestActive(team, pointer, maxDist = 1000) {
+        let closest = null;
+        let minDist = maxDist;
+        team.forEach(kid => {
+            if (!kid.isAlive) return;
+            let d = Phaser.Math.Distance.Between(pointer.x, pointer.y, kid.x, kid.y);
+            if (d < minDist) {
+                minDist = d;
+                closest = kid;
+            }
+        });
+        return closest;
+    }
+}
+
+const config = {
+    type: Phaser.AUTO,
+    width: 800,
+    height: 600,
+    parent: 'game-container',
+    backgroundColor: '#333',
+    physics: { default: 'arcade' },
+    scene: MainScene
+};
+
+const game = new Phaser.Game(config);
+</script>
+</body>
+</html>
