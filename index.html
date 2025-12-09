@@ -56,12 +56,12 @@ class MainScene extends Phaser.Scene {
         // 1. Environment (simple gradient + playfield overlay for barriers)
         let bg = this.add.graphics();
         bg.fillGradientStyle(0xddeeff, 0xddeeff, 0xffffff, 0xffffff, 1);
-        bg.fillRect(0, 0, 800, 600);
+        bg.fillRect(0, 0, 600, 320);
         bg.setDepth(-10);
 
         // playfield overlay contains the snow barriers from the original game
-        let pf = this.add.image(400, 300, 'playfield');
-        pf.setDisplaySize(800, 600);
+        let pf = this.add.image(300, 160, 'playfield');
+        pf.setDisplaySize(600, 320);
         pf.setDepth(-5);
 
         // 2. Define Frames & Animations
@@ -190,7 +190,7 @@ class MainScene extends Phaser.Scene {
         // Reset Red Team (Revive dead players)
         if (this.redTeam.length === 0) {
             // Red Team on the LEFT (classic Snowcraft)
-            this.createTeam(100, 'red_team_atlas', this.redTeam, 'player', 3);
+            this.createTeam('player', this.redTeam, 3);
         } else {
             this.redTeam.forEach(kid => {
                 kid.isAlive = true;
@@ -201,10 +201,10 @@ class MainScene extends Phaser.Scene {
         }
 
         // Spawn Green Team on the RIGHT
-        this.createTeam(700, 'green_team_atlas', this.greenTeam, 'cpu', config.enemies);
+        this.createTeam('cpu', this.greenTeam, config.enemies);
 
         // Level Transition Text
-        this.levelText.y = 300;
+        this.levelText.y = 160;
         this.levelText.setText('LEVEL ' + (index + 1));
         this.levelText.setVisible(true);
         this.levelText.alpha = 1;
@@ -222,12 +222,19 @@ class MainScene extends Phaser.Scene {
         });
     }
 
-    createTeam(xBase, textureKey, teamArray, type, count) {
-        let spacing = 450 / count;
-        let startY = 300 - ((count * spacing) / 2) + (spacing / 2);
+    createTeam(type, teamArray, count) {
+        // Predefined mound-aligned positions (matching playField.png 600x320)
+        const ySlots = [96, 211, 296, 140, 246, 172]; // extra slots for levels with more enemies
+        const leftX = 199;
+        const rightX = 600 - leftX; // 401
+
+        const xPos = (type === 'player') ? leftX : rightX;
+        const prefix = (type === 'player') ? 'red' : 'green';
+        const textureKey = (type === 'player') ? 'red_team_atlas' : 'green_team_atlas';
 
         for (let i = 0; i < count; i++) {
-            let kid = this.add.container(xBase, startY + (i * spacing));
+            let y = ySlots[i % ySlots.length];
+            let kid = this.add.container(xPos, y);
             
             // Shadow
             let shadow = this.add.image(0, 18, 'shadow');
@@ -235,8 +242,6 @@ class MainScene extends Phaser.Scene {
 
             // Sprite
             let sprite = this.add.sprite(0, 0, textureKey);
-            // Prefix idle animation with team type (red_idle / green_idle)
-            let prefix = (type === 'player') ? 'red' : 'green';
             sprite.play(prefix + '_idle');
             
             // Face teams toward each other
@@ -447,8 +452,8 @@ class MainScene extends Phaser.Scene {
     
     movePlayer(kid, x, y) {
         // Simple movement tween (player side only)
-        x = Phaser.Math.Clamp(x, 40, 380);
-        y = Phaser.Math.Clamp(y, 100, 550);
+        x = Phaser.Math.Clamp(x, 40, 260);
+        y = Phaser.Math.Clamp(y, 70, 300);
 
         this.tweens.add({
             targets: kid,
@@ -481,8 +486,8 @@ class MainScene extends Phaser.Scene {
 
 const config = {
     type: Phaser.AUTO,
-    width: 800,
-    height: 600,
+    width: 600,
+    height: 320,
     parent: 'game-container',
     backgroundColor: '#333',
     physics: { default: 'arcade' },
