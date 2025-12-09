@@ -70,19 +70,42 @@ class MainScene extends Phaser.Scene {
         // 2. Define Frames & Animations
         // Red Team (Player) Frames
         const redTex = this.textures.get('red_team_atlas');
-        redTex.add('idle_0', 0, 148, 19, 26, 34);
-        redTex.add('walk_0', 0, 15, 19, 24, 34);
-        redTex.add('walk_1', 0, 59, 18, 30, 35);
-        redTex.add('throw_0', 0, 84, 99, 31, 35);
-        redTex.add('throw_1', 0, 150, 98, 23, 36);
+        redTex.add('idle_0', 0, 148, 19, 26, 34);      // standing
+        redTex.add('walk_0', 0, 15, 19, 24, 34);       // walking
+        redTex.add('walk_1', 0, 59, 18, 30, 35);       // walkingAlt
+        redTex.add('throw_0', 0, 84, 99, 31, 35);      // cocked
+        redTex.add('throw_1', 0, 150, 98, 23, 36);     // throwing
+        // Hit reaction frames
+        redTex.add('hit_0', 0, 199, 24, 35, 30);       // hit
+        redTex.add('hit_1', 0, 258, 11, 32, 43);       // hit1
+        redTex.add('hit_2', 0, 312, 10, 36, 44);       // hit2
+        redTex.add('hit_3', 0, 368, 13, 35, 40);       // hit3
+        // Death frames
+        redTex.add('death_0', 0, 208, 109, 71, 32);    // normalDeath
+        redTex.add('death_1', 0, 290, 101, 68, 48);    // hardDeath
+        redTex.add('wipedOut', 0, 376, 98, 51, 53);    // wipedOut
 
         // Green Team (Enemy) Frames
         const greenTex = this.textures.get('green_team_atlas');
-        greenTex.add('idle_0', 0, 133, 18, 30, 36);
-        greenTex.add('idle_1', 0, 186, 18, 27, 34);
-        greenTex.add('throw_0', 0, 292, 23, 24, 31);
-        greenTex.add('throw_1', 0, 332, 19, 34, 35);
-        greenTex.add('throw_2', 0, 393, 20, 24, 34);
+        greenTex.add('idle_0', 0, 133, 18, 30, 36);    // walking
+        greenTex.add('idle_1', 0, 186, 18, 27, 34);    // walkingAlt
+        greenTex.add('throw_0', 0, 292, 23, 24, 31);   // gathering
+        greenTex.add('throw_1', 0, 332, 19, 34, 35);   // cocked
+        greenTex.add('throw_2', 0, 393, 20, 24, 34);   // throwing
+        // Hit reaction frames
+        greenTex.add('hit_0', 0, 26, 75, 25, 35);      // hit
+        greenTex.add('guard', 0, 74, 75, 29, 35);      // guard
+        greenTex.add('brushOff', 0, 124, 75, 29, 35);  // brushOff
+        greenTex.add('stunned', 0, 170, 76, 35, 34);   // stunned
+        // Death frames
+        greenTex.add('death_0', 0, 44, 145, 66, 42);   // normalDeath
+        greenTex.add('death_1', 0, 137, 142, 54, 46);  // hardDeath
+        greenTex.add('wipedOut', 0, 220, 145, 69, 42); // wipedOut
+        greenTex.add('minorDeath', 0, 317, 145, 49, 38); // minorDeath
+        // Victory frames
+        greenTex.add('victory_0', 0, 244, 78, 42, 35); // victory1
+        greenTex.add('victory_1', 0, 312, 77, 40, 37); // victory2
+        greenTex.add('victory_2', 0, 380, 76, 42, 37); // victory3
 
         // Animations
         this.anims.create({
@@ -131,6 +154,52 @@ class MainScene extends Phaser.Scene {
                 { key: 'green_team_atlas', frame: 'throw_2' }
             ],
             frameRate: 10, repeat: 0
+        });
+
+        // Hit animations
+        this.anims.create({
+            key: 'red_hit',
+            frames: [
+                { key: 'red_team_atlas', frame: 'hit_0' },
+                { key: 'red_team_atlas', frame: 'hit_1' },
+                { key: 'red_team_atlas', frame: 'hit_2' },
+                { key: 'red_team_atlas', frame: 'hit_3' }
+            ],
+            frameRate: 8, repeat: 0
+        });
+        this.anims.create({
+            key: 'red_death',
+            frames: [{ key: 'red_team_atlas', frame: 'death_0' }],
+            frameRate: 1, repeat: 0
+        });
+        
+        this.anims.create({
+            key: 'green_hit',
+            frames: [
+                { key: 'green_team_atlas', frame: 'hit_0' },
+                { key: 'green_team_atlas', frame: 'guard' },
+                { key: 'green_team_atlas', frame: 'brushOff' }
+            ],
+            frameRate: 6, repeat: 0
+        });
+        this.anims.create({
+            key: 'green_stunned',
+            frames: [{ key: 'green_team_atlas', frame: 'stunned' }],
+            frameRate: 1, repeat: 0
+        });
+        this.anims.create({
+            key: 'green_death',
+            frames: [{ key: 'green_team_atlas', frame: 'death_0' }],
+            frameRate: 1, repeat: 0
+        });
+        this.anims.create({
+            key: 'green_victory',
+            frames: [
+                { key: 'green_team_atlas', frame: 'victory_0' },
+                { key: 'green_team_atlas', frame: 'victory_1' },
+                { key: 'green_team_atlas', frame: 'victory_2' }
+            ],
+            frameRate: 4, repeat: -1
         });
 
         // 3. Game Groups & State
@@ -448,9 +517,13 @@ class MainScene extends Phaser.Scene {
         ball.shadow.destroy();
         ball.destroy();
         kid.isAlive = false;
-        kid.bodySprite.stop();
         this.playRandomSound('sfx_hit', 1.0);
         this.cameras.main.shake(100, 0.005);
+        
+        let prefix = (kid.teamType === 'player') ? 'red' : 'green';
+        
+        // Play death animation from sprite sheet
+        kid.bodySprite.play(prefix + '_death');
         
         // Classic Snowcraft hit animation: kid falls over and sinks into snow
         // 1. Show splash at impact point
@@ -505,8 +578,17 @@ class MainScene extends Phaser.Scene {
         } else if (redAlive === 0) {
             this.isLevelActive = false;
             if (this.aiTimer) this.aiTimer.remove();
+            
+            // Play victory animation for all surviving enemies
+            this.greenTeam.forEach(enemy => {
+                if (enemy.isAlive) {
+                    enemy.bodySprite.play('green_victory');
+                }
+            });
+            
             this.levelText.setText("GAME OVER");
             this.levelText.setVisible(true);
+            this.levelText.alpha = 1;
             this.input.once('pointerdown', () => location.reload());
         }
     }
