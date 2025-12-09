@@ -45,11 +45,11 @@ class MainScene extends Phaser.Scene {
         this.load.audio('sfx_hit', 'assets/hit1.mp3');
         this.load.audio('sfx_step', 'assets/hit2.mp3');
 
-        // Procedural Shadow
-        this.make.graphics({x:0, y:0, add: false})
-            .fillStyle(0x000000, 0.4)
-            .fillEllipse(15, 5, 30, 10)
-            .generateTexture('shadow', 30, 10);
+        // Procedural Shadow - softer, wider for diagonal rotation
+        this.make.graphics({x: 0, y: 0, add: false})
+            .fillStyle(0x000000, 0.25) // Reduced alpha for softer look
+            .fillEllipse(20, 10, 40, 20) // Wider ellipse
+            .generateTexture('shadow', 40, 20);
     }
 
     create() {
@@ -114,6 +114,14 @@ class MainScene extends Phaser.Scene {
                 { key: 'green_team_atlas', frame: 'idle_1' }
             ],
             frameRate: 4, repeat: -1
+        });
+        this.anims.create({
+            key: 'green_walk',
+            frames: [
+                { key: 'green_team_atlas', frame: 'idle_0' },
+                { key: 'green_team_atlas', frame: 'idle_1' }
+            ],
+            frameRate: 8, repeat: -1 // Faster for walking
         });
         this.anims.create({
             key: 'green_throw',
@@ -208,38 +216,61 @@ class MainScene extends Phaser.Scene {
         this.currentLevelIndex = index;
         let config = LEVEL_CONFIG[index] || LEVEL_CONFIG[LEVEL_CONFIG.length - 1];
         this.currentConfig = config;
+        
+        // Is this the very first level?
+        let isIntro = (index === 0);
 
         // Cleanup
         this.greenTeam.forEach(k => k.destroy());
         this.greenTeam = [];
         this.projectiles.clear(true, true);
 
-        // Reset Red Team
-        if (this.redTeam.length === 0) {
-            this.createTeam('player', this.redTeam, 3);
+        // --- SPAWN TEAMS ---
+        // Destroy Red Team to re-animate them walking in for Level 1
+        if (isIntro) {
+            this.redTeam.forEach(k => k.destroy());
+            this.redTeam = [];
+            this.createTeam('player', this.redTeam, 3, true); // True = Walk In
         } else {
-            this.redTeam.forEach(kid => {
-                kid.isAlive = true;
-                kid.visible = true;
-                kid.bodySprite.play('red_idle');
-                kid.bodySprite.setTint(0xffffff);
-            });
+            // Normal Level Reset (Revive or Keep Position)
+            if (this.redTeam.length === 0) {
+                this.createTeam('player', this.redTeam, 3, false);
+            } else {
+                this.redTeam.forEach(kid => {
+                    kid.isAlive = true;
+                    kid.visible = true;
+                    kid.alpha = 1;
+                    kid.angle = 0;
+                    kid.bodySprite.play('red_idle');
+                    kid.bodySprite.setTint(0xffffff);
+                });
+            }
         }
 
-        // Spawn Green Team
-        this.createTeam('cpu', this.greenTeam, config.enemies);
+        // Spawn Green Team (they always walk in on Level 1)
+        this.createTeam('cpu', this.greenTeam, config.enemies, isIntro);
 
-        // Level Text
-        this.levelText.setText('LEVEL ' + (index + 1));
+        // --- LEVEL TEXT LOGIC ---
+        let message = isIntro ? "Season's Greetings" : 'LEVEL ' + (index + 1);
+        
+        this.levelText.setText(message);
+        this.levelText.setStyle({ 
+            fontSize: isIntro ? '40px' : '60px',
+            fontFamily: isIntro ? 'Georgia, serif' : 'Arial, sans-serif'
+        });
+        
         this.levelText.setVisible(true);
-        this.levelText.alpha = 1;
+        this.levelText.alpha = 0;
+        this.levelText.y = 160;
         this.isLevelActive = false;
 
+        // Fade In -> Hold -> Fade Out
         this.tweens.add({
             targets: this.levelText,
-            alpha: 0,
-            delay: 1500,
+            alpha: 1,
             duration: 1000,
+            hold: isIntro ? 2500 : 1500, // Longer hold for walk-in
+            yoyo: true,
             onComplete: () => {
                 this.isLevelActive = true;
                 this.setupAITimer(config.fireInterval);
@@ -247,34 +278,73 @@ class MainScene extends Phaser.Scene {
         });
     }
 
-    createTeam(type, teamArray, count) {
-        // Predefined slots matching the mounds in the background
-        const ySlots = [96, 211, 296, 140, 246, 172];
+    createTeam(type, teamArray, count, isIntro = false) {
+        // COORDINATE SWAP (Match Original Game)
+        // Green (CPU) = LEFT SIDE | Red (Player) = RIGHT SIDE
         const leftX = 100;
         const rightX = 500;
-        const xPos = (type === 'player') ? leftX : rightX;
+        
+        // CPU (Green) on Left, Player (Red) on Right
+        let finalX = (type === 'player') ? rightX : leftX;
+        
+        // Start off-screen for the "Walk In"
+        let startX = (type === 'player') ? 700 : -100;
+
+        // Y Slots (Mound positions)
+        const ySlots = [96, 211, 296, 140, 246, 172];
         const textureKey = (type === 'player') ? 'red_team_atlas' : 'green_team_atlas';
         const prefix = (type === 'player') ? 'red' : 'green';
 
         for (let i = 0; i < count; i++) {
             let y = ySlots[i % ySlots.length];
-            let kid = this.add.container(xPos, y);
             
-            let shadow = this.add.image(0, 18, 'shadow');
+            // If it's an intro, spawn off-screen. Otherwise, spawn at final spot.
+            let spawnX = isIntro ? startX : finalX;
+            
+            let kid = this.add.container(spawnX, y);
+            
+            // Shadow setup - offset to bottom-right for diagonal lighting
+            let shadow = this.add.image(12, 22, 'shadow');
+            shadow.setRotation(0.5); // Rotate ~30 degrees to match diagonal light source
+            shadow.setScale(0.8, 0.6); // Flatten it slightly
+            shadow.setAlpha(0.25);
+            kid.add(shadow);
+            
             let sprite = this.add.sprite(0, 0, textureKey);
-            sprite.play(prefix + '_idle');
             
-            if (type === 'cpu') sprite.setFlipX(true);
-
-            kid.add([shadow, sprite]);
+            // Face the correct direction
+            // Green (Left) faces Right. Red (Right) faces Left.
+            if (type === 'player') { 
+                sprite.setFlipX(true); // Red faces Left
+            } else {
+                sprite.setFlipX(false); // Green faces Right (default)
+            }
+            
+            kid.add(sprite);
             kid.isAlive = true;
             kid.teamType = type;
             kid.bodySprite = sprite;
             kid.setSize(30, 50);
 
-            // Offset start time
-            sprite.playAfterDelay(prefix + '_idle', Math.random() * 1000);
             teamArray.push(kid);
+
+            // --- ENTRANCE ANIMATION ---
+            if (isIntro) {
+                sprite.play(prefix + '_walk'); // Start walking
+                
+                this.tweens.add({
+                    targets: kid,
+                    x: finalX,
+                    duration: 2500 + (i * 200), // Stagger them slightly
+                    ease: 'Linear',
+                    onComplete: () => {
+                        sprite.play(prefix + '_idle'); // Stop walking when they arrive
+                    }
+                });
+            } else {
+                // Immediate spawn (Levels 2+)
+                sprite.playAfterDelay(prefix + '_idle', Math.random() * 1000);
+            }
         }
     }
 
@@ -325,10 +395,15 @@ class MainScene extends Phaser.Scene {
             } else {
                 ball.x += ball.vx;
                 ball.y += ball.vy;
+                
+                // 3D Visuals
                 let scale = 1 + (ball.z / 300);
                 ball.setScale(scale);
-                ball.shadow.setPosition(ball.x, ball.y + (ball.z * 1.2));
-                ball.shadow.setAlpha(1 - (ball.z/200));
+                
+                // Shadow: diagonal offset to match player shadows (top-left light source)
+                ball.shadow.setPosition(ball.x + 15, (ball.y + ball.z) + 15);
+                ball.shadow.setRotation(0.5); // Match player shadow angle
+                ball.shadow.setAlpha(0.6 - (ball.z / 100)); // Fade out as ball goes higher
 
                 if (ball.z < 40 && ball.z > 5) {
                     let targetTeam = (ball.throwerTeam === 'player') ? this.greenTeam : this.redTeam;
