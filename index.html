@@ -38,8 +38,6 @@ class MainScene extends Phaser.Scene {
         this.load.image('splash', 'assets/splash.png');
         this.load.image('sink', 'assets/sink.png');
         this.load.image('puddle', 'assets/puddle.png');
-        this.load.image('background', 'assets/back.jpg');
-        this.load.image('logo', 'assets/logo.png');
         this.load.image('playfield', 'assets/playField.png');
         
         // Audio
@@ -55,9 +53,10 @@ class MainScene extends Phaser.Scene {
     }
 
     create() {
-        // 1. Environment
-        let bg = this.add.image(400, 300, 'background');
-        bg.setDisplaySize(800, 600);
+        // 1. Environment (simple gradient + playfield overlay for barriers)
+        let bg = this.add.graphics();
+        bg.fillGradientStyle(0xddeeff, 0xddeeff, 0xffffff, 0xffffff, 1);
+        bg.fillRect(0, 0, 800, 600);
         bg.setDepth(-10);
 
         // playfield overlay contains the snow barriers from the original game
@@ -205,25 +204,19 @@ class MainScene extends Phaser.Scene {
         this.createTeam(700, 'green_team_atlas', this.greenTeam, 'cpu', config.enemies);
 
         // Level Transition Text
+        this.levelText.y = 300;
         this.levelText.setText('LEVEL ' + (index + 1));
         this.levelText.setVisible(true);
         this.levelText.alpha = 1;
         this.isLevelActive = false;
 
-        // Show Logo on Level 1
-        if (index === 0) {
-            this.logo = this.add.image(400, 200, 'logo').setScale(0.8);
-            this.levelText.y = 400;
-        }
-
         this.tweens.add({
-            targets: [this.levelText, this.logo],
+            targets: this.levelText,
             alpha: 0,
             delay: 2000,
             duration: 1000,
             onComplete: () => {
                 this.isLevelActive = true;
-                if (this.logo) this.logo.destroy();
                 this.setupAITimer(config.fireInterval);
             }
         });
