@@ -122,6 +122,7 @@ class MainScene extends Phaser.Scene {
         this.projectiles = this.add.group();
         this.redTeam = [];
         this.greenTeam = [];
+        this.isLevelActive = false; // Must be false until players finish walking
         this.isDragging = false;
         this.dragStartX = 0;
         this.dragStartY = 0;
@@ -165,40 +166,69 @@ class MainScene extends Phaser.Scene {
         
         // 5. Inputs
         this.input.mouse.disableContextMenu(); 
+        this.hoveredPlayer = null;
 
-        this.input.on('pointerdown', (pointer) => {
-            if (!this.isLevelActive) return;
-
-            if (pointer.leftButtonDown()) {
-                let clickedPlayer = this.getClosestActive(this.redTeam, pointer, 40);
-                if (clickedPlayer && clickedPlayer.isAlive) {
-                    this.activePlayer = clickedPlayer;
-                    this.isDragging = true;
-                    this.activeStrength = 1;
-                    // Store original position
-                    this.dragOriginX = clickedPlayer.x;
-                    this.dragOriginY = clickedPlayer.y;
-                    this.dragStartX = pointer.x;
-                    this.dragStartY = pointer.y;
-                    // Show cocked sprite
-                    clickedPlayer.bodySprite.setFrame('throw_0');
-                    // Show selection circle and power meter
-                    this.showSelectionUI(clickedPlayer);
-                    // Start increasing strength
-                    this.increaseStrength();
+        // Hover detection - show selection circle when mouse is over a player
+        this.input.on('pointermove', (pointer) => {
+            // No selection allowed until level is active (players finished walking)
+            if (!this.isLevelActive) {
+                if (this.hoveredPlayer) {
+                    this.hideSelectionUI();
+                    this.hoveredPlayer = null;
+                }
+                return;
+            }
+            
+            // If dragging, move the player and update UI
+            if (this.isDragging && this.activePlayer && this.activePlayer.isAlive) {
+                this.activePlayer.x = Math.round(pointer.x);
+                this.activePlayer.y = Math.round(pointer.y);
+                this.activePlayer.bodySprite.setFrame('throw_0');
+                this.updateSelectionUI(this.activePlayer);
+                return;
+            }
+            
+            // Check if hovering over a player
+            let hovered = this.getClosestActive(this.redTeam, pointer, 40);
+            
+            if (hovered && hovered.isAlive) {
+                // Show selection on new hovered player
+                if (this.hoveredPlayer !== hovered) {
+                    this.hoveredPlayer = hovered;
+                    this.showSelectionUI(hovered);
+                } else {
+                    // Update position in case player moved
+                    this.updateSelectionUI(hovered);
+                }
+            } else {
+                // Not hovering over any player - hide selection
+                if (this.hoveredPlayer) {
+                    this.hideSelectionUI();
+                    this.hoveredPlayer = null;
                 }
             }
         });
 
-        this.input.on('pointermove', (pointer) => {
-            if (this.isDragging && this.activePlayer && this.activePlayer.isAlive) {
-                // Move player centered on mouse position (like original setPlayerStatus)
-                this.activePlayer.x = Math.round(pointer.x);
-                this.activePlayer.y = Math.round(pointer.y);
-                // Keep cocked sprite while dragging
+        // Mousedown - start power meter if hovering over a player
+        this.input.on('pointerdown', (pointer) => {
+            if (!this.isLevelActive) return;
+            if (this.isDragging) return;
+
+            if (pointer.leftButtonDown() && this.hoveredPlayer && this.hoveredPlayer.isAlive) {
+                this.activePlayer = this.hoveredPlayer;
+                this.isDragging = true;
+                this.activeStrength = 1;
+                // Store original position
+                this.dragOriginX = this.activePlayer.x;
+                this.dragOriginY = this.activePlayer.y;
+                this.dragStartX = pointer.x;
+                this.dragStartY = pointer.y;
+                // Show cocked sprite
                 this.activePlayer.bodySprite.setFrame('throw_0');
-                // Update selection UI position
-                this.updateSelectionUI(this.activePlayer);
+                // Show power meter (selection circle already visible from hover)
+                this.showPowerMeter(this.activePlayer);
+                // Start increasing strength (power meter)
+                this.increaseStrength();
             }
         });
 
@@ -211,12 +241,29 @@ class MainScene extends Phaser.Scene {
                 // Reset to idle animation (player stays at current position)
                 this.activePlayer.bodySprite.play('red_idle');
                 
-                // Hide selection UI
-                this.hideSelectionUI();
+                // Hide power meter only (selection circle stays if still hovering)
+                this.hidePowerMeter();
                 
                 this.isDragging = false;
                 this.activeStrength = 1;
                 this.strengthText.setVisible(false);
+                
+                // Update hovered player to current position
+                this.hoveredPlayer = this.activePlayer;
+                this.activePlayer = null;
+            }
+        });
+        
+        // Handle pointer leaving game area - cancel drag without throwing
+        this.input.on('pointerupoutside', (pointer) => {
+            if (this.isDragging && this.activePlayer) {
+                this.activePlayer.bodySprite.play('red_idle');
+                this.hidePowerMeter();
+                this.hideSelectionUI();
+                this.isDragging = false;
+                this.activeStrength = 1;
+                this.strengthText.setVisible(false);
+                this.hoveredPlayer = null;
                 this.activePlayer = null;
             }
         });
@@ -255,6 +302,7 @@ class MainScene extends Phaser.Scene {
                     kid.visible = true;
                     kid.alpha = 1;
                     kid.angle = 0;
+                    kid.setScale(1);  // Reset scale after death animation
                     kid.bodySprite.play('red_idle');
                     kid.bodySprite.setTint(0xffffff);
                 });
@@ -295,6 +343,9 @@ class MainScene extends Phaser.Scene {
 
     checkLevelReady() {
         // Only activate level when text has faded AND all walking is complete
+        // Guard against being called multiple times
+        if (this.isLevelActive) return;
+        
         if (this.textFadeComplete && this.walkingCount === 0) {
             this.isLevelActive = true;
             this.setupAITimer(this.pendingFireInterval);
@@ -384,7 +435,8 @@ class MainScene extends Phaser.Scene {
                 const walkingDistance = 3; 
                 
                 kid.walkFrame = 0;
-                kid.isWalking = true; 
+                kid.isWalking = true;  // Animation toggle
+                kid.isWalkingOntoField = true;  // Track if still entering field
                 kid.finalX = finalX;
                 kid.finalY = finalY;
                 this.walkingCount++;
@@ -401,6 +453,7 @@ class MainScene extends Phaser.Scene {
                         if (Math.abs(dx) <= walkingDistance && Math.abs(dy) <= walkingDistance) {
                             kid.x = kid.finalX;
                             kid.y = kid.finalY;
+                            kid.isWalkingOntoField = false;  // Player has arrived on field
                             sprite.play(prefix + '_idle'); 
                             kid.walkTimer.remove();
                             this.walkingCount--;
@@ -428,11 +481,18 @@ class MainScene extends Phaser.Scene {
         }
     }
 
-    // Increase strength while dragging (like original)
+    // Increase strength while dragging - exponential acceleration
     increaseStrength() {
         if (this.isDragging && this.activeStrength < this.maxStrength) {
+            // Exponential acceleration: delay decreases exponentially as strength increases
+            // Formula: delay = baseDelay * e^(-k * strength)
+            // This creates smooth exponential speedup
+            let baseDelay = 50;
+            let k = 0.03; // Controls how fast the acceleration ramps up
+            let delay = Math.max(5, Math.floor(baseDelay * Math.exp(-k * this.activeStrength)));
+            
             this.activeStrength++;
-            this.time.delayedCall(30, () => this.increaseStrength());
+            this.time.delayedCall(delay, () => this.increaseStrength());
         }
     }
 
@@ -554,19 +614,22 @@ class MainScene extends Phaser.Scene {
         let angle = Phaser.Math.Angle.Between(thrower.x, thrower.y, targetX, targetY);
         
         // Calculate end point based on angle and distance
+        // Isometric view: Y movement is ~half of X movement
+        let arcHeight = Math.min(strength * 0.3, 30);
+        let yDistance = distance * 0.5;  // Isometric ratio
+        
         if (thrower.teamType === 'player') {
-            // Player always throws toward upper-left (toward enemies)
-            // Original: endX = startX - distance, endY = startY - distance + 30
+            // Player throws toward upper-left (toward enemies)
             ball.endX = ball.startX - distance;
-            ball.endY = ball.startY - distance + 30;
+            ball.endY = ball.startY - yDistance + 15;
             ball.cpX = ball.startX - (distance * 0.6);
-            ball.cpY = ball.startY - (distance * 0.6) - strength;
+            ball.cpY = ball.startY - (yDistance * 0.6) - arcHeight;
         } else {
             // Enemy throws toward player (right/down)
             ball.endX = ball.startX + distance;
-            ball.endY = ball.startY + distance + 30;
+            ball.endY = ball.startY + yDistance + 15;
             ball.cpX = ball.startX + (distance * 0.6);
-            ball.cpY = ball.startY + (distance * 0.6) - strength;
+            ball.cpY = ball.startY + (yDistance * 0.6) - arcHeight;
         }
         
         // For shadow tracking
@@ -730,9 +793,11 @@ class MainScene extends Phaser.Scene {
 
     getClosestActive(team, pointer, maxDist = 1000) {
         // Match original: check if click is within player bounding box
+        // Only allow selection of alive players who aren't walking onto field
         let clicked = null;
         team.forEach(kid => {
             if (!kid.isAlive) return;
+            if (kid.isWalkingOntoField) return; // Can't select players still walking onto field
             // Use bounding box detection like original game
             // Original uses top-left origin, Phaser container is centered
             // Player sprite is roughly 30x35, use slightly larger hitbox for better UX
@@ -751,7 +816,7 @@ class MainScene extends Phaser.Scene {
         return clicked;
     }
 
-    // Show selection circle and power meter when player is selected
+    // Show selection circle when hovering over player
     showSelectionUI(player) {
         // Draw selection circle (dashed orthogonal ellipse for ground perspective)
         this.selectionCircle.clear();
@@ -759,8 +824,10 @@ class MainScene extends Phaser.Scene {
         this.drawDashedEllipse(this.selectionCircle, 0, 0, 30, 15, 8, 6);
         this.selectionCircle.setPosition(player.x, player.y + 15);
         this.selectionCircle.setVisible(true);
-        
-        // Show power meter
+    }
+    
+    // Show power meter when mousedown on player
+    showPowerMeter(player) {
         this.powerMeterContainer.setPosition(player.x + 25, player.y + 20);
         this.powerMeterContainer.setVisible(true);
         this.updatePowerMeter();
@@ -770,12 +837,19 @@ class MainScene extends Phaser.Scene {
     updateSelectionUI(player) {
         if (!player) return;
         this.selectionCircle.setPosition(player.x, player.y + 15);
-        this.powerMeterContainer.setPosition(player.x + 25, player.y + 20);
+        if (this.powerMeterContainer.visible) {
+            this.powerMeterContainer.setPosition(player.x + 25, player.y + 20);
+        }
     }
     
-    // Hide selection UI
+    // Hide selection circle (when mouse leaves player)
     hideSelectionUI() {
         this.selectionCircle.setVisible(false);
+        this.powerMeterContainer.setVisible(false);
+    }
+    
+    // Hide power meter only (selection circle stays)
+    hidePowerMeter() {
         this.powerMeterContainer.setVisible(false);
     }
     
