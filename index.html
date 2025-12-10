@@ -17,7 +17,7 @@
 
 <script>
 // --- CONFIGURATION ---
-const DEBUG_MODE = true; // Set to false to hide coordinate labels
+const DEBUG_MODE = false; // Set to false to hide coordinate labels
 
 const LEVEL_CONFIG = [
     { level: 1, enemies: 3, fireInterval: 2000, errorMargin: 0.35 }, 
@@ -83,6 +83,8 @@ class MainScene extends Phaser.Scene {
         redTex.add('hit_2', 0, 312, 10, 36, 44);
         redTex.add('hit_3', 0, 368, 13, 35, 40);
         redTex.add('death_0', 0, 208, 109, 71, 32);
+        redTex.add('hardDeath', 0, 290, 101, 68, 48);
+        redTex.add('wipedOut', 0, 376, 98, 51, 53);
 
         // Green Team
         const greenTex = this.textures.get('green_team_atlas');
@@ -98,6 +100,9 @@ class MainScene extends Phaser.Scene {
         greenTex.add('brushOff', 0, 124, 75, 29, 35);
         greenTex.add('stunned', 0, 170, 76, 35, 34);
         greenTex.add('death_0', 0, 44, 145, 66, 42);
+        greenTex.add('hardDeath', 0, 137, 142, 54, 46);
+        greenTex.add('wipedOut', 0, 220, 145, 69, 42);
+        greenTex.add('minorDeath', 0, 317, 145, 49, 38);
         greenTex.add('victory_0', 0, 244, 78, 42, 35);
         greenTex.add('victory_1', 0, 312, 77, 40, 37);
         greenTex.add('victory_2', 0, 380, 76, 42, 37);
@@ -299,6 +304,8 @@ class MainScene extends Phaser.Scene {
             } else {
                 this.redTeam.forEach(kid => {
                     kid.isAlive = true;
+                    kid.health = 3;  // Reset health
+                    kid.isStunned = false;
                     kid.visible = true;
                     kid.alpha = 1;
                     kid.angle = 0;
@@ -407,7 +414,10 @@ class MainScene extends Phaser.Scene {
             
             let kid = this.add.container(spawnX, spawnY);
             
-            let shadow = this.add.image(2, 10, 'shadow');
+            // Shadow positioned for isometric view (added first so it renders behind sprite)
+            let shadow = this.add.image(20, 0, 'shadow');
+            shadow.setScale(1.2);
+            shadow.setAlpha(0.6);
             kid.add(shadow);
             
             let sprite = this.add.sprite(0, 0, textureKey);
@@ -417,6 +427,8 @@ class MainScene extends Phaser.Scene {
             kid.isAlive = true;
             kid.teamType = type;
             kid.bodySprite = sprite;
+            kid.health = (type === 'player') ? 3 : 4;  // Players take 3 hits, enemies take 4
+            kid.isStunned = false;  // Prevents taking damage while in hit animation
             kid.setSize(30, 50);
 
             // Debug label showing coordinates
@@ -487,9 +499,9 @@ class MainScene extends Phaser.Scene {
             // Exponential acceleration: delay decreases exponentially as strength increases
             // Formula: delay = baseDelay * e^(-k * strength)
             // This creates smooth exponential speedup
-            let baseDelay = 50;
-            let k = 0.03; // Controls how fast the acceleration ramps up
-            let delay = Math.max(5, Math.floor(baseDelay * Math.exp(-k * this.activeStrength)));
+            let baseDelay = 20;  // Faster base delay (was 50)
+            let k = 0.04; // Faster acceleration ramp (was 0.03)
+            let delay = Math.max(3, Math.floor(baseDelay * Math.exp(-k * this.activeStrength)));
             
             this.activeStrength++;
             this.time.delayedCall(delay, () => this.increaseStrength());
@@ -520,7 +532,9 @@ class MainScene extends Phaser.Scene {
         [...this.projectiles.getChildren()].forEach(ball => {
             // Bezier curve trajectory (like original)
             if (ball.position !== undefined && ball.position < 1.0) {
-                let buffer = 0.006;
+                // Speed based on strength - higher power = faster ball
+                // Minimum speed of 0.05, scales up with strength (max ~0.08 at full power)
+                let buffer = 0.05 + (ball.strength / 100) * 0.03;
                 ball.position = (ball.position + buffer);
                 
                 if (ball.position >= 1.0) {
@@ -541,7 +555,6 @@ class MainScene extends Phaser.Scene {
                 let groundY = (((ball.x - ball.startX) / (ball.endX - ball.startX) * (ball.endY - ball.startY)) + ball.startY);
                 if (ball.shadow) {
                     ball.shadow.setPosition(ball.x, groundY);
-                    ball.shadow.setAlpha(0.6);
                 }
                 
                 // Check if out of bounds
@@ -554,7 +567,7 @@ class MainScene extends Phaser.Scene {
                 // Hit detection during arc
                 let targetTeam = (ball.throwerTeam === 'player') ? this.greenTeam : this.redTeam;
                 targetTeam.forEach(enemy => {
-                    if (enemy.isAlive && 
+                    if (enemy.isAlive && !enemy.isStunned &&
                         ball.x > enemy.x - 10 &&
                         ball.x < enemy.x + 30 &&
                         ball.y > enemy.y - 10 &&
@@ -585,7 +598,7 @@ class MainScene extends Phaser.Scene {
                     if (ball.z < 40 && ball.z > 5) {
                         let targetTeam = (ball.throwerTeam === 'player') ? this.greenTeam : this.redTeam;
                         targetTeam.forEach(enemy => {
-                            if (enemy.isAlive && Phaser.Math.Distance.Between(ball.x, ball.y, enemy.x, enemy.y) < 30) {
+                            if (enemy.isAlive && !enemy.isStunned && Phaser.Math.Distance.Between(ball.x, ball.y, enemy.x, enemy.y) < 30) {
                                 this.handleHit(enemy, ball);
                             }
                         });
@@ -601,7 +614,8 @@ class MainScene extends Phaser.Scene {
         let distance = baselineDistance * strength;
         
         let ball = this.add.image(thrower.x + 5, thrower.y, 'snowball');
-        ball.shadow = this.add.image(thrower.x + 5, thrower.y, 'snowball_shadow'); 
+        ball.shadow = this.add.image(thrower.x + 5, thrower.y, 'snowball_shadow');
+        ball.shadow.setAlpha(0.6);
         ball.throwerTeam = thrower.teamType;
         
         // Arc trajectory parameters
@@ -648,51 +662,112 @@ class MainScene extends Phaser.Scene {
     }
 
     handleHit(kid, ball) {
+        // Ignore hits if already stunned or dead
+        if (kid.isStunned || !kid.isAlive) return;
+        
         ball.shadow.destroy();
         ball.destroy();
-        kid.isAlive = false;
+        
+        kid.health--;
+        kid.isStunned = true;  // Prevent multiple hits during animation
+        
         this.playRandomSound('sfx_hit', 1.0);
-        this.sound.play('sfx_deathHit', { volume: 0.8 }); 
         this.cameras.main.shake(100, 0.005);
         
         let prefix = (kid.teamType === 'player') ? 'red' : 'green';
         
-        kid.bodySprite.play(prefix + '_death');
-        
-        let splash = this.add.image(kid.x, kid.y + 10, 'splash').setDepth(kid.depth - 1);
-        
-        this.tweens.add({ 
-            targets: kid, 
-            angle: 90, 
-            y: kid.y + 15,
-            duration: 300,
-            onComplete: () => {
-                splash.setTexture('sink');
-                
-                this.tweens.add({
-                    targets: kid,
-                    alpha: 0,
-                    scaleX: 0.5,
-                    scaleY: 0.5,
-                    duration: 600,
-                    onComplete: () => {
-                        kid.setVisible(false);
-                        
-                        splash.setTexture('puddle');
-                        
-                        this.tweens.add({
-                            targets: splash,
-                            alpha: 0,
-                            duration: 2000,
-                            delay: 1000,
-                            onComplete: () => splash.destroy()
-                        });
-                    }
+        if (kid.health <= 0) {
+            // Death - final hit
+            kid.isAlive = false;
+            this.sound.play('sfx_deathHit', { volume: 0.8 });
+            
+            kid.bodySprite.play(prefix + '_death');
+            
+            let splash = this.add.image(kid.x, kid.y + 10, 'splash').setDepth(kid.depth - 1);
+            
+            this.tweens.add({ 
+                targets: kid, 
+                angle: 90, 
+                y: kid.y + 15,
+                duration: 300,
+                onComplete: () => {
+                    splash.setTexture('sink');
+                    
+                    this.tweens.add({
+                        targets: kid,
+                        alpha: 0,
+                        scaleX: 0.5,
+                        scaleY: 0.5,
+                        duration: 600,
+                        onComplete: () => {
+                            kid.setVisible(false);
+                            
+                            splash.setTexture('puddle');
+                            
+                            this.tweens.add({
+                                targets: splash,
+                                alpha: 0,
+                                duration: 2000,
+                                delay: 1000,
+                                onComplete: () => splash.destroy()
+                            });
+                        }
+                    });
+                }
+            });
+            
+            this.checkWinCondition();
+        } else {
+            // Hit but not dead - show hit animation sequence
+            if (kid.teamType === 'player') {
+                // Red team hit animation: hit_0 -> hit_1 -> hit_2 -> hit_3 -> back to idle
+                kid.bodySprite.setFrame('hit_0');
+                this.time.delayedCall(100, () => {
+                    if (!kid.isAlive) return;
+                    kid.bodySprite.setFrame('hit_1');
                 });
+                this.time.delayedCall(175, () => {
+                    if (!kid.isAlive) return;
+                    kid.bodySprite.setFrame('hit_2');
+                });
+                this.time.delayedCall(300, () => {
+                    if (!kid.isAlive) return;
+                    kid.bodySprite.setFrame('hit_3');
+                });
+                this.time.delayedCall(500, () => {
+                    if (!kid.isAlive) return;
+                    kid.bodySprite.play('red_idle');
+                    kid.isStunned = false;  // Can be hit again
+                });
+            } else {
+                // Green team hit animation depends on remaining health
+                if (kid.health >= 2) {
+                    // Normal hit: hit_0 -> guard -> brushOff -> back to idle
+                    kid.bodySprite.setFrame('hit_0');
+                    this.time.delayedCall(100, () => {
+                        if (!kid.isAlive) return;
+                        kid.bodySprite.setFrame('guard');
+                    });
+                    this.time.delayedCall(175, () => {
+                        if (!kid.isAlive) return;
+                        kid.bodySprite.setFrame('brushOff');
+                    });
+                    this.time.delayedCall(600, () => {
+                        if (!kid.isAlive) return;
+                        kid.bodySprite.play('green_idle');
+                        kid.isStunned = false;  // Can be hit again
+                    });
+                } else {
+                    // One hit from death: show stunned frame (longer recovery)
+                    kid.bodySprite.setFrame('stunned');
+                    this.time.delayedCall(1200, () => {
+                        if (!kid.isAlive) return;
+                        kid.bodySprite.play('green_idle');
+                        kid.isStunned = false;  // Can be hit again
+                    });
+                }
             }
-        });
-        
-        this.checkWinCondition();
+        }
     }
 
     checkWinCondition() {
@@ -818,10 +893,10 @@ class MainScene extends Phaser.Scene {
 
     // Show selection circle when hovering over player
     showSelectionUI(player) {
-        // Draw selection circle (dashed orthogonal ellipse for ground perspective)
+        // Draw selection circle (solid ellipse for ground perspective)
         this.selectionCircle.clear();
         this.selectionCircle.lineStyle(2, 0x0088cc, 1);
-        this.drawDashedEllipse(this.selectionCircle, 0, 0, 30, 15, 8, 6);
+        this.selectionCircle.strokeEllipse(0, 0, 60, 30);
         this.selectionCircle.setPosition(player.x, player.y + 15);
         this.selectionCircle.setVisible(true);
     }

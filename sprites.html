@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snowcraft Sprite Viewer</title>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.min.js"></script>
+    <style>
+        body { 
+            margin: 0; 
+            background: #1a1a2e; 
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+        }
+        h1 {
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+            background: #16213e;
+            border-bottom: 2px solid #0f3460;
+        }
+        #game-container { 
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        #game-container canvas { 
+            border: 2px solid #0f3460;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>🎿 Snowcraft Sprite Viewer</h1>
+<div id="game-container"></div>
+
+<script>
+class SpriteViewerScene extends Phaser.Scene {
+    constructor() {
+        super({ key: 'SpriteViewerScene' });
+    }
+
+    preload() {
+        this.load.image('red_team_atlas', 'assets/player.png');
+        this.load.image('green_team_atlas', 'assets/enemy.png');
+        this.load.image('snowball', 'assets/snowball.png');
+        this.load.image('splash', 'assets/splash.png');
+        this.load.image('sink', 'assets/sink.png');
+        this.load.image('puddle', 'assets/puddle.png');
+        this.load.image('shadow', 'assets/shadow.png');
+        this.load.image('snowball_shadow', 'assets/snowball_shadow.png');
+        this.load.image('hand', 'assets/smallHand.png');
+    }
+
+    create() {
+        // Background
+        this.cameras.main.setBackgroundColor('#2d3436');
+
+        // Define all sprite frames
+        const redFrames = [
+            { name: 'idle_0', x: 148, y: 19, w: 26, h: 34 },
+            { name: 'walking', x: 15, y: 19, w: 24, h: 34 },
+            { name: 'walkingAlt', x: 59, y: 18, w: 30, h: 35 },
+            { name: 'throw_0', x: 84, y: 99, w: 31, h: 35 },
+            { name: 'throw_1', x: 150, y: 98, w: 23, h: 36 },
+            { name: 'hit_0', x: 199, y: 24, w: 35, h: 30 },
+            { name: 'hit_1', x: 258, y: 11, w: 32, h: 43 },
+            { name: 'hit_2', x: 312, y: 10, w: 36, h: 44 },
+            { name: 'hit_3', x: 368, y: 13, w: 35, h: 40 },
+            { name: 'death_0', x: 208, y: 109, w: 71, h: 32 },
+            { name: 'hardDeath', x: 290, y: 101, w: 68, h: 48 },
+            { name: 'wipedOut', x: 376, y: 98, w: 51, h: 53 },
+        ];
+
+        const greenFrames = [
+            { name: 'idle_0', x: 133, y: 18, w: 30, h: 36 },
+            { name: 'idle_1', x: 186, y: 18, w: 27, h: 34 },
+            { name: 'walking', x: 133, y: 18, w: 30, h: 36 },
+            { name: 'walkingAlt', x: 186, y: 18, w: 27, h: 34 },
+            { name: 'throw_0', x: 292, y: 23, w: 24, h: 31 },
+            { name: 'throw_1', x: 332, y: 19, w: 34, h: 35 },
+            { name: 'throw_2', x: 393, y: 20, w: 24, h: 34 },
+            { name: 'hit_0', x: 26, y: 75, w: 25, h: 35 },
+            { name: 'guard', x: 74, y: 75, w: 29, h: 35 },
+            { name: 'brushOff', x: 124, y: 75, w: 29, h: 35 },
+            { name: 'stunned', x: 170, y: 76, w: 35, h: 34 },
+            { name: 'death_0', x: 44, y: 145, w: 66, h: 42 },
+            { name: 'hardDeath', x: 137, y: 142, w: 54, h: 46 },
+            { name: 'wipedOut', x: 220, y: 145, w: 69, h: 42 },
+            { name: 'minorDeath', x: 317, y: 145, w: 49, h: 38 },
+            { name: 'victory_0', x: 244, y: 78, w: 42, h: 35 },
+            { name: 'victory_1', x: 312, y: 77, w: 40, h: 37 },
+            { name: 'victory_2', x: 380, y: 76, w: 42, h: 37 },
+        ];
+
+        const miscSprites = [
+            { name: 'snowball', texture: 'snowball' },
+            { name: 'splash', texture: 'splash' },
+            { name: 'sink', texture: 'sink' },
+            { name: 'puddle', texture: 'puddle' },
+            { name: 'shadow', texture: 'shadow' },
+            { name: 'snowball_shadow', texture: 'snowball_shadow' },
+            { name: 'hand', texture: 'hand' },
+        ];
+
+        // Register frames in textures
+        const redTex = this.textures.get('red_team_atlas');
+        redFrames.forEach(f => {
+            redTex.add(f.name, 0, f.x, f.y, f.w, f.h);
+        });
+
+        const greenTex = this.textures.get('green_team_atlas');
+        greenFrames.forEach(f => {
+            greenTex.add(f.name, 0, f.x, f.y, f.w, f.h);
+        });
+
+        // Title style
+        const titleStyle = { fontSize: '24px', color: '#ffffff', fontStyle: 'bold' };
+        const labelStyle = { fontSize: '11px', color: '#ffffff', backgroundColor: '#000000aa', padding: { x: 4, y: 2 } };
+
+        let yOffset = 30;
+
+        // --- RED TEAM SECTION ---
+        this.add.text(20, yOffset, '🔴 RED TEAM (Players)', titleStyle);
+        yOffset += 40;
+
+        let xPos = 40;
+        let rowStartY = yOffset;
+        const spacing = 90;
+        const rowHeight = 100;
+
+        redFrames.forEach((frame, index) => {
+            if (xPos + spacing > 880) {
+                xPos = 40;
+                yOffset += rowHeight;
+            }
+
+            let sprite = this.add.sprite(xPos, yOffset, 'red_team_atlas', frame.name);
+            sprite.setOrigin(0.5, 0);
+            
+            let label = this.add.text(xPos, yOffset + 55, frame.name, labelStyle);
+            label.setOrigin(0.5, 0);
+
+            // Size info
+            let sizeText = this.add.text(xPos, yOffset + 72, `${frame.w}x${frame.h}`, { fontSize: '9px', color: '#888888' });
+            sizeText.setOrigin(0.5, 0);
+
+            xPos += spacing;
+        });
+
+        yOffset += rowHeight + 40;
+
+        // --- GREEN TEAM SECTION ---
+        this.add.text(20, yOffset, '🟢 GREEN TEAM (Enemies)', titleStyle);
+        yOffset += 40;
+
+        xPos = 40;
+
+        greenFrames.forEach((frame, index) => {
+            if (xPos + spacing > 880) {
+                xPos = 40;
+                yOffset += rowHeight;
+            }
+
+            let sprite = this.add.sprite(xPos, yOffset, 'green_team_atlas', frame.name);
+            sprite.setOrigin(0.5, 0);
+            
+            let label = this.add.text(xPos, yOffset + 55, frame.name, labelStyle);
+            label.setOrigin(0.5, 0);
+
+            // Size info
+            let sizeText = this.add.text(xPos, yOffset + 72, `${frame.w}x${frame.h}`, { fontSize: '9px', color: '#888888' });
+            sizeText.setOrigin(0.5, 0);
+
+            xPos += spacing;
+        });
+
+        yOffset += rowHeight + 40;
+
+        // --- MISC SPRITES SECTION ---
+        this.add.text(20, yOffset, '⚪ MISC SPRITES', titleStyle);
+        yOffset += 40;
+
+        xPos = 40;
+
+        miscSprites.forEach((item) => {
+            if (xPos + spacing > 880) {
+                xPos = 40;
+                yOffset += rowHeight;
+            }
+
+            let sprite = this.add.sprite(xPos, yOffset, item.texture);
+            sprite.setOrigin(0.5, 0);
+            
+            let label = this.add.text(xPos, yOffset + 35, item.name, labelStyle);
+            label.setOrigin(0.5, 0);
+
+            // Get actual dimensions
+            let w = sprite.width;
+            let h = sprite.height;
+            let sizeText = this.add.text(xPos, yOffset + 52, `${w}x${h}`, { fontSize: '9px', color: '#888888' });
+            sizeText.setOrigin(0.5, 0);
+
+            xPos += spacing;
+        });
+
+        yOffset += rowHeight + 20;
+
+        // --- RAW SPRITE SHEETS ---
+        yOffset += 20;
+        this.add.text(20, yOffset, '📄 RAW SPRITE SHEETS', titleStyle);
+        yOffset += 40;
+
+        // Red team raw sheet
+        this.add.text(20, yOffset, 'player.png (Red Team):', { fontSize: '14px', color: '#ff6b6b' });
+        yOffset += 25;
+        let redRaw = this.add.image(20, yOffset, 'red_team_atlas');
+        redRaw.setOrigin(0, 0);
+        redRaw.setScale(1);
+        
+        // Draw border around it
+        let redBorder = this.add.graphics();
+        redBorder.lineStyle(2, 0xff6b6b, 1);
+        redBorder.strokeRect(20, yOffset, redRaw.width, redRaw.height);
+
+        yOffset += redRaw.height + 30;
+
+        // Green team raw sheet
+        this.add.text(20, yOffset, 'enemy.png (Green Team):', { fontSize: '14px', color: '#6bff6b' });
+        yOffset += 25;
+        let greenRaw = this.add.image(20, yOffset, 'green_team_atlas');
+        greenRaw.setOrigin(0, 0);
+        greenRaw.setScale(1);
+        
+        // Draw border around it
+        let greenBorder = this.add.graphics();
+        greenBorder.lineStyle(2, 0x6bff6b, 1);
+        greenBorder.strokeRect(20, yOffset, greenRaw.width, greenRaw.height);
+
+        yOffset += greenRaw.height + 40;
+
+        // Resize camera to fit all content
+        this.cameras.main.setBounds(0, 0, 900, yOffset);
+    }
+}
+
+const config = {
+    type: Phaser.AUTO,
+    width: 900,
+    height: 1200,
+    parent: 'game-container',
+    backgroundColor: '#2d3436',
+    scene: SpriteViewerScene,
+    pixelArt: true
+};
+
+const game = new Phaser.Game(config);
+</script>
+
+</body>
+</html>
