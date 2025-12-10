@@ -63,6 +63,14 @@ class MainScene extends Phaser.Scene {
         bg.fillRect(0, 0, 600, 320);
         bg.setDepth(-10);
 
+        // Debug diagonal line from bottom-left to top-right
+        if (DEBUG_MODE) {
+            let debugLine = this.add.graphics();
+            debugLine.lineStyle(2, 0xff0000, 1);
+            debugLine.lineBetween(0, 320, 600, 0);
+            debugLine.setDepth(100);
+        }
+
         // Add Playfield Overlay
         if (this.textures.exists('playfield')) {
             let pf = this.add.image(300, 160, 'playfield');
@@ -186,8 +194,22 @@ class MainScene extends Phaser.Scene {
             
             // If dragging, move the player and update UI
             if (this.isDragging && this.activePlayer && this.activePlayer.isAlive) {
-                this.activePlayer.x = Math.round(pointer.x);
-                this.activePlayer.y = Math.round(pointer.y);
+                let newX = Math.round(pointer.x);
+                let newY = Math.round(pointer.y);
+                
+                // Enforce diagonal boundary - red team must stay below the line
+                // Line goes from (0, 320) to (600, 0), equation: y = 320 - (x * 320/600)
+                let boundaryY = 320 - (newX * 320 / 600);
+                if (newY < boundaryY) {
+                    newY = Math.round(boundaryY);
+                }
+                
+                // Keep within game bounds
+                newX = Math.max(0, Math.min(600, newX));
+                newY = Math.max(0, Math.min(320, newY));
+                
+                this.activePlayer.x = newX;
+                this.activePlayer.y = newY;
                 this.activePlayer.bodySprite.setFrame('throw_0');
                 this.updateSelectionUI(this.activePlayer);
                 return;
@@ -499,9 +521,9 @@ class MainScene extends Phaser.Scene {
             // Exponential acceleration: delay decreases exponentially as strength increases
             // Formula: delay = baseDelay * e^(-k * strength)
             // This creates smooth exponential speedup
-            let baseDelay = 20;  // Faster base delay (was 50)
-            let k = 0.04; // Faster acceleration ramp (was 0.03)
-            let delay = Math.max(3, Math.floor(baseDelay * Math.exp(-k * this.activeStrength)));
+            let baseDelay = 50;  // Base delay in ms
+            let k = 0.03; // Acceleration ramp
+            let delay = Math.max(5, Math.floor(baseDelay * Math.exp(-k * this.activeStrength)));
             
             this.activeStrength++;
             this.time.delayedCall(delay, () => this.increaseStrength());
@@ -532,9 +554,9 @@ class MainScene extends Phaser.Scene {
         [...this.projectiles.getChildren()].forEach(ball => {
             // Bezier curve trajectory (like original)
             if (ball.position !== undefined && ball.position < 1.0) {
-                // Speed based on strength - higher power = faster ball
-                // Minimum speed of 0.05, scales up with strength (max ~0.08 at full power)
-                let buffer = 0.05 + (ball.strength / 100) * 0.03;
+                // Speed based on strength - higher power = slightly faster ball
+                // Minimum speed of 0.012, scales up with strength (max ~0.018 at full power)
+                let buffer = 0.012 + (ball.strength / 100) * 0.006;
                 ball.position = (ball.position + buffer);
                 
                 if (ball.position >= 1.0) {
@@ -971,6 +993,7 @@ const config = {
     height: 320,
     parent: 'game-container',
     backgroundColor: '#ffffff',
+    pixelArt: true,
     physics: { default: 'arcade' },
     scene: MainScene
 };
