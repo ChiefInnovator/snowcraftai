@@ -47,6 +47,7 @@
 <script>
 // --- CONFIGURATION ---
 const DEBUG_MODE = false; // Set to false to hide coordinate labels
+const START_LEVEL = 5; // Level to start on (1-5) for testing. Default is 1.
 let GAME_SCALE = 1; // Set to 2 for 1200x640, or any multiplier (default 1 = 600x320)
 let GAME_DIFFICULTY = 2; // 1=Easy, 2=Normal, 3=Hard
 let game = null;
@@ -202,6 +203,7 @@ class MainScene extends Phaser.Scene {
         });
 
         // 3. Game Groups & State
+        this.shadowGroup = this.add.group(); // Shadows drawn first (lowest depth)
         this.projectiles = this.add.group();
         this.redTeam = [];
         this.greenTeam = [];
@@ -365,7 +367,7 @@ class MainScene extends Phaser.Scene {
             }
         });
 
-        this.startLevel(0);
+        this.startLevel(START_LEVEL - 1);
     }
 
     startLevel(index) {
@@ -382,8 +384,13 @@ class MainScene extends Phaser.Scene {
             }
         }
 
-        this.greenTeam.forEach(k => k.destroy());
+        this.greenTeam.forEach(k => { if (k.shadow) k.shadow.destroy(); k.destroy(); });
         this.greenTeam = [];
+        
+        // Clean up projectile shadows before clearing projectiles
+        this.projectiles.children.each(ball => {
+            if (ball.shadow) ball.shadow.destroy();
+        });
         this.projectiles.clear(true, true);
         
         // Reset state BEFORE creating teams (so walkingCount increments work)
@@ -392,12 +399,12 @@ class MainScene extends Phaser.Scene {
         this.textFadeComplete = false;
 
         if (isIntro) {
-            this.redTeam.forEach(k => k.destroy());
+            this.redTeam.forEach(k => { if (k.shadow) k.shadow.destroy(); k.destroy(); });
             this.redTeam = [];
             this.createTeam('player', this.redTeam, 3, true); 
         } else {
             // For subsequent levels, red team walks in again
-            this.redTeam.forEach(k => k.destroy());
+            this.redTeam.forEach(k => { if (k.shadow) k.shadow.destroy(); k.destroy(); });
             this.redTeam = [];
             this.createTeam('player', this.redTeam, 3, true);
         }
@@ -502,11 +509,12 @@ class MainScene extends Phaser.Scene {
             
             let kid = this.add.container(spawnX, spawnY);
             
-            // Shadow positioned for isometric view (added first so it renders behind sprite)
-            let shadow = this.add.image(20, 0, 'shadow');
+            // Shadow positioned for isometric view (added to global shadow group)
+            let shadow = this.add.image(spawnX + 20, spawnY, 'shadow');
             shadow.setScale(1.2);
             shadow.setAlpha(0.6);
-            kid.add(shadow);
+            shadow.setDepth(-5); // Ensure shadows are behind players
+            this.shadowGroup.add(shadow);
             
             let sprite = this.add.sprite(0, 0, textureKey);
             sprite.setFlipX(false); // Assumes atlases are correctly oriented (Red=Left, Green=Right)
@@ -515,6 +523,7 @@ class MainScene extends Phaser.Scene {
             kid.isAlive = true;
             kid.teamType = type;
             kid.bodySprite = sprite;
+            kid.shadow = shadow; // Reference to update position
             // Health based on difficulty: Easy=1, Normal=3, Hard=4 for enemies
             kid.health = (type === 'player') ? 3 : (GAME_DIFFICULTY === 1 ? 1 : GAME_DIFFICULTY === 2 ? 3 : 4);
             kid.isStunned = false;  // Prevents taking damage while in hit animation
@@ -554,6 +563,7 @@ class MainScene extends Phaser.Scene {
                         if (Math.abs(dx) <= walkingDistance && Math.abs(dy) <= walkingDistance) {
                             kid.x = kid.finalX;
                             kid.y = kid.finalY;
+                            if (kid.shadow) kid.shadow.setPosition(kid.x + 20, kid.y);
                             kid.isWalkingOntoField = false;  // Player has arrived on field
                             sprite.play(prefix + '_idle'); 
                             kid.walkTimer.remove();
@@ -569,6 +579,8 @@ class MainScene extends Phaser.Scene {
                         if (Math.abs(dy) > 0) {
                             kid.y += (dy > 0) ? walkingDistance : -walkingDistance;
                         }
+                        
+                        if (kid.shadow) kid.shadow.setPosition(kid.x + 20, kid.y);
                         
                         // Toggle animation
                         kid.isWalking = !kid.isWalking;
@@ -703,7 +715,8 @@ class MainScene extends Phaser.Scene {
         let distance = baselineDistance * strength;
         
         let ball = this.add.image(thrower.x + 5, thrower.y, 'snowball');
-        ball.shadow = this.add.image(thrower.x + 5, thrower.y, 'snowball_shadow');
+        ball.shadow = this.add.image(thrower.x + 5, thrower.y, 'snowball_shadow').setDepth(-5);
+        this.shadowGroup.add(ball.shadow);
         ball.shadow.setAlpha(0.6);
         ball.throwerTeam = thrower.teamType;
         
@@ -957,6 +970,8 @@ class MainScene extends Phaser.Scene {
                     moving = true;
                 }
                 
+                if (enemy.shadow) enemy.shadow.setPosition(enemy.x + 20, enemy.y);
+
                 if (moving) {
                     // Toggle walk animation
                     enemy.isWalking = !enemy.isWalking;
@@ -1076,6 +1091,9 @@ class MainScene extends Phaser.Scene {
             y: y,
             duration: Phaser.Math.Distance.Between(kid.x, kid.y, x, y) * 5,
             onStart: () => { if(kid.bodySprite.anims.exists('red_walk')) kid.bodySprite.play('red_walk'); },
+            onUpdate: () => {
+                if (kid.shadow) kid.shadow.setPosition(kid.x + 20, kid.y);
+            },
             onComplete: () => { if(kid.isAlive) kid.bodySprite.play('red_idle'); }
         });
     }
