@@ -444,6 +444,12 @@ class MainScene extends Phaser.Scene {
         
         if (this.textFadeComplete && this.walkingCount === 0) {
             this.isLevelActive = true;
+            
+            // Enable collisions between players
+            this.physics.add.collider(this.redTeam, this.greenTeam);
+            this.physics.add.collider(this.redTeam, this.redTeam);
+            this.physics.add.collider(this.greenTeam, this.greenTeam);
+
             // Start enemy movement - each enemy picks a random destination
             this.greenTeam.forEach(enemy => {
                 if (enemy.isAlive) {
@@ -508,6 +514,10 @@ class MainScene extends Phaser.Scene {
             }
             
             let kid = this.add.container(spawnX, spawnY);
+            this.physics.world.enable(kid);
+            kid.body.setCircle(15, 0, 20); // Approximate size for collision
+            kid.body.setCollideWorldBounds(false); // Disable initially for walk-in
+            kid.body.setImmovable(false);
             
             // Shadow positioned for isometric view (added to global shadow group)
             let shadow = this.add.image(spawnX + 20, spawnY, 'shadow');
@@ -563,6 +573,10 @@ class MainScene extends Phaser.Scene {
                         if (Math.abs(dx) <= walkingDistance && Math.abs(dy) <= walkingDistance) {
                             kid.x = kid.finalX;
                             kid.y = kid.finalY;
+                            if (kid.body) {
+                                kid.body.reset(kid.x, kid.y);
+                                kid.body.setCollideWorldBounds(true); // Enable bounds after arrival
+                            }
                             if (kid.shadow) kid.shadow.setPosition(kid.x + 20, kid.y);
                             kid.isWalkingOntoField = false;  // Player has arrived on field
                             sprite.play(prefix + '_idle'); 
@@ -616,6 +630,78 @@ class MainScene extends Phaser.Scene {
             // Update selection UI position to follow player
             this.updateSelectionUI(this.activePlayer);
         }
+
+        // Handle movement and shadows for all players
+        [...this.redTeam, ...this.greenTeam].forEach(kid => {
+            if (!kid.isAlive) return;
+
+            // Update shadow position
+            if (kid.shadow) {
+                kid.shadow.setPosition(kid.x + 20, kid.y);
+            }
+
+            // Check arrival if moving to target
+            if (kid.isMovingToTarget) {
+                const dist = Phaser.Math.Distance.Between(kid.x, kid.y, kid.targetX, kid.targetY);
+                
+                // Check if stuck (position hasn't changed significantly)
+                if (!kid.lastPos) kid.lastPos = { x: kid.x, y: kid.y };
+                const moveDist = Phaser.Math.Distance.Between(kid.x, kid.y, kid.lastPos.x, kid.lastPos.y);
+                kid.lastPos.x = kid.x;
+                kid.lastPos.y = kid.y;
+                
+                if (moveDist < 0.5) {
+                    kid.stuckFrames = (kid.stuckFrames || 0) + 1;
+                } else {
+                    kid.stuckFrames = 0;
+                }
+
+                // Toggle animation frames for enemies (since they don't use 'play')
+                if (kid.teamType === 'cpu' && kid.isWalking) {
+                    // Simple frame toggle based on time
+                    const frame = (Math.floor(time / 250) % 2 === 0) ? 'walking' : 'walkingAlt';
+                    kid.bodySprite.setFrame(frame);
+                }
+
+                if (dist < 4 || kid.stuckFrames > 60) {
+                    // Arrived or Stuck
+                    if (dist < 4) {
+                        kid.body.reset(kid.targetX, kid.targetY);
+                    } else {
+                        kid.body.reset(kid.x, kid.y); // Stop where they are
+                    }
+                    
+                    kid.isMovingToTarget = false;
+                    kid.stuckFrames = 0;
+                    
+                    if (kid.teamType === 'player') {
+                        kid.bodySprite.play('red_idle');
+                    } else {
+                        // Enemy arrival logic
+                        kid.isWalking = false;
+                        kid.bodySprite.setFrame('walkingAlt');
+                        
+                        // Logic to make them walk randomly 1-2 segments before throwing
+                        if (typeof kid.walkSegments === 'undefined') kid.walkSegments = 0;
+                        kid.walkSegments++;
+                        
+                        const segmentsNeeded = Phaser.Math.Between(1, 2);
+                        
+                        if (kid.walkSegments >= segmentsNeeded) {
+                            kid.walkSegments = 0;
+                            this.enemyThrowSnowball(kid);
+                        } else {
+                            this.time.delayedCall(200, () => {
+                                if (kid.isAlive && this.isLevelActive) {
+                                    this.calcEnemyPosition(kid);
+                                    this.startEnemyMovement(kid);
+                                }
+                            });
+                        }
+                    }
+                }
+            }
+        });
 
         // Update debug labels
         if (DEBUG_MODE) {
@@ -941,70 +1027,15 @@ class MainScene extends Phaser.Scene {
         if (!enemy.isAlive || !this.isLevelActive) return;
         if (enemy.moveTimer) enemy.moveTimer.remove();
         
-        const walkingDistance = 3;
-        const walkingFps = 4; // Reduced to 4 (from 5) to slow down movement
-        const frameDelay = Math.round(1000 / 60 * walkingFps); 
-        
         enemy.isWalking = true;
         enemy.bodySprite.setFrame('walking');
         
-        enemy.moveTimer = this.time.addEvent({
-            delay: frameDelay,
-            callback: () => {
-                if (!enemy.isAlive || !this.isLevelActive) {
-                    if (enemy.moveTimer) enemy.moveTimer.remove();
-                    return;
-                }
-                
-                let dx = enemy.finalX - enemy.x;
-                let dy = enemy.finalY - enemy.y;
-                let moving = false;
-                
-                // Move toward destination
-                if (Math.abs(dx) >= walkingDistance) {
-                    enemy.x += (dx > 0) ? walkingDistance : -walkingDistance;
-                    moving = true;
-                }
-                if (Math.abs(dy) >= walkingDistance) {
-                    enemy.y += (dy > 0) ? walkingDistance : -walkingDistance;
-                    moving = true;
-                }
-                
-                if (enemy.shadow) enemy.shadow.setPosition(enemy.x + 20, enemy.y);
-
-                if (moving) {
-                    // Toggle walk animation
-                    enemy.isWalking = !enemy.isWalking;
-                    enemy.bodySprite.setFrame(enemy.isWalking ? 'walking' : 'walkingAlt');
-                } else {
-                    // Reached destination
-                    enemy.moveTimer.remove();
-                    
-                    // Logic to make them walk randomly 1-2 segments before throwing
-                    if (typeof enemy.walkSegments === 'undefined') enemy.walkSegments = 0;
-                    enemy.walkSegments++;
-                    
-                    // Randomly decide how many segments to walk (1 to 2) before throwing
-                    const segmentsNeeded = Phaser.Math.Between(1, 2);
-                    
-                    if (enemy.walkSegments >= segmentsNeeded) {
-                        // Reset counter and throw
-                        enemy.walkSegments = 0;
-                        this.enemyThrowSnowball(enemy);
-                    } else {
-                        // Pick another destination and keep walking
-                        // Add a small pause before next movement for natural feel
-                        this.time.delayedCall(200, () => {
-                            if (enemy.isAlive && this.isLevelActive) {
-                                this.calcEnemyPosition(enemy);
-                                this.startEnemyMovement(enemy);
-                            }
-                        });
-                    }
-                }
-            },
-            loop: true
-        });
+        // Use physics for movement
+        this.physics.moveTo(enemy, enemy.finalX, enemy.finalY, 40);
+        
+        enemy.targetX = enemy.finalX;
+        enemy.targetY = enemy.finalY;
+        enemy.isMovingToTarget = true;
     }
     
     // Enemy throwing sequence
@@ -1085,17 +1116,18 @@ class MainScene extends Phaser.Scene {
         this.createSnowSplash(x, y); 
         this.playRandomSound('sfx_step', 0.2); 
 
-        this.tweens.add({
-            targets: kid,
-            x: x,
-            y: y,
-            duration: Phaser.Math.Distance.Between(kid.x, kid.y, x, y) * 5,
-            onStart: () => { if(kid.bodySprite.anims.exists('red_walk')) kid.bodySprite.play('red_walk'); },
-            onUpdate: () => {
-                if (kid.shadow) kid.shadow.setPosition(kid.x + 20, kid.y);
-            },
-            onComplete: () => { if(kid.isAlive) kid.bodySprite.play('red_idle'); }
-        });
+        // Stop any existing movement
+        if (kid.body) kid.body.reset(kid.x, kid.y);
+        
+        // Use physics to move
+        this.physics.moveTo(kid, x, y, 120);
+        
+        // Store target for update loop
+        kid.targetX = x;
+        kid.targetY = y;
+        kid.isMovingToTarget = true;
+        
+        if(kid.bodySprite.anims.exists('red_walk')) kid.bodySprite.play('red_walk');
     }
 
     getClosestActive(team, pointer, maxDist = 1000) {
