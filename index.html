@@ -3,7 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snowcraft Reforged</title>
+    <title>Snowcraft Reforged — Free Online Snowball Fight Game (Phaser 3 Remake)</title>
+    <meta name="description" content="Snowcraft Reforged is a free, browser-based remake of the classic 1998 Snowcraft snowball-fight game. Play instantly — click and hold to charge, release to throw, and defeat the green team across 5 levels of increasing difficulty.">
+    <meta name="keywords" content="snowcraft, snowcraft reforged, snowball fight game, snowcraft remake, free browser game, phaser 3 game, classic snowcraft, online snowball game, 1998 snowcraft, html5 snowball game">
+    <meta name="author" content="ChiefInnovator">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://chiefinnovator.github.io/snowcraftai/">
+
+    <!-- Open Graph / Facebook / LinkedIn / Discord / Slack link previews -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Snowcraft Reforged">
+    <meta property="og:title" content="Snowcraft Reforged — Free Online Snowball Fight Game">
+    <meta property="og:description" content="A modern browser remake of the classic 1998 Snowcraft. Click and hold to charge, release to throw, and defeat the green team. Plays instantly — no install, no signup.">
+    <meta property="og:url" content="https://chiefinnovator.github.io/snowcraftai/">
+    <meta property="og:image" content="https://chiefinnovator.github.io/snowcraftai/assets/playField.png">
+    <meta property="og:image:width" content="600">
+    <meta property="og:image:height" content="320">
+    <meta property="og:image:alt" content="Snowcraft Reforged snowy battlefield with red and green teams">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Snowcraft Reforged — Free Online Snowball Fight Game">
+    <meta name="twitter:description" content="Browser remake of the 1998 Snowcraft snowball-fight classic. Click, charge, release, repeat. Five levels, three difficulties, zero install.">
+    <meta name="twitter:image" content="https://chiefinnovator.github.io/snowcraftai/assets/playField.png">
+    <meta name="twitter:image:alt" content="Snowcraft Reforged snowy battlefield with red and green teams">
+
+    <!-- Theme & favicon -->
+    <meta name="theme-color" content="#222222">
+    <link rel="icon" type="image/png" href="assets/player.png">
+
+    <!-- Structured data: VideoGame (helps Google, Bing, and AI answer engines) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "VideoGame",
+        "name": "Snowcraft Reforged",
+        "description": "A free, browser-based remake of the classic 1998 Snowcraft snowball-fight game, built with Phaser 3. Players click and hold to charge a throw, then release to launch a snowball at the opposing green team across five progressively harder levels.",
+        "url": "https://chiefinnovator.github.io/snowcraftai/",
+        "image": "https://chiefinnovator.github.io/snowcraftai/assets/playField.png",
+        "inLanguage": "en",
+        "applicationCategory": "Game",
+        "genre": ["Action", "Arcade", "Casual", "Sports"],
+        "gamePlatform": ["Web Browser", "HTML5"],
+        "operatingSystem": "Any (web browser)",
+        "playMode": "SinglePlayer",
+        "author": {
+            "@type": "Organization",
+            "name": "ChiefInnovator",
+            "url": "https://github.com/ChiefInnovator"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+        }
+    }
+    </script>
+
+    <!-- Structured data: FAQ (helps AEO / answer engines like ChatGPT, Perplexity, Google AI Overviews) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What is Snowcraft Reforged?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Snowcraft Reforged is a free, browser-based remake of the original 1998 Snowcraft snowball-fight game. It is built with Phaser 3 and adds 2.5D snowball physics (gravity and arc), modern AI, and five levels of increasing difficulty."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do I play Snowcraft Reforged?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Click and hold on a red team player to charge throw power, then release to launch a snowball at the green team. The longer you hold, the farther and faster the snowball flies. Defeat all green team players to advance to the next level."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is Snowcraft Reforged free to play?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. Snowcraft Reforged is completely free and runs entirely in your web browser. There is no download, no installation, no account, and no ads."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How many levels does Snowcraft Reforged have?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "There are five progressive levels. Each level increases enemy count, accuracy, and throw frequency. Three difficulty settings (Easy, Normal, Hard) further tune the challenge."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What technology powers Snowcraft Reforged?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Snowcraft Reforged is built with Phaser 3.60, runs on an HTML5 canvas at 600x320 native resolution (scalable up to 3x), and uses the original sprite assets from the 1998 Snowcraft release."
+                }
+            }
+        ]
+    }
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.min.js"></script>
     <style>
         body { margin: 0; background: #222; overflow: hidden; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; font-family: 'Arial', sans-serif; }
@@ -13,10 +121,17 @@
         #options-bar select { padding: 5px 10px; font-size: 14px; border-radius: 4px; cursor: pointer; }
         #instructions { margin-top: 15px; color: #ccc; font-size: 14px; text-align: center; line-height: 1.5; max-width: 600px; }
         #instructions strong { color: #fff; }
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
     </style>
 </head>
 <body>
 
+<header class="sr-only">
+    <h1>Snowcraft Reforged — Free Online Snowball Fight Game</h1>
+    <p>A modern, browser-based remake of the classic 1998 Snowcraft snowball-fight game, built with Phaser 3. Play instantly in any web browser — no download, no install, no account.</p>
+</header>
+
+<main>
 <div id="options-bar">
     <div>
         Difficulty: 
@@ -43,6 +158,43 @@
     <strong>Controls:</strong> Click & Hold a red player to charge power. Release to throw.<br>
     Defeat the Green Team to advance!
 </div>
+</main>
+
+<section class="sr-only" aria-label="About Snowcraft Reforged">
+    <h2>About the game</h2>
+    <p>Snowcraft Reforged is a free web remake of Snowcraft, the cult 1998 snowball-fight game. It preserves the original sprite art while rebuilding the gameplay on Phaser 3 with 2.5D snowball physics — snowballs have real height, gravity, and arc, so aiming matters.</p>
+
+    <h2>How to play</h2>
+    <ol>
+        <li>Click and hold on any red team player to select them and begin charging throw power.</li>
+        <li>The power meter fills as you hold — longer holds produce faster, longer-range throws.</li>
+        <li>Release the mouse button to launch a snowball in an arc toward the green team.</li>
+        <li>Defeat every green team player to clear the level and advance.</li>
+        <li>Beat all five levels to win. The green team throws back, so keep moving.</li>
+    </ol>
+
+    <h2>Features</h2>
+    <ul>
+        <li>Five progressive levels with escalating enemy count and accuracy.</li>
+        <li>Three difficulty settings: Easy, Normal, and Hard.</li>
+        <li>Scalable display from 600x320 up to 1800x960 for large monitors.</li>
+        <li>Original 1998 Snowcraft sprite assets and sound effects.</li>
+        <li>Modern Phaser 3 physics engine for arc trajectories and collision.</li>
+        <li>Runs in any modern browser on desktop — no install, no signup, no ads.</li>
+    </ul>
+
+    <h2>Frequently asked questions</h2>
+    <h3>What is Snowcraft Reforged?</h3>
+    <p>A free browser remake of the 1998 Snowcraft snowball-fight game, built with Phaser 3 and HTML5 canvas.</p>
+    <h3>Is it free?</h3>
+    <p>Yes. Completely free, no account required, no ads, no in-game purchases.</p>
+    <h3>Do I need to install anything?</h3>
+    <p>No. The game runs entirely in the browser. Just open the page and play.</p>
+    <h3>How many levels are there?</h3>
+    <p>Five progressively harder levels, each with more and smarter enemies.</p>
+    <h3>What browser works best?</h3>
+    <p>Any modern desktop browser with HTML5 canvas support — Chrome, Firefox, Safari, and Edge all work.</p>
+</section>
 
 <script>
 // --- CONFIGURATION ---
