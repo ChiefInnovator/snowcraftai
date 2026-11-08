@@ -9,25 +9,22 @@ let game = null;
 const STAGE_W = 600;
 const STAGE_H = 320;
 
-// Gameplay rules. Times in ms, distances in px on the 600x320 stage.
-// See docs/reference-app.md and docs/classic-parity-plan.md.
+// Gameplay rules. Times in ms, distances in px. Numbers come from
+// SnowcraftParity (VWSC Event Loop + Lingo). See docs/PARITY.md.
+const P = SnowcraftParity;
 const RULES = {
-    greensPerLevel: [3, 5, 7, 9, 12, 12, 12, 12, 12, 12], // 10 levels, then victory
-    redHitsToKO: 2,
-    greenHitsToKO: { 1: 2, 2: 3, 3: 4 },  // by difficulty
-    maxBallsPerTeam: 10,
-    powerTickMs: 83,           // +1 power per tick while held
-    maxPower: 8,               // 9 states (0-8), full after ~0.67 s
-    ballSpeedX: 400,           // px/s horizontally (half that vertically)
-    ballStepX: 20,             // flight length = ballStepX * max(2*power, 1)
-    dropDistX: 40,             // falling part after the flight: no hits
-    dropSpeedX: 200,
-    ballHeight: 26,            // ball drawn this far above its ground point
+    greensPerLevel: P.LEVELS.map(l => l.gd), // 10 levels, then victory
+    redHitsToKO: P.RED_HITS_TO_KO,
+    greenHitsToKO: { 1: 2, 2: P.GREEN_HITS_TO_KO, 3: 4 },  // Easy/Hard are remake extras
+    maxBallsPerTeam: P.MAX_BALLS_PER_TEAM,
+    powerTickMs: P.TICK_MS * P.POWER_TICKS_PER_BAR, // 5 Director ticks ≈ 83.33 ms
+    maxPower: P.MAX_POWER,
+    ballTickMs: P.TICK_MS * (P.BALL_TEMPO_TICKS + 1), // 50 ms per snowball step
     redDazeMs: 4500,
     greenOwMs: 1000,
     greenRecoverMs: 500,
     greenDownMs: 2500,         // the only immune state
-    aiTickMs: 100,
+    aiTickMs: P.TICK_MS * (P.CHAR_TEMPO_TICKS + 1), // 100 ms
     greenThrowPower: [5, 8],
     windupMs: 500,
     cockMs: [600, 1500],
@@ -101,10 +98,10 @@ function getConfig() {
     };
 }
 
-// Red kids must stay on or below this line; greens must stay above it.
-// Runs from (0, 320) to (648, 0).
+// Red kids must stay on or below this line; greens throw if they would cross it.
+// Original: x = 2*(320 − y), from (0, 320) to (640, 0). [Lingo]
 function centreLineY(x) {
-    return STAGE_H - x * STAGE_H / 648;
+    return P.centreLineY(x);
 }
 
 const SFX = ['throw', 'throw_full', 'hit', 'splat', 'knockdown', 'green_out', 'red_daze', 'red_out',
@@ -123,6 +120,17 @@ class MainScene extends Phaser.Scene {
         this.load.image('splash', 'assets/splash.png');
         this.load.image('sink', 'assets/sink.png');
         this.load.image('puddle', 'assets/puddle.png');
+        for (let i = 0; i <= 8; i++) this.load.image('power_' + i, 'assets/cast/power_' + i + '.png');
+        this.load.image('cast_snowball', 'assets/cast/snowball.png');
+        this.load.image('drop_0', 'assets/cast/drop_0.png');
+        this.load.image('drop_1', 'assets/cast/drop_1.png');
+        this.load.image('drop_2', 'assets/cast/drop_2.png');
+        this.load.image('drop_3', 'assets/cast/drop_3.png');
+        this.load.image('cast_splat', 'assets/cast/splat.png');
+        this.load.image('melt_0', 'assets/cast/melt_0.png');
+        this.load.image('melt_1', 'assets/cast/melt_1.png');
+        this.load.image('melt_2', 'assets/cast/melt_2.png');
+        this.load.image('melt_3', 'assets/cast/melt_3.png');
         this.load.image('playfield', 'assets/playField.png');
         this.load.image('shadow', 'assets/shadow.png');
         this.load.image('snowball_shadow', 'assets/snowball_shadow.png');
@@ -222,6 +230,7 @@ class MainScene extends Phaser.Scene {
         this.killsThisLevel = 0;
         this.lastStepSound = 0;
         this.aiTimer = null;
+        this.ballClock = 0;
 
         // 4. UI Elements
         this.levelText = this.makeText(STAGE_W / 2, STAGE_H / 2, '', { fontSize: '60px', color: '#cc0000', fontStyle: 'bold', stroke: '#fff', strokeThickness: 6 })
@@ -245,20 +254,8 @@ class MainScene extends Phaser.Scene {
         this.selectionCircle.setDepth(-1);
         this.selectionCircle.setVisible(false);
 
-        // Power meter: 8 bars → 9 states (0-8)
-        this.powerMeterBars = [];
-        this.powerMeterContainer = this.add.container(0, 0).setDepth(100).setVisible(false);
-        const barWidth = 12, barHeight = 4, barGap = 2;
-        for (let i = 0; i < RULES.maxPower; i++) {
-            let bar = this.add.graphics();
-            bar.fillStyle(0x00ff00, 1);
-            bar.fillRect(0, 0, barWidth, barHeight);
-            bar.lineStyle(1, 0x006600, 1);
-            bar.strokeRect(0, 0, barWidth, barHeight);
-            bar.y = -i * (barHeight + barGap);
-            this.powerMeterContainer.add(bar);
-            this.powerMeterBars.push(bar);
-        }
+        // Power meter: original `power 0`–`power 8` BITD members, loc = kid feet.
+        this.powerMeter = this.add.image(0, 0, 'power_0').setDepth(100).setVisible(false);
 
         this.input.setDefaultCursor('url(assets/smallHand.png), pointer');
         this.music = this.sound.add('music', { loop: true, volume: 0.3 });
@@ -375,9 +372,14 @@ class MainScene extends Phaser.Scene {
         return this.add.text(x, y, text, { ...style, resolution: this.renderScale });
     }
 
-    sfx(name, volume = 1) {
+    sfx(name, volume = 1, ifIdle = false) {
         const key = 'sfx_' + name;
-        if (this.cache.audio.exists(key)) this.sound.play(key, { volume });
+        if (!this.cache.audio.exists(key)) return;
+        if (ifIdle) {
+            const playing = this.sound.getAllPlaying ? this.sound.getAllPlaying() : [];
+            if (playing.some(s => s && s.key && s.key.indexOf('sfx_') === 0)) return;
+        }
+        this.sound.play(key, { volume });
     }
 
     // Title screen: wait for a click (also unlocks browser audio) before the walk-on
@@ -395,7 +397,7 @@ class MainScene extends Phaser.Scene {
     startLevel(index) {
         this.currentLevelIndex = index;
         this.killsThisLevel = 0;
-        const greenCount = RULES.greensPerLevel[index];
+        const layout = P.LEVELS[index];
         const isFirst = (index === 0);
 
         if (isFirst) {
@@ -411,14 +413,17 @@ class MainScene extends Phaser.Scene {
         this.redTeam = [];
         this.projectiles.forEach(ball => this.destroyBall(ball));
         this.projectiles = [];
+        this.ballClock = 0;
         if (this.isDragging) this.cancelDrag();
+        this.hideSelectionUI();
+        this.hoveredPlayer = null;
 
         this.isLevelActive = false;
         this.walkingCount = 0;
         this.textFadeComplete = false;
 
-        this.createTeam('player', this.redTeam, 3);
-        this.createTeam('cpu', this.greenTeam, greenCount);
+        this.createTeam('player', this.redTeam, layout.reds);
+        this.createTeam('cpu', this.greenTeam, layout.greens);
 
         const message = isFirst ? "Season's Greetings" : 'LEVEL ' + (index + 1);
         this.levelText.setText(message);
@@ -459,32 +464,21 @@ class MainScene extends Phaser.Scene {
         }
     }
 
-    createTeam(type, teamArray, count) {
+    createTeam(type, teamArray, positions) {
         const textureKey = (type === 'player') ? 'red_team_atlas' : 'green_team_atlas';
         const prefix = (type === 'player') ? 'red' : 'green';
 
-        const playerPositions = [
-            { x: 500, y: 180 },
-            { x: 360, y: 265 },
-            { x: 470, y: 275 }
-        ];
-        const enemyPositions = [
-            { x: 95, y: 35 },
-            { x: 200, y: 30 },
-            { x: 70, y: 105 }
-        ];
-
-        for (let i = 0; i < count; i++) {
-            const finalPos = (type === 'player')
-                ? playerPositions[i % playerPositions.length]
-                : (i < enemyPositions.length ? enemyPositions[i] : this.randomEnemySpawn(teamArray));
+        for (let i = 0; i < positions.length; i++) {
+            const finalPos = positions[i];
             const finalX = finalPos.x;
             const finalY = finalPos.y;
+            const offstage = P.isOffstage(finalPos);
 
-            // Diagonal walk-on from off-stage: reds from bottom-right, greens from top-left
-            const offset = 250;
-            const spawnX = (type === 'player') ? finalX + offset : finalX - offset;
-            const spawnY = (type === 'player') ? finalY + offset : finalY - offset;
+            // On-stage kids walk in along the 2:1 throw diagonal (score frames 3–27).
+            // Off-stage greens spawn at their VWSC loc and walk in via the edge rule.
+            const offset = offstage ? 0 : 80;
+            const spawnX = offstage ? finalX : (type === 'player' ? finalX + offset * 2 : finalX - offset * 2);
+            const spawnY = offstage ? finalY : (type === 'player' ? finalY + offset : finalY - offset);
 
             let kid = this.add.container(spawnX, spawnY);
             let shadow = this.add.image(spawnX + 20, spawnY, 'shadow');
@@ -511,16 +505,25 @@ class MainScene extends Phaser.Scene {
 
             teamArray.push(kid);
 
-            const walkingDistance = 3;
             kid.finalX = finalX;
             kid.finalY = finalY;
+            kid.myDirection = { x: 0, y: 0 };
+
+            if (offstage) {
+                kid.isWalkingOntoField = false;
+                kid.ai = 'ready';
+                sprite.play(prefix + '_idle');
+                continue;
+            }
+
+            const walkingDistance = 3;
             kid.isWalkingOntoField = true;
             let walkToggle = true;
             this.walkingCount++;
             sprite.setFrame('walking');
 
             kid.walkTimer = this.time.addEvent({
-                delay: 83,
+                delay: RULES.aiTickMs,
                 loop: true,
                 callback: () => {
                     const dx = kid.finalX - kid.x;
@@ -536,7 +539,8 @@ class MainScene extends Phaser.Scene {
                         this.checkLevelReady();
                         return;
                     }
-                    if (dx !== 0) kid.x += (dx > 0) ? walkingDistance : -walkingDistance;
+                    // loc = loc + myDirection along the 2:1 diagonal
+                    if (dx !== 0) kid.x += (dx > 0) ? walkingDistance * 2 : -walkingDistance * 2;
                     if (dy !== 0) kid.y += (dy > 0) ? walkingDistance : -walkingDistance;
                     walkToggle = !walkToggle;
                     sprite.setFrame(walkToggle ? 'walking' : 'walkingAlt');
@@ -549,7 +553,7 @@ class MainScene extends Phaser.Scene {
     stepSound() {
         if (this.time.now - this.lastStepSound > 250) {
             this.lastStepSound = this.time.now;
-            this.sfx('step', 0.35);
+            this.sfx('step', 0.35, true);
         }
     }
 
@@ -575,22 +579,22 @@ class MainScene extends Phaser.Scene {
             }
         });
 
-        this.updateBalls(delta / 1000);
+        this.updateBalls(delta);
     }
 
     // --- SNOWBALLS ---
-    // Balls travel a fixed 2:1 diagonal (red: up-left, green: down-right). They can hit only
-    // during the flight; the final drop to the ground never hits.
+    // Discrete Director ticks: loc += (±20,±10) while myRange > 0, then 4 drop
+    // frames of (±10,±5), splat, 4 melt frames. Hits only on fly steps after the
+    // range decrement while myRange is still > 0. Height is baked into the BITD.
 
     teamBallCount(team) {
-        return this.projectiles.filter(b => b.team === team).length;
+        return this.projectiles.filter(b => b.team === team && b.phase !== 'melt' && b.phase !== 'splat').length;
     }
 
     throwSnowball(thrower, power) {
         const team = thrower.teamType;
         const prefix = (team === 'player') ? 'red' : 'green';
 
-        // Pose
         thrower.bodySprite.setFrame(team === 'player' ? 'throw_1' : 'throw_2');
         if (team === 'player') {
             this.time.delayedCall(100, () => {
@@ -598,64 +602,97 @@ class MainScene extends Phaser.Scene {
             });
         }
 
-        if (this.teamBallCount(team) >= RULES.maxBallsPerTeam) return; // all snowballs in the air
+        if (this.teamBallCount(team) >= RULES.maxBallsPerTeam) return;
 
         const dir = (team === 'player') ? -1 : 1;
-        const groundX = thrower.x + dir * 8;
-        const groundY = thrower.y + 15; // feet
-        const ball = this.add.image(groundX, groundY - RULES.ballHeight, 'snowball').setDepth(60);
-        const shadow = this.add.image(groundX, groundY, 'snowball_shadow').setDepth(-4).setAlpha(0.6);
-        this.shadowGroup.add(shadow);
+        const gx = thrower.x + dir * 8;
+        const gy = thrower.y + 15;
+        const spec = P.CAST.snowball;
+        const ball = this.add.image(gx, gy, spec.key).setDepth(60);
+        P.applyOrigin(ball, spec);
 
         this.projectiles.push({
-            team, dir, ball, shadow,
-            gx: groundX, gy: groundY,
-            travelled: 0,
-            flightDist: RULES.ballStepX * Math.max(2 * power, 1),
+            team,
+            ball,
+            gx, gy,
+            range: P.throwRangeSteps(power),
+            phase: 'fly',
+            frame: 0,
+            flyStep: P.ballStepForTeam(team),
+            dropStep: P.dropStepForTeam(team)
         });
 
         this.sfx(power >= RULES.maxPower ? 'throw_full' : 'throw', 0.8);
     }
 
-    updateBalls(dt) {
+    setBallFrame(b) {
+        const spec = P.ballFrame(b.phase, b.frame);
+        if (this.textures.exists(spec.key)) {
+            b.ball.setTexture(spec.key);
+            P.applyOrigin(b.ball, spec);
+        }
+        b.ball.setPosition(Math.round(b.gx), Math.round(b.gy));
+    }
+
+    updateBalls(deltaMs) {
+        this.ballClock += deltaMs;
+        while (this.ballClock >= RULES.ballTickMs) {
+            this.ballClock -= RULES.ballTickMs;
+            this.stepBalls();
+        }
+    }
+
+    stepBalls() {
         const done = [];
         for (const b of this.projectiles) {
-            const inFlight = b.travelled < b.flightDist;
-            const speedX = inFlight ? RULES.ballSpeedX : RULES.dropSpeedX;
-            const step = speedX * dt;
-            b.travelled += step;
-            b.gx += b.dir * step;
-            b.gy += b.dir * step / 2;
-
-            let height = RULES.ballHeight;
-            if (!inFlight) {
-                const dropped = b.travelled - b.flightDist;
-                height = Math.max(0, RULES.ballHeight * (1 - dropped / RULES.dropDistX));
-            }
-            b.ball.setPosition(Math.round(b.gx), Math.round(b.gy - height));
-            b.shadow.setPosition(Math.round(b.gx), Math.round(b.gy));
-
-            if (b.gx < -40 || b.gx > STAGE_W + 40 || b.gy < -40 || b.gy > STAGE_H + 40) {
-                done.push(b);
-                continue;
-            }
-
-            // Hits only during the flight, excluding its final step
-            if (inFlight && b.travelled <= b.flightDist - RULES.ballStepX) {
-                const targets = (b.team === 'player') ? this.greenTeam : this.redTeam;
-                const hit = targets.find(k => k.isAlive && !k.isImmune &&
-                    Math.abs(b.ball.x - k.x) < 13 && Math.abs(b.ball.y - k.y) < 18);
-                if (hit) {
-                    this.handleHit(hit);
+            if (b.phase === 'fly') {
+                b.gx += b.flyStep.x;
+                b.gy += b.flyStep.y;
+                b.range -= 1;
+                this.setBallFrame(b);
+                if (b.range > 0) {
+                    const targets = (b.team === 'player') ? this.greenTeam : this.redTeam;
+                    const hit = targets.find(k => k.isAlive && !k.isImmune &&
+                        Math.abs(b.gx - k.x) < 16 && Math.abs(b.gy - (k.y + 12)) < 20);
+                    if (hit) {
+                        this.handleHit(hit);
+                        done.push(b);
+                        continue;
+                    }
+                } else {
+                    b.phase = 'drop';
+                    b.frame = 0;
+                    this.setBallFrame(b);
+                }
+            } else if (b.phase === 'drop') {
+                b.gx += b.dropStep.x;
+                b.gy += b.dropStep.y;
+                b.frame += 1;
+                if (b.frame >= P.DROP_STEPS) {
+                    b.phase = 'splat';
+                    b.frame = 0;
+                    this.sfx('splat', 0.8, true);
+                }
+                this.setBallFrame(b);
+            } else if (b.phase === 'splat') {
+                b.phase = 'melt';
+                b.frame = 0;
+                this.setBallFrame(b);
+            } else if (b.phase === 'melt') {
+                b.frame += 1;
+                if (b.frame >= P.MELT_STEPS) {
                     done.push(b);
                     continue;
                 }
+                this.setBallFrame(b);
+            } else {
+                const neverPhase = b.phase;
+                void neverPhase;
+                done.push(b);
             }
 
-            if (b.travelled >= b.flightDist + RULES.dropDistX) {
-                this.createSnowSplash(b.gx, b.gy);
-                this.sfx('splat', 0.8);
-                done.push(b);
+            if (b.gx < -80 || b.gx > STAGE_W + 80 || b.gy < -80 || b.gy > STAGE_H + 80) {
+                if (!done.includes(b)) done.push(b);
             }
         }
         if (done.length) {
@@ -665,8 +702,8 @@ class MainScene extends Phaser.Scene {
     }
 
     destroyBall(b) {
-        b.ball.destroy();
-        b.shadow.destroy();
+        if (b.ball) b.ball.destroy();
+        if (b.shadow) b.shadow.destroy();
     }
 
     // --- HITS ---
@@ -675,7 +712,6 @@ class MainScene extends Phaser.Scene {
         if (!kid.isAlive || kid.isImmune) return;
         kid.hits++;
         this.sfx('hit', 1.0);
-        this.cameras.main.shake(100, 0.005);
         if (kid.teamType === 'player') this.hitRed(kid);
         else this.hitGreen(kid);
     }
@@ -721,7 +757,9 @@ class MainScene extends Phaser.Scene {
     reviveRed(kid) {
         if (kid.isAlive) return;
         kid.isAlive = true;
-        kid.hits = 0;
+        // Original `z`: revived reds keep myHits ≥ 2, so the exact `myHits = 2`
+        // death check never fires again. Debug-only.
+        kid.hits = RULES.redHitsToKO;
         kid.setAlpha(1);
         kid.bodySprite.play('red_idle');
     }
@@ -792,14 +830,12 @@ class MainScene extends Phaser.Scene {
                 if (roll === 1) {
                     kid.ai = 'walk';
                     kid.stepsLeft = Phaser.Math.Between(1, 99);
-                    const s = Phaser.Math.RND.sign();
-                    kid.dirX = 2 * s; kid.dirY = 1 * s;
+                    kid.myDirection = P.walkAxisDirection(Phaser.Math.RND.sign());
                     kid.bodySprite.stop();
                 } else if (roll === 2) {
                     kid.ai = 'side';
                     kid.stepsLeft = 5;
-                    const s = Phaser.Math.RND.sign();
-                    kid.dirX = 1 * s; kid.dirY = 2 * s;
+                    kid.myDirection = P.sideStepDirection(Phaser.Math.RND.sign());
                     kid.bodySprite.stop();
                 } else if (roll <= 4) {
                     this.startGreenThrow(kid);
@@ -811,17 +847,15 @@ class MainScene extends Phaser.Scene {
     }
 
     stepGreen(kid) {
-        let dx = kid.dirX, dy = kid.dirY;
+        let dir = kid.myDirection || { x: 0, y: 0 };
         if (kid.ai === 'walk') {
-            // Steer in from the edges
-            if (kid.x < 40) { dx = 4; dy = 1; }
-            else if (kid.y < 40) { dx = 1; dy = 4; }
+            dir = P.edgeSteer(kid.x, kid.y, dir);
+            kid.myDirection = dir;
         }
-        const nx = Phaser.Math.Clamp(kid.x + dx, -100, STAGE_W - 10);
-        const ny = Phaser.Math.Clamp(kid.y + dy, -100, STAGE_H - 10);
+        const nx = kid.x + dir.x;
+        const ny = kid.y + dir.y;
 
-        if (ny >= centreLineY(nx) - 4) {
-            // Would cross onto the red side: throw now
+        if (P.onRedSide(nx, ny)) {
             this.startGreenThrow(kid);
             return;
         }
@@ -1023,34 +1057,56 @@ class MainScene extends Phaser.Scene {
         this.selectionCircle.strokeEllipse(0, 0, 60, 30);
         this.selectionCircle.setPosition(player.x, player.y + 15);
         this.selectionCircle.setVisible(true);
+        if (!this.isDragging) this.activePower = 0;
+        this.powerMeter.setVisible(true);
+        this.updatePowerMeter();
     }
 
     showPowerMeter(player) {
-        this.powerMeterContainer.setPosition(player.x + 25, player.y + 20);
-        this.powerMeterContainer.setVisible(true);
+        this.powerMeter.setVisible(true);
         this.updatePowerMeter();
+        this.updateSelectionUI(player);
     }
 
     updateSelectionUI(player) {
         if (!player) return;
         this.selectionCircle.setPosition(player.x, player.y + 15);
-        if (this.powerMeterContainer.visible) {
-            this.powerMeterContainer.setPosition(player.x + 25, player.y + 20);
+        if (this.powerMeter.visible) {
+            const spec = P.CAST.power[this.activePower] || P.CAST.power[0];
+            this.powerMeter.setTexture(spec.key);
+            P.applyOrigin(this.powerMeter, spec);
+            this.powerMeter.setPosition(player.x, player.y + 15);
         }
     }
 
     hideSelectionUI() {
         this.selectionCircle.setVisible(false);
-        this.powerMeterContainer.setVisible(false);
+        this.powerMeter.setVisible(false);
     }
 
     hidePowerMeter() {
-        this.powerMeterContainer.setVisible(false);
+        this.powerMeter.setVisible(false);
     }
 
     updatePowerMeter() {
-        this.powerMeterBars.forEach((bar, index) => bar.setVisible(index < this.activePower));
+        if (!this.powerMeter.visible) return;
+        const spec = P.CAST.power[this.activePower] || P.CAST.power[0];
+        this.powerMeter.setTexture(spec.key);
+        P.applyOrigin(this.powerMeter, spec);
+        if (this.activePlayer) {
+            this.powerMeter.setPosition(this.activePlayer.x, this.activePlayer.y + 15);
+        }
     }
 }
 
 game = new Phaser.Game(getConfig());
+
+window.SnowcraftGame = {
+    RULES,
+    STAGE_W,
+    STAGE_H,
+    getGame: function () { return game; },
+    getScene: function () {
+        return game && game.scene && game.scene.scenes ? game.scene.scenes[0] : null;
+    }
+};

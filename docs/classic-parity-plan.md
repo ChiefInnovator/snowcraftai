@@ -4,14 +4,15 @@ This plan lists where `src/js/game.js` (as of 2026-11-08) plays differently from
 
 All coordinates assume the original's 592×320 stage. Ours is 600×320: scale x by 600/592 if you keep 600.
 
-## Status (2026-11-08)
+## Status (2026-11-08, src-layout parity branch)
 
-Implemented in `src/js/game.js` (`RULES`): items 1–6, 8, 9, 10 (level-clear sound gates the next level), 11, 12, 13, 14 (our own synthesized sounds), 15 (behind `?debug`), and 7's counts and 10-level end.
+Implemented in `src/js/game.js` + `src/js/parity.js`: items 1–6, 7 (**VWSC Event Loop locs**, including off-stage greens and level-10 closer reds), 8, 9, 10, 11, 12 (centre line now `(0,320)–(640,0)`), 13, 14 (synthesized samples, original triggers), 15 (`?debug`).
+
+See [PARITY.md](PARITY.md) for verified vs inferred vs blocked.
 
 Deliberate differences:
-- **7:** enemy start positions are generated (3 fixed + random free spots), not ported from the original layouts. Level 10 reds start in the usual spots.
 - **16:** the title waits for a **click** rather than a hover, because browsers only allow audio after a click.
-- **14:** we keep our background music; the original had none.
+- **14:** we keep our background music; the original had none. Samples are synthesized; original WAVs are not committed on this tree.
 - Greens never collide with each other or with reds (as in the original); the earlier arcade-physics colliders are gone.
 
 ## P0: core rules that change how the game plays
