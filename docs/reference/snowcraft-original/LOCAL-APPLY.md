@@ -1,49 +1,46 @@
-# Applying this tree onto Rich’s checkout
+# Applying onto the dirty `ff39e410` checkout
 
-Goal: `/Users/rich/.openclaw/projects/snowcraftai/docs/reference/snowcraft-original/`
-contains these archives, not merely a copy under uploads or `/tmp`.
+Local tree this patch is built for:
 
-The combined branch is `cursor/combined-parity-1518`. It is based on
-`feature/repo-restructure` at `ff39e410` and already includes the local
-four-file edits that were on that checkout, original audio, BITD/VWSC work,
-and this docs folder.
+- Branch: `feature/repo-restructure`
+- `HEAD`: `ff39e41023f9c6d3682f23917532fb5dd759e7c2`
+- Uncommitted: the four files in `snowcraft-local-edits.patch`
+  (`docs/SPECIFICATIONS.md`, `src/index.html`, `src/js/game.js`,
+  `tools/reference/winctl.py`)
 
-**Do not merge to `develop` or `main`.**
+**Do not** `git reset`, `git stash`, `git checkout --`, or merge to
+`develop` / `main`. The patch’s “before” side **is** that dirty preimage.
+A clean-`ff39e410` patch will collide with those four files.
 
-## Preferred: checkout / merge the combined branch
+Final tree: `cursor/combined-parity-1518` (see the artifact for the exact
+commit SHA). After a successful apply, `/Users/rich/.openclaw/projects/snowcraftai/docs/reference/snowcraft-original/` exists on disk. `HEAD` can stay at `ff39e410`.
 
-From `/Users/rich/.openclaw/projects/snowcraftai`, currently on
-`feature/repo-restructure` with possible uncommitted edits:
+## Exact commands
+
+From `/Users/rich/.openclaw/projects/snowcraftai`:
+
+```bash
+git rev-parse HEAD
+# must print ff39e41023f9c6d3682f23917532fb5dd759e7c2
+
+git status --short
+# must include the four local-edit files; do not revert them
+
+git apply --check --binary /path/to/snowcraft-dirty-ff39e410-plus-local-edits-to-combined.patch
+git apply --binary /path/to/snowcraft-dirty-ff39e410-plus-local-edits-to-combined.patch
+
+sha256sum -c docs/reference/snowcraft-original/SHA256MANIFEST.txt
+ls docs/reference/snowcraft-original/archives
+```
+
+Optional: `--whitespace=nowarn` if Git only complains about trailing
+whitespace in recovered Director dumps.
+
+If `--check` fails, stop. Do not `--reject`, stash, or reset.
+
+## Optional (changes HEAD)
 
 ```bash
 git fetch origin cursor/combined-parity-1518
-# stash only if you have *newer* local edits that are not in the branch
-git stash push -u -m "pre-combined" || true
-git merge --ff-only origin/cursor/combined-parity-1518
-# or: git checkout cursor/combined-parity-1518
+# only after the worktree already matches that tree, or on a throwaway clone
 ```
-
-After that, confirm:
-
-```bash
-ls docs/reference/snowcraft-original/archives
-sha256sum -c docs/reference/snowcraft-original/SHA256MANIFEST.txt
-```
-
-## Binary patch from `ff39e410`
-
-A binary-capable patch (`git diff --binary ff39e410`) is produced as a cloud
-artifact for this run (not committed inside the repo, which would nest a copy
-of the zips inside the zips’ own patch).
-
-On a clean tree whose `HEAD` is `ff39e410`:
-
-```bash
-git apply --binary --index snowcraft-combined-from-ff39e410.patch
-```
-
-`git apply` needs Git’s binary literal format (`diff --git` plus
-`GIT binary patch` / literal). A plain unified diff will reject the zips.
-
-If the working tree still has the original uncommitted SEO / revive /
-`winctl.py` edits, reset or stash them first — they are already in the patch.
