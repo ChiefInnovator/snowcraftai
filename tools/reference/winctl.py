@@ -1,6 +1,8 @@
 """Wine-side driver for the SnowCraft window (runs under Wine's Windows Python).
-Never touches the macOS cursor/keyboard: input is PostMessage'd to the game
-window and captures are BitBlt'd from the window's own surface.
+Keys and move/down/up are PostMessage'd to the game window, so they never reach
+other macOS apps. The `s*` commands use SetCursorPos + SendInput, which only
+deliver to Wine but DO move the real macOS cursor (absolute SendInput moves did
+not register under Wine). Captures are BitBlt'd from the window's own surface.
 
 Usage: python.exe winctl.py <commands-file>
 Commands (one per line, stage/client coords):
@@ -89,14 +91,8 @@ def to_screen(x, y):
 def sinput(flags, x=None, y=None):
     i = INPUT(); i.type = 0
     if x is not None:
+        # Position via SetCursorPos (moves the host cursor; see module docstring)
         sx, sy = to_screen(x, y); u32.SetCursorPos(sx, sy)
-        x = None
-    if x is not None:
-        sx, sy = to_screen(x, y)
-        vw, vh = u32.GetSystemMetrics(78), u32.GetSystemMetrics(79)
-        vx, vy = u32.GetSystemMetrics(76), u32.GetSystemMetrics(77)
-        i.mi.dx = int((sx - vx) * 65535 / max(1, vw - 1)); i.mi.dy = int((sy - vy) * 65535 / max(1, vh - 1))
-        flags |= 0x8000 | 0x0001 | 0x4000  # ABSOLUTE | MOVE | VIRTUALDESK
     i.mi.dwFlags = flags
     u32.SendInput(1, ctypes.byref(i), ctypes.sizeof(INPUT))
 

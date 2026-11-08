@@ -1,18 +1,18 @@
 # Classic parity plan: gameplay gaps vs. the original SnowCraft
 
-This plan lists where `src/js/game.js` (as of 2026-11-08) plays differently from the 1999 original, highest-impact gaps first. It covers rules, numbers, timing, AI and flow only — not art or look. The full source and evidence for every original value is in [reference-app.md](reference-app.md); section numbers below point there.
+This plan lists where `src/js/game.js` (as of 2026-11-08) plays differently from the 1999 original, highest-impact gaps first. It covers rules, numbers, timing, AI and flow only — not art or look. The full source and evidence for every original value is in [reference-app.md](reference-app.md); section numbers below point there. Byte-for-byte originals: [reference/snowcraft-original/](reference/snowcraft-original/).
 
 All coordinates assume the original's 592×320 stage. Ours is 600×320: scale x by 600/592 if you keep 600.
 
 ## Status (2026-11-08, src-layout parity branch)
 
-Implemented in `src/js/game.js` + `src/js/parity.js`: items 1–6, 7 (**VWSC Event Loop locs**, including off-stage greens and level-10 closer reds), 8, 9, 10, 11, 12 (centre line now `(0,320)–(640,0)`), 13, 14 (synthesized samples, original triggers), 15 (`?debug`).
+Implemented in `src/js/game.js` + `src/js/parity.js` + `src/js/audio.js`: items 1–6, 7 (**VWSC Event Loop locs**, including off-stage greens and level-10 closer reds), 8, 9, 10, 11, 12 (centre line now `(0,320)–(640,0)`), 13, 14 (**original 16 WAVs**, channel 1, `mouseH<280` ugly/halaluja), 15 (`?debug`, revive immunity). Kid BITDs 1–36, 15 fps score walk-on, matte AABB, and daze/ow members are now decoded from the original ZIP’s `SnowCraft.exe` (static; EXE not run).
 
 See [PARITY.md](PARITY.md) for verified vs inferred vs blocked.
 
 Deliberate differences:
 - **16:** the title waits for a **click** rather than a hover, because browsers only allow audio after a click.
-- **14:** we keep our background music; the original had none. Samples are synthesized; original WAVs are not committed on this tree.
+- **14:** we keep our background music; the original had none. Combat SFX are the original 16 WAVs. Synthesized `src/assets/sfx/` files are unused extras.
 - Greens never collide with each other or with reds (as in the original); the earlier arcade-physics colliders are gone.
 
 ## P0: core rules that change how the game plays

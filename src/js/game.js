@@ -5,6 +5,7 @@ const START_LEVEL = 1; // Level to start on (1-10)
 let GAME_SCALE = 0; // 0 = fit the window; otherwise a fixed multiple of 600x320
 let GAME_DIFFICULTY = 2; // 1=Easy, 2=Normal, 3=Hard
 let game = null;
+let snowcraftAudio = null;
 
 const STAGE_W = 600;
 const STAGE_H = 320;
@@ -20,10 +21,11 @@ const RULES = {
     powerTickMs: P.TICK_MS * P.POWER_TICKS_PER_BAR, // 5 Director ticks ≈ 83.33 ms
     maxPower: P.MAX_POWER,
     ballTickMs: P.TICK_MS * (P.BALL_TEMPO_TICKS + 1), // 50 ms per snowball step
-    redDazeMs: 4500,
-    greenOwMs: 1000,
-    greenRecoverMs: 500,
-    greenDownMs: 2500,         // the only immune state
+    // myTempo=5 and `the timer > myClock + myTempo` → 6/60 s per Lingo tick.
+    redDazeMs: P.RED_DAZE_CYCLES * 3 * (P.TICK_MS * (P.CHAR_TEMPO_TICKS + 1)),
+    greenOwMs: P.GREEN_OW_MOVES * (P.TICK_MS * (P.CHAR_TEMPO_TICKS + 1)),
+    greenRecoverMs: P.GREEN_RECOVER_MOVES * (P.TICK_MS * (P.CHAR_TEMPO_TICKS + 1)),
+    greenDownMs: P.GREEN_DOWN_MOVES * (P.TICK_MS * (P.CHAR_TEMPO_TICKS + 1)),
     aiTickMs: P.TICK_MS * (P.CHAR_TEMPO_TICKS + 1), // 100 ms
     greenThrowPower: [5, 8],
     windupMs: 500,
@@ -73,6 +75,12 @@ function changeScale() {
     }
 }
 
+function changeMute() {
+    const box = document.getElementById('mute-checkbox');
+    const muted = !!(box && box.checked);
+    if (snowcraftAudio) snowcraftAudio.setMuted(muted);
+}
+
 window.addEventListener('resize', () => {
     if (GAME_SCALE === 0 && game) sizeContainer(computeLayout());
 });
@@ -104,9 +112,6 @@ function centreLineY(x) {
     return P.centreLineY(x);
 }
 
-const SFX = ['throw', 'throw_full', 'hit', 'splat', 'knockdown', 'green_out', 'red_daze', 'red_out',
-             'deny', 'step', 'cheer', 'level_clear', 'victory', 'level_start'];
-
 class MainScene extends Phaser.Scene {
     constructor() {
         super({ key: 'MainScene' });
@@ -135,9 +140,13 @@ class MainScene extends Phaser.Scene {
         this.load.image('shadow', 'assets/shadow.png');
         this.load.image('snowball_shadow', 'assets/snowball_shadow.png');
         this.load.image('hand', 'assets/smallHand.png');
+        P.CAST.kids.forEach((m) => this.load.image(m.key, 'assets/cast/' + m.file));
+        this.load.json('walkon', 'assets/walkon.json');
 
-        // Audio
-        SFX.forEach(name => this.load.audio('sfx_' + name, 'assets/sfx/' + name + '.wav'));
+        // Original channel-1 WAVs (paths relative to src/). Intro/BGM are remake extras.
+        Object.keys(P.SOUND_FILES).forEach((id) => {
+            this.load.audio('sfx_' + id, P.SOUND_FILES[id]);
+        });
         this.load.audio('sfx_intro', 'assets/intro.mp3');
         this.load.audio('music', 'assets/musicAlt.mp3');
     }
@@ -165,55 +174,7 @@ class MainScene extends Phaser.Scene {
             pf.setDepth(-5);
         }
 
-        // 2. Define Frames & Animations (skipped on restart: textures/anims are global)
-        const redTex = this.textures.get('red_team_atlas');
-        if (!redTex.has('idle_0')) {
-            redTex.add('idle_0', 0, 148, 19, 26, 34);
-            redTex.add('walking', 0, 15, 19, 24, 34);
-            redTex.add('walkingAlt', 0, 59, 18, 30, 35);
-            redTex.add('throw_0', 0, 84, 99, 31, 35);
-            redTex.add('throw_1', 0, 150, 98, 23, 36);
-            redTex.add('hit_0', 0, 199, 24, 35, 30);
-            redTex.add('hit_1', 0, 258, 11, 32, 43);
-            redTex.add('hit_2', 0, 312, 10, 36, 44);
-            redTex.add('hit_3', 0, 368, 13, 35, 40);
-            redTex.add('death_0', 0, 208, 109, 71, 32);
-            redTex.add('hardDeath', 0, 290, 101, 68, 48);
-            redTex.add('wipedOut', 0, 376, 98, 51, 53);
-        }
-
-        const greenTex = this.textures.get('green_team_atlas');
-        if (!greenTex.has('idle_0')) {
-            greenTex.add('idle_0', 0, 133, 18, 30, 36);
-            greenTex.add('idle_1', 0, 186, 18, 27, 34);
-            greenTex.add('walking', 0, 133, 18, 30, 36);
-            greenTex.add('walkingAlt', 0, 186, 18, 27, 34);
-            greenTex.add('throw_0', 0, 292, 23, 24, 31);
-            greenTex.add('throw_1', 0, 332, 19, 34, 35);
-            greenTex.add('throw_2', 0, 393, 20, 24, 34);
-            greenTex.add('hit_0', 0, 26, 75, 25, 35);
-            greenTex.add('guard', 0, 74, 75, 29, 35);
-            greenTex.add('brushOff', 0, 124, 75, 29, 35);
-            greenTex.add('stunned', 0, 170, 76, 35, 34);
-            greenTex.add('death_0', 0, 44, 145, 66, 42);
-            greenTex.add('hardDeath', 0, 137, 142, 54, 46);
-            greenTex.add('wipedOut', 0, 220, 145, 69, 42);
-            greenTex.add('minorDeath', 0, 317, 145, 49, 38);
-            greenTex.add('victory_0', 0, 244, 78, 42, 35);
-            greenTex.add('victory_1', 0, 312, 77, 40, 37);
-            greenTex.add('victory_2', 0, 380, 76, 42, 37);
-        }
-
-        if (!this.anims.exists('red_idle')) {
-            this.anims.create({ key: 'red_idle', frames: [{ key: 'red_team_atlas', frame: 'idle_0' }], frameRate: 1, repeat: -1 });
-            this.anims.create({ key: 'red_walk', frames: [{ key: 'red_team_atlas', frame: 'walking' }, { key: 'red_team_atlas', frame: 'walkingAlt' }], frameRate: 5, repeat: -1 });
-            this.anims.create({ key: 'green_idle', frames: [{ key: 'green_team_atlas', frame: 'idle_0' }, { key: 'green_team_atlas', frame: 'idle_1' }], frameRate: 4, repeat: -1 });
-            this.anims.create({
-                key: 'green_victory',
-                frames: [{ key: 'green_team_atlas', frame: 'victory_0' }, { key: 'green_team_atlas', frame: 'victory_1' }, { key: 'green_team_atlas', frame: 'victory_2' }],
-                frameRate: 4, repeat: -1
-            });
-        }
+        this.walkon = this.cache.json.get('walkon') || [];
 
         // 3. Game Groups & State
         this.shadowGroup = this.add.group();
@@ -245,6 +206,7 @@ class MainScene extends Phaser.Scene {
         }).setOrigin(1, 1).setDepth(210).setVisible(false).setInteractive({ useHandCursor: true });
         this.playAgainButton.on('pointerdown', (pointer, x, y, event) => {
             event.stopPropagation();
+            if (this.audio) this.audio.restart();
             this.sound.stopAll();
             this.scene.restart({ skipTitle: true });
         });
@@ -259,6 +221,16 @@ class MainScene extends Phaser.Scene {
 
         this.input.setDefaultCursor('url(assets/smallHand.png), pointer');
         this.music = this.sound.add('music', { loop: true, volume: 0.3 });
+
+        this.audio = SnowcraftAudio.createSnowcraftAudio(SnowcraftAudio.createPhaserAdapter(this));
+        snowcraftAudio = this.audio;
+        const muteBox = document.getElementById('mute-checkbox');
+        if (muteBox) {
+            muteBox.checked = this.audio.isMuted();
+            if (this.audio.isMuted()) this.audio.setMuted(true);
+        }
+        const unlockAudio = () => this.unlockGameAudio();
+        this.input.on('pointerdown', unlockAudio);
 
         // 5. Inputs
         this.input.mouse.disableContextMenu();
@@ -283,7 +255,7 @@ class MainScene extends Phaser.Scene {
                 if (newY < minY) newY = Math.round(minY);
                 this.activePlayer.x = newX;
                 this.activePlayer.y = newY;
-                this.activePlayer.bodySprite.setFrame('throw_0');
+                this.showKidFrame(this.activePlayer, 'throw_0');
                 this.updateSelectionUI(this.activePlayer);
                 return;
             }
@@ -295,7 +267,7 @@ class MainScene extends Phaser.Scene {
                 this.hoveredPlayer = null;
                 if (this.deniedKid !== over) {
                     this.deniedKid = over;
-                    this.sfx('deny', 0.4);
+                    this.playOriginalEvent('dead_hover');
                 }
                 return;
             }
@@ -325,7 +297,7 @@ class MainScene extends Phaser.Scene {
                 this.grabOffsetX = pointer.worldX - kid.x;
                 this.grabOffsetY = pointer.worldY - kid.y;
                 kid.shadowLocked = true; // shadow stays at the grab point until release
-                kid.bodySprite.setFrame('throw_0');
+                this.showKidFrame(kid, 'throw_0');
                 this.showPowerMeter(kid);
             }
         });
@@ -344,7 +316,7 @@ class MainScene extends Phaser.Scene {
 
         this.input.on('pointerupoutside', () => {
             if (this.isDragging && this.activePlayer) {
-                if (this.activePlayer.isAlive && !this.activePlayer.isDazed) this.activePlayer.bodySprite.play('red_idle');
+                if (this.activePlayer.isAlive && !this.activePlayer.isDazed) this.showKidIdle(this.activePlayer);
                 this.cancelDrag();
             }
         });
@@ -372,26 +344,84 @@ class MainScene extends Phaser.Scene {
         return this.add.text(x, y, text, { ...style, resolution: this.renderScale });
     }
 
-    sfx(name, volume = 1, ifIdle = false) {
-        const key = 'sfx_' + name;
-        if (!this.cache.audio.exists(key)) return false;
-        if (ifIdle && this.sfxBusy()) return false;
-        this.sound.play(key, { volume });
-        return true;
+    unlockGameAudio() {
+        if (this.audio) this.audio.unlock();
+        if (this.sound && this.sound.unlock) this.sound.unlock();
+        if (this.sound && this.sound.context && this.sound.context.state === 'suspended') {
+            this.sound.context.resume();
+        }
+    }
+
+    playOriginalEvent(eventKey, extra) {
+        this.unlockGameAudio();
+        if (!this.audio) return false;
+        return this.audio.playEvent(eventKey, extra || {});
     }
 
     sfxBusy() {
-        const playing = this.sound.getAllPlaying ? this.sound.getAllPlaying() : [];
-        return playing.some(s => s && s.key && s.key.indexOf('sfx_') === 0);
+        return !!(this.audio && this.audio.isChannelBusy());
     }
 
     // Original nextLevel / ridicule: repeat while soundBusy(1).
     whenSfxIdle(fn) {
-        const tick = () => {
-            if (!this.sfxBusy()) fn();
-            else this.time.delayedCall(50, tick);
+        if (this.audio && this.audio.whenIdle) {
+            this.audio.whenIdle(fn, (cb) => this.time.delayedCall(50, cb));
+            return;
+        }
+        fn();
+    }
+
+    setKidMember(kid, name, variant) {
+        const spec = P.kidMember(name, variant || 0);
+        if (!spec || !kid.bodySprite) return;
+        kid.bodySprite.setTexture(spec.key);
+        P.applyOrigin(kid.bodySprite, spec);
+        kid.memberName = spec.name;
+        kid.memberSpec = spec;
+    }
+
+    showKidFrame(kid, atlasFrame, variant) {
+        const team = kid.teamType === 'player' ? 'player' : 'cpu';
+        const map = {
+            idle_0: { player: ['R ready', 0], cpu: ['G ready', 0] },
+            walking: { player: ['R Auto walk_1', 0], cpu: ['G Walk V1', 0] },
+            walkingAlt: { player: ['R Auto walk_2', 0], cpu: ['G Walk V2', 0] },
+            throw_0: { player: ['R cock', 0], cpu: ['G windup', 0] },
+            throw_1: { player: ['R toss', 0], cpu: ['G cock', 0] },
+            throw_2: { player: ['R toss', 0], cpu: ['G toss', 0] },
+            hit_0: { player: ['R hit', 0], cpu: ['G Hit', 0] },
+            hit_1: { player: ['R daze1', 0], cpu: ['G Hit', 0] },
+            hit_2: { player: ['R daze2', 0], cpu: ['G Hit2', 0] },
+            hit_3: { player: ['R daze3', 0], cpu: ['G Hit2', 0] },
+            death_0: { player: ['R dead', 0], cpu: ['G dead', 0] },
+            hardDeath: { player: ['R dead', 1], cpu: ['G dead', 1] },
+            wipedOut: { player: ['R dead', 2], cpu: ['G dead', 2] },
+            minorDeath: { player: ['R dead', 0], cpu: ['G dead', 3] },
+            stunned: { player: ['R daze1', 0], cpu: ['G down', 0] },
+            guard: { player: ['R ready', 0], cpu: ['G recover', 0] },
+            brushOff: { player: ['R ready', 0], cpu: ['G ow', 0] }
         };
-        tick();
+        const pair = map[atlasFrame] && map[atlasFrame][team];
+        if (!pair) return;
+        this.setKidMember(kid, pair[0], variant != null ? variant : pair[1]);
+    }
+
+    showKidIdle(kid) {
+        this.setKidMember(kid, kid.teamType === 'player' ? 'R ready' : 'G ready');
+    }
+
+    showKidVictory(kid) {
+        const frames = P.kidMembersNamed('G yea');
+        if (!frames.length) return;
+        let i = 0;
+        this.setKidMember(kid, 'G yea', 0);
+        kid.victoryTimer = this.time.addEvent({
+            delay: 250, loop: true,
+            callback: () => {
+                i = (i + 1) % frames.length;
+                this.setKidMember(kid, 'G yea', i);
+            }
+        });
     }
 
     // Title screen: wait for a click (also unlocks browser audio) before the walk-on
@@ -401,6 +431,7 @@ class MainScene extends Phaser.Scene {
         this.levelText.setPosition(STAGE_W / 2, STAGE_H / 2).setAlpha(1).setVisible(true);
         this.subText.setText('Click to play').setVisible(true);
         this.input.once('pointerdown', () => {
+            this.unlockGameAudio();
             this.subText.setVisible(false);
             this.startLevel(START_LEVEL - 1);
         });
@@ -414,9 +445,7 @@ class MainScene extends Phaser.Scene {
 
         if (isFirst) {
             if (this.cache.audio.exists('sfx_intro')) this.sound.play('sfx_intro', { volume: 0.6 });
-            if (!this.music.isPlaying) this.music.play();
-        } else {
-            this.sfx('level_start', 0.7);
+            if (this.music && !this.music.isPlaying) this.music.play();
         }
 
         this.stopAI();
@@ -477,27 +506,25 @@ class MainScene extends Phaser.Scene {
     }
 
     createTeam(type, teamArray, positions) {
-        const textureKey = (type === 'player') ? 'red_team_atlas' : 'green_team_atlas';
-        const prefix = (type === 'player') ? 'red' : 'green';
+        const pack = this.walkon[this.currentLevelIndex] || null;
+        const paths = pack ? (type === 'player' ? pack.reds : pack.greens) : [];
+        const readyName = type === 'player' ? 'R ready' : 'G ready';
+        const shadowSpec = P.kidMember('shadow');
+        const readySpec = P.kidMember(readyName);
 
         for (let i = 0; i < positions.length; i++) {
             const finalPos = positions[i];
-            const finalX = finalPos.x;
-            const finalY = finalPos.y;
-            const offstage = P.isOffstage(finalPos);
-
-            // On-stage kids walk in along the 2:1 throw diagonal (score frames 3–27).
-            // Off-stage greens spawn at their VWSC loc and walk in via the edge rule.
-            const offset = offstage ? 0 : 80;
-            const spawnX = offstage ? finalX : (type === 'player' ? finalX + offset * 2 : finalX - offset * 2);
-            const spawnY = offstage ? finalY : (type === 'player' ? finalY + offset : finalY - offset);
+            const path = paths[i] && paths[i].length ? paths[i] : null;
+            const spawnX = path ? path[0].x : finalPos.x;
+            const spawnY = path ? path[0].y : finalPos.y;
 
             let kid = this.add.container(spawnX, spawnY);
-            let shadow = this.add.image(spawnX + 20, spawnY, 'shadow');
-            shadow.setScale(1.2).setAlpha(0.6).setDepth(-5);
+            let shadow = this.add.image(spawnX, spawnY, shadowSpec ? shadowSpec.key : 'shadow');
+            if (shadowSpec) P.applyOrigin(shadow, shadowSpec);
+            shadow.setDepth(-5);
             this.shadowGroup.add(shadow);
 
-            let sprite = this.add.sprite(0, 0, textureKey);
+            let sprite = this.add.image(0, 0, readySpec ? readySpec.key : 'red_team_atlas');
             kid.add(sprite);
             kid.isAlive = true;
             kid.teamType = type;
@@ -508,6 +535,7 @@ class MainScene extends Phaser.Scene {
             kid.isImmune = false;  // green: knocked down
             kid.ai = 'walkon';
             kid.actionTimers = [];
+            this.setKidMember(kid, path ? path[0].member : readyName);
 
             if (DEBUG_MODE) {
                 kid.debugLabel = this.makeText(0, -45, '', {
@@ -516,46 +544,40 @@ class MainScene extends Phaser.Scene {
             }
 
             teamArray.push(kid);
-
-            kid.finalX = finalX;
-            kid.finalY = finalY;
+            kid.finalX = finalPos.x;
+            kid.finalY = finalPos.y;
             kid.myDirection = { x: 0, y: 0 };
 
-            if (offstage) {
+            if (!path || path.length < 2) {
                 kid.isWalkingOntoField = false;
                 kid.ai = 'ready';
-                sprite.play(prefix + '_idle');
+                this.showKidIdle(kid);
                 continue;
             }
 
-            const walkingDistance = 3;
             kid.isWalkingOntoField = true;
-            let walkToggle = true;
             this.walkingCount++;
-            sprite.setFrame('walking');
-
+            let step = 0;
+            const fps = pack.fps || P.SCORE_WALKON_FPS;
             kid.walkTimer = this.time.addEvent({
-                delay: RULES.aiTickMs,
+                delay: 1000 / fps,
                 loop: true,
                 callback: () => {
-                    const dx = kid.finalX - kid.x;
-                    const dy = kid.finalY - kid.y;
-                    if (Math.abs(dx) <= walkingDistance && Math.abs(dy) <= walkingDistance) {
+                    step += 1;
+                    if (step >= path.length) {
                         kid.x = kid.finalX;
                         kid.y = kid.finalY;
                         kid.isWalkingOntoField = false;
-                        sprite.play(prefix + '_idle');
+                        this.setKidMember(kid, type === 'player' ? 'R rest' : 'G ready');
                         kid.walkTimer.remove();
                         kid.walkTimer = null;
                         this.walkingCount--;
                         this.checkLevelReady();
                         return;
                     }
-                    // loc = loc + myDirection along the 2:1 diagonal
-                    if (dx !== 0) kid.x += (dx > 0) ? walkingDistance * 2 : -walkingDistance * 2;
-                    if (dy !== 0) kid.y += (dy > 0) ? walkingDistance : -walkingDistance;
-                    walkToggle = !walkToggle;
-                    sprite.setFrame(walkToggle ? 'walking' : 'walkingAlt');
+                    kid.x = path[step].x;
+                    kid.y = path[step].y;
+                    this.setKidMember(kid, path[step].member);
                     this.stepSound();
                 }
             });
@@ -565,7 +587,7 @@ class MainScene extends Phaser.Scene {
     stepSound() {
         if (this.time.now - this.lastStepSound > 250) {
             this.lastStepSound = this.time.now;
-            this.sfx('step', 0.35, true);
+            this.playOriginalEvent('walk_step');
         }
     }
 
@@ -582,7 +604,7 @@ class MainScene extends Phaser.Scene {
         }
 
         [...this.redTeam, ...this.greenTeam].forEach(kid => {
-            if (kid.shadow && !kid.shadowLocked && kid.isAlive) kid.shadow.setPosition(kid.x + 20, kid.y);
+            if (kid.shadow && !kid.shadowLocked && kid.isAlive) kid.shadow.setPosition(kid.x, kid.y);
             if (DEBUG_MODE && kid.debugLabel) {
                 const labelY = (kid.y - 45 < 10) ? kid.y + 35 : kid.y - 45;
                 kid.debugLabel.setPosition(kid.x, labelY);
@@ -605,20 +627,18 @@ class MainScene extends Phaser.Scene {
 
     throwSnowball(thrower, power) {
         const team = thrower.teamType;
-        const prefix = (team === 'player') ? 'red' : 'green';
 
-        thrower.bodySprite.setFrame(team === 'player' ? 'throw_1' : 'throw_2');
+        this.showKidFrame(thrower, team === 'player' ? 'throw_1' : 'throw_2');
         if (team === 'player') {
             this.time.delayedCall(100, () => {
-                if (thrower.isAlive && !thrower.isDazed) thrower.bodySprite.play(prefix + '_idle');
+                if (thrower.isAlive && !thrower.isDazed) this.showKidIdle(thrower);
             });
         }
 
         if (this.teamBallCount(team) >= RULES.maxBallsPerTeam) return;
 
-        const dir = (team === 'player') ? -1 : 1;
-        const gx = thrower.x + dir * 8;
-        const gy = thrower.y + 15;
+        const gx = thrower.x;
+        const gy = thrower.y;
         const spec = P.CAST.snowball;
         const ball = this.add.image(gx, gy, spec.key).setDepth(60);
         P.applyOrigin(ball, spec);
@@ -634,7 +654,7 @@ class MainScene extends Phaser.Scene {
             dropStep: P.dropStepForTeam(team)
         });
 
-        this.sfx(power >= RULES.maxPower ? 'throw_full' : 'throw', 0.8);
+        this.playOriginalEvent('throw', { power });
     }
 
     setBallFrame(b) {
@@ -664,8 +684,12 @@ class MainScene extends Phaser.Scene {
                 this.setBallFrame(b);
                 if (b.range > 0) {
                     const targets = (b.team === 'player') ? this.greenTeam : this.redTeam;
-                    const hit = targets.find(k => k.isAlive && !k.isImmune &&
-                        Math.abs(b.gx - k.x) < 16 && Math.abs(b.gy - (k.y + 12)) < 20);
+                    const ballRect = P.memberRect(b.gx, b.gy, P.CAST.snowball);
+                    const hit = targets.find(k => {
+                        if (!k.isAlive || k.isImmune) return false;
+                        const spec = k.memberSpec || P.kidMember(k.teamType === 'player' ? 'R ready' : 'G ready');
+                        return P.rectsOverlap(ballRect, P.memberRect(k.x, k.y, spec));
+                    });
                     if (hit) {
                         this.handleHit(hit);
                         done.push(b);
@@ -683,7 +707,7 @@ class MainScene extends Phaser.Scene {
                 if (b.frame >= P.DROP_STEPS) {
                     b.phase = 'splat';
                     b.frame = 0;
-                    this.sfx('splat', 0.8, true);
+                    this.playOriginalEvent('ground_land');
                 }
                 this.setBallFrame(b);
             } else if (b.phase === 'splat') {
@@ -723,7 +747,7 @@ class MainScene extends Phaser.Scene {
     handleHit(kid) {
         if (!kid.isAlive || kid.isImmune) return;
         kid.hits++;
-        this.sfx('hit', 1.0);
+        this.playOriginalEvent('person_impact');
         if (kid.teamType === 'player') this.hitRed(kid);
         else this.hitGreen(kid);
     }
@@ -737,25 +761,24 @@ class MainScene extends Phaser.Scene {
         this.stopDaze(kid);
 
         if (kid.hits >= RULES.redHitsToKO) {
-            this.sfx('red_out', 0.6);
+            this.playOriginalEvent('red_death');
             this.knockOut(kid, 'death_0');
             return;
         }
 
         // Dazed: can't be grabbed, can still be hit
-        this.sfx('red_daze', 0.8);
+        this.playOriginalEvent('red_stun');
         kid.isDazed = true;
-        kid.bodySprite.stop();
-        kid.bodySprite.setFrame('hit_0');
+        this.showKidFrame(kid, 'hit_0');
         const cycle = ['hit_1', 'hit_2', 'hit_3'];
         let i = 0;
         kid.dazeTimer = this.time.addEvent({
-            delay: 150, startAt: -100, loop: true,
-            callback: () => kid.bodySprite.setFrame(cycle[i++ % cycle.length])
+            delay: RULES.aiTickMs, loop: true,
+            callback: () => this.showKidFrame(kid, cycle[i++ % cycle.length])
         });
         kid.dazeEnd = this.time.delayedCall(RULES.redDazeMs, () => {
             this.stopDaze(kid);
-            if (kid.isAlive) kid.bodySprite.play('red_idle');
+            if (kid.isAlive) this.showKidIdle(kid);
         });
     }
 
@@ -770,20 +793,20 @@ class MainScene extends Phaser.Scene {
         if (kid.isAlive) return;
         kid.isAlive = true;
         // Original `z`: revived reds keep myHits ≥ 2, so the exact `myHits = 2`
-        // death check never fires again. Debug-only.
+        // death check never fires again. Remake: immune so they can't be hit again.
         kid.hits = RULES.redHitsToKO;
+        kid.isImmune = true;
         kid.setAlpha(1);
-        kid.bodySprite.play('red_idle');
+        this.showKidIdle(kid);
     }
 
     hitGreen(kid) {
         this.cancelActions(kid);
         kid.ai = 'hurt';
-        kid.bodySprite.stop();
         const hp = RULES.greenHitsToKO[GAME_DIFFICULTY] || 3;
 
         if (kid.hits >= hp) {
-            this.sfx('green_out', 0.6);
+            this.playOriginalEvent('green_death');
             this.killsThisLevel++;
             this.knockOut(kid, Phaser.Utils.Array.GetRandom(['death_0', 'hardDeath', 'wipedOut', 'minorDeath']));
             return;
@@ -791,18 +814,18 @@ class MainScene extends Phaser.Scene {
 
         if (kid.hits === hp - 1) {
             // Knocked down: immune until back on their feet
-            this.sfx('knockdown', 0.9);
+            this.playOriginalEvent('green_second_hit');
             kid.isImmune = true;
-            kid.bodySprite.setFrame('stunned');
+            this.showKidFrame(kid, 'stunned');
             this.queueAction(kid, RULES.greenDownMs, () => {
                 kid.isImmune = false;
-                kid.bodySprite.setFrame('hit_0');
+                this.showKidFrame(kid, 'guard');
             }, true);
-            this.queueAction(kid, RULES.greenDownMs + 500, () => kid.bodySprite.setFrame('brushOff'), true);
-            this.queueAction(kid, RULES.greenDownMs + 1000, () => this.setReady(kid), true);
+            this.queueAction(kid, RULES.greenDownMs + RULES.greenRecoverMs, () => this.showKidFrame(kid, 'brushOff'), true);
+            this.queueAction(kid, RULES.greenDownMs + RULES.greenRecoverMs * 2, () => this.setReady(kid), true);
         } else {
-            kid.bodySprite.setFrame('hit_0');
-            this.queueAction(kid, RULES.greenOwMs, () => kid.bodySprite.setFrame('brushOff'), true);
+            this.showKidFrame(kid, 'hit_0');
+            this.queueAction(kid, RULES.greenOwMs, () => this.showKidFrame(kid, 'brushOff'), true);
             this.queueAction(kid, RULES.greenOwMs + RULES.greenRecoverMs, () => this.setReady(kid), true);
         }
     }
@@ -812,8 +835,7 @@ class MainScene extends Phaser.Scene {
         kid.isImmune = false;
         kid.isDazed = false;
         this.cancelActions(kid);
-        kid.bodySprite.stop();
-        kid.bodySprite.setFrame(frame);
+        this.showKidFrame(kid, frame);
         if (kid.walkTimer) kid.walkTimer.remove();
         this.checkWinCondition();
     }
@@ -825,7 +847,7 @@ class MainScene extends Phaser.Scene {
     setReady(kid) {
         if (!kid.isAlive) return;
         kid.ai = 'ready';
-        kid.bodySprite.play('green_idle');
+        this.showKidIdle(kid);
     }
 
     stopAI() {
@@ -843,12 +865,10 @@ class MainScene extends Phaser.Scene {
                     kid.ai = 'walk';
                     kid.stepsLeft = Phaser.Math.Between(1, 99);
                     kid.myDirection = P.walkAxisDirection(Phaser.Math.RND.sign());
-                    kid.bodySprite.stop();
                 } else if (roll === 2) {
                     kid.ai = 'side';
                     kid.stepsLeft = 5;
                     kid.myDirection = P.sideStepDirection(Phaser.Math.RND.sign());
-                    kid.bodySprite.stop();
                 } else if (roll <= 4) {
                     this.startGreenThrow(kid);
                 }
@@ -873,7 +893,9 @@ class MainScene extends Phaser.Scene {
         }
         kid.x = nx;
         kid.y = ny;
-        kid.bodySprite.setFrame((kid.stepsLeft % 2) ? 'walking' : 'walkingAlt');
+        const flip = kid.stepsLeft % 2;
+        if (kid.ai === 'side') this.setKidMember(kid, flip ? 'G Walk H1' : 'G Walk H2');
+        else this.setKidMember(kid, flip ? 'G Walk V1' : 'G Walk V2');
         if (kid.ai === 'walk') this.stepSound();
 
         kid.stepsLeft--;
@@ -889,11 +911,10 @@ class MainScene extends Phaser.Scene {
             return;
         }
         kid.ai = 'throw';
-        kid.bodySprite.stop();
-        kid.bodySprite.setFrame('throw_0');
+        this.showKidFrame(kid, 'throw_0');
         const cock = Phaser.Math.Between(RULES.cockMs[0], RULES.cockMs[1]);
         const release = RULES.windupMs + cock;
-        this.queueAction(kid, RULES.windupMs, () => kid.bodySprite.setFrame('throw_1'));
+        this.queueAction(kid, RULES.windupMs, () => this.showKidFrame(kid, 'throw_1'));
         this.queueAction(kid, release, () => {
             const power = Phaser.Math.Between(RULES.greenThrowPower[0], RULES.greenThrowPower[1]);
             this.throwSnowball(kid, power);
@@ -913,6 +934,10 @@ class MainScene extends Phaser.Scene {
     cancelActions(kid) {
         (kid.actionTimers || []).forEach(t => t.remove());
         kid.actionTimers = [];
+        if (kid.victoryTimer) {
+            kid.victoryTimer.remove();
+            kid.victoryTimer = null;
+        }
     }
 
     // --- LEVEL FLOW & SCORE ---
@@ -930,7 +955,7 @@ class MainScene extends Phaser.Scene {
             this.cancelActions(k);
             if (k.isAlive && k.teamType === 'player') {
                 this.stopDaze(k);
-                k.bodySprite.play('red_idle');
+                this.showKidIdle(k);
             }
         });
 
@@ -941,37 +966,27 @@ class MainScene extends Phaser.Scene {
     levelCleared() {
         this.score += this.greenTeam.length;
         const isLast = this.currentLevelIndex >= RULES.greensPerLevel.length - 1;
-        // nextLevel waits while soundBusy(1) so the last kids/green_out cue finishes
+        const pointerX = this.input.activePointer ? this.input.activePointer.worldX : 300;
+        // nextLevel waits while soundBusy(1) so the last kids cue finishes, then
+        // ugly/halaluja by mouseH < 280.
         this.whenSfxIdle(() => {
-            if (isLast) this.playThen('victory', 0.9, 1400, () => this.victory());
-            else this.playThen('level_clear', 0.8, 1400, () => this.startLevel(this.currentLevelIndex + 1));
-        });
-    }
-
-    // Play a sound after channel 1 is idle, then continue when it ends.
-    playThen(name, volume, fallbackMs, next) {
-        this.whenSfxIdle(() => {
-            const key = 'sfx_' + name;
-            let fired = false;
-            const go = () => { if (!fired) { fired = true; next(); } };
-            if (this.cache.audio.exists(key)) {
-                const s = this.sound.add(key, { volume });
-                s.once('complete', () => { s.destroy(); this.time.delayedCall(300, go); });
-                s.play();
-            }
-            this.time.delayedCall(fallbackMs + 2000, go);
+            this.playOriginalEvent('level_clear', { mouseH: pointerX });
+            this.whenSfxIdle(() => {
+                if (isLast) this.victory();
+                else this.startLevel(this.currentLevelIndex + 1);
+            });
         });
     }
 
     levelLost() {
         this.score = (this.score + this.killsThisLevel) * (this.currentLevelIndex + 1);
-        this.greenTeam.forEach(k => { if (k.isAlive) k.bodySprite.play('green_victory'); });
+        this.greenTeam.forEach(k => { if (k.isAlive) this.showKidVictory(k); });
 
         // ridicule() twice: each laugh waits for soundBusy(1) before the next.
         this.whenSfxIdle(() => {
-            this.sfx('cheer', 0.8);
+            this.playOriginalEvent('game_over');
             this.whenSfxIdle(() => {
-                this.sfx('cheer', 0.8);
+                this.playOriginalEvent('game_over');
                 this.whenSfxIdle(() => this.showEndScreen('GAME OVER'));
             });
         });
@@ -1061,11 +1076,13 @@ class MainScene extends Phaser.Scene {
         });
     }
 
-    // Kid under the pointer (bounding box around the sprite centre)
     kidAt(team, x, y) {
-        const width = 35, height = 45;
-        return team.find(kid => kid.isAlive && !kid.isWalkingOntoField &&
-            Math.abs(x - kid.x) <= width / 2 && Math.abs(y - kid.y) <= height / 2) || null;
+        return team.find((kid) => {
+            if (!kid.isAlive || kid.isWalkingOntoField) return false;
+            const spec = kid.memberSpec || P.kidMember('R ready');
+            const box = P.memberRect(kid.x, kid.y, spec);
+            return x >= box.left && x <= box.right && y >= box.top && y <= box.bottom;
+        }) || null;
     }
 
     showSelectionUI(player) {
@@ -1118,6 +1135,16 @@ class MainScene extends Phaser.Scene {
 
 game = new Phaser.Game(getConfig());
 
+(function restoreMuteUi() {
+    const box = document.getElementById('mute-checkbox');
+    if (!box) return;
+    try {
+        box.checked = localStorage.getItem('snowcraft-muted') === '1';
+    } catch (err) {
+        box.checked = false;
+    }
+})();
+
 window.SnowcraftGame = {
     RULES,
     STAGE_W,
@@ -1125,5 +1152,7 @@ window.SnowcraftGame = {
     getGame: function () { return game; },
     getScene: function () {
         return game && game.scene && game.scene.scenes ? game.scene.scenes[0] : null;
-    }
+    },
+    getAudio: function () { return snowcraftAudio; },
+    parity: P
 };

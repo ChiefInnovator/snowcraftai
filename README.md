@@ -26,6 +26,7 @@ This version uses **Phaser 3** to replay the 1999 Director rules: fixed-diagonal
 - 10 levels (3, 5, 7, 9, then 12 enemies) and a final score
 - Hit animations with stunned states
 - Original snowball / drop / melt BITD sequence (height baked into the art)
+- Original 16 SnowCraft WAVs on a single channel-1 puppetSound path
 - Per-level VWSC start positions, including off-stage greens that walk in
 - Player selection highlighting
 - Win/lose conditions with replay option
@@ -33,13 +34,13 @@ This version uses **Phaser 3** to replay the 1999 Director rules: fixed-diagonal
 ## Project Structure
 
 - `src/` - Site root deployed to GitHub Pages
-  - `index.html`, `js/game.js`, `js/parity.js`, `css/game.css` - Main game
+  - `index.html`, `js/game.js`, `js/parity.js`, `js/audio.js`, `css/game.css` - Main game
   - `parity-check.html` - recovered-constant checks
   - `sprites.html`, `js/sprites.js`, `css/sprites.css` - Sprite viewer showing all animation frames
   - `assets/` - Sprites and audio
-- `docs/` - [Specifications](docs/SPECIFICATIONS.md) and [original game analysis](docs/reference-app.md)
+- `docs/` - [Specifications](docs/SPECIFICATIONS.md), [original game analysis](docs/reference-app.md), and [original archives](docs/reference/snowcraft-original/)
 - `tools/` - Developer scripts
-- `reference/` - Local-only copy of the original game (gitignored)
+- `docs/reference/snowcraft-original/` - Committed byte-for-byte original EXE/DCR/sounds archives (evidence). Root `reference/` is a gitignored local workspace only.
 
 ## Contributing
 

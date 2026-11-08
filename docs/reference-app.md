@@ -6,7 +6,7 @@ The mechanics come from two sources:
 - **Decompiled Lingo and score data.** This is ground truth for rules and numbers.
 - **A Wine playthrough (2026-11-08).** This is ground truth for what you see on screen.
 
-Original files go in `reference/snowcraft_201912/` (Internet Archive item `snowcraft_201912`). The whole `reference/` folder is **gitignored**: the binary and its art and audio are copyrighted, and this repo is public. Nothing here is extracted art or sound; this document records numbers, names, logic and observations only.
+Canonical original files live in [`docs/reference/snowcraft-original/`](reference/snowcraft-original/) (both user-supplied game archives, the extracted-sounds pack, SHA-256 manifest, provenance). That folder is **committed evidence**, not a running copy of the game. A gitignored root `reference/` directory is only a local Wine/decompile workspace. Runtime WAVs are `src/assets/sounds/`. This document records numbers, names, logic and observations; it does not replace the archives.
 
 Each claim carries one of these tags:
 - **[Lingo]** quoted directly from a decompiled script.

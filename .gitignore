@@ -5,8 +5,9 @@ Thumbs.db
 .idea/
 *.swp
 
-# Original 1999 SnowCraft binary, extracted assets, and RE tooling.
-# Copyrighted third-party material — keep local, never commit (repo is public).
+# Local Wine / decompile workspace only (root folder).
+# Canonical original-game archives live in docs/reference/snowcraft-original/
+# (committed evidence copies). Do not put credentials here.
 /reference/
 
 # Node / tooling (if added later)

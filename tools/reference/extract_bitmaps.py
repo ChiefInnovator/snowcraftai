@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-"""Extract original SnowCraft BITD bitmaps (power/snowball/drop/melt) and
-Event Loop layouts from a rebased Director movie.
+"""Extract original SnowCraft BITD bitmaps (kids, shadow, power, snowball,
+drop, melt), Event Loop layouts, and score walk-on paths from a rebased
+Director movie.
 
 Static only — never executes the projector.
 
@@ -8,7 +9,7 @@ Usage:
   python3 -I tools/reference/extract_movie.py SnowCraft.exe out/SnowCraft.dxr
   python3 -I tools/reference/extract_bitmaps.py out/SnowCraft.dxr OUT_DIR
 
-Writes OUT_DIR/bitmaps/*.png, bitmap_meta.json, layouts.json
+Writes OUT_DIR/bitmaps/*.png, bitmap_meta.json, layouts.json, walkon.json
 """
 from __future__ import annotations
 
@@ -21,7 +22,8 @@ import zlib
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from inspect_movie import Movie, read_cast, read_config, read_labels, read_score, sprite, u16, u32  # noqa: E402
 
-NEED = set(range(37, 67)) | {1}
+# All 8-bit gameplay BITDs: shadow, red/green kids, power, snowball/drop/melt.
+NEED = set(range(1, 67))
 
 
 def packbits_rows(data: bytes, pitch: int, height: int):
@@ -190,6 +192,52 @@ def main(src, out_dir):
         json.dump(meta, handle, indent=2)
         handle.write("\n")
     dump_layouts(movie, names, os.path.join(out_dir, "layouts.json"))
+    dump_walkon(movie, names, os.path.join(out_dir, "walkon.json"))
+
+
+def dump_walkon(movie, names, dest):
+    """Score frames from each Level N label up to (not including) Event Loop."""
+    score = read_score(movie)
+    labels = dict(read_labels(movie))
+    level_at = {}
+    for frame, name in labels.items():
+        if name.startswith("Level ") and name[6:].isdigit():
+            level_at[int(name[6:])] = frame
+    loops = []
+    for number, frame in enumerate(score["frames"], 1):
+        script_mem = u16(frame, 2)
+        if names.get(script_mem) == "Event Loop":
+            loops.append(number)
+    out = []
+    for level in range(1, 11):
+        start = level_at.get(level)
+        if not start:
+            continue
+        end = next((n for n in loops if n > start), None)
+        if not end:
+            continue
+        frames = []
+        for number in range(start, end):
+            fr = score["frames"][number - 1]
+            kids = []
+            for channel in range(12, 33):
+                spr = sprite(fr, channel)
+                if not spr["member"]:
+                    continue
+                name = names.get(spr["member"], "")
+                if name in ("", "nothing"):
+                    continue
+                kids.append({
+                    "ch": channel, "member": name,
+                    "x": spr["x"], "y": spr["y"], "ink": spr["ink"]
+                })
+            frames.append({"frame": number, "kids": kids})
+        out.append({"level": level, "startFrame": start, "eventLoopFrame": end, "frames": frames})
+    with open(dest, "w") as handle:
+        json.dump(out, handle, indent=2)
+        handle.write("\n")
+    print(f"wrote {dest} ({len(out)} level walk-ons)")
+    return out
 
 
 if __name__ == "__main__":

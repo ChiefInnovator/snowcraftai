@@ -62,5 +62,57 @@ describe("recovered BITD cast members", () => {
         assert.equal(P.CAST.drop.length, 4);
         assert.equal(P.CAST.melt.length, 4);
         assert.deepEqual(P.CAST.splat.reg, [8, 3]);
+        assert.equal(P.CAST.kids.length, 36);
+        assert.deepEqual(P.kidMember("R ready").reg, [15, 28]);
+        assert.deepEqual(P.kidMember("shadow").reg, [6, 17]);
+        assert.equal(P.kidMembersNamed("G dead").length, 4);
+        assert.equal(P.kidMembersNamed("R dead").length, 3);
+    });
+
+    it("keeps recovered kid/shadow BITDs byte-exact", () => {
+        const meta = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "docs/recovered/kid-bitmaps.json"), "utf8"));
+        assert.equal(meta.length, 36);
+        meta.forEach((rec) => {
+            const buf = fs.readFileSync(path.join(CAST_DIR, rec.file));
+            const size = pngSize(buf);
+            assert.equal(size.w, rec.w, rec.file + " width");
+            assert.equal(size.h, rec.h, rec.file + " height");
+            assert.equal(crypto.createHash("sha256").update(buf).digest("hex"), rec.sha256, rec.file);
+        });
+    });
+});
+
+describe("VWSC walk-on paths", () => {
+    const walkon = JSON.parse(
+        fs.readFileSync(path.join(__dirname, "..", "src/assets/walkon.json"), "utf8")
+    );
+
+    it("replays 10 levels at 15 fps and ends on Event Loop locs", () => {
+        assert.equal(walkon.length, 10);
+        assert.equal(P.SCORE_WALKON_FPS, 15);
+        walkon.forEach((pack, i) => {
+            assert.equal(pack.fps, 15, "level " + (i + 1) + " fps");
+            assert.equal(pack.reds.length, 3);
+            assert.equal(pack.greens.length, P.LEVELS[i].gd);
+            const lastReds = pack.reds.map((path) => {
+                const last = path[path.length - 1];
+                return { x: last.x, y: last.y };
+            });
+            const lastGreens = pack.greens.map((path) => {
+                const last = path[path.length - 1];
+                return { x: last.x, y: last.y };
+            });
+            assert.deepEqual(lastReds, P.LEVELS[i].reds, "level " + (i + 1) + " reds");
+            assert.deepEqual(lastGreens, P.LEVELS[i].greens, "level " + (i + 1) + " greens");
+        });
+    });
+
+    it("uses BITD sprite rects for matte-style AABB hits", () => {
+        const ball = P.memberRect(176, 49, P.CAST.snowball);
+        const kid = P.memberRect(176, 49, P.kidMember("G ready"));
+        assert.equal(P.rectsOverlap(ball, kid), true);
+        const miss = P.memberRect(500, 200, P.CAST.snowball);
+        assert.equal(P.rectsOverlap(miss, kid), false);
+        assert.equal(P.INK_MATTE, 8);
     });
 });

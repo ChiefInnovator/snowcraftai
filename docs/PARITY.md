@@ -6,9 +6,10 @@ parse, VWSC score decode (`tools/reference/inspect_movie.py`), BITD decode
 (`tools/reference/extract_bitmaps.py`), and Lingo recovered from `Lscr`.
 **The Windows EXE was never executed in this workstream.**
 
-This document is for the `src/` tree on `feature/repo-restructure` (`ff39e410`)
-plus the parity patches in this branch. It does **not** merge that feature
-branch into `develop`.
+This document is for the combined `src/` tree: `feature/repo-restructure`
+(`ff39e410`) + recovered BITD/VWSC/movement + original 16 WAVs + local
+restructure edits (SEO copy, debug-revive immunity, `winctl.py` cursor notes).
+It does **not** merge into `develop` or `main`.
 
 Status key:
 
@@ -16,38 +17,35 @@ Status key:
 - **Inferred** — follows verified rules plus movie structure, but a value was not uniquely decoded.
 - **Unverified / blocked** — needs a Director runtime playthrough, Wine capture, or bytes we could not expand.
 
-## Can the existing develop PR absorb this?
+## Combined tree (this PR)
 
-**No.** PR targeting `develop` still uses the pre-restructure root `index.html`
-tree. `feature/repo-restructure` @ `ff39e410` moved the game to `src/js/game.js`,
-rewrote mechanics, and replaced SFX with synthesized WAVs. Merging the two would
-mix unrelated in-flight work and fight over deleted paths. This branch is based
-on the **committed** restructure only; it does not include uncommitted local
-edits to `docs/SPECIFICATIONS.md`, `src/index.html`, `src/js/game.js`, or
-`tools/reference/winctl.py`.
+Base `ff39e410` (`feature/repo-restructure`). Older develop-rooted PRs cannot
+absorb this without mixing deleted paths. Local uncommitted edits from that
+HEAD are **included** here (SEO/copy, `z` revive immunity, `winctl.py`).
 
 ## Audio
 
-Synthesized `src/assets/sfx/*.wav` (this tree’s licensing choice) stay. Event
-mapping still follows original Lingo. Original 16 WAVs remain on the older
-develop-based parity branch and can be extracted with `tools/extract_snowcraft_sounds.py`
-from a local `reference/` copy. They are **not** committed here.
+Original 16 WAVs live in `src/assets/sounds/` with PCM SHA-256 pins in
+`inventory.json` / `tests/wav-integrity.test.js`. Channel 1 is
+`src/js/audio.js` (`puppetSound` replace; `step`/`splat` idle-gated).
+Synthesized `src/assets/sfx/*.wav` remain in the tree as unused remake extras.
+Intro/`musicAlt.mp3` still play on level 1 (original had no BGM).
 
-| Event | Original cast | Remake SFX | Status |
+| Event | Original cast | Remake now | Status |
 |---|---|---|---|
-| Full-power throw | `Whoosh` | `throw_full` | Verified trigger, synthesized sample |
-| Other throw | `Whoosh Percusive` | `throw` | Verified trigger, synthesized sample |
-| Person impact | `hit1` | `hit` | Verified trigger |
-| Ground land | `splat` (idle channel 1) | `splat` if no other SFX playing | Verified rule |
-| Walk | `step` (idle channel 1) | `step` if idle | Verified rule |
-| Red 1st hit | `bird_tweets` | `red_daze` | Verified trigger |
-| Red KO | `Ahhhh!` | `red_out` | Verified trigger |
-| Green 2nd hit | `hit2` | `knockdown` | Verified trigger |
-| Green KO | `kids1–3` | `green_out` | Verified trigger, one clip not three |
-| Hover dazed red | `short_chirps` | `deny` | Verified trigger |
-| Level clear | `ugly` / `halaluja` | `level_clear` / `victory` | Verified idea; mouseH&lt;280 split **not** wired (remake extra) |
-| Game over | `laugh` ×2, each waits `soundBusy(1)` | `cheer` ×2 via `whenSfxIdle` | Verified |
-| Level clear after last kill | `nextLevel` waits `soundBusy(1)` then `ugly`/`halaluja` | wait for death SFX, then `level_clear` | Verified |
+| Full-power throw | `Whoosh` | `whoosh` | Verified sample + trigger |
+| Other throw | `Whoosh Percusive` | `whoosh_percussive` | Verified |
+| Person impact | `hit1` | `hit1` | Verified |
+| Ground land | `splat` (idle channel 1) | idle-gated `splat` | Verified |
+| Walk | `step` (idle channel 1) | idle-gated `step` | Verified |
+| Red 1st hit | `bird_tweets` | `bird_tweets` | Verified |
+| Red KO | `Ahhhh!` | `ahhhh` | Verified |
+| Green 2nd hit | `hit2` | `hit2` | Verified |
+| Green KO | `kids1–3` | `kids` + `random(3)` | Verified |
+| Hover dazed red | `short_chirps` | `short_chirps` | Verified |
+| Level clear | `ugly` / `halaluja` if `mouseH < 280` | same split on `pointer.worldX` | Verified |
+| Game over | `laugh` ×2, each waits `soundBusy(1)` | `whenSfxIdle` ×2 | Verified |
+| Level clear after last kill | `nextLevel` waits `soundBusy(1)` | wait, then ugly/halaluja | Verified |
 | `Uh` | unused cast | unused | Verified unused |
 | BGM | none | `musicAlt.mp3` | Deliberate remake extra |
 
@@ -70,6 +68,7 @@ from a local `reference/` copy. They are **not** committed here.
 | Score loss | `(gScore + gGdead) * level` | same | Verified |
 | Victory score | `×10`, cap 1000 if &gt;900 | same | Verified |
 | Levels | VWSC Event Loop `#gd/#level` 1–10 | same counts + **exact locs** | Verified |
+| Debug `z` revive | `myHits ≥ 2` so `myHits = 2` death never fires | `isImmune` (can't be hit again) | Verified intent, remake flag |
 
 ## Visuals recovered this round
 
@@ -108,17 +107,36 @@ Off-stage starts (`x<8` or `y<8`) spawn at the score loc and walk in with
 2:1 walk-on (original frames 3–27 are a scripted walk; exact per-frame paths
 are in `score.txt` but are not replayed tick-for-tick).
 
+## Newly decoded from the original ZIP (`SnowCraft.exe`)
+
+Static `XFIR`/`VWSC`/`BITD` parse of
+`docs/reference/snowcraft-original/extracted/SnowCraft.exe`
+(SHA-256 `2103bae31937095450962c91ec025e5e49eac920d2eccf1bdd89bcae2e130b8c`),
+from `archives/nicholson-snowcraft-1999-win32-projector-ia-snowcraft-201912.zip`
+(Cursor upload `ba07317d…zip`). A second original,
+`extracted/snowcraft.dcr`, is compared in
+`docs/reference/snowcraft-original/source-evidence/dcr-vs-exe.md`.
+EXE and DCR were **not** executed.
+
+| Topic | Original file | Remake now | Status |
+|---|---|---|---|
+| Kid BITDs 1–36 | Cast names, size, **reg**, PackBits, matte index 0 | `src/assets/cast/00n_*.png` + `CAST.kids` | Verified |
+| Shadow | 36×21 reg (6,17), drawn at the kid loc | recovered BITD at kid loc | Verified |
+| Walk-on | Score frames at **15 fps** from each `Level N` label to Event Loop | `src/assets/walkon.json` replay | Verified |
+| Sprite ink | kids/balls **matte** (8); ground **copy** | BITD AABB overlap (not pixel matte) | Verified ink; **inferred** AABB |
+| Daze members | `R daze1/2/3`, `mySteps=15` | those BITDs, 15×3 Lingo ticks | Verified |
+| Green hit members | `G Hit` → `G ow` (`myMove=10`); `G down` (`25`); recover (`5`) | same BITDs + move counts | Verified |
+| Event Loop tempo | VWSC `500 fps` after walk-on; Lingo still gates on `the timer` | 100 ms / 50 ms from `timer > clock + myTempo` | Verified inequality; runtime clock **blocked** |
+| DRCF | stage 592×320, frameRate 15, Director 8 (`1600`) | canvas 600×320 | Verified config |
+| `Level 11` / `GreenWin` | labels at frames 290 / 40 | unused (loss/title are remake UI) | Verified present, not wired |
+
 ## Still open / blocked
 
 | Topic | What’s missing | Evidence needed |
 |---|---|---|
-| Pixel-perfect kid registration / ink | Remake still uses atlas slices from `player.png`/`enemy.png`, not per-member BITD | BITD dump of kid members **or** a Wine screenshot overlay |
-| Walk-on frames 3–27 | Score has per-frame locs; remake uses a shortened 2:1 tween | Optional: replay those 25 frames at 10–15 fps |
-| `ugly` vs `halaluja` by `mouseH < 280` | Remake uses one clear clip, victory clip on level 10 | Wire if original SFX are restored |
-| Matte `sprite intersects` hit boxes | Remake uses a 16×20 ground-track window | Runtime Director collide, or a capture of borderline hits |
-| Exact daze/ow member cycling | Times match Lingo; frames are atlas names not `R daze1–3` | BITD of those members |
+| Pixel-perfect matte `sprite intersects` | AABB of BITD sprite rects, not opaque-pixel overlap | Runtime Director collide, or a capture of borderline hits |
+| Event Loop “500 fps” wall-clock | Lingo is timer-gated; how fast `prepareFrame` polls is machine-dependent | Runtime clock trace (do **not** auto-run the EXE) |
 | Stage 592 vs canvas 600 | Ground bitmap is 600×320; stage rect is 592×320 | Keep as-is; 8 px is the original ground overhang |
-| Tempo “500 fps” Event Loop | Director “as fast as possible”; remake uses 50/100 ms timers | Needs a runtime clock trace |
-| Original EXE look | Wine playthrough exists in `docs/reference-app.md` [obs] from the author’s machine | Do **not** auto-run Wine/`run-reference.sh` in this agent |
+| Original EXE look / window chrome | Wine playthrough exists in `docs/reference-app.md` [obs] | Do **not** auto-run Wine/`run-reference.sh` |
 
 Perfect parity remains the target, not a claim.

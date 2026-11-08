@@ -37,4 +37,4 @@ All values live in `RULES` at the top of `src/js/game.js`. Stage is 600×320 log
 
 ## Debug
 
-Add `?debug` to the URL: coordinate labels, the centre line, keys `1`–`9`/`0` to jump to a level, `z` to revive the red team.
+Add `?debug` to the URL: coordinate labels, the centre line, keys `1`–`9`/`0` to jump to a level, `z` to revive the red team (revived kids can't be hit again).

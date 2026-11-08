@@ -34,6 +34,12 @@
         check("myDirection (2,1) and edge (4,1)", P.walkAxisDirection(1).x === 2 && P.edgeSteer(10, 80, {x:-2,y:-1}).x === 4);
         check("snowball registration (5,38)", P.CAST.snowball.reg[0] === 5 && P.CAST.snowball.reg[1] === 38);
         check("9 power BITDs", P.CAST.power.length === 9);
+        check("whoosh at power 8 else Whoosh Percusive", P.throwSoundId(8) === "whoosh" && P.throwSoundId(7) === "whoosh_percussive");
+        check("ugly/halaluja split at mouseH 280", P.levelClearSoundId(279) === "ugly" && P.levelClearSoundId(280) === "halaluja");
+        check("15 wired original sounds + unused Uh", P.expectedWiredSoundIds().length === 15 && P.UNUSED_CAST_SOUNDS[0].cast_member_name === "Uh");
+        check("36 kid/shadow BITDs", P.CAST.kids.length === 36 && P.kidMember("R ready").reg[0] === 15);
+        check("walk-on tempo 15 fps", P.SCORE_WALKON_FPS === 15);
+        check("matte ink 8", P.INK_MATTE === 8);
         const failed = rows.some(r => r.startsWith("FAIL"));
         const el = document.getElementById("out");
         el.textContent = rows.join("\n") + "\n\n" + (failed ? "FAILED" : "ALL PASSED");

@@ -87,6 +87,16 @@ describe("Lingo movement and throws", () => {
         assert.equal(P.powerFromHoldMs(670), 8);
         assert.equal(P.powerFromHoldMs(5000), 8);
     });
+
+    it("maps throw / level-clear / kids death to original cast names", () => {
+        assert.equal(P.throwSoundId(7), "whoosh_percussive");
+        assert.equal(P.throwSoundId(8), "whoosh");
+        assert.equal(P.levelClearSoundId(279), "ugly");
+        assert.equal(P.levelClearSoundId(280), "halaluja");
+        assert.equal(P.kidsDeathSoundId(1), "kids1");
+        assert.equal(P.isIdleGated("step"), true);
+        assert.equal(P.isIdleGated("hit1"), false);
+    });
 });
 
 describe("scoring", () => {
