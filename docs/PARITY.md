@@ -46,7 +46,8 @@ from a local `reference/` copy. They are **not** committed here.
 | Green KO | `kids1–3` | `green_out` | Verified trigger, one clip not three |
 | Hover dazed red | `short_chirps` | `deny` | Verified trigger |
 | Level clear | `ugly` / `halaluja` | `level_clear` / `victory` | Verified idea; mouseH&lt;280 split **not** wired (remake extra) |
-| Game over | `laugh` ×2 | `cheer` ×2 | Verified idea |
+| Game over | `laugh` ×2, each waits `soundBusy(1)` | `cheer` ×2 via `whenSfxIdle` | Verified |
+| Level clear after last kill | `nextLevel` waits `soundBusy(1)` then `ugly`/`halaluja` | wait for death SFX, then `level_clear` | Verified |
 | `Uh` | unused cast | unused | Verified unused |
 | BGM | none | `musicAlt.mp3` | Deliberate remake extra |
 

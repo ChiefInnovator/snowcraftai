@@ -98,3 +98,11 @@ describe("scoring", () => {
         assert.equal(P.scoreOnVictory(80), 800);
     });
 });
+
+describe("channel 1 sequencing", () => {
+    it("waits for soundBusy(1) before nextLevel and each ridicule laugh", () => {
+        assert.equal(P.CHANNEL1.nextLevelWaitsForIdle, true);
+        assert.equal(P.CHANNEL1.ridiculeCount, 2);
+        assert.equal(P.CHANNEL1.ridiculeWaitsForIdle, true);
+    });
+});

@@ -23,6 +23,12 @@
     const DROP_STEPS = 4;
     const MELT_STEPS = 4;
     const MAX_BALLS_PER_TEAM = 10;
+    // Channel 1: nextLevel and each ridicule() wait while soundBusy(1).
+    const CHANNEL1 = {
+        nextLevelWaitsForIdle: true,
+        ridiculeCount: 2,
+        ridiculeWaitsForIdle: true
+    };
     const STAGE_W = 592;
     const STAGE_H = 320;
 
@@ -250,6 +256,7 @@
         DROP_STEPS,
         MELT_STEPS,
         MAX_BALLS_PER_TEAM,
+        CHANNEL1,
         STAGE_W,
         STAGE_H,
         LEVELS,

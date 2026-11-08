@@ -374,12 +374,24 @@ class MainScene extends Phaser.Scene {
 
     sfx(name, volume = 1, ifIdle = false) {
         const key = 'sfx_' + name;
-        if (!this.cache.audio.exists(key)) return;
-        if (ifIdle) {
-            const playing = this.sound.getAllPlaying ? this.sound.getAllPlaying() : [];
-            if (playing.some(s => s && s.key && s.key.indexOf('sfx_') === 0)) return;
-        }
+        if (!this.cache.audio.exists(key)) return false;
+        if (ifIdle && this.sfxBusy()) return false;
         this.sound.play(key, { volume });
+        return true;
+    }
+
+    sfxBusy() {
+        const playing = this.sound.getAllPlaying ? this.sound.getAllPlaying() : [];
+        return playing.some(s => s && s.key && s.key.indexOf('sfx_') === 0);
+    }
+
+    // Original nextLevel / ridicule: repeat while soundBusy(1).
+    whenSfxIdle(fn) {
+        const tick = () => {
+            if (!this.sfxBusy()) fn();
+            else this.time.delayedCall(50, tick);
+        };
+        tick();
     }
 
     // Title screen: wait for a click (also unlocks browser audio) before the walk-on
@@ -929,44 +941,49 @@ class MainScene extends Phaser.Scene {
     levelCleared() {
         this.score += this.greenTeam.length;
         const isLast = this.currentLevelIndex >= RULES.greensPerLevel.length - 1;
-        if (isLast) {
-            this.time.delayedCall(800, () => this.victory());
-            return;
-        }
-        this.playThen('level_clear', 0.8, 1400, () => this.startLevel(this.currentLevelIndex + 1));
+        // nextLevel waits while soundBusy(1) so the last kids/green_out cue finishes
+        this.whenSfxIdle(() => {
+            if (isLast) this.playThen('victory', 0.9, 1400, () => this.victory());
+            else this.playThen('level_clear', 0.8, 1400, () => this.startLevel(this.currentLevelIndex + 1));
+        });
     }
 
-    // Play a sound and continue when it ends (or after fallbackMs if it can't play)
+    // Play a sound after channel 1 is idle, then continue when it ends.
     playThen(name, volume, fallbackMs, next) {
-        const key = 'sfx_' + name;
-        let fired = false;
-        const go = () => { if (!fired) { fired = true; next(); } };
-        if (this.cache.audio.exists(key)) {
-            const s = this.sound.add(key, { volume });
-            s.once('complete', () => { s.destroy(); this.time.delayedCall(300, go); });
-            s.play();
-        }
-        this.time.delayedCall(fallbackMs + 2000, go); // safety net if 'complete' never fires
+        this.whenSfxIdle(() => {
+            const key = 'sfx_' + name;
+            let fired = false;
+            const go = () => { if (!fired) { fired = true; next(); } };
+            if (this.cache.audio.exists(key)) {
+                const s = this.sound.add(key, { volume });
+                s.once('complete', () => { s.destroy(); this.time.delayedCall(300, go); });
+                s.play();
+            }
+            this.time.delayedCall(fallbackMs + 2000, go);
+        });
     }
 
     levelLost() {
         this.score = (this.score + this.killsThisLevel) * (this.currentLevelIndex + 1);
         this.greenTeam.forEach(k => { if (k.isAlive) k.bodySprite.play('green_victory'); });
-        this.sfx('cheer', 0.8);
-        this.time.delayedCall(1200, () => this.sfx('cheer', 0.8));
 
-        // Fallen kids fade away
+        // ridicule() twice: each laugh waits for soundBusy(1) before the next.
+        this.whenSfxIdle(() => {
+            this.sfx('cheer', 0.8);
+            this.whenSfxIdle(() => {
+                this.sfx('cheer', 0.8);
+                this.whenSfxIdle(() => this.showEndScreen('GAME OVER'));
+            });
+        });
+
         const fallen = [...this.redTeam, ...this.greenTeam].filter(k => !k.isAlive);
         this.tweens.add({ targets: fallen, alpha: 0, duration: 1500, delay: 1000 });
         this.tweens.add({ targets: fallen.map(k => k.shadow), alpha: 0, duration: 1500, delay: 1000 });
-
-        this.time.delayedCall(1500, () => this.showEndScreen('GAME OVER'));
     }
 
     victory() {
         this.score = this.score * 10;
         if (this.score > 900) this.score = 1000;
-        this.sfx('victory', 0.9);
         this.showEndScreen('YOU WIN!');
     }
 
