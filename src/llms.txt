@@ -25,7 +25,7 @@ Snowcraft Reforged is an open, HTML5 game that runs entirely in the browser — 
 2. A power meter fills while held — longer holds produce faster, longer-range throws.
 3. Release the mouse button to launch a snowball in an arc toward the green team.
 4. Defeat every green team player to clear the level and advance.
-5. Beat all five levels to win. The green team throws back, so keep moving.
+5. Beat all ten levels to win. The green team throws back, so keep moving.
 
 ## Gameplay mechanics
 
@@ -52,6 +52,6 @@ Snowcraft Reforged is an open, HTML5 game that runs entirely in the browser — 
 
 **Do I need to install anything?** No. It runs in any modern desktop browser.
 
-**How many levels are there?** Five, each harder than the last.
+**How many levels are there?** Ten, each harder than the last.
 
 **What browsers work?** Any modern browser with HTML5 canvas — Chrome, Firefox, Safari, Edge.

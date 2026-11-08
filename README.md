@@ -8,7 +8,7 @@ This version uses **Phaser 3** to replicate the original gameplay while introduc
 
 ## How to Play
 
-1. Open `index.html` in a web browser (use a local server for best results)
+1. Run `python3 -m http.server 8000 -d src` and open http://localhost:8000 (or play online at https://chiefinnovator.github.io/snowcraftai/)
 2. Players walk onto the field at the start of each level
 3. Click and hold on a red team player to charge a throw
 4. Release to throw a snowball at the green team
@@ -19,20 +19,29 @@ This version uses **Phaser 3** to replicate the original gameplay while introduc
 
 - **Click & Hold** on a player to charge throw power
 - **Release** to throw a snowball
-- Power meter shows throw strength (longer hold = further throw)
+- Power meter fills in 8 steps over ~0.7 s (longer hold = further throw)
 
 ## Game Features
 
-- 5 progressive levels with increasing difficulty
+- 10 levels (3, 5, 7, 9, then 12 enemies) and a final score
 - Hit animations with stunned states
 - Snowball arc trajectories with shadows
 - Player selection highlighting
 - Win/lose conditions with replay option
 
-## Development Tools
+## Project Structure
 
-- `index.html` - Main game
-- `sprites.html` - Sprite viewer showing all animation frames
+- `src/` - Site root deployed to GitHub Pages
+  - `index.html`, `js/game.js`, `css/game.css` - Main game
+  - `sprites.html`, `js/sprites.js`, `css/sprites.css` - Sprite viewer showing all animation frames
+  - `assets/` - Sprites and audio
+- `docs/` - [Specifications](docs/SPECIFICATIONS.md) and [original game analysis](docs/reference-app.md)
+- `tools/` - Developer scripts
+- `reference/` - Local-only copy of the original game (gitignored)
+
+## Contributing
+
+`develop` is the default branch. Branch from `develop`, open PRs into `develop` (GitHub Copilot reviews them automatically), and release by opening a PR from `develop` into `main`. Pushing to `main` deploys the site. See [AGENTS.md](AGENTS.md).
 
 ## Technical Details
 
@@ -40,22 +49,6 @@ This version uses **Phaser 3** to replicate the original gameplay while introduc
 - **Canvas**: 600x320 pixels
 - **Assets**: Original sprite sheets from 1998 Snowcraft
 
-## Snowball Speed Analysis
+## Gameplay Rules
 
-The speed of a snowball is calculated per frame using this formula:
-`Speed = 0.012 + (Strength / 100) * 0.006`
-
-### **Player Stats**
-*   **Strength Range:** 1 to 100 (controlled by how long you hold the mouse).
-*   **Minimum Speed:** **0.0121** (Strength 1)
-*   **Maximum Speed:** **0.0180** (Strength 100)
-
-### **Enemy Stats**
-*   **Strength Range:** 50 to 90 (randomly chosen for each throw).
-*   **Minimum Speed:** **0.0150** (Strength 50)
-*   **Maximum Speed:** **0.0174** (Strength 90)
-
-### **Comparison**
-1.  **Consistency:** Enemies are much more consistent. They never throw a "weak" snowball. Their slowest throw (0.015) is already at **50% of the max possible speed**.
-2.  **Top Speed:** The Player has a slight advantage at maximum power. A fully charged player shot (0.018) travels slightly faster than the fastest enemy shot (0.0174).
-3.  **Range:** The player has a much wider range of speeds available, allowing for short-range lobs (slow) or long-range snipes (fast). The enemies are locked into a "medium-fast" bracket.
+Rules and timings live in the `RULES` object at the top of `src/js/game.js` and are documented in [docs/SPECIFICATIONS.md](docs/SPECIFICATIONS.md).

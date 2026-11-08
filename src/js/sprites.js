@@ -1,41 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snowcraft Sprite Viewer</title>
-    <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.min.js"></script>
-    <style>
-        body { 
-            margin: 0; 
-            background: #1a1a2e; 
-            font-family: 'Arial', sans-serif;
-            color: #fff;
-        }
-        h1 {
-            text-align: center;
-            padding: 20px;
-            margin: 0;
-            background: #16213e;
-            border-bottom: 2px solid #0f3460;
-        }
-        #game-container { 
-            display: flex;
-            justify-content: center;
-            padding: 20px;
-        }
-        #game-container canvas { 
-            border: 2px solid #0f3460;
-            border-radius: 8px;
-        }
-    </style>
-</head>
-<body>
-
-<h1>🎿 Snowcraft Sprite Viewer</h1>
-<div id="game-container"></div>
-
-<script>
 class SpriteViewerScene extends Phaser.Scene {
     constructor() {
         super({ key: 'SpriteViewerScene' });
@@ -138,7 +100,7 @@ class SpriteViewerScene extends Phaser.Scene {
 
             let sprite = this.add.sprite(xPos, yOffset, 'red_team_atlas', frame.name);
             sprite.setOrigin(0.5, 0);
-            
+
             let label = this.add.text(xPos, yOffset + 55, frame.name, labelStyle);
             label.setOrigin(0.5, 0);
 
@@ -165,7 +127,7 @@ class SpriteViewerScene extends Phaser.Scene {
 
             let sprite = this.add.sprite(xPos, yOffset, 'green_team_atlas', frame.name);
             sprite.setOrigin(0.5, 0);
-            
+
             let label = this.add.text(xPos, yOffset + 55, frame.name, labelStyle);
             label.setOrigin(0.5, 0);
 
@@ -192,7 +154,7 @@ class SpriteViewerScene extends Phaser.Scene {
 
             let sprite = this.add.sprite(xPos, yOffset, item.texture);
             sprite.setOrigin(0.5, 0);
-            
+
             let label = this.add.text(xPos, yOffset + 35, item.name, labelStyle);
             label.setOrigin(0.5, 0);
 
@@ -218,7 +180,7 @@ class SpriteViewerScene extends Phaser.Scene {
         let redRaw = this.add.image(20, yOffset, 'red_team_atlas');
         redRaw.setOrigin(0, 0);
         redRaw.setScale(1);
-        
+
         // Draw border around it
         let redBorder = this.add.graphics();
         redBorder.lineStyle(2, 0xff6b6b, 1);
@@ -232,7 +194,7 @@ class SpriteViewerScene extends Phaser.Scene {
         let greenRaw = this.add.image(20, yOffset, 'green_team_atlas');
         greenRaw.setOrigin(0, 0);
         greenRaw.setScale(1);
-        
+
         // Draw border around it
         let greenBorder = this.add.graphics();
         greenBorder.lineStyle(2, 0x6bff6b, 1);
@@ -256,7 +218,3 @@ const config = {
 };
 
 const game = new Phaser.Game(config);
-</script>
-
-</body>
-</html>
