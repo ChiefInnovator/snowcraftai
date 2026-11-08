@@ -65,6 +65,8 @@ test("index.html wires each original event and does not load placeholder mp3s", 
     assert.ok(html.includes('id="mute-checkbox"'));
     assert.ok(html.includes("const START_LEVEL = 1"));
     assert.ok(html.includes("restartMatch"));
+    assert.ok(html.includes("whenChannelIdle"), "nextLevel/ridicule wait for soundBusy(1)");
+    assert.ok(!html.includes("delayedCall(2200, () => this.playOriginalEvent('game_over'))"));
 });
 
 test("throw whoosh mapping follows myRange = 16 (power 8)", () => {

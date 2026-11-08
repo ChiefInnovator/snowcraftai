@@ -830,6 +830,15 @@ class MainScene extends Phaser.Scene {
         return this.audio.playEvent(eventKey, extra || {});
     }
 
+    // nextLevel / ridicule: repeat while soundBusy(1) before the next channel-1 cue.
+    whenChannelIdle(fn) {
+        const tick = () => {
+            if (!this.audio || !this.audio.isChannelBusy()) fn();
+            else this.time.delayedCall(50, tick);
+        };
+        tick();
+    }
+
     syncChargePower() {
         if (!this.isDragging) return;
         const elapsed = Math.max(0, this.time.now - (this.powerHoldStartedAt || this.time.now));
@@ -1048,13 +1057,6 @@ class MainScene extends Phaser.Scene {
         
         if (kid.health <= 0) {
             kid.isAlive = false;
-            this.time.delayedCall(reactionDelay, () => {
-                if (kid.teamType === 'player') {
-                    this.playOriginalEvent('red_death');
-                } else {
-                    this.playOriginalEvent('green_death');
-                }
-            });
             if (kid.teamType !== 'player') {
                 this.greensKilledThisLevel = (this.greensKilledThisLevel || 0) + 1;
             }
@@ -1063,8 +1065,15 @@ class MainScene extends Phaser.Scene {
             if (kid.walkTimer) kid.walkTimer.remove();
             if (kid.moveTimer) kid.moveTimer.remove();
             kid.bodySprite.setFrame('death_0');
-            
-            this.checkWinCondition();
+
+            this.time.delayedCall(reactionDelay, () => {
+                if (kid.teamType === 'player') {
+                    this.playOriginalEvent('red_death');
+                } else {
+                    this.playOriginalEvent('green_death');
+                }
+                this.checkWinCondition();
+            });
         } else {
             if (kid.teamType === 'player') {
                 this.time.delayedCall(reactionDelay, () => this.playOriginalEvent('red_stun'));
@@ -1133,16 +1142,18 @@ class MainScene extends Phaser.Scene {
             });
             const pointerX = this.input.activePointer ? this.input.activePointer.x : 300;
             this.scoreValue = SnowcraftParity.scoreOnLevelWin(this.scoreValue, this.greensKilledThisLevel || 0);
-            this.playOriginalEvent('level_clear', { mouseH: pointerX });
-            const nextIndex = this.currentLevelIndex + 1;
-            if (nextIndex >= LEVEL_CONFIG.length) {
-                this.levelText.setText("YOU WIN");
-                this.levelText.setVisible(true);
-                this.levelText.alpha = 1;
-                this.input.once('pointerdown', () => this.restartMatch());
-            } else {
-                this.time.delayedCall(2000, () => this.startLevel(nextIndex));
-            }
+            this.whenChannelIdle(() => {
+                this.playOriginalEvent('level_clear', { mouseH: pointerX });
+                const nextIndex = this.currentLevelIndex + 1;
+                if (nextIndex >= LEVEL_CONFIG.length) {
+                    this.levelText.setText("YOU WIN");
+                    this.levelText.setVisible(true);
+                    this.levelText.alpha = 1;
+                    this.input.once('pointerdown', () => this.restartMatch());
+                } else {
+                    this.time.delayedCall(2000, () => this.startLevel(nextIndex));
+                }
+            });
         } else if (redAlive === 0) {
             this.isLevelActive = false;
             this.greenTeam.forEach(enemy => {
@@ -1156,8 +1167,10 @@ class MainScene extends Phaser.Scene {
                 this.greensKilledThisLevel || 0,
                 this.currentLevelIndex + 1
             );
-            this.playOriginalEvent('game_over');
-            this.time.delayedCall(2200, () => this.playOriginalEvent('game_over'));
+            this.whenChannelIdle(() => {
+                this.playOriginalEvent('game_over');
+                this.whenChannelIdle(() => this.playOriginalEvent('game_over'));
+            });
             
             this.levelText.setText("GAME OVER");
             this.levelText.setVisible(true);
