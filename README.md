@@ -1,61 +1,40 @@
 # Snowcraft Reforged
 
-A modern, web-based recreation of the classic 1998 snowball fighting game.
+A modern, web-based recreation of the classic 1998 snowball fighting game, with original Director sound and throw rules restored from static analysis of `SnowCraft.exe` (the EXE is never run).
 
 ## Project Overview
 
-This version uses **Phaser 3** to replicate the original gameplay while introducing "2.5D" physics (snowballs have height and gravity) and a modern AI that scales in difficulty.
+This version uses **Phaser 3** and the 1998 sprite sheets. Snowball flight, charge, hits-to-KO, and audio follow recovered Lingo (`docs/PARITY.md`). Perfect visual/AI identity with the Director movie is **not** claimed; remaining gaps are listed there.
 
 ## How to Play
 
 1. Open `index.html` in a web browser (use a local server for best results)
 2. Players walk onto the field at the start of each level
-3. Click and hold on a red team player to charge a throw
-4. Release to throw a snowball at the green team
-5. Defeat all green team players to advance to the next level
-6. Watch out - the green team throws back!
+3. Click and hold on a red team player to charge a throw (0–8)
+4. Drag to move that player; release to throw along the original isometric diagonal
+5. Red players fall after **two** hits; green after **three**
+6. Clear the green team to advance (up to 11 named levels)
 
 ## Controls
 
-- **Click & Hold** on a player to charge throw power
-- **Release** to throw a snowball
-- Power meter shows throw strength (longer hold = further throw)
+- **Click & Hold** on a red player to move them and charge power
+- **Release** to throw (always up-left; greens always throw down-right)
+- Longer hold fills the 8-bar meter (about 83 ms per bar)
+- **Mute** in the options bar (persists in `localStorage`)
 
-## Game Features
+Browsers block audio until a click/tap/key; the first gesture unlocks the sound context.
 
-- 5 progressive levels with increasing difficulty
-- Hit animations with stunned states
-- Snowball arc trajectories with shadows
-- Player selection highlighting
-- Win/lose conditions with replay option
+## Development
 
-## Development Tools
-
-- `index.html` - Main game
-- `sprites.html` - Sprite viewer showing all animation frames
+- `index.html` — game
+- `js/snowcraft-parity.js` — recovered constants and mappings
+- `js/snowcraft-audio.js` — channel-1 `puppetSound` / `soundBusy` behavior
+- `assets/sounds/` — original 8-bit mono WAVs
+- `docs/PARITY.md` — verified / inferred / unverified checklist
+- `npm test` — WAV hashes, event wiring, mute/restart, original rules
 
 ## Technical Details
 
 - **Engine**: Phaser 3.60
 - **Canvas**: 600x320 pixels
-- **Assets**: Original sprite sheets from 1998 Snowcraft
-
-## Snowball Speed Analysis
-
-The speed of a snowball is calculated per frame using this formula:
-`Speed = 0.012 + (Strength / 100) * 0.006`
-
-### **Player Stats**
-*   **Strength Range:** 1 to 100 (controlled by how long you hold the mouse).
-*   **Minimum Speed:** **0.0121** (Strength 1)
-*   **Maximum Speed:** **0.0180** (Strength 100)
-
-### **Enemy Stats**
-*   **Strength Range:** 50 to 90 (randomly chosen for each throw).
-*   **Minimum Speed:** **0.0150** (Strength 50)
-*   **Maximum Speed:** **0.0174** (Strength 90)
-
-### **Comparison**
-1.  **Consistency:** Enemies are much more consistent. They never throw a "weak" snowball. Their slowest throw (0.015) is already at **50% of the max possible speed**.
-2.  **Top Speed:** The Player has a slight advantage at maximum power. A fully charged player shot (0.018) travels slightly faster than the fastest enemy shot (0.0174).
-3.  **Range:** The player has a much wider range of speeds available, allowing for short-range lobs (slow) or long-range snipes (fast). The enemies are locked into a "medium-fast" bracket.
+- **Assets**: Original sprite sheets from 1998 Snowcraft plus lossless WAV re-wraps of the Director `sndS` samples

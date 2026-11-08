@@ -1,8 +1,8 @@
 # Snowcraft Reforged
 
-> A free, browser-based remake of the classic 1998 Snowcraft snowball-fight game, built with Phaser 3. Click and hold to charge a throw, release to launch a snowball in a physics-based arc, and defeat the opposing green team across five progressively harder levels.
+> A free, browser-based remake of the classic 1998 Snowcraft snowball-fight game, built with Phaser 3. Click and hold to charge (0–8), drag to move, and release to throw along the original isometric diagonal.
 
-Snowcraft Reforged is an open, HTML5 game that runs entirely in the browser — no install, no account, no ads. It preserves the original 1998 sprite art and sound while adding 2.5D snowball physics (gravity, arc, shadows), a modern scaling AI, and three difficulty settings.
+Snowcraft Reforged is an open, HTML5 game that runs entirely in the browser — no install, no account, no ads. It preserves the original 1998 sprite art and the recovered Director sound/throw rules (charge 0–8, isometric snowballs, two-hit red / three-hit green). Remaining visual/AI gaps vs the 1999 projector are listed in docs/PARITY.md.
 
 ## Key facts
 
@@ -14,7 +14,7 @@ Snowcraft Reforged is an open, HTML5 game that runs entirely in the browser — 
 - **Author**: ChiefInnovator
 - **Source**: https://github.com/ChiefInnovator/snowcraftai
 - **Play online**: https://chiefinnovator.github.io/snowcraftai/
-- **Levels**: 5 progressive levels
+- **Levels**: 11 named levels (original VWLB labels)
 - **Difficulty settings**: Easy, Normal, Hard
 - **Native resolution**: 600x320 (scalable up to 1800x960)
 - **Inspired by**: Snowcraft (1998)

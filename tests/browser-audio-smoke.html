@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Snowcraft audio smoke</title>
+  <script src="../js/snowcraft-parity.js"></script>
+  <script src="../js/snowcraft-audio.js"></script>
+</head>
+<body>
+<pre id="out">running…</pre>
+<script>
+async function main() {
+  const out = document.getElementById('out');
+  const report = { ok: false, decoded: [], errors: [], events: {} };
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    await ctx.resume();
+    for (const [id, url] of Object.entries(SnowcraftParity.SOUND_FILES)) {
+      const res = await fetch('../' + url);
+      if (!res.ok) throw new Error('HTTP ' + res.status + ' ' + url);
+      const buf = await res.arrayBuffer();
+      const audio = await ctx.decodeAudioData(buf.slice(0));
+      report.decoded.push({
+        id,
+        duration: Number(audio.duration.toFixed(3)),
+        channels: audio.numberOfChannels,
+        sampleRate: audio.sampleRate
+      });
+    }
+    const unused = SnowcraftParity.UNUSED_CAST_SOUNDS[0];
+    const unusedRes = await fetch('../' + unused.file);
+    report.unusedPresent = unusedRes.ok;
+    const started = [];
+    const audio = SnowcraftAudio.createSnowcraftAudio({
+      play: function (id) { started.push(id); return { durationMs: 20 }; },
+      stopAll: function () {},
+      isPlaying: function () { return false; }
+    });
+    report.lockedSkip = audio.playEvent('throw', { power: 8 }) === false;
+    audio.unlock();
+    report.fullThrow = audio.playEvent('throw', { power: 8 });
+    report.normalThrow = audio.playEvent('throw', { power: 3 });
+    report.started = started;
+    report.ok = report.decoded.length === 15 && report.unusedPresent && report.lockedSkip && started[0] === 'whoosh';
+  } catch (err) {
+    report.errors.push(String(err && err.stack || err));
+  }
+  out.textContent = JSON.stringify(report, null, 2);
+  document.title = report.ok ? 'SMOKE_OK' : 'SMOKE_FAIL';
+}
+main();
+</script>
+</body>
+</html>

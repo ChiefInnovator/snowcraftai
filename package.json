@@ -1,0 +1,8 @@
+{
+  "name": "snowcraftai",
+  "private": true,
+  "description": "Snowcraft Reforged — browser remake with original SnowCraft audio/gameplay parity work",
+  "scripts": {
+    "test": "node --test tests/*.test.js"
+  }
+}
