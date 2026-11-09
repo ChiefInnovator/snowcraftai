@@ -41,8 +41,9 @@ describe("Director stage geometry", () => {
     });
 });
 
-describe("recovered 8-bit UI BITDs", () => {
-    it("keeps ground, SnowCraft title, Level, digits 2–4, and Bonus Round byte-exact", () => {
+describe("recovered UI BITDs", () => {
+    it("keeps ground, title, Level, digits 2–9, Bonus Round, logo, and Congratulations byte-exact", () => {
+        assert.equal(UI.length, 14);
         UI.forEach((rec) => {
             const buf = fs.readFileSync(path.join(CAST_DIR, rec.file));
             const size = pngSize(buf);
@@ -53,7 +54,28 @@ describe("recovered 8-bit UI BITDs", () => {
         assert.deepEqual(P.CAST.title.loc, [296, 160]);
         assert.deepEqual(P.CAST.levelWord.loc, [286, 160]);
         assert.deepEqual(P.CAST.levelDigit[2].loc, [326, 160]);
+        assert.deepEqual(P.CAST.levelDigit[5].loc, [326, 160]);
+        assert.deepEqual(P.CAST.levelDigit[9].reg, [-41, 11]);
         assert.deepEqual(P.CAST.bonusRound.loc, [285, 160]);
+        assert.deepEqual(P.CAST.logo.loc, [296, 140]);
+        assert.deepEqual(P.CAST.congrats.loc, [295, 160]);
+    });
+});
+
+describe("score UI timing from VWSC", () => {
+    it("uses 15 fps on level 1 and 10 fps on later banners", () => {
+        assert.equal(P.scoreTempoFps(1), 15);
+        assert.equal(P.scoreTempoFps(2), 10);
+        assert.equal(P.scoreTempoFps(11), 10);
+        assert.deepEqual(P.bannerTiming(1), { fps: 15, fadeIn: 15, hold: 7, fadeOut: 4 });
+        assert.deepEqual(P.bannerTiming(5), { fps: 10, fadeIn: 0, hold: 1, fadeOut: 10 });
+        assert.deepEqual(P.SCORE_UI.congrats, { fps: 10, fadeIn: 11, hold: 2, fadeOut: 14 });
+        assert.deepEqual(P.SCORE_UI.logoVictory, { fps: 10, fadeIn: 9, hold: 0, fadeOut: 0 });
+        assert.equal(P.directorBlendToAlpha(255), 0);
+        assert.equal(P.directorBlendToAlpha(0), 1);
+        assert.equal(P.framesToMs(11, 10), 1100);
+        assert.deepEqual(P.CAST.levelDigit[5].reg, [54, 12]);
+        assert.deepEqual(P.CAST.levelDigit[8].reg, [-17, 11]);
     });
 });
 

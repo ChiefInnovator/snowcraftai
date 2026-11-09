@@ -141,6 +141,8 @@ class MainScene extends Phaser.Scene {
             this.load.image(spec.key, 'assets/cast/' + spec.file);
         });
         this.load.image(P.CAST.bonusRound.key, 'assets/cast/' + P.CAST.bonusRound.file);
+        this.load.image(P.CAST.logo.key, 'assets/cast/' + P.CAST.logo.file);
+        this.load.image(P.CAST.congrats.key, 'assets/cast/' + P.CAST.congrats.file);
         this.load.image('shadow', 'assets/shadow.png');
         this.load.image('snowball_shadow', 'assets/snowball_shadow.png');
         this.load.image('hand', 'assets/smallHand.png');
@@ -539,29 +541,71 @@ class MainScene extends Phaser.Scene {
         this.createTeam('cpu', this.greenTeam, layout.greens);
 
         this.showScoreBanner(index);
-        const bannerTargets = [this.scoreBanner, this.scoreBannerDigit, this.levelText].filter((t) => t && t.visible);
-        bannerTargets.forEach((t) => { t.alpha = isFirst ? 1 : 0; });
+        this.playScoreBanner(index);
+    }
 
-        this.tweens.add({
-            targets: bannerTargets,
-            alpha: 1,
-            duration: isFirst ? 600 : 1000,
-            hold: isFirst ? 2500 : 1500,
-            yoyo: true,
-            onComplete: () => {
-                this.hideScoreBanner();
-                this.levelText.setVisible(false);
-                this.textFadeComplete = true;
-                this.checkLevelReady();
-            }
-        });
+    clearScoreBannerAnims() {
+        this._bannerGen = (this._bannerGen || 0) + 1;
+        if (this.tweens) {
+            this.tweens.killTweensOf(this.scoreBanner);
+            this.tweens.killTweensOf(this.scoreBannerDigit);
+            this.tweens.killTweensOf(this.levelText);
+        }
+        if (this._bannerHold) {
+            this._bannerHold.remove(false);
+            this._bannerHold = null;
+        }
+    }
+
+    playScoreBanner(index) {
+        this.clearScoreBannerAnims();
+        const timing = P.bannerTiming(index + 1);
+        const gen = this._bannerGen;
+        const targets = [this.scoreBanner, this.scoreBannerDigit, this.levelText].filter((t) => t && t.visible);
+        const finish = () => {
+            if (gen !== this._bannerGen) return;
+            this.hideScoreBanner();
+            this.levelText.setVisible(false);
+            this.textFadeComplete = true;
+            this.checkLevelReady();
+        };
+        if (!targets.length) {
+            finish();
+            return;
+        }
+        const fadeInMs = P.framesToMs(timing.fadeIn, timing.fps);
+        const holdMs = P.framesToMs(timing.hold, timing.fps);
+        const fadeOutMs = P.framesToMs(timing.fadeOut, timing.fps);
+        targets.forEach((t) => { t.alpha = fadeInMs ? 0 : 1; });
+        const fadeOut = () => {
+            if (gen !== this._bannerGen) return;
+            this.tweens.add({
+                targets: targets,
+                alpha: 0,
+                duration: Math.max(1, fadeOutMs),
+                onComplete: finish
+            });
+        };
+        const afterIn = () => {
+            if (gen !== this._bannerGen) return;
+            if (holdMs) this._bannerHold = this.time.delayedCall(holdMs, fadeOut);
+            else fadeOut();
+        };
+        if (fadeInMs) {
+            this.tweens.add({
+                targets: targets,
+                alpha: 1,
+                duration: fadeInMs,
+                onComplete: afterIn
+            });
+        } else {
+            afterIn();
+        }
     }
 
     jumpToLevel(index) {
         if (index < 0 || index >= RULES.greensPerLevel.length) return;
-        this.tweens.killTweensOf(this.levelText);
-        this.tweens.killTweensOf(this.scoreBanner);
-        this.tweens.killTweensOf(this.scoreBannerDigit);
+        this.clearScoreBannerAnims();
         this.hideEndScreen();
         this.startLevel(index);
     }
@@ -628,7 +672,7 @@ class MainScene extends Phaser.Scene {
             kid.isWalkingOntoField = true;
             this.walkingCount++;
             let step = 0;
-            const fps = pack.fps || P.SCORE_WALKON_FPS;
+            const fps = P.scoreTempoFps(this.currentLevelIndex + 1);
             kid.walkTimer = this.time.addEvent({
                 delay: 1000 / fps,
                 loop: true,
@@ -1062,7 +1106,7 @@ class MainScene extends Phaser.Scene {
             this.playOriginalEvent('game_over');
             this.whenSfxIdle(() => {
                 this.playOriginalEvent('game_over');
-                this.whenSfxIdle(() => this.showEndScreen('GAME OVER'));
+                this.whenSfxIdle(() => this.showLossScreen());
             });
         });
 
@@ -1074,32 +1118,108 @@ class MainScene extends Phaser.Scene {
     victory() {
         this.score = this.score * 10;
         if (this.score > 900) this.score = 1000;
-        this.showEndScreen('YOU WIN!');
+        this.showVictoryScreen();
     }
 
-    showEndScreen(title) {
-        this.levelText.setText(title);
-        this.levelText.setStyle({ fontSize: '60px', fontFamily: 'Arial, sans-serif' });
-        this.levelText.setPosition(STAGE_W / 2, STAGE_H / 2 - 20).setAlpha(0).setVisible(true);
-        this.tweens.add({ targets: this.levelText, alpha: 1, duration: 800 });
+    showLossScreen() {
+        this.clearScoreBannerAnims();
+        this.hideScoreBanner();
+        this.levelText.setVisible(false);
+        if (this.textures.exists(P.CAST.logo.key)) {
+            this.placeCast(this.scoreBanner, P.CAST.logo);
+            this.scoreBanner.setAlpha(1).setVisible(true);
+        } else {
+            this.levelText.setText('GAME OVER');
+            this.levelText.setStyle({ fontSize: '60px', fontFamily: 'Arial, sans-serif' });
+            this.levelText.setPosition(STAGE_W / 2, STAGE_H / 2 - 20).setAlpha(1).setVisible(true);
+        }
+        this.revealPlayAgain();
+    }
 
-        this.time.delayedCall(900, () => {
-            this.playAgainButton.setVisible(true).setAlpha(0);
-            this.tweens.add({ targets: this.playAgainButton, alpha: 1, duration: 500 });
-            if (this.score > 0) {
-                const counter = { n: 0 };
-                this.scoreText.setVisible(true).setText('SCORE: 0');
-                this.tweens.add({
-                    targets: counter, n: this.score, duration: Math.min(2000, 200 + this.score * 4),
-                    onUpdate: () => this.scoreText.setText('SCORE: ' + Math.round(counter.n))
+    showVictoryScreen() {
+        this.clearScoreBannerAnims();
+        this.hideScoreBanner();
+        this.levelText.setVisible(false);
+        if (!this.textures.exists(P.CAST.congrats.key)) {
+            this.levelText.setText('YOU WIN!');
+            this.levelText.setStyle({ fontSize: '60px', fontFamily: 'Arial, sans-serif' });
+            this.levelText.setPosition(STAGE_W / 2, STAGE_H / 2 - 20).setAlpha(1).setVisible(true);
+            this.revealPlayAgain();
+            return;
+        }
+        const c = P.SCORE_UI.congrats;
+        const gen = this._bannerGen;
+        this.placeCast(this.scoreBanner, P.CAST.congrats);
+        this.scoreBanner.setAlpha(0).setVisible(true);
+        this.tweens.add({
+            targets: this.scoreBanner,
+            alpha: 1,
+            duration: P.framesToMs(c.fadeIn, c.fps),
+            onComplete: () => {
+                if (gen !== this._bannerGen) return;
+                this._bannerHold = this.time.delayedCall(P.framesToMs(c.hold, c.fps), () => {
+                    if (gen !== this._bannerGen) return;
+                    this.tweens.add({
+                        targets: this.scoreBanner,
+                        alpha: 0,
+                        duration: P.framesToMs(c.fadeOut, c.fps),
+                        onComplete: () => {
+                            if (gen !== this._bannerGen) return;
+                            this.fadeInVictoryLogo();
+                        }
+                    });
                 });
             }
         });
     }
 
+    fadeInVictoryLogo() {
+        const timing = P.SCORE_UI.logoVictory;
+        const gen = this._bannerGen;
+        if (this.textures.exists(P.CAST.logo.key)) {
+            this.placeCast(this.scoreBanner, P.CAST.logo);
+            this.scoreBanner.setAlpha(0).setVisible(true);
+            this.tweens.add({
+                targets: this.scoreBanner,
+                alpha: 1,
+                duration: P.framesToMs(timing.fadeIn, timing.fps),
+                onComplete: () => {
+                    if (gen !== this._bannerGen) return;
+                    this.revealPlayAgain();
+                }
+            });
+            return;
+        }
+        this.revealPlayAgain();
+    }
+
+    revealPlayAgain() {
+        this.playAgainButton.setVisible(true).setAlpha(0);
+        this.tweens.add({ targets: this.playAgainButton, alpha: 1, duration: 500 });
+        if (this.score > 0) {
+            const counter = { n: 0 };
+            this.scoreText.setVisible(true).setText('SCORE: 0');
+            this.tweens.add({
+                targets: counter, n: this.score, duration: Math.min(2000, 200 + this.score * 4),
+                onUpdate: () => this.scoreText.setText('SCORE: ' + Math.round(counter.n))
+            });
+        }
+    }
+
+    showEndScreen(title) {
+        if (title === 'YOU WIN!' || title === 'YOU WIN') {
+            this.showVictoryScreen();
+            return;
+        }
+        this.showLossScreen();
+    }
+
     hideEndScreen() {
+        this.clearScoreBannerAnims();
         this.playAgainButton.setVisible(false);
         this.scoreText.setVisible(false);
+        this.hideScoreBanner();
+        if (this.levelText) this.levelText.setVisible(false);
     }
 
     destroyKid(k) {

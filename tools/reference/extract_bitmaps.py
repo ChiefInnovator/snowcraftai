@@ -23,8 +23,9 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from inspect_movie import Movie, read_cast, read_config, read_labels, read_score, sprite, u16, u32  # noqa: E402
 
 # Gameplay + stage UI BITDs recovered from the EXE movie (members 1–89).
-# 67–68 are empty "nothing" placeholders; 32-bit members are attempted as 8-bit
-# PackBits first, then raw BGRA.
+# 67–68 are empty "nothing" placeholders.
+# 32-bit BITDs (D4+ / Director 8) are PackBits of per-row ARGB planes, matching
+# ScummVM engines/director/images.cpp BITDDecoder (version >= kFileVer400).
 NEED = set(range(1, 90))
 
 
@@ -72,20 +73,41 @@ def decode8(bitd: bytes, width: int, height: int):
 
 
 def decode32(bitd: bytes, width: int, height: int):
-    """Director 32-bit BITD: raw BGRA, optional 8-byte header, or packed 8-bit."""
-    need = width * height * 4
+    """Director 8 / D4+ 32-bit BITD: PackBits, one row = A,R,G,B planes of `width`.
+
+    Alpha is unused (all 0) on SnowCraft's 32-bit text BITDs; white is the matte
+    (same role as palette index 0 on the 8-bit members). ScummVM forces alpha to
+    0xff and composites in 32bpp; we emit PNG alpha so Phaser matte ink matches.
+    """
+    pitch = width * 4
+    need = pitch * height
+    how = None
+    pixels = None
     if len(bitd) == need:
-        rgba = bytearray(need)
-        for i in range(0, need, 4):
-            b, g, r, a = bitd[i:i + 4]
-            rgba[i:i + 4] = bytes([r, g, b, a])
-        return bytes(rgba), "raw-bgra"
-    if len(bitd) > 8 and len(bitd) - 8 == need:
-        return decode32(bitd[8:], width, height)[0], "hdr8-bgra"
-    pix, how = decode8(bitd, width, height)
-    if pix is not None:
-        return pix, "idx8-via-" + how
-    return None, "fail32"
+        pixels, how = bitd, "raw-planar32"
+    else:
+        rows, consumed = packbits_rows(bitd, pitch, height)
+        if rows is not None and consumed == len(bitd):
+            pixels, how = rows, f"pb-planar32@{pitch}"
+    if pixels is None:
+        return None, "fail32"
+    rgba = bytearray(width * height * 4)
+    for y in range(height):
+        base = y * pitch
+        for x in range(width):
+            a = pixels[base + x]
+            r = pixels[base + width + x]
+            g = pixels[base + 2 * width + x]
+            b = pixels[base + 3 * width + x]
+            if r == 255 and g == 255 and b == 255:
+                a_out = 0
+            elif a == 0:
+                a_out = 255
+            else:
+                a_out = a
+            o = (y * width + x) * 4
+            rgba[o:o + 4] = bytes([r, g, b, a_out])
+    return bytes(rgba), how
 
 
 def parse_clut(blob: bytes):
@@ -193,29 +215,38 @@ def main(src, out_dir):
             "num": num, "name": member["name"], "w": width, "h": height,
             "reg": list(member.get("reg", (0, 0))), "depth": member.get("depth"),
         }
-        pixels, how = decode8(raw, width, height)
+        depth = member.get("depth") or 8
+        rec["depth"] = depth
         rgba = None
-        if pixels is not None:
+        how = None
+        if depth == 32:
+            rgba_bytes, how = decode32(raw, width, height)
             rec["how"] = how
-            rgba = bytearray(width * height * 4)
-            for i, idx in enumerate(pixels):
-                r, g, b = palette[idx]
-                rgba[i * 4:i * 4 + 4] = bytes([r, g, b, 0 if idx == 0 else 255])
-        else:
-            rgba_bytes, how32 = decode32(raw, width, height)
-            rec["how"] = how32
-            if rgba_bytes is None or how32 == "idx8-via-fail":
+            if rgba_bytes is None:
                 print("decode fail", rec)
                 continue
-            if how32.startswith("idx8-via-"):
+            rgba = bytearray(rgba_bytes)
+        else:
+            pixels, how = decode8(raw, width, height)
+            rec["how"] = how
+            if pixels is None:
+                rgba_bytes, how = decode32(raw, width, height)
+                rec["how"] = how
+                if rgba_bytes is None:
+                    print("decode fail", rec)
+                    continue
+                rgba = bytearray(rgba_bytes)
+            else:
                 rgba = bytearray(width * height * 4)
-                for i, idx in enumerate(rgba_bytes):
+                for i, idx in enumerate(pixels):
                     r, g, b = palette[idx]
                     rgba[i * 4:i * 4 + 4] = bytes([r, g, b, 0 if idx == 0 else 255])
-            else:
-                rgba = bytearray(rgba_bytes)
-        rec["how"] = how if pixels is not None else rec["how"]
-        slug = f"{num:03d}_{(member['name'] or 'unnamed').replace(' ', '_')}"
+        slug_name = (member["name"] or "unnamed").replace(" ", "_")
+        if num == 70:
+            slug_name = "happy_holidays"
+        elif num == 88:
+            slug_name = "congratulations"
+        slug = f"{num:03d}_{slug_name}"
         path = os.path.join(bmp_dir, slug + ".png")
         write_png(path, width, height, bytes(rgba))
         rec["file"] = os.path.basename(path)

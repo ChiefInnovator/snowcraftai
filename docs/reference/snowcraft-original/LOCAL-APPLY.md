@@ -54,6 +54,23 @@ git apply --binary /path/to/snowcraft-incremental-8cee4f1-graphics-scaler.patch
 That patch keeps the existing 600×320–1800×960 display scaler (Fit to window,
 1×–3×). It does not stash, reset, or merge to `develop` / `main`.
 
+## Incremental patch after the graphics/scaler apply (from `8b73a06`)
+
+Once the graphics/scaler increment has been applied, the worktree matches
+combined `8b73a06ecf8526542f1827b194941f6befa35231`. **Do not** reset or
+re-apply earlier patches. The next 32-bit UI increment is a binary patch whose
+before-side **is** that `8b73a06` tree:
+
+```bash
+# worktree must already be the applied combined tree (8b73a06 contents)
+git apply --check --binary /path/to/snowcraft-incremental-8b73a06-bitd32-ui.patch
+git apply --binary /path/to/snowcraft-incremental-8b73a06-bitd32-ui.patch
+```
+
+That patch recovers Happy Holidays, digits 5–9, and Congratulations from D4
+planar PackBits BITDs. It keeps the 600×320–1800×960 display scaler. It does
+not stash, reset, or merge to `develop` / `main`.
+
 ## Optional (changes HEAD)
 
 ```bash

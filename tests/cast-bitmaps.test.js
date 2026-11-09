@@ -87,11 +87,13 @@ describe("VWSC walk-on paths", () => {
         fs.readFileSync(path.join(__dirname, "..", "src/assets/walkon.json"), "utf8")
     );
 
-    it("replays 10 levels at 15 fps and ends on Event Loop locs", () => {
+    it("replays 10 levels and ends on Event Loop locs", () => {
         assert.equal(walkon.length, 10);
         assert.equal(P.SCORE_WALKON_FPS, 15);
+        assert.equal(P.SCORE_BANNER_FPS, 10);
         walkon.forEach((pack, i) => {
-            assert.equal(pack.fps, 15, "level " + (i + 1) + " fps");
+            assert.equal(pack.fps, 15, "level " + (i + 1) + " extracted fps stamp");
+            assert.equal(P.scoreTempoFps(i + 1), i === 0 ? 15 : 10, "level " + (i + 1) + " score tempo");
             assert.equal(pack.reds.length, 3);
             assert.equal(pack.greens.length, P.LEVELS[i].gd);
             const lastReds = pack.reds.map((path) => {

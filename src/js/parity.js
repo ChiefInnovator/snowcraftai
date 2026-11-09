@@ -226,18 +226,51 @@
             { num: 35, name: "G dead", key: "cast_035_G_dead", file: "035_G_dead.png", w: 69, h: 42, reg: [73, 34] },
             { num: 36, name: "G dead", key: "cast_036_G_dead", file: "036_G_dead.png", w: 49, h: 38, reg: [56, 36] }
         ],
-        // Score UI BITDs (8-bit PackBits). 32-bit members 70 / 82–86 / 88 did not decode.
         ground: { key: "cast_ground", file: "069_ground.png", w: 600, h: 320, reg: [300, 160], loc: [296, 160], ink: 0 },
         title: { key: "cast_title", file: "076_1.png", w: 122, h: 22, reg: [76, 14], loc: [296, 160], ink: 8 },
+        logo: { key: "cast_logo", file: "070_happy_holidays.png", w: 254, h: 64, reg: [127, 32], loc: [296, 140], ink: 8 },
+        congrats: { key: "cast_congrats", file: "088_congratulations.png", w: 190, h: 31, reg: [95, 15], loc: [295, 160], ink: 8 },
         levelWord: { key: "cast_level_word", file: "078_Level.png", w: 63, h: 22, reg: [43, 11], loc: [286, 160], ink: 8 },
         levelDigit: {
             2: { key: "cast_level_2", file: "079_2.png", w: 13, h: 21, reg: [-30, 10], loc: [326, 160], ink: 8 },
             3: { key: "cast_level_3", file: "080_3.png", w: 14, h: 21, reg: [-29, 10], loc: [326, 160], ink: 8 },
-            4: { key: "cast_level_4", file: "081_4.png", w: 14, h: 21, reg: [-30, 10], loc: [326, 160], ink: 8 }
+            4: { key: "cast_level_4", file: "081_4.png", w: 14, h: 21, reg: [-30, 10], loc: [326, 160], ink: 8 },
+            5: { key: "cast_level_5", file: "082_5.png", w: 13, h: 22, reg: [54, 12], loc: [326, 160], ink: 8 },
+            6: { key: "cast_level_6", file: "083_6.png", w: 14, h: 22, reg: [30, 12], loc: [326, 160], ink: 8 },
+            7: { key: "cast_level_7", file: "084_7.png", w: 15, h: 21, reg: [7, 11], loc: [326, 160], ink: 8 },
+            8: { key: "cast_level_8", file: "085_8.png", w: 14, h: 21, reg: [-17, 11], loc: [326, 160], ink: 8 },
+            9: { key: "cast_level_9", file: "086_9.png", w: 14, h: 23, reg: [-41, 11], loc: [326, 160], ink: 8 }
         },
         bonusRound: { key: "cast_bonus_round", file: "087_bonus_round.png", w: 158, h: 23, reg: [79, 11], loc: [285, 160], ink: 8 }
     };
-    const SCORE_WALKON_FPS = 15; // VWSC tempo during Level N walk-on
+    const SCORE_WALKON_FPS = 15; // VWSC tempo on Level 1 (frame 1). Levels 2–11 / GreenWin are 10 fps.
+    const SCORE_BANNER_FPS = 10;
+    const SCORE_UI = {
+        title: { fps: 15, fadeIn: 15, hold: 7, fadeOut: 4 },
+        levelBanner: { fps: 10, fadeIn: 0, hold: 1, fadeOut: 10 },
+        congrats: { fps: 10, fadeIn: 11, hold: 2, fadeOut: 14 },
+        logoVictory: { fps: 10, fadeIn: 9, hold: 0, fadeOut: 0 }
+    };
+
+    function scoreTempoFps(level) {
+        return Number(level) === 1 ? SCORE_WALKON_FPS : SCORE_BANNER_FPS;
+    }
+
+    function bannerTiming(level) {
+        return Number(level) === 1 ? SCORE_UI.title : SCORE_UI.levelBanner;
+    }
+
+    function framesToMs(frames, fps) {
+        return Math.round((Number(frames) || 0) * 1000 / (Number(fps) || 15));
+    }
+
+    function directorBlendToAlpha(blend) {
+        const b = Number(blend);
+        if (!Number.isFinite(b)) return 1;
+        if (b <= 0) return 1;
+        if (b >= 255) return 0;
+        return 1 - b / 255;
+    }
     const INK_MATTE = 8;
     const RED_DAZE_CYCLES = 15; // mySteps = 15 of daze1/2/3
     const GREEN_OW_MOVES = 10;
@@ -488,6 +521,12 @@
         LEVELS,
         CAST,
         SCORE_WALKON_FPS,
+        SCORE_BANNER_FPS,
+        SCORE_UI,
+        scoreTempoFps,
+        bannerTiming,
+        framesToMs,
+        directorBlendToAlpha,
         INK_MATTE,
         RED_DAZE_CYCLES,
         GREEN_OW_MOVES,

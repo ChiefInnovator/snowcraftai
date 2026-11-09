@@ -19,30 +19,34 @@ Evidence is static BITD / VWSC / DRCF parse of
 | Shadow | Member 1, loc = kid loc, ink matte | recovered BITD at kid loc |
 | Power 0–8 | Members 37–45, loc = kid loc, reg x = −27 | BITDs at kid loc (not offset +15) |
 | Snowball / drop / splat / melt | Members 57–66, height in the bitmap | recovered BITDs, registration applied |
-| Title | Member 76 “SnowCraft” 122×22 at (296,160) after walk-on | `076_1.png` |
-| Level 2–4 | Member 78 “Level” (286,160) + digits 2–4 (326,160) | recovered 8-bit BITDs |
-| Level 10 | Member 87 “Bonus Round” at (285,160) | `087_bonus_round.png` |
-| Walk-on | VWSC 15 fps, original members | `walkon.json` |
-| Hits | ink 8 matte; `sprite intersects` = opaque pixels | PNG alpha (index 0) overlap after AABB |
+| Title | Member 76 “SnowCraft” 122×22 at (296,160); blend 255→0→255 at **15 fps** (frames 10–34) | `076_1.png` |
+| Level 2–9 | Member 78 “Level” (286,160) + digits 2–9 (326,160); fade-out **10 fps**, 11 frames | 8-bit 2–4; **32-bit** 5–9 via D4 planar PackBits |
+| Level 10 | Member 87 “Bonus Round” at (285,160), 10 fps fade-out | `087_bonus_round.png` |
+| Logo | Member 70 “Happy Holidays / IconMedialab” 254×64. Event Loop ch2 at (296,140) **blend 255 (hidden)**. GreenWin (296,140) blend 0. Victory frames 317–325 fade in. | `070_happy_holidays.png` |
+| Victory banner | Member 88 “Congratulations!” (295,160), 10 fps, blend 255→0→255 (frames 290–315) | `088_congratulations.png` |
+| Walk-on | Score tempo **15 fps** on Level 1, **10 fps** on Levels 2–10 | `walkon.json` paths; runtime uses `scoreTempoFps` |
+| Hits | ink 8 matte; `sprite intersects` = opaque pixels | PNG alpha (index 0 / 32-bit white) overlap after AABB |
 | Pixel filter | Stage pixels | Pre-existing Phaser `pixelArt: true` nearest-neighbour scaler |
+
+32-bit decoder: ScummVM `BITDDecoder` for Director ≥4 stores each scanline as A,R,G,B planes, PackBits-compressed. These members were **not** unrecoverable; the previous decoder only tried 8-bit/BGRA. Alpha plane is unused (0); white is the matte. Evidence: `docs/recovered/ui-score.json`.
 
 ## Inferred / partial
 
 | Item | Status |
 |---|---|
-| Levels 5–9 digits (members 82–86, **32-bit BITD**) | Decode failed. “Level” word BITD is shown; the numeral falls back to a small Arial digit at the original loc. |
 | Level 1 numeral | Original uses the SnowCraft title BITD, not a “1” glyph. |
+| Member 77 `snowcraft_palatte` | 8-bit strip on GreenWin/victory ch4; not a GAME OVER glyph. Left unwired. |
+| Level 6 “Level” word ink 39 (darkest) | Digit still ink 8. Remake keeps matte ink 8 on the word. |
+| 32-bit digit CASt regs | VWSC loc is (326,160) for digits 2–9. 8-bit 2–4 regs (−30/−29/−30, 10) put the glyph ~50 px right of “Level”. 32-bit 5–9 CASt regs (54, 30, 7, −17, −41) fan the left edge across 272–367, so 5–7 overlap “Level” (`Le5el` in a Level 5 screenshot). Wired as recovered CASt+VWSC, not an inferred 2–4 alignment. Original projector not run. |
 
 ## Unverified / blocked (not claimed)
 
 | Item | Why |
 |---|---|
-| Member 70 Happy Holidays logo (254×64, 32-bit) during Event Loop at (296,140) | BITD did not decode; original shows it on the field while playing |
-| Member 88 (190×31, 32-bit) on `Level 11` | Likely victory art; GAME OVER / YOU WIN remain remake text |
-| Member 77 palette strip on GreenWin | Recovered PNG exists, not yet placed (loss screen is remake) |
 | Pixel-matte vs Director runtime | Masks come from recovered PNG alpha; no Wine `sprite intersects` capture |
 | DCR BITD pixels | Afterburner `snd `/BITD compression type 1 not decoded; EXE is the art source |
 | EXE window chrome, 15 fps director tempo as wall-clock | Platform; not the inner movie |
+| Play Again / SCORE field glyphs | Lingo UI, not BITDs. Remake keeps the existing Play Again button + SCORE counter |
 | `playField.png` / `player.png` atlas leftovers | Unused for kids/ground now; left in the tree (pre-existing remake assets) |
 
 ## Intentional / unavoidable platform deviations (not new this pass)

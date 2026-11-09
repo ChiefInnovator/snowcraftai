@@ -1,0 +1,106 @@
+{
+  "source": "Static VWSC parse of SnowCraft.exe movie (never executed). Director blend 255 = transparent, 0 = opaque. Phaser alpha = 1 - blend/255.",
+  "decoder": "ScummVM engines/director/images.cpp BITDDecoder D4+ 32-bit: PackBits, each row is A,R,G,B planes of width bytes. SnowCraft 32-bit text BITDs have unused (0) alpha; white is the matte.",
+  "tempo": {
+    "level1": { "labelFrame": 1, "fps": 15 },
+    "greenWin": { "labelFrame": 40, "fps": 10 },
+    "level2to10": { "labelFrames": [50, 70, 90, 110, 130, 160, 194, 226, 259], "fps": 10 },
+    "eventLoop": { "fps": 500 },
+    "level11": { "labelFrame": 290, "fps": 10 }
+  },
+  "title": {
+    "member": 76,
+    "file": "076_1.png",
+    "loc": [296, 160],
+    "ink": 8,
+    "channel": 2,
+    "frames": "10-34",
+    "fps": 15,
+    "blend": "255→0 over frames 10-24, hold 0 on 24-30, 0→255 on 31-34"
+  },
+  "levelWord": {
+    "member": 78,
+    "file": "078_Level.png",
+    "loc": [286, 160],
+    "ink": 8,
+    "note": "Level 6 uses ink 39 (darkest) on the word channel; digit is still ink 8."
+  },
+  "levelDigits": {
+    "loc": [326, 160],
+    "ink": 8,
+    "channel": 2,
+    "fps": 10,
+    "framesPerBanner": 11,
+    "blend": "0→255 over 11 frames (starts opaque, fades out)",
+    "members": {
+      "2": 79,
+      "3": 80,
+      "4": 81,
+      "5": 82,
+      "6": 83,
+      "7": 84,
+      "8": 85,
+      "9": 86
+    },
+    "castReg": {
+      "2": [-30, 10],
+      "3": [-29, 10],
+      "4": [-30, 10],
+      "5": [54, 12],
+      "6": [30, 12],
+      "7": [7, 11],
+      "8": [-17, 11],
+      "9": [-41, 11]
+    },
+    "leftEdgeAtLoc326": {
+      "2": 356,
+      "3": 355,
+      "4": 356,
+      "5": 272,
+      "6": 296,
+      "7": 319,
+      "8": 343,
+      "9": 367
+    },
+    "note": "CASt registration is spec+18/+20 minus initialRect (ScummVM D6–D11 bitmap.cpp). 8-bit 2–4 sit ~50px right of 'Level'. 32-bit 5–9 fan left-to-right; 5–7 overlap the word. Wired as recovered, not inferred 2–4 alignment. EXE not run."
+  },
+  "bonusRound": {
+    "member": 87,
+    "file": "087_bonus_round.png",
+    "loc": [285, 160],
+    "ink": 8,
+    "frames": "259-269",
+    "fps": 10,
+    "blend": "0→255 over 11 frames"
+  },
+  "logo": {
+    "member": 70,
+    "file": "070_happy_holidays.png",
+    "nameInCast": "2",
+    "playfield": { "loc": [296, 140], "blend": 255, "visible": false, "note": "Present on Event Loop ch2 but blend 255 (hidden during play)." },
+    "greenWin": { "loc": [296, 140], "frames": "40-45", "blend": 0, "fps": 10, "visible": true },
+    "victory": { "loc": [296, 140], "frames": "317-325", "blend": "255→0", "fps": 10 }
+  },
+  "congrats": {
+    "member": 88,
+    "file": "088_congratulations.png",
+    "loc": [295, 160],
+    "ink": 8,
+    "frames": "290-315",
+    "fps": 10,
+    "blend": "255→0 over 290-300, hold 0 on 300-301, 0→255 over 302-315"
+  },
+  "paletteStrip": {
+    "member": 77,
+    "name": "snowcraft_palatte",
+    "channel": 4,
+    "greenWin": { "loc": [292, 160], "frames": "40-45", "blend": "255→0" },
+    "victory": { "loc": [296, 160], "frames": "320-325", "blend": "255→0" },
+    "wired": false,
+    "note": "8-bit BITD; not a GAME OVER/YOU WIN glyph. Left unwired (palette/credit strip)."
+  },
+  "notPresent": [
+    "No GAME OVER BITD. Loss screen is the Happy Holidays logo plus Lingo Play Again / SCORE.",
+    "No YOU WIN BITD. Victory banner is member 88 Congratulations! then the logo."
+  ]
+}
