@@ -822,6 +822,18 @@ class MainScene extends Phaser.Scene {
         }
     }
 
+    stopWalkOn(kid) {
+        const timer = kid.walkTimer;
+        const wasWalking = !!kid.isWalkingOntoField;
+        // Invalidate callback ownership before removing the event: Clock may
+        // already be dispatching several repeats from the same delayed frame.
+        kid.walkTimer = null;
+        kid.isWalkingOntoField = false;
+        if (wasWalking) this.walkingCount--;
+        if (timer) timer.remove();
+        return wasWalking;
+    }
+
     createTeam(type, teamArray, positions) {
         const pack = this.walkon[this.currentLevelIndex] || null;
         const paths = pack ? (type === 'player' ? pack.reds : pack.greens) : [];
@@ -887,13 +899,10 @@ class MainScene extends Phaser.Scene {
                     if (!kid.isWalkingOntoField || !kid.walkTimer) return;
                     step += 1;
                     if (step >= path.length) {
+                        this.stopWalkOn(kid);
                         kid.x = kid.finalX;
                         kid.y = kid.finalY;
-                        kid.isWalkingOntoField = false;
                         this.setKidMember(kid, type === 'player' ? 'R rest' : 'G ready');
-                        kid.walkTimer.remove();
-                        kid.walkTimer = null;
-                        this.walkingCount--;
                         this.checkLevelReady();
                         return;
                     }
@@ -1173,8 +1182,9 @@ class MainScene extends Phaser.Scene {
         kid.isImmune = false;
         kid.isDazed = false;
         this.cancelActions(kid);
+        const wasWalking = this.stopWalkOn(kid);
         this.showKidFrame(kid, frame);
-        if (kid.walkTimer) kid.walkTimer.remove();
+        if (wasWalking) this.checkLevelReady();
         this.checkWinCondition();
     }
 
@@ -1418,7 +1428,7 @@ class MainScene extends Phaser.Scene {
     destroyKid(k) {
         this.cancelActions(k);
         this.stopDaze(k);
-        if (k.walkTimer) k.walkTimer.remove();
+        this.stopWalkOn(k);
         if (k.shadow) k.shadow.destroy();
         if (k.debugLabel) k.debugLabel.destroy();
         k.destroy();

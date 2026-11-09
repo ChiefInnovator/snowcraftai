@@ -7,7 +7,7 @@ import path from 'node:path';
 
 // Registration/export only. All character illustration comes from the approved
 // image_gen masters; this never redraws or interpolates the original characters.
-const repo = fileURLToPath(new URL('../../', import.meta.url));
+const repo = path.resolve(fileURLToPath(new URL('../../', import.meta.url)));
 const require = createRequire(new URL('../../web/package.json', import.meta.url));
 const { chromium } = require(process.env.SNOWCRAFT_PLAYWRIGHT_MODULE || 'playwright');
 const scale = 8;
@@ -20,11 +20,16 @@ await mkdir(output, { recursive: true });
 await mkdir(native, { recursive: true });
 const types = { '.png': 'image/png', '.json': 'application/json' };
 const server = createServer(async (request, response) => {
-  const pathname = decodeURIComponent(new URL(request.url, 'http://localhost').pathname);
+  let pathname;
+  try { pathname = decodeURIComponent(new URL(request.url, 'http://localhost').pathname); }
+  catch { return response.writeHead(400).end(); }
   if (pathname === '/') return response.writeHead(200, { 'Content-Type': 'text/html' }).end('<!doctype html><title>HD sprite export</title>');
   const file = path.resolve(repo, '.' + pathname);
-  if (!file.startsWith(repo)) return response.writeHead(403).end();
-  try { response.writeHead(200, { 'Content-Type': types[path.extname(file)] || 'application/octet-stream' }).end(await readFile(file)); }
+  if (file !== repo && !file.startsWith(repo + path.sep)) return response.writeHead(403).end();
+  try {
+    const bytes = await readFile(file);
+    response.writeHead(200, { 'Content-Type': types[path.extname(file)] || 'application/octet-stream' }).end(bytes);
+  }
   catch { response.writeHead(404).end(); }
 });
 await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));

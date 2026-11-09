@@ -369,6 +369,76 @@ test("all 35 HD poses retain logical geometry and one selection ring across artw
     evidence.hdCharacters = observations;
 });
 
+test("walk-on cancellation during Clock catch-up preserves dead kids and the next level's count", { timeout: 30000 }, async t => {
+    const { page } = await open(t, "cancelled walk-on catch-up");
+    const observations = await page.evaluate(() => {
+        const scene = SnowcraftGame.getScene();
+        scene.audio.setMuted(true);
+        const results = [];
+        for (const kind of ['knockout', 'destroy', 'reset']) {
+            scene.startLevel(0);
+            const kid = scene.redTeam[0];
+            const setMember = scene.setKidMember;
+            let cancelling = false, cancelled = false, laterMutations = 0, atCancellation;
+            scene.setKidMember = function (target, ...args) {
+                if (target === kid && cancelled) laterMutations++;
+                const result = setMember.call(this, target, ...args);
+                if (target === kid && !cancelling && !cancelled) {
+                    cancelling = true;
+                    if (kind === 'knockout') this.knockOut(kid, 'death_0');
+                    else if (kind === 'destroy') {
+                        this.destroyKid(kid);
+                        this.redTeam.splice(this.redTeam.indexOf(kid), 1);
+                    } else this.startLevel(1);
+                    cancelled = true;
+                    atCancellation = { x: kid.x, y: kid.y, member: kid.memberName };
+                }
+                return result;
+            };
+            try {
+                scene.time.preUpdate();
+                scene.time.update(scene.time.now + 10000, 10000);
+            } finally {
+                scene.setKidMember = setMember;
+            }
+            const count = scene.walkingCount;
+            scene.stopWalkOn(kid); // cancellation must also be idempotent
+            results.push({ kind, cancelled, laterMutations, atCancellation,
+                after: { x: kid.x, y: kid.y, member: kid.memberName },
+                timerCleared: kid.walkTimer === null, walking: kid.isWalkingOntoField,
+                alive: kid.isAlive, active: kid.active, count, countAfterRepeat: scene.walkingCount,
+                level: scene.currentLevelIndex,
+                nextWalking: [...scene.redTeam, ...scene.greenTeam].filter(target => target.isWalkingOntoField).length
+            });
+            if (kind === 'reset') {
+                scene.time.preUpdate();
+                scene.time.update(scene.time.now + 10000, 10000);
+                results[results.length - 1].nextCompletedCount = scene.walkingCount;
+            }
+        }
+        return results;
+    });
+    for (const result of observations) {
+        assert.equal(result.cancelled, true, result.kind);
+        assert.equal(result.laterMutations, 0, result.kind);
+        assert.deepEqual(result.after, result.atCancellation, result.kind);
+        assert.equal(result.timerCleared, true, result.kind);
+        assert.equal(result.walking, false, result.kind);
+        assert.equal(result.countAfterRepeat, result.count, result.kind);
+        if (result.kind === 'reset') {
+            assert.equal(result.level, 1);
+            assert.equal(result.count, 8);
+            assert.equal(result.nextWalking, 8);
+            assert.equal(result.nextCompletedCount, 0);
+        } else {
+            assert.equal(result.count, 0, result.kind);
+            if (result.kind === 'knockout') assert.equal(result.alive, false);
+            else assert.equal(result.active, false);
+        }
+    }
+    evidence.cancelledWalkOn = observations;
+});
+
 test("victory animates Congratulations then aligned greeting/replay; mouse replay resets level and score", { timeout: 30000 }, async t => {
     const { page } = await open(t, "victory replay");
     await start(page);
