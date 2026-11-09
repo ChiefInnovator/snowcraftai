@@ -1,6 +1,6 @@
 """Side-by-side sheet: original vs redrawn frames at gameplay sizes and enlarged.
 
-Usage: uv run --with pillow python3 tools/hd-art/compare.py OUT.png 005_R_ready 024_G_ready
+Usage: uv run --with pillow python3 poc/hd-character-redraw-claude/compare.py OUT.png 005_R_ready 024_G_ready
 Original pixels are shown nearest-neighbour (as the game's Original mode draws them).
 Redrawn frames are downsampled from the HD PNG, as the browser does in High resolution.
 """
@@ -10,7 +10,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parents[2]
 CAST = ROOT / "web/assets/cast"
-HD = ROOT / "web/assets/cast-hd"
+HD = Path(__file__).resolve().parent / "png"
 FIELD = Image.open(ROOT / "web/assets/playField.png").convert("RGBA")
 GAP, LABEL_H = 24, 26
 SIZES = [1, 2, 3]  # gameplay render scales (1x logical stage, typical 2x/3x displays)

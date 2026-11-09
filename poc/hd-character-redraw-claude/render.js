@@ -1,5 +1,5 @@
-// Render the hand-drawn character SVGs in tools/hd-art/svg/ to transparent PNGs
-// at SCALE x the original frame size (web/assets/cast-hd/<same file name>.png).
+// Render the hand-drawn character SVGs in svg/ to transparent PNGs
+// at SCALE x the original frame size (png/<same file name>.png).
 // Usage: node tools/hd-art/render.js [--scale 8] [file.svg ...]
 // Needs puppeteer-core and Google Chrome (CHROME env var overrides the path).
 const fs = require('fs');
@@ -8,7 +8,7 @@ const puppeteer = require('puppeteer-core');
 
 const ROOT = path.resolve(__dirname, '../..');
 const SVG_DIR = path.join(__dirname, 'svg');
-const OUT_DIR = path.join(ROOT, 'web/assets/cast-hd');
+const OUT_DIR = path.join(__dirname, 'png');
 const CHROME = process.env.CHROME || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 
 const args = process.argv.slice(2);

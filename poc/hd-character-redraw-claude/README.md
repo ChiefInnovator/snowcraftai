@@ -20,10 +20,12 @@ The redrawn characters are hand-authored vector illustrations, not upscaled or f
 ## Render
 
 ```sh
-NODE_PATH=/path/to/node_modules node tools/hd-art/render.js            # all SVGs, 8x
-node tools/hd-art/render.js --scale 8 005_R_ready.svg                   # one frame
-uv run --with pillow python3 tools/hd-art/compare.py out.png 005_R_ready 024_G_ready
+NODE_PATH=/path/to/node_modules node poc/hd-character-redraw-claude/render.js            # all SVGs, 8x
+node poc/hd-character-redraw-claude/render.js --scale 8 005_R_ready.svg                   # one frame
+uv run --with pillow python3 poc/hd-character-redraw-claude/compare.py out.png 005_R_ready 024_G_ready
 ```
 
-- **`render.js`:** uses `puppeteer-core` with Google Chrome to rasterise each SVG into a transparent PNG in `web/assets/cast-hd/`, at 8× the original frame size.
+- **`render.js`:** uses `puppeteer-core` with Google Chrome to rasterise each SVG into a transparent PNG in `png/`, at 8× the original frame size.
 - **`compare.py`:** builds the side-by-side sheet. It shows the originals with nearest-neighbour scaling and the redraws downsampled the way the browser draws them.
+
+> Proof of concept only (Stage 1 reference designs). Not integrated into the game; another candidate was chosen for the HD art.
