@@ -102,12 +102,9 @@ contain `©`, `Copyright`, a year, or license wording.
 strings use `Icon Nicholson` and `Nicholson | NY`. Both spellings are
 recorded; they are not the same string.
 
-**Runtime derivative (explicit remake exception, not a license change):**
-`src/assets/cast/070_happy_holidays.png` keeps `Happy Holidays` and the
-254×64 canvas, and has the `IconMedialab` lettering removed. The original
-BITD with that lettering is unchanged at
-`source-evidence/recovered/070_happy_holidays.png`. Credits above still
-apply. This is not permission to reuse the original art.
+Runtime file `src/assets/cast/070_happy_holidays.png` is the same 254×64
+member 70 canvas; the original BITD with painted `IconMedialab` is
+`source-evidence/recovered/070_happy_holidays.png`.
 
 Internet Archive item art in the EXE zip
 (`snowcraft_201912/snowcraft.png`, `__ia_thumb.jpg`) is a gameplay screenshot
@@ -253,9 +250,8 @@ Inspected and **not present** as a license or permission grant:
 
 Therefore: **no explicit license for SnowCraft game content was found.**
 Credits and Macromedia runtime notices are recorded above. They are not
-converted into permission to redistribute original art, audio, EXE, or DCR.
-This repository’s remake **code** (if any later license is chosen for code)
-does **not** apply to original-derived assets.
+permission to redistribute original art, audio, EXE, or DCR. Remake source
+is not a license for original-derived assets.
 
 ## 8. Coverage of this inspection
 

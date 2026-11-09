@@ -69,7 +69,11 @@ describe("docs/reference/snowcraft-original archives", () => {
         assert.match(notices, /flashgamenet_0-999/);
         assert.match(notices, /How to play/);
         assert.match(notices, /explicit license grant/);
-        assert.match(rootNotice, /No explicit license, EULA, or redistribution permission for SnowCraft was/);
+        assert.match(rootNotice, /No explicit license, EULA, or permission to copy or redistribute SnowCraft/);
+        assert.match(rootNotice, /Richard Crane/);
+        assert.match(rootNotice, /MILL5/);
+        assert.match(rootNotice, /not affiliated with or endorsed by/);
+        assert.equal(rootNotice.includes("IconMedialab lettering"), false);
         assert.equal(rootNotice.includes("MIT License"), false);
         assert.equal(notices.includes("licensed under MIT"), false);
 
