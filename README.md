@@ -47,13 +47,12 @@ This version uses **Phaser 4** to replay the 1999 Director rules: fixed-diagonal
 
 ## Rights
 
-Original SnowCraft art, audio, EXE, and DCR remain with their 1999 rights
-holders. Exact strings (Wells Packard / Nicholson / IconMedialab vs Macromedia
-projector notices) are in
-[`docs/reference/snowcraft-original/COPYRIGHT-NOTICES.md`](docs/reference/snowcraft-original/COPYRIGHT-NOTICES.md)
-and [`NOTICE.md`](NOTICE.md). **No explicit license for the original game was
-found.** Credits are not permission. Remake source code is not a license for
-those original assets.
+Remake code and this site are by **Richard Crane** / **MILL5**. SnowCraft
+(1999) art, audio, EXE, and DCR remain with their original rights holders.
+Richard Crane and MILL5 are not affiliated with or endorsed by Nicholson NY,
+IconMedialab, Macromedia, or Adobe. No explicit license for the original game
+was found. Credits are not permission. See [`NOTICE.md`](NOTICE.md) and
+[`docs/reference/snowcraft-original/COPYRIGHT-NOTICES.md`](docs/reference/snowcraft-original/COPYRIGHT-NOTICES.md).
 
 ## Technical Details
 
