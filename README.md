@@ -19,6 +19,7 @@ This version uses **Phaser 4** to replay the 1999 Director rules: fixed-diagonal
 
 - **Click & Hold** on a player to charge throw power
 - **Release** to throw a snowball
+- **On a phone:** turn it sideways, touch a kid, hold, slide to move, lift to throw
 - Power meter fills in 8 steps over ~0.7 s (longer hold = further throw)
 
 ## Game Features
