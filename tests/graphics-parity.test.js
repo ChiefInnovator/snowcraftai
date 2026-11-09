@@ -49,7 +49,27 @@ describe("recovered UI BITDs", () => {
             const size = pngSize(buf);
             assert.equal(size.w, rec.w, rec.file + " width");
             assert.equal(size.h, rec.h, rec.file + " height");
-            assert.equal(crypto.createHash("sha256").update(buf).digest("hex"), rec.sha256, rec.file);
+            const expected = rec.runtimeSha256 || rec.sha256;
+            assert.equal(crypto.createHash("sha256").update(buf).digest("hex"), expected, rec.file);
+            if (rec.runtimeSha256) {
+                const origPath = path.join(
+                    __dirname,
+                    "..",
+                    "docs",
+                    "reference",
+                    "snowcraft-original",
+                    "source-evidence",
+                    "recovered",
+                    rec.file
+                );
+                const orig = fs.readFileSync(origPath);
+                assert.equal(
+                    crypto.createHash("sha256").update(orig).digest("hex"),
+                    rec.sha256,
+                    rec.file + " original evidence"
+                );
+                assert.notEqual(rec.runtimeSha256, rec.sha256, rec.file + " runtime is a derivative");
+            }
         });
         assert.deepEqual(P.CAST.title.loc, [296, 160]);
         assert.deepEqual(P.CAST.levelWord.loc, [286, 160]);

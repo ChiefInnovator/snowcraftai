@@ -88,20 +88,26 @@ identical (DCR has `mayumi@nny.com` and `kchui@nny.com`; EXE has
 
 ## 2. Visual text in recovered BITDs (no © line)
 
-Inspected as PNGs recovered from EXE BITDs under `src/assets/cast/` (same
-pixels the remake draws). None of these bitmaps contain `©`, `Copyright`, a
-year, or license wording.
+Inspected as PNGs recovered from EXE BITDs. None of these original bitmaps
+contain `©`, `Copyright`, a year, or license wording.
 
 | Member | File | Visible text (as drawn) |
 |---|---|---|
 | 76 (`1`) | `src/assets/cast/076_1.png` | `SnowCraft` |
-| 70 (`2`) | `src/assets/cast/070_happy_holidays.png` | `Happy Holidays` / `IconMedialab` |
+| 70 (`2`) | `source-evidence/recovered/070_happy_holidays.png` (original BITD) | `Happy Holidays` / `IconMedialab` |
 | 88 | `src/assets/cast/088_congratulations.png` | `Congratulations!` |
 | 77 (`snowcraft_palatte`) | `src/assets/cast/077_play_again.png` | `Play Again` |
 
-`IconMedialab` is the spelling **painted in the bitmap**. The movie strings
-use `Icon Nicholson` and `Nicholson | NY`. Both spellings are recorded; they
-are not the same string.
+`IconMedialab` is the spelling **painted in the original bitmap**. The movie
+strings use `Icon Nicholson` and `Nicholson | NY`. Both spellings are
+recorded; they are not the same string.
+
+**Runtime derivative (explicit remake exception, not a license change):**
+`src/assets/cast/070_happy_holidays.png` keeps `Happy Holidays` and the
+254×64 canvas, and has the `IconMedialab` lettering removed. The original
+BITD with that lettering is unchanged at
+`source-evidence/recovered/070_happy_holidays.png`. Credits above still
+apply. This is not permission to reuse the original art.
 
 Internet Archive item art in the EXE zip
 (`snowcraft_201912/snowcraft.png`, `__ia_thumb.jpg`) is a gameplay screenshot
