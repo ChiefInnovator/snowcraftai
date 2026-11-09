@@ -1,8 +1,8 @@
 # Snowcraft Reforged
 
-> A free, browser-based remake of the classic 1999 SnowCraft snowball-fight game, built with Phaser 4. Click and hold to charge a throw, release to launch a snowball in a physics-based arc, and defeat the opposing green team across five progressively harder levels.
+> A free, browser-based remake of the classic 1999 SnowCraft snowball-fight game, built with Phaser 4. Click and hold to charge a throw, release to throw a snowball along a fixed diagonal, and defeat the opposing green team across ten progressively harder levels.
 
-Snowcraft Reforged is an open, HTML5 game that runs entirely in the browser — no install, no account, no ads. It preserves the original 1999 sprite art and sound while adding 2.5D snowball physics (gravity, arc, shadows), a modern scaling AI, and three difficulty settings.
+Snowcraft Reforged is an open, HTML5 game that runs entirely in the browser — no install, no account, no ads. It preserves the original 1999 sprite art, sound, rules and timing, and adds three difficulty settings and a display that scales to any screen.
 
 ## Key facts
 
@@ -21,21 +21,21 @@ Snowcraft Reforged is an open, HTML5 game that runs entirely in the browser — 
 
 ## How to play
 
-1. Click and hold on a red team player to select them and begin charging throw power.
-2. A power meter fills while held — longer holds produce faster, longer-range throws.
-3. Release the mouse button to launch a snowball in an arc toward the green team.
+1. Point at a red team player, then click and hold to begin charging throw power. You can drag them while you hold.
+2. A power meter fills in eight steps over about two-thirds of a second — longer holds throw farther.
+3. Release the mouse button to throw. Snowballs always fly up and to the left, so line up by moving.
 4. Defeat every green team player to clear the level and advance.
 5. Beat all ten levels to win. The green team throws back, so keep moving.
 
 ## Gameplay mechanics
 
-- **Snowball speed formula**: `speed = 0.012 + (strength / 100) * 0.006`
-- **Player strength range**: 1–100 (held-charge controlled)
-- **Enemy strength range**: 50–90 (randomized per throw)
-- **Player max speed**: ~0.0180 (strength 100)
-- **Enemy max speed**: ~0.0174 (strength 90)
-- Players have a wider range than enemies, enabling both short lobs and long snipes.
-- Enemies are more consistent — they never throw truly weak shots.
+- **Throws**: fixed 2:1 diagonal (red up-left, green down-right); range grows with power 0–8, from about 60 to 360 px.
+- **Hits**: snowballs can only hit while in flight, not as they drop to the ground.
+- **Red team**: 2 hits to knock out; the first dazes a kid for about 4.5 s (can't be picked up, can still be hit).
+- **Green team**: 3 hits on Normal (2 on Easy, 4 on Hard); the hit before the last knocks them down and makes them briefly immune.
+- **Enemy AI**: never aims — it wanders, sidesteps and throws at random power; each team can have at most 10 snowballs in the air.
+- **Levels**: 3, 5, 7, 9, then 12 green kids for levels 5–10. Clearing level 10 wins.
+- **Score**: +1 per green kid on each cleared level; on a loss, (score + kills this level) × level; a full clear multiplies by 10, up to 1000.
 
 ## Pages
 
