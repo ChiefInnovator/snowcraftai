@@ -1,10 +1,10 @@
 # Snowcraft Reforged
 
-A modern, web-based recreation of the classic 1998 snowball fighting game.
+A modern, web-based recreation of the classic 1999 SnowCraft snowball fight.
 
 ## Project Overview
 
-This version uses **Phaser 3** to replay the 1999 Director rules: fixed-diagonal throws, recovered level layouts, and original power / snowball / drop / melt bitmaps. See [docs/PARITY.md](docs/PARITY.md).
+This version uses **Phaser 4** to replay the 1999 Director rules: fixed-diagonal throws, recovered level layouts, and original power / snowball / drop / melt bitmaps. See [docs/PARITY.md](docs/PARITY.md).
 
 ## How to Play
 
@@ -47,7 +47,7 @@ This version uses **Phaser 3** to replay the 1999 Director rules: fixed-diagonal
 
 ## Technical Details
 
-- **Engine**: Phaser 3.60
+- **Engine**: Phaser 4.2
 - **Canvas**: 592×320 Director stage, scaled with the existing 600×320–1800×960 display options (ground BITD is 600×320 at loc 296,160)
 - **Assets**: Recovered original BITD sprites from the 1999 Snowcraft projector
 

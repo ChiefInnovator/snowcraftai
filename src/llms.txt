@@ -1,15 +1,15 @@
 # Snowcraft Reforged
 
-> A free, browser-based remake of the classic 1998 Snowcraft snowball-fight game, built with Phaser 3. Click and hold to charge a throw, release to launch a snowball in a physics-based arc, and defeat the opposing green team across five progressively harder levels.
+> A free, browser-based remake of the classic 1999 SnowCraft snowball-fight game, built with Phaser 4. Click and hold to charge a throw, release to launch a snowball in a physics-based arc, and defeat the opposing green team across five progressively harder levels.
 
-Snowcraft Reforged is an open, HTML5 game that runs entirely in the browser — no install, no account, no ads. It preserves the original 1998 sprite art and sound while adding 2.5D snowball physics (gravity, arc, shadows), a modern scaling AI, and three difficulty settings.
+Snowcraft Reforged is an open, HTML5 game that runs entirely in the browser — no install, no account, no ads. It preserves the original 1999 sprite art and sound while adding 2.5D snowball physics (gravity, arc, shadows), a modern scaling AI, and three difficulty settings.
 
 ## Key facts
 
 - **Name**: Snowcraft Reforged
 - **Genre**: Action / Arcade / Casual snowball-fight game
 - **Platform**: Web browser (HTML5 canvas, desktop)
-- **Engine**: Phaser 3.60
+- **Engine**: Phaser 4.2
 - **Price**: Free (no ads, no signup, no in-app purchases)
 - **Author**: ChiefInnovator
 - **Source**: https://github.com/ChiefInnovator/snowcraftai
@@ -17,7 +17,7 @@ Snowcraft Reforged is an open, HTML5 game that runs entirely in the browser — 
 - **Levels**: 5 progressive levels
 - **Difficulty settings**: Easy, Normal, Hard
 - **Native resolution**: 600x320 (scalable up to 1800x960)
-- **Inspired by**: Snowcraft (1998)
+- **Inspired by**: SnowCraft (1999)
 
 ## How to play
 
@@ -45,7 +45,7 @@ Snowcraft Reforged is an open, HTML5 game that runs entirely in the browser — 
 
 ## Frequently asked questions
 
-**What is Snowcraft Reforged?** A free browser remake of the 1998 Snowcraft snowball-fight game, built with Phaser 3.
+**What is Snowcraft Reforged?** A free browser remake of the 1999 SnowCraft snowball-fight game, built with Phaser 4.
 
 **Is it free?** Yes — completely free, no account, no ads, no purchases.
 

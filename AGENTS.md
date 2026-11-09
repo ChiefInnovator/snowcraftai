@@ -1,6 +1,6 @@
 # Snowcraft Reforged — agent guide
 
-Browser snowball-fight game (Phaser 3.60 via CDN, plain JS, no build step). Live at https://chiefinnovator.github.io/snowcraftai/.
+Browser snowball-fight game (Phaser 4.2 via CDN, plain JS, no build step). Live at https://chiefinnovator.github.io/snowcraftai/.
 
 ## Layout
 - `src/` — the deployed site root (GitHub Pages publishes this folder as-is).
