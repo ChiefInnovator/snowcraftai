@@ -6,8 +6,8 @@ the evidence used to drive Snowcraft Reforged toward original parity. They are
 
 Runtime copies:
 
-- Audio the Phaser site actually loads: [`src/assets/sounds/`](../../../src/assets/sounds/)
-- Kid / power / ball BITDs the Phaser site actually loads: [`src/assets/cast/`](../../../src/assets/cast/)
+- Audio the Phaser site actually loads: [`web/assets/sounds/`](../../../web/assets/sounds/)
+- Kid / power / ball BITDs the Phaser site actually loads: [`web/assets/cast/`](../../../web/assets/cast/)
 
 This directory is documentation and byte-for-byte **reference archives** so the
 only copies are not chat uploads, `/tmp`, or cloud artifacts. After a local
@@ -23,7 +23,7 @@ no ScummVM, no Flashpoint from an agent). Static parse only.
 |---|---|
 | `archives/nicholson-snowcraft-1999-win32-projector-ia-snowcraft-201912.zip` | User EXE archive, byte-for-byte. Internet Archive item `snowcraft_201912` (includes `SnowCraft.exe` plus IA sidecar xml/sqlite/png). Cursor upload name `ba07317d50dbd20f8eb820ebb8055b5a5317fad5a8a09f3926094d9d0ac94bc4_52b2.zip`. |
 | `archives/nicholson-snowcraft-1999-shockwave-afterburner-dcr.zip` | User DCR archive, byte-for-byte. Inner `snowcraft.dcr` + vendor README. Cursor upload name `61ba897b0470a9c0005f5d759bd8d8b7ed6041ab062dfbb1866cc655d4cc4351_d17c.zip`. |
-| `archives/nicholson-snowcraft-1999-extracted-sounds-pack.zip` | `application-sounds.zip` pack: 16 WAVs + inventory + extractor. Cursor upload name `application-sounds_995b.zip`. WAV bytes are identical to `src/assets/sounds/*.wav`. |
+| `archives/nicholson-snowcraft-1999-extracted-sounds-pack.zip` | `application-sounds.zip` pack: 16 WAVs + inventory + extractor. Cursor upload name `application-sounds_995b.zip`. WAV bytes are identical to `web/assets/sounds/*.wav`. |
 | `extracted/SnowCraft.exe` | Inner projector copied from the EXE zip (3,833,256 bytes). |
 | `extracted/snowcraft.dcr` | Inner Afterburner movie copied from the DCR zip (235,392 bytes). |
 | `extracted/ia-snowcraft-201912-meta.xml` | IA item metadata from the EXE zip (provenance). |
@@ -45,7 +45,7 @@ is not the canonical copy.
 | Win32 game | Macromedia Director **8.0** projector, Nicholson NY / IconMedialab Happy Holidays edition, 1999. Embedded movie `XFIR`/`39VM` at `0x306114`. |
 | Shockwave game | Afterburner `XFIR`/`FGDM` DCR, FlashArch/IA copy MD5 `6c5631ca78293144ffe031dd0a75ee30`. Same 82 BITD + 16 sound **counts** as the EXE movie; **not** the same movie bytes. |
 | Sounds pack | 16 unique 8-bit mono WAVs losslessly re-wrapped from EXE `sndS` PCM (one Mac `snd` header stripped on `halaluja`). |
-| Remake that consumes this evidence | Combined `src/` tree on `cursor/combined-parity-1518`, based on `feature/repo-restructure` (`ff39e410`). |
+| Remake that consumes this evidence | Current browser root: [`web/`](../../../web/). Initial integration: `cursor/combined-parity-1518`, based on `feature/repo-restructure` (`ff39e410`). |
 
 ## License status
 
@@ -94,15 +94,15 @@ python3 -c "import json; print(json.load(open('SOURCE-PROVENANCE.json'))['upload
 python3 tools/extract_snowcraft_sounds.py \
   docs/reference/snowcraft-original/extracted/SnowCraft.exe \
   /tmp/snowcraft-wav-reextract
-diff -q /tmp/snowcraft-wav-reextract/01_bird_tweets.wav src/assets/sounds/01_bird_tweets.wav
+diff -q /tmp/snowcraft-wav-reextract/01_bird_tweets.wav web/assets/sounds/01_bird_tweets.wav
 ```
 
 Methodology, PCM SHA-256 pins, and cast names:
 [`sounds-methodology/pack-README.md`](sounds-methodology/pack-README.md),
 [`sounds-methodology/inventory.json`](sounds-methodology/inventory.json),
-[`src/assets/sounds/README.md`](../../../src/assets/sounds/README.md).
+[`web/assets/sounds/README.md`](../../../web/assets/sounds/README.md).
 
-The live game keeps using `src/assets/sounds/`. Do not point Phaser at this
+The live game keeps using `web/assets/sounds/`. Do not point Phaser at this
 docs folder.
 
 ### 3. Re-inspect the EXE movie (metadata, not pixels)

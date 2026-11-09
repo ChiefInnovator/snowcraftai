@@ -56,10 +56,10 @@ in recovered Lingo.
 | Copy | Purpose |
 |---|---|
 | `archives/nicholson-snowcraft-1999-extracted-sounds-pack.zip` | User-uploaded pack (WAVs + this methodology) |
-| `src/assets/sounds/*.wav` | Runtime assets the remake loads (byte-identical to the pack WAVs) |
+| `web/assets/sounds/*.wav` | Runtime assets the remake loads (byte-identical to the pack WAVs) |
 | This folder | Inventory + extractor only — **not** a third WAV tree |
 
-Channel-1 playback (`puppetSound` / `soundBusy(1)`) is `src/js/audio.js`.
+Channel-1 playback (`puppetSound` / `soundBusy(1)`) is `web/js/audio.js`.
 Event mapping is `docs/PARITY.md`.
 
 ## DCR sounds

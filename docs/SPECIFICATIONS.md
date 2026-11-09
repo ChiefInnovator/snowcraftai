@@ -1,12 +1,14 @@
-# Technical Specifications: Snowcraft Reforged
+# Snowcraft Reforged — web specifications
 
-All values live in `RULES` at the top of `src/js/game.js` and `src/js/parity.js`. Stage is the original Director **592×320** (ground BITD 600×320 at loc 296,160). Times in ms.
+All values live in `RULES` at the top of `web/js/game.js` and `web/js/parity.js`. Stage is the original Director **592×320** (ground BITD 600×320 at loc 296,160). Times in ms.
 
 ## Rendering
 
 * **Engine:** Phaser 4.2, no physics engine (movement is stepped by the game).
-* **Resolution:** the canvas renders at `ceil(displayScale × devicePixelRatio)` (1–4×) with the camera zoomed to match, so text and UI stay sharp on HiDPI screens. Sprites scale with nearest-neighbour filtering (`pixelArt: true`).
+* **Resolution:** the canvas renders at `ceil(displayScale × devicePixelRatio)` (1–4×) with the camera zoomed to match. All game lettering is browser-rendered DOM text, so it stays sharp independently of canvas resolution and sprite filtering. Original sprites use nearest-neighbour filtering (`pixelArt: true`). The optional high-resolution mode creates smooth 4× canvas textures from the same source images and retains original world dimensions, registration and collision masks.
 * **Display size:** "Fit to window" (default) or a fixed 1×–3× multiple of **600×320** (900×480, 1200×640, 1500×800, 1800×960). The Director stage inside is 592×320, mapped with uniform Phaser FIT so pointer aim/drag/throw stay on original coordinates.
+
+Preferences for artwork, background music and mute-all persist independently. Disabling music leaves sound effects enabled; mute-all silences effects, intro and music, and unmuting respects the saved music choice. Artwork changes update existing objects without restarting a level.
 
 ## Player (red team)
 
@@ -26,7 +28,7 @@ All values live in `RULES` at the top of `src/js/game.js` and `src/js/parity.js`
 
 * **Hits to knock out:** Easy 2, Normal 3, Hard 4. The second-to-last hit knocks the kid down for 2.5 s, immune; earlier hits stagger it for 1.5 s (still hittable).
 * **AI (every 100 ms while ready):** 10% `loc += myDirection` of `(±2,±1)` for 1–99 steps then throw; 10% side-step `(±1,±2)` × 5; 20% throw; 60% stand still. `locH < 40` steers `(4,1)`; `locV < 40` steers `(1,4)`. Crossing the centre line triggers a throw. Greens **never aim**.
-* **Starts:** per-level VWSC Event Loop positions (`src/js/parity.js` / `docs/recovered/event-loop-layouts.json`). Off-stage greens spawn at those locs and walk in under the edge rule.
+* **Starts:** per-level VWSC Event Loop positions (`web/js/parity.js` / `docs/recovered/event-loop-layouts.json`). Off-stage greens spawn at those locs and walk in under the edge rule.
 * **Throw:** wind-up 0.5 s, cock 0.6–1.5 s, release at random power 5–8, toss pose 0.5 s.
 
 ## Levels & score
