@@ -40,7 +40,6 @@ Snowcraft Reforged is an open, HTML5 game that runs entirely in the browser — 
 ## Pages
 
 - [Play Snowcraft Reforged](https://chiefinnovator.github.io/snowcraftai/): The main game page.
-- [Sprite viewer](https://chiefinnovator.github.io/snowcraftai/sprites.html): Developer tool showing every animation frame.
 - [GitHub repository](https://github.com/ChiefInnovator/snowcraftai): Source code and issue tracker.
 - [README](https://github.com/ChiefInnovator/snowcraftai/blob/main/README.md): Project overview, controls, and technical notes.
 

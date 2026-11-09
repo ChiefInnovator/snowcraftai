@@ -49,13 +49,6 @@
         hit2: "assets/sounds/15_hit2.wav",
         halaluja: "assets/sounds/16_halaluja.wav"
     };
-    const UNUSED_CAST_SOUNDS = [
-        {
-            cast_member_name: "Uh",
-            file: "assets/sounds/13_Uh.wav",
-            reason: "Present as a sound cast member; no puppetSound/score reference recovered from Lingo."
-        }
-    ];
     const CHANNEL1_IDLE_ONLY = ["step", "splat"];
     const STAGE_W = 592;
     const STAGE_H = 320;
@@ -505,7 +498,6 @@
         LEVEL_CLEAR_MOUSE_SPLIT,
         CHANNEL1,
         SOUND_FILES,
-        UNUSED_CAST_SOUNDS,
         CHANNEL1_IDLE_ONLY,
         throwSoundId,
         levelClearSoundId,

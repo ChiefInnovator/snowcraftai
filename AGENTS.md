@@ -5,12 +5,10 @@ Browser snowball-fight game (Phaser 3.60 via CDN, plain JS, no build step). Live
 ## Layout
 - `src/` — the deployed site root (GitHub Pages publishes this folder as-is).
   - `index.html` (game page + SEO metadata), `js/game.js` (all game logic), `css/game.css`
-  - `sprites.html`, `js/sprites.js`, `css/sprites.css` — sprite/animation viewer dev tool
-  - `assets/` — sprites and audio (`sounds/` = original WAVs, `sfx/` = unused synthesized extras, `cast/` = recovered BITDs including kids, `walkon.json` = VWSC 15 fps paths)
+  - `assets/` — sprites and audio (`sounds/` = original WAVs, `cast/` = recovered BITDs including kids, `walkon.json` = VWSC 15 fps paths)
 - `docs/` — `SPECIFICATIONS.md` (our rules), `reference-app.md` (original game analysis), `classic-parity-plan.md` (gaps + status), `PARITY.md` (verified / inferred / blocked), `recovered/` (VWSC layout dump), `reference/snowcraft-original/` (byte-for-byte original EXE/DCR/sounds archives + SHA-256 manifest)
 - `NOTICE.md` — third-party material. Exact recovered notices: `docs/reference/snowcraft-original/COPYRIGHT-NOTICES.md`. Credits are not a license.
 - `tools/reference/` — static inspect/extract (`inspect_movie.py`, `extract_bitmaps.py`, `extract_movie.py`). `run-reference.sh` is Wine-only and must **not** be launched by agents. Never ScummVM (it hangs).
-- `tools/sfx/generate_sfx.py` — synthesizes unused remake extras in `src/assets/sfx/`. Live SFX are original WAVs in `src/assets/sounds/`.
 - `src/js/audio.js` — channel-1 `puppetSound` / `soundBusy(1)` behaviour.
 - `docs/reference/snowcraft-original/` — committed evidence copies of both original-game archives, the sounds pack, recovered notes. Never execute the EXE/DCR.
 - `reference/` — optional local Wine/decompile workspace. **Gitignored.** Not the canonical copy.

@@ -7,14 +7,19 @@ This file is a summary. **Credits are not a license.**
 
 ## Original SnowCraft (third-party)
 
-Copyright in the game, BITDs, and 16 WAVs remains with the original rights
-holders. The 1999 movie identifies the author/studio as:
+Copyright in the game, BITDs, and the original 16 sound cast members remains
+with the original rights holders. The 1999 movie identifies the author/studio
+as:
 
 - `wells packard - Nicholson | NY`
 - `wells packard - Icon Nicholson` (EXE movie)
 - `Wells Packard - Nicholson NY` (DCR movie)
 - Painted logo text `Happy Holidays` / `IconMedialab` (BITD member 70)
 - Contacts `nny.com`, `wells@nny.com`, `info@nny.com`, `winners@nny.com`
+
+Runtime `src/assets/sounds/` ships **15** of those WAVs (`Uh` is in the movie
+and the evidence pack, not in the live tree). Sprites and recovered BITDs in
+`src/assets/` / `src/assets/cast/` are derived from the same original movie.
 
 Internet Archive item `snowcraft_201912` metadata (`<creator>Nicholson NY</creator>`,
 `<date>1999</date>`) is **uploader metadata**, not a license. The IA
@@ -48,7 +53,6 @@ not SnowCraft’s art or audio.
 
 - Code in `src/js/`, `src/css/`, `tools/` (except copies of original
   extractors kept as evidence), and `.github/` is original to this project.
-- Synthesized extras in `src/assets/sfx/` are unused remake files.
 - `src/assets/intro.mp3` and `src/assets/musicAlt.mp3` are **not** in the
   1999 movie (no music cast members). No original notice for them was found.
 

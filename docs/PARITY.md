@@ -25,10 +25,10 @@ HEAD are **included** here (SEO/copy, `z` revive immunity, `winctl.py`).
 
 ## Audio
 
-Original 16 WAVs live in `src/assets/sounds/` with PCM SHA-256 pins in
+The 15 played original WAVs live in `src/assets/sounds/` with PCM SHA-256 pins in
 `inventory.json` / `tests/wav-integrity.test.js`. Channel 1 is
 `src/js/audio.js` (`puppetSound` replace; `step`/`splat` idle-gated).
-Synthesized `src/assets/sfx/*.wav` remain in the tree as unused remake extras.
+
 Intro/`musicAlt.mp3` still play on level 1 (original had no BGM).
 
 | Event | Original cast | Remake now | Status |
