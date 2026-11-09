@@ -43,6 +43,22 @@ class GamePainter extends CustomPainter {
     final shadow = assets.named('shadow');
     for (final kid in sorted) {
       _sprite(canvas, shadow, kid.position, opacity: kid.alive ? 0.6 : 0.3);
+      if (engine.phase == GamePhase.playing &&
+          kid.alive &&
+          (kid == engine.dragged ||
+              (kid.team == Team.red && kid.pose == KidPose.toss))) {
+        canvas.drawOval(
+          Rect.fromCenter(
+            center: Offset(kid.position.x, kid.position.y + 3),
+            width: 44,
+            height: 18,
+          ),
+          Paint()
+            ..style = PaintingStyle.stroke
+            ..strokeWidth = 1
+            ..color = const Color(0xff13749c),
+        );
+      }
     }
     for (final kid in sorted.where((k) => k != engine.dragged)) {
       _sprite(
@@ -61,7 +77,7 @@ class GamePainter extends CustomPainter {
     }
     final held = engine.dragged;
     if (held != null) {
-      // The charging artwork already includes its registered selection ring.
+      // HD characters contain no baked ring; the ground pass draws it once.
       _sprite(canvas, assets.kidFrame(held, engine.elapsed), held.position);
       _sprite(canvas, assets.powers[engine.power], held.position);
     }

@@ -1,0 +1,25 @@
+{
+  "checks": [
+    {
+      "path": "/web/assets/cast/005_R_ready.png",
+      "status": 200
+    },
+    {
+      "path": "/%2e%2e%2fsnowcraftai-hd-preview-codex-sibling/secret",
+      "status": 403
+    },
+    {
+      "path": "/%2e%2e%2fAGENTS.md",
+      "status": 403
+    },
+    {
+      "path": "/%ZZ",
+      "status": 400
+    },
+    {
+      "path": "/missing-file-for-hd-validation.png",
+      "status": 404
+    }
+  ],
+  "repeatExportByteIdentical": true
+}

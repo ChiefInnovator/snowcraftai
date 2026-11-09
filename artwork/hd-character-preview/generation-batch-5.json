@@ -1,0 +1,22 @@
+[
+  {
+    "num": 23,
+    "status": "fulfilled",
+    "file": "023_G_Walk_V2.png"
+  },
+  {
+    "num": 25,
+    "status": "fulfilled",
+    "file": "025_G_windup.png"
+  },
+  {
+    "num": 26,
+    "status": "fulfilled",
+    "file": "026_G_cock.png"
+  },
+  {
+    "num": 27,
+    "status": "fulfilled",
+    "file": "027_G_toss.png"
+  }
+]

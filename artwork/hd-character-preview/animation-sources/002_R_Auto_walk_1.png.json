@@ -1,0 +1,11 @@
+{
+  "file": "002_R_Auto_walk_1.png",
+  "source": "/Users/rich/.codex/generated_images/01a1be21-1c26-7d61-8427-a3aa41909931/exec-dfd9861d-86c3-4577-9425-341ccda977f4.png",
+  "promptFile": "../animation-prompts.json",
+  "frame": 2,
+  "tool": "built-in image_gen",
+  "references": [
+    "/Users/rich/.openclaw/projects/snowcraftai-hd-preview-codex/artwork/hd-character-preview/assets/red-ready.png",
+    "/Users/rich/.openclaw/projects/snowcraftai-hd-preview-codex/web/assets/cast/002_R_Auto_walk_1.png"
+  ]
+}

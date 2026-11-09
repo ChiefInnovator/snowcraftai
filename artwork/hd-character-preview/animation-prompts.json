@@ -1,0 +1,471 @@
+{
+  "baseline": "d0a7db7ea698613b75eaaf313d7998cf40099ed2",
+  "approvedOn": "2026-11-09",
+  "approval": "Yes, these are awesome",
+  "tool": "built-in image_gen",
+  "jobs": [
+    {
+      "num": 2,
+      "name": "R Auto walk_1",
+      "key": "cast_002_R_Auto_walk_1",
+      "file": "002_R_Auto_walk_1.png",
+      "w": 25,
+      "h": 34,
+      "reg": [
+        15,
+        28
+      ],
+      "team": "Red",
+      "prompt": "Use case: identity-preserve / game-sprite pose illustration.\nAsset: exactly ONE high-resolution transparent PNG animation frame.\nImage 1 is the user-approved Red character design and rendering style. Preserve that exact character: same cap, face, large head, short round body, mitten design, stitched winter coat, indigo trousers and boots, colours, fabric materials, contour quality and lighting.\nImage 2 is the original low-resolution target POSE and camera reference. Repose the approved character from image 1 to follow image 2. The new pose must be visibly distinct from the ready pose where the original differs.\nTarget pose: Walking first step: match the original leg stride, one boot forward and the opposite arm swinging. Preserve the Red back/side view.\nPreserve the original slightly overhead three-quarter view and the target silhouette/facing direction; do not invent a frontal portrait or change the approved proportions. Keep garment seams and facial features consistent with the approved reference. The camera, body volume, and overall character scale must remain coherent across animation frames.\nThe illustration must be genuinely redrawn in the approved tactile, smoothly shaded 2.5D game-art finish with crisp new detail, not an enlargement/filter of the original pixel image. Full subject and any source-pose snow puff or loose cap must be visible with generous transparent margins. Output a high-resolution PNG with genuine alpha.\nDo NOT draw the original cyan selection ring, power meter, cast shadow or floor. No labels, borders, text, watermark, panel layout, extra characters, background, or unrelated props. One frame only. Preserve a gentle winter snowball-game mood."
+    },
+    {
+      "num": 3,
+      "name": "R Auto walk_2",
+      "key": "cast_003_R_Auto_walk_2",
+      "file": "003_R_Auto_walk_2.png",
+      "w": 31,
+      "h": 35,
+      "reg": [
+        19,
+        28
+      ],
+      "team": "Red",
+      "prompt": "Use case: identity-preserve / game-sprite pose illustration.\nAsset: exactly ONE high-resolution transparent PNG animation frame.\nImage 1 is the user-approved Red character design and rendering style. Preserve that exact character: same cap, face, large head, short round body, mitten design, stitched winter coat, indigo trousers and boots, colours, fabric materials, contour quality and lighting.\nImage 2 is the original low-resolution target POSE and camera reference. Repose the approved character from image 1 to follow image 2. The new pose must be visibly distinct from the ready pose where the original differs.\nTarget pose: Walking opposite step: swap the leg/arm stride from the first walk frame, following the source silhouette; preserve the Red back/side view.\nPreserve the original slightly overhead three-quarter view and the target silhouette/facing direction; do not invent a frontal portrait or change the approved proportions. Keep garment seams and facial features consistent with the approved reference. The camera, body volume, and overall character scale must remain coherent across animation frames.\nThe illustration must be genuinely redrawn in the approved tactile, smoothly shaded 2.5D game-art finish with crisp new detail, not an enlargement/filter of the original pixel image. Full subject and any source-pose snow puff or loose cap must be visible with generous transparent margins. Output a high-resolution PNG with genuine alpha.\nDo NOT draw the original cyan selection ring, power meter, cast shadow or floor. No labels, borders, text, watermark, panel layout, extra characters, background, or unrelated props. One frame only. Preserve a gentle winter snowball-game mood."
+    },
+    {
+      "num": 4,
+      "name": "R rest",
+      "key": "cast_004_R_rest",
+      "file": "004_R_rest.png",
+      "w": 24,
+      "h": 33,
+      "reg": [
+        14,
+        28
+      ],
+      "team": "Red",
+      "prompt": "Use case: identity-preserve / game-sprite pose illustration.\nAsset: exactly ONE high-resolution transparent PNG animation frame.\nImage 1 is the user-approved Red character design and rendering style. Preserve that exact character: same cap, face, large head, short round body, mitten design, stitched winter coat, indigo trousers and boots, colours, fabric materials, contour quality and lighting.\nImage 2 is the original low-resolution target POSE and camera reference. Repose the approved character from image 1 to follow image 2. The new pose must be visibly distinct from the ready pose where the original differs.\nTarget pose: A relaxed resting stance with lowered arms, compact coat, and both boots planted as in the pose reference.\nPreserve the original slightly overhead three-quarter view and the target silhouette/facing direction; do not invent a frontal portrait or change the approved proportions. Keep garment seams and facial features consistent with the approved reference. The camera, body volume, and overall character scale must remain coherent across animation frames.\nThe illustration must be genuinely redrawn in the approved tactile, smoothly shaded 2.5D game-art finish with crisp new detail, not an enlargement/filter of the original pixel image. Full subject and any source-pose snow puff or loose cap must be visible with generous transparent margins. Output a high-resolution PNG with genuine alpha.\nDo NOT draw the original cyan selection ring, power meter, cast shadow or floor. No labels, borders, text, watermark, panel layout, extra characters, background, or unrelated props. One frame only. Preserve a gentle winter snowball-game mood."
+    },
+    {
+      "num": 6,
+      "name": "R pop",
+      "key": "cast_006_R_pop",
+      "file": "006_R_pop.png",
+      "w": 63,
+      "h": 49,
+      "reg": [
+        33,
+        29
+      ],
+      "team": "Red",
+      "prompt": "Use case: identity-preserve / game-sprite pose illustration.\nAsset: exactly ONE high-resolution transparent PNG animation frame.\nImage 1 is the user-approved Red character design and rendering style. Preserve that exact character: same cap, face, large head, short round body, mitten design, stitched winter coat, indigo trousers and boots, colours, fabric materials, contour quality and lighting.\nImage 2 is the original low-resolution target POSE and camera reference. Repose the approved character from image 1 to follow image 2. The new pose must be visibly distinct from the ready pose where the original differs.\nTarget pose: Beginning to pack and charge a snowball: hands drawn inward in front of the coat, elbows bent, body poised. Match the source body/hand pose but omit its cyan selection ring.\nPreserve the original slightly overhead three-quarter view and the target silhouette/facing direction; do not invent a frontal portrait or change the approved proportions. Keep garment seams and facial features consistent with the approved reference. The camera, body volume, and overall character scale must remain coherent across animation frames.\nThe illustration must be genuinely redrawn in the approved tactile, smoothly shaded 2.5D game-art finish with crisp new detail, not an enlargement/filter of the original pixel image. Full subject and any source-pose snow puff or loose cap must be visible with generous transparent margins. Output a high-resolution PNG with genuine alpha.\nDo NOT draw the original cyan selection ring, power meter, cast shadow or floor. No labels, borders, text, watermark, panel layout, extra characters, background, or unrelated props. One frame only. Preserve a gentle winter snowball-game mood."
+    },
+    {
+      "num": 7,
+      "name": "R cock",
+      "key": "cast_007_R_cock",
+      "file": "007_R_cock.png",
+      "w": 63,
+      "h": 49,
+      "reg": [
+        33,
+        29
+      ],
+      "team": "Red",
+      "prompt": "Use case: identity-preserve / animation pose.\nImage 1 is the finished Red snowball-packing frame in the approved character style. Image 2 is the original game's next arm-raised pose.\nRepose the character from image 1 for the next animation frame: lift the rear white mitten with a packed snowball up beside and slightly behind the head, pull that elbow backward, and extend the opposite mitten for balance. Keep both boots planted. This is the preparation immediately before a snowball is tossed toward the upper-left playing field.\nPreserve the exact compact Red character, cap and coat seams, fabric materials, face, indigo trousers/boots, lighting, and slightly overhead camera. Match the original body turn and relative hand placement from image 2. The pose must visibly advance from the hands-together packing frame. Render exactly one full-body winter-game character, genuinely redrawn at high resolution with transparent padding and true PNG alpha.\nOmit the cyan ring from the source. No floor, background, cast shadow, labels, text, watermark, power meter or additional character.",
+      "revisionNote": "First attempt returned moderation_blocked / other; revised pose direction uses the completed packing frame as its style reference."
+    },
+    {
+      "num": 8,
+      "name": "R toss",
+      "key": "cast_008_R_toss",
+      "file": "008_R_toss.png",
+      "w": 63,
+      "h": 51,
+      "reg": [
+        33,
+        31
+      ],
+      "team": "Red",
+      "prompt": "Use case: identity-preserve / game-sprite pose illustration.\nAsset: exactly ONE high-resolution transparent PNG animation frame.\nImage 1 is the user-approved Red character design and rendering style. Preserve that exact character: same cap, face, large head, short round body, mitten design, stitched winter coat, indigo trousers and boots, colours, fabric materials, contour quality and lighting.\nImage 2 is the original low-resolution target POSE and camera reference. Repose the approved character from image 1 to follow image 2. The new pose must be visibly distinct from the ready pose where the original differs.\nTarget pose: Release/follow-through of the snowball throw, with throwing mitten extended and torso rotated to match the source. Omit the source cyan ring and draw no projectile separate from the character.\nPreserve the original slightly overhead three-quarter view and the target silhouette/facing direction; do not invent a frontal portrait or change the approved proportions. Keep garment seams and facial features consistent with the approved reference. The camera, body volume, and overall character scale must remain coherent across animation frames.\nThe illustration must be genuinely redrawn in the approved tactile, smoothly shaded 2.5D game-art finish with crisp new detail, not an enlargement/filter of the original pixel image. Full subject and any source-pose snow puff or loose cap must be visible with generous transparent margins. Output a high-resolution PNG with genuine alpha.\nDo NOT draw the original cyan selection ring, power meter, cast shadow or floor. No labels, borders, text, watermark, panel layout, extra characters, background, or unrelated props. One frame only. Preserve a gentle winter snowball-game mood."
+    },
+    {
+      "num": 9,
+      "name": "R hit",
+      "key": "cast_009_R_hit",
+      "file": "009_R_hit.png",
+      "w": 46,
+      "h": 33,
+      "reg": [
+        15,
+        26
+      ],
+      "team": "Red",
+      "prompt": "Use case: identity-preserve / game-sprite pose illustration.\nAsset: exactly ONE high-resolution transparent PNG animation frame.\nImage 1 is the user-approved Red character design and rendering style. Preserve that exact character: same cap, face, large head, short round body, mitten design, stitched winter coat, indigo trousers and boots, colours, fabric materials, contour quality and lighting.\nImage 2 is the original low-resolution target POSE and camera reference. Repose the approved character from image 1 to follow image 2. The new pose must be visibly distinct from the ready pose where the original differs.\nTarget pose: A playful snowball impact sends the clothed figure tipping backward into a soft powdery snow puff. Match the wide, low horizontal slip pose in the original. Full winter outfit stays on, no injury.\nPreserve the original slightly overhead three-quarter view and the target silhouette/facing direction; do not invent a frontal portrait or change the approved proportions. Keep garment seams and facial features consistent with the approved reference. The camera, body volume, and overall character scale must remain coherent across animation frames.\nThe illustration must be genuinely redrawn in the approved tactile, smoothly shaded 2.5D game-art finish with crisp new detail, not an enlargement/filter of the original pixel image. Full subject and any source-pose snow puff or loose cap must be visible with generous transparent margins. Output a high-resolution PNG with genuine alpha.\nDo NOT draw the original cyan selection ring, power meter, cast shadow or floor. No labels, borders, text, watermark, panel layout, extra characters, background, or unrelated props. One frame only. Preserve a gentle winter snowball-game mood."
+    },
+    {
+      "num": 10,
+      "name": "R hit2",
+      "key": "cast_010_R_hit2",
+      "file": "010_R_hit2.png",
+      "w": 46,
+      "h": 33,
+      "reg": [
+        15,
+        26
+      ],
+      "team": "Red",
+      "prompt": "Use case: identity-preserve / game-sprite pose illustration.\nAsset: exactly ONE high-resolution transparent PNG animation frame.\nImage 1 is the user-approved Red character design and rendering style. Preserve that exact character: same cap, face, large head, short round body, mitten design, stitched winter coat, indigo trousers and boots, colours, fabric materials, contour quality and lighting.\nImage 2 is the original low-resolution target POSE and camera reference. Repose the approved character from image 1 to follow image 2. The new pose must be visibly distinct from the ready pose where the original differs.\nTarget pose: The second frame of a playful backward slip into powdery snow: a slightly changed mitten/boot position and snow puff, matching this second source pose. Full winter outfit stays on, no injury.\nPreserve the original slightly overhead three-quarter view and the target silhouette/facing direction; do not invent a frontal portrait or change the approved proportions. Keep garment seams and facial features consistent with the approved reference. The camera, body volume, and overall character scale must remain coherent across animation frames.\nThe illustration must be genuinely redrawn in the approved tactile, smoothly shaded 2.5D game-art finish with crisp new detail, not an enlargement/filter of the original pixel image. Full subject and any source-pose snow puff or loose cap must be visible with generous transparent margins. Output a high-resolution PNG with genuine alpha.\nDo NOT draw the original cyan selection ring, power meter, cast shadow or floor. No labels, borders, text, watermark, panel layout, extra characters, background, or unrelated props. One frame only. Preserve a gentle winter snowball-game mood."
+    },
+    {
+      "num": 11,
+      "name": "R daze1",
+      "key": "cast_011_R_daze1",
+      "file": "011_R_daze1.png",
+      "w": 35,
+      "h": 43,
+      "reg": [
+        21,
+        37
+      ],
+      "team": "Red",
+      "prompt": "Use case: identity-preserve / game-sprite pose illustration.\nAsset: exactly ONE high-resolution transparent PNG animation frame.\nImage 1 is the user-approved Red character design and rendering style. Preserve that exact character: same cap, face, large head, short round body, mitten design, stitched winter coat, indigo trousers and boots, colours, fabric materials, contour quality and lighting.\nImage 2 is the original low-resolution target POSE and camera reference. Repose the approved character from image 1 to follow image 2. The new pose must be visibly distinct from the ready pose where the original differs.\nTarget pose: First standing dazed/swaying pose after a snowball splat: match the source head tilt, body lean, and mitten placement, a few white powder flecks. No text or drawn stars.\nPreserve the original slightly overhead three-quarter view and the target silhouette/facing direction; do not invent a frontal portrait or change the approved proportions. Keep garment seams and facial features consistent with the approved reference. The camera, body volume, and overall character scale must remain coherent across animation frames.\nThe illustration must be genuinely redrawn in the approved tactile, smoothly shaded 2.5D game-art finish with crisp new detail, not an enlargement/filter of the original pixel image. Full subject and any source-pose snow puff or loose cap must be visible with generous transparent margins. Output a high-resolution PNG with genuine alpha.\nDo NOT draw the original cyan selection ring, power meter, cast shadow or floor. No labels, borders, text, watermark, panel layout, extra characters, background, or unrelated props. One frame only. Preserve a gentle winter snowball-game mood."
+    },
+    {
+      "num": 12,
+      "name": "R daze2",
+      "key": "cast_012_R_daze2",
+      "file": "012_R_daze2.png",
+      "w": 36,
+      "h": 44,
+      "reg": [
+        22,
+        38
+      ],
+      "team": "Red",
+      "prompt": "Use case: identity-preserve / game-sprite pose illustration.\nAsset: exactly ONE high-resolution transparent PNG animation frame.\nImage 1 is the user-approved Red character design and rendering style. Preserve that exact character: same cap, face, large head, short round body, mitten design, stitched winter coat, indigo trousers and boots, colours, fabric materials, contour quality and lighting.\nImage 2 is the original low-resolution target POSE and camera reference. Repose the approved character from image 1 to follow image 2. The new pose must be visibly distinct from the ready pose where the original differs.\nTarget pose: Second standing dazed/swaying pose: match the opposite head/body lean and mitten placement in this source frame, preserving the same character size and face.\nPreserve the original slightly overhead three-quarter view and the target silhouette/facing direction; do not invent a frontal portrait or change the approved proportions. Keep garment seams and facial features consistent with the approved reference. The camera, body volume, and overall character scale must remain coherent across animation frames.\nThe illustration must be genuinely redrawn in the approved tactile, smoothly shaded 2.5D game-art finish with crisp new detail, not an enlargement/filter of the original pixel image. Full subject and any source-pose snow puff or loose cap must be visible with generous transparent margins. Output a high-resolution PNG with genuine alpha.\nDo NOT draw the original cyan selection ring, power meter, cast shadow or floor. No labels, borders, text, watermark, panel layout, extra characters, background, or unrelated props. One frame only. Preserve a gentle winter snowball-game mood."
+    },
+    {
+      "num": 13,
+      "name": "R daze3",
+      "key": "cast_013_R_daze3",
+      "file": "013_R_daze3.png",
+      "w": 35,
+      "h": 40,
+      "reg": [
+        21,
+        34
+      ],
+      "team": "Red",
+      "prompt": "Use case: identity-preserve / game-sprite pose illustration.\nAsset: exactly ONE high-resolution transparent PNG animation frame.\nImage 1 is the user-approved Red character design and rendering style. Preserve that exact character: same cap, face, large head, short round body, mitten design, stitched winter coat, indigo trousers and boots, colours, fabric materials, contour quality and lighting.\nImage 2 is the original low-resolution target POSE and camera reference. Repose the approved character from image 1 to follow image 2. The new pose must be visibly distinct from the ready pose where the original differs.\nTarget pose: Third standing dazed/swaying pose: match this recovery lean and returning stance as in the source, a coherent continuation of the other two dazed poses.\nPreserve the original slightly overhead three-quarter view and the target silhouette/facing direction; do not invent a frontal portrait or change the approved proportions. Keep garment seams and facial features consistent with the approved reference. The camera, body volume, and overall character scale must remain coherent across animation frames.\nThe illustration must be genuinely redrawn in the approved tactile, smoothly shaded 2.5D game-art finish with crisp new detail, not an enlargement/filter of the original pixel image. Full subject and any source-pose snow puff or loose cap must be visible with generous transparent margins. Output a high-resolution PNG with genuine alpha.\nDo NOT draw the original cyan selection ring, power meter, cast shadow or floor. No labels, borders, text, watermark, panel layout, extra characters, background, or unrelated props. One frame only. Preserve a gentle winter snowball-game mood."
+    },
+    {
+      "num": 14,
+      "name": "R dead",
+      "key": "cast_014_R_dead",
+      "file": "014_R_dead.png",
+      "w": 71,
+      "h": 33,
+      "reg": [
+        -4,
+        -4
+      ],
+      "team": "Red",
+      "prompt": "Use case: identity-preserve / game-sprite pose illustration.\nAsset: exactly ONE high-resolution transparent PNG animation frame.\nImage 1 is the user-approved Red character design and rendering style. Preserve that exact character: same cap, face, large head, short round body, mitten design, stitched winter coat, indigo trousers and boots, colours, fabric materials, contour quality and lighting.\nImage 2 is the original low-resolution target POSE and camera reference. Repose the approved character from image 1 to follow image 2. The new pose must be visibly distinct from the ready pose where the original differs.\nTarget pose: A fully clothed toy-like snowball-game character has toppled sideways into soft snow, head toward the RIGHT and boots toward the LEFT, matching the wide, low original pose. The red cap can lie beside the head as in the source. Gentle slapstick rest pose, no injury.\nPreserve the original slightly overhead three-quarter view and the target silhouette/facing direction; do not invent a frontal portrait or change the approved proportions. Keep garment seams and facial features consistent with the approved reference. The camera, body volume, and overall character scale must remain coherent across animation frames.\nThe illustration must be genuinely redrawn in the approved tactile, smoothly shaded 2.5D game-art finish with crisp new detail, not an enlargement/filter of the original pixel image. Full subject and any source-pose snow puff or loose cap must be visible with generous transparent margins. Output a high-resolution PNG with genuine alpha.\nDo NOT draw the original cyan selection ring, power meter, cast shadow or floor. No labels, borders, text, watermark, panel layout, extra characters, background, or unrelated props. One frame only. Preserve a gentle winter snowball-game mood."
+    },
+    {
+      "num": 15,
+      "name": "R dead",
+      "key": "cast_015_R_dead",
+      "file": "015_R_dead.png",
+      "w": 68,
+      "h": 49,
+      "reg": [
+        -5,
+        2
+      ],
+      "team": "Red",
+      "prompt": "Use case: identity-preserve / game-sprite pose illustration.\nAsset: exactly ONE high-resolution transparent PNG animation frame.\nImage 1 is the user-approved Red character design and rendering style. Preserve that exact character: same cap, face, large head, short round body, mitten design, stitched winter coat, indigo trousers and boots, colours, fabric materials, contour quality and lighting.\nImage 2 is the original low-resolution target POSE and camera reference. Repose the approved character from image 1 to follow image 2. The new pose must be visibly distinct from the ready pose where the original differs.\nTarget pose: A fully clothed toy-like character rests in soft snow on a diagonal, head toward lower RIGHT and boots toward upper LEFT, matching this original pose. Red cap slipped beside the head. Gentle playful toppled pose, no injury.\nPreserve the original slightly overhead three-quarter view and the target silhouette/facing direction; do not invent a frontal portrait or change the approved proportions. Keep garment seams and facial features consistent with the approved reference. The camera, body volume, and overall character scale must remain coherent across animation frames.\nThe illustration must be genuinely redrawn in the approved tactile, smoothly shaded 2.5D game-art finish with crisp new detail, not an enlargement/filter of the original pixel image. Full subject and any source-pose snow puff or loose cap must be visible with generous transparent margins. Output a high-resolution PNG with genuine alpha.\nDo NOT draw the original cyan selection ring, power meter, cast shadow or floor. No labels, borders, text, watermark, panel layout, extra characters, background, or unrelated props. One frame only. Preserve a gentle winter snowball-game mood."
+    },
+    {
+      "num": 16,
+      "name": "R dead",
+      "key": "cast_016_R_dead",
+      "file": "016_R_dead.png",
+      "w": 51,
+      "h": 53,
+      "reg": [
+        -3,
+        15
+      ],
+      "team": "Red",
+      "prompt": "Use case: identity-preserve / game-sprite pose illustration.\nAsset: exactly ONE high-resolution transparent PNG animation frame.\nImage 1 is the user-approved Red character design and rendering style. Preserve that exact character: same cap, face, large head, short round body, mitten design, stitched winter coat, indigo trousers and boots, colours, fabric materials, contour quality and lighting.\nImage 2 is the original low-resolution target POSE and camera reference. Repose the approved character from image 1 to follow image 2. The new pose must be visibly distinct from the ready pose where the original differs.\nTarget pose: A fully clothed toy-like character has rolled onto its side in soft snow, knees/boots toward upper LEFT and head at the RIGHT, matching this taller original pose. Red cap beside the shoulder if shown by the reference. No injury.\nPreserve the original slightly overhead three-quarter view and the target silhouette/facing direction; do not invent a frontal portrait or change the approved proportions. Keep garment seams and facial features consistent with the approved reference. The camera, body volume, and overall character scale must remain coherent across animation frames.\nThe illustration must be genuinely redrawn in the approved tactile, smoothly shaded 2.5D game-art finish with crisp new detail, not an enlargement/filter of the original pixel image. Full subject and any source-pose snow puff or loose cap must be visible with generous transparent margins. Output a high-resolution PNG with genuine alpha.\nDo NOT draw the original cyan selection ring, power meter, cast shadow or floor. No labels, borders, text, watermark, panel layout, extra characters, background, or unrelated props. One frame only. Preserve a gentle winter snowball-game mood."
+    },
+    {
+      "num": 17,
+      "name": "G yea",
+      "key": "cast_017_G_yea",
+      "file": "017_G_yea.png",
+      "w": 42,
+      "h": 35,
+      "reg": [
+        22,
+        26
+      ],
+      "team": "Green",
+      "prompt": "Use case: identity-preserve / game-sprite pose illustration.\nAsset: exactly ONE high-resolution transparent PNG animation frame.\nImage 1 is the user-approved Green character design and rendering style. Preserve that exact character: same cap, face, large head, short round body, mitten design, stitched winter coat, indigo trousers and boots, colours, fabric materials, contour quality and lighting.\nImage 2 is the original low-resolution target POSE and camera reference. Repose the approved character from image 1 to follow image 2. The new pose must be visibly distinct from the ready pose where the original differs.\nTarget pose: First celebration pose: both white mittens raised outward and upward, looking delighted, boots and body lean following the original frame.\nPreserve the original slightly overhead three-quarter view and the target silhouette/facing direction; do not invent a frontal portrait or change the approved proportions. Keep garment seams and facial features consistent with the approved reference. The camera, body volume, and overall character scale must remain coherent across animation frames.\nThe illustration must be genuinely redrawn in the approved tactile, smoothly shaded 2.5D game-art finish with crisp new detail, not an enlargement/filter of the original pixel image. Full subject and any source-pose snow puff or loose cap must be visible with generous transparent margins. Output a high-resolution PNG with genuine alpha.\nDo NOT draw the original cyan selection ring, power meter, cast shadow or floor. No labels, borders, text, watermark, panel layout, extra characters, background, or unrelated props. One frame only. Preserve a gentle winter snowball-game mood."
+    },
+    {
+      "num": 18,
+      "name": "G yea",
+      "key": "cast_018_G_yea",
+      "file": "018_G_yea.png",
+      "w": 40,
+      "h": 37,
+      "reg": [
+        20,
+        29
+      ],
+      "team": "Green",
+      "prompt": "Use case: identity-preserve / game-sprite pose illustration.\nAsset: exactly ONE high-resolution transparent PNG animation frame.\nImage 1 is the user-approved Green character design and rendering style. Preserve that exact character: same cap, face, large head, short round body, mitten design, stitched winter coat, indigo trousers and boots, colours, fabric materials, contour quality and lighting.\nImage 2 is the original low-resolution target POSE and camera reference. Repose the approved character from image 1 to follow image 2. The new pose must be visibly distinct from the ready pose where the original differs.\nTarget pose: Second celebration pose: both mittens high, body bouncing/leaning in the opposite phase as in this original, feet positioned accordingly.\nPreserve the original slightly overhead three-quarter view and the target silhouette/facing direction; do not invent a frontal portrait or change the approved proportions. Keep garment seams and facial features consistent with the approved reference. The camera, body volume, and overall character scale must remain coherent across animation frames.\nThe illustration must be genuinely redrawn in the approved tactile, smoothly shaded 2.5D game-art finish with crisp new detail, not an enlargement/filter of the original pixel image. Full subject and any source-pose snow puff or loose cap must be visible with generous transparent margins. Output a high-resolution PNG with genuine alpha.\nDo NOT draw the original cyan selection ring, power meter, cast shadow or floor. No labels, borders, text, watermark, panel layout, extra characters, background, or unrelated props. One frame only. Preserve a gentle winter snowball-game mood."
+    },
+    {
+      "num": 19,
+      "name": "G yea",
+      "key": "cast_019_G_yea",
+      "file": "019_G_yea.png",
+      "w": 42,
+      "h": 37,
+      "reg": [
+        22,
+        29
+      ],
+      "team": "Green",
+      "prompt": "Use case: identity-preserve / game-sprite pose illustration.\nAsset: exactly ONE high-resolution transparent PNG animation frame.\nImage 1 is the user-approved Green character design and rendering style. Preserve that exact character: same cap, face, large head, short round body, mitten design, stitched winter coat, indigo trousers and boots, colours, fabric materials, contour quality and lighting.\nImage 2 is the original low-resolution target POSE and camera reference. Repose the approved character from image 1 to follow image 2. The new pose must be visibly distinct from the ready pose where the original differs.\nTarget pose: Third celebration pose: follow this original raised-mitten cheer pose and foot placement, keeping body and clothing consistent with the preceding celebration frames.\nPreserve the original slightly overhead three-quarter view and the target silhouette/facing direction; do not invent a frontal portrait or change the approved proportions. Keep garment seams and facial features consistent with the approved reference. The camera, body volume, and overall character scale must remain coherent across animation frames.\nThe illustration must be genuinely redrawn in the approved tactile, smoothly shaded 2.5D game-art finish with crisp new detail, not an enlargement/filter of the original pixel image. Full subject and any source-pose snow puff or loose cap must be visible with generous transparent margins. Output a high-resolution PNG with genuine alpha.\nDo NOT draw the original cyan selection ring, power meter, cast shadow or floor. No labels, borders, text, watermark, panel layout, extra characters, background, or unrelated props. One frame only. Preserve a gentle winter snowball-game mood."
+    },
+    {
+      "num": 20,
+      "name": "G Walk H2",
+      "key": "cast_020_G_Walk_H2",
+      "file": "020_G_Walk_H2.png",
+      "w": 30,
+      "h": 36,
+      "reg": [
+        12,
+        29
+      ],
+      "team": "Green",
+      "prompt": "Use case: identity-preserve / game-sprite pose illustration.\nAsset: exactly ONE high-resolution transparent PNG animation frame.\nImage 1 is the user-approved Green character design and rendering style. Preserve that exact character: same cap, face, large head, short round body, mitten design, stitched winter coat, indigo trousers and boots, colours, fabric materials, contour quality and lighting.\nImage 2 is the original low-resolution target POSE and camera reference. Repose the approved character from image 1 to follow image 2. The new pose must be visibly distinct from the ready pose where the original differs.\nTarget pose: First horizontal walk stride: copy the original head/body direction, front boot and trailing boot placements, and arm swing.\nPreserve the original slightly overhead three-quarter view and the target silhouette/facing direction; do not invent a frontal portrait or change the approved proportions. Keep garment seams and facial features consistent with the approved reference. The camera, body volume, and overall character scale must remain coherent across animation frames.\nThe illustration must be genuinely redrawn in the approved tactile, smoothly shaded 2.5D game-art finish with crisp new detail, not an enlargement/filter of the original pixel image. Full subject and any source-pose snow puff or loose cap must be visible with generous transparent margins. Output a high-resolution PNG with genuine alpha.\nDo NOT draw the original cyan selection ring, power meter, cast shadow or floor. No labels, borders, text, watermark, panel layout, extra characters, background, or unrelated props. One frame only. Preserve a gentle winter snowball-game mood."
+    },
+    {
+      "num": 21,
+      "name": "G Walk H1",
+      "key": "cast_021_G_Walk_H1",
+      "file": "021_G_Walk_H1.png",
+      "w": 32,
+      "h": 36,
+      "reg": [
+        13,
+        29
+      ],
+      "team": "Green",
+      "prompt": "Use case: identity-preserve / game-sprite pose illustration.\nAsset: exactly ONE high-resolution transparent PNG animation frame.\nImage 1 is the user-approved Green character design and rendering style. Preserve that exact character: same cap, face, large head, short round body, mitten design, stitched winter coat, indigo trousers and boots, colours, fabric materials, contour quality and lighting.\nImage 2 is the original low-resolution target POSE and camera reference. Repose the approved character from image 1 to follow image 2. The new pose must be visibly distinct from the ready pose where the original differs.\nTarget pose: Opposite horizontal walk stride: copy this original alternate leg stride and opposite arm swing without changing body size.\nPreserve the original slightly overhead three-quarter view and the target silhouette/facing direction; do not invent a frontal portrait or change the approved proportions. Keep garment seams and facial features consistent with the approved reference. The camera, body volume, and overall character scale must remain coherent across animation frames.\nThe illustration must be genuinely redrawn in the approved tactile, smoothly shaded 2.5D game-art finish with crisp new detail, not an enlargement/filter of the original pixel image. Full subject and any source-pose snow puff or loose cap must be visible with generous transparent margins. Output a high-resolution PNG with genuine alpha.\nDo NOT draw the original cyan selection ring, power meter, cast shadow or floor. No labels, borders, text, watermark, panel layout, extra characters, background, or unrelated props. One frame only. Preserve a gentle winter snowball-game mood."
+    },
+    {
+      "num": 22,
+      "name": "G Walk V1",
+      "key": "cast_022_G_Walk_V1",
+      "file": "022_G_Walk_V1.png",
+      "w": 30,
+      "h": 36,
+      "reg": [
+        13,
+        29
+      ],
+      "team": "Green",
+      "prompt": "Use case: identity-preserve / game-sprite pose illustration.\nAsset: exactly ONE high-resolution transparent PNG animation frame.\nImage 1 is the user-approved Green character design and rendering style. Preserve that exact character: same cap, face, large head, short round body, mitten design, stitched winter coat, indigo trousers and boots, colours, fabric materials, contour quality and lighting.\nImage 2 is the original low-resolution target POSE and camera reference. Repose the approved character from image 1 to follow image 2. The new pose must be visibly distinct from the ready pose where the original differs.\nTarget pose: First diagonal walk stride: match the original facing, foot placement, and mitten swing.\nPreserve the original slightly overhead three-quarter view and the target silhouette/facing direction; do not invent a frontal portrait or change the approved proportions. Keep garment seams and facial features consistent with the approved reference. The camera, body volume, and overall character scale must remain coherent across animation frames.\nThe illustration must be genuinely redrawn in the approved tactile, smoothly shaded 2.5D game-art finish with crisp new detail, not an enlargement/filter of the original pixel image. Full subject and any source-pose snow puff or loose cap must be visible with generous transparent margins. Output a high-resolution PNG with genuine alpha.\nDo NOT draw the original cyan selection ring, power meter, cast shadow or floor. No labels, borders, text, watermark, panel layout, extra characters, background, or unrelated props. One frame only. Preserve a gentle winter snowball-game mood."
+    },
+    {
+      "num": 23,
+      "name": "G Walk V2",
+      "key": "cast_023_G_Walk_V2",
+      "file": "023_G_Walk_V2.png",
+      "w": 27,
+      "h": 34,
+      "reg": [
+        11,
+        28
+      ],
+      "team": "Green",
+      "prompt": "Use case: identity-preserve / game-sprite pose illustration.\nAsset: exactly ONE high-resolution transparent PNG animation frame.\nImage 1 is the user-approved Green character design and rendering style. Preserve that exact character: same cap, face, large head, short round body, mitten design, stitched winter coat, indigo trousers and boots, colours, fabric materials, contour quality and lighting.\nImage 2 is the original low-resolution target POSE and camera reference. Repose the approved character from image 1 to follow image 2. The new pose must be visibly distinct from the ready pose where the original differs.\nTarget pose: Second diagonal walk stride: match this alternate source stride, with boots and arm swing changing coherently from the first.\nPreserve the original slightly overhead three-quarter view and the target silhouette/facing direction; do not invent a frontal portrait or change the approved proportions. Keep garment seams and facial features consistent with the approved reference. The camera, body volume, and overall character scale must remain coherent across animation frames.\nThe illustration must be genuinely redrawn in the approved tactile, smoothly shaded 2.5D game-art finish with crisp new detail, not an enlargement/filter of the original pixel image. Full subject and any source-pose snow puff or loose cap must be visible with generous transparent margins. Output a high-resolution PNG with genuine alpha.\nDo NOT draw the original cyan selection ring, power meter, cast shadow or floor. No labels, borders, text, watermark, panel layout, extra characters, background, or unrelated props. One frame only. Preserve a gentle winter snowball-game mood. For this alternate stride, the boot on the VIEWER'S LEFT must extend forward/lower, with its sole partly visible, while the boot on the VIEWER'S RIGHT trails back/higher. The preceding walk frame advances the viewer-right boot; show the opposite leg advancing here. Swing the opposite mitten forward."
+    },
+    {
+      "num": 25,
+      "name": "G windup",
+      "key": "cast_025_G_windup",
+      "file": "025_G_windup.png",
+      "w": 24,
+      "h": 31,
+      "reg": [
+        7,
+        23
+      ],
+      "team": "Green",
+      "prompt": "Use case: identity-preserve / game-sprite pose illustration.\nAsset: exactly ONE high-resolution transparent PNG animation frame.\nImage 1 is the user-approved Green character design and rendering style. Preserve that exact character: same cap, face, large head, short round body, mitten design, stitched winter coat, indigo trousers and boots, colours, fabric materials, contour quality and lighting.\nImage 2 is the original low-resolution target POSE and camera reference. Repose the approved character from image 1 to follow image 2. The new pose must be visibly distinct from the ready pose where the original differs.\nTarget pose: Snowball windup: bend the torso and lower the hands to pack a snowball in front of the body, matching the original crouched/leaning pose.\nPreserve the original slightly overhead three-quarter view and the target silhouette/facing direction; do not invent a frontal portrait or change the approved proportions. Keep garment seams and facial features consistent with the approved reference. The camera, body volume, and overall character scale must remain coherent across animation frames.\nThe illustration must be genuinely redrawn in the approved tactile, smoothly shaded 2.5D game-art finish with crisp new detail, not an enlargement/filter of the original pixel image. Full subject and any source-pose snow puff or loose cap must be visible with generous transparent margins. Output a high-resolution PNG with genuine alpha.\nDo NOT draw the original cyan selection ring, power meter, cast shadow or floor. No labels, borders, text, watermark, panel layout, extra characters, background, or unrelated props. One frame only. Preserve a gentle winter snowball-game mood."
+    },
+    {
+      "num": 26,
+      "name": "G cock",
+      "key": "cast_026_G_cock",
+      "file": "026_G_cock.png",
+      "w": 34,
+      "h": 35,
+      "reg": [
+        22,
+        26
+      ],
+      "team": "Green",
+      "prompt": "Use case: identity-preserve / game-sprite pose illustration.\nAsset: exactly ONE high-resolution transparent PNG animation frame.\nImage 1 is the user-approved Green character design and rendering style. Preserve that exact character: same cap, face, large head, short round body, mitten design, stitched winter coat, indigo trousers and boots, colours, fabric materials, contour quality and lighting.\nImage 2 is the original low-resolution target POSE and camera reference. Repose the approved character from image 1 to follow image 2. The new pose must be visibly distinct from the ready pose where the original differs.\nTarget pose: Snowball cocked: pull back and lift the throwing mitten, with the opposite mitten extended for balance exactly as the original pose.\nPreserve the original slightly overhead three-quarter view and the target silhouette/facing direction; do not invent a frontal portrait or change the approved proportions. Keep garment seams and facial features consistent with the approved reference. The camera, body volume, and overall character scale must remain coherent across animation frames.\nThe illustration must be genuinely redrawn in the approved tactile, smoothly shaded 2.5D game-art finish with crisp new detail, not an enlargement/filter of the original pixel image. Full subject and any source-pose snow puff or loose cap must be visible with generous transparent margins. Output a high-resolution PNG with genuine alpha.\nDo NOT draw the original cyan selection ring, power meter, cast shadow or floor. No labels, borders, text, watermark, panel layout, extra characters, background, or unrelated props. One frame only. Preserve a gentle winter snowball-game mood."
+    },
+    {
+      "num": 27,
+      "name": "G toss",
+      "key": "cast_027_G_toss",
+      "file": "027_G_toss.png",
+      "w": 24,
+      "h": 34,
+      "reg": [
+        8,
+        26
+      ],
+      "team": "Green",
+      "prompt": "Use case: identity-preserve / game-sprite pose illustration.\nAsset: exactly ONE high-resolution transparent PNG animation frame.\nImage 1 is the user-approved Green character design and rendering style. Preserve that exact character: same cap, face, large head, short round body, mitten design, stitched winter coat, indigo trousers and boots, colours, fabric materials, contour quality and lighting.\nImage 2 is the original low-resolution target POSE and camera reference. Repose the approved character from image 1 to follow image 2. The new pose must be visibly distinct from the ready pose where the original differs.\nTarget pose: Snowball release follow-through: extend the throwing arm and rotate the body following this original. Do not include a separate flying projectile.\nPreserve the original slightly overhead three-quarter view and the target silhouette/facing direction; do not invent a frontal portrait or change the approved proportions. Keep garment seams and facial features consistent with the approved reference. The camera, body volume, and overall character scale must remain coherent across animation frames.\nThe illustration must be genuinely redrawn in the approved tactile, smoothly shaded 2.5D game-art finish with crisp new detail, not an enlargement/filter of the original pixel image. Full subject and any source-pose snow puff or loose cap must be visible with generous transparent margins. Output a high-resolution PNG with genuine alpha.\nDo NOT draw the original cyan selection ring, power meter, cast shadow or floor. No labels, borders, text, watermark, panel layout, extra characters, background, or unrelated props. One frame only. Preserve a gentle winter snowball-game mood."
+    },
+    {
+      "num": 28,
+      "name": "G Hit",
+      "key": "cast_028_G_Hit",
+      "file": "028_G_Hit.png",
+      "w": 25,
+      "h": 35,
+      "reg": [
+        13,
+        28
+      ],
+      "team": "Green",
+      "prompt": "Use case: identity-preserve / game-sprite pose illustration.\nAsset: exactly ONE high-resolution transparent PNG animation frame.\nImage 1 is the user-approved Green character design and rendering style. Preserve that exact character: same cap, face, large head, short round body, mitten design, stitched winter coat, indigo trousers and boots, colours, fabric materials, contour quality and lighting.\nImage 2 is the original low-resolution target POSE and camera reference. Repose the approved character from image 1 to follow image 2. The new pose must be visibly distinct from the ready pose where the original differs.\nTarget pose: First snowball splat reaction: powdery white snow briefly coats the front of the hat/face, both mittens lifting in surprise, following the original stance. Playful, no injury.\nPreserve the original slightly overhead three-quarter view and the target silhouette/facing direction; do not invent a frontal portrait or change the approved proportions. Keep garment seams and facial features consistent with the approved reference. The camera, body volume, and overall character scale must remain coherent across animation frames.\nThe illustration must be genuinely redrawn in the approved tactile, smoothly shaded 2.5D game-art finish with crisp new detail, not an enlargement/filter of the original pixel image. Full subject and any source-pose snow puff or loose cap must be visible with generous transparent margins. Output a high-resolution PNG with genuine alpha.\nDo NOT draw the original cyan selection ring, power meter, cast shadow or floor. No labels, borders, text, watermark, panel layout, extra characters, background, or unrelated props. One frame only. Preserve a gentle winter snowball-game mood."
+    },
+    {
+      "num": 29,
+      "name": "G Hit2",
+      "key": "cast_029_G_Hit2",
+      "file": "029_G_Hit2.png",
+      "w": 25,
+      "h": 35,
+      "reg": [
+        13,
+        28
+      ],
+      "team": "Green",
+      "prompt": "Use case: identity-preserve / game-sprite pose illustration.\nAsset: exactly ONE high-resolution transparent PNG animation frame.\nImage 1 is the user-approved Green character design and rendering style. Preserve that exact character: same cap, face, large head, short round body, mitten design, stitched winter coat, indigo trousers and boots, colours, fabric materials, contour quality and lighting.\nImage 2 is the original low-resolution target POSE and camera reference. Repose the approved character from image 1 to follow image 2. The new pose must be visibly distinct from the ready pose where the original differs.\nTarget pose: Second snowball splat reaction: follow this changed mitten/body pose and powder pattern in the original, a continuation of the first surprise frame. No injury.\nPreserve the original slightly overhead three-quarter view and the target silhouette/facing direction; do not invent a frontal portrait or change the approved proportions. Keep garment seams and facial features consistent with the approved reference. The camera, body volume, and overall character scale must remain coherent across animation frames.\nThe illustration must be genuinely redrawn in the approved tactile, smoothly shaded 2.5D game-art finish with crisp new detail, not an enlargement/filter of the original pixel image. Full subject and any source-pose snow puff or loose cap must be visible with generous transparent margins. Output a high-resolution PNG with genuine alpha.\nDo NOT draw the original cyan selection ring, power meter, cast shadow or floor. No labels, borders, text, watermark, panel layout, extra characters, background, or unrelated props. One frame only. Preserve a gentle winter snowball-game mood."
+    },
+    {
+      "num": 30,
+      "name": "G ow",
+      "key": "cast_030_G_ow",
+      "file": "030_G_ow.png",
+      "w": 29,
+      "h": 35,
+      "reg": [
+        12,
+        28
+      ],
+      "team": "Green",
+      "prompt": "Use case: identity-preserve / game-sprite pose illustration.\nAsset: exactly ONE high-resolution transparent PNG animation frame.\nImage 1 is the user-approved Green character design and rendering style. Preserve that exact character: same cap, face, large head, short round body, mitten design, stitched winter coat, indigo trousers and boots, colours, fabric materials, contour quality and lighting.\nImage 2 is the original low-resolution target POSE and camera reference. Repose the approved character from image 1 to follow image 2. The new pose must be visibly distinct from the ready pose where the original differs.\nTarget pose: Brushing snow off / bending after a splat: fold at the waist with cap/head down and mittens close, matching the original pose.\nPreserve the original slightly overhead three-quarter view and the target silhouette/facing direction; do not invent a frontal portrait or change the approved proportions. Keep garment seams and facial features consistent with the approved reference. The camera, body volume, and overall character scale must remain coherent across animation frames.\nThe illustration must be genuinely redrawn in the approved tactile, smoothly shaded 2.5D game-art finish with crisp new detail, not an enlargement/filter of the original pixel image. Full subject and any source-pose snow puff or loose cap must be visible with generous transparent margins. Output a high-resolution PNG with genuine alpha.\nDo NOT draw the original cyan selection ring, power meter, cast shadow or floor. No labels, borders, text, watermark, panel layout, extra characters, background, or unrelated props. One frame only. Preserve a gentle winter snowball-game mood."
+    },
+    {
+      "num": 31,
+      "name": "G recover",
+      "key": "cast_031_G_recover",
+      "file": "031_G_recover.png",
+      "w": 29,
+      "h": 35,
+      "reg": [
+        12,
+        28
+      ],
+      "team": "Green",
+      "prompt": "Use case: identity-preserve / game-sprite pose illustration.\nAsset: exactly ONE high-resolution transparent PNG animation frame.\nImage 1 is the user-approved Green character design and rendering style. Preserve that exact character: same cap, face, large head, short round body, mitten design, stitched winter coat, indigo trousers and boots, colours, fabric materials, contour quality and lighting.\nImage 2 is the original low-resolution target POSE and camera reference. Repose the approved character from image 1 to follow image 2. The new pose must be visibly distinct from the ready pose where the original differs.\nTarget pose: Recovering from a splat: match this alternate bowed/brushing pose and mitten placement as the character begins to stand.\nPreserve the original slightly overhead three-quarter view and the target silhouette/facing direction; do not invent a frontal portrait or change the approved proportions. Keep garment seams and facial features consistent with the approved reference. The camera, body volume, and overall character scale must remain coherent across animation frames.\nThe illustration must be genuinely redrawn in the approved tactile, smoothly shaded 2.5D game-art finish with crisp new detail, not an enlargement/filter of the original pixel image. Full subject and any source-pose snow puff or loose cap must be visible with generous transparent margins. Output a high-resolution PNG with genuine alpha.\nDo NOT draw the original cyan selection ring, power meter, cast shadow or floor. No labels, borders, text, watermark, panel layout, extra characters, background, or unrelated props. One frame only. Preserve a gentle winter snowball-game mood."
+    },
+    {
+      "num": 32,
+      "name": "G down",
+      "key": "cast_032_G_down",
+      "file": "032_G_down.png",
+      "w": 35,
+      "h": 34,
+      "reg": [
+        33,
+        29
+      ],
+      "team": "Green",
+      "prompt": "Use case: identity-preserve / game-sprite pose illustration.\nAsset: exactly ONE high-resolution transparent PNG animation frame.\nImage 1 is the user-approved Green character design and rendering style. Preserve that exact character: same cap, face, large head, short round body, mitten design, stitched winter coat, indigo trousers and boots, colours, fabric materials, contour quality and lighting.\nImage 2 is the original low-resolution target POSE and camera reference. Repose the approved character from image 1 to follow image 2. The new pose must be visibly distinct from the ready pose where the original differs.\nTarget pose: A playful backward topple/down pose: the round head and cap lean back while the boots point down/right, matching the original silhouette. Fully clothed, gentle slapstick, no injury.\nPreserve the original slightly overhead three-quarter view and the target silhouette/facing direction; do not invent a frontal portrait or change the approved proportions. Keep garment seams and facial features consistent with the approved reference. The camera, body volume, and overall character scale must remain coherent across animation frames.\nThe illustration must be genuinely redrawn in the approved tactile, smoothly shaded 2.5D game-art finish with crisp new detail, not an enlargement/filter of the original pixel image. Full subject and any source-pose snow puff or loose cap must be visible with generous transparent margins. Output a high-resolution PNG with genuine alpha.\nDo NOT draw the original cyan selection ring, power meter, cast shadow or floor. No labels, borders, text, watermark, panel layout, extra characters, background, or unrelated props. One frame only. Preserve a gentle winter snowball-game mood."
+    },
+    {
+      "num": 33,
+      "name": "G dead",
+      "key": "cast_033_G_dead",
+      "file": "033_G_dead.png",
+      "w": 66,
+      "h": 42,
+      "reg": [
+        70,
+        40
+      ],
+      "team": "Green",
+      "prompt": "Use case: identity-preserve / game-sprite pose illustration.\nAsset: exactly ONE high-resolution transparent PNG animation frame.\nImage 1 is the user-approved Green character design and rendering style. Preserve that exact character: same cap, face, large head, short round body, mitten design, stitched winter coat, indigo trousers and boots, colours, fabric materials, contour quality and lighting.\nImage 2 is the original low-resolution target POSE and camera reference. Repose the approved character from image 1 to follow image 2. The new pose must be visibly distinct from the ready pose where the original differs.\nTarget pose: A fully clothed toy-like character rests face-down/sideways on soft snow, head toward upper LEFT and boots toward lower RIGHT, matching this original fallen pose. Green cap slipped nearby if shown. Gentle playful rest, no injury.\nPreserve the original slightly overhead three-quarter view and the target silhouette/facing direction; do not invent a frontal portrait or change the approved proportions. Keep garment seams and facial features consistent with the approved reference. The camera, body volume, and overall character scale must remain coherent across animation frames.\nThe illustration must be genuinely redrawn in the approved tactile, smoothly shaded 2.5D game-art finish with crisp new detail, not an enlargement/filter of the original pixel image. Full subject and any source-pose snow puff or loose cap must be visible with generous transparent margins. Output a high-resolution PNG with genuine alpha.\nDo NOT draw the original cyan selection ring, power meter, cast shadow or floor. No labels, borders, text, watermark, panel layout, extra characters, background, or unrelated props. One frame only. Preserve a gentle winter snowball-game mood."
+    },
+    {
+      "num": 34,
+      "name": "G dead",
+      "key": "cast_034_G_dead",
+      "file": "034_G_dead.png",
+      "w": 54,
+      "h": 46,
+      "reg": [
+        60,
+        39
+      ],
+      "team": "Green",
+      "prompt": "Use case: identity-preserve / game-sprite pose illustration.\nAsset: exactly ONE high-resolution transparent PNG animation frame.\nImage 1 is the user-approved Green character design and rendering style. Preserve that exact character: same cap, face, large head, short round body, mitten design, stitched winter coat, indigo trousers and boots, colours, fabric materials, contour quality and lighting.\nImage 2 is the original low-resolution target POSE and camera reference. Repose the approved character from image 1 to follow image 2. The new pose must be visibly distinct from the ready pose where the original differs.\nTarget pose: A fully clothed toy-like character has toppled on its side on a diagonal, head toward upper LEFT and boots toward lower RIGHT, matching the source placement and loose cap. No injury.\nPreserve the original slightly overhead three-quarter view and the target silhouette/facing direction; do not invent a frontal portrait or change the approved proportions. Keep garment seams and facial features consistent with the approved reference. The camera, body volume, and overall character scale must remain coherent across animation frames.\nThe illustration must be genuinely redrawn in the approved tactile, smoothly shaded 2.5D game-art finish with crisp new detail, not an enlargement/filter of the original pixel image. Full subject and any source-pose snow puff or loose cap must be visible with generous transparent margins. Output a high-resolution PNG with genuine alpha.\nDo NOT draw the original cyan selection ring, power meter, cast shadow or floor. No labels, borders, text, watermark, panel layout, extra characters, background, or unrelated props. One frame only. Preserve a gentle winter snowball-game mood."
+    },
+    {
+      "num": 35,
+      "name": "G dead",
+      "key": "cast_035_G_dead",
+      "file": "035_G_dead.png",
+      "w": 69,
+      "h": 42,
+      "reg": [
+        73,
+        34
+      ],
+      "team": "Green",
+      "prompt": "Use case: identity-preserve / game-sprite pose illustration.\nAsset: exactly ONE high-resolution transparent PNG animation frame.\nImage 1 is the user-approved Green character design and rendering style. Preserve that exact character: same cap, face, large head, short round body, mitten design, stitched winter coat, indigo trousers and boots, colours, fabric materials, contour quality and lighting.\nImage 2 is the original low-resolution target POSE and camera reference. Repose the approved character from image 1 to follow image 2. The new pose must be visibly distinct from the ready pose where the original differs.\nTarget pose: A fully clothed toy-like character rests horizontally in soft snow, head at the LEFT and boots at the RIGHT, matching this wide original pose. Green cap beside the head if shown. No injury.\nPreserve the original slightly overhead three-quarter view and the target silhouette/facing direction; do not invent a frontal portrait or change the approved proportions. Keep garment seams and facial features consistent with the approved reference. The camera, body volume, and overall character scale must remain coherent across animation frames.\nThe illustration must be genuinely redrawn in the approved tactile, smoothly shaded 2.5D game-art finish with crisp new detail, not an enlargement/filter of the original pixel image. Full subject and any source-pose snow puff or loose cap must be visible with generous transparent margins. Output a high-resolution PNG with genuine alpha.\nDo NOT draw the original cyan selection ring, power meter, cast shadow or floor. No labels, borders, text, watermark, panel layout, extra characters, background, or unrelated props. One frame only. Preserve a gentle winter snowball-game mood."
+    },
+    {
+      "num": 36,
+      "name": "G dead",
+      "key": "cast_036_G_dead",
+      "file": "036_G_dead.png",
+      "w": 49,
+      "h": 38,
+      "reg": [
+        56,
+        36
+      ],
+      "team": "Green",
+      "prompt": "Use case: identity-preserve / game-sprite pose illustration.\nAsset: exactly ONE high-resolution transparent PNG animation frame.\nImage 1 is the user-approved Green character design and rendering style. Preserve that exact character: same cap, face, large head, short round body, mitten design, stitched winter coat, indigo trousers and boots, colours, fabric materials, contour quality and lighting.\nImage 2 is the original low-resolution target POSE and camera reference. Repose the approved character from image 1 to follow image 2. The new pose must be visibly distinct from the ready pose where the original differs.\nTarget pose: A fully clothed toy-like character has rolled into this compact diagonal snow rest pose, head toward upper LEFT and boots toward lower RIGHT as in the reference. Green cap beside shoulder if shown. No injury.\nPreserve the original slightly overhead three-quarter view and the target silhouette/facing direction; do not invent a frontal portrait or change the approved proportions. Keep garment seams and facial features consistent with the approved reference. The camera, body volume, and overall character scale must remain coherent across animation frames.\nThe illustration must be genuinely redrawn in the approved tactile, smoothly shaded 2.5D game-art finish with crisp new detail, not an enlargement/filter of the original pixel image. Full subject and any source-pose snow puff or loose cap must be visible with generous transparent margins. Output a high-resolution PNG with genuine alpha.\nDo NOT draw the original cyan selection ring, power meter, cast shadow or floor. No labels, borders, text, watermark, panel layout, extra characters, background, or unrelated props. One frame only. Preserve a gentle winter snowball-game mood."
+    }
+  ]
+}

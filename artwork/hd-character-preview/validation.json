@@ -1,0 +1,175 @@
+{
+  "ready": true,
+  "frames": [
+    {
+      "team": "Red",
+      "type": "Original",
+      "url": "../../web/assets/cast/005_R_ready.png",
+      "width": 26,
+      "height": 34,
+      "reg": [
+        15,
+        28
+      ],
+      "metrics": {
+        "width": 26,
+        "height": 34,
+        "bounds": [
+          0,
+          0,
+          26,
+          34
+        ],
+        "transparent": 279,
+        "opaque": 605,
+        "partial": 0,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "sha256": "cc33ad26a844b524855ac9a324c6c10449a6df5a5958077abda396bb83a8862d",
+      "bytes": 525
+    },
+    {
+      "team": "Red",
+      "type": "Redrawn",
+      "url": "assets/red-ready.png",
+      "width": 26,
+      "height": 34,
+      "reg": [
+        15,
+        28
+      ],
+      "metrics": {
+        "width": 1086,
+        "height": 1448,
+        "bounds": [
+          101,
+          227,
+          846,
+          1073
+        ],
+        "transparent": 888397,
+        "opaque": 18,
+        "partial": 684113,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "previewMapping": {
+        "sourceRect": [
+          101,
+          227,
+          846,
+          1073
+        ],
+        "logicalRect": [
+          0,
+          1.0236406619385363,
+          26,
+          32.976359338061464
+        ],
+        "logicalRegistration": [
+          15,
+          28
+        ],
+        "note": "Alpha-bounds fit for visual comparison only; not a production animation registration."
+      },
+      "sha256": "32649252b51bc69201af2953de9e0f5df4c0291a8935c63ec2142f9bf960185a",
+      "bytes": 1365977
+    },
+    {
+      "team": "Green",
+      "type": "Original",
+      "url": "../../web/assets/cast/024_G_ready.png",
+      "width": 25,
+      "height": 36,
+      "reg": [
+        11,
+        29
+      ],
+      "metrics": {
+        "width": 25,
+        "height": 36,
+        "bounds": [
+          0,
+          0,
+          25,
+          36
+        ],
+        "transparent": 298,
+        "opaque": 602,
+        "partial": 0,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "sha256": "1b1259aaa309e104b1bc71da2d125adaf7f07229f133a063ea423a23ce2da06d",
+      "bytes": 694
+    },
+    {
+      "team": "Green",
+      "type": "Redrawn",
+      "url": "assets/green-ready.png",
+      "width": 25,
+      "height": 36,
+      "reg": [
+        11,
+        29
+      ],
+      "metrics": {
+        "width": 1045,
+        "height": 1505,
+        "bounds": [
+          171,
+          342,
+          695,
+          974
+        ],
+        "transparent": 1106585,
+        "opaque": 340,
+        "partial": 465800,
+        "cornerAlpha": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "previewMapping": {
+        "sourceRect": [
+          171,
+          342,
+          695,
+          974
+        ],
+        "logicalRect": [
+          0,
+          0.9640287769784166,
+          25,
+          35.03597122302158
+        ],
+        "logicalRegistration": [
+          11,
+          29
+        ],
+        "note": "Alpha-bounds fit for visual comparison only; not a production animation registration."
+      },
+      "sha256": "7a435487ce58201f0d95fe4b31e1346bfde253560781bc3dcd9adf0a33fc710f",
+      "bytes": 1021614
+    }
+  ],
+  "canvases": 12,
+  "desktopOverflow": false,
+  "phoneOverflow": false,
+  "errors": []
+}
