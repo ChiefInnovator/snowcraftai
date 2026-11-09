@@ -344,6 +344,7 @@ class MainScene extends Phaser.Scene {
 
             // Dragging: the kid follows the pointer (keeping the grab offset), clamped to the red side
             if (this.isDragging && this.activePlayer && this.activePlayer.isAlive) {
+                if (pointer.id !== this.dragPointerId) return;
                 let newX = Math.round(px - this.grabOffsetX);
                 let newY = Math.round(py - this.grabOffsetY);
                 newX = Phaser.Math.Clamp(newX, 0, STAGE_W);
@@ -400,6 +401,7 @@ class MainScene extends Phaser.Scene {
                 }
                 this.activePlayer = kid;
                 this.isDragging = true;
+                this.dragPointerId = pointer.id; // only this finger/mouse moves or releases the kid
                 this.pressTime = this.time.now;
                 this.activePower = 0;
                 // On touch, lift the kid above the finger so it stays visible.
@@ -413,6 +415,7 @@ class MainScene extends Phaser.Scene {
 
         this.input.on('pointerup', (pointer) => {
             const kid = this.activePlayer;
+            if (this.isDragging && pointer.id !== this.dragPointerId) return;
             if (this.isDragging && kid && kid.isAlive && this.isLevelActive && (pointer.wasTouch || pointer.leftButtonReleased())) {
                 kid.shadowLocked = false;
                 this.throwSnowball(kid, this.currentPower());
@@ -429,8 +432,8 @@ class MainScene extends Phaser.Scene {
             }
         });
 
-        this.input.on('pointerupoutside', () => {
-            if (this.isDragging && this.activePlayer) {
+        this.input.on('pointerupoutside', (pointer) => {
+            if (this.isDragging && this.activePlayer && pointer.id === this.dragPointerId) {
                 if (this.activePlayer.isAlive && !this.activePlayer.isDazed) this.showKidIdle(this.activePlayer);
                 this.cancelDrag();
             }
