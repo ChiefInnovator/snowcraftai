@@ -71,6 +71,9 @@ test("src/index.html wires original events, mute, and does not load synthesized 
     assert.ok(html.includes('id="mute-checkbox"'));
     assert.ok(game.includes("whenSfxIdle"));
     assert.ok(game.includes("kid.isImmune = true"));
+    assert.ok(game.includes("this.audio.playIntro()"));
+    assert.ok(game.includes("this.audio.startMusic()"));
+    assert.ok(!/this\.sound\.play\(\s*['"]sfx_intro['"]/.test(game));
 });
 
 test("throw whoosh mapping follows myRange = 16 (power 8)", () => {
@@ -155,6 +158,48 @@ test("whenIdle fires after channel 1 goes quiet", async () => {
     await new Promise((r) => setTimeout(r, 30));
     while (queue.length) queue.shift()();
     assert.equal(fired, 1);
+});
+
+test("mute pauses music and unmute resumes it; intro respects mute", () => {
+    const playing = new Set();
+    const calls = [];
+    const adapter = {
+        play: function (id) {
+            playing.add(id);
+            return { durationMs: 100 };
+        },
+        stop: function () {
+            playing.clear();
+            calls.push("stop");
+        },
+        stopAll: function () {
+            playing.clear();
+            calls.push("stopAll");
+        },
+        pauseMusic: function () { calls.push("pauseMusic"); },
+        resumeMusic: function () { calls.push("resumeMusic"); },
+        playIntro: function () { calls.push("playIntro"); },
+        playMusic: function () { calls.push("playMusic"); },
+        isPlaying: function () { return playing.size > 0; }
+    };
+    const audio = Audio.createSnowcraftAudio(adapter);
+    audio.unlock();
+
+    assert.equal(audio.playIntro(), true);
+    assert.equal(audio.startMusic(), true);
+    assert.deepEqual(calls, ["playIntro", "playMusic"]);
+    assert.equal(audio.getState().musicWanted, true);
+
+    audio.setMuted(true);
+    assert.ok(calls.includes("pauseMusic"));
+    assert.ok(!calls.includes("stopAll"), "mute must not stopAll/kill BGM");
+    assert.equal(audio.playIntro(), false);
+    assert.equal(audio.startMusic(), false);
+    assert.ok(audio.getSkippedLog().filter((r) => r.reason === "muted").length >= 2);
+
+    audio.setMuted(false);
+    assert.ok(calls.includes("resumeMusic"));
+    assert.equal(audio.getState().musicWanted, true);
 });
 
 test("autoplay lock skips playback until unlock", () => {

@@ -53,9 +53,18 @@ python3 - <<'PY'
 # FGEI body zlib at offset 1905 inflates to 240387 bytes.
 # Resource loop after the ILS fourcc: varint id, offset, csize, usize, u8 compression, 4-byte XFIR tag.
 PY
-python3 tools/reference/inspect_movie.py extracted/SnowCraft.exe
-python3 tools/extract_snowcraft_sounds.py extracted/SnowCraft.exe /tmp/snowcraft-wav-check
+mkdir -p /tmp/snowcraft-dxr
+python3 -I tools/reference/extract_movie.py \
+  docs/reference/snowcraft-original/extracted/SnowCraft.exe \
+  /tmp/snowcraft-dxr/SnowCraft.dxr
+python3 -I tools/reference/inspect_movie.py \
+  /tmp/snowcraft-dxr/SnowCraft.dxr \
+  /tmp/snowcraft-dxr/analysis
+python3 tools/extract_snowcraft_sounds.py \
+  docs/reference/snowcraft-original/extracted/SnowCraft.exe \
+  /tmp/snowcraft-wav-check
 ```
 
-`inspect_movie.py` expects the projector path; it carves the `39VM` movie
-without launching Wine.
+`extract_movie.py` carves the `39VM` movie and rebases mmap offsets.
+`inspect_movie.py` then reads the resulting `.dxr` (`XFIR` header). Neither
+launches Wine.

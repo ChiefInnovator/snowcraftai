@@ -88,6 +88,25 @@ That patch slot-aligns digits 5–9 with the 8-bit 2–4 VWSC loc and wires the
 original Play Again BITD (member 77). It keeps the 600×320–1800×960 display
 scaler. It does not stash, reset, or merge to `develop` / `main`.
 
+## Incremental patch after digit-slot apply (from `733caa4`)
+
+Once the digit-slot increment has been applied, the worktree matches combined
+`733caa477a57f8f44b07ba8cd6d99dfea6834bda`. **Do not** reset or re-apply
+earlier patches. The Copilot mute / docs increment is a binary patch whose
+before-side **is** that `733caa4` tree:
+
+```bash
+# worktree must already be the applied combined tree (733caa4 contents)
+git apply --check --binary /path/to/snowcraft-incremental-733caa4-copilot-mute-docs.patch
+git apply --binary /path/to/snowcraft-incremental-733caa4-copilot-mute-docs.patch
+```
+
+That patch resumes BGM on unmute, gates title-start intro/music through mute,
+and corrects DXR extraction steps in the original-archive docs. Scaler
+unchanged. If the worktree is still `8936227`, apply the digit-slot patch
+first, then this one — or apply
+`snowcraft-incremental-8936227-digit-slot-and-mute.patch` instead of both.
+
 ## Optional (changes HEAD)
 
 ```bash

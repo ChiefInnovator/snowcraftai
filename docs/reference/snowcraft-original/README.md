@@ -102,11 +102,21 @@ docs folder.
 
 ### 3. Re-inspect the EXE movie (metadata, not pixels)
 
+`inspect_movie.py` and `extract_bitmaps.py` require a rebased `XFIR` movie.
+Carve that first with `extract_movie.py`; do not pass the projector EXE to the
+decoders.
+
 ```bash
-python3 tools/reference/inspect_movie.py \
-  docs/reference/snowcraft-original/extracted/SnowCraft.exe
-python3 tools/reference/extract_bitmaps.py \
-  docs/reference/snowcraft-original/extracted/SnowCraft.exe
+mkdir -p /tmp/snowcraft-dxr
+python3 -I tools/reference/extract_movie.py \
+  docs/reference/snowcraft-original/extracted/SnowCraft.exe \
+  /tmp/snowcraft-dxr/SnowCraft.dxr
+python3 -I tools/reference/inspect_movie.py \
+  /tmp/snowcraft-dxr/SnowCraft.dxr \
+  /tmp/snowcraft-dxr/analysis
+python3 -I tools/reference/extract_bitmaps.py \
+  /tmp/snowcraft-dxr/SnowCraft.dxr \
+  /tmp/snowcraft-dxr
 ```
 
 ### 4. DCR (map only)

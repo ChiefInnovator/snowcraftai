@@ -30,6 +30,7 @@
             unlocked: false,
             volume: 1,
             channel1: null,
+            musicWanted: false,
             lastEventAt: {},
             playLog: [],
             skippedLog: []
@@ -124,10 +125,45 @@
             }
         }
 
+        function skipCue(soundId, reason) {
+            state.skippedLog.push({ soundId: soundId, reason: reason });
+            return false;
+        }
+
+        function playIntro() {
+            if (!state.unlocked) return skipCue("intro", "locked-autoplay");
+            if (state.muted) return skipCue("intro", "muted");
+            if (playAdapter.playIntro) playAdapter.playIntro();
+            return true;
+        }
+
+        function startMusic() {
+            state.musicWanted = true;
+            if (!state.unlocked) return skipCue("music", "locked-autoplay");
+            if (state.muted) return skipCue("music", "muted");
+            if (playAdapter.playMusic) playAdapter.playMusic();
+            return true;
+        }
+
+        function pauseMusic() {
+            if (stopAdapter.pauseMusic) stopAdapter.pauseMusic();
+        }
+
+        function resumeMusic() {
+            if (!state.musicWanted || state.muted) return false;
+            if (playAdapter.resumeMusic) playAdapter.resumeMusic();
+            else if (playAdapter.playMusic) playAdapter.playMusic();
+            return true;
+        }
+
         function setMuted(muted) {
             state.muted = !!muted;
             if (state.muted) {
-                stopAll();
+                stopChannel1();
+                if (stopAdapter.stop) stopAdapter.stop();
+                pauseMusic();
+            } else {
+                resumeMusic();
             }
             if (typeof localStorage !== "undefined") {
                 try {
@@ -155,6 +191,7 @@
 
         function restart() {
             stopAll();
+            state.musicWanted = false;
             state.playLog = [];
             state.skippedLog = [];
             state.lastEventAt = {};
@@ -176,6 +213,8 @@
             STORAGE_MUTE_KEY,
             play: play,
             playEvent: playEvent,
+            playIntro: playIntro,
+            startMusic: startMusic,
             setMuted: setMuted,
             isMuted: function () { return state.muted; },
             unlock: unlock,
@@ -191,10 +230,17 @@
                     muted: state.muted,
                     unlocked: state.unlocked,
                     volume: state.volume,
-                    channel1: state.channel1
+                    channel1: state.channel1,
+                    musicWanted: state.musicWanted
                 };
             }
         };
+    }
+
+    function getMusic(scene) {
+        if (!scene || !scene.sound) return null;
+        if (scene.sound.get) return scene.sound.get("music") || null;
+        return null;
     }
 
     function createPhaserAdapter(scene) {
@@ -225,6 +271,26 @@
                         snd.stop();
                     }
                 });
+            },
+            playIntro: function () {
+                if (!scene || !scene.sound || !scene.cache || !scene.cache.audio) return;
+                if (scene.cache.audio.exists("sfx_intro")) {
+                    scene.sound.play("sfx_intro", { volume: 0.6 });
+                }
+            },
+            playMusic: function () {
+                const music = getMusic(scene);
+                if (music && !music.isPlaying) music.play();
+            },
+            pauseMusic: function () {
+                const music = getMusic(scene);
+                if (music && music.isPlaying && music.pause) music.pause();
+            },
+            resumeMusic: function () {
+                const music = getMusic(scene);
+                if (!music) return;
+                if (music.isPaused && music.resume) music.resume();
+                else if (!music.isPlaying) music.play();
             },
             stopAll: function () {
                 if (scene && scene.sound && scene.sound.stopAll) {

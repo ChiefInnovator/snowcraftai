@@ -520,9 +520,9 @@ class MainScene extends Phaser.Scene {
         const layout = P.LEVELS[index];
         const isFirst = (index === 0);
 
-        if (isFirst) {
-            if (this.cache.audio.exists('sfx_intro')) this.sound.play('sfx_intro', { volume: 0.6 });
-            if (this.music && !this.music.isPlaying) this.music.play();
+        if (isFirst && this.audio) {
+            this.audio.playIntro();
+            this.audio.startMusic();
         }
 
         this.awaitingTitleClick = false;
