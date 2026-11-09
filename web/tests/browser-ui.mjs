@@ -358,11 +358,37 @@ test("loss score and queued audio reveal inset replay; keyboard activation reset
     evidence.loss = end;
 });
 
-test("music and mute-all control actual playback independently and persist across rebuild/reload", { timeout: 30000 }, async t => {
+test("music and mute-all control actual playback independently and persist across rebuild/reload", { timeout: 45000 }, async t => {
     const { page } = await open(t, "audio preferences");
+    const pendingUnlock = [];
+    for (const gate of ["enabled", "music-off", "mute-all"]) {
+        await page.locator("#music-checkbox").setChecked(gate !== "music-off");
+        await page.locator("#mute-checkbox").setChecked(gate === "mute-all");
+        const pending = await page.evaluate(() => {
+            const scene = SnowcraftGame.getScene();
+            scene.audio.startMusic();
+            // Keep the real pointer unlock hook, while suppressing startLevel's
+            // second startMusic call: that call would mask a broken unlock().
+            scene.awaitingTitleClick = false;
+            return { state: scene.audio.getState(), playing: scene.music.isPlaying };
+        });
+        assert.equal(pending.state.unlocked, false);
+        assert.equal(pending.state.musicWanted, true);
+        assert.equal(pending.playing, false);
+        await start(page);
+        await page.waitForFunction(() => SnowcraftGame.getScene().audio.isUnlocked());
+        const unlocked = await audioState(page);
+        assert.equal(unlocked.musicPlaying, gate === "enabled", gate + " pending music after real gesture");
+        assert.equal(await page.evaluate(() => SnowcraftGame.getScene().redTeam.length), 0, "level start did not mask pending playback");
+        pendingUnlock.push({ gate, pending, unlocked });
+        await page.reload({ waitUntil: "domcontentloaded" });
+        await ready(page);
+    }
+    await page.locator("#music-checkbox").check();
+    await page.locator("#mute-checkbox").uncheck();
     await start(page);
     await active(page);
-    const states = { start: await audioState(page) };
+    const states = { pendingUnlock, start: await audioState(page) };
     assert.equal(states.start.musicPlaying, true);
     await page.locator("#music-checkbox").uncheck();
     states.musicOff = await audioState(page);

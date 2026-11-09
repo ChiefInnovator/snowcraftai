@@ -193,6 +193,7 @@
             if (unlockAdapter.unlock) {
                 unlockAdapter.unlock();
             }
+            resumeMusic();
             return true;
         }
 

@@ -234,7 +234,7 @@ test("music preference survives a new game and cannot bypass autoplay lock", () 
         const first = Audio.createSnowcraftAudio({});
         first.setMusicEnabled(false);
         const calls = [];
-        const next = Audio.createSnowcraftAudio({ resumeMusic: () => calls.push("resume") });
+        const next = Audio.createSnowcraftAudio({ play: () => ({}), resumeMusic: () => calls.push("resume") });
         assert.equal(next.isMusicEnabled(), false);
         next.startMusic();
         next.setMusicEnabled(true);
@@ -262,4 +262,22 @@ test("autoplay lock skips playback until unlock", () => {
     audio.unlock();
     assert.equal(audio.playEvent("throw", { power: 3 }), true);
     assert.equal(started[0], "whoosh_percussive");
+});
+
+test("unlock resumes requested music while respecting music-off and mute-all", () => {
+    for (const mode of ["enabled", "music-off", "muted"]) {
+        const calls = [];
+        const audio = Audio.createSnowcraftAudio({
+            play: () => ({}),
+            resumeMusic: () => calls.push("resume"),
+            unlock: () => calls.push("unlock")
+        });
+        if (mode === "music-off") audio.setMusicEnabled(false);
+        if (mode === "muted") audio.setMuted(true);
+        assert.equal(audio.startMusic(), false, "request waits for the browser gesture");
+        assert.equal(audio.getState().musicWanted, true);
+        audio.unlock();
+        assert.equal(calls.includes("resume"), mode === "enabled");
+        assert.equal(audio.isUnlocked(), true);
+    }
 });
