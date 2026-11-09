@@ -38,6 +38,14 @@ Little-endian movie `XFIR`/`39VM` at file offset `0x306114`.
 | `info@nny.com` | EXE `0x31126a` (cast xtra member 130) |
 | `INFO@NNY.COM` | Cast field member 91 (`source-evidence/recovered/dir-cast.txt`) |
 
+Exact recovered credit strings as stored in the movie (not Markdown table
+escapes):
+
+```
+wells packard - Nicholson | NY
+wells packard - Icon Nicholson
+```
+
 Cast / score names that are credits or studio contacts, not license text
 (`dir-cast.txt`):
 
@@ -65,6 +73,14 @@ Never launched a Shockwave player.
 | `mailto:mayumi@nny.com` | FGEI `0x3779e` (not present in the EXE movie strings) |
 | `2mailto:info@nny.com, kchui@nny.com, wells@nny.com` | FGEI `0x3a5c1` (`kchui@nny.com` is a mailbox string, not a spelled-out legal name) |
 | `winners@nny.com` / `info@nny.com` / `INFO@NNY.COM` | FGEI cast names, same members as the EXE |
+
+Exact recovered DCR credit strings as stored in FGEI (not Markdown table
+escapes):
+
+```
+wells packard - Nicholson | NY
+Wells Packard - Nicholson NY
+```
 
 The EXE and DCR movies are **not** the same bytes. Credits overlap but are not
 identical (DCR has `mayumi@nny.com` and `kchui@nny.com`; EXE has

@@ -57,8 +57,8 @@ describe("docs/reference/snowcraft-original archives", () => {
     it("records exact original copyright strings and does not invent a license", () => {
         const notices = fs.readFileSync(path.join(ROOT, "COPYRIGHT-NOTICES.md"), "utf8");
         const rootNotice = fs.readFileSync(path.join(__dirname, "..", "NOTICE.md"), "utf8");
-        assert.match(notices, /wells packard - Nicholson/);
-        assert.match(notices, /Nicholson \| NY/);
+        assert.match(notices, /wells packard - Nicholson \| NY/);
+        assert.equal(notices.includes("wells packard - Nicholson | NY"), true);
         assert.match(notices, /wells packard - Icon Nicholson/);
         assert.match(notices, /Wells Packard - Nicholson NY/);
         assert.match(notices, /Copyright 1985-2000 Macromedia, Inc\./);
