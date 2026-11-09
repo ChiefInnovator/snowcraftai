@@ -18,12 +18,11 @@
 | 10 | 10_kids1.wav | kids1 | kMoaCfFormat_snd | 11025 Hz | 0.511 |
 | 11 | 11_hit1.wav | hit1 | kMoaCfFormat_snd | 11025 Hz | 0.403 |
 | 12 | 12_Whoosh_Percusive.wav | Whoosh Percusive | kMoaCfFormat_snd | 11127 Hz | 0.192 |
-| 13 | 13_Uh.wav | Uh | kMoaCfFormat_snd | 11025 Hz | 0.162 |
 | 14 | 14_splat.wav | splat | kMoaCfFormat_snd | 11025 Hz | 0.105 |
 | 15 | 15_hit2.wav | hit2 | kMoaCfFormat_snd | 11025 Hz | 0.296 |
 | 16 | 16_halaluja.wav | halaluja | ? | 11128 Hz | 2.008 |
 
-All files are 8-bit unsigned mono PCM. There are 16 unique sounds, no duplicates, and the total is about 13.8 s. SHA-256 of the PCM payloads is in `inventory.json`. `Uh` is stored but **not wired** (no Lingo `puppetSound` recovered). Event mapping is in `docs/PARITY.md`.
+All files are 8-bit unsigned mono PCM. 15 sounds ship here; the 16th cast sound, `Uh`, is never played by the original (no Lingo `puppetSound`) so it is not included. SHA-256 of the PCM payloads is in `inventory.json`. Event mapping is in `docs/PARITY.md`.
 
 **Coverage / caveats:** These are all 16 sound cast members in the movie. There are no external sound files, no streaming SWA/MP3 members, no Flash audio, and no procedural/synth audio. The other XFIR container holds only Xtras (DLL code). Name `Uh` was recovered from cast info. Sample rates come from the stored header: 11025, 11127 and 11128 (legacy Mac 11.127 kHz) and 22254 Hz. Playback quality is the original 1999 8-bit low-fi.
 
