@@ -33,10 +33,11 @@ const server = createServer(async (request, response) => {
   catch { response.writeHead(404).end(); }
 });
 await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
-const browser = await chromium.launch({ headless: true });
+let browser;
 const manifest = { version: 1, pixelScale: scale, approval: 'Red and Green reference designs approved by Rich on 2026-11-09', selectionRing: 'renderer', frames: [] };
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 try {
+  browser = await chromium.launch({ headless: true });
   const page = await browser.newPage();
   await page.goto('http://127.0.0.1:' + server.address().port);
   for (const frame of frames) {
@@ -130,7 +131,9 @@ try {
   await writeFile(path.join(native, 'manifest.json'), json);
   console.log(JSON.stringify({ frames: manifest.frames.length, red: manifest.frames.filter(f => f.name.startsWith('R ')).length, green: manifest.frames.filter(f => f.name.startsWith('G ')).length, pixelScale: scale, bytes: manifest.frames.length && (await Promise.all(manifest.frames.map(f => readFile(path.join(output, f.file))))).reduce((n, b) => n + b.length, 0) }));
 } finally {
-  await browser.close();
-  server.closeAllConnections();
-  await new Promise(resolve => server.close(resolve));
+  try { await browser?.close(); }
+  finally {
+    server.closeAllConnections();
+    await new Promise(resolve => server.close(resolve));
+  }
 }
