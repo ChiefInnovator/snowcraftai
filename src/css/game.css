@@ -187,11 +187,47 @@ nav {
 #rotate-hint[hidden] { display: none; }
 #rotate-hint p { margin: 0; font-family: var(--serif); font-size: 22px; font-weight: 600; }
 
-/* Phone on its side, or full screen: the game takes the whole viewport. */
-.play:fullscreen { background: var(--ink); padding: 0; display: grid; place-items: center; }
-.play:fullscreen .play-head { display: none; }
-.play:fullscreen .play-inner { width: auto; }
-.play:fullscreen #game-container { border-radius: 0; box-shadow: none; outline: none; background: transparent; }
+/* Full screen button, on the game like a video player's. Top-right keeps it
+   clear of the red team, who start bottom-right. */
+.fs-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 5;
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: 0;
+    border-radius: 8px;
+    background: rgba(12, 21, 32, 0.55);
+    color: #ffffff;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s, background 0.2s;
+}
+.fs-btn:hover, .fs-btn:focus-visible { opacity: 1; background: rgba(12, 21, 32, 0.8); }
+.fs-btn svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.fs-btn .fs-exit, .fs-btn.is-on .fs-enter { display: none; }
+.fs-btn.is-on .fs-exit { display: block; }
+
+/* Full screen: the game fills the screen, letterboxed, like a video. */
+.game-wrap:fullscreen,
+html.pseudo-fs .game-wrap {
+    background: #000;
+    display: grid;
+    place-items: center;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+}
+html.pseudo-fs .game-wrap { position: fixed; inset: 0; z-index: 1000; }
+html.pseudo-fs body { overflow: hidden; }
+.game-wrap:fullscreen #game-container,
+html.pseudo-fs #game-container { border-radius: 0; box-shadow: none; outline: none; background: transparent; }
+.game-wrap:fullscreen .fs-btn,
+html.pseudo-fs .fs-btn { top: 14px; right: 14px; }
 
 /* Sections */
 .section { padding: 72px 0; border-top: 1px solid var(--line); }
@@ -316,7 +352,7 @@ footer a:hover { color: var(--red-2); }
     .author-links { justify-content: center; }
 }
 
-@media (orientation: landscape) and (max-height: 520px) {
+@media (orientation: landscape) and (max-height: 520px) and (pointer: coarse) {
     nav { display: none; }
     .play { padding: 0; min-height: 100vh; min-height: 100dvh; display: grid; place-items: center; }
     .play-head { display: none; }

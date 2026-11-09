@@ -78,6 +78,14 @@
         "mainEntity": [
             {
                 "@type": "Question",
+                "name": "Can I play full screen?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. Use the button in the top-right corner of the game, or press F. Press Esc, F or the button again to leave. On a phone, full screen turns the game sideways where the browser allows it."
+                }
+            },
+            {
+                "@type": "Question",
                 "name": "Is it free?",
                 "acceptedAnswer": {
                     "@type": "Answer",
@@ -97,7 +105,7 @@
                 "name": "Does it work on a phone?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Yes. Turn your phone sideways and the game fills the screen. Touch a kid, hold to wind up, slide to move them, and lift your finger to throw. For the biggest view, use Full screen on Android, or Add to Home Screen on iPhone."
+                    "text": "Yes. Turn your phone sideways and the game fills the screen. Touch a kid, hold to wind up, slide to move them, and lift your finger to throw. For the biggest view, tap the full-screen button in the corner of the game; tap it again to leave."
                 }
             },
             {
@@ -213,11 +221,14 @@
                         <input type="checkbox" id="mute-checkbox" onchange="changeMute()">
                         <span>Mute</span>
                     </label>
-                    <button type="button" id="fullscreen-btn" class="opt-btn" onclick="toggleFullscreen()" hidden>Full screen</button>
                 </div>
             </header>
             <div class="game-wrap">
                 <div id="game-container"></div>
+                <button type="button" id="fullscreen-btn" class="fs-btn" onclick="toggleFullscreen()" aria-label="Full screen" title="Full screen (F)">
+                    <svg class="fs-enter" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
+                    <svg class="fs-exit" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg>
+                </button>
                 <div id="rotate-hint" hidden>
                     <p>Turn your phone sideways to play.</p>
                     <button type="button" class="opt-btn" onclick="dismissRotateHint()">Play anyway</button>
@@ -255,6 +266,10 @@
         <div class="container narrow">
             <h2 id="faq-title">FAQ</h2>
             <details>
+                <summary>Can I play full screen?</summary>
+                <p>Yes. Use the button in the top-right corner of the game, or press F. Press Esc, F or the button again to leave. On a phone, full screen turns the game sideways where the browser allows it.</p>
+            </details>
+            <details>
                 <summary>Is it free?</summary>
                 <p>Yes. No account, no ads, nothing to buy.</p>
             </details>
@@ -264,7 +279,7 @@
             </details>
             <details>
                 <summary>Does it work on a phone?</summary>
-                <p>Yes. Turn your phone sideways and the game fills the screen. Touch a kid, hold to wind up, slide to move them, and lift your finger to throw. For the biggest view, use Full screen on Android, or Add to Home Screen on iPhone.</p>
+                <p>Yes. Turn your phone sideways and the game fills the screen. Touch a kid, hold to wind up, slide to move them, and lift your finger to throw. For the biggest view, tap the full-screen button in the corner of the game; tap it again to leave.</p>
             </details>
             <details>
                 <summary>How is the score worked out?</summary>

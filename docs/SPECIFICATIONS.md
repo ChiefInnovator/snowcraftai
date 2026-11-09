@@ -38,9 +38,9 @@ All values live in `RULES` at the top of `src/js/game.js` and `src/js/parity.js`
 ## Phones (web)
 
 * **Touch:** a tap picks the nearest red kid within 34 px (no hover needed). While dragging, the kid is drawn 36 px above the finger. Lifting the finger throws. Tapping a dazed kid plays the "can't pick up" chirp.
-* **Landscape** (`max-height: 520px`): nav and settings hide and the game fills the viewport. Portrait shows a dismissible "Turn your phone sideways" hint.
+* **Landscape** (touch devices, `max-height: 520px`): nav and settings hide and the game fills the viewport. Portrait shows a dismissible "Turn your phone sideways" hint.
 * **Rotation:** layout re-runs on `resize`, `orientationchange` and `visualViewport` resize (at 120 ms and 600 ms, since phones report sizes late) and calls `game.scale.refresh()`. The game box is sized by width with a CSS `aspect-ratio` and `max-width: 100%`, so it can't make the page wider than the screen.
-* **Full screen:** button shown where the Fullscreen API exists (Android, desktop); also tries to lock landscape. iPhone uses Add to Home Screen (`manifest.webmanifest`, `display: fullscreen`, `orientation: landscape`).
+* **Full screen:** works like a video player. A button on the top-right of the game (or the F key) toggles it; Esc, F or the button exits. The game letterboxes to fill the screen. Uses the Fullscreen API where available (desktop, Android, with a landscape lock on touch devices); iPhone Safari has no element full screen, so the game covers the browser window instead. Add to Home Screen (`manifest.webmanifest`, `display: fullscreen`) gives iPhone a true full-screen launch.
 * **Rendering:** render scale capped at 2× on touch devices.
 
 ## Debug

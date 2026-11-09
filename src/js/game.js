@@ -40,13 +40,22 @@ const COARSE_POINTER = !!(window.matchMedia && window.matchMedia('(pointer: coar
 const TOUCH_GRAB_RADIUS = 34; // world px: how close a finger must land to a red kid
 const TOUCH_LIFT = 36;        // world px: kid is drawn above the finger while dragging
 
+// Phones held sideways (touch only, so short desktop windows keep the normal page).
 function isCompactLandscape() {
-    return !!(window.matchMedia && window.matchMedia('(orientation: landscape) and (max-height: 520px)').matches);
+    return !!(window.matchMedia && window.matchMedia('(orientation: landscape) and (max-height: 520px) and (pointer: coarse)').matches);
+}
+
+// Full screen works like a video player: the game fills the screen and the
+// same button (or Esc / F) exits. Where the Fullscreen API is missing
+// (iPhone Safari), the game covers the browser window instead.
+let pseudoFullscreen = false;
+function isFullscreen() {
+    return !!document.fullscreenElement || pseudoFullscreen;
 }
 
 // Full screen or a phone on its side: the game takes the whole viewport.
 function isImmersive() {
-    return !!document.fullscreenElement || isCompactLandscape();
+    return isFullscreen() || isCompactLandscape();
 }
 
 function viewportSize() {
@@ -60,7 +69,8 @@ function computeLayout() {
     const immersive = isImmersive();
     const layout = P.computeDisplayLayout(
         immersive ? 0 : GAME_SCALE,
-        vp.w,
+        // Immersive: scale the width so the 592-wide stage (not the 600 base) meets the screen edges.
+        immersive ? vp.w * DISPLAY_BASE_W / STAGE_W : vp.w,
         vp.h,
         window.devicePixelRatio || 1,
         immersive ? 0 : undefined,
@@ -136,26 +146,78 @@ function updateRotateHint() {
     hint.hidden = !(COARSE_POINTER && portrait && !rotateHintDismissed);
 }
 
+// React to the orientation itself, not only to resizes (which can fire before it settles).
+if (window.matchMedia) {
+    const portraitQuery = window.matchMedia('(orientation: portrait)');
+    if (portraitQuery.addEventListener) portraitQuery.addEventListener('change', () => { updateRotateHint(); relayout(); });
+}
+if (screen.orientation && screen.orientation.addEventListener) {
+    screen.orientation.addEventListener('change', () => { updateRotateHint(); relayout(); });
+}
+
 function dismissRotateHint() {
     rotateHintDismissed = true;
     updateRotateHint();
 }
 
+function setPseudoFullscreen(on) {
+    pseudoFullscreen = on;
+    document.documentElement.classList.toggle('pseudo-fs', on);
+    syncFullscreenButton();
+    relayout();
+}
+
+function syncFullscreenButton() {
+    const btn = document.getElementById('fullscreen-btn');
+    if (!btn) return;
+    const on = isFullscreen();
+    btn.classList.toggle('is-on', on);
+    btn.setAttribute('aria-label', on ? 'Exit full screen' : 'Full screen');
+    btn.title = on ? 'Exit full screen (Esc)' : 'Full screen (F)';
+}
+
+function unlockOrientation() {
+    try { if (screen.orientation && screen.orientation.unlock) screen.orientation.unlock(); } catch (err) { /* not supported */ }
+}
+
 function toggleFullscreen() {
-    const target = document.querySelector('.play');
-    if (document.fullscreenElement) {
-        document.exitFullscreen().catch(() => {});
+    if (isFullscreen()) {
+        if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+        else setPseudoFullscreen(false);
+        unlockOrientation();
         return;
     }
-    if (!target || !target.requestFullscreen) return;
-    target.requestFullscreen({ navigationUI: 'hide' })
-        .then(() => {
-            if (screen.orientation && screen.orientation.lock) {
-                screen.orientation.lock('landscape').catch(() => {});
-            }
-        })
-        .catch(() => {});
+    const target = document.querySelector('.game-wrap');
+    if (target && target.requestFullscreen && document.fullscreenEnabled) {
+        target.requestFullscreen({ navigationUI: 'hide' })
+            .then(() => {
+                if (COARSE_POINTER && screen.orientation && screen.orientation.lock) {
+                    screen.orientation.lock('landscape').catch(() => {});
+                }
+            })
+            .catch(() => setPseudoFullscreen(true));
+    } else {
+        setPseudoFullscreen(true);
+    }
 }
+
+document.addEventListener('fullscreenchange', () => {
+    if (!document.fullscreenElement) unlockOrientation();
+    syncFullscreenButton();
+    updateRotateHint();
+});
+
+// F toggles full screen, Esc leaves the in-page version (the browser handles Esc for the real one).
+document.addEventListener('keydown', (e) => {
+    const tag = (e.target && e.target.tagName) || '';
+    if (tag === 'INPUT' || tag === 'SELECT' || tag === 'TEXTAREA' || e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.key === 'f' || e.key === 'F') {
+        e.preventDefault();
+        toggleFullscreen();
+    } else if (e.key === 'Escape' && pseudoFullscreen) {
+        setPseudoFullscreen(false);
+    }
+});
 
 function getConfig() {
     const layout = computeLayout();
@@ -602,7 +664,7 @@ class MainScene extends Phaser.Scene {
     showTitle() {
         this.awaitingTitleClick = true;
         this.showScoreBanner(0);
-        this.subText.setText('Click to play').setVisible(true);
+        this.subText.setText(COARSE_POINTER ? 'Tap to play' : 'Click to play').setVisible(true);
     }
 
     startLevel(index) {
@@ -1403,8 +1465,7 @@ class MainScene extends Phaser.Scene {
 game = new Phaser.Game(getConfig());
 
 (function initPhoneUi() {
-    const fs = document.getElementById('fullscreen-btn');
-    if (fs && document.fullscreenEnabled) fs.hidden = false;
+    syncFullscreenButton();
     updateRotateHint();
 })();
 
