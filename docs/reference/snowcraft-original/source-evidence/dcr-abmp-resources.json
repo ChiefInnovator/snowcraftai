@@ -1,0 +1,2136 @@
+{
+  "source": "extracted/snowcraft.dcr",
+  "parse": "Afterburner ABMP (zlib @ byte 188, 1712 -> 3726) then FGEI body zlib @ 1905",
+  "executed": false,
+  "resource_count": 263,
+  "tag_counts": {
+    "KEY*": 1,
+    "CASt": 125,
+    "CAS*": 1,
+    "Lctx": 1,
+    "Fmap": 1,
+    "Cinf": 1,
+    "Lnam": 1,
+    "Lscr": 19,
+    "BITD": 82,
+    "STXT": 2,
+    "CLUT": 1,
+    "snd ": 16,
+    "XMED": 3,
+    "DRCF": 1,
+    "FXmp": 1,
+    "MCsL": 1,
+    "Sord": 1,
+    "VWFI": 1,
+    "VWSC": 1,
+    "VWLB": 1,
+    "XTRl": 1,
+    "VERS": 1
+  },
+  "resources": [
+    {
+      "tag": "KEY*",
+      "id": 3,
+      "offset": null,
+      "compressed_size": 4056,
+      "uncompressed_size": 4056,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 13,
+      "offset": null,
+      "compressed_size": 204,
+      "uncompressed_size": 204,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 15,
+      "offset": null,
+      "compressed_size": 89,
+      "uncompressed_size": 89,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 22,
+      "offset": null,
+      "compressed_size": 82,
+      "uncompressed_size": 82,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 27,
+      "offset": null,
+      "compressed_size": 68,
+      "uncompressed_size": 68,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 38,
+      "offset": null,
+      "compressed_size": 80,
+      "uncompressed_size": 80,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 44,
+      "offset": null,
+      "compressed_size": 81,
+      "uncompressed_size": 81,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 51,
+      "offset": null,
+      "compressed_size": 83,
+      "uncompressed_size": 83,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 69,
+      "offset": null,
+      "compressed_size": 80,
+      "uncompressed_size": 80,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 74,
+      "offset": null,
+      "compressed_size": 80,
+      "uncompressed_size": 80,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 79,
+      "offset": null,
+      "compressed_size": 80,
+      "uncompressed_size": 80,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 80,
+      "offset": null,
+      "compressed_size": 139,
+      "uncompressed_size": 139,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 84,
+      "offset": null,
+      "compressed_size": 82,
+      "uncompressed_size": 82,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 86,
+      "offset": null,
+      "compressed_size": 80,
+      "uncompressed_size": 80,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 94,
+      "offset": null,
+      "compressed_size": 80,
+      "uncompressed_size": 80,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 95,
+      "offset": null,
+      "compressed_size": 82,
+      "uncompressed_size": 82,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 98,
+      "offset": null,
+      "compressed_size": 83,
+      "uncompressed_size": 83,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 101,
+      "offset": null,
+      "compressed_size": 83,
+      "uncompressed_size": 83,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 102,
+      "offset": null,
+      "compressed_size": 80,
+      "uncompressed_size": 80,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 108,
+      "offset": null,
+      "compressed_size": 83,
+      "uncompressed_size": 83,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 110,
+      "offset": null,
+      "compressed_size": 83,
+      "uncompressed_size": 83,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 113,
+      "offset": null,
+      "compressed_size": 83,
+      "uncompressed_size": 83,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 116,
+      "offset": null,
+      "compressed_size": 83,
+      "uncompressed_size": 83,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 117,
+      "offset": null,
+      "compressed_size": 83,
+      "uncompressed_size": 83,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 120,
+      "offset": null,
+      "compressed_size": 83,
+      "uncompressed_size": 83,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 121,
+      "offset": null,
+      "compressed_size": 83,
+      "uncompressed_size": 83,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 124,
+      "offset": null,
+      "compressed_size": 83,
+      "uncompressed_size": 83,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 126,
+      "offset": null,
+      "compressed_size": 80,
+      "uncompressed_size": 80,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 129,
+      "offset": null,
+      "compressed_size": 80,
+      "uncompressed_size": 80,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 131,
+      "offset": null,
+      "compressed_size": 62,
+      "uncompressed_size": 62,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 136,
+      "offset": null,
+      "compressed_size": 81,
+      "uncompressed_size": 81,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 141,
+      "offset": null,
+      "compressed_size": 80,
+      "uncompressed_size": 80,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 152,
+      "offset": null,
+      "compressed_size": 66,
+      "uncompressed_size": 66,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 153,
+      "offset": null,
+      "compressed_size": 75,
+      "uncompressed_size": 75,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 154,
+      "offset": null,
+      "compressed_size": 80,
+      "uncompressed_size": 80,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 158,
+      "offset": null,
+      "compressed_size": 82,
+      "uncompressed_size": 82,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 162,
+      "offset": null,
+      "compressed_size": 80,
+      "uncompressed_size": 80,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 176,
+      "offset": null,
+      "compressed_size": 80,
+      "uncompressed_size": 80,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 180,
+      "offset": null,
+      "compressed_size": 80,
+      "uncompressed_size": 80,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 181,
+      "offset": null,
+      "compressed_size": 82,
+      "uncompressed_size": 82,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 182,
+      "offset": null,
+      "compressed_size": 80,
+      "uncompressed_size": 80,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 186,
+      "offset": null,
+      "compressed_size": 80,
+      "uncompressed_size": 80,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 189,
+      "offset": null,
+      "compressed_size": 84,
+      "uncompressed_size": 84,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 193,
+      "offset": null,
+      "compressed_size": 40,
+      "uncompressed_size": 40,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 199,
+      "offset": null,
+      "compressed_size": 131,
+      "uncompressed_size": 131,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 220,
+      "offset": null,
+      "compressed_size": 80,
+      "uncompressed_size": 80,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 229,
+      "offset": null,
+      "compressed_size": 82,
+      "uncompressed_size": 82,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 241,
+      "offset": null,
+      "compressed_size": 82,
+      "uncompressed_size": 82,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 242,
+      "offset": null,
+      "compressed_size": 131,
+      "uncompressed_size": 131,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 246,
+      "offset": null,
+      "compressed_size": 82,
+      "uncompressed_size": 82,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 250,
+      "offset": null,
+      "compressed_size": 130,
+      "uncompressed_size": 130,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 254,
+      "offset": null,
+      "compressed_size": 85,
+      "uncompressed_size": 85,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 257,
+      "offset": null,
+      "compressed_size": 77,
+      "uncompressed_size": 77,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 266,
+      "offset": null,
+      "compressed_size": 132,
+      "uncompressed_size": 132,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 272,
+      "offset": null,
+      "compressed_size": 131,
+      "uncompressed_size": 131,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 276,
+      "offset": null,
+      "compressed_size": 85,
+      "uncompressed_size": 85,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 279,
+      "offset": null,
+      "compressed_size": 131,
+      "uncompressed_size": 131,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 285,
+      "offset": null,
+      "compressed_size": 131,
+      "uncompressed_size": 131,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 291,
+      "offset": null,
+      "compressed_size": 130,
+      "uncompressed_size": 130,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 297,
+      "offset": null,
+      "compressed_size": 142,
+      "uncompressed_size": 142,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 301,
+      "offset": null,
+      "compressed_size": 83,
+      "uncompressed_size": 83,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 303,
+      "offset": null,
+      "compressed_size": 62,
+      "uncompressed_size": 62,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 304,
+      "offset": null,
+      "compressed_size": 80,
+      "uncompressed_size": 80,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 305,
+      "offset": null,
+      "compressed_size": 80,
+      "uncompressed_size": 80,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 308,
+      "offset": null,
+      "compressed_size": 128,
+      "uncompressed_size": 128,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 316,
+      "offset": null,
+      "compressed_size": 131,
+      "uncompressed_size": 131,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 319,
+      "offset": null,
+      "compressed_size": 81,
+      "uncompressed_size": 81,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 334,
+      "offset": null,
+      "compressed_size": 65,
+      "uncompressed_size": 65,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 340,
+      "offset": null,
+      "compressed_size": 81,
+      "uncompressed_size": 81,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 358,
+      "offset": null,
+      "compressed_size": 82,
+      "uncompressed_size": 82,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 360,
+      "offset": null,
+      "compressed_size": 84,
+      "uncompressed_size": 84,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 361,
+      "offset": null,
+      "compressed_size": 82,
+      "uncompressed_size": 82,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 372,
+      "offset": null,
+      "compressed_size": 81,
+      "uncompressed_size": 81,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 373,
+      "offset": null,
+      "compressed_size": 58,
+      "uncompressed_size": 58,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 374,
+      "offset": null,
+      "compressed_size": 82,
+      "uncompressed_size": 82,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 375,
+      "offset": null,
+      "compressed_size": 83,
+      "uncompressed_size": 83,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 382,
+      "offset": null,
+      "compressed_size": 82,
+      "uncompressed_size": 82,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 388,
+      "offset": null,
+      "compressed_size": 80,
+      "uncompressed_size": 80,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 390,
+      "offset": null,
+      "compressed_size": 82,
+      "uncompressed_size": 82,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 392,
+      "offset": null,
+      "compressed_size": 85,
+      "uncompressed_size": 85,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 393,
+      "offset": null,
+      "compressed_size": 85,
+      "uncompressed_size": 85,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 396,
+      "offset": null,
+      "compressed_size": 55,
+      "uncompressed_size": 55,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 397,
+      "offset": null,
+      "compressed_size": 223,
+      "uncompressed_size": 223,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 398,
+      "offset": null,
+      "compressed_size": 80,
+      "uncompressed_size": 80,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 399,
+      "offset": null,
+      "compressed_size": 133,
+      "uncompressed_size": 133,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 403,
+      "offset": null,
+      "compressed_size": 82,
+      "uncompressed_size": 82,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 404,
+      "offset": null,
+      "compressed_size": 40,
+      "uncompressed_size": 40,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 407,
+      "offset": null,
+      "compressed_size": 69,
+      "uncompressed_size": 69,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 408,
+      "offset": null,
+      "compressed_size": 40,
+      "uncompressed_size": 40,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 411,
+      "offset": null,
+      "compressed_size": 89,
+      "uncompressed_size": 89,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 417,
+      "offset": null,
+      "compressed_size": 40,
+      "uncompressed_size": 40,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 419,
+      "offset": null,
+      "compressed_size": 83,
+      "uncompressed_size": 83,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 423,
+      "offset": null,
+      "compressed_size": 83,
+      "uncompressed_size": 83,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 425,
+      "offset": null,
+      "compressed_size": 82,
+      "uncompressed_size": 82,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 431,
+      "offset": null,
+      "compressed_size": 83,
+      "uncompressed_size": 83,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 434,
+      "offset": null,
+      "compressed_size": 40,
+      "uncompressed_size": 40,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 437,
+      "offset": null,
+      "compressed_size": 138,
+      "uncompressed_size": 138,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 444,
+      "offset": null,
+      "compressed_size": 81,
+      "uncompressed_size": 81,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 445,
+      "offset": null,
+      "compressed_size": 82,
+      "uncompressed_size": 82,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 468,
+      "offset": null,
+      "compressed_size": 66,
+      "uncompressed_size": 66,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 469,
+      "offset": null,
+      "compressed_size": 130,
+      "uncompressed_size": 130,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 470,
+      "offset": null,
+      "compressed_size": 89,
+      "uncompressed_size": 89,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 472,
+      "offset": null,
+      "compressed_size": 81,
+      "uncompressed_size": 81,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 484,
+      "offset": null,
+      "compressed_size": 80,
+      "uncompressed_size": 80,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 490,
+      "offset": null,
+      "compressed_size": 54,
+      "uncompressed_size": 54,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 493,
+      "offset": null,
+      "compressed_size": 82,
+      "uncompressed_size": 82,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 494,
+      "offset": null,
+      "compressed_size": 89,
+      "uncompressed_size": 89,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 513,
+      "offset": null,
+      "compressed_size": 93,
+      "uncompressed_size": 93,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 518,
+      "offset": null,
+      "compressed_size": 85,
+      "uncompressed_size": 85,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 527,
+      "offset": null,
+      "compressed_size": 40,
+      "uncompressed_size": 40,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 530,
+      "offset": null,
+      "compressed_size": 66,
+      "uncompressed_size": 66,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 531,
+      "offset": null,
+      "compressed_size": 76,
+      "uncompressed_size": 76,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 532,
+      "offset": null,
+      "compressed_size": 76,
+      "uncompressed_size": 76,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 533,
+      "offset": null,
+      "compressed_size": 76,
+      "uncompressed_size": 76,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 534,
+      "offset": null,
+      "compressed_size": 76,
+      "uncompressed_size": 76,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 535,
+      "offset": null,
+      "compressed_size": 76,
+      "uncompressed_size": 76,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 560,
+      "offset": null,
+      "compressed_size": 77,
+      "uncompressed_size": 77,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 561,
+      "offset": null,
+      "compressed_size": 77,
+      "uncompressed_size": 77,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 562,
+      "offset": null,
+      "compressed_size": 40,
+      "uncompressed_size": 40,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 567,
+      "offset": null,
+      "compressed_size": 80,
+      "uncompressed_size": 80,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 569,
+      "offset": null,
+      "compressed_size": 220,
+      "uncompressed_size": 220,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 581,
+      "offset": null,
+      "compressed_size": 40,
+      "uncompressed_size": 40,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 582,
+      "offset": null,
+      "compressed_size": 40,
+      "uncompressed_size": 40,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 587,
+      "offset": null,
+      "compressed_size": 87,
+      "uncompressed_size": 87,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 588,
+      "offset": null,
+      "compressed_size": 54,
+      "uncompressed_size": 54,
+      "compression": 0
+    },
+    {
+      "tag": "CASt",
+      "id": 589,
+      "offset": null,
+      "compressed_size": 215,
+      "uncompressed_size": 215,
+      "compression": 0
+    },
+    {
+      "tag": "CAS*",
+      "id": 590,
+      "offset": null,
+      "compressed_size": 500,
+      "uncompressed_size": 500,
+      "compression": 0
+    },
+    {
+      "tag": "Lctx",
+      "id": 591,
+      "offset": null,
+      "compressed_size": 444,
+      "uncompressed_size": 444,
+      "compression": 0
+    },
+    {
+      "tag": "Fmap",
+      "id": 592,
+      "offset": null,
+      "compressed_size": 306,
+      "uncompressed_size": 306,
+      "compression": 0
+    },
+    {
+      "tag": "Cinf",
+      "id": 594,
+      "offset": null,
+      "compressed_size": 54,
+      "uncompressed_size": 54,
+      "compression": 0
+    },
+    {
+      "tag": "Lnam",
+      "id": 595,
+      "offset": null,
+      "compressed_size": 622,
+      "uncompressed_size": 622,
+      "compression": 0
+    },
+    {
+      "tag": "Lscr",
+      "id": 596,
+      "offset": null,
+      "compressed_size": 180,
+      "uncompressed_size": 180,
+      "compression": 0
+    },
+    {
+      "tag": "Lscr",
+      "id": 597,
+      "offset": null,
+      "compressed_size": 180,
+      "uncompressed_size": 180,
+      "compression": 0
+    },
+    {
+      "tag": "Lscr",
+      "id": 598,
+      "offset": null,
+      "compressed_size": 184,
+      "uncompressed_size": 184,
+      "compression": 0
+    },
+    {
+      "tag": "Lscr",
+      "id": 599,
+      "offset": null,
+      "compressed_size": 180,
+      "uncompressed_size": 180,
+      "compression": 0
+    },
+    {
+      "tag": "Lscr",
+      "id": 600,
+      "offset": null,
+      "compressed_size": 164,
+      "uncompressed_size": 164,
+      "compression": 0
+    },
+    {
+      "tag": "Lscr",
+      "id": 601,
+      "offset": null,
+      "compressed_size": 704,
+      "uncompressed_size": 704,
+      "compression": 0
+    },
+    {
+      "tag": "Lscr",
+      "id": 602,
+      "offset": null,
+      "compressed_size": 3372,
+      "uncompressed_size": 3372,
+      "compression": 0
+    },
+    {
+      "tag": "Lscr",
+      "id": 603,
+      "offset": null,
+      "compressed_size": 2318,
+      "uncompressed_size": 2318,
+      "compression": 0
+    },
+    {
+      "tag": "Lscr",
+      "id": 604,
+      "offset": null,
+      "compressed_size": 1078,
+      "uncompressed_size": 1078,
+      "compression": 0
+    },
+    {
+      "tag": "Lscr",
+      "id": 605,
+      "offset": null,
+      "compressed_size": 1116,
+      "uncompressed_size": 1116,
+      "compression": 0
+    },
+    {
+      "tag": "Lscr",
+      "id": 606,
+      "offset": null,
+      "compressed_size": 176,
+      "uncompressed_size": 176,
+      "compression": 0
+    },
+    {
+      "tag": "Lscr",
+      "id": 607,
+      "offset": null,
+      "compressed_size": 1578,
+      "uncompressed_size": 1578,
+      "compression": 0
+    },
+    {
+      "tag": "Lscr",
+      "id": 608,
+      "offset": null,
+      "compressed_size": 370,
+      "uncompressed_size": 370,
+      "compression": 0
+    },
+    {
+      "tag": "Lscr",
+      "id": 609,
+      "offset": null,
+      "compressed_size": 178,
+      "uncompressed_size": 178,
+      "compression": 0
+    },
+    {
+      "tag": "Lscr",
+      "id": 610,
+      "offset": null,
+      "compressed_size": 180,
+      "uncompressed_size": 180,
+      "compression": 0
+    },
+    {
+      "tag": "Lscr",
+      "id": 611,
+      "offset": null,
+      "compressed_size": 208,
+      "uncompressed_size": 208,
+      "compression": 0
+    },
+    {
+      "tag": "Lscr",
+      "id": 612,
+      "offset": null,
+      "compressed_size": 200,
+      "uncompressed_size": 200,
+      "compression": 0
+    },
+    {
+      "tag": "Lscr",
+      "id": 613,
+      "offset": null,
+      "compressed_size": 178,
+      "uncompressed_size": 178,
+      "compression": 0
+    },
+    {
+      "tag": "Lscr",
+      "id": 614,
+      "offset": null,
+      "compressed_size": 178,
+      "uncompressed_size": 178,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 615,
+      "offset": 80850,
+      "compressed_size": 83,
+      "uncompressed_size": 114,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 617,
+      "offset": 81794,
+      "compressed_size": 311,
+      "uncompressed_size": 503,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 619,
+      "offset": 82105,
+      "compressed_size": 329,
+      "uncompressed_size": 518,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 621,
+      "offset": 84097,
+      "compressed_size": 300,
+      "uncompressed_size": 494,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 623,
+      "offset": 90896,
+      "compressed_size": 337,
+      "uncompressed_size": 499,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 625,
+      "offset": 98946,
+      "compressed_size": 591,
+      "uncompressed_size": 839,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 627,
+      "offset": 99537,
+      "compressed_size": 653,
+      "uncompressed_size": 943,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 629,
+      "offset": 100190,
+      "compressed_size": 583,
+      "uncompressed_size": 854,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 631,
+      "offset": 100773,
+      "compressed_size": 506,
+      "uncompressed_size": 690,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 633,
+      "offset": 101279,
+      "compressed_size": 506,
+      "uncompressed_size": 690,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 635,
+      "offset": 101785,
+      "compressed_size": 425,
+      "uncompressed_size": 639,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 637,
+      "offset": 102210,
+      "compressed_size": 407,
+      "uncompressed_size": 611,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 639,
+      "offset": 102617,
+      "compressed_size": 419,
+      "uncompressed_size": 620,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 641,
+      "offset": 103036,
+      "compressed_size": 740,
+      "uncompressed_size": 932,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 643,
+      "offset": 103776,
+      "compressed_size": 774,
+      "uncompressed_size": 976,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 645,
+      "offset": 104550,
+      "compressed_size": 775,
+      "uncompressed_size": 995,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 647,
+      "offset": 105325,
+      "compressed_size": 613,
+      "uncompressed_size": 873,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 649,
+      "offset": 91233,
+      "compressed_size": 615,
+      "uncompressed_size": 880,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 651,
+      "offset": 91848,
+      "compressed_size": 613,
+      "uncompressed_size": 874,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 653,
+      "offset": 105938,
+      "compressed_size": 436,
+      "uncompressed_size": 623,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 655,
+      "offset": 106374,
+      "compressed_size": 456,
+      "uncompressed_size": 641,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 657,
+      "offset": 80933,
+      "compressed_size": 448,
+      "uncompressed_size": 625,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 659,
+      "offset": 81381,
+      "compressed_size": 413,
+      "uncompressed_size": 591,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 661,
+      "offset": 88670,
+      "compressed_size": 440,
+      "uncompressed_size": 613,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 663,
+      "offset": 83715,
+      "compressed_size": 382,
+      "uncompressed_size": 531,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 665,
+      "offset": 106830,
+      "compressed_size": 550,
+      "uncompressed_size": 771,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 667,
+      "offset": 107380,
+      "compressed_size": 411,
+      "uncompressed_size": 568,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 669,
+      "offset": 107791,
+      "compressed_size": 493,
+      "uncompressed_size": 687,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 671,
+      "offset": 108284,
+      "compressed_size": 493,
+      "uncompressed_size": 687,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 673,
+      "offset": 108777,
+      "compressed_size": 400,
+      "uncompressed_size": 563,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 675,
+      "offset": 109177,
+      "compressed_size": 412,
+      "uncompressed_size": 589,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 677,
+      "offset": 109589,
+      "compressed_size": 532,
+      "uncompressed_size": 761,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 679,
+      "offset": 110121,
+      "compressed_size": 741,
+      "uncompressed_size": 982,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 681,
+      "offset": 110862,
+      "compressed_size": 749,
+      "uncompressed_size": 1001,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 683,
+      "offset": 111611,
+      "compressed_size": 737,
+      "uncompressed_size": 990,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 685,
+      "offset": 112348,
+      "compressed_size": 673,
+      "uncompressed_size": 903,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 687,
+      "offset": 113021,
+      "compressed_size": 18,
+      "uncompressed_size": 12,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 689,
+      "offset": 113039,
+      "compressed_size": 34,
+      "uncompressed_size": 36,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 691,
+      "offset": 113073,
+      "compressed_size": 37,
+      "uncompressed_size": 50,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 693,
+      "offset": 113110,
+      "compressed_size": 41,
+      "uncompressed_size": 64,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 695,
+      "offset": 113151,
+      "compressed_size": 43,
+      "uncompressed_size": 78,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 697,
+      "offset": 113194,
+      "compressed_size": 43,
+      "uncompressed_size": 92,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 699,
+      "offset": 113237,
+      "compressed_size": 43,
+      "uncompressed_size": 106,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 701,
+      "offset": 113280,
+      "compressed_size": 43,
+      "uncompressed_size": 120,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 703,
+      "offset": 113323,
+      "compressed_size": 47,
+      "uncompressed_size": 134,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 705,
+      "offset": 113370,
+      "compressed_size": 10,
+      "uncompressed_size": 2,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 707,
+      "offset": 113380,
+      "compressed_size": 10,
+      "uncompressed_size": 2,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 709,
+      "offset": 113390,
+      "compressed_size": 10,
+      "uncompressed_size": 2,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 711,
+      "offset": 113400,
+      "compressed_size": 10,
+      "uncompressed_size": 2,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 713,
+      "offset": 113410,
+      "compressed_size": 10,
+      "uncompressed_size": 2,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 715,
+      "offset": 113420,
+      "compressed_size": 10,
+      "uncompressed_size": 2,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 717,
+      "offset": 113430,
+      "compressed_size": 10,
+      "uncompressed_size": 2,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 719,
+      "offset": 113440,
+      "compressed_size": 10,
+      "uncompressed_size": 2,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 721,
+      "offset": 113450,
+      "compressed_size": 10,
+      "uncompressed_size": 2,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 723,
+      "offset": 113460,
+      "compressed_size": 10,
+      "uncompressed_size": 2,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 725,
+      "offset": 113470,
+      "compressed_size": 10,
+      "uncompressed_size": 2,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 727,
+      "offset": 113480,
+      "compressed_size": 124,
+      "uncompressed_size": 225,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 729,
+      "offset": 113604,
+      "compressed_size": 124,
+      "uncompressed_size": 219,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 731,
+      "offset": 113728,
+      "compressed_size": 114,
+      "uncompressed_size": 184,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 733,
+      "offset": 113842,
+      "compressed_size": 113,
+      "uncompressed_size": 170,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 735,
+      "offset": 113955,
+      "compressed_size": 97,
+      "uncompressed_size": 180,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 737,
+      "offset": 114052,
+      "compressed_size": 74,
+      "uncompressed_size": 77,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 739,
+      "offset": 114126,
+      "compressed_size": 94,
+      "uncompressed_size": 145,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 741,
+      "offset": 114220,
+      "compressed_size": 193,
+      "uncompressed_size": 259,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 743,
+      "offset": 114413,
+      "compressed_size": 176,
+      "uncompressed_size": 243,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 745,
+      "offset": 114589,
+      "compressed_size": 132,
+      "uncompressed_size": 211,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 751,
+      "offset": 46118,
+      "compressed_size": 32289,
+      "uncompressed_size": 75114,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 753,
+      "offset": 84397,
+      "compressed_size": 1785,
+      "uncompressed_size": 4530,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 755,
+      "offset": 82434,
+      "compressed_size": 1281,
+      "uncompressed_size": 2512,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 757,
+      "offset": 86182,
+      "compressed_size": 763,
+      "uncompressed_size": 1262,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 759,
+      "offset": 88348,
+      "compressed_size": 322,
+      "uncompressed_size": 712,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 761,
+      "offset": 88195,
+      "compressed_size": 153,
+      "uncompressed_size": 213,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 763,
+      "offset": 89110,
+      "compressed_size": 173,
+      "uncompressed_size": 235,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 765,
+      "offset": 89283,
+      "compressed_size": 138,
+      "uncompressed_size": 236,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 767,
+      "offset": 89421,
+      "compressed_size": 488,
+      "uncompressed_size": 668,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 769,
+      "offset": 89909,
+      "compressed_size": 586,
+      "uncompressed_size": 794,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 771,
+      "offset": 90495,
+      "compressed_size": 401,
+      "uncompressed_size": 576,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 773,
+      "offset": 92461,
+      "compressed_size": 635,
+      "uncompressed_size": 882,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 775,
+      "offset": 93096,
+      "compressed_size": 603,
+      "uncompressed_size": 805,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 777,
+      "offset": 93699,
+      "compressed_size": 774,
+      "uncompressed_size": 1955,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 779,
+      "offset": 94473,
+      "compressed_size": 3898,
+      "uncompressed_size": 7554,
+      "compression": 0
+    },
+    {
+      "tag": "BITD",
+      "id": 781,
+      "offset": 114721,
+      "compressed_size": 47385,
+      "uncompressed_size": 80464,
+      "compression": 0
+    },
+    {
+      "tag": "STXT",
+      "id": 783,
+      "offset": 87543,
+      "compressed_size": 41,
+      "uncompressed_size": 43,
+      "compression": 0
+    },
+    {
+      "tag": "STXT",
+      "id": 785,
+      "offset": 162106,
+      "compressed_size": 42,
+      "uncompressed_size": 46,
+      "compression": 0
+    },
+    {
+      "tag": "CLUT",
+      "id": 787,
+      "offset": 44917,
+      "compressed_size": 1201,
+      "uncompressed_size": 1536,
+      "compression": 0
+    },
+    {
+      "tag": "snd ",
+      "id": 810,
+      "offset": 162148,
+      "compressed_size": 6100,
+      "uncompressed_size": 27188,
+      "compression": 1
+    },
+    {
+      "tag": "snd ",
+      "id": 816,
+      "offset": 168248,
+      "compressed_size": 11638,
+      "uncompressed_size": 57878,
+      "compression": 1
+    },
+    {
+      "tag": "snd ",
+      "id": 822,
+      "offset": 179886,
+      "compressed_size": 5891,
+      "uncompressed_size": 26396,
+      "compression": 1
+    },
+    {
+      "tag": "snd ",
+      "id": 828,
+      "offset": 185777,
+      "compressed_size": 8608,
+      "uncompressed_size": 41002,
+      "compression": 1
+    },
+    {
+      "tag": "snd ",
+      "id": 834,
+      "offset": 194385,
+      "compressed_size": 3488,
+      "uncompressed_size": 12599,
+      "compression": 1
+    },
+    {
+      "tag": "snd ",
+      "id": 840,
+      "offset": 197873,
+      "compressed_size": 4847,
+      "uncompressed_size": 20090,
+      "compression": 1
+    },
+    {
+      "tag": "snd ",
+      "id": 846,
+      "offset": 202720,
+      "compressed_size": 4429,
+      "uncompressed_size": 18228,
+      "compression": 1
+    },
+    {
+      "tag": "snd ",
+      "id": 852,
+      "offset": 78407,
+      "compressed_size": 2443,
+      "uncompressed_size": 7262,
+      "compression": 1
+    },
+    {
+      "tag": "snd ",
+      "id": 858,
+      "offset": 207149,
+      "compressed_size": 3488,
+      "uncompressed_size": 12896,
+      "compression": 1
+    },
+    {
+      "tag": "snd ",
+      "id": 864,
+      "offset": 210637,
+      "compressed_size": 3175,
+      "uncompressed_size": 11328,
+      "compression": 1
+    },
+    {
+      "tag": "snd ",
+      "id": 870,
+      "offset": 213812,
+      "compressed_size": 2757,
+      "uncompressed_size": 8942,
+      "compression": 1
+    },
+    {
+      "tag": "snd ",
+      "id": 876,
+      "offset": 216569,
+      "compressed_size": 1921,
+      "uncompressed_size": 4282,
+      "compression": 1
+    },
+    {
+      "tag": "snd ",
+      "id": 882,
+      "offset": 218490,
+      "compressed_size": 1816,
+      "uncompressed_size": 3620,
+      "compression": 1
+    },
+    {
+      "tag": "snd ",
+      "id": 888,
+      "offset": 220306,
+      "compressed_size": 1607,
+      "uncompressed_size": 2370,
+      "compression": 1
+    },
+    {
+      "tag": "snd ",
+      "id": 894,
+      "offset": 221913,
+      "compressed_size": 2339,
+      "uncompressed_size": 6580,
+      "compression": 1
+    },
+    {
+      "tag": "snd ",
+      "id": 900,
+      "offset": 224252,
+      "compressed_size": 9235,
+      "uncompressed_size": 44322,
+      "compression": 1
+    },
+    {
+      "tag": "XMED",
+      "id": 904,
+      "offset": 98371,
+      "compressed_size": 575,
+      "uncompressed_size": 1689,
+      "compression": 0
+    },
+    {
+      "tag": "XMED",
+      "id": 906,
+      "offset": 86945,
+      "compressed_size": 598,
+      "uncompressed_size": 1751,
+      "compression": 0
+    },
+    {
+      "tag": "XMED",
+      "id": 908,
+      "offset": 87584,
+      "compressed_size": 611,
+      "uncompressed_size": 1879,
+      "compression": 0
+    },
+    {
+      "tag": "DRCF",
+      "id": 910,
+      "offset": null,
+      "compressed_size": 84,
+      "uncompressed_size": 84,
+      "compression": 0
+    },
+    {
+      "tag": "FXmp",
+      "id": 911,
+      "offset": 42268,
+      "compressed_size": 2625,
+      "uncompressed_size": 6847,
+      "compression": 0
+    },
+    {
+      "tag": "MCsL",
+      "id": 912,
+      "offset": null,
+      "compressed_size": 58,
+      "uncompressed_size": 58,
+      "compression": 0
+    },
+    {
+      "tag": "Sord",
+      "id": 913,
+      "offset": null,
+      "compressed_size": 520,
+      "uncompressed_size": 520,
+      "compression": 0
+    },
+    {
+      "tag": "VWFI",
+      "id": 914,
+      "offset": null,
+      "compressed_size": 175,
+      "uncompressed_size": 175,
+      "compression": 0
+    },
+    {
+      "tag": "VWSC",
+      "id": 915,
+      "offset": null,
+      "compressed_size": 208272,
+      "uncompressed_size": 208272,
+      "compression": 0
+    },
+    {
+      "tag": "VWLB",
+      "id": 917,
+      "offset": null,
+      "compressed_size": 141,
+      "uncompressed_size": 141,
+      "compression": 0
+    },
+    {
+      "tag": "XTRl",
+      "id": 919,
+      "offset": null,
+      "compressed_size": 1248,
+      "uncompressed_size": 1248,
+      "compression": 0
+    },
+    {
+      "tag": "VERS",
+      "id": 921,
+      "offset": 44893,
+      "compressed_size": 24,
+      "uncompressed_size": 20,
+      "compression": 0
+    }
+  ]
+}

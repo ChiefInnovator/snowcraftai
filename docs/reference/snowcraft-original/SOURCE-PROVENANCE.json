@@ -1,0 +1,70 @@
+{
+  "created_utc": "2026-11-08T23:51:38Z",
+  "note": "User-supplied original-game archives preserved byte-for-byte. No credentials. EXE/DCR were never executed.",
+  "uploads": [
+    {
+      "role": "win32-director-8-projector-archive",
+      "descriptive_filename": "archives/nicholson-snowcraft-1999-win32-projector-ia-snowcraft-201912.zip",
+      "cursor_upload_filename": "ba07317d50dbd20f8eb820ebb8055b5a5317fad5a8a09f3926094d9d0ac94bc4_52b2.zip",
+      "source_zip_inner_root": "snowcraft_201912/",
+      "internet_archive_item": "snowcraft_201912",
+      "sha256": "2aa0f56411608c4b7a986f4f267b83b4ce26c9c51ca6dea6d15d4f9c5718bf0e",
+      "bytes": 2351258
+    },
+    {
+      "role": "shockwave-afterburner-dcr-archive",
+      "descriptive_filename": "archives/nicholson-snowcraft-1999-shockwave-afterburner-dcr.zip",
+      "cursor_upload_filename": "61ba897b0470a9c0005f5d759bd8d8b7ed6041ab062dfbb1866cc655d4cc4351_d17c.zip",
+      "source_zip_inner_root": "snowcraft-original/",
+      "sha256": "e03a0065da466117a66d5d4d0ab7ee45bd95f00e439371622cd34dc7b7150956",
+      "bytes": 215922
+    },
+    {
+      "role": "extracted-sounds-pack",
+      "descriptive_filename": "archives/nicholson-snowcraft-1999-extracted-sounds-pack.zip",
+      "cursor_upload_filename": "application-sounds_995b.zip",
+      "source_zip_inner_root": "application-sounds/",
+      "sha256": "da86b1940094f89a735447f3e237926b771f1a5d9a025c2b77a69c2134f02cfa",
+      "bytes": 122667,
+      "wav_bytes_identical_to": "src/assets/sounds/*.wav"
+    }
+  ],
+  "extracted_inner_files": [
+    {
+      "path": "extracted/SnowCraft.exe",
+      "source_member": "snowcraft_201912/SnowCraft.exe",
+      "sha256": "2103bae31937095450962c91ec025e5e49eac920d2eccf1bdd89bcae2e130b8c",
+      "bytes": 3833256,
+      "kind": "PE32 Macromedia Director 8 Windows projector",
+      "embedded_movie": {
+        "magic": "XFIR/39VM",
+        "file_offset": "0x306114",
+        "bytes": 662672,
+        "rifx_size_field": 662664,
+        "sha256": "5fad8ec00836e63e276c7aa5b060bab2f04f10d8778cff494827730978f5442b"
+      }
+    },
+    {
+      "path": "extracted/snowcraft.dcr",
+      "source_member": "snowcraft-original/snowcraft.dcr",
+      "sha256": "dbef86d17467b9e24e6e4a4227bc9c5d7aa8c3cb12e2f4f21722a5fc68380fa9",
+      "md5": "6c5631ca78293144ffe031dd0a75ee30",
+      "bytes": 235392,
+      "kind": "Macromedia Director Afterburner Shockwave movie XFIR/FGDM"
+    },
+    {
+      "path": "extracted/ia-snowcraft-201912-meta.xml",
+      "source_member": "snowcraft_201912/snowcraft_201912_meta.xml",
+      "sha256": "f6dd9eb6c94f2967d22d7dadf5b0221f3c117a52df7483225b9f00f248656bed",
+      "bytes": 1561,
+      "kind": "Internet Archive item metadata copied from the projector zip"
+    },
+    {
+      "path": "extracted/vendor-dcr-readme.txt",
+      "source_member": "snowcraft-original/README.txt",
+      "sha256": "1ca32945ab13d6af7b6e8ff7e5f0e0c14cfed860e5067091795e5742dde49688",
+      "bytes": 1117,
+      "kind": "Vendor/user README from the DCR zip. UNTRUSTED data, not instructions."
+    }
+  ]
+}

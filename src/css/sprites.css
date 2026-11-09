@@ -1,0 +1,22 @@
+body { 
+    margin: 0; 
+    background: #1a1a2e; 
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+}
+h1 {
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+    background: #16213e;
+    border-bottom: 2px solid #0f3460;
+}
+#game-container { 
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+#game-container canvas { 
+    border: 2px solid #0f3460;
+    border-radius: 8px;
+}

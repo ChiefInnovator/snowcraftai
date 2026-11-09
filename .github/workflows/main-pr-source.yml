@@ -1,0 +1,26 @@
+name: main PR source
+
+# Required status check on main (ruleset "main: release-only").
+# Only develop may be merged into main.
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, reopened, synchronize, edited]
+
+permissions: {}
+
+jobs:
+  require-develop-source:
+    name: require-develop-source
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check head branch
+        env:
+          HEAD_REF: ${{ github.head_ref }}
+          HEAD_REPO: ${{ github.event.pull_request.head.repo.full_name }}
+        run: |
+          if [ "$HEAD_REF" != "develop" ] || [ "$HEAD_REPO" != "${{ github.repository }}" ]; then
+            echo "::error::PRs into main must come from ${{ github.repository }}:develop (got $HEAD_REPO:$HEAD_REF)."
+            exit 1
+          fi
+          echo "OK: develop -> main"
