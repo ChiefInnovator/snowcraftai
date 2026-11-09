@@ -15,7 +15,7 @@ were not executed.
 | [`recovered/bitmap_meta.json`](recovered/bitmap_meta.json) | BITD width/height/reg/depth |
 | [`recovered/walkon.json`](recovered/walkon.json) | 15 fps walk-on paths from VWSC |
 | [`recovered/event-loop-layouts.json`](recovered/event-loop-layouts.json) | Event Loop `#gd` / `#level` start locs |
-| [`recovered/070_happy_holidays.png`](recovered/070_happy_holidays.png) | Original member 70 BITD (includes `IconMedialab`). Runtime `src/assets/cast/070_happy_holidays.png` is a derivative with that lettering removed. |
+| [`recovered/070_happy_holidays.png`](recovered/070_happy_holidays.png) | Original member 70 BITD (includes `IconMedialab`). Runtime `web/assets/cast/070_happy_holidays.png` is a derivative with that lettering removed. |
 
 The same recovered files are also kept at [`docs/recovered/`](../../../recovered/)
 next to `PARITY.md`. Runtime art/audio is **not** duplicated here except the

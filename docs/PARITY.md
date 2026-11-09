@@ -1,4 +1,6 @@
-# Original SnowCraft parity (src/ layout)
+# Original SnowCraft parity (web/ layout)
+
+This report describes the web edition. The native Flutter edition intentionally adds enhanced movement, aiming and presentation; its behavior is documented separately in [`flutter/README.md`](../flutter/README.md).
 
 Checklist for matching Nicholson NY’s 1999 Macromedia Director 8 projector
 (`SnowCraft.exe` / embedded `SnowCraft.dir`). Evidence is **static**: mmap/`KEY*`
@@ -6,7 +8,7 @@ parse, VWSC score decode (`tools/reference/inspect_movie.py`), BITD decode
 (`tools/reference/extract_bitmaps.py`), and Lingo recovered from `Lscr`.
 **The Windows EXE was never executed in this workstream.**
 
-This document is for the combined `src/` tree: `feature/repo-restructure`
+This document is for the combined `web/` tree: `feature/repo-restructure`
 (`ff39e410`) + recovered BITD/VWSC/movement + original 16 WAVs + local
 restructure edits (SEO copy, debug-revive immunity, `winctl.py` cursor notes).
 It does **not** merge into `develop` or `main`.
@@ -25,9 +27,9 @@ HEAD are **included** here (SEO/copy, `z` revive immunity, `winctl.py`).
 
 ## Audio
 
-The 15 played original WAVs live in `src/assets/sounds/` with PCM SHA-256 pins in
+The 15 played original WAVs live in `web/assets/sounds/` with PCM SHA-256 pins in
 `inventory.json` / `tests/wav-integrity.test.js`. Channel 1 is
-`src/js/audio.js` (`puppetSound` replace; `step`/`splat` idle-gated).
+`web/js/audio.js` (`puppetSound` replace; `step`/`splat` idle-gated).
 
 Intro/`musicAlt.mp3` still play on level 1 (original had no BGM).
 
@@ -81,7 +83,7 @@ Intro/`musicAlt.mp3` still play on level 1 (original had no BGM).
 | `melt` ×4 | 17×13, 22×16 | (8, 6) / (11, 8) | Verified BITD |
 | `sb 0`–`sb 9` | 1×1 placeholders | (1, 4) | Verified; not drawn |
 
-PNGs live in `src/assets/cast/`. They are original-derived, same class as
+PNGs live in `web/assets/cast/`. They are original-derived, same class as
 `player.png` / `enemy.png`. SHA-256 pins are in `tests/cast-bitmaps.test.js`.
 
 ## Level layouts (VWSC Event Loop)
@@ -120,7 +122,7 @@ EXE and DCR were **not** executed.
 
 | Topic | Original file | Remake now | Status |
 |---|---|---|---|
-| Kid BITDs 1–36 | Cast names, size, **reg**, PackBits, matte index 0 | `src/assets/cast/00n_*.png` + `CAST.kids` | Verified |
+| Kid BITDs 1–36 | Cast names, size, **reg**, PackBits, matte index 0 | `web/assets/cast/00n_*.png` + `CAST.kids` | Verified |
 | Shadow | 36×21 reg (6,17), drawn at the kid loc | recovered BITD at kid loc | Verified |
 | Walk-on | Score frames from each `Level N` label to Event Loop; tempo **15 fps** on Level 1, **10 fps** on 2–10 | `walkon.json` paths; runtime `scoreTempoFps` | Verified tempo from VWSC |
 | Sprite ink | kids/balls **matte** (8); ground **copy** | PNG-alpha matte overlap (index 0 / 32-bit white transparent) | Verified BITD; runtime Director collide **unverified** |
@@ -128,8 +130,8 @@ EXE and DCR were **not** executed.
 | Green hit members | `G Hit` → `G ow` (`myMove=10`); `G down` (`25`); recover (`5`) | same BITDs + move counts | Verified |
 | Event Loop tempo | VWSC `500 fps` after walk-on; Lingo still gates on `the timer` | 100 ms / 50 ms from `timer > clock + myTempo` | Verified inequality; runtime clock **blocked** |
 | DRCF | stage 592×320, frameRate 15, Director 8 (`1600`) | canvas **592×320**; ground 600×320 at (296,160) | Verified |
-| Title / level cards | Member 76 SnowCraft; 78+digits 2–9; 87 Bonus Round | recovered BITDs (32-bit 5–9 via D4 planar PackBits); 5–9 placed on the 2–4 VWSC slot (left 356), not filmstrip CASt | Verified BITDs + slot; CASt filmstrip documented |
-| `Level 11` / `GreenWin` | Congratulations #88 then logo #70; Play Again #77; loss is logo (no GAME OVER BITD) | wired BITDs; SCORE field still remake | Verified BITDs; field 90 SCORE still remake |
+| Title / level cards | Member 76 SnowCraft; 78+digits 2–9; 87 Bonus Round | recovered BITDs retained unchanged as evidence; runtime title, Level 2–9 and Bonus Round use crisp centered browser text | Verified BITDs + slot; CASt filmstrip documented |
+| `Level 11` / `GreenWin` | Congratulations #88 then logo #70; Play Again #77; loss is logo (no GAME OVER BITD) | Congratulations!, Happy Holidays, SCORE and Play Again use crisp browser text; original fade/hold timings retained | Verified BITDs; field 90 SCORE still remake |
 
 ## Still open / blocked
 

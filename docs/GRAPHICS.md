@@ -15,7 +15,7 @@ Evidence is static BITD / VWSC / DRCF parse of
 |---|---|---|
 | Stage | DRCF **592×320** | Logical canvas 592×320, uniformly FIT into Rich’s 600×320–1800×960 scaler |
 | Ground | Member 69 `ground` 600×320, loc **(296,160)**, reg (300,160), ink **copy** | `069_ground.png` at that loc/reg (4 px overhang each side, clipped) |
-| Kids 1–36 | PackBits BITD, matte index 0, registration from CASt | `src/assets/cast/00n_*.png` |
+| Kids 1–36 | PackBits BITD, matte index 0, registration from CASt | `web/assets/cast/00n_*.png` |
 | Shadow | Member 1, loc = kid loc, ink matte | recovered BITD at kid loc |
 | Power 0–8 | Members 37–45, loc = kid loc, reg x = −27 | BITDs at kid loc (not offset +15) |
 | Snowball / drop / splat / melt | Members 57–66, height in the bitmap | recovered BITDs, registration applied |
