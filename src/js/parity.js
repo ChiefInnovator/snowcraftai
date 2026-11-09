@@ -395,15 +395,19 @@
         return v;
     }
 
-    function computeDisplayLayout(gameScale, innerWidth, innerHeight, devicePixelRatio) {
+    // reservedH / marginW: page chrome to leave around a fit-to-window game.
+    // Defaults suit the desktop page; phones in landscape or full screen pass ~0.
+    function computeDisplayLayout(gameScale, innerWidth, innerHeight, devicePixelRatio, reservedH, marginW) {
         let width;
         const scale = Number(gameScale) || 0;
+        const reserve = typeof reservedH === "number" ? reservedH : DISPLAY_FIT_RESERVED_H;
+        const margin = typeof marginW === "number" ? marginW : 40;
         if (scale > 0) {
             width = DISPLAY_BASE_W * scale;
         } else {
             width = Math.min(
-                (Number(innerWidth) || 0) - 40,
-                ((Number(innerHeight) || 0) - DISPLAY_FIT_RESERVED_H) * DISPLAY_BASE_W / DISPLAY_BASE_H
+                (Number(innerWidth) || 0) - margin,
+                ((Number(innerHeight) || 0) - reserve) * DISPLAY_BASE_W / DISPLAY_BASE_H
             );
             width = Math.max(DISPLAY_FIT_MIN_W, Math.floor(width));
         }

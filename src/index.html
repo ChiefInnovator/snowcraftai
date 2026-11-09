@@ -33,6 +33,12 @@
 
     <!-- Theme & favicon -->
     <meta name="theme-color" content="#0c1520">
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Snowcraft">
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
     <link rel="icon" type="image/png" href="assets/cast/005_R_ready.png">
 
     <!-- Structured data: VideoGame (helps Google, Bing, and AI answer engines) -->
@@ -47,7 +53,7 @@
         "inLanguage": "en",
         "applicationCategory": "Game",
         "genre": ["Action", "Arcade", "Casual", "Sports"],
-        "gamePlatform": ["Web Browser", "HTML5"],
+        "gamePlatform": ["Web Browser", "HTML5", "Mobile Web"],
         "operatingSystem": "Any (web browser)",
         "playMode": "SinglePlayer",
         "author": {
@@ -73,6 +79,14 @@
         "mainEntity": [
             {
                 "@type": "Question",
+                "name": "Can I play full screen?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. Use the button in the top-right corner of the game, or press F. Press Esc, F or the button again to leave. On a phone, full screen turns the game sideways where the browser allows it."
+                }
+            },
+            {
+                "@type": "Question",
                 "name": "Is it free?",
                 "acceptedAnswer": {
                     "@type": "Answer",
@@ -92,7 +106,7 @@
                 "name": "Does it work on a phone?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "It’s built for a mouse or trackpad, because you pick a kid by pointing at them before you press."
+                    "text": "Yes. Turn your phone sideways and the game fills the screen. Touch a kid, hold to wind up, slide to move them, and lift your finger to throw. For the biggest view, tap the full-screen button in the corner of the game; tap it again to leave."
                 }
             },
             {
@@ -209,7 +223,17 @@
                     </label>
                 </div>
             </header>
-            <div id="game-container"></div>
+            <div class="game-wrap">
+                <div id="game-container"></div>
+                <button type="button" id="fullscreen-btn" class="fs-btn" onclick="toggleFullscreen()" aria-label="Full screen" title="Full screen (F)">
+                    <svg class="fs-enter" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
+                    <svg class="fs-exit" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg>
+                </button>
+                <div id="rotate-hint" hidden>
+                    <p>Turn your phone sideways to play.</p>
+                    <button type="button" class="opt-btn" onclick="dismissRotateHint()">Play anyway</button>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -242,6 +266,10 @@
         <div class="container narrow">
             <h2 id="faq-title">FAQ</h2>
             <details>
+                <summary>Can I play full screen?</summary>
+                <p>Yes. Use the button in the top-right corner of the game, or press F. Press Esc, F or the button again to leave. On a phone, full screen turns the game sideways where the browser allows it.</p>
+            </details>
+            <details>
                 <summary>Is it free?</summary>
                 <p>Yes. No account, no ads, nothing to buy.</p>
             </details>
@@ -251,7 +279,7 @@
             </details>
             <details>
                 <summary>Does it work on a phone?</summary>
-                <p>It&rsquo;s built for a mouse or trackpad, because you pick a kid by pointing at them before you press.</p>
+                <p>Yes. Turn your phone sideways and the game fills the screen. Touch a kid, hold to wind up, slide to move them, and lift your finger to throw. For the biggest view, tap the full-screen button in the corner of the game; tap it again to leave.</p>
             </details>
             <details>
                 <summary>How is the score worked out?</summary>
