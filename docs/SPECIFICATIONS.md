@@ -1,12 +1,12 @@
 # Technical Specifications: Snowcraft Reforged
 
-All values live in `RULES` at the top of `src/js/game.js`. Stage is 600×320 logical pixels; times in ms.
+All values live in `RULES` at the top of `src/js/game.js` and `src/js/parity.js`. Stage is the original Director **592×320** (ground BITD 600×320 at loc 296,160). Times in ms.
 
 ## Rendering
 
 * **Engine:** Phaser 3.60, no physics engine (movement is stepped by the game).
 * **Resolution:** the canvas renders at `ceil(displayScale × devicePixelRatio)` (1–4×) with the camera zoomed to match, so text and UI stay sharp on HiDPI screens. Sprites scale with nearest-neighbour filtering (`pixelArt: true`).
-* **Display size:** "Fit to window" (default) or a fixed 1×–3× multiple.
+* **Display size:** "Fit to window" (default) or a fixed 1×–3× multiple of **600×320** (900×480, 1200×640, 1500×800, 1800×960). The Director stage inside is 592×320, mapped with uniform Phaser FIT so pointer aim/drag/throw stay on original coordinates.
 
 ## Player (red team)
 

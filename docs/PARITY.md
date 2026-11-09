@@ -123,20 +123,21 @@ EXE and DCR were **not** executed.
 | Kid BITDs 1–36 | Cast names, size, **reg**, PackBits, matte index 0 | `src/assets/cast/00n_*.png` + `CAST.kids` | Verified |
 | Shadow | 36×21 reg (6,17), drawn at the kid loc | recovered BITD at kid loc | Verified |
 | Walk-on | Score frames at **15 fps** from each `Level N` label to Event Loop | `src/assets/walkon.json` replay | Verified |
-| Sprite ink | kids/balls **matte** (8); ground **copy** | BITD AABB overlap (not pixel matte) | Verified ink; **inferred** AABB |
+| Sprite ink | kids/balls **matte** (8); ground **copy** | PNG-alpha matte overlap (index 0 transparent) | Verified BITD; runtime Director collide **unverified** |
 | Daze members | `R daze1/2/3`, `mySteps=15` | those BITDs, 15×3 Lingo ticks | Verified |
 | Green hit members | `G Hit` → `G ow` (`myMove=10`); `G down` (`25`); recover (`5`) | same BITDs + move counts | Verified |
 | Event Loop tempo | VWSC `500 fps` after walk-on; Lingo still gates on `the timer` | 100 ms / 50 ms from `timer > clock + myTempo` | Verified inequality; runtime clock **blocked** |
-| DRCF | stage 592×320, frameRate 15, Director 8 (`1600`) | canvas 600×320 | Verified config |
+| DRCF | stage 592×320, frameRate 15, Director 8 (`1600`) | canvas **592×320**; ground 600×320 at (296,160) | Verified |
+| Title / level cards | Member 76 SnowCraft; 78+digits; 87 Bonus Round | recovered 8-bit BITDs (digits 5–9 still 32-bit blocked) | Verified 1–4 and 10; **blocked** 5–9 / logo / win card |
 | `Level 11` / `GreenWin` | labels at frames 290 / 40 | unused (loss/title are remake UI) | Verified present, not wired |
 
 ## Still open / blocked
 
 | Topic | What’s missing | Evidence needed |
 |---|---|---|
-| Pixel-perfect matte `sprite intersects` | AABB of BITD sprite rects, not opaque-pixel overlap | Runtime Director collide, or a capture of borderline hits |
+| Pixel-matte vs Director runtime | PNG-alpha overlap from recovered BITDs | Wine/`sprite intersects` capture (do **not** auto-run the EXE) |
 | Event Loop “500 fps” wall-clock | Lingo is timer-gated; how fast `prepareFrame` polls is machine-dependent | Runtime clock trace (do **not** auto-run the EXE) |
-| Stage 592 vs canvas 600 | Ground bitmap is 600×320; stage rect is 592×320 | Keep as-is; 8 px is the original ground overhang |
-| Original EXE look / window chrome | Wine playthrough exists in `docs/reference-app.md` [obs] | Do **not** auto-run Wine/`run-reference.sh` |
+| 32-bit BITDs (logo, digits 5–9, win card) | Afterburner/Director 32-bit decode failed | Alternate decoder or Wine screenshot |
+| Original EXE look / window chrome | Not the inner movie; superseded as a target | Do **not** auto-run Wine/`run-reference.sh` |
 
 Perfect parity remains the target, not a claim.

@@ -49,8 +49,8 @@ This version uses **Phaser 3** to replay the 1999 Director rules: fixed-diagonal
 ## Technical Details
 
 - **Engine**: Phaser 3.60
-- **Canvas**: 600x320 pixels
-- **Assets**: Original sprite sheets from 1998 Snowcraft
+- **Canvas**: 592×320 Director stage, scaled with the existing 600×320–1800×960 display options (ground BITD is 600×320 at loc 296,160)
+- **Assets**: Recovered original BITD sprites from the 1999 Snowcraft projector
 
 ## Gameplay Rules
 

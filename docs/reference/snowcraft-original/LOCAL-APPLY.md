@@ -38,6 +38,22 @@ whitespace in recovered Director dumps.
 
 If `--check` fails, stop. Do not `--reject`, stash, or reset.
 
+## Incremental patch after that apply (from `8cee4f1`)
+
+Once the dirty-preimage patch has been applied, the worktree matches combined
+`8cee4f14959a25765dfa0842949ddbfb126c8f06`. **Do not** reset or re-apply the
+ff39e410 patch. The next graphics/scaler update is an incremental binary patch
+whose before-side **is** that `8cee4f1` tree:
+
+```bash
+# worktree must already be the applied combined tree (8cee4f1 contents)
+git apply --check --binary /path/to/snowcraft-incremental-8cee4f1-graphics-scaler.patch
+git apply --binary /path/to/snowcraft-incremental-8cee4f1-graphics-scaler.patch
+```
+
+That patch keeps the existing 600×320–1800×960 display scaler (Fit to window,
+1×–3×). It does not stash, reset, or merge to `develop` / `main`.
+
 ## Optional (changes HEAD)
 
 ```bash

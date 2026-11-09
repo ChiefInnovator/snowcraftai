@@ -5,8 +5,8 @@
  * executed) plus Lingo recovered from Lscr bytecode. Originals:
  * docs/reference/snowcraft-original/. See docs/PARITY.md.
  *
- * Coordinates are Director stage pixels (592×320). The remake draws them on a
- * 600×320 canvas without scaling — the original ground bitmap is already 600 wide.
+ * Coordinates are Director stage pixels (592×320). The ground BITD is 600×320
+ * at loc (296,160) with registration (300,160), so 4 px overhangs each side.
  */
 (function (root, factory) {
     root.SnowcraftParity = factory();
@@ -59,6 +59,13 @@
     const CHANNEL1_IDLE_ONLY = ["step", "splat"];
     const STAGE_W = 592;
     const STAGE_H = 320;
+    // Pre-existing display scaler (local edits): 1× = 600×320 … 3× = 1800×960,
+    // plus fit-to-window. Logical gameplay stays the Director stage above.
+    const DISPLAY_BASE_W = 600;
+    const DISPLAY_BASE_H = 320;
+    const DISPLAY_FIT_RESERVED_H = 230;
+    const DISPLAY_FIT_MIN_W = 300;
+    const DISPLAY_RENDER_SCALE_MAX = 4;
 
     // Event Loop frames from VWSC. Off-stage greens (x<0 or y<0) walk in via
     // the locH<40 / locV<40 edge rule, not a scripted walk-on.
@@ -218,7 +225,17 @@
             { num: 34, name: "G dead", key: "cast_034_G_dead", file: "034_G_dead.png", w: 54, h: 46, reg: [60, 39] },
             { num: 35, name: "G dead", key: "cast_035_G_dead", file: "035_G_dead.png", w: 69, h: 42, reg: [73, 34] },
             { num: 36, name: "G dead", key: "cast_036_G_dead", file: "036_G_dead.png", w: 49, h: 38, reg: [56, 36] }
-        ]
+        ],
+        // Score UI BITDs (8-bit PackBits). 32-bit members 70 / 82–86 / 88 did not decode.
+        ground: { key: "cast_ground", file: "069_ground.png", w: 600, h: 320, reg: [300, 160], loc: [296, 160], ink: 0 },
+        title: { key: "cast_title", file: "076_1.png", w: 122, h: 22, reg: [76, 14], loc: [296, 160], ink: 8 },
+        levelWord: { key: "cast_level_word", file: "078_Level.png", w: 63, h: 22, reg: [43, 11], loc: [286, 160], ink: 8 },
+        levelDigit: {
+            2: { key: "cast_level_2", file: "079_2.png", w: 13, h: 21, reg: [-30, 10], loc: [326, 160], ink: 8 },
+            3: { key: "cast_level_3", file: "080_3.png", w: 14, h: 21, reg: [-29, 10], loc: [326, 160], ink: 8 },
+            4: { key: "cast_level_4", file: "081_4.png", w: 14, h: 21, reg: [-30, 10], loc: [326, 160], ink: 8 }
+        },
+        bonusRound: { key: "cast_bonus_round", file: "087_bonus_round.png", w: 158, h: 23, reg: [79, 11], loc: [285, 160], ink: 8 }
     };
     const SCORE_WALKON_FPS = 15; // VWSC tempo during Level N walk-on
     const INK_MATTE = 8;
@@ -340,6 +357,54 @@
         image.setOrigin(ox, oy);
     }
 
+    function clampInt(n, lo, hi) {
+        const v = Math.floor(Number(n) || 0);
+        if (v < lo) return lo;
+        if (v > hi) return hi;
+        return v;
+    }
+
+    function computeDisplayLayout(gameScale, innerWidth, innerHeight, devicePixelRatio) {
+        let width;
+        const scale = Number(gameScale) || 0;
+        if (scale > 0) {
+            width = DISPLAY_BASE_W * scale;
+        } else {
+            width = Math.min(
+                (Number(innerWidth) || 0) - 40,
+                ((Number(innerHeight) || 0) - DISPLAY_FIT_RESERVED_H) * DISPLAY_BASE_W / DISPLAY_BASE_H
+            );
+            width = Math.max(DISPLAY_FIT_MIN_W, Math.floor(width));
+        }
+        const height = Math.round(width * DISPLAY_BASE_H / DISPLAY_BASE_W);
+        const dpr = Number(devicePixelRatio) || 1;
+        const renderScale = clampInt(
+            Math.ceil((width / DISPLAY_BASE_W) * dpr),
+            1,
+            DISPLAY_RENDER_SCALE_MAX
+        );
+        return { width, height, renderScale };
+    }
+
+    function fitCanvasCssSize(containerW, containerH, stageW, stageH) {
+        const s = Math.min(containerW / stageW, containerH / stageH);
+        return { width: stageW * s, height: stageH * s, scale: s };
+    }
+
+    function canvasCssToWorld(cssX, cssY, canvasCssW, canvasCssH, stageW, stageH) {
+        return {
+            x: (cssX / canvasCssW) * stageW,
+            y: (cssY / canvasCssH) * stageH
+        };
+    }
+
+    function worldToCanvasCss(worldX, worldY, canvasCssW, canvasCssH, stageW, stageH) {
+        return {
+            x: (worldX / stageW) * canvasCssW,
+            y: (worldY / stageH) * canvasCssH
+        };
+    }
+
     function kidMembersNamed(name) {
         return CAST.kids.filter((m) => m.name === name);
     }
@@ -366,6 +431,28 @@
         return a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
     }
 
+    // Director matte ink: opaque (non-index-0) pixels of both sprites overlap.
+    function mattesOverlap(ax, ay, aCast, aMask, bx, by, bCast, bMask) {
+        if (!aCast || !bCast || !aMask || !bMask) return false;
+        const ar = memberRect(ax, ay, aCast);
+        const br = memberRect(bx, by, bCast);
+        if (!rectsOverlap(ar, br)) return false;
+        const left = Math.max(Math.ceil(ar.left), Math.ceil(br.left));
+        const top = Math.max(Math.ceil(ar.top), Math.ceil(br.top));
+        const right = Math.min(Math.floor(ar.right), Math.floor(br.right));
+        const bottom = Math.min(Math.floor(ar.bottom), Math.floor(br.bottom));
+        for (let y = top; y < bottom; y++) {
+            const ayi = y - ar.top;
+            const byi = y - br.top;
+            for (let x = left; x < right; x++) {
+                const ai = ayi * aMask.w + (x - ar.left);
+                const bi = byi * bMask.w + (x - br.left);
+                if (aMask.bits[ai] && bMask.bits[bi]) return true;
+            }
+        }
+        return false;
+    }
+
     return {
         TICK_MS,
         CHAR_TEMPO_TICKS,
@@ -389,6 +476,15 @@
         isIdleGated,
         STAGE_W,
         STAGE_H,
+        DISPLAY_BASE_W,
+        DISPLAY_BASE_H,
+        DISPLAY_FIT_RESERVED_H,
+        DISPLAY_FIT_MIN_W,
+        DISPLAY_RENDER_SCALE_MAX,
+        computeDisplayLayout,
+        fitCanvasCssSize,
+        canvasCssToWorld,
+        worldToCanvasCss,
         LEVELS,
         CAST,
         SCORE_WALKON_FPS,
@@ -401,6 +497,7 @@
         kidMember,
         memberRect,
         rectsOverlap,
+        mattesOverlap,
         clampPower,
         powerFromHoldMs,
         throwRangeSteps,

@@ -2,13 +2,15 @@
 const PARAMS = new URLSearchParams(location.search);
 const DEBUG_MODE = PARAMS.has('debug'); // ?debug → coordinate labels + level-jump keys (1-9, 0, z)
 const START_LEVEL = 1; // Level to start on (1-10)
-let GAME_SCALE = 0; // 0 = fit the window; otherwise a fixed multiple of 600x320
+let GAME_SCALE = 0; // 0 = fit the window; otherwise a fixed multiple of 600×320
 let GAME_DIFFICULTY = 2; // 1=Easy, 2=Normal, 3=Hard
 let game = null;
 let snowcraftAudio = null;
 
-const STAGE_W = 600;
-const STAGE_H = 320;
+const STAGE_W = SnowcraftParity.STAGE_W; // Director stage 592
+const STAGE_H = SnowcraftParity.STAGE_H;
+const DISPLAY_BASE_W = SnowcraftParity.DISPLAY_BASE_W;
+const DISPLAY_BASE_H = SnowcraftParity.DISPLAY_BASE_H;
 
 // Gameplay rules. Times in ms, distances in px. Numbers come from
 // SnowcraftParity (VWSC Event Loop + Lingo). See docs/PARITY.md.
@@ -34,18 +36,12 @@ const RULES = {
 };
 
 function computeLayout() {
-    let width;
-    if (GAME_SCALE > 0) {
-        width = STAGE_W * GAME_SCALE;
-    } else {
-        const reservedH = 230; // options bar + instructions
-        width = Math.min(window.innerWidth - 40, (window.innerHeight - reservedH) * STAGE_W / STAGE_H);
-        width = Math.max(300, Math.floor(width));
-    }
-    const height = Math.round(width * STAGE_H / STAGE_W);
-    // Render at the displayed pixel density so text and vector UI stay sharp on HiDPI screens
-    const renderScale = Phaser.Math.Clamp(Math.ceil((width / STAGE_W) * (window.devicePixelRatio || 1)), 1, 4);
-    return { width, height, renderScale };
+    return P.computeDisplayLayout(
+        GAME_SCALE,
+        window.innerWidth,
+        window.innerHeight,
+        window.devicePixelRatio || 1
+    );
 }
 
 function sizeContainer(layout) {
@@ -137,6 +133,14 @@ class MainScene extends Phaser.Scene {
         this.load.image('melt_2', 'assets/cast/melt_2.png');
         this.load.image('melt_3', 'assets/cast/melt_3.png');
         this.load.image('playfield', 'assets/playField.png');
+        this.load.image(P.CAST.ground.key, 'assets/cast/' + P.CAST.ground.file);
+        this.load.image(P.CAST.title.key, 'assets/cast/' + P.CAST.title.file);
+        this.load.image(P.CAST.levelWord.key, 'assets/cast/' + P.CAST.levelWord.file);
+        Object.keys(P.CAST.levelDigit).forEach((n) => {
+            const spec = P.CAST.levelDigit[n];
+            this.load.image(spec.key, 'assets/cast/' + spec.file);
+        });
+        this.load.image(P.CAST.bonusRound.key, 'assets/cast/' + P.CAST.bonusRound.file);
         this.load.image('shadow', 'assets/shadow.png');
         this.load.image('snowball_shadow', 'assets/snowball_shadow.png');
         this.load.image('hand', 'assets/smallHand.png');
@@ -155,24 +159,28 @@ class MainScene extends Phaser.Scene {
         this.renderScale = this.registry.get('renderScale') || 1;
         this.cameras.main.setZoom(this.renderScale).centerOn(STAGE_W / 2, STAGE_H / 2);
 
-        // 1. Environment
-        let bg = this.add.graphics();
-        bg.fillGradientStyle(0xddeeff, 0xddeeff, 0xffffff, 0xffffff, 1);
-        bg.fillRect(0, 0, STAGE_W, STAGE_H);
-        bg.setDepth(-10);
-
+        // 1. Environment — original ground BITD, copy ink, loc (296,160).
         if (DEBUG_MODE) {
             let debugLine = this.add.graphics();
             debugLine.lineStyle(2, 0xff0000, 1);
-            debugLine.lineBetween(0, STAGE_H, 648, 0);
+            debugLine.lineBetween(0, STAGE_H, 640, 0);
             debugLine.setDepth(100);
         }
 
-        if (this.textures.exists('playfield')) {
+        const ground = P.CAST.ground;
+        if (this.textures.exists(ground.key)) {
+            const pf = this.add.image(ground.loc[0], ground.loc[1], ground.key);
+            P.applyOrigin(pf, ground);
+            pf.setDepth(-10);
+        } else if (this.textures.exists('playfield')) {
             let pf = this.add.image(STAGE_W / 2, STAGE_H / 2, 'playfield');
             pf.setDisplaySize(STAGE_W, STAGE_H);
-            pf.setDepth(-5);
+            pf.setDepth(-10);
         }
+
+        this.scoreBanner = this.add.image(0, 0, P.CAST.title.key).setDepth(180).setVisible(false);
+        this.scoreBannerDigit = this.add.image(0, 0, P.CAST.levelDigit[2].key).setDepth(181).setVisible(false);
+        this.matteCache = {};
 
         this.walkon = this.cache.json.get('walkon') || [];
 
@@ -229,8 +237,15 @@ class MainScene extends Phaser.Scene {
             muteBox.checked = this.audio.isMuted();
             if (this.audio.isMuted()) this.audio.setMuted(true);
         }
-        const unlockAudio = () => this.unlockGameAudio();
-        this.input.on('pointerdown', unlockAudio);
+        this.awaitingTitleClick = !(data && data.skipTitle);
+        this.input.on('pointerdown', () => {
+            this.unlockGameAudio();
+            if (this.awaitingTitleClick) {
+                this.awaitingTitleClick = false;
+                this.subText.setVisible(false);
+                this.startLevel(START_LEVEL - 1);
+            }
+        });
 
         // 5. Inputs
         this.input.mouse.disableContextMenu();
@@ -344,6 +359,66 @@ class MainScene extends Phaser.Scene {
         return this.add.text(x, y, text, { ...style, resolution: this.renderScale });
     }
 
+    matteFor(key) {
+        if (this.matteCache[key]) return this.matteCache[key];
+        if (!this.textures.exists(key)) return null;
+        const src = this.textures.get(key).getSourceImage();
+        if (!src || !src.width) return null;
+        const canvas = document.createElement('canvas');
+        canvas.width = src.width;
+        canvas.height = src.height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(src, 0, 0);
+        const data = ctx.getImageData(0, 0, src.width, src.height).data;
+        const bits = new Uint8Array(src.width * src.height);
+        for (let i = 0; i < bits.length; i++) bits[i] = data[i * 4 + 3] > 0 ? 1 : 0;
+        const mask = { w: src.width, h: src.height, bits: bits };
+        this.matteCache[key] = mask;
+        return mask;
+    }
+
+    placeCast(image, spec) {
+        if (!image || !spec) return;
+        image.setTexture(spec.key);
+        P.applyOrigin(image, spec);
+        image.setPosition(spec.loc[0], spec.loc[1]);
+        image.setVisible(true);
+    }
+
+    showScoreBanner(levelIndex) {
+        const level = levelIndex + 1;
+        this.scoreBannerDigit.setVisible(false);
+        this.levelText.setVisible(false);
+        if (level === 1 && this.textures.exists(P.CAST.title.key)) {
+            this.placeCast(this.scoreBanner, P.CAST.title);
+            return;
+        }
+        if (level === 10 && this.textures.exists(P.CAST.bonusRound.key)) {
+            this.placeCast(this.scoreBanner, P.CAST.bonusRound);
+            return;
+        }
+        if (this.textures.exists(P.CAST.levelWord.key)) {
+            this.placeCast(this.scoreBanner, P.CAST.levelWord);
+            const digit = P.CAST.levelDigit[level];
+            if (digit && this.textures.exists(digit.key)) {
+                this.placeCast(this.scoreBannerDigit, digit);
+            } else {
+                this.levelText.setText(String(level));
+                this.levelText.setStyle({ fontSize: '22px', fontFamily: 'Arial, sans-serif' });
+                this.levelText.setPosition(326, 160).setAlpha(1).setVisible(true);
+            }
+            return;
+        }
+        this.levelText.setText(level === 10 ? 'Bonus Round' : ('LEVEL ' + level));
+        this.levelText.setStyle({ fontSize: '40px', fontFamily: 'Arial, sans-serif' });
+        this.levelText.setPosition(STAGE_W / 2, STAGE_H / 2).setAlpha(1).setVisible(true);
+    }
+
+    hideScoreBanner() {
+        if (this.scoreBanner) this.scoreBanner.setVisible(false);
+        if (this.scoreBannerDigit) this.scoreBannerDigit.setVisible(false);
+    }
+
     unlockGameAudio() {
         if (this.audio) this.audio.unlock();
         if (this.sound && this.sound.unlock) this.sound.unlock();
@@ -424,17 +499,11 @@ class MainScene extends Phaser.Scene {
         });
     }
 
-    // Title screen: wait for a click (also unlocks browser audio) before the walk-on
+    // Title: original waits for rollover(1). Browsers need a click to unlock audio.
     showTitle() {
-        this.levelText.setText("Season's Greetings");
-        this.levelText.setStyle({ fontSize: '40px', fontFamily: 'Georgia, serif' });
-        this.levelText.setPosition(STAGE_W / 2, STAGE_H / 2).setAlpha(1).setVisible(true);
+        this.awaitingTitleClick = true;
+        this.showScoreBanner(0);
         this.subText.setText('Click to play').setVisible(true);
-        this.input.once('pointerdown', () => {
-            this.unlockGameAudio();
-            this.subText.setVisible(false);
-            this.startLevel(START_LEVEL - 1);
-        });
     }
 
     startLevel(index) {
@@ -448,7 +517,10 @@ class MainScene extends Phaser.Scene {
             if (this.music && !this.music.isPlaying) this.music.play();
         }
 
+        this.awaitingTitleClick = false;
         this.stopAI();
+        this.hideScoreBanner();
+        if (this.subText) this.subText.setVisible(false);
         [...this.greenTeam, ...this.redTeam].forEach(k => this.destroyKid(k));
         this.greenTeam = [];
         this.redTeam = [];
@@ -466,23 +538,19 @@ class MainScene extends Phaser.Scene {
         this.createTeam('player', this.redTeam, layout.reds);
         this.createTeam('cpu', this.greenTeam, layout.greens);
 
-        const message = isFirst ? "Season's Greetings" : 'LEVEL ' + (index + 1);
-        this.levelText.setText(message);
-        this.levelText.setStyle({
-            fontSize: isFirst ? '40px' : '60px',
-            fontFamily: isFirst ? 'Georgia, serif' : 'Arial, sans-serif'
-        });
-        this.levelText.setVisible(true);
-        this.levelText.alpha = isFirst ? 1 : 0;
-        this.levelText.y = STAGE_H / 2;
+        this.showScoreBanner(index);
+        const bannerTargets = [this.scoreBanner, this.scoreBannerDigit, this.levelText].filter((t) => t && t.visible);
+        bannerTargets.forEach((t) => { t.alpha = isFirst ? 1 : 0; });
 
         this.tweens.add({
-            targets: this.levelText,
+            targets: bannerTargets,
             alpha: 1,
             duration: isFirst ? 600 : 1000,
             hold: isFirst ? 2500 : 1500,
             yoyo: true,
             onComplete: () => {
+                this.hideScoreBanner();
+                this.levelText.setVisible(false);
                 this.textFadeComplete = true;
                 this.checkLevelReady();
             }
@@ -492,6 +560,8 @@ class MainScene extends Phaser.Scene {
     jumpToLevel(index) {
         if (index < 0 || index >= RULES.greensPerLevel.length) return;
         this.tweens.killTweensOf(this.levelText);
+        this.tweens.killTweensOf(this.scoreBanner);
+        this.tweens.killTweensOf(this.scoreBannerDigit);
         this.hideEndScreen();
         this.startLevel(index);
     }
@@ -684,11 +754,16 @@ class MainScene extends Phaser.Scene {
                 this.setBallFrame(b);
                 if (b.range > 0) {
                     const targets = (b.team === 'player') ? this.greenTeam : this.redTeam;
-                    const ballRect = P.memberRect(b.gx, b.gy, P.CAST.snowball);
+                    const ballCast = P.CAST.snowball;
+                    const ballMask = this.matteFor(ballCast.key);
                     const hit = targets.find(k => {
                         if (!k.isAlive || k.isImmune) return false;
                         const spec = k.memberSpec || P.kidMember(k.teamType === 'player' ? 'R ready' : 'G ready');
-                        return P.rectsOverlap(ballRect, P.memberRect(k.x, k.y, spec));
+                        const kidMask = this.matteFor(spec.key);
+                        if (ballMask && kidMask) {
+                            return P.mattesOverlap(b.gx, b.gy, ballCast, ballMask, k.x, k.y, spec, kidMask);
+                        }
+                        return P.rectsOverlap(P.memberRect(b.gx, b.gy, ballCast), P.memberRect(k.x, k.y, spec));
                     });
                     if (hit) {
                         this.handleHit(hit);
@@ -1089,7 +1164,7 @@ class MainScene extends Phaser.Scene {
         this.selectionCircle.clear();
         this.selectionCircle.lineStyle(2, 0x0088cc, 1);
         this.selectionCircle.strokeEllipse(0, 0, 60, 30);
-        this.selectionCircle.setPosition(player.x, player.y + 15);
+        this.selectionCircle.setPosition(player.x, player.y);
         this.selectionCircle.setVisible(true);
         if (!this.isDragging) this.activePower = 0;
         this.powerMeter.setVisible(true);
@@ -1104,12 +1179,12 @@ class MainScene extends Phaser.Scene {
 
     updateSelectionUI(player) {
         if (!player) return;
-        this.selectionCircle.setPosition(player.x, player.y + 15);
+        this.selectionCircle.setPosition(player.x, player.y);
         if (this.powerMeter.visible) {
             const spec = P.CAST.power[this.activePower] || P.CAST.power[0];
             this.powerMeter.setTexture(spec.key);
             P.applyOrigin(this.powerMeter, spec);
-            this.powerMeter.setPosition(player.x, player.y + 15);
+            this.powerMeter.setPosition(player.x, player.y);
         }
     }
 
@@ -1128,7 +1203,7 @@ class MainScene extends Phaser.Scene {
         this.powerMeter.setTexture(spec.key);
         P.applyOrigin(this.powerMeter, spec);
         if (this.activePlayer) {
-            this.powerMeter.setPosition(this.activePlayer.x, this.activePlayer.y + 15);
+            this.powerMeter.setPosition(this.activePlayer.x, this.activePlayer.y);
         }
     }
 }
@@ -1149,6 +1224,10 @@ window.SnowcraftGame = {
     RULES,
     STAGE_W,
     STAGE_H,
+    DISPLAY_BASE_W,
+    DISPLAY_BASE_H,
+    getScale: function () { return GAME_SCALE; },
+    computeLayout,
     getGame: function () { return game; },
     getScene: function () {
         return game && game.scene && game.scene.scenes ? game.scene.scenes[0] : null;

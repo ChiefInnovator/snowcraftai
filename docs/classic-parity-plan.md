@@ -2,7 +2,7 @@
 
 This plan lists where `src/js/game.js` (as of 2026-11-08) plays differently from the 1999 original, highest-impact gaps first. It covers rules, numbers, timing, AI and flow only — not art or look. The full source and evidence for every original value is in [reference-app.md](reference-app.md); section numbers below point there. Byte-for-byte originals: [reference/snowcraft-original/](reference/snowcraft-original/).
 
-All coordinates assume the original's 592×320 stage. Ours is 600×320: scale x by 600/592 if you keep 600.
+All coordinates assume the original's 592×320 stage. The remake canvas is now 592×320; the ground BITD remains 600×320 at loc (296,160).
 
 ## Status (2026-11-08, src-layout parity branch)
 
@@ -75,7 +75,7 @@ Deliberate differences:
 ## P2: feel and edge details
 
 12. **Drag rules.**
-    - *Ours:* the boundary is `y ≥ 320 − x·320/600`, the line from (0,320) to (600,0).
+    - *Ours:* the boundary is `x ≥ 2·(320 − y)`, the line from (0,320) to (640,0).
     - *Original:* `x ≥ 2·(320 − y)`, the line from (0,320) to (640,0), plus the ground-rect constraint. The drag speed is unlimited in both. In the original, the held kid's shadow stays at the grab point until release.
     - The game keeps running while you hold, which ours already matches.
 13. **Selection rules.** In the original, a dazed red cannot be grabbed (hover plays `short_chirps`), and a hit cancels the ring and meter. Ours cancels the drag on stun, which matches; check that hovering a dazed red shows no ring.

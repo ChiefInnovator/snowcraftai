@@ -29,7 +29,7 @@ Browser snowball-fight game (Phaser 3.60 via CDN, plain JS, no build step). Live
 - Asset paths in JS/HTML are relative to `src/` (`assets/...`). Absolute URLs in SEO tags point at the Pages root.
 - Gameplay constants live in `RULES` at the top of `src/js/game.js`; keep `docs/SPECIFICATIONS.md` in sync when they change.
 - Use `?debug` for testing: centre line, coordinates, keys `1`–`9`/`0` jump levels, `z` revives reds (revived kids can't be hit again).
-- Coordinates are logical 600×320; the camera is zoomed by the render scale, so use `pointer.worldX/worldY`, never `pointer.x/y`.
+- Coordinates are logical 592×320 (Director stage); the camera is zoomed by the render scale, so use `pointer.worldX/worldY`, never `pointer.x/y`.
 - Use the original game's behaviour (`docs/reference-app.md`, `docs/PARITY.md`) as the reference for mechanics.
 - Canonical originals: `docs/reference/snowcraft-original/` (see that README for hashes, license status, and static reproduction steps). Do not treat root `reference/` as the only copy.
 - Recovered BITD PNGs in `src/assets/cast/` are the same class of original-derived sprites as `player.png`. Runtime WAVs stay in `src/assets/sounds/`.

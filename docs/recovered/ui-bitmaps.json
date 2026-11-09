@@ -1,0 +1,86 @@
+[
+  {
+    "num": 69,
+    "name": "ground",
+    "file": "069_ground.png",
+    "w": 600,
+    "h": 320,
+    "reg": [
+      300,
+      160
+    ],
+    "sha256": "28991c9a9add6f32e12c72a818675256675175960568eb8c0d2dd73a3b5c44eb"
+  },
+  {
+    "num": 76,
+    "name": "1",
+    "file": "076_1.png",
+    "w": 122,
+    "h": 22,
+    "reg": [
+      76,
+      14
+    ],
+    "sha256": "03462c598e8706aa86fbf31406297cbd50b3b9ec1005ee230caf5d9418b01d80"
+  },
+  {
+    "num": 78,
+    "name": "Level",
+    "file": "078_Level.png",
+    "w": 63,
+    "h": 22,
+    "reg": [
+      43,
+      11
+    ],
+    "sha256": "df499bb738f8da3cae6626fc548429182f70533a01ad80bc491e812b8f25d8ca"
+  },
+  {
+    "num": 79,
+    "name": "2",
+    "file": "079_2.png",
+    "w": 13,
+    "h": 21,
+    "reg": [
+      -30,
+      10
+    ],
+    "sha256": "5652de977d31ed23d8b2923f3d9b821d42be6e622d8b08b7f509180d365b2834"
+  },
+  {
+    "num": 80,
+    "name": "3",
+    "file": "080_3.png",
+    "w": 14,
+    "h": 21,
+    "reg": [
+      -29,
+      10
+    ],
+    "sha256": "eac980f17c684a9ca46c24791acb287c661cbf5ceb8202012a4701b2ce368834"
+  },
+  {
+    "num": 81,
+    "name": "4",
+    "file": "081_4.png",
+    "w": 14,
+    "h": 21,
+    "reg": [
+      -30,
+      10
+    ],
+    "sha256": "e7e8ab62bd10dc35a8b79938b101f3e9cbef76dc9687e979cf2c0a9739685d56"
+  },
+  {
+    "num": 87,
+    "name": "Bonus Round",
+    "file": "087_bonus_round.png",
+    "w": 158,
+    "h": 23,
+    "reg": [
+      79,
+      11
+    ],
+    "sha256": "ead943ab93a3e607d4e21efac956fa74335161e8ceffd937e8e389056edd841e"
+  }
+]

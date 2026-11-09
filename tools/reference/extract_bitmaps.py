@@ -22,8 +22,10 @@ import zlib
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from inspect_movie import Movie, read_cast, read_config, read_labels, read_score, sprite, u16, u32  # noqa: E402
 
-# All 8-bit gameplay BITDs: shadow, red/green kids, power, snowball/drop/melt.
-NEED = set(range(1, 67))
+# Gameplay + stage UI BITDs recovered from the EXE movie (members 1–89).
+# 67–68 are empty "nothing" placeholders; 32-bit members are attempted as 8-bit
+# PackBits first, then raw BGRA.
+NEED = set(range(1, 90))
 
 
 def packbits_rows(data: bytes, pitch: int, height: int):
@@ -67,6 +69,23 @@ def decode8(bitd: bytes, width: int, height: int):
         if raw is not None and consumed == len(bitd):
             return b"".join(raw[y * pitch:y * pitch + width] for y in range(height)), f"pb@{pitch}"
     return None, "fail"
+
+
+def decode32(bitd: bytes, width: int, height: int):
+    """Director 32-bit BITD: raw BGRA, optional 8-byte header, or packed 8-bit."""
+    need = width * height * 4
+    if len(bitd) == need:
+        rgba = bytearray(need)
+        for i in range(0, need, 4):
+            b, g, r, a = bitd[i:i + 4]
+            rgba[i:i + 4] = bytes([r, g, b, a])
+        return bytes(rgba), "raw-bgra"
+    if len(bitd) > 8 and len(bitd) - 8 == need:
+        return decode32(bitd[8:], width, height)[0], "hdr8-bgra"
+    pix, how = decode8(bitd, width, height)
+    if pix is not None:
+        return pix, "idx8-via-" + how
+    return None, "fail32"
 
 
 def parse_clut(blob: bytes):
@@ -169,18 +188,33 @@ def main(src, out_dir):
         if not bitd_mmap:
             print("no BITD for", num, member["name"])
             continue
-        pixels, how = decode8(movie.chunk(bitd_mmap), width, height)
+        raw = movie.chunk(bitd_mmap)
         rec = {
             "num": num, "name": member["name"], "w": width, "h": height,
-            "reg": list(member.get("reg", (0, 0))), "how": how,
+            "reg": list(member.get("reg", (0, 0))), "depth": member.get("depth"),
         }
-        if pixels is None:
-            print("decode fail", rec)
-            continue
-        rgba = bytearray(width * height * 4)
-        for i, idx in enumerate(pixels):
-            r, g, b = palette[idx]
-            rgba[i * 4:i * 4 + 4] = bytes([r, g, b, 0 if idx == 0 else 255])
+        pixels, how = decode8(raw, width, height)
+        rgba = None
+        if pixels is not None:
+            rec["how"] = how
+            rgba = bytearray(width * height * 4)
+            for i, idx in enumerate(pixels):
+                r, g, b = palette[idx]
+                rgba[i * 4:i * 4 + 4] = bytes([r, g, b, 0 if idx == 0 else 255])
+        else:
+            rgba_bytes, how32 = decode32(raw, width, height)
+            rec["how"] = how32
+            if rgba_bytes is None or how32 == "idx8-via-fail":
+                print("decode fail", rec)
+                continue
+            if how32.startswith("idx8-via-"):
+                rgba = bytearray(width * height * 4)
+                for i, idx in enumerate(rgba_bytes):
+                    r, g, b = palette[idx]
+                    rgba[i * 4:i * 4 + 4] = bytes([r, g, b, 0 if idx == 0 else 255])
+            else:
+                rgba = bytearray(rgba_bytes)
+        rec["how"] = how if pixels is not None else rec["how"]
         slug = f"{num:03d}_{(member['name'] or 'unnamed').replace(' ', '_')}"
         path = os.path.join(bmp_dir, slug + ".png")
         write_png(path, width, height, bytes(rgba))
