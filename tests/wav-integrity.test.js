@@ -29,8 +29,8 @@ function wavPcmSha256(filePath) {
     };
 }
 
-test("all 16 original WAVs are present with exact PCM bytes and header rates", () => {
-    assert.equal(inventory.sounds.length, 16);
+test("all 15 shipped original WAVs are present with exact PCM bytes and header rates", () => {
+    assert.equal(inventory.sounds.length, 15);
     for (const rec of inventory.sounds) {
         const filePath = path.join(soundsDir, rec.file);
         assert.ok(fs.existsSync(filePath), rec.file);

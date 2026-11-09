@@ -19,7 +19,7 @@ const Parity = loadScript("src/js/parity.js");
 global.SnowcraftParity = Parity;
 const Audio = loadScript("src/js/audio.js");
 
-test("every recovered original sound except Uh is wired to an event", () => {
+test("every shipped original sound is wired to an event", () => {
     const wired = new Set(Parity.expectedWiredSoundIds());
     for (const file of Object.values(Parity.SOUND_FILES)) {
         assert.ok(fs.existsSync(path.join(root, "src", file)), file);
@@ -41,9 +41,8 @@ test("every recovered original sound except Uh is wired to an event", () => {
         "whoosh",
         "whoosh_percussive"
     ]);
-    assert.equal(Parity.UNUSED_CAST_SOUNDS.length, 1);
-    assert.equal(Parity.UNUSED_CAST_SOUNDS[0].cast_member_name, "Uh");
-    assert.ok(fs.existsSync(path.join(root, "src", Parity.UNUSED_CAST_SOUNDS[0].file)));
+    const shipped = fs.readdirSync(path.join(root, "src/assets/sounds")).filter(f => f.endsWith(".wav"));
+    assert.equal(shipped.length, Object.keys(Parity.SOUND_FILES).length, "no unused WAVs shipped");
 });
 
 test("src/index.html wires original events, mute, and does not load synthesized sfx", () => {
