@@ -1,0 +1,391 @@
+/* Snowcraft Reforged — Inventing Fire house layout, winter-night palette */
+:root {
+    --ink: #0c1520;
+    --ink-2: #111d2a;
+    --ink-3: #172636;
+    --bone: #eef3f7;
+    --bone-dim: #b9c8d4;
+    --bone-faint: #8297a8;
+    --red: #e0473c;
+    --red-2: #ff6b5e;
+    --green: #3fa36f;
+    --green-2: #6fd39a;
+    --line: rgba(238, 243, 247, 0.08);
+    --line-strong: rgba(238, 243, 247, 0.16);
+    --serif: "Fraunces", "Iowan Old Style", "Palatino", "Times New Roman", serif;
+    --sans: "Figtree", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--bone);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 { text-wrap: balance; }
+p { text-wrap: pretty; }
+a { color: var(--bone); text-decoration-color: var(--line-strong); text-underline-offset: 3px; }
+a:hover { color: var(--red-2); text-decoration-color: currentColor; }
+:focus-visible { outline: 2px solid var(--red-2); outline-offset: 3px; border-radius: 4px; }
+
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+.skip-link {
+    position: absolute;
+    left: 16px;
+    top: -60px;
+    z-index: 100;
+    padding: 10px 16px;
+    background: var(--bone);
+    color: var(--ink);
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+}
+.skip-link:focus { top: 12px; }
+.skip-link:hover { color: var(--ink); background: #ffffff; }
+#top { scroll-margin-top: 90px; }
+#top:focus { outline: none; }
+
+.container {
+    /* One column for the whole page: the game's width, never wider than the screen. */
+    width: var(--stage-w, 1180px);
+    max-width: calc(100% - 40px);
+    margin: 0 auto;
+}
+.container.narrow > * { max-width: 760px; }
+
+/* Nav */
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: saturate(160%) blur(18px);
+    -webkit-backdrop-filter: saturate(160%) blur(18px);
+    background: rgba(12, 21, 32, 0.78);
+    border-bottom: 1px solid var(--line);
+}
+.nav-inner { display: flex; align-items: center; justify-content: space-between; padding-block: 12px; }
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--serif);
+    font-weight: 600;
+    font-variation-settings: "opsz" 32;
+    letter-spacing: -0.01em;
+    font-size: 19px;
+    text-decoration: none;
+    color: var(--bone);
+}
+.logo-mark { width: 20px; height: auto; image-rendering: pixelated; }
+.nav-links { display: flex; gap: 8px; align-items: center; }
+.nav-links a {
+    color: var(--bone-dim);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+    padding: 8px 12px;
+    border-radius: 6px;
+}
+.nav-links a:hover { color: var(--bone); background: rgba(238, 243, 247, 0.06); }
+.nav-links .nav-play { color: #fff; background: #c3332b; font-weight: 700; }
+.nav-links .nav-play:hover { background: #ab2a24; }
+.nav-gh { display: inline-flex; align-items: center; gap: 8px; }
+.nav-gh svg { width: 16px; height: 16px; }
+
+/* Play: the game is the hero */
+.play { padding: 18px 20px 56px; }
+.play-inner { width: var(--stage-w, min-content); max-width: 100%; margin: 0 auto; }
+.play-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px 32px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+}
+.play-prompt {
+    margin: 0;
+    font-family: var(--serif);
+    font-weight: 600;
+    font-variation-settings: "opsz" 96;
+    font-size: clamp(20px, 2vw, 25px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+.pitch { margin: 6px 0 0; color: var(--bone-dim); font-size: 14px; max-width: 46ch; }
+
+#options-bar { display: flex; gap: 12px 16px; align-items: end; flex-wrap: wrap; font-size: 13px; color: var(--bone-dim); }
+.opt { display: inline-flex; flex-direction: column; align-items: stretch; gap: 5px; }
+.opt select {
+    appearance: none;
+    -webkit-appearance: none;
+    font: inherit;
+    color: var(--bone);
+    background: var(--ink-3) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23b9c8d4' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 10px center;
+    border: 1px solid var(--line-strong);
+    border-radius: 7px;
+    padding: 8px 30px 8px 10px;
+    cursor: pointer;
+}
+.opt select:hover { border-color: var(--bone-faint); }
+.opt-check { flex-direction: row; align-items: center; gap: 7px; cursor: pointer; min-height: 36px; }
+.opt-check input { width: 16px; height: 16px; margin: 0; accent-color: var(--red); cursor: pointer; }
+
+#game-container {
+    position: relative;
+    aspect-ratio: 592 / 320;
+    max-width: 100%;
+    background: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    line-height: 0;
+    outline: 1px solid var(--line-strong);
+    box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.9), 0 0 0 6px rgba(238, 243, 247, 0.04);
+}
+#game-container canvas { display: block; }
+/* Phaser already puts the label origin into its camera matrix. Applying a
+   second CSS transform origin shifts centered/right-aligned text when zoomed. */
+.game-text { transform-origin: 0 0 !important; text-rendering: geometricPrecision; -webkit-font-smoothing: antialiased; }
+.game-text.replay-button { cursor: pointer; border-radius: 5px; box-shadow: 0 0 0 1px #a8c8d8; }
+.game-text.replay-button:hover { background: #d9edf7 !important; }
+.game-text.replay-button:focus-visible { outline: 2px solid #176d8a; outline-offset: 3px; }
+
+/* Touch: the play area belongs to the game, not to scrolling, zooming or text selection. */
+.game-wrap { position: relative; }
+#game-container, #game-container canvas {
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.opt-btn {
+    font: inherit;
+    font-size: 14px;
+    color: var(--bone);
+    background: var(--ink-3);
+    border: 1px solid var(--line-strong);
+    border-radius: 7px;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+.opt-btn:hover { border-color: var(--bone-faint); }
+
+/* Portrait phones: suggest turning sideways. */
+#rotate-hint {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: 14px;
+    padding: 20px;
+    text-align: center;
+    background: rgba(12, 21, 32, 0.88);
+    border-radius: 10px;
+}
+#rotate-hint[hidden] { display: none; }
+#rotate-hint p { margin: 0; font-family: var(--serif); font-size: 22px; font-weight: 600; }
+
+/* Full screen button, on the game like a video player's. Top-right keeps it
+   clear of the red team, who start bottom-right. */
+.fs-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 5;
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: 0;
+    border-radius: 8px;
+    background: rgba(12, 21, 32, 0.55);
+    color: #ffffff;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s, background 0.2s;
+}
+.fs-btn:hover, .fs-btn:focus-visible { opacity: 1; background: rgba(12, 21, 32, 0.8); }
+.fs-btn svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.fs-btn .fs-exit, .fs-btn.is-on .fs-enter { display: none; }
+.fs-btn.is-on .fs-exit { display: block; }
+
+/* Full screen: the game fills the screen, letterboxed, like a video. */
+.game-wrap:fullscreen,
+html.pseudo-fs .game-wrap {
+    background: #000;
+    display: grid;
+    place-items: center;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+}
+html.pseudo-fs .game-wrap { position: fixed; inset: 0; z-index: 1000; }
+html.pseudo-fs body { overflow: hidden; }
+.game-wrap:fullscreen #game-container,
+html.pseudo-fs #game-container { border-radius: 0; box-shadow: none; outline: none; background: transparent; }
+.game-wrap:fullscreen .fs-btn,
+html.pseudo-fs .fs-btn { top: 14px; right: 14px; }
+
+/* Sections */
+.section { padding: 72px 0; border-top: 1px solid var(--line); }
+.section h2 {
+    margin: 0 0 28px;
+    font-family: var(--serif);
+    font-weight: 500;
+    font-variation-settings: "opsz" 96;
+    font-size: clamp(28px, 3.4vw, 40px);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+}
+
+/* How to play: the page's one bold move. The field splits on the same
+   diagonal as the game's centre line — green top-left, red bottom-right. */
+.field {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 0 64px;
+    padding: 44px 48px;
+    border-radius: 14px;
+    border: 1px solid var(--line);
+    background: linear-gradient(to bottom right, rgba(63, 163, 111, 0.13) 50%, rgba(224, 71, 60, 0.13) 50%);
+}
+.side { max-width: 46ch; }
+.side h3 { margin: 0 0 12px; font-family: var(--serif); font-weight: 600; font-size: 24px; letter-spacing: -0.01em; }
+.side p, .side li { color: var(--bone-dim); }
+.side p { margin: 0 0 12px; }
+.side ol { margin: 0 0 14px; padding-left: 1.3em; }
+.side li { margin-bottom: 8px; padding-left: 4px; }
+.side li::marker { font-family: var(--mono); font-weight: 600; color: var(--red-2); }
+.side-green { grid-column: 1; grid-row: 1; padding-bottom: 32px; }
+.side-green h3 { color: var(--green-2); }
+.side-red { grid-column: 2; grid-row: 2; justify-self: end; padding-top: 32px; }
+.side-red h3 { color: var(--red-2); }
+
+/* FAQ */
+.faq details { border-bottom: 1px solid var(--line); }
+.faq details:first-of-type { border-top: 1px solid var(--line); }
+.faq summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 18px 36px 18px 0;
+    font-weight: 600;
+    font-size: 18px;
+    position: relative;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+    content: "+";
+    position: absolute;
+    right: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--mono);
+    color: var(--bone-faint);
+    transition: transform 0.2s;
+}
+.faq details[open] summary::after { transform: translateY(-50%) rotate(45deg); color: var(--red-2); }
+.faq details p { margin: 0 0 20px; color: var(--bone-dim); max-width: 65ch; }
+
+.enhancements { border-top: 1px solid var(--line); }
+.enhancements .feature-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 64px; }
+.enhancements h3 { margin: 0 0 12px; font-family: var(--serif); font-size: 24px; }
+.enhancements ul { margin: 0; padding-left: 20px; color: var(--bone-dim); }
+.enhancements li { margin-block: 10px; }
+.enhancements li::marker { color: var(--red-2); }
+.enhancements p { color: var(--bone-dim); max-width: 68ch; }
+@media (max-width: 760px) { .enhancements .feature-columns { grid-template-columns: 1fr; gap: 24px; } }
+
+/* Author (house block) */
+.author-block {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 32px;
+    align-items: center;
+    padding: 44px 40px;
+    background: var(--ink-2);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+}
+.author-block .avatar {
+    width: 88px; height: 88px;
+    border-radius: 50%;
+    background: var(--ink);
+    display: grid; place-items: center;
+    border: 1px solid var(--line-strong);
+}
+.author-block h3 {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 500;
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
+}
+.author-block p { margin: 0 0 12px; color: var(--bone-dim); font-size: 15px; line-height: 1.55; }
+.author-links { display: flex; gap: 20px; flex-wrap: wrap; }
+.author-links a {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--bone-faint);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+}
+.author-links a:hover { color: var(--red-2); border-bottom-color: var(--red-2); }
+
+/* Footer (house) */
+footer { border-top: 1px solid var(--line); padding: 48px 0 60px; }
+footer .container { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+footer p { margin: 0; color: var(--bone-faint); font-size: 13.5px; font-family: var(--mono); letter-spacing: 0.03em; }
+footer a { color: var(--bone-dim); text-decoration: none; }
+footer a:hover { color: var(--red-2); }
+
+@media (max-width: 760px) {
+    .nav-links { gap: 4px; }
+    .nav-links a:not(.nav-gh):not(.nav-play) { display: none; }
+    .nav-links a { padding: 8px; }
+    .logo { gap: 8px; font-size: 17px; }
+    #options-bar { width: 100%; }
+    .play-head { gap: 16px; }
+    .field {
+        grid-template-columns: 1fr;
+        padding: 32px 24px;
+        background: linear-gradient(to bottom, rgba(63, 163, 111, 0.13) 50%, rgba(224, 71, 60, 0.13) 50%);
+    }
+    .side-green, .side-red { grid-column: 1; justify-self: start; }
+    .author-block { grid-template-columns: 1fr; text-align: center; padding: 32px 24px; }
+    .author-block .avatar { margin: 0 auto; }
+    .author-links { justify-content: center; }
+}
+
+@media (orientation: landscape) and (max-height: 520px) and (pointer: coarse) {
+    nav { display: none; }
+    .play { padding: 0; min-height: 100vh; min-height: 100dvh; display: grid; place-items: center; }
+    .play-head { display: none; }
+    .play-inner { width: auto; }
+    #game-container { border-radius: 0; box-shadow: none; outline: none; background: transparent; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+}
+
+section[id] { scroll-margin-top: 72px; }

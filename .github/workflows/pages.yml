@@ -1,6 +1,6 @@
 name: Deploy to GitHub Pages
 
-# Publishes src/ as the site root whenever main changes.
+# Publishes web/ as the site root whenever main changes.
 on:
   push:
     branches: [main]
@@ -26,6 +26,6 @@ jobs:
       - uses: actions/configure-pages@v6
       - uses: actions/upload-pages-artifact@v5
         with:
-          path: src
+          path: web
       - id: deployment
         uses: actions/deploy-pages@v5

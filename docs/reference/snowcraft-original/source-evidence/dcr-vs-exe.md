@@ -38,7 +38,7 @@ very close build), not with a rebased copy of the EXE movie.
 - The DCR is not a byte-identical `SnowCraft.dir`.
 - DCR `snd ` payloads were not inflated to PCM, so audio identity vs the 16
   EXE WAVs is count-level only.
-- DCR BITDs were not decoded to PNGs; kid art in `src/assets/cast/` comes from
+- DCR BITDs were not decoded to PNGs; kid art in `web/assets/cast/` comes from
   the **EXE** movie’s BITDs.
 - Pixel-perfect matte hits and Event Loop wall-clock remain runtime-blocked
   (see `docs/PARITY.md`).

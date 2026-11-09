@@ -1,12 +1,12 @@
 # Classic parity plan: gameplay gaps vs. the original SnowCraft
 
-This plan lists where `src/js/game.js` (as of 2026-11-08) plays differently from the 1999 original, highest-impact gaps first. It covers rules, numbers, timing, AI and flow only — not art or look. The full source and evidence for every original value is in [reference-app.md](reference-app.md); section numbers below point there. Byte-for-byte originals: [reference/snowcraft-original/](reference/snowcraft-original/).
+This plan lists where `web/js/game.js` (as of 2026-11-08) plays differently from the 1999 original, highest-impact gaps first. It covers rules, numbers, timing, AI and flow only — not art or look. The full source and evidence for every original value is in [reference-app.md](reference-app.md); section numbers below point there. Byte-for-byte originals: [reference/snowcraft-original/](reference/snowcraft-original/).
 
 All coordinates assume the original's 592×320 stage. The remake canvas is now 592×320; the ground BITD remains 600×320 at loc (296,160).
 
-## Status (2026-11-08, src-layout parity branch)
+## Status (2026-11-08, web-layout parity branch)
 
-Implemented in `src/js/game.js` + `src/js/parity.js` + `src/js/audio.js`: items 1–6, 7 (**VWSC Event Loop locs**, including off-stage greens and level-10 closer reds), 8, 9, 10, 11, 12 (centre line now `(0,320)–(640,0)`), 13, 14 (**15 of the 16 original sound cast members** — all the ones the original plays; `Uh` is never played and not shipped — channel 1, `mouseH<280` ugly/halaluja), 15 (`?debug`, revive immunity). Kid BITDs 1–36, 15 fps score walk-on, matte AABB, and daze/ow members are now decoded from the original ZIP’s `SnowCraft.exe` (static; EXE not run).
+Implemented in `web/js/game.js` + `web/js/parity.js` + `web/js/audio.js`: items 1–6, 7 (**VWSC Event Loop locs**, including off-stage greens and level-10 closer reds), 8, 9, 10, 11, 12 (centre line now `(0,320)–(640,0)`), 13, 14 (**15 of the 16 original sound cast members** — all the ones the original plays; `Uh` is never played and not shipped — channel 1, `mouseH<280` ugly/halaluja), 15 (`?debug`, revive immunity). Kid BITDs 1–36, 15 fps score walk-on, matte AABB, and daze/ow members are now decoded from the original ZIP’s `SnowCraft.exe` (static; EXE not run).
 
 See [PARITY.md](PARITY.md) for verified vs inferred vs blocked.
 

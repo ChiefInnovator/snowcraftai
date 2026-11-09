@@ -1,5 +1,7 @@
 # Applying onto the dirty `ff39e410` checkout
 
+**Historical record:** paths in the pinned-commit instructions below describe those original snapshots. The current browser edition lives in [`web/`](../../../web/), including [`web/index.html`](../../../web/index.html) and [`web/js/game.js`](../../../web/js/game.js).
+
 Local tree this patch is built for:
 
 - Branch: `feature/repo-restructure`
