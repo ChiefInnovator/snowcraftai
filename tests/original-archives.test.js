@@ -72,5 +72,13 @@ describe("docs/reference/snowcraft-original archives", () => {
         assert.match(rootNotice, /No explicit license, EULA, or redistribution permission for SnowCraft was/);
         assert.equal(rootNotice.includes("MIT License"), false);
         assert.equal(notices.includes("licensed under MIT"), false);
+
+        const vendor = fs.readFileSync(path.join(ROOT, "extracted/vendor-dcr-readme.txt"), "utf8");
+        const section5 = notices.split("## 5. DCR zip vendor README")[1] || "";
+        const fences = section5.split("```");
+        assert.ok(fences.length >= 3, "section 5 has a fenced vendor README quote");
+        let quoted = fences[1];
+        if (quoted.startsWith("\n")) quoted = quoted.slice(1);
+        assert.equal(quoted, vendor);
     });
 });
