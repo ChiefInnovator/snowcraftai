@@ -21,9 +21,7 @@ The same recovered files are also kept at [`docs/recovered/`](../../../recovered
 next to `PARITY.md`. Runtime art/audio is **not** duplicated here except the
 original member 70 PNG, kept because the live logo was edited.
 
-Copyright and credit strings harvested from these files:
-[`../COPYRIGHT-NOTICES.md`](../COPYRIGHT-NOTICES.md). That catalog is not a
-license.
+Acknowledgments: [`../COPYRIGHT-NOTICES.md`](../COPYRIGHT-NOTICES.md).
 
 Mechanics narrative: [`docs/reference-app.md`](../../../reference-app.md),
 [`docs/PARITY.md`](../../../PARITY.md),

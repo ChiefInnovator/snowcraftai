@@ -6,7 +6,7 @@ artifacts.
 
 | Path | Role |
 |---|---|
-| [`snowcraft-original/`](snowcraft-original/) | 1999 Nicholson NY originals: both game archives, the extracted-sounds pack, SHA-256 manifest, provenance, recovered evidence notes, and [`COPYRIGHT-NOTICES.md`](snowcraft-original/COPYRIGHT-NOTICES.md) (exact credits; not a license) |
+| [`snowcraft-original/`](snowcraft-original/) | 1999 Nicholson NY originals: both game archives, the extracted-sounds pack, SHA-256 manifest, provenance, recovered evidence notes, and [`COPYRIGHT-NOTICES.md`](snowcraft-original/COPYRIGHT-NOTICES.md) (acknowledgments) |
 
 Runtime audio used by the Phaser remake stays in [`src/assets/sounds/`](../../src/assets/sounds/). Recovered BITD PNGs used at runtime stay in [`src/assets/cast/`](../../src/assets/cast/). This folder holds **documentation and archive copies**.
 
