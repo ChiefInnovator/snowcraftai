@@ -74,8 +74,12 @@ function sizeContainer(layout) {
     const el = document.getElementById('game-container');
     // Height comes from the CSS aspect ratio, and max-width keeps the box inside
     // the screen, so a rotation can never make the page wider than the phone.
-    el.style.width = layout.width + 'px';
+    // The box matches the 592×320 stage exactly (no side strip), and the whole
+    // page column follows its width so every section lines up with the game.
+    const stageW = Math.round(layout.width * STAGE_W / DISPLAY_BASE_W);
+    el.style.width = stageW + 'px';
     el.style.height = '';
+    document.documentElement.style.setProperty('--stage-w', stageW + 'px');
 }
 
 function rebuildGame() {

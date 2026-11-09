@@ -52,8 +52,13 @@ a:hover { color: var(--red-2); text-decoration-color: currentColor; }
 #top { scroll-margin-top: 90px; }
 #top:focus { outline: none; }
 
-.container { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
-.container.narrow { max-width: 760px; }
+.container {
+    /* One column for the whole page: the game's width, never wider than the screen. */
+    width: var(--stage-w, 1180px);
+    max-width: calc(100% - 40px);
+    margin: 0 auto;
+}
+.container.narrow > * { max-width: 760px; }
 
 /* Nav */
 nav {
@@ -94,7 +99,7 @@ nav {
 
 /* Play: the game is the hero */
 .play { padding: 18px 20px 56px; }
-.play-inner { width: min-content; margin: 0 auto; }
+.play-inner { width: var(--stage-w, min-content); max-width: 100%; margin: 0 auto; }
 .play-head {
     display: flex;
     align-items: flex-end;
@@ -133,7 +138,7 @@ nav {
 .opt-check input { width: 16px; height: 16px; margin: 0; accent-color: var(--red); cursor: pointer; }
 
 #game-container {
-    aspect-ratio: 600 / 320;
+    aspect-ratio: 592 / 320;
     max-width: 100%;
     background: #ffffff;
     border-radius: 10px;
@@ -299,7 +304,6 @@ footer a:hover { color: var(--red-2); }
 @media (max-width: 760px) {
     .nav-links { gap: 18px; }
     .nav-links a:not(.nav-gh) { display: none; }
-    .play-inner { width: auto; }
     .play-head h1 { white-space: normal; }
     .field {
         grid-template-columns: 1fr;
