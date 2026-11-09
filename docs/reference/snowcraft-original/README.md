@@ -45,7 +45,7 @@ is not the canonical copy.
 | Win32 game | Macromedia Director **8.0** projector, Nicholson NY / IconMedialab Happy Holidays edition, 1999. Embedded movie `XFIR`/`39VM` at `0x306114`. |
 | Shockwave game | Afterburner `XFIR`/`FGDM` DCR, FlashArch/IA copy MD5 `6c5631ca78293144ffe031dd0a75ee30`. Same 82 BITD + 16 sound **counts** as the EXE movie; **not** the same movie bytes. |
 | Sounds pack | 16 unique 8-bit mono WAVs losslessly re-wrapped from EXE `sndS` PCM (one Mac `snd` header stripped on `halaluja`). |
-| Remake that consumes this evidence | Combined `web/` tree on `cursor/combined-parity-1518`, based on `feature/repo-restructure` (`ff39e410`). |
+| Remake that consumes this evidence | Current browser root: [`web/`](../../../web/). Initial integration: `cursor/combined-parity-1518`, based on `feature/repo-restructure` (`ff39e410`). |
 
 ## License status
 
