@@ -26,7 +26,7 @@
       "source_zip_inner_root": "application-sounds/",
       "sha256": "da86b1940094f89a735447f3e237926b771f1a5d9a025c2b77a69c2134f02cfa",
       "bytes": 122667,
-      "wav_bytes_identical_to": "src/assets/sounds/*.wav"
+      "wav_bytes_identical_to": "web/assets/sounds/*.wav"
     }
   ],
   "extracted_inner_files": [
