@@ -117,10 +117,6 @@ class MainScene extends Phaser.Scene {
         // --- ASSET LOADING ---
         this.load.image('red_team_atlas', 'assets/player.png');
         this.load.image('green_team_atlas', 'assets/enemy.png');
-        this.load.image('snowball', 'assets/snowball.png');
-        this.load.image('splash', 'assets/splash.png');
-        this.load.image('sink', 'assets/sink.png');
-        this.load.image('puddle', 'assets/puddle.png');
         for (let i = 0; i <= 8; i++) this.load.image('power_' + i, 'assets/cast/power_' + i + '.png');
         this.load.image('cast_snowball', 'assets/cast/snowball.png');
         this.load.image('drop_0', 'assets/cast/drop_0.png');
@@ -145,8 +141,6 @@ class MainScene extends Phaser.Scene {
         this.load.image(P.CAST.congrats.key, 'assets/cast/' + P.CAST.congrats.file);
         this.load.image(P.CAST.playAgain.key, 'assets/cast/' + P.CAST.playAgain.file);
         this.load.image('shadow', 'assets/shadow.png');
-        this.load.image('snowball_shadow', 'assets/snowball_shadow.png');
-        this.load.image('hand', 'assets/smallHand.png');
         P.CAST.kids.forEach((m) => this.load.image(m.key, 'assets/cast/' + m.file));
         this.load.json('walkon', 'assets/walkon.json');
 
@@ -439,10 +433,6 @@ class MainScene extends Phaser.Scene {
         this.unlockGameAudio();
         if (!this.audio) return false;
         return this.audio.playEvent(eventKey, extra || {});
-    }
-
-    sfxBusy() {
-        return !!(this.audio && this.audio.isChannelBusy());
     }
 
     // Original nextLevel / ridicule: repeat while soundBusy(1).
@@ -1222,14 +1212,6 @@ class MainScene extends Phaser.Scene {
         }
     }
 
-    showEndScreen(title) {
-        if (title === 'YOU WIN!' || title === 'YOU WIN') {
-            this.showVictoryScreen();
-            return;
-        }
-        this.showLossScreen();
-    }
-
     hideEndScreen() {
         this.clearScoreBannerAnims();
         this.playAgainButton.setVisible(false);
@@ -1255,36 +1237,6 @@ class MainScene extends Phaser.Scene {
         this.activePower = 0;
         this.hoveredPlayer = null;
         this.activePlayer = null;
-    }
-
-    // Spawn slot for greens beyond the fixed three: a free spot on the green side
-    randomEnemySpawn(team) {
-        let best = null, bestGap = -1;
-        for (let attempt = 0; attempt < 40; attempt++) {
-            const x = Phaser.Math.Between(30, 300);
-            const y = Phaser.Math.Between(25, 170);
-            if (y >= centreLineY(x) - 60) continue; // keep a margin from the centre line
-            const gap = team.length
-                ? Math.min(...team.map(k => Phaser.Math.Distance.Between(x, y, k.finalX, k.finalY)))
-                : Infinity;
-            if (gap > bestGap) { best = { x, y }; bestGap = gap; }
-            if (gap >= 35) break;
-        }
-        return best || { x: 140, y: 70 };
-    }
-
-    createSnowSplash(x, y) {
-        let splash = this.add.image(x, y, 'splash').setDepth(50);
-        this.time.delayedCall(120, () => {
-            splash.setTexture('sink');
-            this.time.delayedCall(120, () => {
-                splash.setTexture('puddle');
-                this.tweens.add({
-                    targets: splash, alpha: 0, duration: 1000, delay: 500,
-                    onComplete: () => splash.destroy()
-                });
-            });
-        });
     }
 
     kidAt(team, x, y) {
