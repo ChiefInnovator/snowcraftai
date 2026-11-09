@@ -55,10 +55,11 @@ describe("docs/reference/snowcraft-original archives", () => {
     });
 
     it("thanks Nicholson NY and Kevin Chiu", () => {
+        const expected =
+            "# Acknowledgments\n\nThank you to Nicholson NY for SnowCraft, and to Kevin Chiu.\n";
         const notices = fs.readFileSync(path.join(ROOT, "COPYRIGHT-NOTICES.md"), "utf8");
-        assert.equal(
-            notices,
-            "# Acknowledgments\n\nThank you to Nicholson NY for SnowCraft, and to Kevin Chiu.\n"
-        );
+        const rootNotice = fs.readFileSync(path.join(__dirname, "..", "NOTICE.md"), "utf8");
+        assert.equal(notices, expected);
+        assert.equal(rootNotice, expected);
     });
 });
