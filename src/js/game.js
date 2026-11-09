@@ -35,19 +35,47 @@ const RULES = {
     tossMs: 500,
 };
 
+// Phones: touch input, landscape play, lighter rendering.
+const COARSE_POINTER = !!(window.matchMedia && window.matchMedia('(pointer: coarse)').matches);
+const TOUCH_GRAB_RADIUS = 34; // world px: how close a finger must land to a red kid
+const TOUCH_LIFT = 36;        // world px: kid is drawn above the finger while dragging
+
+function isCompactLandscape() {
+    return !!(window.matchMedia && window.matchMedia('(orientation: landscape) and (max-height: 520px)').matches);
+}
+
+// Full screen or a phone on its side: the game takes the whole viewport.
+function isImmersive() {
+    return !!document.fullscreenElement || isCompactLandscape();
+}
+
+function viewportSize() {
+    const vv = window.visualViewport;
+    if (vv && vv.width && vv.height) return { w: vv.width, h: vv.height };
+    return { w: window.innerWidth, h: window.innerHeight };
+}
+
 function computeLayout() {
-    return P.computeDisplayLayout(
-        GAME_SCALE,
-        window.innerWidth,
-        window.innerHeight,
-        window.devicePixelRatio || 1
+    const vp = viewportSize();
+    const immersive = isImmersive();
+    const layout = P.computeDisplayLayout(
+        immersive ? 0 : GAME_SCALE,
+        vp.w,
+        vp.h,
+        window.devicePixelRatio || 1,
+        immersive ? 0 : undefined,
+        immersive ? 0 : undefined
     );
+    if (COARSE_POINTER) layout.renderScale = Math.min(layout.renderScale, 2);
+    return layout;
 }
 
 function sizeContainer(layout) {
     const el = document.getElementById('game-container');
+    // Height comes from the CSS aspect ratio, and max-width keeps the box inside
+    // the screen, so a rotation can never make the page wider than the phone.
     el.style.width = layout.width + 'px';
-    el.style.height = layout.height + 'px';
+    el.style.height = '';
 }
 
 function rebuildGame() {
@@ -77,9 +105,53 @@ function changeMute() {
     if (snowcraftAudio) snowcraftAudio.setMuted(muted);
 }
 
-window.addEventListener('resize', () => {
-    if (GAME_SCALE === 0 && game) sizeContainer(computeLayout());
-});
+// Phones report the new size late after a rotation, so lay out twice: once
+// quickly, once after the browser settles. Phaser must re-fit after the
+// container changes size.
+let relayoutTimers = [];
+function relayout() {
+    relayoutTimers.forEach(clearTimeout);
+    relayoutTimers = [120, 600].map(ms => setTimeout(() => {
+        if (!game) return;
+        sizeContainer(computeLayout());
+        if (game.scale && game.scale.refresh) game.scale.refresh();
+        updateRotateHint();
+    }, ms));
+}
+window.addEventListener('resize', relayout);
+window.addEventListener('orientationchange', relayout);
+if (window.visualViewport) window.visualViewport.addEventListener('resize', relayout);
+document.addEventListener('fullscreenchange', relayout);
+
+// Portrait phones: suggest turning sideways (can be dismissed).
+let rotateHintDismissed = false;
+function updateRotateHint() {
+    const hint = document.getElementById('rotate-hint');
+    if (!hint) return;
+    const portrait = !!(window.matchMedia && window.matchMedia('(orientation: portrait)').matches);
+    hint.hidden = !(COARSE_POINTER && portrait && !rotateHintDismissed);
+}
+
+function dismissRotateHint() {
+    rotateHintDismissed = true;
+    updateRotateHint();
+}
+
+function toggleFullscreen() {
+    const target = document.querySelector('.play');
+    if (document.fullscreenElement) {
+        document.exitFullscreen().catch(() => {});
+        return;
+    }
+    if (!target || !target.requestFullscreen) return;
+    target.requestFullscreen({ navigationUI: 'hide' })
+        .then(() => {
+            if (screen.orientation && screen.orientation.lock) {
+                screen.orientation.lock('landscape').catch(() => {});
+            }
+        })
+        .catch(() => {});
+}
 
 function getConfig() {
     const layout = computeLayout();
@@ -309,14 +381,26 @@ class MainScene extends Phaser.Scene {
 
         this.input.on('pointerdown', (pointer) => {
             if (!this.isLevelActive || this.isDragging) return;
-            const kid = this.hoveredPlayer;
-            if (pointer.leftButtonDown() && kid && kid.isAlive && !kid.isDazed) {
+            // Touch has no hover, so find the kid under (or near) the finger.
+            const kid = pointer.wasTouch
+                ? this.kidNear(this.redTeam, pointer.worldX, pointer.worldY, TOUCH_GRAB_RADIUS)
+                : (this.hoveredPlayer || this.kidAt(this.redTeam, pointer.worldX, pointer.worldY));
+            if (kid && kid.isDazed) {
+                this.playOriginalEvent('dead_hover');
+                return;
+            }
+            if ((pointer.wasTouch || pointer.leftButtonDown()) && kid && kid.isAlive) {
+                if (this.hoveredPlayer !== kid) {
+                    this.hoveredPlayer = kid;
+                    this.showSelectionUI(kid);
+                }
                 this.activePlayer = kid;
                 this.isDragging = true;
                 this.pressTime = this.time.now;
                 this.activePower = 0;
-                this.grabOffsetX = pointer.worldX - kid.x;
-                this.grabOffsetY = pointer.worldY - kid.y;
+                // On touch, lift the kid above the finger so it stays visible.
+                this.grabOffsetX = pointer.wasTouch ? 0 : pointer.worldX - kid.x;
+                this.grabOffsetY = pointer.wasTouch ? TOUCH_LIFT : pointer.worldY - kid.y;
                 kid.shadowLocked = true; // shadow stays at the grab point until release
                 this.showKidFrame(kid, 'throw_0');
                 this.showPowerMeter(kid);
@@ -325,13 +409,19 @@ class MainScene extends Phaser.Scene {
 
         this.input.on('pointerup', (pointer) => {
             const kid = this.activePlayer;
-            if (this.isDragging && kid && kid.isAlive && this.isLevelActive && pointer.leftButtonReleased()) {
+            if (this.isDragging && kid && kid.isAlive && this.isLevelActive && (pointer.wasTouch || pointer.leftButtonReleased())) {
                 kid.shadowLocked = false;
                 this.throwSnowball(kid, this.currentPower());
                 this.hidePowerMeter();
                 this.isDragging = false;
-                this.hoveredPlayer = kid;
                 this.activePlayer = null;
+                if (pointer.wasTouch) {
+                    // No hover on touch: clear the ring once the throw is away.
+                    this.hideSelectionUI();
+                    this.hoveredPlayer = null;
+                } else {
+                    this.hoveredPlayer = kid;
+                }
             }
         });
 
@@ -1233,6 +1323,19 @@ class MainScene extends Phaser.Scene {
         this.activePlayer = null;
     }
 
+    // Exact hit first; otherwise the closest grabbable kid within radius (touch).
+    kidNear(team, x, y, radius) {
+        const exact = this.kidAt(team, x, y);
+        if (exact) return exact;
+        let best = null, bestD = radius;
+        team.forEach((kid) => {
+            if (!kid.isAlive || kid.isWalkingOntoField) return;
+            const d = Phaser.Math.Distance.Between(x, y, kid.x, kid.y - 14);
+            if (d <= bestD) { best = kid; bestD = d; }
+        });
+        return best;
+    }
+
     kidAt(team, x, y) {
         return team.find((kid) => {
             if (!kid.isAlive || kid.isWalkingOntoField) return false;
@@ -1291,6 +1394,12 @@ class MainScene extends Phaser.Scene {
 }
 
 game = new Phaser.Game(getConfig());
+
+(function initPhoneUi() {
+    const fs = document.getElementById('fullscreen-btn');
+    if (fs && document.fullscreenEnabled) fs.hidden = false;
+    updateRotateHint();
+})();
 
 (function restoreMuteUi() {
     const box = document.getElementById('mute-checkbox');

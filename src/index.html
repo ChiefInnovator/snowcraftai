@@ -33,6 +33,12 @@
 
     <!-- Theme & favicon -->
     <meta name="theme-color" content="#0c1520">
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Snowcraft">
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
     <link rel="icon" type="image/png" href="assets/cast/005_R_ready.png">
 
     <!-- Structured data: VideoGame (helps Google, Bing, and AI answer engines) -->
@@ -47,7 +53,7 @@
         "inLanguage": "en",
         "applicationCategory": "Game",
         "genre": ["Action", "Arcade", "Casual", "Sports"],
-        "gamePlatform": ["Web Browser", "HTML5"],
+        "gamePlatform": ["Web Browser", "HTML5", "Mobile Web"],
         "operatingSystem": "Any (web browser)",
         "playMode": "SinglePlayer",
         "author": {
@@ -91,7 +97,7 @@
                 "name": "Does it work on a phone?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "It’s built for a mouse or trackpad, because you pick a kid by pointing at them before you press."
+                    "text": "Yes. Turn your phone sideways and the game fills the screen. Touch a kid, hold to wind up, slide to move them, and lift your finger to throw. For the biggest view, use Full screen on Android, or Add to Home Screen on iPhone."
                 }
             },
             {
@@ -207,9 +213,16 @@
                         <input type="checkbox" id="mute-checkbox" onchange="changeMute()">
                         <span>Mute</span>
                     </label>
+                    <button type="button" id="fullscreen-btn" class="opt-btn" onclick="toggleFullscreen()" hidden>Full screen</button>
                 </div>
             </header>
-            <div id="game-container"></div>
+            <div class="game-wrap">
+                <div id="game-container"></div>
+                <div id="rotate-hint" hidden>
+                    <p>Turn your phone sideways to play.</p>
+                    <button type="button" class="opt-btn" onclick="dismissRotateHint()">Play anyway</button>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -251,7 +264,7 @@
             </details>
             <details>
                 <summary>Does it work on a phone?</summary>
-                <p>It&rsquo;s built for a mouse or trackpad, because you pick a kid by pointing at them before you press.</p>
+                <p>Yes. Turn your phone sideways and the game fills the screen. Touch a kid, hold to wind up, slide to move them, and lift your finger to throw. For the biggest view, use Full screen on Android, or Add to Home Screen on iPhone.</p>
             </details>
             <details>
                 <summary>How is the score worked out?</summary>
