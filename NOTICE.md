@@ -1,18 +1,56 @@
 # Notice
 
-Snowcraft Reforged is a browser remake of **SnowCraft** (1999, Nicholson NY / IconMedialab).
+Snowcraft Reforged is a browser remake of **SnowCraft**. Exact strings,
+offsets, and archive provenance are in
+[`docs/reference/snowcraft-original/COPYRIGHT-NOTICES.md`](docs/reference/snowcraft-original/COPYRIGHT-NOTICES.md).
+This file is a summary. **Credits are not a license.**
 
-## Third-party material
+## Original SnowCraft (third-party)
 
-- **Sprites and images in `src/assets/`** (`player.png`, `enemy.png`, `playField.png`, `shadow.png`, `snowball*.png`, `splash.png`, `sink.png`, `puddle.png`, `smallHand.png`, and recovered BITD members in `src/assets/cast/` — `power_0`–`power_8`, `snowball`, `drop_*`, `splat`, `melt_*`) are derived from the original SnowCraft. Copyright remains with the original authors.
-- **Original sound effects** in `src/assets/sounds/` (16 WAVs extracted from `SnowCraft.exe`; PCM is byte-exact, re-wrapped as WAV). Copyright remains with the original authors.
-- **Music** (`src/assets/intro.mp3`, `src/assets/musicAlt.mp3`): source and license to be recorded here.
+Copyright in the game, BITDs, and 16 WAVs remains with the original rights
+holders. The 1999 movie identifies the author/studio as:
 
-> **Permission:** _TODO — record the rights holder's permission for the material above (who granted it, when, and its scope)._
+- `wells packard - Nicholson | NY`
+- `wells packard - Icon Nicholson` (EXE movie)
+- `Wells Packard - Nicholson NY` (DCR movie)
+- Painted logo text `Happy Holidays` / `IconMedialab` (BITD member 70)
+- Contacts `nny.com`, `wells@nny.com`, `info@nny.com`, `winners@nny.com`
 
-## Original to this project
+Internet Archive item `snowcraft_201912` metadata (`<creator>Nicholson NY</creator>`,
+`<date>1999</date>`) is **uploader metadata**, not a license. The IA
+collection tag `open_source_software` is also not a license.
 
-- All code in `src/js/`, `src/css/`, `tools/`, and `.github/`.
-- Synthesized extras in `src/assets/sfx/` (`tools/sfx/generate_sfx.py`); the live game uses the original WAVs in `src/assets/sounds/`.
+**No explicit license, EULA, or redistribution permission for SnowCraft was
+found** in the supplied EXE archive, DCR archive, recovered BITDs, or IA
+sidecars after the inspection recorded in `COPYRIGHT-NOTICES.md`. Inclusion
+of the originals under `docs/reference/snowcraft-original/` is parity
+evidence at the project owner’s request. It is not a grant of rights.
+Availability or downloadability is not permission.
 
-Byte-for-byte original-game archives (Win32 projector zip, Shockwave DCR zip, extracted-sounds pack) are stored as **evidence** under `docs/reference/snowcraft-original/` with a SHA-256 manifest. Copyright remains with the original authors; inclusion is not a redistribution license. Runtime audio is `src/assets/sounds/`; the docs copies are archives and methodology, not a second live asset tree. A gitignored root `reference/` folder may still be used as a local Wine/decompile workspace. Do not execute the EXE or DCR from an agent run. No credentials are stored in those archives.
+Original-derived runtime files (`src/assets/cast/`, `src/assets/sounds/`, and
+other sprites taken from the 1999 movie) are **not** covered by any license
+chosen later for remake source code.
+
+## Macromedia Director projector (runtime, not the game)
+
+The Win32 file is a Macromedia Director 8 projector. PE VERSIONINFO
+LegalCopyright:
+
+> Copyright 1985-2000 Macromedia, Inc.
+
+Other projector/Xtra notices (spelling as stored): `Copyright 1989-95
+MacroMedia, Inc. All rights reserved.` and `; Copyright 1994-1997,
+Macromedia, Inc.  All Rights Reserved.` Microsoft CRT:
+`Copyright (C) Microsoft Corp. 1981-1998`. These cover the **player shell**,
+not SnowCraft’s art or audio.
+
+## Remake-only material
+
+- Code in `src/js/`, `src/css/`, `tools/` (except copies of original
+  extractors kept as evidence), and `.github/` is original to this project.
+- Synthesized extras in `src/assets/sfx/` are unused remake files.
+- `src/assets/intro.mp3` and `src/assets/musicAlt.mp3` are **not** in the
+  1999 movie (no music cast members). No original notice for them was found.
+
+Byte-for-byte archives stay under `docs/reference/snowcraft-original/` with
+SHA-256 pins. Do not execute the EXE or DCR from an agent run.

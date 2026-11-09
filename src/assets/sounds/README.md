@@ -27,7 +27,7 @@ All files are 8-bit unsigned mono PCM. There are 16 unique sounds, no duplicates
 
 **Coverage / caveats:** These are all 16 sound cast members in the movie. There are no external sound files, no streaming SWA/MP3 members, no Flash audio, and no procedural/synth audio. The other XFIR container holds only Xtras (DLL code). Name `Uh` was recovered from cast info. Sample rates come from the stored header: 11025, 11127 and 11128 (legacy Mac 11.127 kHz) and 22254 Hz. Playback quality is the original 1999 8-bit low-fi.
 
-**Provenance / licensing:** Historic third-party recordings from the user-supplied Internet Archive projector (`snowcraft_201912`, Nicholson NY, 1999). Copyright belongs to the original authors. Integrated here as a private restoration reference. **Verify release licensing before any public redistribution** of these files. The extractor (`tools/extract_snowcraft_sounds.py`) only re-wraps PCM in a WAV container; it does not resample or reconstruct samples.
+**Provenance / licensing:** Historic third-party recordings from the user-supplied Internet Archive projector (`snowcraft_201912`). Movie credits name Wells Packard / Nicholson (see `docs/reference/snowcraft-original/COPYRIGHT-NOTICES.md`). **No explicit license for these WAVs was found in the original files.** Copyright remains with the original rights holders. Inclusion here is not permission to redistribute. The extractor (`tools/extract_snowcraft_sounds.py`) only re-wraps PCM in a WAV container; it does not resample or reconstruct samples.
 
 Re-run: `python3 tools/extract_snowcraft_sounds.py docs/reference/snowcraft-original/extracted/SnowCraft.exe src/assets/sounds`
 

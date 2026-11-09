@@ -46,6 +46,16 @@ This version uses **Phaser 3** to replay the 1999 Director rules: fixed-diagonal
 
 `develop` is the default branch. Branch from `develop`, open PRs into `develop` (GitHub Copilot reviews them automatically), and release by opening a PR from `develop` into `main`. Pushing to `main` deploys the site. See [AGENTS.md](AGENTS.md).
 
+## Rights
+
+Original SnowCraft art, audio, EXE, and DCR remain with their 1999 rights
+holders. Exact strings (Wells Packard / Nicholson / IconMedialab vs Macromedia
+projector notices) are in
+[`docs/reference/snowcraft-original/COPYRIGHT-NOTICES.md`](docs/reference/snowcraft-original/COPYRIGHT-NOTICES.md)
+and [`NOTICE.md`](NOTICE.md). **No explicit license for the original game was
+found.** Credits are not permission. Remake source code is not a license for
+those original assets.
+
 ## Technical Details
 
 - **Engine**: Phaser 3.60
