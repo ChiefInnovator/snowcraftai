@@ -24,10 +24,16 @@
 
 All files are 8-bit unsigned mono PCM. 15 sounds ship here; the 16th cast sound, `Uh`, is never played by the original (no Lingo `puppetSound`) so it is not included. SHA-256 of the PCM payloads is in `inventory.json`. Event mapping is in `docs/PARITY.md`.
 
-**Coverage / caveats:** These are all 16 sound cast members in the movie. There are no external sound files, no streaming SWA/MP3 members, no Flash audio, and no procedural/synth audio. The other XFIR container holds only Xtras (DLL code). Name `Uh` was recovered from cast info. Sample rates come from the stored header: 11025, 11127 and 11128 (legacy Mac 11.127 kHz) and 22254 Hz. Playback quality is the original 1999 8-bit low-fi.
+**Coverage / caveats:** The movie has 16 sound cast members; the 15 that the game plays ship here. There are no external sound files, no streaming SWA/MP3 members, no Flash audio, and no procedural/synth audio. The other XFIR container holds only Xtras (DLL code). Name `Uh` was recovered from cast info. Sample rates come from the stored header: 11025, 11127 and 11128 (legacy Mac 11.127 kHz) and 22254 Hz. Playback quality is the original 1999 8-bit low-fi.
 
 **Provenance / licensing:** Historic third-party recordings from the user-supplied Internet Archive projector (`snowcraft_201912`, Nicholson NY, 1999). Copyright belongs to the original authors. Integrated here as a private restoration reference. **Verify release licensing before any public redistribution** of these files. The extractor (`tools/extract_snowcraft_sounds.py`) only re-wraps PCM in a WAV container; it does not resample or reconstruct samples.
 
-Re-run: `python3 tools/extract_snowcraft_sounds.py docs/reference/snowcraft-original/extracted/SnowCraft.exe src/assets/sounds`
+Re-run: extract into a scratch folder, then copy only the 15 shipped files (everything except `13_Uh.wav`) and keep the 15-record `inventory.json`:
+
+```bash
+python3 tools/extract_snowcraft_sounds.py docs/reference/snowcraft-original/extracted/SnowCraft.exe /tmp/snowcraft-sounds
+```
+
+Extracting straight into `src/assets/sounds` would restore `13_Uh.wav` and a 16-record inventory, and the tests would fail.
 
 The user-supplied pack (same 16 WAV bytes + inventory) is archived at `docs/reference/snowcraft-original/archives/nicholson-snowcraft-1999-extracted-sounds-pack.zip`. Methodology: `docs/reference/snowcraft-original/sounds-methodology/`. This folder is the **runtime** audio tree the game loads.
