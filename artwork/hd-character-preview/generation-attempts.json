@@ -1,0 +1,70 @@
+{
+  "batches": [
+    [
+      {
+        "num": 2,
+        "status": "fulfilled",
+        "error": null
+      },
+      {
+        "num": 3,
+        "status": "fulfilled",
+        "error": null
+      },
+      {
+        "num": 4,
+        "status": "fulfilled",
+        "error": null
+      },
+      {
+        "num": 6,
+        "status": "fulfilled",
+        "error": null
+      }
+    ],
+    [
+      {
+        "num": 7,
+        "status": "rejected",
+        "error": "image generation failed: http 400 Bad Request: Some(\"{\\n  \\\"error\\\": {\\n    \\\"message\\\": \\\"Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID 34c4dab2-90d5-44f7-9641-4179af20777f.\\\",\\n    \\\"type\\\": \\\"image_generation_user_error\\\",\\n    \\\"param\\\": null,\\n    \\\"code\\\": \\\"moderation_blocked\\\",\\n    \\\"moderation_details\\\": {\\n      \\\"moderation_stage\\\": \\\"output\\\",\\n      \\\"categories\\\": [\\n        \\\"other\\\"\\n      ]\\n    }\\n  }\\n}\")"
+      },
+      {
+        "num": 8,
+        "status": "fulfilled",
+        "file": "008_R_toss.png"
+      },
+      {
+        "num": 9,
+        "status": "fulfilled",
+        "file": "009_R_hit.png"
+      },
+      {
+        "num": 10,
+        "status": "fulfilled",
+        "file": "010_R_hit2.png"
+      }
+    ],
+    [
+      {
+        "num": 11,
+        "status": "fulfilled",
+        "file": "011_R_daze1.png"
+      },
+      {
+        "num": 12,
+        "status": "fulfilled",
+        "file": "012_R_daze2.png"
+      },
+      {
+        "num": 13,
+        "status": "fulfilled",
+        "file": "013_R_daze3.png"
+      },
+      {
+        "num": 14,
+        "status": "fulfilled",
+        "file": "014_R_dead.png"
+      }
+    ]
+  ]
+}

@@ -283,7 +283,12 @@ class MainScene extends Phaser.Scene {
         this.load.image('playfield', 'assets/playField.png');
         this.load.image(P.CAST.ground.key, 'assets/cast/' + P.CAST.ground.file);
         this.load.image('shadow', 'assets/shadow.png');
-        P.CAST.kids.forEach((m) => this.load.image(m.key, 'assets/cast/' + m.file));
+        P.CAST.kids.forEach((m) => {
+            this.load.image(m.key, 'assets/cast/' + m.file);
+            if (m.name !== 'shadow') {
+                this.load.image(SnowcraftArtwork.characterTextureKey(m.key), 'assets/hd/characters/' + m.file);
+            }
+        });
         this.load.json('walkon', 'assets/walkon.json');
 
         // Original channel-1 WAVs (paths relative to src/). Intro/BGM are remake extras.
@@ -375,6 +380,19 @@ class MainScene extends Phaser.Scene {
         this.selectionCircle = this.add.graphics();
         this.selectionCircle.setDepth(-1);
         this.selectionCircle.setVisible(false);
+        if (!this.textures.exists('hd_selection_ring')) {
+            const ring = this.textures.createCanvas('hd_selection_ring', 384, 176);
+            const ctx = ring.getContext();
+            ctx.strokeStyle = '#13749c';
+            ctx.lineWidth = 8;
+            ctx.beginPath();
+            ctx.ellipse(192, 88, 176, 72, 0, 0, Math.PI * 2);
+            ctx.stroke();
+            ring.refresh();
+            ring.setFilter(Phaser.Textures.FilterMode.LINEAR);
+        }
+        this.hdSelectionCircle = this.add.image(0, 0, 'hd_selection_ring')
+            .setDisplaySize(48, 22).setDepth(-1).setVisible(false);
 
         // Power meter: original `power 0`–`power 8` BITD members, loc = kid feet.
         this.powerMeter = this.add.image(0, 0, 'power_0').setDepth(100).setVisible(false);
@@ -474,6 +492,7 @@ class MainScene extends Phaser.Scene {
                     this.showSelectionUI(kid);
                 }
                 this.activePlayer = kid;
+                this.lastThrownPlayer = null;
                 this.isDragging = true;
                 this.dragPointerId = pointer.id; // only this finger/mouse moves or releases the kid
                 this.pressTime = this.time.now;
@@ -491,11 +510,12 @@ class MainScene extends Phaser.Scene {
             if (this.isDragging && pointer.id !== this.dragPointerId) return;
             if (this.isDragging && kid && kid.isAlive && this.isLevelActive && (pointer.wasTouch || pointer.leftButtonReleased())) {
                 this.throwSnowball(kid, this.currentPower());
+                this.lastThrownPlayer = kid;
                 this.hidePowerMeter();
                 this.isDragging = false;
                 this.activePlayer = null;
                 if (pointer.wasTouch) {
-                    // No hover on touch: clear the ring once the throw is away.
+                    // No hover on touch: only the toss follow-through keeps a ring.
                     this.hideSelectionUI();
                     this.hoveredPlayer = null;
                 } else {
@@ -717,6 +737,7 @@ class MainScene extends Phaser.Scene {
         this.hideSelectionUI();
         this.hoveredPlayer = null;
 
+        this.lastThrownPlayer = null;
         this.isLevelActive = false;
         this.walkingCount = 0;
         this.textFadeComplete = false;
@@ -861,6 +882,9 @@ class MainScene extends Phaser.Scene {
                 delay: 1000 / fps,
                 loop: true,
                 callback: () => {
+                    // Clock catch-up can dispatch this loop again in the same
+                    // delayed frame after remove(); finish each walk-on once.
+                    if (!kid.isWalkingOntoField || !kid.walkTimer) return;
                     step += 1;
                     if (step >= path.length) {
                         kid.x = kid.finalX;
@@ -901,6 +925,13 @@ class MainScene extends Phaser.Scene {
             this.updateSelectionUI(this.activePlayer);
         } else if (this.hoveredPlayer) {
             this.updateSelectionUI(this.hoveredPlayer);
+        } else if (this.lastThrownPlayer) {
+            if (this.lastThrownPlayer.memberName === 'R toss' && this.artwork.mode === 'high-resolution') {
+                this.updateSelectionUI(this.lastThrownPlayer);
+            } else {
+                this.hdSelectionCircle.setVisible(false);
+                this.lastThrownPlayer = null;
+            }
         }
 
         [...this.redTeam, ...this.greenTeam].forEach(kid => {
@@ -1442,11 +1473,16 @@ class MainScene extends Phaser.Scene {
 
     updateSelectionUI(player) {
         if (!player) return;
-        // Pop, cock and toss artwork already contains the ring in both art modes.
-        const hasArtworkRing = ['R pop', 'R cock', 'R toss'].includes(player.memberName);
-        this.selectionCircle.setVisible(this.isLevelActive && player.isAlive && !player.isDazed && !hasArtworkRing);
+        // Original charging frames contain a ring; redrawn frames use one smooth
+        // renderer-owned ring, including during a touch-release follow-through.
+        const redrawn = this.artwork.mode === 'high-resolution' && this.artwork.hasRedrawn(player.memberSpec.key);
+        const hasArtworkRing = !redrawn && ['R pop', 'R cock', 'R toss'].includes(player.memberName);
+        const selected = this.isLevelActive && player.isAlive && !player.isDazed;
+        this.selectionCircle.setVisible(selected && !redrawn && !hasArtworkRing);
+        this.hdSelectionCircle.setVisible(selected && redrawn);
         // Match the artwork's footprint so hover/charge/release stay aligned.
         this.selectionCircle.setPosition(player.x - 2, player.y + 7);
+        this.hdSelectionCircle.setPosition(player.x, player.y + 3);
         if (this.powerMeter.visible) {
             const spec = P.CAST.power[this.activePower] || P.CAST.power[0];
             this.artwork.apply(this.powerMeter, spec.key);
@@ -1457,6 +1493,7 @@ class MainScene extends Phaser.Scene {
 
     hideSelectionUI() {
         this.selectionCircle.setVisible(false);
+        this.hdSelectionCircle.setVisible(false);
         this.powerMeter.setVisible(false);
     }
 
@@ -1524,7 +1561,29 @@ window.render_game_to_text = function () {
         artwork: GAME_ARTWORK,
         audio: { muted: scene.audio.isMuted(), musicEnabled: scene.audio.isMusicEnabled() },
         text: scene.children.list.filter(o => o.node && o.visible && o.alpha > 0).map(o => o.node.textContent),
-        reds: scene.redTeam.map(k => ({ x: k.x, y: k.y, alive: k.isAlive })),
-        greens: scene.greenTeam.map(k => ({ x: k.x, y: k.y, alive: k.isAlive }))
+        dragging: scene.isDragging,
+        power: scene.isDragging ? scene.currentPower() : 0,
+        reds: scene.redTeam.map(k => ({ x: k.x, y: k.y, alive: k.isAlive, hits: k.hits, pose: k.memberName, dazed: k.isDazed })),
+        greens: scene.greenTeam.map(k => ({ x: k.x, y: k.y, alive: k.isAlive, hits: k.hits, pose: k.memberName })),
+        snowballs: scene.projectiles.map(b => ({ x: b.gx, y: b.gy, team: b.team, phase: b.phase }))
     });
 };
+
+// Opt-in test stepping sleeps RAF before driving the complete Phaser update and
+// render cycle. Normal play (including ?debug) retains its real-time game loop.
+if (DEBUG_MODE && PARAMS.has('manualTime')) {
+    window.advanceTime = function (ms) {
+        if (!game || !game.isBooted || !Number.isFinite(ms) || ms <= 0) return;
+        game.loop.sleep();
+        const frameMs = 1000 / 60;
+        let remaining = ms;
+        let now = game.loop.now;
+        while (remaining > 0.0001) {
+            const delta = Math.min(frameMs, remaining);
+            now += delta;
+            game.step(now, delta);
+            remaining -= delta;
+        }
+        game.loop.now = now;
+    };
+}

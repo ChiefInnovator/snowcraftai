@@ -1,0 +1,7 @@
+{
+  "file": "033_G_dead.png",
+  "source": "/Users/rich/.codex/generated_images/01a1be21-1c26-7d61-8427-a3aa41909931/exec-53e8546b-4df5-4eba-976c-5909e14182a8.png",
+  "prompt": "Use case: background-extraction / precise-object-edit. The attached image is the edit target, an already finished illustrated winter-game sprite. Preserve the exact character, pose, colours, clothing texture, snow grains and loose cap if present. Remove only the diffuse grey/coloured glow, haze, backdrop and cyan/magenta fringe surrounding the solid foreground. Keep the real clothing and opaque white snow cutout with a clean, narrow antialiased alpha edge. Everything beyond the character and its actual small snow mound must have alpha zero, including generous clear margins and all four corners. Deliver the same complete full-body sprite as a genuinely transparent PNG. No floor, drop shadow, glow, halo, background colour, new props, text, or content changes.",
+  "tool": "built-in image_gen",
+  "edit": "Remove surrounding diffuse glow and background only; preserve finished foreground."
+}

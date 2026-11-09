@@ -17,5 +17,6 @@ flutter:
   uses-material-design: true
   assets:
     - assets/art/
+    - assets/hd/characters/
     - assets/audio/
     - assets/data/

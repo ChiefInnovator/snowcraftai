@@ -1,11 +1,28 @@
-# HD character reference candidate — Codex
+# HD characters — references and animation pack
 
-**Stage 1 only. Visual approval is pending.** These are newly illustrated Red and Green ready-pose references. The remaining 33 character frames and integration into the game are intentionally awaiting the approval requested in the task.
+**Reference designs approved on 2026-11-09.** Rich approved the pair with “Yes, these are awesome”. The complete 35-frame pack now replaces the characters in web High resolution mode and the enhanced-only Flutter game. The original stage-1 screenshots below retain their review-time captions; reference-pair approval does not imply human approval of every animation frame.
 
 - Baseline: `Prior-to-high-res-art`, commit `d0a7db7ea698613b75eaaf313d7998cf40099ed2`.
 - Candidate branch: `feature/hd-character-preview-codex`.
 - Candidate checkout: `/Users/rich/.openclaw/projects/snowcraftai-hd-preview-codex`.
-- Only this new `artwork/hd-character-preview/` folder changes. Game code, original sprites, source archives, scenery, audio, mechanics, and the existing single-selection-ring fix are preserved.
+- Stage 1 changed only this reference folder. Stage 2 adds generated masters, registered exports, runtime loading and regression coverage. Original sprites, source archives, scenery, audio, gameplay rules and collision masks remain unchanged.
+
+## Complete animation pack
+
+- `animation-sources/`: 35 transparent generated masters (15 Red and 20 Green), with generation, revision and cleanup records. `animation-prompts.json` and `generation-*.json` preserve the generation history.
+- [`web/assets/hd/characters/`](../../web/assets/hd/characters/): 8× runtime PNGs and `manifest.json`, with logical size, original registration, export/original/master SHA-256 hashes and source-to-frame transforms.
+- [`flutter/assets/hd/characters/`](../../flutter/assets/hd/characters/): byte-identical native copy of the runtime pack and manifest.
+- [`tools/artwork/build-hd-pack.mjs`](../../tools/artwork/build-hd-pack.mjs): deterministic registration/export from the existing masters; it does not generate illustrations. Upright poses retain the original boot height and body height, translating horizontally when needed to fit the frame. Hit/falling poses use a uniform bounds fit because detached boots are unsuitable standing anchors. Both modes retain the original logical frame and registration, validate transparent corners and write both runtime copies.
+- Both renderers own HD selection rings; generated character art contains no selection ellipse. The web Original artwork option retains the recovered BITDs and their original embedded rings.
+- The unused vector alternative remains under [`poc/hd-character-redraw-claude/`](../../poc/hd-character-redraw-claude/README.md) as a superseded two-pose study.
+
+To reproduce exports after `npm ci --prefix web` and installing Playwright Chromium:
+
+```sh
+node tools/artwork/build-hd-pack.mjs
+node --test web/tests/hd-characters.test.js
+node tools/artwork/capture-hd-pack.mjs /tmp/snowcraft-hd-pack
+```
 
 ## Review
 
@@ -17,7 +34,7 @@ Open [the interactive comparison](index.html) through the local server. It prese
 - [Transparent Red ready reference](assets/red-ready.png)
 - [Transparent Green ready reference](assets/green-ready.png)
 
-The generated canvases include transparent padding. The comparison fits each redrawn character's visible bounds into its original frame with uniform scaling and bottom alignment; it does not stretch either image. `validation.json` records the source rectangles and preview mappings. These mappings are for review, not approved production registration. Exact foot registration, animation consistency, and all 35 frame variants must be completed and tested in stage 2.
+The generated canvases include transparent padding. The stage-1 comparison fits each redrawn character's visible bounds into its original frame with uniform scaling and bottom alignment; it does not stretch either image. `validation.json` records those historical preview mappings. Production placement is recorded separately in the runtime manifests, including the original reference anchor, final mapped anchor and uniform transform.
 
 ## Art direction and iteration
 
@@ -36,7 +53,7 @@ The generated source files remain at the tool's default `/Users/rich/.codex/gene
 
 `capture-preview.mjs` decodes all four source PNGs, verifies HD reference size (at least 4× logical dimensions), genuine transparency, and transparent corners, renders 12 comparisons, captures light/dark/phone screenshots, checks horizontal overflow at desktop and phone widths, records SHA-256 hashes, and collects browser console/page errors. Results are in [validation.json](validation.json).
 
-The candidate references are not yet approved as exact pose/silhouette matches. Their smooth, tactile illustration style is a visual choice for review. The complete animation pack, production frame registration, ring ownership, Flutter integration, gameplay execution with HD sprites, and final visual approval are pending stage 2. No gameplay, Flutter, or full application test pass is claimed for this preview-only change.
+The references were approved for their smooth, tactile illustration direction; exact original silhouettes are not claimed for redrawn art. `validation.json` covers only the stage-1 comparison and is not full-game evidence. Stage-2 test/build and screenshot results are recorded in [integration-validation.md](integration-validation.md). Final human visual acceptance of the full animation pack, physical-device play, perceptual audio acceptance and signed store distribution remain separate from automated integration validation.
 
 ## Reproduce the preview
 

@@ -1,6 +1,6 @@
 // Render the hand-drawn character SVGs in svg/ to transparent PNGs
 // at SCALE x the original frame size (png/<same file name>.png).
-// Usage: node tools/hd-art/render.js [--scale 8] [file.svg ...]
+// Usage: node poc/hd-character-redraw-claude/render.js [--scale 8] [file.svg ...]
 // Needs puppeteer-core and Google Chrome (CHROME env var overrides the path).
 const fs = require('fs');
 const path = require('path');
