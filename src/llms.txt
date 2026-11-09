@@ -11,12 +11,12 @@ Snowcraft Reforged is an open, HTML5 game that runs entirely in the browser — 
 - **Platform**: Web browser (HTML5 canvas, desktop)
 - **Engine**: Phaser 4.2
 - **Price**: Free (no ads, no signup, no in-app purchases)
-- **Author**: ChiefInnovator
+- **Author**: Richard Crane (ChiefInnovator), MILL5
 - **Source**: https://github.com/ChiefInnovator/snowcraftai
 - **Play online**: https://chiefinnovator.github.io/snowcraftai/
-- **Levels**: 5 progressive levels
+- **Levels**: 10 progressive levels (3, 5, 7, 9, then 12 enemies)
 - **Difficulty settings**: Easy, Normal, Hard
-- **Native resolution**: 600x320 (scalable up to 1800x960)
+- **Native resolution**: 592x320 stage, shown at 600x320 and scalable up to 1800x960
 - **Inspired by**: SnowCraft (1999)
 
 ## How to play
