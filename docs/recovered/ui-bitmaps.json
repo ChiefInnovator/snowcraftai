@@ -23,7 +23,9 @@
     ],
     "sha256": "e3811c261f81758aa17b305a6f938d60b703a97eccca978870ee753c09007e81",
     "depth": 32,
-    "how": "pb-planar32"
+    "how": "pb-planar32",
+    "runtimeSha256": "f9816634497c93e1ad5cb5237548859a0be2940a2899b4b741927cb5eddef1cb",
+    "runtimeDerivative": "IconMedialab lettering removed from the runtime PNG only. Original BITD (with IconMedialab) is docs/reference/snowcraft-original/source-evidence/recovered/070_happy_holidays.png."
   },
   {
     "num": 76,
