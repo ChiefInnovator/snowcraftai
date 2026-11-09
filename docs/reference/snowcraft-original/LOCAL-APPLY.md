@@ -71,6 +71,23 @@ That patch recovers Happy Holidays, digits 5–9, and Congratulations from D4
 planar PackBits BITDs. It keeps the 600×320–1800×960 display scaler. It does
 not stash, reset, or merge to `develop` / `main`.
 
+## Incremental patch after the 32-bit UI apply (from `8936227`)
+
+Once the 32-bit UI increment has been applied, the worktree matches combined
+`8936227b47bb91f7353704824c3b69df9f558300`. **Do not** reset or re-apply
+earlier patches. The next digit-slot / Play Again increment is a binary patch
+whose before-side **is** that `8936227` tree:
+
+```bash
+# worktree must already be the applied combined tree (8936227 contents)
+git apply --check --binary /path/to/snowcraft-incremental-8936227-digit-slot-playagain.patch
+git apply --binary /path/to/snowcraft-incremental-8936227-digit-slot-playagain.patch
+```
+
+That patch slot-aligns digits 5–9 with the 8-bit 2–4 VWSC loc and wires the
+original Play Again BITD (member 77). It keeps the 600×320–1800×960 display
+scaler. It does not stash, reset, or merge to `develop` / `main`.
+
 ## Optional (changes HEAD)
 
 ```bash

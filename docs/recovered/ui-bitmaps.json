@@ -38,6 +38,19 @@
     "sha256": "03462c598e8706aa86fbf31406297cbd50b3b9ec1005ee230caf5d9418b01d80"
   },
   {
+    "num": 77,
+    "name": "snowcraft_palatte",
+    "file": "077_play_again.png",
+    "w": 84,
+    "h": 22,
+    "reg": [
+      -216,
+      -138
+    ],
+    "sha256": "2eb09be52837b9f901335fb8f8f532d0684de796ad8aa3760ac8b0f4395729dc",
+    "note": "CASt name is a palette typo; BITD is the Play Again button. VWSC ch4 GreenWin loc (292,160) / victory (296,160)."
+  },
+  {
     "num": 78,
     "name": "Level",
     "file": "078_Level.png",

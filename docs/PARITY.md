@@ -128,8 +128,8 @@ EXE and DCR were **not** executed.
 | Green hit members | `G Hit` → `G ow` (`myMove=10`); `G down` (`25`); recover (`5`) | same BITDs + move counts | Verified |
 | Event Loop tempo | VWSC `500 fps` after walk-on; Lingo still gates on `the timer` | 100 ms / 50 ms from `timer > clock + myTempo` | Verified inequality; runtime clock **blocked** |
 | DRCF | stage 592×320, frameRate 15, Director 8 (`1600`) | canvas **592×320**; ground 600×320 at (296,160) | Verified |
-| Title / level cards | Member 76 SnowCraft; 78+digits 2–9; 87 Bonus Round | recovered BITDs (32-bit 5–9 via D4 planar PackBits) | Verified |
-| `Level 11` / `GreenWin` | Congratulations #88 then logo #70; loss is logo (no GAME OVER BITD) | wired BITDs + existing Play Again / SCORE | Verified BITDs; Lingo button/score field still remake |
+| Title / level cards | Member 76 SnowCraft; 78+digits 2–9; 87 Bonus Round | recovered BITDs (32-bit 5–9 via D4 planar PackBits); 5–9 placed on the 2–4 VWSC slot (left 356), not filmstrip CASt | Verified BITDs + slot; CASt filmstrip documented |
+| `Level 11` / `GreenWin` | Congratulations #88 then logo #70; Play Again #77; loss is logo (no GAME OVER BITD) | wired BITDs; SCORE field still remake | Verified BITDs; field 90 SCORE still remake |
 
 ## Still open / blocked
 
@@ -137,7 +137,7 @@ EXE and DCR were **not** executed.
 |---|---|---|
 | Pixel-matte vs Director runtime | PNG-alpha overlap from recovered BITDs | Wine/`sprite intersects` capture (do **not** auto-run the EXE) |
 | Event Loop “500 fps” wall-clock | Lingo is timer-gated; how fast `prepareFrame` polls is machine-dependent | Runtime clock trace (do **not** auto-run the EXE) |
-| Member 77 palette strip | Present on GreenWin/victory ch4; not a text glyph | Optional; not required for GAME OVER/YOU WIN (those BITDs do not exist) |
+| SCORE field (member 90) | Lingo field, not a BITD | Remake SCORE counter; original field metrics not recovered as pixels |
 | Original EXE look / window chrome | Not the inner movie; superseded as a target | Do **not** auto-run Wine/`run-reference.sh` |
 
 Perfect parity remains the target, not a claim.

@@ -42,8 +42,8 @@ describe("Director stage geometry", () => {
 });
 
 describe("recovered UI BITDs", () => {
-    it("keeps ground, title, Level, digits 2–9, Bonus Round, logo, and Congratulations byte-exact", () => {
-        assert.equal(UI.length, 14);
+    it("keeps ground, title, Level, digits 2–9, Bonus Round, logo, Congratulations, and Play Again byte-exact", () => {
+        assert.equal(UI.length, 15);
         UI.forEach((rec) => {
             const buf = fs.readFileSync(path.join(CAST_DIR, rec.file));
             const size = pngSize(buf);
@@ -55,10 +55,16 @@ describe("recovered UI BITDs", () => {
         assert.deepEqual(P.CAST.levelWord.loc, [286, 160]);
         assert.deepEqual(P.CAST.levelDigit[2].loc, [326, 160]);
         assert.deepEqual(P.CAST.levelDigit[5].loc, [326, 160]);
-        assert.deepEqual(P.CAST.levelDigit[9].reg, [-41, 11]);
+        assert.deepEqual(P.CAST.levelDigit[5].castReg, [54, 12]);
+        assert.deepEqual(P.CAST.levelDigit[9].castReg, [-41, 11]);
+        assert.equal(P.CAST.levelDigit[5].loc[0] - P.CAST.levelDigit[5].reg[0], P.DIGIT_SLOT_LEFT);
+        assert.equal(P.CAST.levelDigit[2].loc[0] - P.CAST.levelDigit[2].reg[0], P.DIGIT_SLOT_LEFT);
         assert.deepEqual(P.CAST.bonusRound.loc, [285, 160]);
         assert.deepEqual(P.CAST.logo.loc, [296, 140]);
         assert.deepEqual(P.CAST.congrats.loc, [295, 160]);
+        assert.deepEqual(P.CAST.playAgain.loc, [292, 160]);
+        assert.deepEqual(P.CAST.playAgain.victoryLoc, [296, 160]);
+        assert.deepEqual(P.CAST.playAgain.reg, [-216, -138]);
     });
 });
 
@@ -74,8 +80,9 @@ describe("score UI timing from VWSC", () => {
         assert.equal(P.directorBlendToAlpha(255), 0);
         assert.equal(P.directorBlendToAlpha(0), 1);
         assert.equal(P.framesToMs(11, 10), 1100);
-        assert.deepEqual(P.CAST.levelDigit[5].reg, [54, 12]);
-        assert.deepEqual(P.CAST.levelDigit[8].reg, [-17, 11]);
+        assert.deepEqual(P.CAST.levelDigit[5].reg, [-30, 12]);
+        assert.deepEqual(P.CAST.levelDigit[8].reg, [-30, 11]);
+        assert.deepEqual(P.SCORE_UI.playAgain, { fps: 10, fadeIn: 5 });
     });
 });
 

@@ -230,16 +230,17 @@
         title: { key: "cast_title", file: "076_1.png", w: 122, h: 22, reg: [76, 14], loc: [296, 160], ink: 8 },
         logo: { key: "cast_logo", file: "070_happy_holidays.png", w: 254, h: 64, reg: [127, 32], loc: [296, 140], ink: 8 },
         congrats: { key: "cast_congrats", file: "088_congratulations.png", w: 190, h: 31, reg: [95, 15], loc: [295, 160], ink: 8 },
+        playAgain: { key: "cast_play_again", file: "077_play_again.png", w: 84, h: 22, reg: [-216, -138], loc: [292, 160], victoryLoc: [296, 160], ink: 8 },
         levelWord: { key: "cast_level_word", file: "078_Level.png", w: 63, h: 22, reg: [43, 11], loc: [286, 160], ink: 8 },
         levelDigit: {
-            2: { key: "cast_level_2", file: "079_2.png", w: 13, h: 21, reg: [-30, 10], loc: [326, 160], ink: 8 },
-            3: { key: "cast_level_3", file: "080_3.png", w: 14, h: 21, reg: [-29, 10], loc: [326, 160], ink: 8 },
-            4: { key: "cast_level_4", file: "081_4.png", w: 14, h: 21, reg: [-30, 10], loc: [326, 160], ink: 8 },
-            5: { key: "cast_level_5", file: "082_5.png", w: 13, h: 22, reg: [54, 12], loc: [326, 160], ink: 8 },
-            6: { key: "cast_level_6", file: "083_6.png", w: 14, h: 22, reg: [30, 12], loc: [326, 160], ink: 8 },
-            7: { key: "cast_level_7", file: "084_7.png", w: 15, h: 21, reg: [7, 11], loc: [326, 160], ink: 8 },
-            8: { key: "cast_level_8", file: "085_8.png", w: 14, h: 21, reg: [-17, 11], loc: [326, 160], ink: 8 },
-            9: { key: "cast_level_9", file: "086_9.png", w: 14, h: 23, reg: [-41, 11], loc: [326, 160], ink: 8 }
+            2: { key: "cast_level_2", file: "079_2.png", w: 13, h: 21, reg: [-30, 10], loc: [326, 160], ink: 8, castReg: [-30, 10] },
+            3: { key: "cast_level_3", file: "080_3.png", w: 14, h: 21, reg: [-29, 10], loc: [326, 160], ink: 8, castReg: [-29, 10] },
+            4: { key: "cast_level_4", file: "081_4.png", w: 14, h: 21, reg: [-30, 10], loc: [326, 160], ink: 8, castReg: [-30, 10] },
+            5: { key: "cast_level_5", file: "082_5.png", w: 13, h: 22, reg: [-30, 12], loc: [326, 160], ink: 8, castReg: [54, 12] },
+            6: { key: "cast_level_6", file: "083_6.png", w: 14, h: 22, reg: [-30, 12], loc: [326, 160], ink: 8, castReg: [30, 12] },
+            7: { key: "cast_level_7", file: "084_7.png", w: 15, h: 21, reg: [-30, 11], loc: [326, 160], ink: 8, castReg: [7, 11] },
+            8: { key: "cast_level_8", file: "085_8.png", w: 14, h: 21, reg: [-30, 11], loc: [326, 160], ink: 8, castReg: [-17, 11] },
+            9: { key: "cast_level_9", file: "086_9.png", w: 14, h: 23, reg: [-30, 11], loc: [326, 160], ink: 8, castReg: [-41, 11] }
         },
         bonusRound: { key: "cast_bonus_round", file: "087_bonus_round.png", w: 158, h: 23, reg: [79, 11], loc: [285, 160], ink: 8 }
     };
@@ -249,8 +250,12 @@
         title: { fps: 15, fadeIn: 15, hold: 7, fadeOut: 4 },
         levelBanner: { fps: 10, fadeIn: 0, hold: 1, fadeOut: 10 },
         congrats: { fps: 10, fadeIn: 11, hold: 2, fadeOut: 14 },
-        logoVictory: { fps: 10, fadeIn: 9, hold: 0, fadeOut: 0 }
+        logoVictory: { fps: 10, fadeIn: 9, hold: 0, fadeOut: 0 },
+        playAgain: { fps: 10, fadeIn: 5 }
     };
+    // VWSC loc 326 is shared by digits 2–9. 8-bit 2 and 4 place the glyph at
+    // left = 326 - (-30) = 356. 32-bit CASt regs 5–9 are a 24px filmstrip leftover.
+    const DIGIT_SLOT_LEFT = 356;
 
     function scoreTempoFps(level) {
         return Number(level) === 1 ? SCORE_WALKON_FPS : SCORE_BANNER_FPS;
@@ -523,6 +528,7 @@
         SCORE_WALKON_FPS,
         SCORE_BANNER_FPS,
         SCORE_UI,
+        DIGIT_SLOT_LEFT,
         scoreTempoFps,
         bannerTiming,
         framesToMs,

@@ -143,6 +143,7 @@ class MainScene extends Phaser.Scene {
         this.load.image(P.CAST.bonusRound.key, 'assets/cast/' + P.CAST.bonusRound.file);
         this.load.image(P.CAST.logo.key, 'assets/cast/' + P.CAST.logo.file);
         this.load.image(P.CAST.congrats.key, 'assets/cast/' + P.CAST.congrats.file);
+        this.load.image(P.CAST.playAgain.key, 'assets/cast/' + P.CAST.playAgain.file);
         this.load.image('shadow', 'assets/shadow.png');
         this.load.image('snowball_shadow', 'assets/snowball_shadow.png');
         this.load.image('hand', 'assets/smallHand.png');
@@ -210,10 +211,15 @@ class MainScene extends Phaser.Scene {
             .setOrigin(0.5).setDepth(200).setVisible(false);
         this.scoreText = this.makeText(20, STAGE_H - 30, '', { fontSize: '20px', color: '#cc0000', fontStyle: 'bold', fontFamily: 'Arial', stroke: '#fff', strokeThickness: 4 })
             .setDepth(210).setVisible(false);
-        this.playAgainButton = this.makeText(STAGE_W - 20, STAGE_H - 18, 'Play Again', {
-            fontSize: '18px', color: '#ffffff', fontFamily: 'Arial', fontStyle: 'bold',
-            backgroundColor: '#cc0000', padding: { x: 12, y: 6 }
-        }).setOrigin(1, 1).setDepth(210).setVisible(false).setInteractive({ useHandCursor: true });
+        if (this.textures.exists(P.CAST.playAgain.key)) {
+            this.playAgainButton = this.add.image(0, 0, P.CAST.playAgain.key)
+                .setDepth(210).setVisible(false).setInteractive({ useHandCursor: true });
+        } else {
+            this.playAgainButton = this.makeText(STAGE_W - 20, STAGE_H - 18, 'Play Again', {
+                fontSize: '18px', color: '#ffffff', fontFamily: 'Arial', fontStyle: 'bold',
+                backgroundColor: '#cc0000', padding: { x: 12, y: 6 }
+            }).setOrigin(1, 1).setDepth(210).setVisible(false).setInteractive({ useHandCursor: true });
+        }
         this.playAgainButton.on('pointerdown', (pointer, x, y, event) => {
             event.stopPropagation();
             if (this.audio) this.audio.restart();
@@ -1133,7 +1139,7 @@ class MainScene extends Phaser.Scene {
             this.levelText.setStyle({ fontSize: '60px', fontFamily: 'Arial, sans-serif' });
             this.levelText.setPosition(STAGE_W / 2, STAGE_H / 2 - 20).setAlpha(1).setVisible(true);
         }
-        this.revealPlayAgain();
+        this.revealPlayAgain('loss');
     }
 
     showVictoryScreen() {
@@ -1144,7 +1150,7 @@ class MainScene extends Phaser.Scene {
             this.levelText.setText('YOU WIN!');
             this.levelText.setStyle({ fontSize: '60px', fontFamily: 'Arial, sans-serif' });
             this.levelText.setPosition(STAGE_W / 2, STAGE_H / 2 - 20).setAlpha(1).setVisible(true);
-            this.revealPlayAgain();
+            this.revealPlayAgain('victory');
             return;
         }
         const c = P.SCORE_UI.congrats;
@@ -1185,17 +1191,25 @@ class MainScene extends Phaser.Scene {
                 duration: P.framesToMs(timing.fadeIn, timing.fps),
                 onComplete: () => {
                     if (gen !== this._bannerGen) return;
-                    this.revealPlayAgain();
+                    this.revealPlayAgain('victory');
                 }
             });
             return;
         }
-        this.revealPlayAgain();
+        this.revealPlayAgain('victory');
     }
 
-    revealPlayAgain() {
-        this.playAgainButton.setVisible(true).setAlpha(0);
-        this.tweens.add({ targets: this.playAgainButton, alpha: 1, duration: 500 });
+    revealPlayAgain(kind) {
+        const spec = P.CAST.playAgain;
+        if (this.textures.exists(spec.key)) {
+            const loc = kind === 'victory' ? spec.victoryLoc : spec.loc;
+            this.placeCast(this.playAgainButton, Object.assign({}, spec, { loc: loc }));
+        } else {
+            this.playAgainButton.setVisible(true);
+        }
+        this.playAgainButton.setAlpha(0);
+        const fadeMs = P.framesToMs(P.SCORE_UI.playAgain.fadeIn, P.SCORE_UI.playAgain.fps);
+        this.tweens.add({ targets: this.playAgainButton, alpha: 1, duration: fadeMs });
         if (this.score > 0) {
             const counter = { n: 0 };
             this.scoreText.setVisible(true).setText('SCORE: 0');

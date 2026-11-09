@@ -52,7 +52,7 @@
       "8": [-17, 11],
       "9": [-41, 11]
     },
-    "leftEdgeAtLoc326": {
+    "castLeftEdgeAtLoc326": {
       "2": 356,
       "3": 355,
       "4": 356,
@@ -62,7 +62,20 @@
       "8": 343,
       "9": 367
     },
-    "note": "CASt registration is spec+18/+20 minus initialRect (ScummVM D6–D11 bitmap.cpp). 8-bit 2–4 sit ~50px right of 'Level'. 32-bit 5–9 fan left-to-right; 5–7 overlap the word. Wired as recovered, not inferred 2–4 alignment. EXE not run."
+    "slotLeft": 356,
+    "stageReg": {
+      "2": [-30, 10],
+      "3": [-29, 10],
+      "4": [-30, 10],
+      "5": [-30, 12],
+      "6": [-30, 12],
+      "7": [-30, 11],
+      "8": [-30, 11],
+      "9": [-30, 11]
+    },
+    "parserCheck": "CASt spec+18/+20 minus initialRect matches ScummVM D8 BitmapCastMember (directorVersion 1600, kFileVer800). Validated against ground (300,160), 8-bit digits 2–4, logo/Congratulations centre regs, and Play Again negative reg (−216,−138) which pins the button at stage bottom-right. DCR inflated FGEI contains the exact 28-byte digit-5 and digit-6 spec blobs (reg 54 and 30).",
+    "filmstrip": "32-bit CASt regs 54,30,7,−17,−41 step by −24/−23/−24/−24. Same VWSC loc 326 as digits 2–4. Placement uses the 8-bit slot left edge 356 (loc 326, reg_x −30), not the stale filmstrip CASt. Vertical CASt reg_y is kept.",
+    "levels8and9": "Level word is still present: ch15 (not ch3) at loc (286,160). Digit remains ch2."
   },
   "bonusRound": {
     "member": 87,
@@ -90,14 +103,26 @@
     "fps": 10,
     "blend": "255→0 over 290-300, hold 0 on 300-301, 0→255 over 302-315"
   },
-  "paletteStrip": {
+  "playAgain": {
     "member": 77,
     "name": "snowcraft_palatte",
+    "file": "077_play_again.png",
     "channel": 4,
-    "greenWin": { "loc": [292, 160], "frames": "40-45", "blend": "255→0" },
-    "victory": { "loc": [296, 160], "frames": "320-325", "blend": "255→0" },
+    "ink": 8,
+    "castReg": [-216, -138],
+    "size": [84, 22],
+    "greenWin": { "loc": [292, 160], "frames": "40-45", "blend": "255→0 over 5 steps (255,204,153,102,51,0)", "bbox": [508, 298, 592, 320] },
+    "victory": { "loc": [296, 160], "frames": "320-325", "blend": "255→0 over 5 steps", "bbox": [512, 298, 596, 320] },
+    "fps": 10,
+    "wired": true,
+    "note": "CASt name is a palette typo. BITD is the original Play Again button (blue). Negative registration is the same Director pattern as digits 2–4: loc stays near stage centre, bitmap sits at bottom-right."
+  },
+  "unusedGroundVariant": {
+    "member": 89,
+    "name": "snowcraft_256",
+    "size": [600, 320],
     "wired": false,
-    "note": "8-bit BITD; not a GAME OVER/YOU WIN glyph. Left unwired (palette/credit strip)."
+    "note": "8-bit 600×320 snow field. No VWSC sprite. Not a UI banner."
   },
   "notPresent": [
     "No GAME OVER BITD. Loss screen is the Happy Holidays logo plus Lingo Play Again / SCORE.",
