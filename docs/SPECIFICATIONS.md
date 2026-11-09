@@ -11,7 +11,7 @@ All values live in `RULES` at the top of `src/js/game.js` and `src/js/parity.js`
 ## Player (red team)
 
 * 3 kids every level, all back to full health.
-* **Drag:** the kid follows the pointer (keeping the grab offset) and cannot cross the original centre line `x ≥ 2·(320 − y)` from (0,320) to (640,0). Its shadow stays at the grab point until release. The game keeps running while you hold.
+* **Drag:** the kid follows the pointer (keeping the grab offset) and cannot cross the original centre line `x ≥ 2·(320 − y)` from (0,320) to (640,0). Its shadow moves with it (the original left the shadow at the grab point until release; the remake doesn't). The game keeps running while you hold.
 * **Power:** +1 every 83.33 ms (5 Director ticks) from 0 to 8 (full at ~0.67 s). The meter is the original `power 0`–`power 8` BITD members, registered 27 px to the right of the kid.
 * **Hits:** 2 to knock out. The first hit dazes the kid for 4.5 s: it can't be grabbed (hovering plays `deny`) but **can** still be hit.
 
