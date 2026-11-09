@@ -899,6 +899,8 @@ class MainScene extends Phaser.Scene {
             this.activePower = this.currentPower();
             this.updatePowerMeter();
             this.updateSelectionUI(this.activePlayer);
+        } else if (this.hoveredPlayer) {
+            this.updateSelectionUI(this.hoveredPlayer);
         }
 
         [...this.redTeam, ...this.greenTeam].forEach(kid => {
@@ -1424,13 +1426,12 @@ class MainScene extends Phaser.Scene {
 
     showSelectionUI(player) {
         this.selectionCircle.clear();
-        this.selectionCircle.lineStyle(2, 0x0088cc, 1);
-        this.selectionCircle.strokeEllipse(0, 0, 60, 30);
-        this.selectionCircle.setPosition(player.x, player.y);
-        this.selectionCircle.setVisible(true);
+        this.selectionCircle.lineStyle(1, 0x0088cc, 1);
+        this.selectionCircle.strokeEllipse(0, 0, 60, 24);
         if (!this.isDragging) this.activePower = 0;
         this.powerMeter.setVisible(true);
         this.updatePowerMeter();
+        this.updateSelectionUI(player);
     }
 
     showPowerMeter(player) {
@@ -1441,7 +1442,11 @@ class MainScene extends Phaser.Scene {
 
     updateSelectionUI(player) {
         if (!player) return;
-        this.selectionCircle.setPosition(player.x, player.y);
+        // Pop, cock and toss artwork already contains the ring in both art modes.
+        const hasArtworkRing = ['R pop', 'R cock', 'R toss'].includes(player.memberName);
+        this.selectionCircle.setVisible(this.isLevelActive && player.isAlive && !player.isDazed && !hasArtworkRing);
+        // Match the artwork's footprint so hover/charge/release stay aligned.
+        this.selectionCircle.setPosition(player.x - 2, player.y + 7);
         if (this.powerMeter.visible) {
             const spec = P.CAST.power[this.activePower] || P.CAST.power[0];
             this.artwork.apply(this.powerMeter, spec.key);
