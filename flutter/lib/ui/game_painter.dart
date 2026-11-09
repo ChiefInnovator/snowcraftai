@@ -61,17 +61,7 @@ class GamePainter extends CustomPainter {
     }
     final held = engine.dragged;
     if (held != null) {
-      canvas.drawOval(
-        Rect.fromCenter(
-          center: Offset(held.position.x, held.position.y - 2),
-          width: 44,
-          height: 20,
-        ),
-        Paint()
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = 1.2
-          ..color = const Color(0xff13749c),
-      );
+      // The charging artwork already includes its registered selection ring.
       _sprite(canvas, assets.kidFrame(held, engine.elapsed), held.position);
       _sprite(canvas, assets.powers[engine.power], held.position);
     }
