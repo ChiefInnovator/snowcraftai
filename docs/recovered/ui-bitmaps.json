@@ -1,0 +1,197 @@
+[
+  {
+    "num": 69,
+    "name": "ground",
+    "file": "069_ground.png",
+    "w": 600,
+    "h": 320,
+    "reg": [
+      300,
+      160
+    ],
+    "sha256": "28991c9a9add6f32e12c72a818675256675175960568eb8c0d2dd73a3b5c44eb"
+  },
+  {
+    "num": 70,
+    "name": "happy_holidays",
+    "file": "070_happy_holidays.png",
+    "w": 254,
+    "h": 64,
+    "reg": [
+      127,
+      32
+    ],
+    "sha256": "e3811c261f81758aa17b305a6f938d60b703a97eccca978870ee753c09007e81",
+    "depth": 32,
+    "how": "pb-planar32"
+  },
+  {
+    "num": 76,
+    "name": "1",
+    "file": "076_1.png",
+    "w": 122,
+    "h": 22,
+    "reg": [
+      76,
+      14
+    ],
+    "sha256": "03462c598e8706aa86fbf31406297cbd50b3b9ec1005ee230caf5d9418b01d80"
+  },
+  {
+    "num": 77,
+    "name": "snowcraft_palatte",
+    "file": "077_play_again.png",
+    "w": 84,
+    "h": 22,
+    "reg": [
+      -216,
+      -138
+    ],
+    "sha256": "2eb09be52837b9f901335fb8f8f532d0684de796ad8aa3760ac8b0f4395729dc",
+    "note": "CASt name is a palette typo; BITD is the Play Again button. VWSC ch4 GreenWin loc (292,160) / victory (296,160)."
+  },
+  {
+    "num": 78,
+    "name": "Level",
+    "file": "078_Level.png",
+    "w": 63,
+    "h": 22,
+    "reg": [
+      43,
+      11
+    ],
+    "sha256": "df499bb738f8da3cae6626fc548429182f70533a01ad80bc491e812b8f25d8ca"
+  },
+  {
+    "num": 79,
+    "name": "2",
+    "file": "079_2.png",
+    "w": 13,
+    "h": 21,
+    "reg": [
+      -30,
+      10
+    ],
+    "sha256": "5652de977d31ed23d8b2923f3d9b821d42be6e622d8b08b7f509180d365b2834"
+  },
+  {
+    "num": 80,
+    "name": "3",
+    "file": "080_3.png",
+    "w": 14,
+    "h": 21,
+    "reg": [
+      -29,
+      10
+    ],
+    "sha256": "eac980f17c684a9ca46c24791acb287c661cbf5ceb8202012a4701b2ce368834"
+  },
+  {
+    "num": 81,
+    "name": "4",
+    "file": "081_4.png",
+    "w": 14,
+    "h": 21,
+    "reg": [
+      -30,
+      10
+    ],
+    "sha256": "e7e8ab62bd10dc35a8b79938b101f3e9cbef76dc9687e979cf2c0a9739685d56"
+  },
+  {
+    "num": 82,
+    "name": "5",
+    "file": "082_5.png",
+    "w": 13,
+    "h": 22,
+    "reg": [
+      54,
+      12
+    ],
+    "sha256": "8d6205d51f3855bce67f97ef708de7bd99abdd108192a48ff8c8ee4400dc5b31",
+    "depth": 32,
+    "how": "pb-planar32"
+  },
+  {
+    "num": 83,
+    "name": "6",
+    "file": "083_6.png",
+    "w": 14,
+    "h": 22,
+    "reg": [
+      30,
+      12
+    ],
+    "sha256": "d82968302e6f692b698eabd72c01c66705d9107908aaee5d4b348bdfcef010d5",
+    "depth": 32,
+    "how": "pb-planar32"
+  },
+  {
+    "num": 84,
+    "name": "7",
+    "file": "084_7.png",
+    "w": 15,
+    "h": 21,
+    "reg": [
+      7,
+      11
+    ],
+    "sha256": "9251b02359dddbd13fe23a9c7a326070018855d54df7f8c1d5d975866beeb50e",
+    "depth": 32,
+    "how": "pb-planar32"
+  },
+  {
+    "num": 85,
+    "name": "8",
+    "file": "085_8.png",
+    "w": 14,
+    "h": 21,
+    "reg": [
+      -17,
+      11
+    ],
+    "sha256": "2303c60b6529846379e7d217c95093c09788167ade1efd3f5a166f77aaa9bf3f",
+    "depth": 32,
+    "how": "pb-planar32"
+  },
+  {
+    "num": 86,
+    "name": "9",
+    "file": "086_9.png",
+    "w": 14,
+    "h": 23,
+    "reg": [
+      -41,
+      11
+    ],
+    "sha256": "b14ec46028e8b4604547b5d9365a22a8bb9c18eda19ed32a64413415f951ad3a",
+    "depth": 32,
+    "how": "pb-planar32"
+  },
+  {
+    "num": 87,
+    "name": "Bonus Round",
+    "file": "087_bonus_round.png",
+    "w": 158,
+    "h": 23,
+    "reg": [
+      79,
+      11
+    ],
+    "sha256": "ead943ab93a3e607d4e21efac956fa74335161e8ceffd937e8e389056edd841e"
+  },
+  {
+    "num": 88,
+    "name": "Congratulations",
+    "file": "088_congratulations.png",
+    "w": 190,
+    "h": 31,
+    "reg": [
+      95,
+      15
+    ],
+    "sha256": "6ce7842f86040bba632fc8ae4c13ec55fc0a2b0715854cc8679a459b50f83d05",
+    "depth": 32,
+    "how": "pb-planar32"
+  }
+]

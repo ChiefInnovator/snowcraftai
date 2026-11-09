@@ -1,0 +1,131 @@
+{
+  "source": "Static VWSC parse of SnowCraft.exe movie (never executed). Director blend 255 = transparent, 0 = opaque. Phaser alpha = 1 - blend/255.",
+  "decoder": "ScummVM engines/director/images.cpp BITDDecoder D4+ 32-bit: PackBits, each row is A,R,G,B planes of width bytes. SnowCraft 32-bit text BITDs have unused (0) alpha; white is the matte.",
+  "tempo": {
+    "level1": { "labelFrame": 1, "fps": 15 },
+    "greenWin": { "labelFrame": 40, "fps": 10 },
+    "level2to10": { "labelFrames": [50, 70, 90, 110, 130, 160, 194, 226, 259], "fps": 10 },
+    "eventLoop": { "fps": 500 },
+    "level11": { "labelFrame": 290, "fps": 10 }
+  },
+  "title": {
+    "member": 76,
+    "file": "076_1.png",
+    "loc": [296, 160],
+    "ink": 8,
+    "channel": 2,
+    "frames": "10-34",
+    "fps": 15,
+    "blend": "255→0 over frames 10-24, hold 0 on 24-30, 0→255 on 31-34"
+  },
+  "levelWord": {
+    "member": 78,
+    "file": "078_Level.png",
+    "loc": [286, 160],
+    "ink": 8,
+    "note": "Level 6 uses ink 39 (darkest) on the word channel; digit is still ink 8."
+  },
+  "levelDigits": {
+    "loc": [326, 160],
+    "ink": 8,
+    "channel": 2,
+    "fps": 10,
+    "framesPerBanner": 11,
+    "blend": "0→255 over 11 frames (starts opaque, fades out)",
+    "members": {
+      "2": 79,
+      "3": 80,
+      "4": 81,
+      "5": 82,
+      "6": 83,
+      "7": 84,
+      "8": 85,
+      "9": 86
+    },
+    "castReg": {
+      "2": [-30, 10],
+      "3": [-29, 10],
+      "4": [-30, 10],
+      "5": [54, 12],
+      "6": [30, 12],
+      "7": [7, 11],
+      "8": [-17, 11],
+      "9": [-41, 11]
+    },
+    "castLeftEdgeAtLoc326": {
+      "2": 356,
+      "3": 355,
+      "4": 356,
+      "5": 272,
+      "6": 296,
+      "7": 319,
+      "8": 343,
+      "9": 367
+    },
+    "slotLeft": 356,
+    "stageReg": {
+      "2": [-30, 10],
+      "3": [-29, 10],
+      "4": [-30, 10],
+      "5": [-30, 12],
+      "6": [-30, 12],
+      "7": [-30, 11],
+      "8": [-30, 11],
+      "9": [-30, 11]
+    },
+    "parserCheck": "CASt spec+18/+20 minus initialRect matches ScummVM D8 BitmapCastMember (directorVersion 1600, kFileVer800). Validated against ground (300,160), 8-bit digits 2–4, logo/Congratulations centre regs, and Play Again negative reg (−216,−138) which pins the button at stage bottom-right. DCR inflated FGEI contains the exact 28-byte digit-5 and digit-6 spec blobs (reg 54 and 30).",
+    "filmstrip": "32-bit CASt regs 54,30,7,−17,−41 step by −24/−23/−24/−24. Same VWSC loc 326 as digits 2–4. Placement uses the 8-bit slot left edge 356 (loc 326, reg_x −30), not the stale filmstrip CASt. Vertical CASt reg_y is kept.",
+    "levels8and9": "Level word is still present: ch15 (not ch3) at loc (286,160). Digit remains ch2."
+  },
+  "bonusRound": {
+    "member": 87,
+    "file": "087_bonus_round.png",
+    "loc": [285, 160],
+    "ink": 8,
+    "frames": "259-269",
+    "fps": 10,
+    "blend": "0→255 over 11 frames"
+  },
+  "logo": {
+    "member": 70,
+    "file": "070_happy_holidays.png",
+    "nameInCast": "2",
+    "playfield": { "loc": [296, 140], "blend": 255, "visible": false, "note": "Present on Event Loop ch2 but blend 255 (hidden during play)." },
+    "greenWin": { "loc": [296, 140], "frames": "40-45", "blend": 0, "fps": 10, "visible": true },
+    "victory": { "loc": [296, 140], "frames": "317-325", "blend": "255→0", "fps": 10 }
+  },
+  "congrats": {
+    "member": 88,
+    "file": "088_congratulations.png",
+    "loc": [295, 160],
+    "ink": 8,
+    "frames": "290-315",
+    "fps": 10,
+    "blend": "255→0 over 290-300, hold 0 on 300-301, 0→255 over 302-315"
+  },
+  "playAgain": {
+    "member": 77,
+    "name": "snowcraft_palatte",
+    "file": "077_play_again.png",
+    "channel": 4,
+    "ink": 8,
+    "castReg": [-216, -138],
+    "size": [84, 22],
+    "greenWin": { "loc": [292, 160], "frames": "40-45", "blend": "255→0 over 5 steps (255,204,153,102,51,0)", "bbox": [508, 298, 592, 320] },
+    "victory": { "loc": [296, 160], "frames": "320-325", "blend": "255→0 over 5 steps", "bbox": [512, 298, 596, 320] },
+    "fps": 10,
+    "wired": true,
+    "note": "CASt name is a palette typo. BITD is the original Play Again button (blue). Negative registration is the same Director pattern as digits 2–4: loc stays near stage centre, bitmap sits at bottom-right."
+  },
+  "unusedGroundVariant": {
+    "member": 89,
+    "name": "snowcraft_256",
+    "size": [600, 320],
+    "wired": false,
+    "note": "8-bit 600×320 snow field. No VWSC sprite. Not a UI banner."
+  },
+  "notPresent": [
+    "No GAME OVER BITD. Loss screen is the Happy Holidays logo plus Lingo Play Again / SCORE.",
+    "No YOU WIN BITD. Victory banner is member 88 Congratulations! then the logo."
+  ]
+}

@@ -1,0 +1,4 @@
+# Original-game evidence binaries (docs/reference/snowcraft-original/)
+*.zip binary
+*.exe binary
+*.dcr binary

@@ -1,0 +1,848 @@
+[
+  {
+    "frame": 35,
+    "label": null,
+    "params": "[#gd: 3, #level: 1]",
+    "greens": [
+      {
+        "ch": 27,
+        "member": "G windup",
+        "x": 176,
+        "y": 49
+      },
+      {
+        "ch": 28,
+        "member": "G windup",
+        "x": 73,
+        "y": 46
+      },
+      {
+        "ch": 29,
+        "member": "G windup",
+        "x": 71,
+        "y": 108
+      }
+    ],
+    "reds": [
+      {
+        "ch": 30,
+        "member": "R rest",
+        "x": 508,
+        "y": 192
+      },
+      {
+        "ch": 31,
+        "member": "R rest",
+        "x": 377,
+        "y": 268
+      },
+      {
+        "ch": 32,
+        "member": "R rest",
+        "x": 484,
+        "y": 282
+      }
+    ]
+  },
+  {
+    "frame": 65,
+    "label": null,
+    "params": "[#gd: 5, #level: 2]",
+    "greens": [
+      {
+        "ch": 25,
+        "member": "G ready",
+        "x": -7,
+        "y": -34
+      },
+      {
+        "ch": 26,
+        "member": "G ready",
+        "x": -9,
+        "y": 28
+      },
+      {
+        "ch": 27,
+        "member": "G windup",
+        "x": 176,
+        "y": 49
+      },
+      {
+        "ch": 28,
+        "member": "G windup",
+        "x": 73,
+        "y": 46
+      },
+      {
+        "ch": 29,
+        "member": "G windup",
+        "x": 71,
+        "y": 108
+      }
+    ],
+    "reds": [
+      {
+        "ch": 30,
+        "member": "R rest",
+        "x": 508,
+        "y": 192
+      },
+      {
+        "ch": 31,
+        "member": "R rest",
+        "x": 377,
+        "y": 268
+      },
+      {
+        "ch": 32,
+        "member": "R rest",
+        "x": 484,
+        "y": 282
+      }
+    ]
+  },
+  {
+    "frame": 85,
+    "label": null,
+    "params": "[#gd: 7, #level: 3]",
+    "greens": [
+      {
+        "ch": 23,
+        "member": "G ready",
+        "x": 53,
+        "y": -14
+      },
+      {
+        "ch": 24,
+        "member": "G ready",
+        "x": -39,
+        "y": 48
+      },
+      {
+        "ch": 25,
+        "member": "G ready",
+        "x": 153,
+        "y": -14
+      },
+      {
+        "ch": 26,
+        "member": "G ready",
+        "x": -49,
+        "y": 108
+      },
+      {
+        "ch": 27,
+        "member": "G windup",
+        "x": 176,
+        "y": 49
+      },
+      {
+        "ch": 28,
+        "member": "G windup",
+        "x": 73,
+        "y": 46
+      },
+      {
+        "ch": 29,
+        "member": "G windup",
+        "x": 71,
+        "y": 108
+      }
+    ],
+    "reds": [
+      {
+        "ch": 30,
+        "member": "R rest",
+        "x": 508,
+        "y": 192
+      },
+      {
+        "ch": 31,
+        "member": "R rest",
+        "x": 377,
+        "y": 268
+      },
+      {
+        "ch": 32,
+        "member": "R rest",
+        "x": 484,
+        "y": 282
+      }
+    ]
+  },
+  {
+    "frame": 105,
+    "label": null,
+    "params": "[#gd: 9, #level: 4]",
+    "greens": [
+      {
+        "ch": 21,
+        "member": "G ready",
+        "x": 68,
+        "y": -21
+      },
+      {
+        "ch": 22,
+        "member": "G ready",
+        "x": -7,
+        "y": 33
+      },
+      {
+        "ch": 23,
+        "member": "G ready",
+        "x": 109,
+        "y": -21
+      },
+      {
+        "ch": 24,
+        "member": "G ready",
+        "x": -8,
+        "y": 96
+      },
+      {
+        "ch": 25,
+        "member": "G ready",
+        "x": 36,
+        "y": -18
+      },
+      {
+        "ch": 26,
+        "member": "G ready",
+        "x": -3,
+        "y": 172
+      },
+      {
+        "ch": 27,
+        "member": "G windup",
+        "x": 176,
+        "y": 49
+      },
+      {
+        "ch": 28,
+        "member": "G windup",
+        "x": 73,
+        "y": 46
+      },
+      {
+        "ch": 29,
+        "member": "G windup",
+        "x": 71,
+        "y": 108
+      }
+    ],
+    "reds": [
+      {
+        "ch": 30,
+        "member": "R rest",
+        "x": 508,
+        "y": 192
+      },
+      {
+        "ch": 31,
+        "member": "R rest",
+        "x": 377,
+        "y": 268
+      },
+      {
+        "ch": 32,
+        "member": "R rest",
+        "x": 484,
+        "y": 282
+      }
+    ]
+  },
+  {
+    "frame": 125,
+    "label": null,
+    "params": "[#gd: 12, #level: 5]",
+    "greens": [
+      {
+        "ch": 18,
+        "member": "G ready",
+        "x": 0,
+        "y": 106
+      },
+      {
+        "ch": 19,
+        "member": "G ready",
+        "x": 138,
+        "y": -21
+      },
+      {
+        "ch": 20,
+        "member": "G ready",
+        "x": 0,
+        "y": 53
+      },
+      {
+        "ch": 21,
+        "member": "G ready",
+        "x": 234,
+        "y": -6
+      },
+      {
+        "ch": 22,
+        "member": "G ready",
+        "x": 3,
+        "y": 183
+      },
+      {
+        "ch": 23,
+        "member": "G ready",
+        "x": 307,
+        "y": -11
+      },
+      {
+        "ch": 24,
+        "member": "G ready",
+        "x": 0,
+        "y": 240
+      },
+      {
+        "ch": 25,
+        "member": "G ready",
+        "x": 391,
+        "y": -6
+      },
+      {
+        "ch": 26,
+        "member": "G ready",
+        "x": -2,
+        "y": 152
+      },
+      {
+        "ch": 27,
+        "member": "G windup",
+        "x": 176,
+        "y": 49
+      },
+      {
+        "ch": 28,
+        "member": "G Walk V1",
+        "x": 73,
+        "y": 46
+      },
+      {
+        "ch": 29,
+        "member": "G windup",
+        "x": 71,
+        "y": 108
+      }
+    ],
+    "reds": [
+      {
+        "ch": 30,
+        "member": "R rest",
+        "x": 508,
+        "y": 192
+      },
+      {
+        "ch": 31,
+        "member": "R rest",
+        "x": 377,
+        "y": 268
+      },
+      {
+        "ch": 32,
+        "member": "R rest",
+        "x": 484,
+        "y": 282
+      }
+    ]
+  },
+  {
+    "frame": 156,
+    "label": null,
+    "params": "[#gd: 12, #level: 6]",
+    "greens": [
+      {
+        "ch": 18,
+        "member": "G ready",
+        "x": 118,
+        "y": -7
+      },
+      {
+        "ch": 19,
+        "member": "G ready",
+        "x": 20,
+        "y": -7
+      },
+      {
+        "ch": 20,
+        "member": "G ready",
+        "x": -15,
+        "y": 75
+      },
+      {
+        "ch": 21,
+        "member": "G Walk V2",
+        "x": 176,
+        "y": 49
+      },
+      {
+        "ch": 22,
+        "member": "G Walk V1",
+        "x": 73,
+        "y": 46
+      },
+      {
+        "ch": 23,
+        "member": "G Walk V2",
+        "x": 71,
+        "y": 108
+      },
+      {
+        "ch": 24,
+        "member": "G Walk V2",
+        "x": 266,
+        "y": 99
+      },
+      {
+        "ch": 25,
+        "member": "G Walk V2",
+        "x": 163,
+        "y": 96
+      },
+      {
+        "ch": 26,
+        "member": "G Walk V2",
+        "x": 161,
+        "y": 158
+      },
+      {
+        "ch": 27,
+        "member": "G windup",
+        "x": 401,
+        "y": 153
+      },
+      {
+        "ch": 28,
+        "member": "G Walk V1",
+        "x": 298,
+        "y": 150
+      },
+      {
+        "ch": 29,
+        "member": "G windup",
+        "x": 296,
+        "y": 212
+      }
+    ],
+    "reds": [
+      {
+        "ch": 30,
+        "member": "R rest",
+        "x": 508,
+        "y": 192
+      },
+      {
+        "ch": 31,
+        "member": "R rest",
+        "x": 377,
+        "y": 268
+      },
+      {
+        "ch": 32,
+        "member": "R rest",
+        "x": 484,
+        "y": 282
+      }
+    ]
+  },
+  {
+    "frame": 191,
+    "label": null,
+    "params": "[#gd: 12, #level: 7]",
+    "greens": [
+      {
+        "ch": 18,
+        "member": "G windup",
+        "x": 470,
+        "y": 52
+      },
+      {
+        "ch": 19,
+        "member": "G windup",
+        "x": 410,
+        "y": 97
+      },
+      {
+        "ch": 20,
+        "member": "G windup",
+        "x": 350,
+        "y": 137
+      },
+      {
+        "ch": 21,
+        "member": "G windup",
+        "x": 290,
+        "y": 177
+      },
+      {
+        "ch": 22,
+        "member": "G windup",
+        "x": 230,
+        "y": 217
+      },
+      {
+        "ch": 23,
+        "member": "G windup",
+        "x": 170,
+        "y": 257
+      },
+      {
+        "ch": 24,
+        "member": "G windup",
+        "x": 520,
+        "y": 57
+      },
+      {
+        "ch": 25,
+        "member": "G windup",
+        "x": 460,
+        "y": 97
+      },
+      {
+        "ch": 26,
+        "member": "G windup",
+        "x": 400,
+        "y": 137
+      },
+      {
+        "ch": 27,
+        "member": "G windup",
+        "x": 340,
+        "y": 177
+      },
+      {
+        "ch": 28,
+        "member": "G windup",
+        "x": 280,
+        "y": 217
+      },
+      {
+        "ch": 29,
+        "member": "G windup",
+        "x": 220,
+        "y": 257
+      }
+    ],
+    "reds": [
+      {
+        "ch": 30,
+        "member": "R rest",
+        "x": 508,
+        "y": 192
+      },
+      {
+        "ch": 31,
+        "member": "R rest",
+        "x": 377,
+        "y": 268
+      },
+      {
+        "ch": 32,
+        "member": "R rest",
+        "x": 484,
+        "y": 282
+      }
+    ]
+  },
+  {
+    "frame": 221,
+    "label": null,
+    "params": "[#gd: 12, #level: 8]",
+    "greens": [
+      {
+        "ch": 18,
+        "member": "G windup",
+        "x": 430,
+        "y": 77
+      },
+      {
+        "ch": 19,
+        "member": "G windup",
+        "x": 396,
+        "y": 91
+      },
+      {
+        "ch": 20,
+        "member": "G windup",
+        "x": 432,
+        "y": 114
+      },
+      {
+        "ch": 21,
+        "member": "G windup",
+        "x": 339,
+        "y": 139
+      },
+      {
+        "ch": 22,
+        "member": "G windup",
+        "x": 309,
+        "y": 173
+      },
+      {
+        "ch": 23,
+        "member": "G windup",
+        "x": 344,
+        "y": 174
+      },
+      {
+        "ch": 24,
+        "member": "G windup",
+        "x": 82,
+        "y": 227
+      },
+      {
+        "ch": 25,
+        "member": "G windup",
+        "x": 130,
+        "y": 226
+      },
+      {
+        "ch": 26,
+        "member": "G windup",
+        "x": 175,
+        "y": 228
+      },
+      {
+        "ch": 27,
+        "member": "G windup",
+        "x": 104,
+        "y": 267
+      },
+      {
+        "ch": 28,
+        "member": "G windup",
+        "x": 152,
+        "y": 269
+      },
+      {
+        "ch": 29,
+        "member": "G windup",
+        "x": 124,
+        "y": 302
+      }
+    ],
+    "reds": [
+      {
+        "ch": 30,
+        "member": "R rest",
+        "x": 508,
+        "y": 192
+      },
+      {
+        "ch": 31,
+        "member": "R rest",
+        "x": 377,
+        "y": 268
+      },
+      {
+        "ch": 32,
+        "member": "R rest",
+        "x": 484,
+        "y": 282
+      }
+    ]
+  },
+  {
+    "frame": 253,
+    "label": null,
+    "params": "[#gd: 12, #level: 9]",
+    "greens": [
+      {
+        "ch": 18,
+        "member": "G windup",
+        "x": 242,
+        "y": 47
+      },
+      {
+        "ch": 19,
+        "member": "G windup",
+        "x": 290,
+        "y": 46
+      },
+      {
+        "ch": 20,
+        "member": "G windup",
+        "x": 335,
+        "y": 48
+      },
+      {
+        "ch": 21,
+        "member": "G windup",
+        "x": 264,
+        "y": 87
+      },
+      {
+        "ch": 22,
+        "member": "G windup",
+        "x": 312,
+        "y": 89
+      },
+      {
+        "ch": 23,
+        "member": "G windup",
+        "x": 284,
+        "y": 122
+      },
+      {
+        "ch": 24,
+        "member": "G windup",
+        "x": 132,
+        "y": 227
+      },
+      {
+        "ch": 25,
+        "member": "G windup",
+        "x": 180,
+        "y": 226
+      },
+      {
+        "ch": 26,
+        "member": "G windup",
+        "x": 225,
+        "y": 228
+      },
+      {
+        "ch": 27,
+        "member": "G windup",
+        "x": 154,
+        "y": 267
+      },
+      {
+        "ch": 28,
+        "member": "G windup",
+        "x": 202,
+        "y": 269
+      },
+      {
+        "ch": 29,
+        "member": "G windup",
+        "x": 174,
+        "y": 302
+      }
+    ],
+    "reds": [
+      {
+        "ch": 30,
+        "member": "R rest",
+        "x": 508,
+        "y": 192
+      },
+      {
+        "ch": 31,
+        "member": "R rest",
+        "x": 377,
+        "y": 268
+      },
+      {
+        "ch": 32,
+        "member": "R rest",
+        "x": 484,
+        "y": 282
+      }
+    ]
+  },
+  {
+    "frame": 286,
+    "label": null,
+    "params": "[#gd: 12, #level: 10]",
+    "greens": [
+      {
+        "ch": 18,
+        "member": "G windup",
+        "x": 321,
+        "y": 174
+      },
+      {
+        "ch": 19,
+        "member": "G windup",
+        "x": 357,
+        "y": 184
+      },
+      {
+        "ch": 20,
+        "member": "G windup",
+        "x": 95,
+        "y": 199
+      },
+      {
+        "ch": 21,
+        "member": "G windup",
+        "x": 110,
+        "y": 232
+      },
+      {
+        "ch": 22,
+        "member": "G windup",
+        "x": 73,
+        "y": 232
+      },
+      {
+        "ch": 23,
+        "member": "G windup",
+        "x": 52,
+        "y": 264
+      },
+      {
+        "ch": 24,
+        "member": "G windup",
+        "x": 88,
+        "y": 264
+      },
+      {
+        "ch": 25,
+        "member": "G windup",
+        "x": 126,
+        "y": 264
+      },
+      {
+        "ch": 26,
+        "member": "G windup",
+        "x": 30,
+        "y": 297
+      },
+      {
+        "ch": 27,
+        "member": "G windup",
+        "x": 67,
+        "y": 297
+      },
+      {
+        "ch": 28,
+        "member": "G windup",
+        "x": 105,
+        "y": 296
+      },
+      {
+        "ch": 29,
+        "member": "G windup",
+        "x": 143,
+        "y": 299
+      }
+    ],
+    "reds": [
+      {
+        "ch": 30,
+        "member": "R rest",
+        "x": 408,
+        "y": 221
+      },
+      {
+        "ch": 31,
+        "member": "R rest",
+        "x": 346,
+        "y": 257
+      },
+      {
+        "ch": 32,
+        "member": "R rest",
+        "x": 290,
+        "y": 300
+      }
+    ]
+  }
+]

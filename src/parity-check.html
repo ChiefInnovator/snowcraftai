@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Snowcraft parity checks</title>
+    <style>
+        body { font: 14px/1.45 system-ui, sans-serif; max-width: 760px; margin: 24px; color: #222; }
+        a { color: #06c; }
+        pre { background: #111; color: #9f9; padding: 16px; overflow: auto; }
+        pre.fail { color: #f88; }
+        .row { margin: 8px 0; }
+    </style>
+    <script src="js/parity.js"></script>
+</head>
+<body>
+    <h1>Snowcraft parity checks</h1>
+    <p>Recovered Director constants used by the remake. Play the game with
+        <a href="index.html?debug"><code>?debug</code></a> to jump levels
+        (<code>1</code>–<code>9</code>, <code>0</code> = level 10).</p>
+    <pre id="out">running…</pre>
+    <script>
+        const P = SnowcraftParity;
+        const rows = [];
+        function check(name, ok, detail) {
+            rows.push((ok ? "PASS" : "FAIL") + "  " + name + (detail ? " — " + detail : ""));
+        }
+        check("10 Event Loop levels", P.LEVELS.length === 10);
+        check("gd 3,5,7,9,12×6", P.LEVELS.map(l => l.gd).join() === "3,5,7,9,12,12,12,12,12,12");
+        check("level 1 triangle", JSON.stringify(P.LEVELS[0].greens) === JSON.stringify([{x:176,y:49},{x:73,y:46},{x:71,y:108}]));
+        check("level 10 closer reds", P.LEVELS[9].reds[0].x === 408 && P.LEVELS[9].reds[2].y === 300);
+        check("red KO = 2 / green KO = 3", P.RED_HITS_TO_KO === 2 && P.GREEN_HITS_TO_KO === 3);
+        check("power 8 → 16 fly steps", P.throwRangeSteps(8) === 16);
+        check("centre line (640,0)", P.centreLineY(640) === 0 && P.onRedSide(508, 192));
+        check("myDirection (2,1) and edge (4,1)", P.walkAxisDirection(1).x === 2 && P.edgeSteer(10, 80, {x:-2,y:-1}).x === 4);
+        check("snowball registration (5,38)", P.CAST.snowball.reg[0] === 5 && P.CAST.snowball.reg[1] === 38);
+        check("9 power BITDs", P.CAST.power.length === 9);
+        check("whoosh at power 8 else Whoosh Percusive", P.throwSoundId(8) === "whoosh" && P.throwSoundId(7) === "whoosh_percussive");
+        check("ugly/halaluja split at mouseH 280", P.levelClearSoundId(279) === "ugly" && P.levelClearSoundId(280) === "halaluja");
+        check("15 wired original sounds + unused Uh", P.expectedWiredSoundIds().length === 15 && P.UNUSED_CAST_SOUNDS[0].cast_member_name === "Uh");
+        check("36 kid/shadow BITDs", P.CAST.kids.length === 36 && P.kidMember("R ready").reg[0] === 15);
+        check("walk-on tempo 15 fps", P.SCORE_WALKON_FPS === 15);
+        check("matte ink 8", P.INK_MATTE === 8);
+        const failed = rows.some(r => r.startsWith("FAIL"));
+        const el = document.getElementById("out");
+        el.textContent = rows.join("\n") + "\n\n" + (failed ? "FAILED" : "ALL PASSED");
+        el.className = failed ? "fail" : "";
+        document.title = (failed ? "FAIL" : "PASS") + " — Snowcraft parity checks";
+    </script>
+    <p class="row"><a href="index.html">Back to the game</a></p>
+</body>
+</html>

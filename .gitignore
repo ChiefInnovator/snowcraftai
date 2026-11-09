@@ -1,1 +1,29 @@
+# macOS / editors
 .DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# Local Wine / decompile workspace only (root folder).
+# Canonical original-game archives live in docs/reference/snowcraft-original/
+# (committed evidence copies). Do not put credentials here.
+/reference/
+
+# Node / tooling (if added later)
+node_modules/
+dist/
+coverage/
+.cache/
+*.log
+npm-debug.log*
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Env / secrets
+.env
+.env.*
+!.env.example
