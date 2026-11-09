@@ -116,3 +116,15 @@ describe("channel 1 sequencing", () => {
         assert.equal(P.CHANNEL1.ridiculeWaitsForIdle, true);
     });
 });
+
+describe("level end", () => {
+    it("does not apply in-flight hits or re-enter win after the level has ended", () => {
+        const game = fs.readFileSync(path.join(__dirname, "..", "src", "js", "game.js"), "utf8");
+        const handleHit = game.slice(game.indexOf("handleHit(kid) {"), game.indexOf("hitRed(kid) {"));
+        const checkWin = game.slice(game.indexOf("checkWinCondition() {"), game.indexOf("levelCleared() {"));
+        const stepBalls = game.slice(game.indexOf("stepBalls() {"), game.indexOf("destroyBall(b) {"));
+        assert.match(handleHit, /if\s*\(\s*!this\.isLevelActive\s*\)\s*return/);
+        assert.match(checkWin, /if\s*\(\s*!this\.isLevelActive\s*\)\s*return/);
+        assert.match(stepBalls, /b\.range\s*>\s*0\s*&&\s*this\.isLevelActive/);
+    });
+});

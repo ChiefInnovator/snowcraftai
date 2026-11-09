@@ -802,7 +802,7 @@ class MainScene extends Phaser.Scene {
                 b.gy += b.flyStep.y;
                 b.range -= 1;
                 this.setBallFrame(b);
-                if (b.range > 0) {
+                if (b.range > 0 && this.isLevelActive) {
                     const targets = (b.team === 'player') ? this.greenTeam : this.redTeam;
                     const ballCast = P.CAST.snowball;
                     const ballMask = this.matteFor(ballCast.key);
@@ -870,6 +870,7 @@ class MainScene extends Phaser.Scene {
     // --- HITS ---
 
     handleHit(kid) {
+        if (!this.isLevelActive) return;
         if (!kid.isAlive || kid.isImmune) return;
         kid.hits++;
         this.playOriginalEvent('person_impact');
@@ -1068,6 +1069,7 @@ class MainScene extends Phaser.Scene {
     // --- LEVEL FLOW & SCORE ---
 
     checkWinCondition() {
+        if (!this.isLevelActive) return;
         const greenAlive = this.greenTeam.some(k => k.isAlive);
         const redAlive = this.redTeam.some(k => k.isAlive);
         if (greenAlive && redAlive) return;

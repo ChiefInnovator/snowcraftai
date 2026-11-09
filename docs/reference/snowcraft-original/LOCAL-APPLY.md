@@ -107,6 +107,25 @@ unchanged. If the worktree is still `8936227`, apply the digit-slot patch
 first, then this one — or apply
 `snowcraft-incremental-8936227-digit-slot-and-mute.patch` instead of both.
 
+## Incremental patch after mute/docs apply (from `9447385`)
+
+Once the mute/docs increment has been applied, the worktree matches combined
+`9447385a812c6a5f98a2f088a0aea88fb09a2d86`. **Do not** reset or re-apply
+earlier patches. The level-end hit guard is a binary patch whose before-side
+**is** that `9447385` tree:
+
+```bash
+# worktree must already be the applied combined tree (9447385 contents)
+git apply --check --binary /path/to/snowcraft-incremental-9447385-level-end-hits.patch
+git apply --binary /path/to/snowcraft-incremental-9447385-level-end-hits.patch
+```
+
+That patch ignores in-flight hits after a level has ended so a loss cannot
+be overwritten by a later win. Scaler unchanged. If the worktree is still
+`8936227`, prefer the combined patch named
+`snowcraft-incremental-8936227-to-combined.patch` instead of stacking every
+increment.
+
 ## Optional (changes HEAD)
 
 ```bash
