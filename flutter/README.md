@@ -26,7 +26,7 @@ A signed iOS/App Store build requires the project's own signing team and certifi
 ## Enhanced features
 
 - Native Flutter canvas rendering and sharp widget text, with aligned menus, scores, round messages, and replay controls.
-- Smooth 4× decoded versions of the same recovered character, field, power-meter, and projectile artwork. Original registration and logical geometry are retained. Interpolation does not invent detail missing from the source images.
+- The same 35 redrawn HD character frames as web High resolution mode, exported at 8× logical resolution from the approved reference designs. Original registration and logical geometry are retained. The field, power meter, shadows, and projectile effects remain smooth 4× versions of their recovered artwork.
 - Ten recovered waves, three red teammates, fixed diagonal throws, charge power, per-kid health, score, victory/loss, and replay.
 - Green spawns are brought inside the reachable green field; movement recovers from every boundary instead of freezing invaders on the centre line.
 - Opponents seek a live red kid's throwing lane and choose enough power to reach the target; pointless off-field throws are avoided.
@@ -40,7 +40,7 @@ A signed iOS/App Store build requires the project's own signing team and certifi
 ## Layout
 
 - `lib/domain/game_engine.dart`: deterministic seeded simulation, input rules, waves, AI, collisions, and scoring.
-- `lib/data/game_assets.dart`: static level/cast loading and high-quality sprite decode.
+- `lib/data/game_assets.dart`: static level/cast loading, complete HD-pack registration/8× image validation, and high-quality sprite decode. Failed partial loads dispose their decoded images.
 - `lib/data/game_audio.dart`: audio playback and persisted preferences.
 - `lib/ui/`: controller, native views, and field painter.
 - `assets/`: native copies of text-free art, processed sound effects, MP3s, and statically extracted game metadata.
@@ -53,7 +53,7 @@ Source art and metadata came from the sibling [`web/`](../web/) edition. Byte-ex
 Validated on 2026-11-09 with Flutter 3.47.9 / Dart 3.13.7:
 
 - `flutter analyze`: no issues.
-- `flutter test`: 26 passing tests. Coverage includes all ten legal wave layouts, bounded charging/dragging, actual diagonal hits and damage, four-corner AI reachability, committed throw trades, loss finality, ten-wave progression/replay, independent saved audio preferences, post-resample WAV headroom, real-asset widget controls, second-pointer ownership, pause/resume, and portrait/landscape transitions, charged sprite/meter visibility at every legal edge, delayed overlapping preference writes, pause → menu → start with music on/off, separate user/background pause, and late intro/effect-start cancellation.
+- `flutter test`: 34 passing tests. Coverage includes all ten legal wave layouts, bounded charging/dragging, actual diagonal hits and damage, four-corner AI reachability, committed throw trades, loss finality, ten-wave progression/replay, independent saved audio preferences, post-resample WAV headroom, real-asset widget controls, second-pointer ownership, pause/resume, and portrait/landscape transitions, charged sprite/meter visibility at every legal edge, delayed overlapping preference writes, pause → menu → start with music on/off, separate user/background pause, and late intro/effect-start cancellation. HD regressions verify all 35 decoded images at 8× with original geometry, incomplete/duplicate/wrong-scale/misregistered manifests, missing/wrong-sized image cleanup, and one selection ring during charge and throw.
 - `flutter build web --no-web-resources-cdn`: successful self-contained renderer build at `build/web/`.
 - `flutter build apk --debug`: successful debug-signed Android APK at `build/app/outputs/flutter-apk/app-debug.apk`.
 - `flutter build ios --simulator --debug --no-codesign`: successful iOS simulator app at `build/ios/iphonesimulator/Runner.app`.

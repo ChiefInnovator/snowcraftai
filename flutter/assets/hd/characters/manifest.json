@@ -1,0 +1,2038 @@
+{
+  "version": 1,
+  "pixelScale": 8,
+  "approval": "Red and Green reference designs approved by Rich on 2026-11-09",
+  "selectionRing": "renderer",
+  "frames": [
+    {
+      "key": "cast_002_R_Auto_walk_1",
+      "file": "002_R_Auto_walk_1.png",
+      "name": "R Auto walk_1",
+      "num": 2,
+      "w": 25,
+      "h": 34,
+      "reg": [
+        15,
+        28
+      ],
+      "pixelScale": 8,
+      "sha256": "b599e484178164b9c6bff08fbc857b20c07d1a9ac581307b77a2e7f2f8b518e5",
+      "originalSha256": "33fd2fd7a83a66920f7675e16497d167cfaaa5fdbaa78d683826309b502a25ff",
+      "masterSha256": "e9f077426fbc509d5ceb1be58ea429ee1e319979ede6bc88842581a95aeb76e0",
+      "sourceSize": [
+        1086,
+        1448
+      ],
+      "placement": {
+        "mode": "boots",
+        "sourceAnchor": [
+          543,
+          1320
+        ],
+        "referenceAnchor": [
+          14,
+          33
+        ],
+        "targetAnchor": [
+          12.842165898617512,
+          33
+        ],
+        "scale": 0.028513824884792628,
+        "offset": [
+          -2.640841013824885,
+          -4.6382488479262705
+        ],
+        "sourceBounds": [
+          99,
+          220,
+          962,
+          1321
+        ],
+        "sourceCrop": [
+          97,
+          218,
+          964,
+          1323
+        ]
+      },
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "key": "cast_003_R_Auto_walk_2",
+      "file": "003_R_Auto_walk_2.png",
+      "name": "R Auto walk_2",
+      "num": 3,
+      "w": 31,
+      "h": 35,
+      "reg": [
+        19,
+        28
+      ],
+      "pixelScale": 8,
+      "sha256": "76c8f537fdb5eacade2282d9fb7723ed694dcddd0dd0fdd4a7cc3c78bab985a8",
+      "originalSha256": "48a9b3c9ab9aa3b67e38c23cd301c98158748bbd7292c3a60f1d604fd82320d4",
+      "masterSha256": "fb020c263f3f90e47460076d1825fab3dafa75661bee5e9628f4cae310e5b01a",
+      "sourceSize": [
+        1086,
+        1448
+      ],
+      "placement": {
+        "mode": "boots",
+        "sourceAnchor": [
+          590.5,
+          1295
+        ],
+        "referenceAnchor": [
+          18.5,
+          34
+        ],
+        "targetAnchor": [
+          18.5,
+          34
+        ],
+        "scale": 0.03159981343283582,
+        "offset": [
+          -0.15968983208955123,
+          -6.921758395522389
+        ],
+        "sourceBounds": [
+          86,
+          225,
+          967,
+          1296
+        ],
+        "sourceCrop": [
+          84,
+          223,
+          969,
+          1298
+        ]
+      },
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "key": "cast_004_R_rest",
+      "file": "004_R_rest.png",
+      "name": "R rest",
+      "num": 4,
+      "w": 24,
+      "h": 33,
+      "reg": [
+        14,
+        28
+      ],
+      "pixelScale": 8,
+      "sha256": "dd8f1b79d9d932c44aad522e3d857ce1e746dd959c8c9469c5c421d8c87e3a33",
+      "originalSha256": "00856f1b024181246573966ced2067b410c59845d3a6b062b365cbd90d749cb5",
+      "masterSha256": "6ccfb2dd6536e095cf55e5d4e45ac2252735c2fea64afd94098fc46a25f091b8",
+      "sourceSize": [
+        1086,
+        1448
+      ],
+      "placement": {
+        "mode": "boots",
+        "sourceAnchor": [
+          529.5,
+          1301
+        ],
+        "referenceAnchor": [
+          13,
+          32
+        ],
+        "targetAnchor": [
+          13,
+          32
+        ],
+        "scale": 0.02956864564007421,
+        "offset": [
+          -2.6565978664192933,
+          -6.468807977736546
+        ],
+        "sourceBounds": [
+          158,
+          225,
+          872,
+          1302
+        ],
+        "sourceCrop": [
+          156,
+          223,
+          874,
+          1304
+        ]
+      },
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "key": "cast_005_R_ready",
+      "file": "005_R_ready.png",
+      "name": "R ready",
+      "num": 5,
+      "w": 26,
+      "h": 34,
+      "reg": [
+        15,
+        28
+      ],
+      "pixelScale": 8,
+      "sha256": "00ce3c0e777719b91e626d65c4df14aad445648ee4a096333d1895e43d4c32bb",
+      "originalSha256": "cc33ad26a844b524855ac9a324c6c10449a6df5a5958077abda396bb83a8862d",
+      "masterSha256": "32649252b51bc69201af2953de9e0f5df4c0291a8935c63ec2142f9bf960185a",
+      "sourceSize": [
+        1086,
+        1448
+      ],
+      "placement": {
+        "mode": "boots",
+        "sourceAnchor": [
+          584.5,
+          1298
+        ],
+        "referenceAnchor": [
+          13,
+          33
+        ],
+        "targetAnchor": [
+          14.832794117647058,
+          33
+        ],
+        "scale": 0.030294117647058822,
+        "offset": [
+          -2.8741176470588234,
+          -6.321764705882352
+        ],
+        "sourceBounds": [
+          101,
+          227,
+          946,
+          1299
+        ],
+        "sourceCrop": [
+          99,
+          225,
+          948,
+          1301
+        ]
+      },
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "key": "cast_006_R_pop",
+      "file": "006_R_pop.png",
+      "name": "R pop",
+      "num": 6,
+      "w": 63,
+      "h": 49,
+      "reg": [
+        33,
+        29
+      ],
+      "pixelScale": 8,
+      "sha256": "192b271bff0948485728fc4e8f4414689f2a2ca6af19506347c3cefa05aa5808",
+      "originalSha256": "7967936de889c65a050ed21a658290d550dda282a58ff77466e1f0c122530eee",
+      "masterSha256": "3fd8c4b4da84da0e62b9fd9b04dea24bd032293d22e3676a362476802ef7e136",
+      "sourceSize": [
+        1312,
+        1199
+      ],
+      "placement": {
+        "mode": "boots",
+        "sourceAnchor": [
+          615,
+          1118
+        ],
+        "referenceAnchor": [
+          31,
+          34
+        ],
+        "targetAnchor": [
+          31,
+          34
+        ],
+        "scale": 0.03232347328244275,
+        "offset": [
+          11.121063931297709,
+          -2.137643129770993
+        ],
+        "sourceBounds": [
+          322,
+          72,
+          980,
+          1119
+        ],
+        "sourceCrop": [
+          320,
+          70,
+          982,
+          1121
+        ]
+      },
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "key": "cast_007_R_cock",
+      "file": "007_R_cock.png",
+      "name": "R cock",
+      "num": 7,
+      "w": 63,
+      "h": 49,
+      "reg": [
+        33,
+        29
+      ],
+      "pixelScale": 8,
+      "sha256": "a652389561f6bf4a6772e5c8809a3ade52ad5910436be462d4d82f3007d019fb",
+      "originalSha256": "e3c506cadfcad0a621bab8fbb3814acc338168469d0f825bf440d2785980fe2e",
+      "masterSha256": "7747852e721c5c2730eb92cbb894f11758752244090e53da7a7e1af12f0b5ab5",
+      "sourceSize": [
+        1312,
+        1199
+      ],
+      "placement": {
+        "mode": "boots",
+        "sourceAnchor": [
+          618.5,
+          1120
+        ],
+        "referenceAnchor": [
+          31.5,
+          33
+        ],
+        "targetAnchor": [
+          31.5,
+          33
+        ],
+        "scale": 0.031161137440758293,
+        "offset": [
+          12.226836492890996,
+          -1.9004739336492875
+        ],
+        "sourceBounds": [
+          176,
+          67,
+          1126,
+          1121
+        ],
+        "sourceCrop": [
+          174,
+          65,
+          1128,
+          1123
+        ]
+      },
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "key": "cast_008_R_toss",
+      "file": "008_R_toss.png",
+      "name": "R toss",
+      "num": 8,
+      "w": 63,
+      "h": 51,
+      "reg": [
+        33,
+        31
+      ],
+      "pixelScale": 8,
+      "sha256": "80bb013bf79b83d32ca21be230a7dca63c72c97be03c85b032b5ec5da1752e48",
+      "originalSha256": "cdb29e603de89ae5ee30239e5ba5dd3420ef7d745ed2c6281ff63449a13bbd59",
+      "masterSha256": "ef9082def140e53770264800168235be9325148eb9272aa2911e99b4ce0a93f2",
+      "sourceSize": [
+        1394,
+        1128
+      ],
+      "placement": {
+        "mode": "boots",
+        "sourceAnchor": [
+          780,
+          1066
+        ],
+        "referenceAnchor": [
+          31.5,
+          35
+        ],
+        "targetAnchor": [
+          31.5,
+          35
+        ],
+        "scale": 0.03449554896142433,
+        "offset": [
+          4.593471810089024,
+          -1.7722551928783332
+        ],
+        "sourceBounds": [
+          235,
+          57,
+          1117,
+          1067
+        ],
+        "sourceCrop": [
+          233,
+          55,
+          1119,
+          1069
+        ]
+      },
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "key": "cast_009_R_hit",
+      "file": "009_R_hit.png",
+      "name": "R hit",
+      "num": 9,
+      "w": 46,
+      "h": 33,
+      "reg": [
+        15,
+        26
+      ],
+      "pixelScale": 8,
+      "sha256": "f81621be5dc3313c6f2f5e3ac4676c933d74d67fc67d44725e95eb9a242390fe",
+      "originalSha256": "ff3ee576646f18c15f69d8af88c21c4c5aafdadeb2244af13458f953b9e2684b",
+      "masterSha256": "463480312b97f0f6221a1a428a5182eecf34dc931e8330f96ddca947a29b9b8b",
+      "sourceSize": [
+        1480,
+        1062
+      ],
+      "placement": {
+        "mode": "bounds",
+        "sourceAnchor": [
+          735.5,
+          985
+        ],
+        "referenceAnchor": [
+          17.5,
+          29.875
+        ],
+        "targetAnchor": [
+          17.5,
+          29.875
+        ],
+        "scale": 0.027777777777777776,
+        "offset": [
+          -2.9305555555555536,
+          2.5138888888888893
+        ],
+        "sourceBounds": [
+          112,
+          64,
+          1358,
+          982
+        ],
+        "sourceCrop": [
+          110,
+          62,
+          1360,
+          984
+        ]
+      },
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "key": "cast_010_R_hit2",
+      "file": "010_R_hit2.png",
+      "name": "R hit2",
+      "num": 10,
+      "w": 46,
+      "h": 33,
+      "reg": [
+        15,
+        26
+      ],
+      "pixelScale": 8,
+      "sha256": "67b4e6f530f6f4d0fe42b018cc463a0f8e28b3b0bde7cb19440f7b133c4d9acb",
+      "originalSha256": "ff3ee576646f18c15f69d8af88c21c4c5aafdadeb2244af13458f953b9e2684b",
+      "masterSha256": "5b0c398133366dd3b680c68669ee2a930b08d4df16c8dd15f6986e8d603dfdcd",
+      "sourceSize": [
+        1480,
+        1062
+      ],
+      "placement": {
+        "mode": "bounds",
+        "sourceAnchor": [
+          705.5,
+          1036
+        ],
+        "referenceAnchor": [
+          17.5,
+          29.875
+        ],
+        "targetAnchor": [
+          17.5,
+          29.875
+        ],
+        "scale": 0.029310344827586206,
+        "offset": [
+          -3.178448275862067,
+          -0.4905172413793082
+        ],
+        "sourceBounds": [
+          151,
+          23,
+          1259,
+          1033
+        ],
+        "sourceCrop": [
+          149,
+          21,
+          1261,
+          1035
+        ]
+      },
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "key": "cast_011_R_daze1",
+      "file": "011_R_daze1.png",
+      "name": "R daze1",
+      "num": 11,
+      "w": 35,
+      "h": 43,
+      "reg": [
+        21,
+        37
+      ],
+      "pixelScale": 8,
+      "sha256": "fa4811c443bd1aa59f77ccf5c88c04412195aa4baebfb271264a0f1b760c15a5",
+      "originalSha256": "49293ecf9510b2c11ac73da94b44828bff779c71f6ee4aba5cfa1a96eb750346",
+      "masterSha256": "0880d8e1dc8e66333989fa18047742574612baf26009d7a06809a43fe6ff2616",
+      "sourceSize": [
+        1086,
+        1448
+      ],
+      "placement": {
+        "mode": "boots",
+        "sourceAnchor": [
+          591,
+          1300
+        ],
+        "referenceAnchor": [
+          14.5,
+          42
+        ],
+        "targetAnchor": [
+          17.08188847235239,
+          42
+        ],
+        "scale": 0.03467666354264293,
+        "offset": [
+          -3.4120196813495784,
+          -3.079662605435807
+        ],
+        "sourceBounds": [
+          104,
+          233,
+          951,
+          1301
+        ],
+        "sourceCrop": [
+          102,
+          231,
+          953,
+          1303
+        ]
+      },
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "key": "cast_012_R_daze2",
+      "file": "012_R_daze2.png",
+      "name": "R daze2",
+      "num": 12,
+      "w": 36,
+      "h": 44,
+      "reg": [
+        22,
+        38
+      ],
+      "pixelScale": 8,
+      "sha256": "874e5fb6683e190c16cc51bb7a80c9c2ff04ba367df0d00180976096743ad671",
+      "originalSha256": "f4e9756021c6bbf1d5b4cdb69290a5d9bc4defc9bddb88063ea836ae39f24681",
+      "masterSha256": "094f909578d574a30d7b488d4c969633dbce03d25ef4001d8c28fb7cd1fe3197",
+      "sourceSize": [
+        1086,
+        1448
+      ],
+      "placement": {
+        "mode": "boots",
+        "sourceAnchor": [
+          597,
+          1309
+        ],
+        "referenceAnchor": [
+          14,
+          43
+        ],
+        "targetAnchor": [
+          14,
+          43
+        ],
+        "scale": 0.027615062761506277,
+        "offset": [
+          -2.4861924686192474,
+          6.851882845188285
+        ],
+        "sourceBounds": [
+          124,
+          91,
+          929,
+          1310
+        ],
+        "sourceCrop": [
+          122,
+          89,
+          931,
+          1312
+        ]
+      },
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "key": "cast_013_R_daze3",
+      "file": "013_R_daze3.png",
+      "name": "R daze3",
+      "num": 13,
+      "w": 35,
+      "h": 40,
+      "reg": [
+        21,
+        34
+      ],
+      "pixelScale": 8,
+      "sha256": "09d2216549e49b0aa0fad660ec51ce851c5570c8f81549165b84d9658e2c4ed8",
+      "originalSha256": "10fc0f0db786ade9e3a5f1eb624e03b4e534b6f84e2830b771736c73b2e6d82e",
+      "masterSha256": "9cb99a8e1b039cc953feff358dafe3632ddea53f9fce71dcd5cfa8631755819f",
+      "sourceSize": [
+        1086,
+        1448
+      ],
+      "placement": {
+        "mode": "boots",
+        "sourceAnchor": [
+          624,
+          1287
+        ],
+        "referenceAnchor": [
+          16.5,
+          39
+        ],
+        "targetAnchor": [
+          19.000117370892017,
+          39
+        ],
+        "scale": 0.03568075117370892,
+        "offset": [
+          -3.2646713615023475,
+          -6.921126760563382
+        ],
+        "sourceBounds": [
+          97,
+          222,
+          982,
+          1288
+        ],
+        "sourceCrop": [
+          95,
+          220,
+          984,
+          1290
+        ]
+      },
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "key": "cast_014_R_dead",
+      "file": "014_R_dead.png",
+      "name": "R dead",
+      "num": 14,
+      "w": 71,
+      "h": 33,
+      "reg": [
+        -4,
+        -4
+      ],
+      "pixelScale": 8,
+      "sha256": "bef28e8d76f6149e9d7736904cc3954953c662f1d787bb83dd9d7019ee168106",
+      "originalSha256": "f4d64741458849f1c567f039207f06a1ae2ab441e9f1a22c262d750e2f75d329",
+      "masterSha256": "42efe66699fea9168b670740413feccc72af5f9d113217fb60bb0dfadf9d4276",
+      "sourceSize": [
+        1840,
+        855
+      ],
+      "placement": {
+        "mode": "bounds",
+        "sourceAnchor": [
+          944,
+          776
+        ],
+        "referenceAnchor": [
+          35.5,
+          32.875
+        ],
+        "targetAnchor": [
+          35.5,
+          32.875
+        ],
+        "scale": 0.04685430463576159,
+        "offset": [
+          -8.73046357615894,
+          -3.4839403973509917
+        ],
+        "sourceBounds": [
+          191,
+          102,
+          1696,
+          773
+        ],
+        "sourceCrop": [
+          189,
+          100,
+          1698,
+          775
+        ]
+      },
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "key": "cast_015_R_dead",
+      "file": "015_R_dead.png",
+      "name": "R dead",
+      "num": 15,
+      "w": 68,
+      "h": 49,
+      "reg": [
+        -5,
+        2
+      ],
+      "pixelScale": 8,
+      "sha256": "7a8964605b53fc2c1689cff937a1d02a958d7e7cd21d356d356b4cacac731610",
+      "originalSha256": "14289fc0f57c68bd1abf6b5b1a6166d3775489dcf6f56eb1a2989f33da5f5371",
+      "masterSha256": "a0e85d69e82d9cf86cd1fdaacb17299834c142ae196da4d776685bc4bab7b181",
+      "sourceSize": [
+        1477,
+        1065
+      ],
+      "placement": {
+        "mode": "bounds",
+        "sourceAnchor": [
+          731.5,
+          1018
+        ],
+        "referenceAnchor": [
+          34,
+          48.875
+        ],
+        "targetAnchor": [
+          34,
+          48.875
+        ],
+        "scale": 0.048674821610601424,
+        "offset": [
+          -1.6056320081549416,
+          -0.6759683995922501
+        ],
+        "sourceBounds": [
+          47,
+          39,
+          1415,
+          1015
+        ],
+        "sourceCrop": [
+          45,
+          37,
+          1417,
+          1017
+        ]
+      },
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "key": "cast_016_R_dead",
+      "file": "016_R_dead.png",
+      "name": "R dead",
+      "num": 16,
+      "w": 51,
+      "h": 53,
+      "reg": [
+        -3,
+        15
+      ],
+      "pixelScale": 8,
+      "sha256": "c8b20e6a4cef4fc07351352a1627ffac4c34bf9ab6b0bdcabb0906b60d4558bf",
+      "originalSha256": "872446a7c74b2acadc7fbcd08c713013f5691f73d0051c95f893281e032ed170",
+      "masterSha256": "f9736d52b45ce8dfa59068c2d24ec57091c4ef6c122dfc56a60dc751fda55b41",
+      "sourceSize": [
+        1827,
+        861
+      ],
+      "placement": {
+        "mode": "bounds",
+        "sourceAnchor": [
+          934.5,
+          820
+        ],
+        "referenceAnchor": [
+          25.5,
+          52.875
+        ],
+        "targetAnchor": [
+          25.5,
+          52.875
+        ],
+        "scale": 0.03717948717948718,
+        "offset": [
+          -9.244230769230768,
+          22.387820512820515
+        ],
+        "sourceBounds": [
+          254,
+          73,
+          1614,
+          817
+        ],
+        "sourceCrop": [
+          252,
+          71,
+          1616,
+          819
+        ]
+      },
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "key": "cast_017_G_yea",
+      "file": "017_G_yea.png",
+      "name": "G yea",
+      "num": 17,
+      "w": 42,
+      "h": 35,
+      "reg": [
+        22,
+        26
+      ],
+      "pixelScale": 8,
+      "sha256": "7eccbd61df46b33b529a43cafb802e9773f5d18fc821653a751ffb9d2bb13c94",
+      "originalSha256": "36542a69e282e61aa20fc26662f14a18c4d782bcb2d7e0bdaae922e991fb32e3",
+      "masterSha256": "1df4bff5ec05dd0ef1fb2bb1ad12a8b6efcece52ce303777b55ece94cbfe38bc",
+      "sourceSize": [
+        1315,
+        1196
+      ],
+      "placement": {
+        "mode": "boots",
+        "sourceAnchor": [
+          609.5,
+          1148
+        ],
+        "referenceAnchor": [
+          23,
+          34
+        ],
+        "targetAnchor": [
+          23,
+          34
+        ],
+        "scale": 0.03136574074074074,
+        "offset": [
+          3.8825810185185183,
+          -2.0078703703703695
+        ],
+        "sourceBounds": [
+          217,
+          70,
+          1072,
+          1149
+        ],
+        "sourceCrop": [
+          215,
+          68,
+          1074,
+          1151
+        ]
+      },
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "key": "cast_018_G_yea",
+      "file": "018_G_yea.png",
+      "name": "G yea",
+      "num": 18,
+      "w": 40,
+      "h": 37,
+      "reg": [
+        20,
+        29
+      ],
+      "pixelScale": 8,
+      "sha256": "90cbcc316e27dcdc68cab1830a5aa883636254a361feaef65fddf4984a9dd9f1",
+      "originalSha256": "1cbb9de6f4f0029ff8e8099882c8a80eedbf8b9769a50b6664b1eb2a9a44e123",
+      "masterSha256": "0a94d59fa609f98c48f4e550f18d9fd664d6ebfdea31760aae333bed767209e3",
+      "sourceSize": [
+        1304,
+        1206
+      ],
+      "placement": {
+        "mode": "boots",
+        "sourceAnchor": [
+          694,
+          1133
+        ],
+        "referenceAnchor": [
+          21,
+          36
+        ],
+        "targetAnchor": [
+          21,
+          36
+        ],
+        "scale": 0.03346548507462686,
+        "offset": [
+          -2.2250466417910424,
+          -1.9163945895522332
+        ],
+        "sourceBounds": [
+          205,
+          63,
+          1049,
+          1134
+        ],
+        "sourceCrop": [
+          203,
+          61,
+          1051,
+          1136
+        ]
+      },
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "key": "cast_019_G_yea",
+      "file": "019_G_yea.png",
+      "name": "G yea",
+      "num": 19,
+      "w": 42,
+      "h": 37,
+      "reg": [
+        22,
+        29
+      ],
+      "pixelScale": 8,
+      "sha256": "f981cc70306632cfd090c8f0c8e05a05244a6ac475ff36e76f3a4e08d9202fb7",
+      "originalSha256": "74380c95781fb76c8c4ea8d8b88467e760060141a975daa9458fd3e8b5817c10",
+      "masterSha256": "29e89ec8b7d7e1e1ea3ded73c9fa91cc3623d14d5cacdc394bd7420fa81f7d50",
+      "sourceSize": [
+        1045,
+        1505
+      ],
+      "placement": {
+        "mode": "boots",
+        "sourceAnchor": [
+          529.5,
+          1315
+        ],
+        "referenceAnchor": [
+          23,
+          36
+        ],
+        "targetAnchor": [
+          23,
+          36
+        ],
+        "scale": 0.036421319796954316,
+        "offset": [
+          3.714911167512689,
+          -11.894035532994927
+        ],
+        "sourceBounds": [
+          91,
+          332,
+          867,
+          1316
+        ],
+        "sourceCrop": [
+          89,
+          330,
+          869,
+          1318
+        ]
+      },
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "key": "cast_020_G_Walk_H2",
+      "file": "020_G_Walk_H2.png",
+      "name": "G Walk H2",
+      "num": 20,
+      "w": 30,
+      "h": 36,
+      "reg": [
+        12,
+        29
+      ],
+      "pixelScale": 8,
+      "sha256": "3158160841df05a3d586a2a7ed1bf340892baa5f2a2808d302876009b1b6cfbf",
+      "originalSha256": "5612ceb2f514f412104132bbc74f8d7b1a79bb8b77b7b8bad1883a307866c502",
+      "masterSha256": "0a4562bbc32ff8555e98e6425d4b80d1ecfd4c96df3425d9282cb510c4b70bb0",
+      "sourceSize": [
+        1045,
+        1505
+      ],
+      "placement": {
+        "mode": "boots",
+        "sourceAnchor": [
+          523.5,
+          1258
+        ],
+        "referenceAnchor": [
+          12.5,
+          35
+        ],
+        "targetAnchor": [
+          15.601733078602622,
+          35
+        ],
+        "scale": 0.038073144104803495,
+        "offset": [
+          -4.329557860262009,
+          -12.8960152838428
+        ],
+        "sourceBounds": [
+          119,
+          344,
+          849,
+          1259
+        ],
+        "sourceCrop": [
+          117,
+          342,
+          851,
+          1261
+        ]
+      },
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "key": "cast_021_G_Walk_H1",
+      "file": "021_G_Walk_H1.png",
+      "name": "G Walk H1",
+      "num": 21,
+      "w": 32,
+      "h": 36,
+      "reg": [
+        13,
+        29
+      ],
+      "pixelScale": 8,
+      "sha256": "987a4f47196160b651361b7f849ec65bb3c854a4ef4de5b4ad9b4bfbd8c05cfe",
+      "originalSha256": "bbc575f7480830897f01036fffcbe981230454c11c00470af42c860f468f0726",
+      "masterSha256": "86544cbabd369c3b2950b9c129bb3806af20d0861a94eefca34ee7541102f8df",
+      "sourceSize": [
+        1045,
+        1505
+      ],
+      "placement": {
+        "mode": "boots",
+        "sourceAnchor": [
+          526,
+          1292
+        ],
+        "referenceAnchor": [
+          14,
+          35
+        ],
+        "targetAnchor": [
+          15.248432601880879,
+          35
+        ],
+        "scale": 0.03644200626959248,
+        "offset": [
+          -3.9200626959247655,
+          -12.08307210031348
+        ],
+        "sourceBounds": [
+          113,
+          337,
+          827,
+          1293
+        ],
+        "sourceCrop": [
+          111,
+          335,
+          829,
+          1295
+        ]
+      },
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "key": "cast_022_G_Walk_V1",
+      "file": "022_G_Walk_V1.png",
+      "name": "G Walk V1",
+      "num": 22,
+      "w": 30,
+      "h": 36,
+      "reg": [
+        13,
+        29
+      ],
+      "pixelScale": 8,
+      "sha256": "9853ae92cff3a3aa9d6ea7bc111eac275dd9cf2da020f02f4bb1884955f8084d",
+      "originalSha256": "6451c00bd6b1281c9e43423088632bb7a6d4d6cf9537537b0c7ffb8c164e78b7",
+      "masterSha256": "f7aded5be3d1fef20fb49e71b3bf5edc654f502232360ff6f10df45531abf207",
+      "sourceSize": [
+        1045,
+        1505
+      ],
+      "placement": {
+        "mode": "boots",
+        "sourceAnchor": [
+          469,
+          1304
+        ],
+        "referenceAnchor": [
+          12,
+          35
+        ],
+        "targetAnchor": [
+          12.611111111111112,
+          35
+        ],
+        "scale": 0.03587962962962963,
+        "offset": [
+          -4.216435185185185,
+          -11.787037037037038
+        ],
+        "sourceBounds": [
+          123,
+          334,
+          863,
+          1305
+        ],
+        "sourceCrop": [
+          121,
+          332,
+          865,
+          1307
+        ]
+      },
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "key": "cast_023_G_Walk_V2",
+      "file": "023_G_Walk_V2.png",
+      "name": "G Walk V2",
+      "num": 23,
+      "w": 27,
+      "h": 34,
+      "reg": [
+        11,
+        28
+      ],
+      "pixelScale": 8,
+      "sha256": "0adedbfe44c42ebfb76851b3e30f6343f0602b65ad4db6f8ea2cbfdbc23e534a",
+      "originalSha256": "504eb633ddee78dcb9d083c6a0fd838648b9b4ddd5009f412f6ee9d03ab52c7d",
+      "masterSha256": "0607ad7670f37834f2ca427b64c11adac779e8df4ad392c0f90bacadb4239ec4",
+      "sourceSize": [
+        1045,
+        1505
+      ],
+      "placement": {
+        "mode": "boots",
+        "sourceAnchor": [
+          555.5,
+          1308
+        ],
+        "referenceAnchor": [
+          10,
+          33
+        ],
+        "targetAnchor": [
+          14.689232546201232,
+          33
+        ],
+        "scale": 0.033752566735112934,
+        "offset": [
+          -4.060318275154004,
+          -11.148357289527716
+        ],
+        "sourceBounds": [
+          126,
+          336,
+          876,
+          1310
+        ],
+        "sourceCrop": [
+          124,
+          334,
+          878,
+          1312
+        ]
+      },
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "key": "cast_024_G_ready",
+      "file": "024_G_ready.png",
+      "name": "G ready",
+      "num": 24,
+      "w": 25,
+      "h": 36,
+      "reg": [
+        11,
+        29
+      ],
+      "pixelScale": 8,
+      "sha256": "994bebeeacd774dfa2e28cc6efde56c431c016fb7fbf55bb7b604f3c0ced8f6f",
+      "originalSha256": "1b1259aaa309e104b1bc71da2d125adaf7f07229f133a063ea423a23ce2da06d",
+      "masterSha256": "7a435487ce58201f0d95fe4b31e1346bfde253560781bc3dcd9adf0a33fc710f",
+      "sourceSize": [
+        1045,
+        1505
+      ],
+      "placement": {
+        "mode": "boots",
+        "sourceAnchor": [
+          559.5,
+          1315
+        ],
+        "referenceAnchor": [
+          11,
+          35
+        ],
+        "targetAnchor": [
+          13.951716738197426,
+          35
+        ],
+        "scale": 0.03540772532188841,
+        "offset": [
+          -5.858905579399142,
+          -11.561158798283266
+        ],
+        "sourceBounds": [
+          171,
+          342,
+          865,
+          1315
+        ],
+        "sourceCrop": [
+          169,
+          340,
+          867,
+          1317
+        ]
+      },
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "key": "cast_025_G_windup",
+      "file": "025_G_windup.png",
+      "name": "G windup",
+      "num": 25,
+      "w": 24,
+      "h": 31,
+      "reg": [
+        7,
+        23
+      ],
+      "pixelScale": 8,
+      "sha256": "f01f8c7795f06d74dacdaa4f350834c7f923ddf5a58204f6f5d64a622ecb97d0",
+      "originalSha256": "168fafe825f15c63ee8b9580e17d7f97f8a54b5a50f1e2341a90827122a61e4d",
+      "masterSha256": "c1e2e6ec4aa9f9f03f5b630364a46ea7653f703d52a0b070dc6ae9accc2b1a4c",
+      "sourceSize": [
+        1045,
+        1505
+      ],
+      "placement": {
+        "mode": "boots",
+        "sourceAnchor": [
+          470,
+          1309
+        ],
+        "referenceAnchor": [
+          9,
+          30
+        ],
+        "targetAnchor": [
+          9,
+          30
+        ],
+        "scale": 0.03301104972375691,
+        "offset": [
+          -6.515193370165747,
+          -13.211464088397797
+        ],
+        "sourceBounds": [
+          223,
+          406,
+          839,
+          1310
+        ],
+        "sourceCrop": [
+          221,
+          404,
+          841,
+          1312
+        ]
+      },
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "key": "cast_026_G_cock",
+      "file": "026_G_cock.png",
+      "name": "G cock",
+      "num": 26,
+      "w": 34,
+      "h": 35,
+      "reg": [
+        22,
+        26
+      ],
+      "pixelScale": 8,
+      "sha256": "963601f4d0a1367ea15ec419c5f87b628d249f63372d1a123e075baa3c6a2b2b",
+      "originalSha256": "396367ae71e2e11679a9e61f51b29794499e5a7082d1dfc7e12205966e3a875a",
+      "masterSha256": "0d9c444249c9f936019fe3e46fb65676cf8f583119765a38415a83476e6fd076",
+      "sourceSize": [
+        1045,
+        1505
+      ],
+      "placement": {
+        "mode": "boots",
+        "sourceAnchor": [
+          523,
+          1300
+        ],
+        "referenceAnchor": [
+          23,
+          34
+        ],
+        "targetAnchor": [
+          19.467582987551868,
+          34
+        ],
+        "scale": 0.035140041493775934,
+        "offset": [
+          1.0893412863070537,
+          -11.682053941908713
+        ],
+        "sourceBounds": [
+          50,
+          338,
+          930,
+          1302
+        ],
+        "sourceCrop": [
+          48,
+          336,
+          932,
+          1304
+        ]
+      },
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "key": "cast_027_G_toss",
+      "file": "027_G_toss.png",
+      "name": "G toss",
+      "num": 27,
+      "w": 24,
+      "h": 34,
+      "reg": [
+        8,
+        26
+      ],
+      "pixelScale": 8,
+      "sha256": "460ee67b0bd53db370b3b6f3f84ae8685200fec6e377d7c06b61e915dca797e3",
+      "originalSha256": "c89e1b38a6e96993856a8cf55b0ddf07907b1451842e823f1a2c6e25864a820d",
+      "masterSha256": "b19baedf7be214690fd68b4adb5bcb5b3bf10f130141221623f0c265dd41fc9a",
+      "sourceSize": [
+        1045,
+        1505
+      ],
+      "placement": {
+        "mode": "boots",
+        "sourceAnchor": [
+          420.5,
+          1295
+        ],
+        "referenceAnchor": [
+          10,
+          33
+        ],
+        "targetAnchor": [
+          7.895806861499366,
+          33
+        ],
+        "scale": 0.030177890724269376,
+        "offset": [
+          -4.793996188055907,
+          -6.080368487928844
+        ],
+        "sourceBounds": [
+          165,
+          335,
+          947,
+          1296
+        ],
+        "sourceCrop": [
+          163,
+          333,
+          949,
+          1298
+        ]
+      },
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "key": "cast_028_G_Hit",
+      "file": "028_G_Hit.png",
+      "name": "G Hit",
+      "num": 28,
+      "w": 25,
+      "h": 35,
+      "reg": [
+        13,
+        28
+      ],
+      "pixelScale": 8,
+      "sha256": "91bc87efed7c0620360085bb0be3db9d67e9c24244ecc49567a98b85f61c00d3",
+      "originalSha256": "1f7061c320febabbefb31959a49d7931ad0e34cdb7f4a5de7345248f138c11b6",
+      "masterSha256": "624902122037782393f08fe97295bc61f4560395e46982fd4bbb65ff4700b6f0",
+      "sourceSize": [
+        1045,
+        1505
+      ],
+      "placement": {
+        "mode": "boots",
+        "sourceAnchor": [
+          555.5,
+          1314
+        ],
+        "referenceAnchor": [
+          14,
+          34
+        ],
+        "targetAnchor": [
+          14,
+          34
+        ],
+        "scale": 0.03446083418107833,
+        "offset": [
+          -5.142993387589012,
+          -11.281536113936923
+        ],
+        "sourceBounds": [
+          182,
+          333,
+          838,
+          1314
+        ],
+        "sourceCrop": [
+          180,
+          331,
+          840,
+          1316
+        ]
+      },
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "key": "cast_029_G_Hit2",
+      "file": "029_G_Hit2.png",
+      "name": "G Hit2",
+      "num": 29,
+      "w": 25,
+      "h": 35,
+      "reg": [
+        13,
+        28
+      ],
+      "pixelScale": 8,
+      "sha256": "f3199708a251694801ee9c6530a7d5b1db693f1c710a231c02daf17bf06ad5e9",
+      "originalSha256": "1f7061c320febabbefb31959a49d7931ad0e34cdb7f4a5de7345248f138c11b6",
+      "masterSha256": "3c11c7de8a4b8984cbc86a907c31923a14d16e983f39d837fb8edc16958d3def",
+      "sourceSize": [
+        1045,
+        1505
+      ],
+      "placement": {
+        "mode": "boots",
+        "sourceAnchor": [
+          532.5,
+          1316
+        ],
+        "referenceAnchor": [
+          14,
+          34
+        ],
+        "targetAnchor": [
+          13.37025316455696,
+          34
+        ],
+        "scale": 0.03481012658227848,
+        "offset": [
+          -5.166139240506329,
+          -11.810126582278478
+        ],
+        "sourceBounds": [
+          154,
+          347,
+          860,
+          1317
+        ],
+        "sourceCrop": [
+          152,
+          345,
+          862,
+          1319
+        ]
+      },
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "key": "cast_030_G_ow",
+      "file": "030_G_ow.png",
+      "name": "G ow",
+      "num": 30,
+      "w": 29,
+      "h": 35,
+      "reg": [
+        12,
+        28
+      ],
+      "pixelScale": 8,
+      "sha256": "3357ab567ca418ebe3bedb94ca367ec207fff408a4fcff4dededec2b74bf6a35",
+      "originalSha256": "b65f81d907288c24ce4bcaabef4bab9048a06d6a45cdc7650c994e565cd95a45",
+      "masterSha256": "0c4cf02ad31bb0453d47657fd37ecfb1d313ba954c9bdb6de36445d7a36ba9bf",
+      "sourceSize": [
+        1045,
+        1505
+      ],
+      "placement": {
+        "mode": "boots",
+        "sourceAnchor": [
+          518.5,
+          1317
+        ],
+        "referenceAnchor": [
+          11,
+          34
+        ],
+        "targetAnchor": [
+          14.962020856820745,
+          34
+        ],
+        "scale": 0.03819052987598647,
+        "offset": [
+          -4.839768883878241,
+          -16.29692784667418
+        ],
+        "sourceBounds": [
+          132,
+          432,
+          856,
+          1318
+        ],
+        "sourceCrop": [
+          130,
+          430,
+          858,
+          1320
+        ]
+      },
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "key": "cast_031_G_recover",
+      "file": "031_G_recover.png",
+      "name": "G recover",
+      "num": 31,
+      "w": 29,
+      "h": 35,
+      "reg": [
+        12,
+        28
+      ],
+      "pixelScale": 8,
+      "sha256": "a35a56b38dd13b40e051becf73f51f5a67704d1f371dcf42c803ec482d7f5802",
+      "originalSha256": "f749588f90914f9dc55c6f2b430ee13958754f31e4c9c07f516db143854469b8",
+      "masterSha256": "6164219a4274a4bc0907df3f13f896ac87e2d16f131341b08c8106917f8ce253",
+      "sourceSize": [
+        1045,
+        1505
+      ],
+      "placement": {
+        "mode": "boots",
+        "sourceAnchor": [
+          559.5,
+          1263
+        ],
+        "referenceAnchor": [
+          11.5,
+          34
+        ],
+        "targetAnchor": [
+          16.154265873015873,
+          34
+        ],
+        "scale": 0.03802910052910053,
+        "offset": [
+          -5.1230158730158735,
+          -14.030753968253968
+        ],
+        "sourceBounds": [
+          140,
+          495,
+          891,
+          1264
+        ],
+        "sourceCrop": [
+          138,
+          493,
+          893,
+          1266
+        ]
+      },
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "key": "cast_032_G_down",
+      "file": "032_G_down.png",
+      "name": "G down",
+      "num": 32,
+      "w": 35,
+      "h": 34,
+      "reg": [
+        33,
+        29
+      ],
+      "pixelScale": 8,
+      "sha256": "2bf518fae7d61c1a30c240d88151289b1f399dd097a9c271f9d0acf070613291",
+      "originalSha256": "3fd51e83ccc81ebeb30862777d60ed0aaad4ed855c8197a96b0973bd9b6b81b9",
+      "masterSha256": "08cabf6ff29f2c46f94128a0f9c58d81c5a5671bd373d5d12068a0d1883810cc",
+      "sourceSize": [
+        1272,
+        1236
+      ],
+      "placement": {
+        "mode": "bounds",
+        "sourceAnchor": [
+          629,
+          1137
+        ],
+        "referenceAnchor": [
+          17.5,
+          33.875
+        ],
+        "targetAnchor": [
+          17.5,
+          33.875
+        ],
+        "scale": 0.032420749279538905,
+        "offset": [
+          -2.892651296829971,
+          -2.9873919308357344
+        ],
+        "sourceBounds": [
+          164,
+          98,
+          1093,
+          1134
+        ],
+        "sourceCrop": [
+          162,
+          96,
+          1095,
+          1136
+        ]
+      },
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "key": "cast_033_G_dead",
+      "file": "033_G_dead.png",
+      "name": "G dead",
+      "num": 33,
+      "w": 66,
+      "h": 42,
+      "reg": [
+        70,
+        40
+      ],
+      "pixelScale": 8,
+      "sha256": "85869ca5f1b549888bec0a125b672727048125f9b3f860d07080dc75907b0e67",
+      "originalSha256": "d1ed9c2baf46067315fb5f3d7694e238cdf46967b45f3af9e0ddb378496abf56",
+      "masterSha256": "45fa7ee6f06ba8f7b41eb3a5588220eee206b4d5ae668a613e3bac2cd978446d",
+      "sourceSize": [
+        1571,
+        1001
+      ],
+      "placement": {
+        "mode": "bounds",
+        "sourceAnchor": [
+          743,
+          968
+        ],
+        "referenceAnchor": [
+          33,
+          41.875
+        ],
+        "targetAnchor": [
+          33,
+          41.875
+        ],
+        "scale": 0.04572836801752465,
+        "offset": [
+          -0.9761774370208158,
+          -2.390060240963855
+        ],
+        "sourceBounds": [
+          124,
+          57,
+          1361,
+          965
+        ],
+        "sourceCrop": [
+          122,
+          55,
+          1363,
+          967
+        ]
+      },
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "key": "cast_034_G_dead",
+      "file": "034_G_dead.png",
+      "name": "G dead",
+      "num": 34,
+      "w": 54,
+      "h": 46,
+      "reg": [
+        60,
+        39
+      ],
+      "pixelScale": 8,
+      "sha256": "0f65b9d70fae53b430e321d2cd63e07ca5ebf85e8279d80f6e6e2101d0424bb9",
+      "originalSha256": "966a1c80f535df4ae33fdcf15c87464a7f75f7f8885ad3b8cf496f0343b24b37",
+      "masterSha256": "554b4c04f51f315f83f1786cf630d6e8472947842d6561e19963972010ff24e9",
+      "sourceSize": [
+        1359,
+        1158
+      ],
+      "placement": {
+        "mode": "bounds",
+        "sourceAnchor": [
+          651,
+          1084
+        ],
+        "referenceAnchor": [
+          27,
+          45.875
+        ],
+        "targetAnchor": [
+          27,
+          45.875
+        ],
+        "scale": 0.04547713717693837,
+        "offset": [
+          -2.6056163021868777,
+          -3.42221669980119
+        ],
+        "sourceBounds": [
+          154,
+          80,
+          1147,
+          1081
+        ],
+        "sourceCrop": [
+          152,
+          78,
+          1149,
+          1083
+        ]
+      },
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "key": "cast_035_G_dead",
+      "file": "035_G_dead.png",
+      "name": "G dead",
+      "num": 35,
+      "w": 69,
+      "h": 42,
+      "reg": [
+        73,
+        34
+      ],
+      "pixelScale": 8,
+      "sha256": "3b21c6136553406fcc186eb7d29b1144da1b6dceed974940b8472aa165d3bb0d",
+      "originalSha256": "bdc046721c871b2209d7fcef4526fab7fca8506531f139641154040bc998051c",
+      "masterSha256": "4d251c3fb0da3b8614b9046a3452635f840ee0b18977d00613586e38f8813e6c",
+      "sourceSize": [
+        1607,
+        979
+      ],
+      "placement": {
+        "mode": "bounds",
+        "sourceAnchor": [
+          757,
+          872
+        ],
+        "referenceAnchor": [
+          34.5,
+          41.875
+        ],
+        "targetAnchor": [
+          34.5,
+          41.875
+        ],
+        "scale": 0.04807692307692308,
+        "offset": [
+          -1.8942307692307736,
+          -0.0480769230769269
+        ],
+        "sourceBounds": [
+          44,
+          93,
+          1469,
+          869
+        ],
+        "sourceCrop": [
+          42,
+          91,
+          1471,
+          871
+        ]
+      },
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "key": "cast_036_G_dead",
+      "file": "036_G_dead.png",
+      "name": "G dead",
+      "num": 36,
+      "w": 49,
+      "h": 38,
+      "reg": [
+        56,
+        36
+      ],
+      "pixelScale": 8,
+      "sha256": "ed30291ec28ba4e2a892ef95d13f4e39654dbff3bc6ac4e171fe2ff5b9c49681",
+      "originalSha256": "10849d707660941a68ef85b38773c8ea19fc818b8abfaef93bb67bf31cf43c20",
+      "masterSha256": "6fd76f60cc249fd1edafd62e7a802d8a701ae574481989bc9adfce6f487e3c19",
+      "sourceSize": [
+        1424,
+        1105
+      ],
+      "placement": {
+        "mode": "bounds",
+        "sourceAnchor": [
+          712,
+          1028
+        ],
+        "referenceAnchor": [
+          24.5,
+          37.875
+        ],
+        "targetAnchor": [
+          24.5,
+          37.875
+        ],
+        "scale": 0.039989406779661014,
+        "offset": [
+          -3.9724576271186436,
+          -3.2341101694915224
+        ],
+        "sourceBounds": [
+          186,
+          86,
+          1237,
+          1025
+        ],
+        "sourceCrop": [
+          184,
+          84,
+          1239,
+          1027
+        ]
+      },
+      "corners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ]
+}

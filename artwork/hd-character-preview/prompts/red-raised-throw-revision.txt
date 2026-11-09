@@ -1,0 +1,5 @@
+Use case: identity-preserve / animation pose.
+Image 1 is the finished Red snowball-packing frame in the approved character style. Image 2 is the original game's next arm-raised pose.
+Repose the character from image 1 for the next animation frame: lift the rear white mitten with a packed snowball up beside and slightly behind the head, pull that elbow backward, and extend the opposite mitten for balance. Keep both boots planted. This is the preparation immediately before a snowball is tossed toward the upper-left playing field.
+Preserve the exact compact Red character, cap and coat seams, fabric materials, face, indigo trousers/boots, lighting, and slightly overhead camera. Match the original body turn and relative hand placement from image 2. The pose must visibly advance from the hands-together packing frame. Render exactly one full-body winter-game character, genuinely redrawn at high resolution with transparent padding and true PNG alpha.
+Omit the cyan ring from the source. No floor, background, cast shadow, labels, text, watermark, power meter or additional character.

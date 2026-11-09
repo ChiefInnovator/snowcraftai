@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Snowcraft · HD character study</title>
+  <style>
+    :root { color-scheme: light; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #183644; background: #edf3f5; }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    header { background: #0c202d; color: #f8fbfd; padding: 30px 40px 26px; }
+    .eyebrow { color: #a5d4e5; font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+    h1 { margin: 8px 0 10px; font: 700 32px Georgia, serif; }
+    header p { margin: 0; color: #c6d8e1; line-height: 1.5; max-width: 920px; }
+    main { max-width: 1380px; margin: auto; padding: 26px 30px 34px; }
+    .status { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; font-size: 12px; margin-bottom: 20px; }
+    .status strong { color: #865200; }
+    .backgrounds { display:flex;align-items:center;gap:8px;margin:0 0 22px;font-size:12px; }
+    .backgrounds button { padding:7px 12px;border:1px solid #a7beca;border-radius:6px;background:white;color:#183644;cursor:pointer; }
+    .backgrounds button[aria-pressed="true"] { background:#183644;color:white; }
+    body[data-background="dark"] .stage { background:#132e3e; }
+    section { margin: 0 0 22px; }
+    h2 { margin: 0 0 6px; font: 700 21px Georgia, serif; }
+    .hint { margin: 0 0 13px; color: #526a77; font-size: 13px; line-height: 1.5; }
+    .grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+    .card { overflow: hidden; border: 1px solid #ccdae2; border-radius: 12px; background: white; }
+    .label { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; padding: 14px 16px 11px; font-size: 14px; font-weight: 750; border-bottom: 1px solid #e5edf2; }
+    .label span { font-size: 10px; font-weight: 650; letter-spacing: .06em; text-transform: uppercase; color: #587080; }
+    .red .label { color: #a92b29; }
+    .green .label { color: #206942; }
+    .stage { display: flex; align-items: center; justify-content: center; height: 370px; background: #f8fbfd; background-image: linear-gradient(45deg,#eaf0f3 25%,transparent 25%), linear-gradient(-45deg,#eaf0f3 25%,transparent 25%), linear-gradient(45deg,transparent 75%,#eaf0f3 75%), linear-gradient(-45deg,transparent 75%,#eaf0f3 75%); background-size: 20px 20px; background-position: 0 0,0 10px,10px -10px,-10px 0; }
+    canvas { display: block; }
+    .detail canvas { width: 240px; height: 330px; }
+    .play .stage { height: 150px; background: white; }
+    .logical .stage { height: 80px; background: white; }
+    .caption { padding: 10px 16px; color: #506674; font-size: 11px; border-top: 1px solid #e5edf2; }
+    footer { border-top: 1px solid #c9d9e0; padding-top: 15px; font-size: 12px; line-height: 1.6; color: #4f6573; }
+    a { color: #075b80; }
+    .warning { color: #8e2e1b; }
+    @media (max-width: 800px) { .grid { grid-template-columns: repeat(2,minmax(0,1fr)); } header { padding: 24px; } main { padding: 20px 16px; } .detail canvas { width: 200px; height: 275px; } }
+    @media (max-width: 460px) { .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="eyebrow">Snowcraft Reforged · Character study</div>
+    <h1>The same teams. Newly drawn detail.</h1>
+    <p>Faithful reference candidates for Red and Green. Compare the pose, silhouette, outfit, and readability before approving the animation set.</p>
+  </header>
+  <main>
+    <div class="status"><span>Candidate: <b>Codex</b> · Baseline: <code>Prior-to-high-res-art</code></span><strong>Stage 1 · Awaiting visual approval</strong></div>
+    <div class="backgrounds" aria-label="Preview background"><span>Background</span><button type="button" data-background="light" aria-pressed="true">Light</button><button type="button" data-background="dark" aria-pressed="false">Dark</button></div>
+    <section class="detail">
+      <h2>01 / Enlarged detail</h2>
+      <p class="hint">Equal character scale. Checkerboard reveals the transparent cutout. Original pixels are enlarged with nearest-neighbour rendering.</p>
+      <div class="grid" id="detail"></div>
+    </section>
+    <section class="play">
+      <h2>02 / Gameplay size · 3× display scale</h2>
+      <p class="hint">A 592 × 320 logical field displayed at 1776 × 960 CSS pixels. Red keeps its 26 × 34 frame; Green keeps its 25 × 36 frame.</p>
+      <div class="grid" id="play"></div>
+    </section>
+    <section class="logical">
+      <h2>03 / Native logical size · 1×</h2>
+      <p class="hint">The smallest honest comparison: 26 × 34 pixels for Red and 25 × 36 for Green.</p>
+      <div class="grid" id="logical"></div>
+    </section>
+    <footer>
+      <b>Reference comparison.</b> This page preserves the approved Red and Green reference pair with its original comparison fitting. Web High resolution mode and Flutter now use the registered 35-frame HD animation pack; see the <a href="integration-validation.md">integration validation</a>.
+      <br>Original character design: Nicholson NY / Kevin Chiu, acknowledged in the repository. Generated illustrations use the original designs as references; no new licence to the underlying designs is implied.
+      <br><a href="assets/red-ready.png">Transparent Red PNG</a> · <a href="assets/green-ready.png">Transparent Green PNG</a> · <a href="README.md">Provenance, prompts and validation</a>
+      <p id="error" class="warning" hidden></p>
+    </footer>
+  </main>
+  <script>
+    document.querySelectorAll('.backgrounds button').forEach(button=>button.addEventListener('click',()=>{
+      document.body.dataset.background=button.dataset.background;
+      document.querySelectorAll('.backgrounds button').forEach(other=>other.setAttribute('aria-pressed',String(other===button)));
+    }));
+    const frames = [
+      { team: 'Red', type: 'Original', url: '../../web/assets/cast/005_R_ready.png', width: 26, height: 34, reg: [15,28] },
+      { team: 'Red', type: 'Redrawn', url: 'assets/red-ready.png', width: 26, height: 34, reg: [15,28] },
+      { team: 'Green', type: 'Original', url: '../../web/assets/cast/024_G_ready.png', width: 25, height: 36, reg: [11,29] },
+      { team: 'Green', type: 'Redrawn', url: 'assets/green-ready.png', width: 25, height: 36, reg: [11,29] }
+    ];
+    function inspect(image) {
+      const canvas = document.createElement('canvas');
+      canvas.width = image.naturalWidth; canvas.height = image.naturalHeight;
+      const ctx = canvas.getContext('2d'); ctx.drawImage(image,0,0);
+      const {data} = ctx.getImageData(0,0,canvas.width,canvas.height);
+      let x0=canvas.width,y0=canvas.height,x1=-1,y1=-1,transparent=0,opaque=0,partial=0;
+      for(let y=0;y<canvas.height;y++) for(let x=0;x<canvas.width;x++) {
+        const a=data[(y*canvas.width+x)*4+3];
+        if(a===0) transparent++; else if(a===255) opaque++; else partial++;
+        if(a>16) { x0=Math.min(x0,x);y0=Math.min(y0,y);x1=Math.max(x1,x);y1=Math.max(y1,y); }
+      }
+      if(x1<x0) throw Error('Image contains no visible character');
+      return { width:canvas.width,height:canvas.height,bounds:[x0,y0,x1-x0+1,y1-y0+1],transparent,opaque,partial,cornerAlpha:[data[3],data[(canvas.width-1)*4+3],data[((canvas.height-1)*canvas.width)*4+3],data[data.length-1]] };
+    }
+    function render(frame,section) {
+      const card=document.createElement('article');card.className='card '+frame.team.toLowerCase();
+      const label=document.createElement('div');label.className='label';label.textContent=frame.type+' '+frame.team;
+      const badge=document.createElement('span');badge.textContent=frame.type==='Original'?'Original sprite':'HD reference';label.append(badge);
+      const stage=document.createElement('div');stage.className='stage';const canvas=document.createElement('canvas');
+      const dpr=devicePixelRatio||1, detail=section==='detail', scale=section==='play'?3:1;
+      const cssWidth=detail?240:frame.width*scale,cssHeight=detail?330:frame.height*scale;
+      canvas.width=Math.round(cssWidth*dpr);canvas.height=Math.round(cssHeight*dpr);
+      if(!detail){canvas.style.width=cssWidth+'px';canvas.style.height=cssHeight+'px';}
+      const ctx=canvas.getContext('2d');ctx.scale(dpr,dpr);ctx.imageSmoothingEnabled=frame.type==='Redrawn';ctx.imageSmoothingQuality='high';
+      const logicalScale=detail?8:scale, offsetX=detail?(cssWidth-frame.width*logicalScale)/2:0,offsetY=detail?(cssHeight-frame.height*logicalScale)/2:0;
+      if(frame.type==='Original') ctx.drawImage(frame.image,offsetX,offsetY,frame.width*logicalScale,frame.height*logicalScale);
+      else {
+        const original=frames.find(f=>f.team===frame.team&&f.type==='Original');
+        const [sx,sy,sw,sh]=frame.metrics.bounds,[ox,oy,ow,oh]=original.metrics.bounds;
+        const fit=Math.min(ow/sw,oh/sh), dw=sw*fit,dh=sh*fit;
+        const dx=ox+(ow-dw)/2,dy=oy+oh-dh;
+        ctx.drawImage(frame.image,sx,sy,sw,sh,offsetX+dx*logicalScale,offsetY+dy*logicalScale,dw*logicalScale,dh*logicalScale);
+        frame.previewMapping={sourceRect:[sx,sy,sw,sh],logicalRect:[dx,dy,dw,dh],logicalRegistration:frame.reg,note:'Alpha-bounds fit for visual comparison only; not a production animation registration.'};
+      }
+      stage.append(canvas);card.append(label,stage);
+      if(detail){const caption=document.createElement('div');caption.className='caption';caption.textContent=frame.type==='Original'?frame.width+' × '+frame.height+' px source':frame.metrics.width+' × '+frame.metrics.height+' px · genuine alpha';card.append(caption);}
+      document.getElementById(section).append(card);
+    }
+    (async()=>{
+      for(const frame of frames){frame.image=new Image();frame.image.src=frame.url;await frame.image.decode();frame.metrics=inspect(frame.image);}
+      for(const section of ['detail','play','logical']) for(const frame of frames) render(frame,section);
+      window.previewEvidence=frames.map(({image,...frame})=>frame);window.previewReady=true;
+    })().catch(error=>{document.getElementById('error').hidden=false;document.getElementById('error').textContent=String(error);window.previewError=String(error);});
+  </script>
+</body>
+</html>
