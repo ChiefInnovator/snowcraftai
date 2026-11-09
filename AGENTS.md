@@ -7,7 +7,7 @@ Browser snowball-fight game (Phaser 4.2 via CDN, plain JS, no build step). Live 
   - `index.html` (game page + SEO metadata), `js/game.js` (all game logic), `css/game.css`
   - `assets/` — sprites and audio (`sounds/` = original WAVs, `cast/` = recovered BITDs including kids, `walkon.json` = VWSC 15 fps paths)
 - `docs/` — `SPECIFICATIONS.md` (our rules), `reference-app.md` (original game analysis), `classic-parity-plan.md` (gaps + status), `PARITY.md` (verified / inferred / blocked), `recovered/` (VWSC layout dump), `reference/snowcraft-original/` (byte-for-byte original EXE/DCR/sounds archives + SHA-256 manifest)
-- `NOTICE.md` — remake (Richard Crane / MILL5) vs original SnowCraft credits. Exact recovered notices: `docs/reference/snowcraft-original/COPYRIGHT-NOTICES.md`. Credits are not a license.
+- `NOTICE.md` — remake (Richard Crane / MILL5) vs original SnowCraft credits. Acknowledgments: `docs/reference/snowcraft-original/COPYRIGHT-NOTICES.md`.
 - `tools/reference/` — static inspect/extract (`inspect_movie.py`, `extract_bitmaps.py`, `extract_movie.py`). `run-reference.sh` is Wine-only and must **not** be launched by agents. Never ScummVM (it hangs).
 - `src/js/audio.js` — channel-1 `puppetSound` / `soundBusy(1)` behaviour.
 - `docs/reference/snowcraft-original/` — committed evidence copies of both original-game archives, the sounds pack, recovered notes. Never execute the EXE/DCR.

@@ -2,7 +2,7 @@
 
 Snowcraft Reforged is a browser remake of **SnowCraft** (1999).
 
-Recovered original strings and offsets:
+Acknowledgments:
 [`docs/reference/snowcraft-original/COPYRIGHT-NOTICES.md`](docs/reference/snowcraft-original/COPYRIGHT-NOTICES.md).
 
 ## Remake (Richard Crane / MILL5)
