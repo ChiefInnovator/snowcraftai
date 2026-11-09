@@ -19,6 +19,10 @@ were not executed.
 The same recovered files are also kept at [`docs/recovered/`](../../../recovered/)
 next to `PARITY.md`. Runtime art/audio is **not** duplicated here.
 
+Copyright and credit strings harvested from these files:
+[`../COPYRIGHT-NOTICES.md`](../COPYRIGHT-NOTICES.md). That catalog is not a
+license.
+
 Mechanics narrative: [`docs/reference-app.md`](../../../reference-app.md),
 [`docs/PARITY.md`](../../../PARITY.md),
 [`docs/classic-parity-plan.md`](../../../classic-parity-plan.md).

@@ -31,6 +31,7 @@ no ScummVM, no Flashpoint from an agent). Static parse only.
 | `sounds-methodology/` | Inventory JSON, pack README, and extractor copied out of the sounds zip (methodology; not a second runtime audio tree). |
 | `source-evidence/` | Recovered mmap/VWSC/BITD notes and the DCR vs EXE comparison. |
 | `SOURCE-PROVENANCE.json` | Original upload filenames, inner member names, roles, hashes. |
+| `COPYRIGHT-NOTICES.md` | Exact copyright/credit strings from the EXE, DCR, BITDs, and IA sidecars, with offsets. Not a license. |
 | `SHA256MANIFEST.txt` | SHA-256 of every file under this folder except the manifest itself. |
 | `LOCAL-APPLY.md` | How this tree reaches a checkout of `feature/repo-restructure` at `ff39e410`. |
 
@@ -48,14 +49,19 @@ is not the canonical copy.
 
 ## License status
 
-SnowCraft (1999) is **copyrighted third-party material**. Copyright remains with
-the original authors (Nicholson NY / iconNicholson and related rights holders).
+Exact recovered notices (game credits vs Macromedia projector vs IA metadata)
+are in [`COPYRIGHT-NOTICES.md`](COPYRIGHT-NOTICES.md).
+
+SnowCraft is **copyrighted third-party material**. Movie strings credit
+`wells packard - Nicholson | NY` / `Icon Nicholson`; the Happy Holidays BITD
+paints `IconMedialab`. After inspecting the EXE archive, DCR archive, recovered
+BITDs, and IA sidecars: **no explicit license or redistribution permission was
+found.** Credits and Macromedia runtime copyrights are not converted into
+permission. IA availability is not a license.
 
 These files are included **as parity evidence** at the project owner’s request.
-This is **not** a license to ship the original EXE/DCR as a product, and not a
-grant of rights beyond that evidence use. `NOTICE.md` still records that
-permission for public redistribution of original-derived art and audio is
-unresolved.
+This is **not** a license to ship the original EXE/DCR as a product.
+[`NOTICE.md`](../../../NOTICE.md) summarizes the same facts.
 
 No passwords, API keys, tokens, or account credentials are stored here. The IA
 metadata XML is public item metadata from the zip.
@@ -126,6 +132,7 @@ Shockwave player. Resource table: `source-evidence/dcr-abmp-resources.json`.
 
 ## Related docs
 
+- [`COPYRIGHT-NOTICES.md`](COPYRIGHT-NOTICES.md) — exact recovered notices (not a license)
 - [`docs/PARITY.md`](../../PARITY.md) — verified / inferred / runtime-blocked
 - [`docs/reference-app.md`](../../reference-app.md) — mechanics from Lingo + score
 - [`docs/classic-parity-plan.md`](../../classic-parity-plan.md)

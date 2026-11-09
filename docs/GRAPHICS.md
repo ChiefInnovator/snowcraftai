@@ -22,7 +22,7 @@ Evidence is static BITD / VWSC / DRCF parse of
 | Title | Member 76 “SnowCraft” 122×22 at (296,160); blend 255→0→255 at **15 fps** (frames 10–34) | `076_1.png` |
 | Level 2–9 | Member 78 “Level” (286,160) + digits 2–9 (326,160); fade-out **10 fps**, 11 frames | 8-bit 2–4; **32-bit** 5–9 via D4 planar PackBits |
 | Level 10 | Member 87 “Bonus Round” at (285,160), 10 fps fade-out | `087_bonus_round.png` |
-| Logo | Member 70 “Happy Holidays / IconMedialab” 254×64. Event Loop ch2 at (296,140) **blend 255 (hidden)**. GreenWin (296,140) blend 0. Victory frames 317–325 fade in. | `070_happy_holidays.png` |
+| Logo | Member 70 “Happy Holidays / IconMedialab” 254×64 (painted spelling; no © year on the BITD). Event Loop ch2 at (296,140) **blend 255 (hidden)**. GreenWin (296,140) blend 0. Victory frames 317–325 fade in. | `070_happy_holidays.png` |
 | Victory banner | Member 88 “Congratulations!” (295,160), 10 fps, blend 255→0→255 (frames 290–315) | `088_congratulations.png` |
 | Play Again | Member 77 `snowcraft_palatte` 84×22, CASt reg (−216,−138). GreenWin ch4 loc (292,160) bbox (508,298)–(592,320); victory loc (296,160). Blend 255→0 over frames 40–45 / 320–325 at 10 fps. | `077_play_again.png` |
 | Walk-on | Score tempo **15 fps** on Level 1, **10 fps** on Levels 2–10 | `walkon.json` paths; runtime uses `scoreTempoFps` |

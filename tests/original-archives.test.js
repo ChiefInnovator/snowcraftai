@@ -53,4 +53,32 @@ describe("docs/reference/snowcraft-original archives", () => {
             assert.equal(sha256(rel), hash, rel);
         }
     });
+
+    it("records exact original copyright strings and does not invent a license", () => {
+        const notices = fs.readFileSync(path.join(ROOT, "COPYRIGHT-NOTICES.md"), "utf8");
+        const rootNotice = fs.readFileSync(path.join(__dirname, "..", "NOTICE.md"), "utf8");
+        assert.match(notices, /wells packard - Nicholson \| NY/);
+        assert.equal(notices.includes("wells packard - Nicholson | NY"), true);
+        assert.match(notices, /wells packard - Icon Nicholson/);
+        assert.match(notices, /Wells Packard - Nicholson NY/);
+        assert.match(notices, /Copyright 1985-2000 Macromedia, Inc\./);
+        assert.match(notices, /Copyright 1989-95 MacroMedia, Inc\. All rights reserved\./);
+        assert.match(notices, /Happy Holidays/);
+        assert.match(notices, /IconMedialab/);
+        assert.match(notices, /kchui@nny\.com/);
+        assert.match(notices, /flashgamenet_0-999/);
+        assert.match(notices, /How to play/);
+        assert.match(notices, /explicit license grant/);
+        assert.match(rootNotice, /No explicit license, EULA, or redistribution permission for SnowCraft was/);
+        assert.equal(rootNotice.includes("MIT License"), false);
+        assert.equal(notices.includes("licensed under MIT"), false);
+
+        const vendor = fs.readFileSync(path.join(ROOT, "extracted/vendor-dcr-readme.txt"), "utf8");
+        const section5 = notices.split("## 5. DCR zip vendor README")[1] || "";
+        const fences = section5.split("```");
+        assert.ok(fences.length >= 3, "section 5 has a fenced vendor README quote");
+        let quoted = fences[1];
+        if (quoted.startsWith("\n")) quoted = quoted.slice(1);
+        assert.equal(quoted, vendor);
+    });
 });
