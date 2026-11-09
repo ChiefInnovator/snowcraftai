@@ -137,7 +137,6 @@ class MainScene extends Phaser.Scene {
             this.load.image(spec.key, 'assets/cast/' + spec.file);
         });
         this.load.image(P.CAST.bonusRound.key, 'assets/cast/' + P.CAST.bonusRound.file);
-        this.load.image(P.CAST.logo.key, 'assets/cast/' + P.CAST.logo.file);
         this.load.image(P.CAST.congrats.key, 'assets/cast/' + P.CAST.congrats.file);
         this.load.image(P.CAST.playAgain.key, 'assets/cast/' + P.CAST.playAgain.file);
         this.load.image('shadow', 'assets/shadow.png');
@@ -203,6 +202,11 @@ class MainScene extends Phaser.Scene {
             .setOrigin(0.5).setDepth(200).setVisible(false);
         this.subText = this.makeText(STAGE_W / 2, STAGE_H / 2 + 45, '', { fontSize: '16px', color: '#335', fontFamily: 'Arial', stroke: '#fff', strokeThickness: 4 })
             .setOrigin(0.5).setDepth(200).setVisible(false);
+        // End-screen greeting, drawn as our own text where the original's holiday banner sat.
+        this.greetingText = this.makeText(P.CAST.logo.loc[0], P.CAST.logo.loc[1], 'Happy Holidays', {
+            fontSize: '30px', fontFamily: 'Fraunces, Georgia, serif', fontStyle: 'italic bold',
+            color: '#e0473c', stroke: '#ffffff', strokeThickness: 4
+        }).setOrigin(0.5).setDepth(180).setVisible(false);
         this.scoreText = this.makeText(20, STAGE_H - 30, '', { fontSize: '20px', color: '#cc0000', fontStyle: 'bold', fontFamily: 'Arial', stroke: '#fff', strokeThickness: 4 })
             .setDepth(210).setVisible(false);
         if (this.textures.exists(P.CAST.playAgain.key)) {
@@ -546,6 +550,7 @@ class MainScene extends Phaser.Scene {
             this.tweens.killTweensOf(this.scoreBanner);
             this.tweens.killTweensOf(this.scoreBannerDigit);
             this.tweens.killTweensOf(this.levelText);
+            if (this.greetingText) this.tweens.killTweensOf(this.greetingText);
         }
         if (this._bannerHold) {
             this._bannerHold.remove(false);
@@ -1123,14 +1128,7 @@ class MainScene extends Phaser.Scene {
         this.clearScoreBannerAnims();
         this.hideScoreBanner();
         this.levelText.setVisible(false);
-        if (this.textures.exists(P.CAST.logo.key)) {
-            this.placeCast(this.scoreBanner, P.CAST.logo);
-            this.scoreBanner.setAlpha(1).setVisible(true);
-        } else {
-            this.levelText.setText('GAME OVER');
-            this.levelText.setStyle({ fontSize: '60px', fontFamily: 'Arial, sans-serif' });
-            this.levelText.setPosition(STAGE_W / 2, STAGE_H / 2 - 20).setAlpha(1).setVisible(true);
-        }
+        this.greetingText.setAlpha(1).setVisible(true);
         this.revealPlayAgain('loss');
     }
 
@@ -1174,21 +1172,16 @@ class MainScene extends Phaser.Scene {
     fadeInVictoryLogo() {
         const timing = P.SCORE_UI.logoVictory;
         const gen = this._bannerGen;
-        if (this.textures.exists(P.CAST.logo.key)) {
-            this.placeCast(this.scoreBanner, P.CAST.logo);
-            this.scoreBanner.setAlpha(0).setVisible(true);
-            this.tweens.add({
-                targets: this.scoreBanner,
-                alpha: 1,
-                duration: P.framesToMs(timing.fadeIn, timing.fps),
-                onComplete: () => {
-                    if (gen !== this._bannerGen) return;
-                    this.revealPlayAgain('victory');
-                }
-            });
-            return;
-        }
-        this.revealPlayAgain('victory');
+        this.greetingText.setAlpha(0).setVisible(true);
+        this.tweens.add({
+            targets: this.greetingText,
+            alpha: 1,
+            duration: P.framesToMs(timing.fadeIn, timing.fps),
+            onComplete: () => {
+                if (gen !== this._bannerGen) return;
+                this.revealPlayAgain('victory');
+            }
+        });
     }
 
     revealPlayAgain(kind) {
@@ -1218,6 +1211,7 @@ class MainScene extends Phaser.Scene {
         this.scoreText.setVisible(false);
         this.hideScoreBanner();
         if (this.levelText) this.levelText.setVisible(false);
+        if (this.greetingText) this.greetingText.setVisible(false);
     }
 
     destroyKid(k) {

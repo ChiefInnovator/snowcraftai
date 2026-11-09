@@ -6,7 +6,7 @@ All coordinates assume the original's 592×320 stage. The remake canvas is now 5
 
 ## Status (2026-11-08, src-layout parity branch)
 
-Implemented in `src/js/game.js` + `src/js/parity.js` + `src/js/audio.js`: items 1–6, 7 (**VWSC Event Loop locs**, including off-stage greens and level-10 closer reds), 8, 9, 10, 11, 12 (centre line now `(0,320)–(640,0)`), 13, 14 (**original 16 WAVs**, channel 1, `mouseH<280` ugly/halaluja), 15 (`?debug`, revive immunity). Kid BITDs 1–36, 15 fps score walk-on, matte AABB, and daze/ow members are now decoded from the original ZIP’s `SnowCraft.exe` (static; EXE not run).
+Implemented in `src/js/game.js` + `src/js/parity.js` + `src/js/audio.js`: items 1–6, 7 (**VWSC Event Loop locs**, including off-stage greens and level-10 closer reds), 8, 9, 10, 11, 12 (centre line now `(0,320)–(640,0)`), 13, 14 (**15 of the 16 original sound cast members** — all the ones the original plays; `Uh` is never played and not shipped — channel 1, `mouseH<280` ugly/halaluja), 15 (`?debug`, revive immunity). Kid BITDs 1–36, 15 fps score walk-on, matte AABB, and daze/ow members are now decoded from the original ZIP’s `SnowCraft.exe` (static; EXE not run).
 
 See [PARITY.md](PARITY.md) for verified vs inferred vs blocked.
 
