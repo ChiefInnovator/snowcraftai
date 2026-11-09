@@ -469,7 +469,6 @@ class MainScene extends Phaser.Scene {
                 // On touch, lift the kid above the finger so it stays visible.
                 this.grabOffsetX = pointer.wasTouch ? 0 : pointer.worldX - kid.x;
                 this.grabOffsetY = pointer.wasTouch ? TOUCH_LIFT : pointer.worldY - kid.y;
-                kid.shadowLocked = true; // shadow stays at the grab point until release
                 this.showKidFrame(kid, 'throw_0');
                 this.showPowerMeter(kid);
             }
@@ -479,7 +478,6 @@ class MainScene extends Phaser.Scene {
             const kid = this.activePlayer;
             if (this.isDragging && pointer.id !== this.dragPointerId) return;
             if (this.isDragging && kid && kid.isAlive && this.isLevelActive && (pointer.wasTouch || pointer.leftButtonReleased())) {
-                kid.shadowLocked = false;
                 this.throwSnowball(kid, this.currentPower());
                 this.hidePowerMeter();
                 this.isDragging = false;
@@ -878,7 +876,7 @@ class MainScene extends Phaser.Scene {
         }
 
         [...this.redTeam, ...this.greenTeam].forEach(kid => {
-            if (kid.shadow && !kid.shadowLocked && kid.isAlive) kid.shadow.setPosition(kid.x, kid.y);
+            if (kid.shadow && kid.isAlive) kid.shadow.setPosition(kid.x, kid.y);
             if (DEBUG_MODE && kid.debugLabel) {
                 const labelY = (kid.y - 45 < 10) ? kid.y + 35 : kid.y - 45;
                 kid.debugLabel.setPosition(kid.x, labelY);
@@ -1383,7 +1381,6 @@ class MainScene extends Phaser.Scene {
     }
 
     cancelDrag() {
-        if (this.activePlayer) this.activePlayer.shadowLocked = false;
         this.hidePowerMeter();
         this.hideSelectionUI();
         this.isDragging = false;

@@ -11,6 +11,7 @@ Implemented in `src/js/game.js` + `src/js/parity.js` + `src/js/audio.js`: items 
 See [PARITY.md](PARITY.md) for verified vs inferred vs blocked.
 
 Deliberate differences:
+- **12:** the held kid's shadow follows it while dragging; the original left it at the grab point.
 - **16:** the title waits for a **click** rather than a hover, because browsers only allow audio after a click.
 - **14:** we keep our background music; the original had none. Combat SFX are the 15 original WAVs the original actually plays.
 - Greens never collide with each other or with reds (as in the original); the earlier arcade-physics colliders are gone.
