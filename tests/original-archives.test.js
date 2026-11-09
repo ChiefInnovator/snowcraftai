@@ -66,6 +66,8 @@ describe("docs/reference/snowcraft-original archives", () => {
         assert.match(notices, /Happy Holidays/);
         assert.match(notices, /IconMedialab/);
         assert.match(notices, /kchui@nny\.com/);
+        assert.match(notices, /flashgamenet_0-999/);
+        assert.match(notices, /How to play/);
         assert.match(notices, /explicit license grant/);
         assert.match(rootNotice, /No explicit license, EULA, or redistribution permission for SnowCraft was/);
         assert.equal(rootNotice.includes("MIT License"), false);

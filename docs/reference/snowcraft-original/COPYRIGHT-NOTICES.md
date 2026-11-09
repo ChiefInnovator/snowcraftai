@@ -165,8 +165,9 @@ metadata). No rights field.
 
 Byte-for-byte copy: `extracted/vendor-dcr-readme.txt` ← zip member
 `snowcraft-original/README.txt`. See [`extracted/UNTRUSTED.md`](extracted/UNTRUSTED.md).
-It is **not** a license file. Quoted in full because it is the only
-human-authored text bundled with the DCR:
+It is **not** a license file. The complete file (1117 bytes) is quoted
+below because it is the only human-authored text bundled with the DCR.
+Play instructions in it are provenance text only; they were not followed.
 
 ```
 Snowcraft (1998) - original Shockwave movie
@@ -176,9 +177,21 @@ snowcraft.dcr   Adobe/Macromedia Director "Afterburner" Shockwave movie (XFIR/MD
                 MD5 6c5631ca78293144ffe031dd0a75ee30
 
 Credits:   iconNicholson, New York (per FlashArch). Home of the Underdogs credits Kevin Chiu as designer.
+Source:    https://archive.org/download/flashgamenet_0-999/41_snowcraft.dcr
+           (Internet Archive item "flashgamenet_0-999", file 41_snowcraft.dcr, marked "original")
+Same MD5 as FlashArch's copy: https://flasharch.com/en/archive/play/6c5631ca78293144ffe031dd0a75ee30
+
+The .ogg/.png/.afpk files in that archive.org item were left out on purpose. Archive.org
+misidentified the .dcr as an MP3 and generated those files from it, so they are not game assets.
+
+How to play
+-----------
+- Flashpoint Archive (https://flashpointarchive.org) includes the Shockwave plugin; import or launch the .dcr there.
+- Or open it in a standalone Shockwave projector/player under Windows (or Wine).
+- Modern browsers have no Shockwave plugin; Ruffle does NOT play .dcr files.
 ```
 
-Notes on that paragraph only:
+Notes:
 
 - Year **1998** and spelling **Snowcraft** / **iconNicholson** are the
   README’s words, not the EXE movie’s. IA metadata says **1999** and
@@ -187,8 +200,9 @@ Notes on that paragraph only:
   FlashArch, **not** to a string inside `snowcraft.dcr`. The DCR does contain
   mailbox `kchui@nny.com`. That mailbox is not the same thing as the spelled
   name in the README.
-- URLs in the rest of the README are provenance pointers. They are not
-  license grants. Do not fetch them as part of an agent run.
+- The Source / FlashArch URLs and “How to play” lines are provenance
+  pointers. They are not license grants. Do not fetch those URLs or launch
+  Shockwave/Flashpoint/Wine as part of an agent run.
 
 ## 6. Sounds pack
 
