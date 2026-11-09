@@ -20,11 +20,6 @@ as:
 Runtime `src/assets/sounds/` ships **15** of those WAVs (`Uh` is in the movie
 and the evidence pack, not in the live tree). Sprites and recovered BITDs in
 `src/assets/` / `src/assets/cast/` are derived from the same original movie.
-**Exception:** the runtime Happy Holidays image
-(`src/assets/cast/070_happy_holidays.png`) has the `IconMedialab` lettering
-removed; the original BITD is
-`docs/reference/snowcraft-original/source-evidence/recovered/070_happy_holidays.png`.
-That edit is not a license and does not remove the original credit.
 
 Internet Archive item `snowcraft_201912` metadata (`<creator>Nicholson NY</creator>`,
 `<date>1999</date>`) is **uploader metadata**, not a license. The IA
