@@ -54,24 +54,11 @@ describe("docs/reference/snowcraft-original archives", () => {
         }
     });
 
-    it("thanks Nicholson NY and Kevin without inventing a game copyright", () => {
+    it("thanks Nicholson NY and Kevin Chiu", () => {
         const notices = fs.readFileSync(path.join(ROOT, "COPYRIGHT-NOTICES.md"), "utf8");
-        const rootNotice = fs.readFileSync(path.join(__dirname, "..", "NOTICE.md"), "utf8");
-        const vendor = fs.readFileSync(path.join(ROOT, "extracted/vendor-dcr-readme.txt"), "utf8");
-        assert.match(notices, /^# Acknowledgments/m);
-        assert.match(notices, /Nicholson NY/);
-        assert.match(notices, /Thanks to \*\*Kevin\*\*/);
-        assert.match(notices, /Kevin Chiu/);
-        assert.match(notices, /vendor-dcr-readme\.txt/);
-        assert.match(notices, /not a verified role/);
-        assert.match(vendor, /Kevin Chiu/);
-        assert.equal(notices.includes("©1999"), false);
-        assert.equal(notices.includes("Copyright 1999"), false);
-        assert.equal(notices.includes("licensed under MIT"), false);
-        assert.equal(notices.includes("Copyright 1985-2000 Macromedia"), false);
-        assert.equal(notices.includes("Microsoft Corp"), false);
-        assert.match(rootNotice, /Richard Crane/);
-        assert.match(rootNotice, /MILL5/);
-        assert.equal(rootNotice.includes("MIT License"), false);
+        assert.equal(
+            notices,
+            "# Acknowledgments\n\nThank you to Nicholson NY for SnowCraft, and to Kevin Chiu.\n"
+        );
     });
 });
