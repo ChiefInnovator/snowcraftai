@@ -165,6 +165,7 @@
             if (state.muted) {
                 stopChannel1();
                 if (stopAdapter.stop) stopAdapter.stop();
+                if (stopAdapter.stopIntro) stopAdapter.stopIntro();
                 pauseMusic();
             } else {
                 resumeMusic();
@@ -260,6 +261,12 @@
         return null;
     }
 
+    // The intro jingle is a remake extra that plays over channel 1, so
+    // channel-1 stops and soundBusy(1) checks must not see it.
+    function isChannel1Sound(snd) {
+        return !!(snd && snd.key && snd.key.indexOf("sfx_") === 0 && snd.key !== "sfx_intro");
+    }
+
     function createPhaserAdapter(scene) {
         return {
             play: function (soundId, opts) {
@@ -284,9 +291,14 @@
                 if (!scene || !scene.sound) return;
                 const playing = scene.sound.getAllPlaying ? scene.sound.getAllPlaying() : [];
                 playing.forEach(function (snd) {
-                    if (snd && snd.key && snd.key.indexOf("sfx_") === 0 && snd.stop) {
-                        snd.stop();
-                    }
+                    if (isChannel1Sound(snd) && snd.stop) snd.stop();
+                });
+            },
+            stopIntro: function () {
+                if (!scene || !scene.sound) return;
+                const playing = scene.sound.getAllPlaying ? scene.sound.getAllPlaying() : [];
+                playing.forEach(function (snd) {
+                    if (snd && snd.key === "sfx_intro" && snd.stop) snd.stop();
                 });
             },
             playIntro: function () {
@@ -317,9 +329,7 @@
             isPlaying: function () {
                 if (!scene || !scene.sound) return false;
                 const playing = scene.sound.getAllPlaying ? scene.sound.getAllPlaying() : [];
-                return playing.some(function (snd) {
-                    return snd && snd.key && snd.key.indexOf("sfx_") === 0;
-                });
+                return playing.some(isChannel1Sound);
             },
             unlock: function () {
                 if (scene && scene.sound && scene.sound.unlock) {

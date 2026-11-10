@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; media-src 'self' data: blob:; connect-src 'self' data: blob:; object-src 'none'; base-uri 'self'; form-action 'self'">
     <title>Snowcraft Reforged — Free Online Snowball Fight Game (Phaser 4 Remake)</title>
     <meta name="description" content="Snowcraft Reforged is a free, browser-based remake of the classic 1999 SnowCraft snowball-fight game. Play instantly — click and hold to charge, release to throw, and defeat the green team across 10 levels of increasing difficulty.">
     <meta name="keywords" content="snowcraft, snowcraft reforged, snowball fight game, snowcraft remake, free browser game, phaser game, classic snowcraft, online snowball game, 1999 snowcraft, html5 snowball game">
@@ -18,21 +19,21 @@
     <meta property="og:title" content="Snowcraft Reforged — Free Online Snowball Fight Game">
     <meta property="og:description" content="A modern browser remake of the classic 1999 SnowCraft. Click and hold to charge, release to throw, and defeat the green team. Plays instantly — no install, no signup.">
     <meta property="og:url" content="https://chiefinnovator.github.io/snowcraftai/">
-    <meta property="og:image" content="https://chiefinnovator.github.io/snowcraftai/assets/playField.png">
-    <meta property="og:image:width" content="600">
-    <meta property="og:image:height" content="320">
-    <meta property="og:image:alt" content="Snowcraft Reforged snowy battlefield with red and green teams">
+    <meta property="og:image" content="https://chiefinnovator.github.io/snowcraftai/assets/images/social-card.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="A holiday card open on a desk with the Snowcraft snowball fight inside: red kids facing a crowd of green kids on a snowfield">
     <meta property="og:locale" content="en_US">
 
     <!-- Twitter / X Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Snowcraft Reforged — Free Online Snowball Fight Game">
     <meta name="twitter:description" content="Browser remake of the 1999 SnowCraft snowball-fight classic. Click, charge, release, repeat. Ten levels, three difficulties, zero install.">
-    <meta name="twitter:image" content="https://chiefinnovator.github.io/snowcraftai/assets/playField.png">
-    <meta name="twitter:image:alt" content="Snowcraft Reforged snowy battlefield with red and green teams">
+    <meta name="twitter:image" content="https://chiefinnovator.github.io/snowcraftai/assets/images/social-card.jpg">
+    <meta name="twitter:image:alt" content="A holiday card open on a desk with the Snowcraft snowball fight inside: red kids facing a crowd of green kids on a snowfield">
 
     <!-- Theme & favicon -->
-    <meta name="theme-color" content="#0c1520">
+    <meta name="theme-color" content="#1d4a3a">
     <link rel="manifest" href="manifest.webmanifest">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -49,7 +50,7 @@
         "name": "Snowcraft Reforged",
         "description": "A free, browser-based remake of the classic 1999 SnowCraft snowball-fight game, built with Phaser 4. Players click and hold to charge a throw, then release to launch a snowball at the opposing green team across ten progressively harder levels.",
         "url": "https://chiefinnovator.github.io/snowcraftai/",
-        "image": "https://chiefinnovator.github.io/snowcraftai/assets/playField.png",
+        "image": "https://chiefinnovator.github.io/snowcraftai/assets/images/social-card.jpg",
         "inLanguage": "en",
         "applicationCategory": "Game",
         "genre": ["Action", "Arcade", "Casual", "Sports"],
@@ -98,7 +99,7 @@
                 "name": "Do I need to install anything?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "No. It runs in any modern desktop browser: Chrome, Firefox, Safari or Edge."
+                    "text": "No. It runs in any modern browser on desktop and phones: Chrome, Firefox, Safari or Edge."
                 }
             },
             {
@@ -164,150 +165,275 @@
     }
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/phaser@4.2.1/dist/phaser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@4.2.1/dist/phaser.min.js" integrity="sha384-kyUQ5+cxc6+X89xEG6DhcXLcDU9T3Z+o/45VdT6pgAwtG6gxtAzYTEn0Wwj/BKZd" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Figtree:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Besley:wght@400..900&family=Hanken+Grotesk:wght@400..700&family=Yesteryear&display=swap">
     <link rel="stylesheet" href="css/game.css">
 </head>
 <body>
 
-<a class="skip-link" href="#top">Skip to content</a>
-<nav aria-label="Main navigation">
-    <div class="container nav-inner">
-        <a class="logo" href="#top" aria-label="Snowcraft Reforged">
-            <img class="logo-mark" src="assets/cast/005_R_ready.png" alt="" width="26" height="34">
-            <span>Snowcraft Reforged</span>
-        </a>
-        <div class="nav-links">
-            <a class="nav-play" href="#top">Play</a>
-            <a href="#how">How to play</a>
-            <a href="#enhancements">Features</a>
-            <a href="#faq">FAQ</a>
-            <a class="nav-gh" href="https://github.com/ChiefInnovator/snowcraftai" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg><span>GitHub</span></a>
-        </div>
-    </div>
-</nav>
+<a class="skip-link" href="#play">Skip to the game</a>
 
 <main id="top" tabindex="-1">
 
-    <!-- PLAY -->
-    <section class="play" aria-labelledby="play-title">
-        <div class="play-inner">
-            <header class="play-head">
-                <div>
-                    <h1 id="play-title" class="sr-only">Snowcraft Reforged</h1>
-                    <p class="play-prompt">Pick a kid. Wind up. Let it fly.</p>
-                    <p class="pitch">Three kids against the green team. Clear all ten levels.</p>
+    <!-- THE CARD -->
+    <section class="desk desk-mailing" aria-labelledby="play-title">
+        <div class="mailing">
+            <div class="envelope">
+                <div class="envelope-top">
+                    <p class="return-address"><strong>Snowcraft Reforged</strong> <span>Rich Crane &middot; MILL5</span></p>
+                    <div class="franking">
+                        <svg class="cancel-lines" viewBox="0 0 96 44" aria-hidden="true"><path d="M0 6q8-8 16 0t16 0 16 0 16 0 16 0 16 0M0 17q8-8 16 0t16 0 16 0 16 0 16 0 16 0M0 28q8-8 16 0t16 0 16 0 16 0 16 0 16 0M0 39q8-8 16 0t16 0 16 0 16 0 16 0 16 0"/></svg>
+                        <svg class="postmark postmark-1999" viewBox="0 0 120 120" aria-hidden="true">
+                        <defs>
+                            <path id="pm-a-top" d="M17 60a43 43 0 0 1 86 0"/>
+                            <path id="pm-a-bottom" d="M8 60a52 52 0 0 0 104 0"/>
+                        </defs>
+                        <circle cx="60" cy="60" r="57"/>
+                        <circle cx="60" cy="60" r="36"/>
+                        <text class="postmark-arc"><textPath href="#pm-a-top" startOffset="50%">SNOWCRAFT</textPath></text>
+                        <text class="postmark-arc"><textPath href="#pm-a-bottom" startOffset="50%">HAPPY HOLIDAYS</textPath></text>
+                        <text class="postmark-year" x="60" y="68">1999</text>
+                    </svg>
+                        <svg class="postmark postmark-sent" viewBox="0 0 120 120" aria-hidden="true">
+                        <defs>
+                            <path id="pm-b-top" d="M17 60a43 43 0 0 1 86 0"/>
+                            <path id="pm-b-bottom" d="M8 60a52 52 0 0 0 104 0"/>
+                        </defs>
+                        <circle cx="60" cy="60" r="57"/>
+                        <circle cx="60" cy="60" r="36"/>
+                        <text class="postmark-arc"><textPath href="#pm-b-top" startOffset="50%">SENT ON</textPath></text>
+                        <text class="postmark-arc"><textPath href="#pm-b-bottom" startOffset="50%">PASS IT ON</textPath></text>
+                        <text class="postmark-day" x="60" y="59" data-sent-day>&nbsp;</text><text class="postmark-day" x="60" y="74" data-sent-year>&nbsp;</text>
+                    </svg>
+                        <button type="button" class="stamp-send" data-share>
+                            <span class="stamp-send-label" data-share-label>Send it to someone</span>
+                            <span class="stamp" aria-hidden="true"><img src="assets/hd/characters/005_R_ready.png" alt="" width="208" height="272"></span>
+                        </button>
+                    </div>
                 </div>
-                <div id="options-bar" role="group" aria-label="Game settings">
-                    <label class="opt">
-                        <span>Difficulty</span>
-                        <select id="difficulty-select" onchange="changeDifficulty()">
-                            <option value="1">Easy</option>
-                            <option value="2" selected>Normal</option>
-                            <option value="3">Hard</option>
-                        </select>
-                    </label>
-                    <label class="opt">
-                        <span>Display</span>
-                        <select id="scale-select" onchange="changeScale()">
-            <option value="0" selected>Fit to window</option>
-            <option value="1">600 x 320 (1x)</option>
-            <option value="1.5">900 x 480 (1.5x)</option>
-            <option value="2">1200 x 640 (2x)</option>
-            <option value="2.5">1500 x 800 (2.5x)</option>
-            <option value="3">1800 x 960 (3x)</option>
-                        </select>
-                    </label>
-                    <label class="opt">
-                        <span>Artwork</span>
-                        <select id="artwork-select" onchange="changeArtwork()">
-                            <option value="original">Original</option>
-                            <option value="high-resolution" selected>High resolution</option>
-                        </select>
-                    </label>
-                    <label class="opt opt-check">
-                        <input type="checkbox" id="music-checkbox" onchange="changeMusic()" checked>
-                        <span>Background music</span>
-                    </label>
-                    <label class="opt opt-check">
-                        <input type="checkbox" id="mute-checkbox" onchange="changeMute()">
-                        <span>Mute all</span>
-                    </label>
+            </div>
+
+            <div class="card">
+                <div class="leaf leaf-cover">
+                    <h1 id="play-title"><span class="greeting">Season<span class="apos">&rsquo;</span>s greetings, again.</span> <span class="hook">SnowCraft, the 1999 snowball fight, is back.</span></h1>
+                    <p class="pitch">Three kids in red against a green team that gets bigger every level. Ten levels, and it plays the way it did in 1999.</p>
+                    <nav class="enclosures" aria-labelledby="enclosures-label">
+                        <p id="enclosures-label">Also in the envelope</p>
+                        <ul>
+                            <li><a href="#printings">The two printings</a></li>
+                            <li><a href="#how">How to play</a></li>
+                            <li><a href="#story">Where this came from</a></li>
+                            <li><a href="#faq">Small print</a></li>
+                        </ul>
+                    </nav>
                 </div>
-            </header>
-            <div class="game-wrap">
-                <div id="game-container"></div>
-                <button type="button" id="fullscreen-btn" class="fs-btn" onclick="toggleFullscreen()" aria-label="Full screen" title="Full screen (F)">
-                    <svg class="fs-enter" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
-                    <svg class="fs-exit" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg>
-                </button>
-                <div id="rotate-hint" hidden>
-                    <p>Turn your phone sideways to play.</p>
-                    <button type="button" class="opt-btn" onclick="dismissRotateHint()">Play anyway</button>
+                <div class="leaf leaf-inside game-slot" id="play">
+                    <div class="plate">
+                        <div class="game-wrap">
+                            <div id="game-container"></div>
+                            <button type="button" id="fullscreen-btn" class="fs-btn" aria-label="Full screen" title="Full screen (F)">
+                                <svg class="fs-enter" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
+                                <svg class="fs-exit" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg>
+                            </button>
+                            <div id="rotate-hint" hidden>
+                                <p>Turn your phone sideways to play.</p>
+                                <button type="button" class="opt-btn">Play anyway</button>
+                            </div>
+                        </div>
+                        <i class="mount mount-tl" aria-hidden="true"></i>
+                        <i class="mount mount-tr" aria-hidden="true"></i>
+                        <i class="mount mount-bl" aria-hidden="true"></i>
+                        <i class="mount mount-br" aria-hidden="true"></i>
+                        <div class="plate-wipe" aria-hidden="true"></div>
+                    </div>
+                    <div class="under-plate">
+                        <fieldset class="editions">
+                            <legend class="sr-only">Artwork</legend>
+                            <label class="edition">
+                                <input type="radio" name="edition" value="original">
+                                <img class="px" src="assets/cast/005_R_ready.png" alt="" width="39" height="51">
+                                <span class="edition-text"><strong>1999</strong> <span>As it shipped</span></span>
+                            </label>
+                            <label class="edition">
+                                <input type="radio" name="edition" value="high-resolution" checked>
+                                <img src="assets/hd/characters/005_R_ready.png" alt="" width="39" height="51">
+                                <span class="edition-text"><strong>2026</strong> <span>Redrawn</span></span>
+                            </label>
+                            <!-- The game reads this control; the two buttons above drive it. -->
+                            <select id="artwork-select" class="sr-only" aria-hidden="true" tabindex="-1">
+                                <option value="original">Original</option>
+                                <option value="high-resolution" selected>High resolution</option>
+                            </select>
+                        </fieldset>
+                        <div class="under-plate-rest">
+                            <p class="how-line">Point at a kid in red, hold to wind up, let go to throw.</p>
+                            <div id="options-bar" role="group" aria-label="Game settings">
+                                <label class="opt">
+                                    <span>Difficulty</span>
+                                    <select id="difficulty-select">
+                                        <option value="1">Easy</option>
+                                        <option value="2" selected>Normal</option>
+                                        <option value="3">Hard</option>
+                                    </select>
+                                </label>
+                                <label class="opt">
+                                    <span>Display</span>
+                                    <select id="scale-select">
+                                        <option value="0" selected>Fit to window</option>
+                                        <option value="1">600 x 320 (1x)</option>
+                                        <option value="1.5">900 x 480 (1.5x)</option>
+                                        <option value="2">1200 x 640 (2x)</option>
+                                        <option value="2.5">1500 x 800 (2.5x)</option>
+                                        <option value="3">1800 x 960 (3x)</option>
+                                    </select>
+                                </label>
+                                <span class="opt-checks">
+                                    <label class="opt opt-check">
+                                        <input type="checkbox" id="music-checkbox" checked>
+                                        <span>Background music</span>
+                                    </label>
+                                    <label class="opt opt-check">
+                                        <input type="checkbox" id="mute-checkbox">
+                                        <span>Mute all</span>
+                                    </label>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <nav class="enclosures-row" aria-label="Further down this page">
+                        <a href="#printings">The two printings</a>
+                        <a href="#how">How to play</a>
+                        <a href="#story">Where this came from</a>
+                        <a href="#faq">Small print</a>
+                    </nav>
                 </div>
             </div>
         </div>
+    </section>
+
+    <!-- THE TWO PRINTINGS -->
+    <section class="desk" id="printings" aria-labelledby="printings-title">
+        <article class="sheet sheet-printings">
+            <h2 id="printings-title">One snowball fight, two printings</h2>
+            <p class="printings-lede">Drag the line across. On one side, the game with the sprites recovered from 1999. On the other, the same instant with every character redrawn this year.</p>
+            <div class="wipe" data-wipe>
+                <img class="wipe-new" src="assets/images/printing-2026.webp" alt="A snowball fight in the 2026 artwork: redrawn kids in green and red coats, two snow forts and a decorated grove" width="1778" height="960" loading="lazy">
+                <div class="wipe-old"><img class="px" src="assets/images/printing-1999.webp" alt="The same moment in the 1999 artwork, drawn with the original pixel sprites" width="1778" height="960" loading="lazy"></div>
+                <span class="wipe-year wipe-year-old" aria-hidden="true">1999</span>
+                <span class="wipe-year wipe-year-new" aria-hidden="true">2026</span>
+                <input class="wipe-range" type="range" min="0" max="100" value="50" step="0.5" aria-label="Compare the artwork. Slide right to show more of 1999, left to show more of 2026.">
+                <span class="wipe-handle" aria-hidden="true"><span class="wipe-knob"><svg viewBox="0 0 24 24"><path d="M9 6l-5 6 5 6M15 6l5 6-5 6"/></svg></span></span>
+                <i class="mount mount-tl" aria-hidden="true"></i>
+                <i class="mount mount-tr" aria-hidden="true"></i>
+                <i class="mount mount-bl" aria-hidden="true"></i>
+                <i class="mount mount-br" aria-hidden="true"></i>
+            </div>
+            <div class="printings-actions">
+                <button type="button" class="btn" data-edition="original">Play the 1999 printing</button>
+                <button type="button" class="btn btn-primary" data-edition="high-resolution">Play the 2026 printing</button>
+            </div>
+            <div class="closeups">
+                <figure class="pair">
+                    <span class="closeup"><img class="px" src="assets/cast/005_R_ready.png" alt="Red kid sprite from the 1999 game, 26 by 34 pixels" width="130" height="170" loading="lazy"><b>1999</b></span>
+                    <span class="closeup closeup-new"><img src="assets/hd/characters/005_R_ready.png" alt="The same red kid redrawn in high resolution" width="130" height="170" loading="lazy"><b>2026</b></span>
+                    <i class="mount mount-tl" aria-hidden="true"></i>
+                    <i class="mount mount-tr" aria-hidden="true"></i>
+                    <i class="mount mount-bl" aria-hidden="true"></i>
+                    <i class="mount mount-br" aria-hidden="true"></i>
+                </figure>
+                <figure class="pair">
+                    <span class="closeup"><img class="px" src="assets/cast/024_G_ready.png" alt="Green kid sprite from the 1999 game" width="125" height="180" loading="lazy"><b>1999</b></span>
+                    <span class="closeup closeup-new"><img src="assets/hd/characters/024_G_ready.png" alt="The same green kid redrawn in high resolution" width="125" height="180" loading="lazy"><b>2026</b></span>
+                    <i class="mount mount-tl" aria-hidden="true"></i>
+                    <i class="mount mount-tr" aria-hidden="true"></i>
+                    <i class="mount mount-bl" aria-hidden="true"></i>
+                    <i class="mount mount-br" aria-hidden="true"></i>
+                </figure>
+                <figure class="pair">
+                    <span class="closeup"><img class="px" src="assets/cast/017_G_yea.png" alt="Cheering green kid sprite from the 1999 game" width="210" height="175" loading="lazy"><b>1999</b></span>
+                    <span class="closeup closeup-new"><img class="crop-yea" src="assets/hd/characters/017_G_yea.png" alt="The same cheer redrawn in high resolution" width="139" height="175" loading="lazy"><b>2026</b></span>
+                    <i class="mount mount-tl" aria-hidden="true"></i>
+                    <i class="mount mount-tr" aria-hidden="true"></i>
+                    <i class="mount mount-bl" aria-hidden="true"></i>
+                    <i class="mount mount-br" aria-hidden="true"></i>
+                </figure>
+            </div>
+            <p class="closeups-note">Up close: each sprite as it shipped in 1999, beside the same pose redrawn at eight times the resolution and shown here at the same size.</p>
+        </article>
     </section>
 
     <!-- HOW TO PLAY -->
-    <section class="section sides" id="how" aria-labelledby="how-title">
-        <div class="container">
+    <section class="desk" id="how" aria-labelledby="how-title">
+        <article class="sheet sheet-rules">
             <h2 id="how-title">How to play</h2>
-            <div class="field">
-                <div class="side side-green">
+            <div class="rules">
+                <div class="rules-side rules-red">
+                    <h3>Your team</h3>
+                    <ol class="steps">
+                        <li>
+                            <span class="fig"><img src="assets/hd/characters/005_R_ready.png" alt="" width="78" height="102" loading="lazy"></span>
+                            <p><strong>Point.</strong> Move over one of your three kids and a ring appears under them.</p>
+                        </li>
+                        <li>
+                            <span class="fig"><img src="assets/hd/characters/007_R_cock.png" alt="" width="189" height="147" loading="lazy"></span>
+                            <p><strong>Hold.</strong> The meter beside them fills in under a second. Drag while you hold to move them.</p>
+                        </li>
+                        <li>
+                            <span class="fig fig-toss"><img src="assets/hd/characters/008_R_toss.png" alt="" width="189" height="153" loading="lazy"></span>
+                            <p><strong>Let go.</strong> Snowballs only fly up and to the left, so you line up by moving.</p>
+                        </li>
+                    </ol>
+                    <p>One hit leaves a kid dazed for a few seconds, and you can&rsquo;t pick them up. A second hit puts them out.</p>
+                </div>
+                <div class="rules-side rules-green">
                     <h3>The green team</h3>
+                    <div class="lineup" aria-hidden="true">
+                        <span class="fig"><img src="assets/hd/characters/024_G_ready.png" alt="" width="75" height="108" loading="lazy"></span>
+                        <span class="fig"><img src="assets/hd/characters/027_G_toss.png" alt="" width="72" height="102" loading="lazy"></span>
+                        <span class="fig"><img src="assets/hd/characters/032_G_down.png" alt="" width="105" height="102" loading="lazy"></span>
+                    </div>
                     <p>They don&rsquo;t aim. They wander, sidestep and throw down and to the right at random strength, so stay out of their lanes.</p>
                     <p>Each one takes three hits on Normal, two on Easy and four on Hard. The hit before the last knocks them flat for a moment, and snowballs sail straight over them while they&rsquo;re down.</p>
-                    <p>Levels 1 to 4 bring 3, 5, 7 and 9 kids. Levels 5 to 10 bring twelve.</p>
-                </div>
-                <div class="side side-red">
-                    <h3>Your team</h3>
-                    <ol>
-                        <li>Point at one of your three kids. A ring appears under them.</li>
-                        <li>Hold the mouse button. The meter beside them fills in under a second, and you can drag them while you hold.</li>
-                        <li>Let go to throw. Snowballs always fly up and to the left, so line up by moving, not by aiming.</li>
-                    </ol>
-                    <p>A kid hit once is dazed for a few seconds and can&rsquo;t be picked up. A second hit knocks them out.</p>
+                    <p>Levels 1 to 4 bring 3, 5, 7 and 9 of them. Levels 5 to 10 bring twelve.</p>
                 </div>
             </div>
-        </div>
+            <p class="rules-phone"><strong>On a phone:</strong> turn it sideways, touch a kid, hold, slide to move them, and lift your finger to throw.</p>
+        </article>
     </section>
 
-    <section class="section enhancements" id="enhancements" aria-labelledby="enhancements-title">
-        <div class="container">
-            <h2 id="enhancements-title">What we&rsquo;ve added since 1999</h2>
-            <p>The same snowball fight, with modern ways to play. The web edition keeps the recovered game rules; the Flutter edition builds on them.</p>
-            <div class="feature-columns">
-                <div>
-                    <h3>In your browser</h3>
-                    <ul>
-                        <li>Play without installing the original Director game.</li>
-                        <li>Touch controls, landscape phone play, full screen and flexible display sizes.</li>
-                        <li>Sharp, properly aligned text at every size, including level cards and Play Again.</li>
-                        <li>Choose the original artwork or 35 redrawn HD character frames. Scenery and effects use smooth versions of the original art.</li>
-                        <li>Independent background music and mute-all settings that remember your choices.</li>
-                        <li>Easy, Normal and Hard difficulty, with a shadow that follows the kid you drag.</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3>The Flutter edition</h3>
-                    <ul>
-                        <li>A native, landscape game using the same redrawn HD characters, with crisp widget text throughout.</li>
-                        <li>Enhanced movement and aiming, reachable enemy positions and bounded dragging.</li>
-                        <li>Separate music and sound controls, with enhanced audio assets.</li>
-                    </ul>
-                    <p><a href="https://github.com/ChiefInnovator/snowcraftai/tree/main/flutter">Explore the Flutter game and setup instructions</a>.</p>
-                </div>
-            </div>
+    <!-- THE LETTER -->
+    <section class="desk" id="story" aria-labelledby="story-title">
+        <div class="story">
+            <article class="sheet sheet-letter">
+                <h2 id="story-title">Where this came from</h2>
+                <p>For the 1999 holidays, Nicholson NY made a small snowball fight in Macromedia Director and signed it off with &ldquo;Happy Holidays&rdquo;. Three kids, a diagonal field, and a green team that kept coming.</p>
+                <p>Adobe retired Shockwave in 2019, and the game went quiet with the plug-in that ran it.</p>
+                <p>This remake starts from the original file. The ten level layouts, the paths the kids walk in on, 36 sprites and 15 sounds were read straight out of the 1999 game, and the rules were recovered from its scripts. Then it was checked against a playthrough of the original.</p>
+                <p>What&rsquo;s new is what 1999 couldn&rsquo;t do. It runs on a phone, it goes full screen, and the kids have been redrawn at eight times the size if you&rsquo;d like them that way.</p>
+                <p class="signoff"><span class="signature">Rich Crane</span> <span class="signoff-role">Microsoft MVP, MILL5</span></p>
+            </article>
+
+            <aside class="sheet sheet-slip" id="enhancements" aria-labelledby="new-title">
+                <h3 id="new-title">New in this printing</h3>
+                <ul>
+                    <li>Plays in any modern browser, with nothing to install.</li>
+                    <li>Touch controls, landscape phone play and full screen.</li>
+                    <li>The original artwork, or 35 character frames redrawn in high resolution.</li>
+                    <li>Easy, Normal and Hard, and a shadow that follows the kid you drag.</li>
+                    <li>Background music and mute-all switches that remember your choice.</li>
+                    <li>Lettering that stays sharp at every size.</li>
+                </ul>
+                <p>There is also a native Flutter edition for phones, with its own movement and aiming. <a href="https://github.com/ChiefInnovator/snowcraftai/tree/main/flutter" rel="noopener">The code and setup notes are on GitHub</a>.</p>
+            </aside>
         </div>
     </section>
 
     <!-- FAQ -->
-    <section class="section faq" id="faq" aria-labelledby="faq-title">
-        <div class="container narrow">
-            <h2 id="faq-title">FAQ</h2>
+    <section class="desk" id="faq" aria-labelledby="faq-title">
+        <article class="sheet sheet-faq faq">
+            <h2 id="faq-title">Small print</h2>
             <details>
                 <summary>Can I play full screen?</summary>
                 <p>Yes. Use the button in the top-right corner of the game, or press F. Press Esc, F or the button again to leave. On a phone, full screen turns the game sideways where the browser allows it.</p>
@@ -318,7 +444,7 @@
             </details>
             <details>
                 <summary>Do I need to install anything?</summary>
-                <p>No. It runs in any modern desktop browser: Chrome, Firefox, Safari or Edge.</p>
+                <p>No. It runs in any modern browser on desktop and phones: Chrome, Firefox, Safari or Edge.</p>
             </details>
             <details>
                 <summary>Does it work on a phone?</summary>
@@ -332,36 +458,69 @@
                 <summary>What is this based on?</summary>
                 <p>SnowCraft, the 1999 holiday game by Nicholson NY. This remake follows its rules and timing. See the <a href="https://github.com/ChiefInnovator/snowcraftai/blob/main/NOTICE.md" rel="noopener">notice</a>. Richard Crane and MILL5 are not affiliated with the original publishers.</p>
             </details>
-        </div>
+        </article>
     </section>
 
-    <!-- AUTHOR -->
-    <section class="section" id="author">
-        <div class="container">
-            <div class="author-block">
-                <div class="avatar"><img src="assets/images/inventing-fire-mark.png" alt="Inventing Fire with AI" width="60" height="60"></div>
-                <div>
-                    <h3>Built by Rich Crane — Microsoft MVP, MILL5.</h3>
-                    <p>Part of the <i>Inventing Fire with AI</i> initiative. The same workshop behind <a href="https://chiefinnovator.github.io/videodownloader/">Video Downloader</a>, <a href="https://chiefinnovator.github.io/macedgelight/">MacEdgeLight</a>, and <a href="https://inventingfirewith.ai/cutandmove/">Cut &amp; Move</a>.</p>
-                    <div class="author-links">
-                        <a href="https://mill5.com" rel="noopener">MILL5</a>
-                        <a href="https://www.inventingfirewith.ai" rel="noopener">Inventing Fire</a>
-                        <a href="https://www.youtube.com/@InventingFirewithAI" rel="noopener">YouTube</a>
-                        <a href="https://podcasts.apple.com/us/podcast/inventing-fire-with-ai/id1814411467" rel="noopener">Podcast</a>
-                        <a href="https://github.com/ChiefInnovator" rel="noopener">GitHub</a>
-                        <a href="https://mvp.microsoft.com/en-US/MVP/profile/10ce0bc0-7536-43f6-b28c-e9601a4a0d0d" rel="noopener">Microsoft MVP</a>
-                    </div>
-                </div>
+    <!-- SEND IT ON -->
+    <section class="desk" id="send" aria-labelledby="send-title">
+        <div class="envelope-front">
+            <div class="franking" aria-hidden="true">
+                <svg class="cancel-lines" viewBox="0 0 96 44" aria-hidden="true"><path d="M0 6q8-8 16 0t16 0 16 0 16 0 16 0 16 0M0 17q8-8 16 0t16 0 16 0 16 0 16 0 16 0M0 28q8-8 16 0t16 0 16 0 16 0 16 0 16 0M0 39q8-8 16 0t16 0 16 0 16 0 16 0 16 0"/></svg>
+                <svg class="postmark postmark-1999" viewBox="0 0 120 120" aria-hidden="true">
+                        <defs>
+                            <path id="pm-c-top" d="M17 60a43 43 0 0 1 86 0"/>
+                            <path id="pm-c-bottom" d="M8 60a52 52 0 0 0 104 0"/>
+                        </defs>
+                        <circle cx="60" cy="60" r="57"/>
+                        <circle cx="60" cy="60" r="36"/>
+                        <text class="postmark-arc"><textPath href="#pm-c-top" startOffset="50%">SNOWCRAFT</textPath></text>
+                        <text class="postmark-arc"><textPath href="#pm-c-bottom" startOffset="50%">HAPPY HOLIDAYS</textPath></text>
+                        <text class="postmark-year" x="60" y="68">1999</text>
+                    </svg>
+                <svg class="postmark postmark-sent" viewBox="0 0 120 120" aria-hidden="true">
+                        <defs>
+                            <path id="pm-d-top" d="M17 60a43 43 0 0 1 86 0"/>
+                            <path id="pm-d-bottom" d="M8 60a52 52 0 0 0 104 0"/>
+                        </defs>
+                        <circle cx="60" cy="60" r="57"/>
+                        <circle cx="60" cy="60" r="36"/>
+                        <text class="postmark-arc"><textPath href="#pm-d-top" startOffset="50%">SENT ON</textPath></text>
+                        <text class="postmark-arc"><textPath href="#pm-d-bottom" startOffset="50%">PASS IT ON</textPath></text>
+                        <text class="postmark-day" x="60" y="59" data-sent-day>&nbsp;</text><text class="postmark-day" x="60" y="74" data-sent-year>&nbsp;</text>
+                    </svg>
+                <span class="stamp"><img src="assets/hd/characters/017_G_yea.png" alt="" width="336" height="280" loading="lazy"></span>
             </div>
+            <h2 id="send-title">Now send it to someone.</h2>
+            <p class="send-pitch">The whole game is one link. Nothing to install, no account, and it plays on their phone.</p>
+            <p class="address">chiefinnovator.github.io/<wbr>snowcraftai</p>
+            <div class="send-actions">
+                <button type="button" class="btn btn-primary" data-share><span data-share-label>Send it</span></button>
+                <button type="button" class="btn" data-copy><span data-share-label>Copy the link</span></button>
+            </div>
+            <p class="share-status sr-only" role="status" aria-live="polite"></p>
         </div>
     </section>
 </main>
 
 <footer>
-    <div class="container">
+    <div class="maker-card" id="author">
+        <img src="assets/images/inventing-fire-mark.png" alt="Inventing Fire with AI" width="60" height="60">
+        <div>
+            <p class="maker-name">Built by Rich Crane, Microsoft MVP, at MILL5.</p>
+            <p>Part of the <i>Inventing Fire with AI</i> initiative. The same workshop behind <a href="https://chiefinnovator.github.io/videodownloader/">Video Downloader</a>, <a href="https://chiefinnovator.github.io/macedgelight/">MacEdgeLight</a>, and <a href="https://inventingfirewith.ai/cutandmove/">Cut &amp; Move</a>.</p>
+            <ul class="maker-links">
+                <li><a href="https://mill5.com" rel="noopener">MILL5</a></li>
+                <li><a href="https://www.inventingfirewith.ai" rel="noopener">Inventing Fire</a></li>
+                <li><a href="https://www.youtube.com/@InventingFirewithAI" rel="noopener">YouTube</a></li>
+                <li><a href="https://podcasts.apple.com/us/podcast/inventing-fire-with-ai/id1814411467" rel="noopener">Podcast</a></li>
+                <li><a href="https://mvp.microsoft.com/en-US/MVP/profile/10ce0bc0-7536-43f6-b28c-e9601a4a0d0d" rel="noopener">Microsoft MVP</a></li>
+                <li><a class="gh" href="https://github.com/ChiefInnovator/snowcraftai" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg><span>The code on GitHub</span></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="legal">
         <p>Remake code and site &copy; 2026 Richard Crane &middot; MILL5. SnowCraft (1999) remains with its original rights holders.</p>
-        <p>Not affiliated with Nicholson NY, IconMedialab, Macromedia, or Adobe. <a href="https://github.com/ChiefInnovator/snowcraftai/blob/main/NOTICE.md">Notice</a></p>
-        <p><a href="https://github.com/ChiefInnovator/snowcraftai">Repo</a> &middot; <a href="./llms.txt">llms.txt</a> &middot; <a href="mailto:rich@mill5.com">rich@mill5.com</a></p>
+        <p>Not affiliated with Nicholson NY, IconMedialab, Macromedia, or Adobe. <a href="https://github.com/ChiefInnovator/snowcraftai/blob/main/NOTICE.md" rel="noopener">Notice</a> &middot; <a href="./llms.txt">llms.txt</a> &middot; <a href="mailto:rich@mill5.com">rich@mill5.com</a></p>
     </div>
 </footer>
 
@@ -371,5 +530,6 @@
     <script src="js/santa.js"></script>
     <script src="js/motion.js"></script>
     <script src="js/game.js"></script>
+    <script src="js/page.js"></script>
 </body>
 </html>

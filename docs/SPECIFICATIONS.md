@@ -15,7 +15,7 @@ All values live in `RULES` at the top of `web/js/game.js` and `web/js/parity.js`
 * **HD web actions and contact:** common atlas scale and jacket registration preserve proportions. Tight separate contact shadows use actual opaque blue sole pixels, and disappear during falling poses. Throws progress through gather, cock, release and follow-through while retaining the original projectile release instant. Hits use recoil, backward fall, kneeling and rising transitions; daze, immunity and recovery durations remain unchanged. Red hit/knockout poses use the same colored-body area as the charging/ready actor and share the terminal fall's body centre, preventing growth or a position jump when changing artwork packs. The Red stun holds the matching grounded ready body with gentle sway and orbiting stars. Idle children breathe, blink and shift weight independently. These additions belong only to the HD web renderer; Original mode and Flutter retain their existing animation.
 * **HD web snowballs:** spherical snowballs and soft ground shadows interpolate toward the next authoritative 50 ms step. Snowballs retain the original 11-pixel logical canvas (about 10 pixels of visible sphere), with a cool blue-gray outline for contrast against snow. New balls begin at the release point even partway through that clock. Drop height interpolates to ground contact, followed by a small snowburst, splat and melt. Original collision/range/count limits and phase durations remain authoritative. Decorative particles are capped at 40 (16 with coarse pointers), expire within 240 ms and clear on level reset.
 
-High resolution is the default artwork. An explicit Original choice is remembered. Preferences for artwork, background music and mute-all persist independently. Disabling music leaves sound effects enabled; mute-all silences effects, intro and music, and unmuting respects the saved music choice. Artwork changes update existing objects without restarting a level.
+High resolution is the default artwork. An explicit Original choice is remembered. On the page the choice is the 1999 / 2026 pair of prints under the game (they drive the `#artwork-select` control the game reads), and the first enclosure shows one frame in both artworks with a line to drag across. Preferences for artwork, background music and mute-all persist independently. Disabling music leaves sound effects enabled; mute-all silences effects, intro and music, and unmuting respects the saved music choice. Artwork changes update existing objects without restarting a level. Players who chose Original download the high-resolution pack only when they switch to it.
 
 ## Santa Comes to Town (web)
 
@@ -44,7 +44,7 @@ High resolution is the default artwork. An explicit Original choice is remembere
 
 * **Hits to knock out:** Easy 2, Normal 3, Hard 4. The second-to-last hit knocks the kid down for 2.5 s, immune; earlier hits stagger it for 1.5 s (still hittable).
 * **AI (every 100 ms while ready):** 10% `loc += myDirection` of `(±2,±1)` for 1–99 steps then throw; 10% side-step `(±1,±2)` × 5; 20% throw; 60% stand still. `locH < 40` steers `(4,1)`; `locV < 40` steers `(1,4)`. Crossing the centre line triggers a throw. Greens **never aim**.
-* **Starts:** per-level VWSC Event Loop positions (`web/js/parity.js` / `docs/recovered/event-loop-layouts.json`). Off-stage greens spawn at those locs and walk in under the edge rule.
+* **Starts:** per-level VWSC Event Loop positions (`web/js/parity.js` / `docs/reference/snowcraft-original/source-evidence/recovered/event-loop-layouts.json`). Off-stage greens spawn at those locs and walk in under the edge rule.
 * **Throw:** wind-up 0.5 s, cock 0.6–1.5 s, release at random power 5–8, toss pose 0.5 s.
 
 ## Levels & score
@@ -56,9 +56,9 @@ High resolution is the default artwork. An explicit Original choice is remembere
 ## Phones (web)
 
 * **Touch:** a tap picks the nearest red kid within 34 px (no hover needed). While dragging, the kid is drawn 36 px above the finger. Lifting the finger throws. Tapping a dazed kid plays the "can't pick up" chirp.
-* **Landscape** (touch devices, `max-height: 520px`): nav and settings hide and the game fills the viewport. Portrait shows a dismissible "Turn your phone sideways" hint.
+* **Landscape** (touch devices, `max-height: 520px`): the card, envelope and settings hide and the game fills the viewport. Portrait shows a dismissible "Turn your phone sideways" hint.
 * **Rotation:** layout re-runs on `resize`, `orientationchange` and `visualViewport` resize (at 120 ms and 600 ms, since phones report sizes late) and calls `game.scale.refresh()`. The game box is sized by width with a CSS `aspect-ratio` and `max-width: 100%`, so it can't make the page wider than the screen.
-* **Full screen:** works like a video player. A button on the top-right of the game (or the F key) toggles it; Esc, F or the button exits. The game letterboxes to fill the screen. Uses the Fullscreen API where available (desktop, Android, with a landscape lock on touch devices); iPhone Safari has no element full screen, so the game covers the browser window instead. Add to Home Screen (`manifest.webmanifest`, `display: fullscreen`) gives iPhone a true full-screen launch.
+* **Full screen:** works like a video player. A button on the top-right of the game (or the F key) toggles it; Esc, F or the button exits. The game letterboxes to fill the screen. Uses the Fullscreen API where available (desktop, Android, with a landscape lock on touch devices); iPhone Safari has no element full screen, so the game covers the browser window instead. Add to Home Screen (`manifest.webmanifest`, `display: fullscreen`) gives iPhone a true full-screen launch. The canvas is re-sized to the new display size without restarting the level.
 * **Rendering:** render scale capped at 2× on touch devices.
 
 ## Debug
