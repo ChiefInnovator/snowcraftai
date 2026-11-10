@@ -16,7 +16,7 @@
 - [`flutter/assets/hd/characters/`](../../flutter/assets/hd/characters/): byte-identical native copy of the runtime pack and manifest.
 - [`tools/artwork/build-hd-pack.mjs`](../../tools/artwork/build-hd-pack.mjs): deterministic registration/export from the existing masters; it does not generate illustrations. Upright poses retain the original boot height and body height, translating horizontally when needed to fit the frame. Hit/falling poses use a uniform bounds fit because detached boots are unsuitable standing anchors. Both modes retain the original logical frame and registration, validate transparent corners and write both runtime copies.
 - Both renderers own HD selection rings; generated character art contains no selection ellipse. The web Original artwork option retains the recovered BITDs and their original embedded rings.
-- The unused vector alternative remains under [`poc/hd-character-redraw-claude/`](../../poc/hd-character-redraw-claude/README.md) as a superseded two-pose study.
+- The unused vector alternative, a superseded two-pose study formerly under `poc/hd-character-redraw-claude/`, has been removed from the tree; it remains in git history.
 
 To reproduce exports after `npm ci --prefix web` and installing Playwright Chromium:
 

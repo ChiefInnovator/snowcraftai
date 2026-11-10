@@ -77,7 +77,10 @@ class _GamePageState extends State<GamePage>
       if (game.phase != GamePhase.menu && !game.ended) _controller.pause();
       return KeyEventResult.handled;
     }
+    // A focused control (mute, music, settings, difficulty, start) activates
+    // on Space itself; only an otherwise unclaimed Space starts the game.
     if (event.logicalKey == LogicalKeyboardKey.space &&
+        node.hasPrimaryFocus &&
         (game.phase == GamePhase.menu || game.ended)) {
       _controller.start();
       return KeyEventResult.handled;
@@ -97,7 +100,10 @@ class _GamePageState extends State<GamePage>
             builder: (context, bounds) {
               // The browser cannot be orientation-locked by Flutter. Keep the game
               // landscape-only there too; native platforms request both landscape modes.
-              if (bounds.maxWidth < bounds.maxHeight) return _rotatePrompt();
+              // The fight must not carry on unseen behind the prompt.
+              final portrait = bounds.maxWidth < bounds.maxHeight;
+              _controller.obscure(portrait);
+              if (portrait) return _rotatePrompt();
               final compact = bounds.maxHeight < 430;
               return Column(
                 children: [
@@ -283,7 +289,17 @@ class _GamePageState extends State<GamePage>
       child: Stack(
         fit: StackFit.expand,
         children: [
-          CustomPaint(painter: GamePainter(game, widget.assets)),
+          // Frames repaint this layer alone; the widgets around it rebuild
+          // only when the controller reports a change they display.
+          RepaintBoundary(
+            child: CustomPaint(
+              painter: GamePainter(
+                game,
+                widget.assets,
+                repaint: _controller.frame,
+              ),
+            ),
+          ),
           if (game.phase == GamePhase.menu) _menu(size),
           if (game.phase == GamePhase.intro)
             _message(
@@ -330,7 +346,7 @@ class _GamePageState extends State<GamePage>
                     ),
                     const SizedBox(height: 12),
                     FilledButton.icon(
-                      onPressed: _controller.pause,
+                      onPressed: _controller.resume,
                       icon: const Icon(Icons.play_arrow_rounded),
                       label: const Text('Resume game'),
                     ),

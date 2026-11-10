@@ -1,6 +1,6 @@
 {
   "created_utc": "2026-11-08T23:51:38Z",
-  "note": "User-supplied original-game archives preserved byte-for-byte. No credentials. EXE/DCR were never executed.",
+  "note": "User-supplied original-game archives preserved byte-for-byte. No credentials. The static extraction workstream never executed the EXE or DCR. A separate Wine playthrough of the Windows EXE on 2026-11-08, run from the gitignored root reference/ workspace, is recorded in docs/reference-app.md.",
   "uploads": [
     {
       "role": "win32-director-8-projector-archive",

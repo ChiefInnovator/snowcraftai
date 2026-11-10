@@ -54,6 +54,7 @@ class Kid {
   double timer = 0;
   double decisionClock = 0;
   double committedThrow = 0;
+  bool recovering = false;
   int queuedPower = 5;
   bool get alive => hits < maxHits;
   bool get canGrab => alive && timer <= 0 && team == Team.red;
@@ -167,6 +168,15 @@ class GameEngine {
         }
         target = clampGreen(target + const Vec(-22, 12));
       }
+      // The bottom-left corner dead-ends; back up the throw axis from there.
+      for (var tries = 0; tries < 12; tries++) {
+        if (!_kids.any(
+          (k) => k.team == Team.green && (k.target - target).length < 24,
+        )) {
+          break;
+        }
+        target = clampGreen(target + const Vec(-22, -11));
+      }
       _kids.add(
         Kid(
           id: id++,
@@ -237,6 +247,13 @@ class GameEngine {
   }
 
   void cancelDrag() {
+    final kid = dragged;
+    if (kid != null &&
+        (kid.pose == KidPose.windup || kid.pose == KidPose.cock)) {
+      // A zero-power tap, pause, backgrounding or pointer-cancel must not
+      // leave the kid charging forever.
+      kid.pose = KidPose.ready;
+    }
     dragged = null;
     dragTarget = null;
     chargeSeconds = 0;
@@ -291,6 +308,20 @@ class GameEngine {
       if (kid.timer > 0) {
         kid.timer = math.max(0, kid.timer - dt);
         if (kid.timer > 0) continue;
+        if (kid.pose == KidPose.down) {
+          // Back on their feet and hittable again, but two 0.5 s recovery
+          // stages pass before a downed green can act.
+          kid.pose = KidPose.hurt;
+          kid.timer = 0.5;
+          kid.recovering = true;
+          continue;
+        }
+        if (kid.recovering) {
+          kid.recovering = false;
+          kid.pose = KidPose.ready;
+          kid.timer = 0.5;
+          continue;
+        }
         if (kid.pose == KidPose.windup) {
           kid.pose = KidPose.cock;
           kid.timer = difficulty == Difficulty.hard ? 0.25 : 0.4;
@@ -339,20 +370,27 @@ class GameEngine {
           distance = candidate;
         }
       }
+      var moved = false;
       if (nearest != null) {
         final launchPoint = clampGreen(nearest.position - const Vec(120, 60));
-        kid.position = clampGreen(_toward(kid.position, launchPoint, 50 * dt));
+        moved = _walkGreen(
+          kid,
+          _toward(kid.position, launchPoint, 50 * dt),
+          dt,
+        );
       }
-      kid.pose = KidPose.walk;
+      kid.pose = moved ? KidPose.walk : KidPose.ready;
       return;
     }
     final laneError = target.position.lane - kid.position.lane;
     if (laneError.abs() > 10) {
       final sign = laneError.sign;
-      kid.position = clampGreen(
+      final moved = _walkGreen(
+        kid,
         kid.position + Vec(-sign * 25 * dt, sign * 50 * dt),
+        dt,
       );
-      kid.pose = KidPose.walk;
+      kid.pose = moved ? KidPose.walk : KidPose.ready;
     } else {
       kid.pose = KidPose.ready;
     }
@@ -368,6 +406,7 @@ class GameEngine {
         kid.position.x + 20 < stageWidth && kid.position.y + 10 < stageHeight;
     if (laneError.abs() <= 14 &&
         firstStepsInBounds &&
+        _liveBalls(Team.green) < 10 &&
         _random.nextDouble() < chance) {
       kid.queuedPower = aimedPower(kid.position, target.position);
       kid.pose = KidPose.windup;
@@ -379,10 +418,20 @@ class GameEngine {
     }
   }
 
+  /// Splat and melting balls are spent and do not count toward the cap.
+  int _liveBalls(Team team) => _balls
+      .where(
+        (b) =>
+            b.team == team &&
+            b.phase != BallPhase.splat &&
+            b.phase != BallPhase.melting,
+      )
+      .length;
+
   bool throwSnowball(Kid kid, int power) {
     if (!kid.alive ||
         phase != GamePhase.playing ||
-        _balls.where((b) => b.team == kid.team).length >= 10) {
+        _liveBalls(kid.team) >= 10) {
       return false;
     }
     _balls.add(Snowball(kid.team, kid.position, power.clamp(1, 8)));
@@ -398,7 +447,10 @@ class GameEngine {
         ball.position = ball.position + ball.step;
         ball.remaining--;
         var hit = false;
-        for (final kid in _kids.where((k) => k.team != ball.team && k.alive)) {
+        // Hits need range left after the decrement: reach is 2p-1 steps.
+        for (final kid in _kids.where(
+          (k) => ball.remaining > 0 && k.team != ball.team && k.alive,
+        )) {
           if (kid.pose == KidPose.down) continue;
           if (_segmentDistance(kid.position, before, ball.position) < 18) {
             applyHit(kid);
@@ -476,9 +528,58 @@ class GameEngine {
   void _finish(GamePhase next, String cue) {
     cancelDrag();
     _balls.clear();
+    // Nothing advances poses after the round ends; leave nobody mid-throw
+    // or dazed on the end screen.
+    for (final kid in _kids.where((k) => k.alive)) {
+      kid.pose = KidPose.ready;
+      kid.timer = 0;
+      kid.committedThrow = 0;
+      kid.recovering = false;
+    }
     phase = next;
     phaseTime = 0;
     onSound?.call(cue);
+  }
+
+  /// Whether standing at [to] would bring [kid] inside another green's space
+  /// and closer to it than it is now.
+  bool _crowds(Kid kid, Vec to) => _blocker(kid, to) != null;
+
+  Kid? _blocker(Kid kid, Vec to) {
+    Kid? nearest;
+    var best = 22.0;
+    for (final other in _kids) {
+      if (other == kid || other.team != Team.green || !other.alive) continue;
+      final gap = (to - other.position).length;
+      if (gap < best && gap < (kid.position - other.position).length) {
+        nearest = other;
+        best = gap;
+      }
+    }
+    return nearest;
+  }
+
+  /// Greens never walk onto each other. A step that would crowd another green
+  /// becomes a sidestep along the throw axis, which keeps the lane (and aim);
+  /// if that is crowded or leaves the field, the kid waits. Returns whether
+  /// the kid moved.
+  bool _walkGreen(Kid kid, Vec to, double dt) {
+    final step = clampGreen(to);
+    final blocker = _blocker(kid, step);
+    if (blocker == null) {
+      kid.position = step;
+      return true;
+    }
+    final delta = kid.position - blocker.position;
+    final along = 2 * delta.x + delta.y;
+    final sign = along != 0 ? along.sign : (kid.id < blocker.id ? -1.0 : 1.0);
+    final aside = kid.position + const Vec(2, 1) * (sign * 22 * dt);
+    final legal = clampGreen(aside);
+    if (legal.x != aside.x || legal.y != aside.y || _crowds(kid, aside)) {
+      return false;
+    }
+    kid.position = aside;
+    return true;
   }
 
   static Vec _toward(Vec from, Vec to, double maximum) {

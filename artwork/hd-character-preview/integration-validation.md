@@ -4,7 +4,7 @@ This records the initial integration export. [The subsequent correction receipt]
 
 ## Scope
 
-The web High resolution option and enhanced-only Flutter game use the same 35 redrawn character frames: 15 Red and 20 Green, exported at 8× their original logical canvas sizes. Original artwork mode, cast registrations, collision masks, scenery, audio and gameplay rules remain intact. The earlier vector study is preserved under `poc/` and is unused at runtime.
+The web High resolution option and enhanced-only Flutter game use the same 35 redrawn character frames: 15 Red and 20 Green, exported at 8× their original logical canvas sizes. Original artwork mode, cast registrations, collision masks, scenery, audio and gameplay rules remain intact. The earlier vector study, formerly under `poc/` and unused at runtime, has been removed from the tree; it remains in git history.
 
 Reference-pair approval is recorded in the [artwork notes](README.md). This report records implementation checks and agent visual inspection; it does not claim final human acceptance of every animation frame, physical-device play, perceptual audio acceptance or signed store distribution.
 

@@ -1,0 +1,679 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-10T21:46:50+00:00",
+  "title": "Design System: Snowcraft Reforged",
+  "extensions": {
+    "colorMeta": {
+      "blotter": {
+        "role": "tertiary",
+        "displayName": "Blotter Spruce",
+        "canonical": "oklch(37.2% 0.057 167)",
+        "tonalRamp": [
+          "#020f09",
+          "#112b21",
+          "#284a3d",
+          "#426b5b",
+          "#638d7c",
+          "#8aaf9f",
+          "#b3d1c4",
+          "#dff5eb"
+        ]
+      },
+      "blotter-deep": {
+        "role": "tertiary",
+        "displayName": "Blotter Deep",
+        "canonical": "oklch(29.6% 0.045 165)",
+        "tonalRamp": [
+          "#040e09",
+          "#172a21",
+          "#30483d",
+          "#4b695b",
+          "#6b8b7c",
+          "#91ad9f",
+          "#b9cfc4",
+          "#e3f3eb"
+        ]
+      },
+      "on-blotter": {
+        "role": "neutral",
+        "displayName": "On Blotter",
+        "canonical": "oklch(96.8% 0.007 152)",
+        "tonalRamp": [
+          "#0a0c0a",
+          "#232624",
+          "#404340",
+          "#5e625f",
+          "#7f8480",
+          "#a2a6a3",
+          "#c7cac7",
+          "#edefed"
+        ]
+      },
+      "on-blotter-soft": {
+        "role": "neutral",
+        "displayName": "On Blotter Soft",
+        "canonical": "oklch(85.9% 0.025 161)",
+        "tonalRamp": [
+          "#070d09",
+          "#1e2822",
+          "#39453e",
+          "#56665d",
+          "#77877e",
+          "#9ba9a1",
+          "#c1cdc6",
+          "#e8f1ec"
+        ]
+      },
+      "cranberry": {
+        "role": "primary",
+        "displayName": "Cranberry Card",
+        "canonical": "oklch(42.2% 0.146 19)",
+        "tonalRamp": [
+          "#200002",
+          "#490811",
+          "#731f27",
+          "#a03940",
+          "#c75c60",
+          "#e58687",
+          "#feb2b2",
+          "#ffe8e8"
+        ]
+      },
+      "cranberry-deep": {
+        "role": "primary",
+        "displayName": "Cranberry Deep",
+        "canonical": "oklch(35.1% 0.121 19)",
+        "tonalRamp": [
+          "#1d0103",
+          "#431115",
+          "#6c292d",
+          "#974347",
+          "#bc6467",
+          "#db8c8d",
+          "#f8b5b5",
+          "#ffe8e8"
+        ]
+      },
+      "on-cranberry": {
+        "role": "neutral",
+        "displayName": "On Cranberry",
+        "canonical": "oklch(98.7% 0.004 106)",
+        "tonalRamp": [
+          "#0b0b0a",
+          "#252524",
+          "#424240",
+          "#61615f",
+          "#828280",
+          "#a5a5a3",
+          "#c9c9c7",
+          "#eeeeed"
+        ]
+      },
+      "on-cranberry-soft": {
+        "role": "neutral",
+        "displayName": "On Cranberry Soft",
+        "canonical": "oklch(89.9% 0.030 10)",
+        "tonalRamp": [
+          "#10090a",
+          "#2e2123",
+          "#4e3d3f",
+          "#705b5d",
+          "#927c7e",
+          "#b49fa1",
+          "#d5c4c6",
+          "#f8ebec"
+        ]
+      },
+      "foil": {
+        "role": "secondary",
+        "displayName": "Foil",
+        "canonical": "oklch(88.4% 0.009 258)",
+        "tonalRamp": [
+          "#0a0b0d",
+          "#232528",
+          "#404246",
+          "#5e6166",
+          "#7f8388",
+          "#a2a5aa",
+          "#c7c9cd",
+          "#edeff1"
+        ]
+      },
+      "envelope": {
+        "role": "secondary",
+        "displayName": "Envelope Silver",
+        "canonical": "oklch(88.4% 0.009 258)",
+        "tonalRamp": [
+          "#0a0b0d",
+          "#232528",
+          "#404246",
+          "#5e6166",
+          "#7f8388",
+          "#a2a5aa",
+          "#c7c9cd",
+          "#edeff1"
+        ]
+      },
+      "card": {
+        "role": "neutral",
+        "displayName": "Card White",
+        "canonical": "oklch(98.7% 0.004 106)",
+        "tonalRamp": [
+          "#0b0b0a",
+          "#252524",
+          "#424240",
+          "#61615f",
+          "#828280",
+          "#a5a5a3",
+          "#c9c9c7",
+          "#eeeeed"
+        ]
+      },
+      "picture-white": {
+        "role": "neutral",
+        "displayName": "Picture White",
+        "canonical": "oklch(100.0% 0.000 90)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "oklch(20.4% 0.007 258)",
+        "tonalRamp": [
+          "#0a0b0c",
+          "#242527",
+          "#404245",
+          "#5f6165",
+          "#808286",
+          "#a3a5a8",
+          "#c7c9cc",
+          "#edeef0"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Ink Soft",
+        "canonical": "oklch(41.5% 0.016 262)",
+        "tonalRamp": [
+          "#090b0e",
+          "#22252a",
+          "#3e4249",
+          "#5d616a",
+          "#7d838c",
+          "#a1a5ad",
+          "#c5c9d0",
+          "#eceff4"
+        ]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "rgba(21, 23, 26, 0.18)",
+        "tonalRamp": [
+          "#0a0b0c",
+          "#242527",
+          "#404245",
+          "#5f6165",
+          "#808286",
+          "#a3a5a8",
+          "#c7c9cc",
+          "#edeef0"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "greeting": {
+        "displayName": "Greeting",
+        "purpose": "The cover greeting in foil script. Sized by container query against the cover leaf."
+      },
+      "signature": {
+        "displayName": "Signature",
+        "purpose": "The sign-off on the letter, in cranberry script."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "One per sheet. Raised to clamp(2rem, 5.4vw, 3.5rem) on the addressed envelope."
+      },
+      "hook": {
+        "displayName": "Hook",
+        "purpose": "The plain-words line under the greeting; half of the single h1."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Sub-headings on a sheet and the maker line."
+      },
+      "numeral": {
+        "displayName": "Numeral",
+        "purpose": "The years 1999 and 2026, step numbers, year tags and the wipe sheet."
+      },
+      "letter": {
+        "displayName": "Letter",
+        "purpose": "Body text of the letter only, capped at 60ch."
+      },
+      "control": {
+        "displayName": "Control",
+        "purpose": "Select values, the quiet button, the skip link."
+      },
+      "button": {
+        "displayName": "Button",
+        "purpose": "Buttons and enclosure links."
+      },
+      "row": {
+        "displayName": "Row",
+        "purpose": "FAQ questions."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running text on every sheet."
+      },
+      "lede": {
+        "displayName": "Lede",
+        "purpose": "Opening paragraph of the comparison sheet and the send pitch."
+      },
+      "small": {
+        "displayName": "Small",
+        "purpose": "Maker card, notes, checkbox labels, maker links."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Field labels, edition captions, the enclosures label."
+      }
+    },
+    "shadows": [
+      {
+        "name": "paper-shadow",
+        "value": "0 1px 1px rgba(5, 22, 16, 0.28), 0 10px 18px -8px rgba(5, 22, 16, 0.5), 0 36px 54px -26px rgba(5, 22, 16, 0.62)",
+        "purpose": "Any piece of paper lying on the blotter: envelope, card, sheets, addressed envelope, maker card. Shipped as --paper-shadow."
+      },
+      {
+        "name": "picture",
+        "value": "0 2px 3px rgba(21, 23, 26, 0.18), 0 14px 22px -14px rgba(21, 23, 26, 0.45)",
+        "purpose": "The game and the comparison frame, with a 1px ink outline."
+      },
+      {
+        "name": "picked-up-print",
+        "value": "0 2px 2px rgba(21, 23, 26, 0.25), 0 14px 18px -9px rgba(21, 23, 26, 0.6)",
+        "purpose": "The chosen edition print."
+      },
+      {
+        "name": "tag",
+        "value": "0 2px 3px rgba(21, 23, 26, 0.22), 0 8px 12px -6px rgba(21, 23, 26, 0.4)",
+        "purpose": "Year tags on the comparison."
+      },
+      {
+        "name": "knob",
+        "value": "0 0 0 3px #fbfbf8, 0 3px 4px rgba(21, 23, 26, 0.3), 0 10px 14px -6px rgba(21, 23, 26, 0.55)",
+        "purpose": "The comparison knob, ringed in card white."
+      },
+      {
+        "name": "comparison-line",
+        "value": "0 0 0 1px rgba(21, 23, 26, 0.55), 0 0 12px rgba(21, 23, 26, 0.35)",
+        "purpose": "The 4px leaning line on the comparison."
+      },
+      {
+        "name": "fold-cover",
+        "value": "inset -20px 0 24px -20px rgba(0, 0, 0, 0.42)",
+        "purpose": "Crease on the cover leaf; inset 0 -16px 20px -16px once the card stacks."
+      },
+      {
+        "name": "fold-inside",
+        "value": "inset 20px 0 24px -20px rgba(0, 0, 0, 0.16)",
+        "purpose": "Crease on the inside leaf; inset 0 16px 20px -16px once the card stacks."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Default easing for every transition and both keyframe animations. Shipped as --ease-out."
+      },
+      {
+        "name": "settle",
+        "value": "0.7s cubic-bezier(0.16, 1, 0.3, 1) backwards; from rotate(-3.1deg) translateY(-12px)",
+        "purpose": "The envelope settling once on arrival. The only arrival animation."
+      },
+      {
+        "name": "strike",
+        "value": "0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; from opacity 0, scale(1.9), blur(3px) to opacity 0.92",
+        "purpose": "The dated postmark struck when the page is sent or the link copied."
+      },
+      {
+        "name": "plate-wipe-cover",
+        "value": "clip-path 0.26s cubic-bezier(0.3, 0, 0.2, 1)",
+        "purpose": "Cranberry year sheet wiping in over the game from the left; artwork changes after 270ms."
+      },
+      {
+        "name": "plate-wipe-leave",
+        "value": "clip-path 0.36s cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Year sheet wiping off to the right after a 460ms minimum hold and once the game draws the new artwork."
+      },
+      {
+        "name": "lift",
+        "value": "transform 0.25s to 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Stamp lift, edition print lift, knob scale, FAQ plus rotation, enclosure arrow drop."
+      },
+      {
+        "name": "tint",
+        "value": "0.2s",
+        "purpose": "Colour, background and border changes on hover."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "transition: none; animation: none",
+        "purpose": "All motion removed; a struck postmark stays visible at 0.92 opacity; the artwork changes without the wipe."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "wide-desk",
+        "value": "min-width: 1200px"
+      },
+      {
+        "name": "short-laptop",
+        "value": "min-width: 961px and max-height: 820px"
+      },
+      {
+        "name": "stack",
+        "value": "max-width: 960px"
+      },
+      {
+        "name": "phone",
+        "value": "max-width: 560px"
+      },
+      {
+        "name": "phone-landscape",
+        "value": "orientation: landscape and max-height: 520px and pointer: coarse"
+      }
+    ],
+    "tilts": [
+      {
+        "name": "envelope",
+        "value": "-1.4deg",
+        "note": "-0.7deg at 960px and narrower"
+      },
+      {
+        "name": "sheet-rules",
+        "value": "-0.5deg"
+      },
+      {
+        "name": "sheet-printings",
+        "value": "0.3deg"
+      },
+      {
+        "name": "sheet-letter",
+        "value": "0.35deg"
+      },
+      {
+        "name": "sheet-slip",
+        "value": "1.5deg"
+      },
+      {
+        "name": "sheet-faq",
+        "value": "-0.25deg"
+      },
+      {
+        "name": "envelope-front",
+        "value": "-0.9deg"
+      },
+      {
+        "name": "maker-card",
+        "value": "0.6deg"
+      },
+      {
+        "name": "edition-on",
+        "value": "-1.6deg",
+        "note": "with translateY(-3px)"
+      },
+      {
+        "name": "wipe-year-old",
+        "value": "-2deg"
+      },
+      {
+        "name": "wipe-year-new",
+        "value": "2deg"
+      },
+      {
+        "name": "postmark-1999",
+        "value": "-11deg",
+        "note": "ink, not paper"
+      },
+      {
+        "name": "postmark-sent",
+        "value": "8deg",
+        "note": "ink, not paper"
+      },
+      {
+        "name": "comparison-line",
+        "value": "12.53deg",
+        "note": "matches the game's centre line"
+      }
+    ],
+    "texture": [
+      {
+        "name": "grain",
+        "value": "SVG fractalNoise, baseFrequency 0.85, 2 octaves, alpha 0.09, 180px tile",
+        "purpose": "Laid over the flat colour of every paper surface and the blotter. Shipped as --grain. Pictures carry no grain."
+      }
+    ],
+    "focus": {
+      "value": "2.5px solid var(--focus); outline-offset: 3px",
+      "purpose": "--focus is on-blotter by default (desk and cranberry cover), cranberry on white and silver paper and on the full-screen button, card on the turn-your-phone panel."
+    },
+    "gameContract": {
+      "slot": ".game-slot on the inside leaf",
+      "fitReserveH": {
+        "property": "--fit-reserve-h",
+        "default": 352,
+        "stacked": 262,
+        "note": "Unitless pixel height the page keeps around a fit-to-window game; read by game.js."
+      },
+      "stageW": {
+        "property": "--stage-w",
+        "note": "Written on the root by game.js; the row under the plate is min(100%, var(--stage-w))."
+      },
+      "artwork": {
+        "control": "#artwork-select",
+        "values": [
+          "original",
+          "high-resolution"
+        ],
+        "note": "Visually hidden select owned by the game. The two edition radios and the [data-edition] buttons set its value and dispatch change; the page reflects #game-container[data-artwork]."
+      },
+      "requiredHooks": [
+        "#game-container",
+        ".game-wrap",
+        "#difficulty-select",
+        "#scale-select",
+        "#artwork-select",
+        "#music-checkbox",
+        "#mute-checkbox",
+        "#fullscreen-btn",
+        "#rotate-hint",
+        "html.pseudo-fs"
+      ],
+      "projectRules": [
+        "No inline script (Content-Security-Policy); behaviour lives in web/js/page.js.",
+        "Real assets only.",
+        "No invented logos or brand marks.",
+        "No fabricated claims or numbers."
+      ]
+    }
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one cranberry action in a group: send the card, play the 2026 printing.",
+      "html": "<button class=\"ds-btn ds-btn-primary\">Send it</button>",
+      "css": ".ds-btn { min-height: 48px; padding: 11px 24px; border: 1.5px solid var(--ink, #15171a); border-radius: 0; background: transparent; color: var(--ink, #15171a); font: 700 1.0625rem var(--slab, 'Besley', 'Clarendon', 'Rockwell', Georgia, serif); cursor: pointer; transition: background-color 0.2s, color 0.2s, transform 0.15s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-btn:hover { background: var(--ink, #15171a); color: var(--card, #fbfbf8); } .ds-btn:active { transform: translateY(1px); } .ds-btn:focus-visible { outline: 2.5px solid var(--cranberry, #8c1c2b); outline-offset: 3px; } .ds-btn-primary { border-color: var(--cranberry, #8c1c2b); background: var(--cranberry, #8c1c2b); color: #fff; } .ds-btn-primary:hover { border-color: var(--cranberry-deep, #6c1420); background: var(--cranberry-deep, #6c1420); color: #fff; }"
+    },
+    {
+      "name": "Default Button",
+      "kind": "button",
+      "refersTo": "button",
+      "description": "Outlined in ink on paper; fills ink on hover.",
+      "html": "<button class=\"ds-btn\">Copy the link</button>",
+      "css": ".ds-btn { min-height: 48px; padding: 11px 24px; border: 1.5px solid var(--ink, #15171a); border-radius: 0; background: transparent; color: var(--ink, #15171a); font: 700 1.0625rem var(--slab, 'Besley', 'Clarendon', 'Rockwell', Georgia, serif); cursor: pointer; transition: background-color 0.2s, color 0.2s, transform 0.15s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-btn:hover { background: var(--ink, #15171a); color: var(--card, #fbfbf8); } .ds-btn:active { transform: translateY(1px); } .ds-btn:focus-visible { outline: 2.5px solid var(--cranberry, #8c1c2b); outline-offset: 3px; }"
+    },
+    {
+      "name": "Ruled Select",
+      "kind": "input",
+      "refersTo": "select-ruled",
+      "description": "A setting set like a blank on a reply card: label above, value on a ruled line.",
+      "html": "<label class=\"ds-opt\"><span>Difficulty</span><select class=\"ds-select\"><option>Easy</option><option selected>Normal</option><option>Hard</option></select></label>",
+      "css": ".ds-opt { display: inline-flex; flex-direction: column; gap: 1px; font: 600 0.8125rem var(--sans, 'Hanken Grotesk', system-ui, sans-serif); color: var(--ink-soft, #474c55); } .ds-select { appearance: none; -webkit-appearance: none; min-height: 34px; padding: 4px 24px 4px 1px; border: 0; border-bottom: 1.5px solid var(--ink, #15171a); border-radius: 0; background: transparent url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7' fill='none' stroke='%2315171a' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1l4.5 4.5L10 1'/%3E%3C/svg%3E\") no-repeat right 4px center; color: var(--ink, #15171a); font: 700 1rem var(--slab, 'Besley', 'Clarendon', 'Rockwell', Georgia, serif); cursor: pointer; transition: border-color 0.2s; } .ds-select:hover { border-bottom-color: var(--cranberry, #8c1c2b); } .ds-select:focus-visible { outline: 2.5px solid var(--cranberry, #8c1c2b); outline-offset: 3px; }"
+    },
+    {
+      "name": "Checkbox",
+      "kind": "input",
+      "refersTo": "checkbox",
+      "description": "A square ink box that fills ink with a card-white tick.",
+      "html": "<label class=\"ds-check\"><input type=\"checkbox\" checked><span>Background music</span></label>",
+      "css": ".ds-check { display: inline-flex; align-items: center; gap: 8px; min-height: 34px; color: var(--ink, #15171a); font: 500 0.9375rem var(--sans, 'Hanken Grotesk', system-ui, sans-serif); cursor: pointer; } .ds-check input { appearance: none; -webkit-appearance: none; flex: none; width: 19px; height: 19px; margin: 0; border: 1.5px solid var(--ink, #15171a); background: transparent center / 13px no-repeat; cursor: pointer; transition: background-color 0.15s; } .ds-check input:checked { background-color: var(--ink, #15171a); background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='13' fill='none' stroke='%23fbfbf8' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 7l3.2 3.2L11 3.4'/%3E%3C/svg%3E\"); } .ds-check:hover input { border-color: var(--cranberry, #8c1c2b); } .ds-check:hover input:checked { background-color: var(--cranberry, #8c1c2b); } .ds-check input:focus-visible { outline: 2.5px solid var(--cranberry, #8c1c2b); outline-offset: 3px; }"
+    },
+    {
+      "name": "Edition Prints",
+      "kind": "chip",
+      "refersTo": "edition",
+      "description": "The 1999 / 2026 artwork switch: two small prints, the chosen one picked up off the desk. The thumbnail pane holds the real red-kid sprite in the build.",
+      "html": "<fieldset class=\"ds-editions\"><label class=\"ds-edition\"><input type=\"radio\" name=\"ds-edition\"><i class=\"ds-edition-thumb\"></i><span class=\"ds-edition-text\"><strong>1999</strong><span>As it shipped</span></span></label><label class=\"ds-edition\"><input type=\"radio\" name=\"ds-edition\" checked><i class=\"ds-edition-thumb\"></i><span class=\"ds-edition-text\"><strong>2026</strong><span>Redrawn</span></span></label></fieldset>",
+      "css": ".ds-editions { display: flex; gap: 10px; margin: 0; padding: 8px; border: 0; } .ds-edition { position: relative; display: grid; grid-template-columns: auto auto; align-items: center; gap: 9px; padding: 7px 14px 7px 8px; background: var(--card, #fbfbf8); color: var(--ink, #15171a); outline: 1.5px solid var(--ink, #15171a); cursor: pointer; transition: transform 0.3s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)), box-shadow 0.3s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)), background-color 0.2s, color 0.2s; } .ds-edition input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; } .ds-edition-thumb { display: block; width: 42px; height: 54px; background: #fff; outline: 1px solid rgba(21, 23, 26, 0.18); } .ds-edition-text { display: grid; gap: 2px; } .ds-edition-text strong { font: 900 1.75rem/1 var(--slab, 'Besley', 'Clarendon', 'Rockwell', Georgia, serif); letter-spacing: -0.02em; } .ds-edition-text span { font: 600 0.8125rem/1.2 var(--sans, 'Hanken Grotesk', system-ui, sans-serif); color: var(--ink-soft, #474c55); } .ds-edition:hover { transform: translateY(-2px); } .ds-edition:has(input:checked) { background: var(--cranberry, #8c1c2b) url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\"); outline-color: var(--cranberry, #8c1c2b); color: var(--on-cranberry, #fbfbf8); transform: translateY(-3px) rotate(-1.6deg); box-shadow: 0 2px 2px rgba(21, 23, 26, 0.25), 0 14px 18px -9px rgba(21, 23, 26, 0.6); } .ds-edition:has(input:checked) .ds-edition-text span { color: var(--on-cranberry-soft, #f1d6d9); } .ds-edition:has(input:focus-visible) { outline: 2.5px solid var(--cranberry, #8c1c2b); outline-offset: 3px; }"
+    },
+    {
+      "name": "Sheet",
+      "kind": "card",
+      "refersTo": "sheet",
+      "description": "A piece of paper on the blotter: grain, paper shadow, square corners, a small tilt, one headline.",
+      "html": "<article class=\"ds-sheet\"><h2>How to play</h2><p>One hit leaves a kid dazed for a few seconds. A second hit puts them out. <a href=\"#\">See the notice</a>.</p></article>",
+      "css": ".ds-sheet { max-width: 520px; padding: clamp(26px, 5vw, 64px); background: var(--card, #fbfbf8) url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\"); color: var(--ink, #15171a); font: 400 1.0625rem/1.6 var(--sans, 'Hanken Grotesk', system-ui, sans-serif); box-shadow: var(--paper-shadow, 0 1px 1px rgba(5, 22, 16, 0.28), 0 10px 18px -8px rgba(5, 22, 16, 0.5), 0 36px 54px -26px rgba(5, 22, 16, 0.62)); transform: rotate(-0.5deg); } .ds-sheet h2 { margin: 0 0 0.75em; font: 900 clamp(1.9rem, 4vw, 2.9rem)/1.04 var(--slab, 'Besley', 'Clarendon', 'Rockwell', Georgia, serif); letter-spacing: -0.022em; } .ds-sheet p { margin: 0; max-width: 46ch; } .ds-sheet a { color: var(--cranberry, #8c1c2b); text-decoration-thickness: 1.5px; text-underline-offset: 3px; } .ds-sheet a:hover { color: var(--ink, #15171a); } .ds-sheet a:focus-visible { outline: 2.5px solid var(--cranberry, #8c1c2b); outline-offset: 3px; }"
+    },
+    {
+      "name": "Plate with Corner Mounts",
+      "kind": "custom",
+      "refersTo": "mount",
+      "description": "A picture of the game tipped onto paper: picture white, 1px ink outline, four cranberry corner mounts.",
+      "html": "<div class=\"ds-plate\"><div class=\"ds-plate-picture\"></div><i class=\"ds-mount ds-mount-tl\"></i><i class=\"ds-mount ds-mount-tr\"></i><i class=\"ds-mount ds-mount-br\"></i><i class=\"ds-mount ds-mount-bl\"></i></div>",
+      "css": ".ds-plate { position: relative; width: 296px; margin: 12px; } .ds-plate-picture { aspect-ratio: 592 / 320; background: #fff; outline: 1px solid var(--ink, #15171a); box-shadow: 0 2px 3px rgba(21, 23, 26, 0.18), 0 14px 22px -14px rgba(21, 23, 26, 0.45); } .ds-mount { position: absolute; width: 26px; height: 26px; background: var(--cranberry, #8c1c2b); clip-path: polygon(0 0, 100% 0, 0 100%); pointer-events: none; } .ds-mount-tl { top: -7px; left: -7px; } .ds-mount-tr { top: -7px; right: -7px; transform: rotate(90deg); } .ds-mount-br { bottom: -7px; right: -7px; transform: rotate(180deg); } .ds-mount-bl { bottom: -7px; left: -7px; transform: rotate(270deg); }"
+    },
+    {
+      "name": "Stamp and Postmark",
+      "kind": "custom",
+      "refersTo": "stamp",
+      "description": "Franking on the envelope: a perforated stamp on an 8px pitch and the round 1999 postmark. In the build the stamp pane holds a real character sprite.",
+      "html": "<div class=\"ds-franking\"><svg class=\"ds-postmark\" viewBox=\"0 0 120 120\" aria-hidden=\"true\"><defs><path id=\"ds-pm-top\" d=\"M17 60a43 43 0 0 1 86 0\"/><path id=\"ds-pm-bottom\" d=\"M8 60a52 52 0 0 0 104 0\"/></defs><circle cx=\"60\" cy=\"60\" r=\"57\"/><circle cx=\"60\" cy=\"60\" r=\"36\"/><text class=\"ds-postmark-arc\"><textPath href=\"#ds-pm-top\" startOffset=\"50%\">SNOWCRAFT</textPath></text><text class=\"ds-postmark-arc\"><textPath href=\"#ds-pm-bottom\" startOffset=\"50%\">HAPPY HOLIDAYS</textPath></text><text class=\"ds-postmark-year\" x=\"60\" y=\"68\">1999</text></svg><span class=\"ds-stamp\"><i></i></span></div>",
+      "css": ".ds-franking { display: inline-flex; align-items: center; padding: 16px 20px; background: var(--envelope, #d5d9df) url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\"); } .ds-postmark { width: 84px; height: 84px; margin-right: -32px; fill: none; stroke: currentColor; stroke-width: 3.4; color: rgba(21, 23, 26, 0.8); transform: rotate(-11deg); position: relative; z-index: 1; } .ds-postmark circle + circle { stroke-width: 1.8; } .ds-postmark text { fill: currentColor; stroke: none; text-anchor: middle; } .ds-postmark-arc { font: 800 9.5px var(--sans, 'Hanken Grotesk', system-ui, sans-serif); letter-spacing: 1.5px; } .ds-postmark-year { font: 900 22px var(--slab, 'Besley', 'Clarendon', 'Rockwell', Georgia, serif); } .ds-stamp { display: block; width: 64px; height: 80px; padding: 8px; background: #fbfbf8; -webkit-mask: linear-gradient(#000 0 0) center / calc(100% - 8px) calc(100% - 8px) no-repeat, radial-gradient(circle 2.6px, #0000 96%, #000) -4px -4px / 8px 8px; mask: linear-gradient(#000 0 0) center / calc(100% - 8px) calc(100% - 8px) no-repeat, radial-gradient(circle 2.6px, #0000 96%, #000) -4px -4px / 8px 8px; transition: transform 0.25s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-stamp i { display: block; width: 100%; height: 100%; background: #cfe2ee; } .ds-franking:hover .ds-stamp { transform: translateY(-3px) rotate(2deg); }"
+    },
+    {
+      "name": "FAQ Row",
+      "kind": "custom",
+      "refersTo": "faq-row",
+      "description": "A native disclosure row with hairline rules and a cranberry plus that closes to a minus.",
+      "html": "<div class=\"ds-faq\"><details><summary>Is it free?</summary><p>Yes. No account, no ads, nothing to buy.</p></details><details><summary>Do I need to install anything?</summary><p>No. It runs in any modern browser on desktop and phones.</p></details></div>",
+      "css": ".ds-faq { max-width: 520px; padding: 8px 24px; background: var(--card, #fbfbf8); color: var(--ink, #15171a); } .ds-faq details { border-bottom: 1px solid rgba(21, 23, 26, 0.18); } .ds-faq details:first-of-type { border-top: 1px solid rgba(21, 23, 26, 0.18); } .ds-faq summary { position: relative; padding: 16px 40px 16px 0; list-style: none; font: 700 1.125rem/1.3 var(--slab, 'Besley', 'Clarendon', 'Rockwell', Georgia, serif); cursor: pointer; } .ds-faq summary::-webkit-details-marker { display: none; } .ds-faq summary::before, .ds-faq summary::after { content: ''; position: absolute; right: 6px; top: 50%; width: 14px; height: 2px; margin-top: -1px; background: var(--cranberry, #8c1c2b); transition: transform 0.3s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-faq summary::after { transform: rotate(90deg); } .ds-faq details[open] summary::after { transform: rotate(0deg); } .ds-faq summary:hover { color: var(--cranberry, #8c1c2b); } .ds-faq summary:focus-visible { outline: 2.5px solid var(--cranberry, #8c1c2b); outline-offset: 3px; } .ds-faq details p { margin: 0 0 18px; max-width: 66ch; font: 400 1.0625rem/1.6 var(--sans, 'Hanken Grotesk', system-ui, sans-serif); color: var(--ink-soft, #474c55); }"
+    },
+    {
+      "name": "Cover Leaf with Enclosure Links",
+      "kind": "nav",
+      "refersTo": "enclosure-link",
+      "description": "The cranberry cover: foil script greeting, slab hook, and the ruled list of links to the other pieces in the envelope.",
+      "html": "<div class=\"ds-cover\"><p class=\"ds-greeting\">Season’s greetings, again.</p><p class=\"ds-hook\">SnowCraft, the 1999 snowball fight, is back.</p><nav class=\"ds-enclosures\"><p>Also in the envelope</p><ul><li><a href=\"#\">The two printings</a></li><li><a href=\"#\">How to play</a></li><li><a href=\"#\">Small print</a></li></ul></nav></div>",
+      "css": ".ds-cover { container-type: inline-size; width: 320px; padding: 32px 28px; background: var(--cranberry, #8c1c2b) url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\"); color: var(--on-cranberry, #fbfbf8); box-shadow: inset -20px 0 24px -20px rgba(0, 0, 0, 0.42); } .ds-greeting { margin: 0 0 0.34em; font: 400 clamp(3rem, 27cqi, 6rem)/0.98 var(--script, 'Yesteryear', 'Brush Script MT', cursive); color: var(--foil, #d5d9df); } .ds-hook { margin: 0 0 1.4em; font: 700 clamp(1.25rem, 8.4cqi, 1.9rem)/1.14 var(--slab, 'Besley', 'Clarendon', 'Rockwell', Georgia, serif); letter-spacing: -0.012em; } .ds-enclosures p { margin: 0 0 6px; font: 600 0.8125rem var(--sans, 'Hanken Grotesk', system-ui, sans-serif); color: var(--on-cranberry-soft, #f1d6d9); } .ds-enclosures ul { margin: 0; padding: 0; list-style: none; border-top: 1px solid rgba(251, 251, 248, 0.3); } .ds-enclosures li { border-bottom: 1px solid rgba(251, 251, 248, 0.3); } .ds-enclosures a { display: block; padding: 9px 26px 9px 0; color: inherit; font: 700 1.0625rem/1.25 var(--slab, 'Besley', 'Clarendon', 'Rockwell', Georgia, serif); text-decoration: none; background: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' stroke='%23fbfbf8' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 2v10M2.5 7.5 7 12l4.5-4.5'/%3E%3C/svg%3E\") no-repeat right 2px center; transition: background-position 0.25s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)), color 0.2s; } .ds-enclosures a:hover { color: var(--foil, #d5d9df); background-position: right 2px top calc(50% + 3px); } .ds-enclosures a:focus-visible { outline: 2.5px solid var(--on-blotter, #f1f6f2); outline-offset: 3px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Studio Holiday Card",
+    "overview": "The page is a piece of December post lying open on a desk. A spruce-green blotter is the ground, a silver envelope is slipped under an open card, the card's cranberry cover leaf sits beside its white inside leaf, and the playable game is tipped into that inside leaf like a print held by corner mounts. Everything further down is another piece of paper from the same envelope: a rules slip, a comparison sheet, a letter with a list tucked half under it, the small print, the envelope turned over and addressed, and the maker's card.\n\nEvery surface is paper, so every surface carries the same fine grain, square corners and one soft cast shadow, and most pieces lie a fraction of a degree off square. Colour is used the way a two-colour print job uses it: cranberry and black ink on white stock, silver for the envelope and the foil greeting, green only for the desk. Density is that of a printed card, not an app: one large picture, short lines of slab type, and controls set as the blanks on a reply card.\n\nMotion is nearly absent. The envelope settles once when the page arrives, a cranberry sheet with the year wipes across the game when the artwork changes, and a dated postmark is struck when the page is sent on. Nothing animates on scroll.",
+    "keyCharacteristics": [
+      "Green blotter ground; all content sits on separate pieces of paper with a shared grain and cast shadow.",
+      "One accent, cranberry, used for the card cover, corner mounts, the chosen print, links and the primary action.",
+      "Three type voices: a brush script used twice, a Clarendon slab for everything printed, a grotesque for reading text and labels.",
+      "Square corners everywhere; the only circles are the postmark and the knob on the comparison line.",
+      "Paper tilts by 2 degrees or less; the game itself is never tilted.",
+      "The game is in the first viewport at every size, and a phone held sideways shows nothing else."
+    ],
+    "rules": [
+      {
+        "name": "The Two Inks Rule",
+        "body": "On white and silver paper there are two inks, cranberry and black: every action and link is one or the other. Green belongs to the desk, and silver is an ink only on cranberry.",
+        "section": "colors"
+      },
+      {
+        "name": "The Lit Ring Rule",
+        "body": "The focus ring is 2.5px solid with a 3px offset and takes its colour from the surface it sits on: On Blotter on the desk and the cranberry cover, Cranberry on white and silver paper, Card White on the deep-cranberry phone panel.",
+        "section": "colors"
+      },
+      {
+        "name": "The Brush Twice Rule",
+        "body": "The script appears in two places: the greeting on the cover and the signature on the letter. It never sets a heading, a button or a caption.",
+        "section": "typography"
+      },
+      {
+        "name": "The Printed Year Rule",
+        "body": "1999 and 2026 are always Besley 900 with tight negative tracking, wherever they appear.",
+        "section": "typography"
+      },
+      {
+        "name": "The Slab Acts Rule",
+        "body": "If the reader can press it, open it or choose it, its text is Besley 700. Hanken Grotesk is for sentences and for the small label above a field.",
+        "section": "typography"
+      },
+      {
+        "name": "The Where It Fell Rule",
+        "body": "Paper tilts by 2 degrees or less and only whole pieces tilt. The card, the game, the comparison frame and all running text stay square.",
+        "section": "layout"
+      },
+      {
+        "name": "The Game First Rule",
+        "body": "At every breakpoint the game is in the first viewport; the cover gives up content before the game gives up space.",
+        "section": "layout"
+      },
+      {
+        "name": "The One Light Rule",
+        "body": "Every piece of paper on the blotter takes the same cast shadow. Height is shown by tilt and overlap, never by a bigger or differently coloured shadow.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Settle Once Rule",
+        "body": "The only arrival animation is the envelope settling (0.7s, cubic-bezier(0.16, 1, 0.3, 1)). Nothing animates on scroll, and reduced-motion removes every transition and animation while leaving a struck postmark visible.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Square Corner Rule",
+        "body": "Paper has no radius. A circle is allowed only where the object is round in the post: a postmark, or a knob.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do put every new block of content on its own piece of paper: card white or envelope silver with grain, the paper shadow, square corners, and a tilt of 2 degrees or less.",
+      "Do keep cranberry as the single accent on paper, for the primary action, links, numerals and marks, and keep green for the desk.",
+      "Do set anything pressable in Besley 700 and anything read in Hanken Grotesk; keep the script for the greeting and the signature.",
+      "Do set 1999 and 2026 in Besley 900 with negative tracking wherever the years appear.",
+      "Do mount pictures of the game with cranberry corner triangles and a 1px ink outline on picture white.",
+      "Do point the focus ring at a colour that reads on the surface: On Blotter on green and cranberry, Cranberry on white and silver.",
+      "Do keep the game in the first viewport at every size and keep the game hooks listed in the page-to-game contract intact.",
+      "Do put all page behaviour in external script files; the Content-Security-Policy forbids inline script.",
+      "Do use real project assets for every picture and mark: recovered 1999 sprites, the redrawn characters, the Inventing Fire mark."
+    ],
+    "donts": [
+      "Don't round the corners of paper, buttons, fields or prints; circles are for the postmark and the comparison knob.",
+      "Don't tilt the card, the game, the comparison frame or running text.",
+      "Don't add scroll-triggered animation; the envelope settles once and the rest is still.",
+      "Don't give paper a second shadow style to suggest importance; use overlap and tilt.",
+      "Don't use green as a button or link colour, or silver as ink anywhere but on cranberry.",
+      "Don't let tilted paper widen the page; bands clip horizontally.",
+      "Don't draw, generate or approximate a logo or brand mark; use the real asset file or leave it out.",
+      "Don't add testimonials, press quotes, play counts or any number that is not in the project's evidence.",
+      "Don't rename, remove or restyle away the controls the game script reads."
+    ]
+  }
+}

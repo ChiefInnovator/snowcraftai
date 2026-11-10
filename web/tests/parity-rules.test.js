@@ -15,7 +15,7 @@ function loadParity() {
 
 const P = loadParity();
 const layouts = JSON.parse(
-    fs.readFileSync(path.join(__dirname, "..", "..", "docs", "recovered", "event-loop-layouts.json"), "utf8")
+    fs.readFileSync(path.join(__dirname, "..", "..", "docs", "reference", "snowcraft-original", "source-evidence", "recovered", "event-loop-layouts.json"), "utf8")
 );
 
 describe("recovered Event Loop layouts", () => {

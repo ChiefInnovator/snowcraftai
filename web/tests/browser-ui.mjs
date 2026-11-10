@@ -16,6 +16,26 @@ const errors = [];
 const evidence = {};
 const types = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css", ".png": "image/png", ".json": "application/json", ".webmanifest": "application/manifest+json", ".mp3": "audio/mpeg", ".wav": "audio/wav" };
 let server, browser, baseURL, output;
+// GitHub's runners render this suite several times slower than a desktop.
+// Scale every time limit there instead of tuning tests one by one.
+const SLOW = process.env.CI ? 4 : 1;
+// Phaser and the web fonts are fetched once per run, then replayed, so a slow
+// CDN response cannot time out an individual test.
+const thirdParty = new Map();
+async function replayThirdParty(route) {
+    const url = route.request().url();
+    if (!thirdParty.has(url)) {
+        thirdParty.set(url, route.fetch().then(async response => ({
+            status: response.status(), headers: response.headers(), body: await response.body()
+        })));
+    }
+    try {
+        await route.fulfill(await thirdParty.get(url));
+    } catch {
+        thirdParty.delete(url);
+        await route.continue();
+    }
+}
 
 before(async () => {
     output = process.env.SNOWCRAFT_BROWSER_OUTPUT || await mkdtemp(path.join(tmpdir(), "snowcraft-browser-"));
@@ -43,7 +63,7 @@ before(async () => {
     baseURL = "http://127.0.0.1:" + server.address().port;
     browser = await chromium.launch({ headless: true });
     console.log("Browser screenshots and measurements: " + output);
-}, { timeout: 30000 });
+}, { timeout: 30000 * SLOW });
 
 after(async () => {
     await browser?.close();
@@ -54,8 +74,17 @@ after(async () => {
     if (output) await writeFile(path.join(output, "measurements.json"), JSON.stringify({ evidence, errors }, null, 2));
 });
 
-async function open(t, name, options = {}, waitForFonts = true) {
+async function open(t, name, options = {}, waitForFonts = true, { query = "/?debug", storage = {} } = {}) {
     const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, deviceScaleFactor: 1, ...options });
+    context.setDefaultTimeout(30000 * SLOW);
+    for (const host of ["cdn.jsdelivr.net", "fonts.googleapis.com", "fonts.gstatic.com"]) {
+        await context.route("https://" + host + "/**", replayThirdParty);
+    }
+    if (Object.keys(storage).length) {
+        await context.addInitScript(values => {
+            for (const key in values) if (localStorage.getItem(key) === null) localStorage.setItem(key, values[key]);
+        }, storage);
+    }
     let releaseFonts = () => {};
     t.after(async () => {
         releaseFonts();
@@ -71,10 +100,10 @@ async function open(t, name, options = {}, waitForFonts = true) {
         const held = new Promise(resolve => { releaseFonts = resolve; });
         await page.route("https://fonts.gstatic.com/**", async route => {
             await held;
-            await route.continue();
+            await route.fallback();
         });
     }
-    await page.goto(baseURL + "/?debug", { waitUntil: "domcontentloaded" });
+    await page.goto(baseURL + query, { waitUntil: "domcontentloaded" });
     await ready(page, waitForFonts);
     return { page, context, releaseFonts };
 }
@@ -133,7 +162,7 @@ async function start(page, touch = false) {
 }
 
 async function active(page) {
-    await page.waitForFunction(() => SnowcraftGame.getScene().isLevelActive, null, { timeout: 15000 });
+    await page.waitForFunction(() => SnowcraftGame.getScene().isLevelActive, null, { timeout: 15000 * SLOW });
     await page.evaluate(() => {
         const scene = SnowcraftGame.getScene();
         scene.stopAI();
@@ -145,7 +174,7 @@ async function replay(page, method) {
     await page.waitForFunction(() => {
         const button = SnowcraftGame.getScene().playAgainButton;
         return button.visible && button.alpha > 0.95;
-    }, null, { timeout: 15000 });
+    }, null, { timeout: 15000 * SLOW });
     const layout = await geometry(page);
     assertAnchors(layout);
     const buttonLayout = layout.labels.find(label => label.text === "Play Again");
@@ -176,7 +205,7 @@ async function audioState(page) {
     });
 }
 
-test("DOM text stays centered before/after fonts, resize and hide/show; title text does not intercept clicks", { timeout: 30000 }, async t => {
+test("DOM text stays centered before/after fonts, resize and hide/show; title text does not intercept clicks", { timeout: 30000 * SLOW }, async t => {
     const { page, releaseFonts } = await open(t, "font layout", {}, false);
     assert.equal(await page.locator('#artwork-select').inputValue(), 'high-resolution');
     assert.equal(await page.evaluate(() => SnowcraftGame.getScene().artwork.mode), 'high-resolution');
@@ -204,7 +233,7 @@ test("DOM text stays centered before/after fonts, resize and hide/show; title te
     evidence.fontLayout = { before, afterFonts, end };
 });
 
-test("all level banners use aligned browser text in original and high-resolution modes", { timeout: 30000 }, async t => {
+test("all level banners use aligned browser text in original and high-resolution modes", { timeout: 30000 * SLOW }, async t => {
     const { page } = await open(t, "level banners");
     const banners = [];
     for (const mode of ["original", "high-resolution"]) {
@@ -243,7 +272,7 @@ test("all level banners use aligned browser text in original and high-resolution
     evidence.banners = banners;
 });
 
-test("real drag charges and throws; live artwork switching preserves score, pose and original collision matte", { timeout: 30000 }, async t => {
+test("real drag charges and throws; live artwork switching preserves score, pose and original collision matte", { timeout: 30000 * SLOW }, async t => {
     const { page } = await open(t, "drag and artwork");
     await page.locator('#artwork-select').selectOption('original');
     await start(page);
@@ -302,7 +331,7 @@ test("real drag charges and throws; live artwork switching preserves score, pose
     evidence.artwork = { original, high };
 });
 
-test("all 35 HD poses retain logical geometry and one selection ring across artwork changes", { timeout: 30000 }, async t => {
+test("all 35 HD poses retain logical geometry and one selection ring across artwork changes", { timeout: 30000 * SLOW }, async t => {
     const { page } = await open(t, "HD frames and rings");
     // This fixture inspects the retained canonical pack. The live HD motion
     // layer has its own behavioral/visual checks below.
@@ -379,7 +408,7 @@ test("all 35 HD poses retain logical geometry and one selection ring across artw
     evidence.hdCharacters = observations;
 });
 
-test("knockout hides standing shadows, revival restores them, and HD uses the redrawn snowfield", { timeout: 30000 }, async t => {
+test("knockout hides standing shadows, revival restores them, and HD uses the redrawn snowfield", { timeout: 30000 * SLOW }, async t => {
     const { page } = await open(t, "corrected artwork and shadows");
     await page.evaluate(() => SnowcraftGame.getScene().motion.setEnabled(false));
     await start(page);
@@ -433,7 +462,7 @@ test("knockout hides standing shadows, revival restores them, and HD uses the re
     evidence.artworkCorrections = observations;
 });
 
-test("HD pose shadows track movement, falls, fades and artwork switches", { timeout: 30000 }, async t => {
+test("HD pose shadows track movement, falls, fades and artwork switches", { timeout: 30000 * SLOW }, async t => {
     const { page } = await open(t, 'soft pose shadows');
     await page.evaluate(() => SnowcraftGame.getScene().motion.setEnabled(false));
     await start(page);
@@ -496,7 +525,7 @@ test("HD pose shadows track movement, falls, fades and artwork switches", { time
     evidence.originalShadowRevival = revived;
 });
 
-test("Santa runs in, winks, waves, twitches his nose and magically vanishes in both artwork modes", { timeout: 60000 }, async t => {
+test("Santa runs in, winks, waves, twitches his nose and magically vanishes in both artwork modes", { timeout: 60000 * SLOW }, async t => {
     const { page } = await open(t, 'Santa visit');
     await start(page);
     await active(page);
@@ -656,7 +685,7 @@ test("Santa runs in, winks, waves, twitches his nose and magically vanishes in b
     evidence.santa = results;
 });
 
-test("walk-on cancellation during Clock catch-up preserves dead kids and the next level's count", { timeout: 30000 }, async t => {
+test("walk-on cancellation during Clock catch-up preserves dead kids and the next level's count", { timeout: 30000 * SLOW }, async t => {
     const { page } = await open(t, "cancelled walk-on catch-up");
     const observations = await page.evaluate(() => {
         const scene = SnowcraftGame.getScene();
@@ -726,7 +755,7 @@ test("walk-on cancellation during Clock catch-up preserves dead kids and the nex
     evidence.cancelledWalkOn = observations;
 });
 
-test("victory animates Congratulations then aligned greeting/replay; mouse replay resets level and score", { timeout: 30000 }, async t => {
+test("victory animates Congratulations then aligned greeting/replay; mouse replay resets level and score", { timeout: 30000 * SLOW }, async t => {
     const { page } = await open(t, "victory replay");
     await start(page);
     await active(page);
@@ -768,7 +797,7 @@ test("victory animates Congratulations then aligned greeting/replay; mouse repla
     evidence.victory = { congrats, end };
 });
 
-test("every surviving Green dances after a loss, including kids winding up a throw", { timeout: 60000 }, async t => {
+test("every surviving Green dances after a loss, including kids winding up a throw", { timeout: 60000 * SLOW }, async t => {
     const { page } = await open(t, "all survivors dance");
     await page.goto(baseURL + '/?debug&manualTime');
     await ready(page);
@@ -832,7 +861,7 @@ test("every surviving Green dances after a loss, including kids winding up a thr
     evidence.survivorDances = samples;
 });
 
-test("loss score and queued audio reveal inset replay; keyboard activation resets the game", { timeout: 30000 }, async t => {
+test("loss score and queued audio reveal inset replay; keyboard activation resets the game", { timeout: 30000 * SLOW }, async t => {
     const { page } = await open(t, "keyboard replay");
     await start(page);
     await active(page);
@@ -845,7 +874,7 @@ test("loss score and queued audio reveal inset replay; keyboard activation reset
         scene.killsThisLevel = 2;
         scene.levelLost();
     });
-    await page.waitForFunction(() => SnowcraftGame.getScene().playAgainButton.visible, null, { timeout: 15000 });
+    await page.waitForFunction(() => SnowcraftGame.getScene().playAgainButton.visible, null, { timeout: 15000 * SLOW });
     await page.waitForTimeout(1200);
     const end = await geometry(page);
     assert.ok(end.labels.some(label => label.text === "SCORE: 66"));
@@ -855,7 +884,7 @@ test("loss score and queued audio reveal inset replay; keyboard activation reset
     evidence.loss = end;
 });
 
-test("music and mute-all control actual playback independently and persist across rebuild/reload", { timeout: 90000 }, async t => {
+test("music and mute-all control actual playback independently and persist across rebuild/reload", { timeout: 90000 * SLOW }, async t => {
     const { page } = await open(t, "audio preferences");
     const pendingUnlock = [];
     for (const gate of ["enabled", "music-off", "mute-all"]) {
@@ -918,7 +947,7 @@ test("music and mute-all control actual playback independently and persist acros
     evidence.audio = states;
 });
 
-test("desktop scales, HiDPI and fullscreen keep browser text anchored within the game", { timeout: 30000 }, async t => {
+test("desktop scales, HiDPI and fullscreen keep browser text anchored within the game", { timeout: 30000 * SLOW }, async t => {
     const { page } = await open(t, "desktop scaling");
     const scales = [];
     await page.locator("#artwork-select").selectOption("high-resolution");
@@ -947,7 +976,7 @@ test("desktop scales, HiDPI and fullscreen keep browser text anchored within the
     evidence.scales = { scales, highDensity };
 });
 
-test("phone rotates back to portrait after fullscreen, actual touch drag/throw and touch replay", { timeout: 35000 }, async t => {
+test("phone rotates back to portrait after fullscreen, actual touch drag/throw and touch replay", { timeout: 35000 * SLOW }, async t => {
     const { page, context } = await open(t, "phone touch", { viewport: { width: 390, height: 844 }, deviceScaleFactor: 3, isMobile: true, hasTouch: true });
     await page.locator("#artwork-select").selectOption("high-resolution");
     const portrait = await geometry(page);
@@ -1004,7 +1033,7 @@ test("phone rotates back to portrait after fullscreen, actual touch drag/throw a
     evidence.phone = { portrait, landscape, returned };
 });
 
-test("HD motion interpolates walk-on without moving logic, and preserves Original steps", { timeout: 90000 }, async t => {
+test("HD motion interpolates walk-on without moving logic, and preserves Original steps", { timeout: 90000 * SLOW }, async t => {
     const { page } = await open(t, 'HD walk-on presentation');
     await page.goto(baseURL + '/?debug&manualTime'); await ready(page);
     await start(page);
@@ -1041,11 +1070,11 @@ test("HD motion interpolates walk-on without moving logic, and preserves Origina
     finish.positions.forEach(p => assert.deepEqual(p.slice(0, 2), p.slice(2)));
     assert.ok(finish.contacts.every(n => n >= 1));
     // Software-rendered CI can take longer to capture after manual stepping.
-    await page.screenshot({ path: path.join(output, 'hd-planted-arrivals.png'), timeout: 60000 });
+    await page.screenshot({ path: path.join(output, 'hd-planted-arrivals.png'), timeout: 60000 * SLOW });
     evidence.motionWalk = { samples, original, finish };
 });
 
-test("HD throws, backward falls, recovery, projectiles and idle leave mechanics authoritative", { timeout: 60000 }, async t => {
+test("HD throws, backward falls, recovery, projectiles and idle leave mechanics authoritative", { timeout: 60000 * SLOW }, async t => {
     const { page } = await open(t, 'HD actions and effects');
     await page.goto(baseURL + '/?debug&manualTime'); await ready(page);
     await start(page); await active(page);
@@ -1103,7 +1132,7 @@ test("HD throws, backward falls, recovery, projectiles and idle leave mechanics 
     await screenshot(page, 'hd-idle-gameplay'); evidence.motionActions = { setup, ball, hit, down, idle };
 });
 
-test("a Red charging a snowball keeps his body size through incoming hits and knockout", { timeout: 60000 }, async t => {
+test("a Red charging a snowball keeps his body size through incoming hits and knockout", { timeout: 60000 * SLOW }, async t => {
     const { page } = await open(t, 'Red hit size continuity');
     await page.goto(baseURL + '/?debug&manualTime'); await ready(page); await start(page); await active(page);
     await page.locator('#artwork-select').selectOption('high-resolution');
@@ -1175,7 +1204,7 @@ test("a Red charging a snowball keeps his body size through incoming hits and kn
     evidence.redSizeContinuity = cases;
 });
 
-test("both teams' snowballs stay visibly outlined against snow on desktop and phone", { timeout: 45000 }, async t => {
+test("both teams' snowballs stay visibly outlined against snow on desktop and phone", { timeout: 45000 * SLOW }, async t => {
     const samples = [];
     for (const phone of [false, true]) {
         const { page } = await open(t, 'visible snowballs ' + (phone ? 'phone' : 'desktop'), phone
@@ -1240,6 +1269,285 @@ test("both teams' snowballs stay visibly outlined against snow on desktop and ph
         }
     }
     evidence.snowballVisibility = samples;
+});
+
+test("muted level clear with other snowballs in flight starts the next level and keeps running", { timeout: 30000 * SLOW }, async t => {
+    const { page } = await open(t, "muted level clear", {}, true, { storage: { "snowcraft-muted": "1" } });
+    await start(page);
+    await active(page);
+    const result = await page.evaluate(async () => {
+        const scene = SnowcraftGame.getScene();
+        const [last, ...others] = scene.greenTeam;
+        others.forEach(kid => scene.knockOut(kid, "death_0"));
+        const red = scene.redTeam[0];
+        // Twelve fly steps away: the second ball is thrown later, so it sits
+        // after the killing ball in the list when the level restarts.
+        last.x = red.x - 240; last.y = red.y - 120; last.hits = 2; last.isImmune = false; last.ai = "hurt";
+        scene.throwSnowball(red, 8);
+        await new Promise(resolve => setTimeout(resolve, 300));
+        scene.throwSnowball(scene.redTeam[1], 8);
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        const frame = scene.game.loop.frame;
+        await new Promise(resolve => setTimeout(resolve, 500));
+        return { muted: scene.audio.isMuted(), level: scene.currentLevelIndex + 1, frames: scene.game.loop.frame - frame, reds: scene.redTeam.length };
+    });
+    assert.equal(result.muted, true);
+    assert.equal(result.level, 2);
+    assert.equal(result.reds, 3);
+    assert.ok(result.frames > 5, "the game loop is still running: " + result.frames);
+    evidence.mutedLevelClear = result;
+});
+
+test("intro jingle plays through footsteps and throws, stops on mute, and returns after Play Again", { timeout: 60000 * SLOW }, async t => {
+    const { page } = await open(t, "intro jingle", {}, true, { storage: { "snowcraft-artwork": "original" } });
+    const playing = () => page.evaluate(() => SnowcraftGame.getScene().sound.getAllPlaying().map(sound => sound.key));
+    await start(page);
+    // Sample inside the page, in the frame the first footstep plays: the jingle is
+    // only 5.4 s long, so waiting for the walk-on to finish can outlast it on a slow runner.
+    const during = await page.evaluate(() => new Promise(resolve => {
+        const scene = SnowcraftGame.getScene();
+        const keys = () => scene.sound.getAllPlaying().map(sound => sound.key);
+        (function poll() {
+            if (!scene.audio.getPlayLog().some(entry => entry.soundId === "step")) { requestAnimationFrame(poll); return; }
+            const afterStep = keys();
+            scene.throwSnowball(scene.redTeam[0], 2);
+            resolve({ afterStep, afterThrow: keys() });
+        })();
+    }));
+    assert.ok(during.afterStep.includes("sfx_intro"), "footsteps leave the intro playing: " + JSON.stringify(during.afterStep));
+    const afterThrow = during.afterThrow;
+    assert.ok(afterThrow.includes("sfx_intro") && afterThrow.includes("sfx_whoosh_percussive"), JSON.stringify(afterThrow));
+    await active(page);
+    await page.locator("#mute-checkbox").check();
+    assert.deepEqual(await playing(), []);
+    await page.locator("#mute-checkbox").uncheck();
+    await page.evaluate(() => {
+        const scene = SnowcraftGame.getScene();
+        scene.isLevelActive = false;
+        scene.showLossScreen();
+    });
+    // Count intro starts on the sound manager (it outlives the scene restart) instead of
+    // catching the jingle while it is still playing.
+    await page.evaluate(() => {
+        const sound = SnowcraftGame.getScene().sound, play = sound.play.bind(sound);
+        window.introStarts = 0;
+        sound.play = (key, ...rest) => { if (key === "sfx_intro") window.introStarts++; return play(key, ...rest); };
+    });
+    await replay(page, "mouse");
+    await page.waitForFunction(() => window.introStarts === 1);
+    const replayed = await page.evaluate(() => {
+        const scene = SnowcraftGame.getScene();
+        return { skipped: scene.audio.getSkippedLog().map(entry => entry.soundId + ":" + entry.reason),
+            musicInstances: scene.sound.sounds.filter(sound => sound.key === "music").length, musicPlaying: scene.music.isPlaying };
+    });
+    assert.ok(!replayed.skipped.some(entry => entry.startsWith("intro:") || entry.startsWith("music:")), JSON.stringify(replayed.skipped));
+    assert.equal(replayed.musicInstances, 1);
+    assert.equal(replayed.musicPlaying, true);
+    evidence.introJingle = { afterThrow, replayed };
+});
+
+test("grabbing a Red again right after a throw keeps the charging pose", { timeout: 30000 * SLOW }, async t => {
+    const { page } = await open(t, "quick re-grab", {}, true, { storage: { "snowcraft-artwork": "original", "snowcraft-muted": "1" } });
+    await start(page);
+    await active(page);
+    const canvas = await page.locator("canvas").boundingBox();
+    const kid = await page.evaluate(() => { const red = SnowcraftGame.getScene().redTeam[0]; return { x: red.x, y: red.y - 10 }; });
+    await page.mouse.move(canvas.x + kid.x * canvas.width / 592, canvas.y + kid.y * canvas.height / 320);
+    await page.waitForFunction(() => { const scene = SnowcraftGame.getScene(); return scene.hoveredPlayer === scene.redTeam[0]; });
+    await page.mouse.down();
+    await page.waitForTimeout(150);
+    await page.mouse.up();
+    await page.mouse.down();
+    await page.waitForTimeout(400);
+    const held = await page.evaluate(() => {
+        const scene = SnowcraftGame.getScene(), red = scene.redTeam[0];
+        return { dragging: scene.isDragging && scene.activePlayer === red, pose: red.memberName };
+    });
+    await page.mouse.up();
+    assert.deepEqual(held, { dragging: true, pose: "R cock" });
+});
+
+test("the canvas is re-sized in place when the game grows to full screen", { timeout: 30000 * SLOW }, async t => {
+    const { page } = await open(t, "render scale", { viewport: { width: 760, height: 620 } });
+    const measure = () => page.evaluate(() => {
+        const scene = SnowcraftGame.getScene();
+        return { canvas: document.querySelector("canvas").width, wanted: SnowcraftGame.computeLayout().renderScale * 592,
+            zoom: scene.cameras.main.zoom, level: scene.currentLevelIndex, active: scene.isLevelActive };
+    });
+    await start(page);
+    await active(page);
+    const small = await measure();
+    assert.equal(small.canvas, small.wanted);
+    await page.setViewportSize({ width: 1900, height: 1050 });
+    await page.keyboard.press("f");
+    await page.waitForFunction(() => document.querySelector("canvas").width === SnowcraftGame.computeLayout().renderScale * 592 && document.querySelector("canvas").width > 1184);
+    const large = await measure();
+    assert.ok(large.canvas > small.canvas && large.zoom > small.zoom, JSON.stringify({ small, large }));
+    assert.equal(large.active, true, "the level keeps running");
+    const canvas = await page.locator("canvas").boundingBox();
+    const kid = await page.evaluate(() => { const red = SnowcraftGame.getScene().redTeam[1]; return { x: red.x, y: red.y - 10 }; });
+    await page.mouse.move(canvas.x + kid.x * canvas.width / 592, canvas.y + kid.y * canvas.height / 320);
+    await page.waitForFunction(() => { const scene = SnowcraftGame.getScene(); return scene.hoveredPlayer === scene.redTeam[1]; });
+    await page.keyboard.press("f");
+    await page.setViewportSize({ width: 760, height: 620 });
+    await page.waitForFunction(width => document.querySelector("canvas").width === width, small.canvas);
+    evidence.renderScale = { small, large };
+});
+
+test("the published URL (no debug) plays, and the difficulty selector rebuilds the game", { timeout: 60000 * SLOW }, async t => {
+    const { page } = await open(t, "production page", {}, true, { query: "/" });
+    assert.equal(await page.evaluate(() => typeof window.advanceTime), "undefined");
+    await start(page);
+    await page.waitForFunction(() => SnowcraftGame.getScene().isLevelActive, null, { timeout: 15000 * SLOW });
+    assert.equal(await page.evaluate(() => SnowcraftGame.getScene().redTeam.some(kid => kid.debugLabel)), false);
+    const hitsToKnockOut = () => page.evaluate(() => {
+        const scene = SnowcraftGame.getScene(), green = scene.greenTeam[0];
+        scene.stopAI();
+        let hits = 0;
+        while (green.isAlive && hits < 9) { green.isImmune = false; scene.handleHit(green); hits++; }
+        return hits;
+    });
+    assert.equal(await hitsToKnockOut(), 3);
+    for (const [value, expected] of [["3", 4], ["1", 2]]) {
+        const previous = await page.evaluateHandle(() => SnowcraftGame.getGame());
+        await page.locator("#difficulty-select").selectOption(value);
+        await page.waitForFunction(old => SnowcraftGame.getGame() !== old && SnowcraftGame.getScene()?.scoreBanner?.node && SnowcraftGame.getScene().awaitingTitleClick, previous);
+        await page.waitForTimeout(150);
+        await start(page);
+        await page.waitForFunction(() => SnowcraftGame.getScene().isLevelActive, null, { timeout: 15000 * SLOW });
+        assert.equal(await hitsToKnockOut(), expected, "difficulty " + value);
+    }
+});
+
+test("parity-check.html reports every recovered constant as passing", { timeout: 30000 * SLOW }, async t => {
+    const context = await browser.newContext();
+    t.after(() => context.close());
+    const page = await context.newPage();
+    page.on("pageerror", error => errors.push({ test: "parity page", type: "pageerror", message: error.stack }));
+    await page.goto(baseURL + "/parity-check.html");
+    const report = await page.locator("#out").textContent();
+    assert.ok(!report.includes("FAIL") && report.trim().endsWith("ALL PASSED"), report);
+});
+
+test("Original artwork skips the high-resolution pack until the player switches to it", { timeout: 60000 * SLOW }, async t => {
+    const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, deviceScaleFactor: 1 });
+    t.after(() => context.close());
+    context.setDefaultTimeout(30000 * SLOW);
+    for (const host of ["cdn.jsdelivr.net", "fonts.googleapis.com", "fonts.gstatic.com"]) await context.route("https://" + host + "/**", replayThirdParty);
+    await context.addInitScript(() => { if (localStorage.getItem("snowcraft-artwork") === null) localStorage.setItem("snowcraft-artwork", "original"); });
+    const page = await context.newPage();
+    const hdRequests = [];
+    page.on("request", request => { // The page itself shows a few redrawn character frames; the game's pack is the motion, scenery and Santa art.
+        if (/\/assets\/(hd\/(motion|scenery)|santa\/hd)\/.*\.png$/.test(request.url())) hdRequests.push(request.url()); });
+    page.on("pageerror", error => errors.push({ test: "lazy artwork", type: "pageerror", message: error.stack }));
+    page.on("console", message => { if (["error", "warning"].includes(message.type())) errors.push({ test: "lazy artwork", type: "console", message: message.text() }); });
+    await page.goto(baseURL + "/?debug", { waitUntil: "domcontentloaded" });
+    await ready(page);
+    await start(page);
+    await active(page);
+    assert.deepEqual(hdRequests, [], "Original artwork does not download the redrawn pack");
+    await page.evaluate(() => { const scene = SnowcraftGame.getScene(); scene.score = 7; scene.redTeam[0].hits = 1; });
+    await page.locator("#artwork-select").selectOption("high-resolution");
+    await page.waitForFunction(() => SnowcraftGame.getScene().artwork.mode === "high-resolution");
+    await page.waitForTimeout(200);
+    const state = await page.evaluate(() => {
+        const scene = SnowcraftGame.getScene(), frames = SnowcraftGame.getScene().motion.snapshot().kids.map(kid => kid.frame);
+        const ground = scene.children.list.find(object => object.snowcraftOriginalTextureKey === "cast_ground");
+        return { score: scene.score, hits: scene.redTeam[0].hits, active: scene.isLevelActive, frames, ground: ground.texture.key,
+            missing: scene.children.list.filter(object => object.texture && object.texture.key === "__MISSING" && object.visible).length };
+    });
+    assert.ok(hdRequests.length > 100, "the pack is fetched on demand: " + hdRequests.length);
+    assert.deepEqual({ score: state.score, hits: state.hits, active: state.active, missing: state.missing }, { score: 7, hits: 1, active: true, missing: 0 });
+    assert.ok(state.frames.every(frame => /^[RG]_/.test(frame)), JSON.stringify(state.frames));
+    assert.match(state.ground, /redrawn4x$/);
+    await screenshot(page, "lazy-hd-artwork");
+    await page.reload({ waitUntil: "domcontentloaded" });
+    await ready(page);
+    assert.equal(await page.evaluate(() => SnowcraftGame.getScene().artwork.mode), "high-resolution");
+});
+
+test("the game sits inside the card and inside the first screen at common sizes", { timeout: 45000 * SLOW }, async t => {
+    const { page } = await open(t, "card layout", {}, true, { query: "/" });
+    const sizes = [];
+    for (const [width, height] of [[1920, 1080], [1440, 900], [1366, 768], [1180, 820], [820, 1180], [760, 620]]) {
+        await page.setViewportSize({ width, height });
+        await page.waitForTimeout(750);
+        const box = await page.evaluate(() => {
+            const canvas = document.querySelector("canvas").getBoundingClientRect(), slot = document.querySelector(".game-slot").getBoundingClientRect();
+            return { top: canvas.top, bottom: canvas.bottom, left: canvas.left, right: canvas.right, width: canvas.width,
+                slotLeft: slot.left, slotRight: slot.right, pageWidth: document.documentElement.scrollWidth };
+        });
+        const label = width + "x" + height + " " + JSON.stringify(box);
+        assert.ok(box.top >= 0 && box.bottom <= height, "game is fully in view at " + label);
+        assert.ok(box.left >= box.slotLeft && box.right <= box.slotRight, "game stays on its leaf at " + label);
+        assert.ok(box.width >= Math.min(560, width - 80), "game is not shrunk at " + label);
+        assert.ok(box.pageWidth <= width, "no sideways scroll at " + label);
+        sizes.push({ width, height, box });
+    }
+    evidence.cardLayout = sizes;
+});
+
+test("sending the card copies the link and cancels the envelope with today's postmark", { timeout: 30000 * SLOW }, async t => {
+    const { page, context } = await open(t, "send the card", {}, true, { query: "/" });
+    await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+    // When the browser refuses the clipboard, the address is offered for a manual copy and nothing is stamped.
+    await page.evaluate(() => {
+        window.realWriteText = navigator.clipboard.writeText.bind(navigator.clipboard);
+        Object.defineProperty(navigator.clipboard, "writeText", { configurable: true, value: () => Promise.reject(new Error("denied")) });
+    });
+    await page.locator("[data-copy]").click();
+    await page.waitForFunction(() => document.querySelector("[data-copy] [data-share-label]").textContent === "Copy the address");
+    assert.deepEqual(await page.evaluate(() => ({
+        struck: document.querySelectorAll(".postmark-sent.is-struck").length,
+        selected: String(getSelection()).replace(/\s/g, "")
+    })), { struck: 0, selected: "chiefinnovator.github.io/snowcraftai" });
+    await page.evaluate(() => Object.defineProperty(navigator.clipboard, "writeText", { configurable: true, value: window.realWriteText }));
+    await page.evaluate(() => scrollTo(0, 0));
+    await page.locator(".stamp-send").click();
+    await page.waitForFunction(() => document.querySelector(".postmark-sent.is-struck"));
+    const sent = await page.evaluate(async () => ({
+        clipboard: await navigator.clipboard.readText(),
+        label: document.querySelector(".stamp-send [data-share-label]").textContent,
+        status: document.querySelector(".share-status").textContent,
+        year: document.querySelector("[data-sent-year]").textContent,
+        stillOnTitle: SnowcraftGame.getScene().awaitingTitleClick
+    }));
+    assert.deepEqual(sent, { clipboard: "https://chiefinnovator.github.io/snowcraftai/", label: "Link copied", status: "Link copied",
+        year: String(new Date().getFullYear()), stillOnTitle: true });
+});
+
+test("the 1999 and 2026 switch changes the live artwork, and the comparison line can be dragged", { timeout: 45000 * SLOW }, async t => {
+    const { page } = await open(t, "two printings", {}, true, { query: "/" });
+    const state = () => page.evaluate(() => ({
+        drawn: SnowcraftGame.getScene().artwork.mode,
+        select: document.getElementById("artwork-select").value,
+        on: [...document.querySelectorAll(".edition.is-on input")].map(input => input.value),
+        checked: [...document.querySelectorAll(".edition input:checked")].map(input => input.value),
+        edition: document.documentElement.dataset.edition,
+        saved: localStorage.getItem("snowcraft-artwork"),
+        covered: document.querySelector(".plate-wipe").classList.contains("is-covering")
+    }));
+    const settled = mode => page.waitForFunction(mode => SnowcraftGame.getScene().artwork.mode === mode
+        && !document.querySelector(".plate-wipe").classList.contains("is-covering"), mode);
+    assert.deepEqual(await state(), { drawn: "high-resolution", select: "high-resolution", on: ["high-resolution"], checked: ["high-resolution"], edition: "2026", saved: null, covered: false });
+    await start(page);
+    await active(page);
+    await page.locator(".edition").filter({ hasText: "1999" }).click();
+    await settled("original");
+    assert.deepEqual(await state(), { drawn: "original", select: "original", on: ["original"], checked: ["original"], edition: "1999", saved: "original", covered: false });
+    assert.equal(await page.evaluate(() => SnowcraftGame.getScene().isLevelActive), true, "switching artwork does not restart the level");
+    await page.locator('[data-edition="high-resolution"]').click();
+    await settled("high-resolution");
+    assert.deepEqual((await state()).on, ["high-resolution"]);
+    // The game's own control still works, and the two prints follow it.
+    await page.locator("#artwork-select").selectOption("original");
+    await page.waitForFunction(() => document.querySelector(".edition.is-on input").value === "original");
+    assert.equal((await state()).edition, "1999");
+    await page.locator(".wipe-range").fill("20");
+    assert.equal(await page.evaluate(() => getComputedStyle(document.querySelector(".wipe")).getPropertyValue("--split").trim()), "20%");
+    await page.locator(".wipe").scrollIntoViewIfNeeded();
+    await page.waitForFunction(() => [...document.querySelectorAll(".wipe img")].every(image => image.complete && image.naturalWidth === 1778));
+    await screenshot(page, "two-printings");
 });
 
 test("browser matrix produces no uncaught page errors or console errors", () => {

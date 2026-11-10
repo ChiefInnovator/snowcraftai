@@ -36,7 +36,7 @@ Deliberate differences:
    - *Change:* make immunity apply only to a downed green.
 4. **Throw power curve and range.**
    - *Ours:* strength 1–100 on an exponential ramp; `distance = 5 * strength`, up to 500 px.
-   - *Original:* **9 power steps (0–8), +1 every 83 ms, full at 0.67 s (linear).** Horizontal distance is `20·max(2p,1) + 40` px, i.e. 60–400 px; vertical is half (§5, §7).
+   - *Original:* **9 power steps (0–8), +1 every 83 ms, full at 0.67 s (linear).** Horizontal distance is `20·max(2p,1) + 40` px, i.e. 60–360 px; vertical is half (§5, §7).
    - *Change:* replace `increaseStrength` with a linear tick, and quantise the meter to 9 states.
 5. **When balls can hit.**
    - *Ours:* the Bezier arc hits when `|dx| < 15 && |dy| < 18` at any point.

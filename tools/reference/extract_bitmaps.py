@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import struct
 import sys
 import zlib
@@ -241,7 +242,8 @@ def main(src, out_dir):
                 for i, idx in enumerate(pixels):
                     r, g, b = palette[idx]
                     rgba[i * 4:i * 4 + 4] = bytes([r, g, b, 0 if idx == 0 else 255])
-        slug_name = (member["name"] or "unnamed").replace(" ", "_")
+        # Cast names come from the movie file; keep them inside bmp_dir.
+        slug_name = re.sub(r"[^A-Za-z0-9_-]", "_", (member["name"] or "unnamed").replace(" ", "_"))
         if num == 70:
             slug_name = "happy_holidays"
         elif num == 88:

@@ -61,8 +61,10 @@
             scene.load.image('motion_' + id, 'assets/hd/motion/' + id + '.png');
             scene.load.image('hd_shadow_motion_' + id, 'assets/hd/motion/shadow_' + id + '.png');
         });
-        scene.load.json('hd_motion', 'assets/hd/motion/manifest.json');
+        preloadManifest(scene);
     }
+    // Frame geometry is needed in both artwork modes; the images are not.
+    function preloadManifest(scene) { scene.load.json('hd_motion', 'assets/hd/motion/manifest.json'); }
 
     function create(scene, artwork) {
         const manifest = scene.cache.json.get('hd_motion'), kids = new Map(), balls = new Map(), particles = [];
@@ -93,11 +95,13 @@
             c.fillStyle = g; c.strokeStyle = '#58778f'; c.lineWidth = 3;
             c.beginPath(); c.arc(24, 24, 21, 0, Math.PI * 2); c.fill(); c.stroke();
         });
+        // The pose images arrive with the high-resolution pack, which Original-artwork players load on demand.
+        const placeholder = () => scene.textures.exists('motion_R_ready') ? 'motion_R_ready' : 'motion_contact';
         function addKid(kid, index) {
             const state = { kid, team: kid.teamType === 'player' ? 'R' : 'G', seed: (index * 3 + (kid.teamType === 'player' ? 0 : 1)) % 8,
                 idle: index * 971 + (kid.teamType === 'player' ? 320 : 1700), distance: 0, x: kid.x, y: kid.y,
-                image: scene.add.image(0, 0, 'motion_R_ready').setVisible(false),
-                blend: scene.add.image(0, 0, 'motion_R_ready').setVisible(false),
+                image: scene.add.image(0, 0, placeholder()).setVisible(false),
+                blend: scene.add.image(0, 0, placeholder()).setVisible(false),
                 daze: scene.add.graphics().setVisible(false),
                 contacts: [0, 1].map(() => scene.add.image(0, 0, 'motion_contact').setDepth(-4.9).setVisible(false)) };
             kid.add(state.blend); kid.add(state.daze); kid.add(state.image); kids.set(kid, state);
@@ -297,5 +301,5 @@
             snapshot: () => ({ enabled, kids: [...kids.values()].map(s => ({ team: s.team, x: s.x, y: s.y, frame: s.frame?.id || s.frame?.key, phase: s.phase, contacts: s.contacts.filter(i => i.visible).length })),
                 balls: [...balls.values()].map(s => ({ x: s.x, y: s.y })), particles: particles.length }) };
     }
-    return { IDS, makePath, samplePath, gait, ballSample, registerRedInjury, preload, create };
+    return { IDS, makePath, samplePath, gait, ballSample, registerRedInjury, preload, preloadManifest, create };
 });

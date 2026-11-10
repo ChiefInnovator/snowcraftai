@@ -66,17 +66,33 @@ function viewportSize() {
     return { w: window.innerWidth, h: window.innerHeight };
 }
 
+// A fit-to-window game fills the slot the page gives it. The slot's width is
+// set by the page layout, never by the game, and its style says how much
+// height the page keeps for itself (--fit-reserve-h, in px).
+function fitAllowance(vp) {
+    const slot = document.querySelector('.game-slot');
+    if (!slot) return {};
+    const css = getComputedStyle(slot);
+    const inner = slot.clientWidth - parseFloat(css.paddingLeft) - parseFloat(css.paddingRight);
+    const reserve = parseFloat(css.getPropertyValue('--fit-reserve-h'));
+    return {
+        marginW: inner > 0 ? Math.max(0, vp.w - inner * DISPLAY_BASE_W / STAGE_W) : undefined,
+        reservedH: Number.isFinite(reserve) ? reserve : undefined
+    };
+}
+
 function computeLayout() {
     const vp = viewportSize();
     const immersive = isImmersive();
+    const allowance = immersive ? { reservedH: 0, marginW: 0 } : fitAllowance(vp);
     const layout = P.computeDisplayLayout(
         immersive ? 0 : GAME_SCALE,
         // Immersive: scale the width so the 592-wide stage (not the 600 base) meets the screen edges.
         immersive ? vp.w * DISPLAY_BASE_W / STAGE_W : vp.w,
         vp.h,
         window.devicePixelRatio || 1,
-        immersive ? 0 : undefined,
-        immersive ? 0 : undefined
+        allowance.reservedH,
+        allowance.marginW
     );
     if (COARSE_POINTER) layout.renderScale = Math.min(layout.renderScale, 2);
     return layout;
@@ -130,10 +146,47 @@ function changeArtwork() {
     document.getElementById('game-container').dataset.artwork = GAME_ARTWORK;
     try { localStorage.setItem('snowcraft-artwork', GAME_ARTWORK); } catch (err) { /* private mode */ }
     const scene = window.SnowcraftGame.getScene();
-    if (scene && scene.artwork) {
+    if (!scene || !scene.artwork) return;
+    const show = () => {
+        // The player may have switched back or restarted while the pack loaded.
+        if (scene !== window.SnowcraftGame.getScene() || !scene.artwork) return;
         scene.artwork.setMode(GAME_ARTWORK);
         scene.motion.refresh();
-    }
+    };
+    if (GAME_ARTWORK === 'high-resolution') scene.loadHdArtwork(show);
+    else show();
+}
+
+// The redrawn pack is about 20 MB; the recovered originals are under 1 MB.
+// Players who chose Original artwork fetch the pack only if they switch.
+function queueHdArtwork(scene) {
+    scene.load.image(SnowcraftArtwork.sceneryTextureKey(P.CAST.ground.key), 'assets/hd/scenery/ground.png');
+    P.CAST.kids.forEach((m) => {
+        if (m.name === 'shadow') return;
+        scene.load.image(SnowcraftArtwork.characterTextureKey(m.key), 'assets/hd/characters/' + m.file);
+        scene.load.image('hd_shadow_' + m.key, 'assets/hd/characters/shadow_' + m.file);
+    });
+    SnowcraftMotion.preload(scene);
+    SnowcraftSanta.FRAMES.forEach(frame => {
+        scene.load.image(SnowcraftArtwork.characterTextureKey('santa_' + frame), 'assets/santa/hd/' + frame + '.png');
+        scene.load.image('santa_shadow_hd_' + frame, 'assets/santa/hd/shadow_' + frame + '.png');
+        if (SnowcraftSanta.canFlip(frame)) scene.load.image('santa_shadow_hd_' + frame + '_left', 'assets/santa/hd/shadow_' + frame + '_left.png');
+    });
+    scene.load.image(SnowcraftArtwork.sceneryTextureKey('santa_grove'), 'assets/santa/hd/grove.png');
+}
+
+// The canvas is created at the boot-time render scale. When the box grows or
+// shrinks later (full screen, rotation, window resize), re-size the canvas in
+// place so the artwork is not stretched from a smaller buffer mid-game.
+function applyRenderScale(renderScale) {
+    if (!game || !game.isBooted || game.registry.get('renderScale') === renderScale) return;
+    game.registry.set('renderScale', renderScale);
+    game.scale.setGameSize(STAGE_W * renderScale, STAGE_H * renderScale);
+    const scene = game.scene.scenes[0];
+    if (!scene || !scene.cameras || !scene.cameras.main) return;
+    scene.renderScale = renderScale;
+    scene.cameras.main.setSize(STAGE_W * renderScale, STAGE_H * renderScale)
+        .setZoom(renderScale).centerOn(STAGE_W / 2, STAGE_H / 2);
 }
 
 // Phones report the new size late after a rotation, so lay out twice: once
@@ -144,7 +197,9 @@ function relayout() {
     relayoutTimers.forEach(clearTimeout);
     relayoutTimers = [120, 600].map(ms => setTimeout(() => {
         if (!game) return;
-        sizeContainer(computeLayout());
+        const layout = computeLayout();
+        sizeContainer(layout);
+        applyRenderScale(layout.renderScale);
         if (game.scale && game.scale.refresh) game.scale.refresh();
         updateRotateHint();
     }, ms));
@@ -287,28 +342,20 @@ class MainScene extends Phaser.Scene {
         this.load.image('melt_3', 'assets/cast/melt_3.png');
         this.load.image('playfield', 'assets/classic/ground.png');
         this.load.image(P.CAST.ground.key, 'assets/classic/ground.png');
-        this.load.image(SnowcraftArtwork.sceneryTextureKey(P.CAST.ground.key), 'assets/hd/scenery/ground.png');
         this.load.image('shadow', 'assets/cast/001_shadow.png');
         P.CAST.kids.forEach((m) => {
             this.load.image(m.key, 'assets/cast/' + m.file);
-            if (m.name !== 'shadow') {
-                this.load.image(SnowcraftArtwork.characterTextureKey(m.key), 'assets/hd/characters/' + m.file);
-                this.load.image('hd_shadow_' + m.key, 'assets/hd/characters/shadow_' + m.file);
-            }
         });
         this.load.json('walkon', 'assets/walkon.json');
         this.load.json('hd_characters', 'assets/hd/characters/manifest.json');
-        SnowcraftMotion.preload(this);
+        SnowcraftMotion.preloadManifest(this);
         SnowcraftSanta.FRAMES.forEach(frame => {
             this.load.image('santa_' + frame, 'assets/santa/classic/' + frame + '.png');
-            this.load.image(SnowcraftArtwork.characterTextureKey('santa_' + frame), 'assets/santa/hd/' + frame + '.png');
-            ['classic', 'hd'].forEach(style => {
-                this.load.image('santa_shadow_' + style + '_' + frame, 'assets/santa/' + style + '/shadow_' + frame + '.png');
-                if (SnowcraftSanta.canFlip(frame)) this.load.image('santa_shadow_' + style + '_' + frame + '_left', 'assets/santa/' + style + '/shadow_' + frame + '_left.png');
-            });
+            this.load.image('santa_shadow_classic_' + frame, 'assets/santa/classic/shadow_' + frame + '.png');
+            if (SnowcraftSanta.canFlip(frame)) this.load.image('santa_shadow_classic_' + frame + '_left', 'assets/santa/classic/shadow_' + frame + '_left.png');
         });
         this.load.image('santa_grove', 'assets/santa/classic/grove.png');
-        this.load.image(SnowcraftArtwork.sceneryTextureKey('santa_grove'), 'assets/santa/hd/grove.png');
+        if (GAME_ARTWORK === 'high-resolution') queueHdArtwork(this);
         this.load.json('santa', 'assets/santa/manifest.json');
 
         // Original channel-1 WAVs (paths relative to src/). Intro/BGM are remake extras.
@@ -319,8 +366,26 @@ class MainScene extends Phaser.Scene {
         this.load.audio('music', 'assets/musicAlt.mp3');
     }
 
+    // Fetch the redrawn pack on demand, then run `done` (at once if it is here).
+    loadHdArtwork(done) {
+        if (this.hdArtworkReady) { done(); return; }
+        this.events.once('hd-artwork-ready', done);
+        if (this.hdArtworkLoading) return;
+        this.hdArtworkLoading = true;
+        queueHdArtwork(this);
+        this.load.once('complete', () => {
+            this.hdArtworkLoading = false;
+            this.hdArtworkReady = true;
+            this.events.emit('hd-artwork-ready');
+        });
+        this.load.start();
+    }
+
     create(data) {
         this.renderScale = this.registry.get('renderScale') || 1;
+        this.hdArtworkLoading = false;
+        this.hdArtworkReady = this.textures.exists(SnowcraftArtwork.sceneryTextureKey(P.CAST.ground.key));
+        this.events.off('hd-artwork-ready');
         this.cameras.main.setZoom(this.renderScale).centerOn(STAGE_W / 2, STAGE_H / 2);
         this.artwork = SnowcraftArtwork.create(this, GAME_ARTWORK);
         this.events.once('shutdown', () => this.artwork.destroy());
@@ -423,10 +488,13 @@ class MainScene extends Phaser.Scene {
         this.artwork.apply(this.powerMeter, 'power_0');
 
         this.input.setDefaultCursor('url(assets/smallHand.png), pointer');
-        this.music = this.sound.add('music', { loop: true, volume: 0.3 });
+        // One looping instance per game: Play Again restarts the scene, not the sound manager.
+        this.music = this.sound.get('music') || this.sound.add('music', { loop: true, volume: 0.3 });
 
         this.audio = SnowcraftAudio.createSnowcraftAudio(SnowcraftAudio.createPhaserAdapter(this));
         snowcraftAudio = this.audio;
+        // A restarted scene gets a new audio object; the browser stays unlocked.
+        if (data && data.skipTitle && !this.sound.locked) this.audio.unlock();
         const muteBox = document.getElementById('mute-checkbox');
         if (muteBox) {
             muteBox.checked = this.audio.isMuted();
@@ -977,8 +1045,7 @@ class MainScene extends Phaser.Scene {
     }
 
     currentPower() {
-        const steps = Math.floor((this.time.now - this.pressTime) / RULES.powerTickMs);
-        return Phaser.Math.Clamp(steps, 0, RULES.maxPower);
+        return P.powerFromHoldMs(this.time.now - this.pressTime);
     }
 
     update(time, delta) {
@@ -1028,6 +1095,7 @@ class MainScene extends Phaser.Scene {
         this.motion.release(thrower);
         if (team === 'player') {
             this.time.delayedCall(100, () => {
+                if (!thrower.scene || thrower === this.activePlayer) return;
                 if (thrower.isAlive && !thrower.isDazed) this.showKidIdle(thrower);
             });
         }
@@ -1075,7 +1143,11 @@ class MainScene extends Phaser.Scene {
 
     stepBalls() {
         const done = [];
-        for (const b of this.projectiles) {
+        const balls = this.projectiles;
+        for (const b of balls) {
+            // A hit can start the next level at once (muted: nothing to wait
+            // for on channel 1), which destroys every ball in this list.
+            if (this.projectiles !== balls) return;
             this.motion.ballTick(b);
             if (b.phase === 'fly') {
                 b.gx += b.flyStep.x;
@@ -1383,7 +1455,7 @@ class MainScene extends Phaser.Scene {
     }
 
     levelCleared() {
-        this.score += this.greenTeam.length;
+        this.score = P.scoreOnLevelWin(this.score, this.greenTeam.length);
         const isLast = this.currentLevelIndex >= RULES.greensPerLevel.length - 1;
         const pointerX = this.input.activePointer ? this.input.activePointer.worldX : 300;
         // nextLevel waits while soundBusy(1) so the last kids cue finishes, then
@@ -1398,7 +1470,7 @@ class MainScene extends Phaser.Scene {
     }
 
     levelLost() {
-        this.score = (this.score + this.killsThisLevel) * (this.currentLevelIndex + 1);
+        this.score = P.scoreOnGameOver(this.score, this.killsThisLevel, this.currentLevelIndex + 1);
         this.greenTeam.forEach(k => { if (k.isAlive) this.showKidVictory(k); });
 
         // ridicule() twice: each laugh waits for soundBusy(1) before the next.
@@ -1416,8 +1488,7 @@ class MainScene extends Phaser.Scene {
     }
 
     victory() {
-        this.score = this.score * 10;
-        if (this.score > 900) this.score = 1000;
+        this.score = P.scoreOnVictory(this.score);
         this.showVictoryScreen();
     }
 
@@ -1595,6 +1666,21 @@ class MainScene extends Phaser.Scene {
 }
 
 game = new Phaser.Game(getConfig());
+
+// Page controls are wired here, not with inline handlers, so the page's
+// Content-Security-Policy can forbid inline script.
+[
+    ['#difficulty-select', 'change', changeDifficulty],
+    ['#scale-select', 'change', changeScale],
+    ['#artwork-select', 'change', changeArtwork],
+    ['#music-checkbox', 'change', changeMusic],
+    ['#mute-checkbox', 'change', changeMute],
+    ['#fullscreen-btn', 'click', toggleFullscreen],
+    ['#rotate-hint .opt-btn', 'click', dismissRotateHint]
+].forEach(([selector, type, handler]) => {
+    const el = document.querySelector(selector);
+    if (el) el.addEventListener(type, () => handler());
+});
 
 (function initPhoneUi() {
     syncFullscreenButton();

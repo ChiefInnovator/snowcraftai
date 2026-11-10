@@ -4,7 +4,7 @@ import '../data/game_assets.dart';
 import '../domain/game_engine.dart';
 
 class GamePainter extends CustomPainter {
-  GamePainter(this.engine, this.assets);
+  GamePainter(this.engine, this.assets, {super.repaint});
   final GameEngine engine;
   final GameAssets assets;
   final _paint = Paint()..filterQuality = FilterQuality.high;

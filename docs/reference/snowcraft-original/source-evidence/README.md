@@ -17,8 +17,8 @@ were not executed.
 | [`recovered/event-loop-layouts.json`](recovered/event-loop-layouts.json) | Event Loop `#gd` / `#level` start locs |
 | [`recovered/070_happy_holidays.png`](recovered/070_happy_holidays.png) | Original member 70 BITD (includes `IconMedialab`). Runtime `web/assets/cast/070_happy_holidays.png` is a derivative with that lettering removed. |
 
-The same recovered files are also kept at [`docs/recovered/`](../../../recovered/)
-next to `PARITY.md`. Runtime art/audio is **not** duplicated here except the
+The duplicate copies formerly kept at [`docs/recovered/`](../../../recovered/)
+were removed; that folder now holds only `ui-bitmaps.json` and `ui-score.json`. Runtime art/audio is **not** duplicated here except the
 original member 70 PNG, kept because the live logo was edited.
 
 Acknowledgments: [`../COPYRIGHT-NOTICES.md`](../COPYRIGHT-NOTICES.md).
