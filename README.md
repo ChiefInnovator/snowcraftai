@@ -39,14 +39,15 @@ The web edition uses **Phaser 4** to replay the 1999 Director rules: fixed-diago
 - Runs in modern browsers without the original Director player.
 - Mouse and touch controls, responsive sizing, landscape phone play and full screen.
 - Crisp browser-rendered lettering for every title, level number, score and replay control, aligned to the stage rather than bitmap registration offsets.
-- A choice of original artwork or a faithful smooth **4× upscale**. Upscaling interpolates the same source artwork; it does not recover missing detail or redesign sprites. Original files and collision masks remain unchanged.
+- A choice of original artwork or **35 redrawn HD character frames**, based on the approved Red and Green designs, plus a newly illustrated 4× snowfield. The HD pack exports at 8× logical resolution with original registration and collision masks. Reds face their opponents and fall backward; fallen bodies keep their standing scale. Effects retain smooth 4× versions of their recovered art.
 - Independent, saved background-music and mute-all controls; the remake includes intro and background music.
+- HD pose shadows with soft edges and grounded contact, plus an open snowfield with opposing forts and a decorated Christmas grove in the top-right corner.
 - Easy/Normal/Hard difficulty, clearer selection feedback, and a shadow that follows a dragged kid.
 - A cleaner menu with one visible page title, accessible controls and keyboard-operable replay.
 
 ### Flutter edition
 
-The native [Flutter game](flutter/README.md) is a separate **landscape-only, enhanced-only** edition. It uses smooth artwork and native text rather than offering a legacy graphics mode. Its enhanced movement and aiming, reachable spawn positions, bounded drag speed, and updated audio are documented in its README.
+The native [Flutter game](flutter/README.md) is a separate **landscape-only, enhanced-only** edition. It uses the same redrawn HD character pack as the web HD mode, with native text. Its enhanced movement and aiming, reachable spawn positions, bounded drag speed, and updated audio are documented in its README.
 
 ## Run and test
 

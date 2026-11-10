@@ -1,0 +1,42 @@
+[
+  {
+    "num": 15,
+    "status": "fulfilled",
+    "file": "015_R_dead.png"
+  },
+  {
+    "num": 16,
+    "status": "fulfilled",
+    "file": "016_R_dead.png"
+  },
+  {
+    "num": 17,
+    "status": "fulfilled",
+    "file": "017_G_yea.png"
+  },
+  {
+    "num": 18,
+    "status": "fulfilled",
+    "file": "018_G_yea.png"
+  },
+  {
+    "num": 19,
+    "status": "fulfilled",
+    "file": "019_G_yea.png"
+  },
+  {
+    "num": 20,
+    "status": "fulfilled",
+    "file": "020_G_Walk_H2.png"
+  },
+  {
+    "num": 21,
+    "status": "fulfilled",
+    "file": "021_G_Walk_H1.png"
+  },
+  {
+    "num": 22,
+    "status": "fulfilled",
+    "file": "022_G_Walk_V1.png"
+  }
+]

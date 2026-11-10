@@ -4,8 +4,8 @@ const DEBUG_MODE = PARAMS.has('debug'); // ?debug → coordinate labels + level-
 const START_LEVEL = 1; // Level to start on (1-10)
 let GAME_SCALE = 0; // 0 = fit the window; otherwise a fixed multiple of 600×320
 let GAME_DIFFICULTY = 2; // 1=Easy, 2=Normal, 3=Hard
-let GAME_ARTWORK = 'original';
-try { if (localStorage.getItem('snowcraft-artwork') === 'high-resolution') GAME_ARTWORK = 'high-resolution'; } catch (err) { /* private mode */ }
+let GAME_ARTWORK = 'high-resolution';
+try { if (localStorage.getItem('snowcraft-artwork') === 'original') GAME_ARTWORK = 'original'; } catch (err) { /* private mode */ }
 let game = null;
 let snowcraftAudio = null;
 
@@ -282,9 +282,17 @@ class MainScene extends Phaser.Scene {
         this.load.image('melt_3', 'assets/cast/melt_3.png');
         this.load.image('playfield', 'assets/playField.png');
         this.load.image(P.CAST.ground.key, 'assets/cast/' + P.CAST.ground.file);
+        this.load.image(SnowcraftArtwork.sceneryTextureKey(P.CAST.ground.key), 'assets/hd/scenery/ground.png');
         this.load.image('shadow', 'assets/shadow.png');
-        P.CAST.kids.forEach((m) => this.load.image(m.key, 'assets/cast/' + m.file));
+        P.CAST.kids.forEach((m) => {
+            this.load.image(m.key, 'assets/cast/' + m.file);
+            if (m.name !== 'shadow') {
+                this.load.image(SnowcraftArtwork.characterTextureKey(m.key), 'assets/hd/characters/' + m.file);
+                this.load.image('hd_shadow_' + m.key, 'assets/hd/characters/shadow_' + m.file);
+            }
+        });
         this.load.json('walkon', 'assets/walkon.json');
+        this.load.json('hd_characters', 'assets/hd/characters/manifest.json');
 
         // Original channel-1 WAVs (paths relative to src/). Intro/BGM are remake extras.
         Object.keys(P.SOUND_FILES).forEach((id) => {
@@ -327,6 +335,7 @@ class MainScene extends Phaser.Scene {
         this.matteCache = {};
 
         this.walkon = this.cache.json.get('walkon') || [];
+        this.hdShadowSpecs = Object.fromEntries(this.cache.json.get('hd_characters').frames.map(frame => [frame.key, frame.shadow]));
 
         // 3. Game Groups & State
         this.shadowGroup = this.add.group();
@@ -375,6 +384,19 @@ class MainScene extends Phaser.Scene {
         this.selectionCircle = this.add.graphics();
         this.selectionCircle.setDepth(-1);
         this.selectionCircle.setVisible(false);
+        if (!this.textures.exists('hd_selection_ring')) {
+            const ring = this.textures.createCanvas('hd_selection_ring', 384, 176);
+            const ctx = ring.getContext();
+            ctx.strokeStyle = '#13749c';
+            ctx.lineWidth = 8;
+            ctx.beginPath();
+            ctx.ellipse(192, 88, 176, 72, 0, 0, Math.PI * 2);
+            ctx.stroke();
+            ring.refresh();
+            ring.setFilter(Phaser.Textures.FilterMode.LINEAR);
+        }
+        this.hdSelectionCircle = this.add.image(0, 0, 'hd_selection_ring')
+            .setDisplaySize(48, 22).setDepth(-1).setVisible(false);
 
         // Power meter: original `power 0`–`power 8` BITD members, loc = kid feet.
         this.powerMeter = this.add.image(0, 0, 'power_0').setDepth(100).setVisible(false);
@@ -474,6 +496,7 @@ class MainScene extends Phaser.Scene {
                     this.showSelectionUI(kid);
                 }
                 this.activePlayer = kid;
+                this.lastThrownPlayer = null;
                 this.isDragging = true;
                 this.dragPointerId = pointer.id; // only this finger/mouse moves or releases the kid
                 this.pressTime = this.time.now;
@@ -491,11 +514,12 @@ class MainScene extends Phaser.Scene {
             if (this.isDragging && pointer.id !== this.dragPointerId) return;
             if (this.isDragging && kid && kid.isAlive && this.isLevelActive && (pointer.wasTouch || pointer.leftButtonReleased())) {
                 this.throwSnowball(kid, this.currentPower());
+                this.lastThrownPlayer = kid;
                 this.hidePowerMeter();
                 this.isDragging = false;
                 this.activePlayer = null;
                 if (pointer.wasTouch) {
-                    // No hover on touch: clear the ring once the throw is away.
+                    // No hover on touch: only the toss follow-through keeps a ring.
                     this.hideSelectionUI();
                     this.hoveredPlayer = null;
                 } else {
@@ -639,6 +663,24 @@ class MainScene extends Phaser.Scene {
         P.applyOrigin(kid.bodySprite, spec);
         kid.memberName = spec.name;
         kid.memberSpec = spec;
+        this.updateKidShadow(kid);
+    }
+
+    updateKidShadow(kid) {
+        const spec = kid.memberSpec;
+        if (!spec || !kid.shadow) return;
+        const hd = this.artwork.mode === 'high-resolution';
+        const fallen = spec.name === 'R hit' || spec.name === 'R hit2' || spec.name === 'R dead' || spec.name === 'G down' || spec.name === 'G dead';
+        kid.shadow.setPosition(kid.x, kid.y).setAlpha(kid.alpha).setVisible(!hd && kid.isAlive && !fallen);
+        if (!kid.hdShadow) return;
+        const shadow = this.hdShadowSpecs[spec.key];
+        kid.hdShadow.setVisible(hd && !!shadow).setPosition(kid.x, kid.y).setAlpha(kid.alpha);
+        if (shadow && kid.hdShadow.texture.key !== shadow.key) {
+            kid.hdShadow.setTexture(shadow.key).setDisplaySize(shadow.w, shadow.h)
+                .setOrigin(shadow.reg[0] / shadow.w, shadow.reg[1] / shadow.h);
+            const filters = Phaser.Textures.FilterMode;
+            kid.hdShadow.texture.setFilter(filters ? filters.LINEAR : 0);
+        }
     }
 
     showKidFrame(kid, atlasFrame, variant) {
@@ -717,6 +759,7 @@ class MainScene extends Phaser.Scene {
         this.hideSelectionUI();
         this.hoveredPlayer = null;
 
+        this.lastThrownPlayer = null;
         this.isLevelActive = false;
         this.walkingCount = 0;
         this.textFadeComplete = false;
@@ -801,6 +844,18 @@ class MainScene extends Phaser.Scene {
         }
     }
 
+    stopWalkOn(kid) {
+        const timer = kid.walkTimer;
+        const wasWalking = !!kid.isWalkingOntoField;
+        // Invalidate callback ownership before removing the event: Clock may
+        // already be dispatching several repeats from the same delayed frame.
+        kid.walkTimer = null;
+        kid.isWalkingOntoField = false;
+        if (wasWalking) this.walkingCount--;
+        if (timer) timer.remove();
+        return wasWalking;
+    }
+
     createTeam(type, teamArray, positions) {
         const pack = this.walkon[this.currentLevelIndex] || null;
         const paths = pack ? (type === 'player' ? pack.reds : pack.greens) : [];
@@ -828,6 +883,9 @@ class MainScene extends Phaser.Scene {
             kid.teamType = type;
             kid.bodySprite = sprite;
             kid.shadow = shadow;
+            // updateKidShadow selects and registers the current HD pose mask.
+            kid.hdShadow = this.add.image(spawnX, spawnY, 'shadow').setVisible(false).setDepth(-5);
+            this.shadowGroup.add(kid.hdShadow);
             kid.hits = 0;
             kid.isDazed = false;   // red: hit once, can't be grabbed, still hittable
             kid.isImmune = false;  // green: knocked down
@@ -861,15 +919,15 @@ class MainScene extends Phaser.Scene {
                 delay: 1000 / fps,
                 loop: true,
                 callback: () => {
+                    // Clock catch-up can dispatch this loop again in the same
+                    // delayed frame after remove(); finish each walk-on once.
+                    if (!kid.isWalkingOntoField || !kid.walkTimer) return;
                     step += 1;
                     if (step >= path.length) {
+                        this.stopWalkOn(kid);
                         kid.x = kid.finalX;
                         kid.y = kid.finalY;
-                        kid.isWalkingOntoField = false;
                         this.setKidMember(kid, type === 'player' ? 'R rest' : 'G ready');
-                        kid.walkTimer.remove();
-                        kid.walkTimer = null;
-                        this.walkingCount--;
                         this.checkLevelReady();
                         return;
                     }
@@ -899,10 +957,19 @@ class MainScene extends Phaser.Scene {
             this.activePower = this.currentPower();
             this.updatePowerMeter();
             this.updateSelectionUI(this.activePlayer);
+        } else if (this.hoveredPlayer) {
+            this.updateSelectionUI(this.hoveredPlayer);
+        } else if (this.lastThrownPlayer) {
+            if (this.lastThrownPlayer.memberName === 'R toss' && this.artwork.mode === 'high-resolution') {
+                this.updateSelectionUI(this.lastThrownPlayer);
+            } else {
+                this.hdSelectionCircle.setVisible(false);
+                this.lastThrownPlayer = null;
+            }
         }
 
         [...this.redTeam, ...this.greenTeam].forEach(kid => {
-            if (kid.shadow && kid.isAlive) kid.shadow.setPosition(kid.x, kid.y);
+            this.updateKidShadow(kid);
             if (DEBUG_MODE && kid.debugLabel) {
                 const labelY = (kid.y - 45 < 10) ? kid.y + 35 : kid.y - 45;
                 kid.debugLabel.setPosition(kid.x, labelY);
@@ -1140,8 +1207,9 @@ class MainScene extends Phaser.Scene {
         kid.isImmune = false;
         kid.isDazed = false;
         this.cancelActions(kid);
+        const wasWalking = this.stopWalkOn(kid);
         this.showKidFrame(kid, frame);
-        if (kid.walkTimer) kid.walkTimer.remove();
+        if (wasWalking) this.checkLevelReady();
         this.checkWinCondition();
     }
 
@@ -1385,8 +1453,9 @@ class MainScene extends Phaser.Scene {
     destroyKid(k) {
         this.cancelActions(k);
         this.stopDaze(k);
-        if (k.walkTimer) k.walkTimer.remove();
+        this.stopWalkOn(k);
         if (k.shadow) k.shadow.destroy();
+        if (k.hdShadow) k.hdShadow.destroy();
         if (k.debugLabel) k.debugLabel.destroy();
         k.destroy();
     }
@@ -1424,13 +1493,12 @@ class MainScene extends Phaser.Scene {
 
     showSelectionUI(player) {
         this.selectionCircle.clear();
-        this.selectionCircle.lineStyle(2, 0x0088cc, 1);
-        this.selectionCircle.strokeEllipse(0, 0, 60, 30);
-        this.selectionCircle.setPosition(player.x, player.y);
-        this.selectionCircle.setVisible(true);
+        this.selectionCircle.lineStyle(1, 0x0088cc, 1);
+        this.selectionCircle.strokeEllipse(0, 0, 60, 24);
         if (!this.isDragging) this.activePower = 0;
         this.powerMeter.setVisible(true);
         this.updatePowerMeter();
+        this.updateSelectionUI(player);
     }
 
     showPowerMeter(player) {
@@ -1441,7 +1509,16 @@ class MainScene extends Phaser.Scene {
 
     updateSelectionUI(player) {
         if (!player) return;
-        this.selectionCircle.setPosition(player.x, player.y);
+        // Original charging frames contain a ring; redrawn frames use one smooth
+        // renderer-owned ring, including during a touch-release follow-through.
+        const redrawn = this.artwork.mode === 'high-resolution' && this.artwork.hasRedrawn(player.memberSpec.key);
+        const hasArtworkRing = !redrawn && ['R pop', 'R cock', 'R toss'].includes(player.memberName);
+        const selected = this.isLevelActive && player.isAlive && !player.isDazed;
+        this.selectionCircle.setVisible(selected && !redrawn && !hasArtworkRing);
+        this.hdSelectionCircle.setVisible(selected && redrawn);
+        // Match the artwork's footprint so hover/charge/release stay aligned.
+        this.selectionCircle.setPosition(player.x - 2, player.y + 7);
+        this.hdSelectionCircle.setPosition(player.x, player.y + 3);
         if (this.powerMeter.visible) {
             const spec = P.CAST.power[this.activePower] || P.CAST.power[0];
             this.artwork.apply(this.powerMeter, spec.key);
@@ -1452,6 +1529,7 @@ class MainScene extends Phaser.Scene {
 
     hideSelectionUI() {
         this.selectionCircle.setVisible(false);
+        this.hdSelectionCircle.setVisible(false);
         this.powerMeter.setVisible(false);
     }
 
@@ -1519,7 +1597,29 @@ window.render_game_to_text = function () {
         artwork: GAME_ARTWORK,
         audio: { muted: scene.audio.isMuted(), musicEnabled: scene.audio.isMusicEnabled() },
         text: scene.children.list.filter(o => o.node && o.visible && o.alpha > 0).map(o => o.node.textContent),
-        reds: scene.redTeam.map(k => ({ x: k.x, y: k.y, alive: k.isAlive })),
-        greens: scene.greenTeam.map(k => ({ x: k.x, y: k.y, alive: k.isAlive }))
+        dragging: scene.isDragging,
+        power: scene.isDragging ? scene.currentPower() : 0,
+        reds: scene.redTeam.map(k => ({ x: k.x, y: k.y, alive: k.isAlive, hits: k.hits, pose: k.memberName, dazed: k.isDazed })),
+        greens: scene.greenTeam.map(k => ({ x: k.x, y: k.y, alive: k.isAlive, hits: k.hits, pose: k.memberName })),
+        snowballs: scene.projectiles.map(b => ({ x: b.gx, y: b.gy, team: b.team, phase: b.phase }))
     });
 };
+
+// Opt-in test stepping sleeps RAF before driving the complete Phaser update and
+// render cycle. Normal play (including ?debug) retains its real-time game loop.
+if (DEBUG_MODE && PARAMS.has('manualTime')) {
+    window.advanceTime = function (ms) {
+        if (!game || !game.isBooted || !Number.isFinite(ms) || ms <= 0) return;
+        game.loop.sleep();
+        const frameMs = 1000 / 60;
+        let remaining = ms;
+        let now = game.loop.now;
+        while (remaining > 0.0001) {
+            const delta = Math.min(frameMs, remaining);
+            now += delta;
+            game.step(now, delta);
+            remaining -= delta;
+        }
+        game.loop.now = now;
+    };
+}

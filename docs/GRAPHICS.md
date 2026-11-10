@@ -1,5 +1,7 @@
 # Original SnowCraft graphics parity
 
+This document records the recovered original-artwork mode. The optional web High resolution mode and enhanced-only Flutter edition now use the 35-frame [HD character pack](../artwork/hd-character-preview/README.md), with unchanged logical registration and original collision masks. Scenery and effects retain smooth 4× versions of their recovered art.
+
 Exact recreation of the 1999 Director 8 movie’s **internal** graphics. Outer
 browser chrome, GitHub Pages hosting, and a click-to-unlock title (browsers
 block audio until a gesture) are platform compatibility, not gameplay redesign.

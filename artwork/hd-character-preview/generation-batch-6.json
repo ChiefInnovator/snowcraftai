@@ -1,0 +1,22 @@
+[
+  {
+    "num": 28,
+    "status": "fulfilled",
+    "file": "028_G_Hit.png"
+  },
+  {
+    "num": 29,
+    "status": "fulfilled",
+    "file": "029_G_Hit2.png"
+  },
+  {
+    "num": 30,
+    "status": "fulfilled",
+    "file": "030_G_ow.png"
+  },
+  {
+    "num": 31,
+    "status": "fulfilled",
+    "file": "031_G_recover.png"
+  }
+]

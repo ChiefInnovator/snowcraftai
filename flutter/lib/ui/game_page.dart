@@ -290,7 +290,7 @@ class _GamePageState extends State<GamePage>
               game.levelIndex == 9
                   ? 'Bonus round'
                   : 'Level ${game.levelIndex + 1}',
-              '${game.greens.length} greens. Keep your team standing.',
+              '${game.greens.length} Green players. Keep your team standing.',
             ),
           if (game.phase == GamePhase.cleared)
             _message('Round clear', 'On to level ${game.levelIndex + 2}'),
@@ -474,7 +474,7 @@ class _GamePageState extends State<GamePage>
         ),
         const SizedBox(width: 12),
         Text(
-          '${game.greens.where((k) => k.alive).length} greens',
+          'Green: ${game.greens.where((k) => k.alive).length}',
           style: const TextStyle(color: Color(0xff245e3b)),
         ),
         const SizedBox(width: 12),
@@ -510,7 +510,7 @@ class _GamePageState extends State<GamePage>
             Text(
               game.phase == GamePhase.victory
                   ? 'Congratulations!'
-                  : 'The greens won this round.',
+                  : 'Green won this round.',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: size.height < 280 ? 25 : 31,

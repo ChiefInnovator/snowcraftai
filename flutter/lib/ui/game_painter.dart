@@ -40,9 +40,34 @@ class GamePainter extends CustomPainter {
     _sprite(canvas, assets.ground, const Vec(296, 160));
     final sorted = List<Kid>.of(engine.kids)
       ..sort((a, b) => a.position.y.compareTo(b.position.y));
-    final shadow = assets.named('shadow');
     for (final kid in sorted) {
-      _sprite(canvas, shadow, kid.position, opacity: kid.alive ? 0.6 : 0.3);
+      final frame = assets.kidFrame(
+        kid,
+        engine.elapsed,
+        celebrate: engine.phase == GamePhase.loss,
+      );
+      _sprite(
+        canvas,
+        assets.frames['hd_shadow_${frame.key}']!,
+        kid.position,
+        opacity: kid.alive ? 1 : 0.72,
+      );
+      if (engine.phase == GamePhase.playing &&
+          kid.alive &&
+          (kid == engine.dragged ||
+              (kid.team == Team.red && kid.pose == KidPose.toss))) {
+        canvas.drawOval(
+          Rect.fromCenter(
+            center: Offset(kid.position.x, kid.position.y + 3),
+            width: 44,
+            height: 18,
+          ),
+          Paint()
+            ..style = PaintingStyle.stroke
+            ..strokeWidth = 1
+            ..color = const Color(0xff13749c),
+        );
+      }
     }
     for (final kid in sorted.where((k) => k != engine.dragged)) {
       _sprite(
@@ -61,17 +86,7 @@ class GamePainter extends CustomPainter {
     }
     final held = engine.dragged;
     if (held != null) {
-      canvas.drawOval(
-        Rect.fromCenter(
-          center: Offset(held.position.x, held.position.y - 2),
-          width: 44,
-          height: 20,
-        ),
-        Paint()
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = 1.2
-          ..color = const Color(0xff13749c),
-      );
+      // HD characters contain no baked ring; the ground pass draws it once.
       _sprite(canvas, assets.kidFrame(held, engine.elapsed), held.position);
       _sprite(canvas, assets.powers[engine.power], held.position);
     }

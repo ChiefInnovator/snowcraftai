@@ -1,6 +1,5 @@
 /**
- * Optional 4x canvas interpolation of the SAME recovered artwork. This smooths
- * existing pixels; it cannot recover or invent detail missing from the originals.
+ * Redrawn HD characters and snowfield, plus smoothing of recovered effects.
  * Source textures stay byte-for-byte intact, including those used for mattes.
  */
 (function (root, factory) {
@@ -12,6 +11,8 @@
     const SCALE = 4;
     const SUFFIX = "__snowcraft_smooth4x";
     const caches = new WeakMap();
+    const characterTextureKey = key => key + "__snowcraft_redrawn8x";
+    const sceneryTextureKey = key => key + "__snowcraft_redrawn4x";
 
     function checkedMode(mode) {
         if (mode !== "original" && mode !== "high-resolution") {
@@ -82,7 +83,19 @@
             if (input && input.customHitArea) {
                 if (input.hitAreaCallback !== record.inputWrapper) record.inputCallback = input.hitAreaCallback;
             }
-            const key = mode === "high-resolution" ? derivedKey(record.key, spec) : record.key;
+            let key = record.key;
+            if (mode === "high-resolution") {
+                const character = characterTextureKey(record.key);
+                const redrawn = textures.exists(character) ? character : sceneryTextureKey(record.key);
+                key = textures.exists(redrawn) ? redrawn : derivedKey(record.key, spec);
+                if (key === redrawn) {
+                    const filters = root.Phaser && root.Phaser.Textures && root.Phaser.Textures.FilterMode;
+                    textures.get(key).setFilter(filters ? filters.LINEAR : 0);
+                }
+            }
+            const targetFrame = textures.get(key).get();
+            const inputScaleX = (targetFrame.realWidth || targetFrame.width) / spec.width;
+            const inputScaleY = (targetFrame.realHeight || targetFrame.height) / spec.height;
             image.setTexture(key);
             image.setDisplaySize(width, height);
             if (signX < 0) image.scaleX = -Math.abs(image.scaleX);
@@ -91,7 +104,7 @@
             if (input && input.customHitArea && record.inputCallback) {
                 if (mode === "high-resolution") {
                     record.inputWrapper = function (shape, x, y, gameObject) {
-                        return record.inputCallback.call(this, shape, x / SCALE, y / SCALE, gameObject);
+                        return record.inputCallback.call(this, shape, x / inputScaleX, y / inputScaleY, gameObject);
                     };
                     input.hitAreaCallback = record.inputWrapper;
                 } else {
@@ -160,7 +173,9 @@
             destroyed = true;
         }
 
-        const manager = { apply: apply, setMode: setMode, destroy: destroy, get mode() { return mode; } };
+        const manager = { apply: apply, setMode: setMode, destroy: destroy,
+            hasRedrawn: key => textures.exists(characterTextureKey(key)),
+            get mode() { return mode; } };
         if (scene.events && scene.events.once) {
             scene.events.once("shutdown", destroy);
             scene.events.once("destroy", destroy);
@@ -168,5 +183,5 @@
         return manager;
     }
 
-    return { create: create };
+    return { create: create, characterTextureKey: characterTextureKey, sceneryTextureKey: sceneryTextureKey };
 });

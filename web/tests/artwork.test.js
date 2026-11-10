@@ -98,7 +98,7 @@ test("original mode registers original texture and dimensions without allocating
     manager.destroy();
 });
 
-test("4x canvas interpolation keeps alpha source, high-quality smoothing, and original logical dimensions", () => {
+test("recovered scenery/effect fallback keeps 4x alpha smoothing and original logical dimensions", () => {
     const f = fixture();
     const manager = Artwork.create(f.scene, "high-resolution");
     for (const key of ["kid", "throw", "ground", "snowball"]) {
@@ -121,6 +121,37 @@ test("4x canvas interpolation keeps alpha source, high-quality smoothing, and or
         assert.equal(f.store.get(key), original.texture);
     }
     manager.destroy();
+});
+
+test("redrawn character textures use their own 8x pixels and preserve original custom hit coordinates across switches", () => {
+    const f = fixture();
+    const key = Artwork.characterTextureKey('kid');
+    f.source(key, 26 * 8, 34 * 8);
+    let filter;
+    f.store.get(key).setFilter = value => { filter = value; };
+    const manager = Artwork.create(f.scene);
+    const kid = f.image();
+    const hit = (shape, x, y) => x >= 0 && x <= shape.width && y >= 0 && y <= shape.height;
+    kid.input.customHitArea = true;
+    kid.input.hitArea = { width: 26, height: 34 };
+    kid.input.hitAreaCallback = hit;
+    manager.apply(kid, 'kid');
+    manager.setMode('high-resolution');
+    assert.equal(kid.texture.key, key);
+    assert.equal(kid.width, 208);
+    assert.equal(kid.height, 272);
+    assert.equal(kid.displayWidth, 26);
+    assert.equal(kid.displayHeight, 34);
+    assert.equal(f.created.length, 0, 'redrawn sprites are loaded, not interpolated');
+    assert.equal(filter, 0);
+    assert.equal(manager.hasRedrawn('kid'), true);
+    assert.equal(kid.input.hitAreaCallback(kid.input.hitArea, 25 * 8, 33 * 8), true);
+    assert.equal(kid.input.hitAreaCallback(kid.input.hitArea, 27 * 8, 33 * 8), false);
+    manager.setMode('original');
+    assert.equal(kid.texture.key, 'kid');
+    assert.equal(kid.input.hitAreaCallback, hit);
+    manager.destroy();
+    assert.equal(f.store.has(key), true, 'preloaded pack belongs to the scene texture manager');
 });
 
 test("mode switches preserve object layout, visibility, alpha, input identity and logical hit bounds", () => {

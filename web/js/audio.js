@@ -38,13 +38,13 @@
             skippedLog: []
         };
 
-        if (typeof localStorage !== "undefined") {
-            try {
+        try {
+            if (typeof localStorage !== "undefined") {
                 state.muted = localStorage.getItem(STORAGE_MUTE_KEY) === "1";
                 state.musicEnabled = localStorage.getItem(STORAGE_MUSIC_KEY) !== "0";
-            } catch (err) {
-                state.muted = false;
             }
+        } catch (err) {
+            state.muted = false;
         }
 
         function channelBusy() {
@@ -169,12 +169,12 @@
             } else {
                 resumeMusic();
             }
-            if (typeof localStorage !== "undefined") {
-                try {
+            try {
+                if (typeof localStorage !== "undefined") {
                     localStorage.setItem(STORAGE_MUTE_KEY, state.muted ? "1" : "0");
-                } catch (err) {
-                    /* ignore quota / private mode */
                 }
+            } catch (err) {
+                /* ignore quota / private mode */
             }
         }
 
@@ -182,10 +182,9 @@
             state.musicEnabled = !!enabled;
             if (state.musicEnabled) resumeMusic();
             else pauseMusic();
-            if (typeof localStorage !== "undefined") {
-                try { localStorage.setItem(STORAGE_MUSIC_KEY, state.musicEnabled ? "1" : "0"); }
-                catch (err) { /* private mode */ }
-            }
+            try {
+                if (typeof localStorage !== "undefined") localStorage.setItem(STORAGE_MUSIC_KEY, state.musicEnabled ? "1" : "0");
+            } catch (err) { /* private mode */ }
         }
 
         function unlock() {

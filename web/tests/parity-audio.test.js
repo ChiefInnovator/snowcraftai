@@ -4,6 +4,7 @@ const fs = require("fs");
 const path = require("path");
 const assert = require("assert");
 const { test } = require("node:test");
+const vm = require("node:vm");
 
 const root = path.join(__dirname, "..");
 
@@ -18,6 +19,21 @@ function loadScript(rel) {
 const Parity = loadScript("js/parity.js");
 global.SnowcraftParity = Parity;
 const Audio = loadScript("js/audio.js");
+
+test("blocked browser storage does not prevent audio startup or preference changes", () => {
+    const context = { SnowcraftParity: Parity };
+    Object.defineProperty(context, "localStorage", { get() { throw new Error("SecurityError: storage blocked"); } });
+    vm.runInNewContext(fs.readFileSync(path.join(root, "js/audio.js"), "utf8"), context);
+    const audio = context.SnowcraftAudio.createSnowcraftAudio();
+    assert.equal(audio.isMuted(), false);
+    assert.equal(audio.isMusicEnabled(), true);
+    audio.setMuted(true);
+    assert.equal(audio.isMuted(), true);
+    audio.setMusicEnabled(false);
+    audio.setMuted(false);
+    assert.equal(audio.isMuted(), false);
+    assert.equal(audio.isMusicEnabled(), false);
+});
 
 test("every shipped original sound is wired to an event", () => {
     const wired = new Set(Parity.expectedWiredSoundIds());

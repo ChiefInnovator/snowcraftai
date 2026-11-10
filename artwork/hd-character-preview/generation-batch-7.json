@@ -1,0 +1,32 @@
+[
+  {
+    "num": 7,
+    "status": "fulfilled",
+    "file": "007_R_cock.png"
+  },
+  {
+    "num": 32,
+    "status": "fulfilled",
+    "file": "032_G_down.png"
+  },
+  {
+    "num": 33,
+    "status": "fulfilled",
+    "file": "033_G_dead.png"
+  },
+  {
+    "num": 34,
+    "status": "fulfilled",
+    "file": "034_G_dead.png"
+  },
+  {
+    "num": 35,
+    "status": "fulfilled",
+    "file": "035_G_dead.png"
+  },
+  {
+    "num": 36,
+    "status": "fulfilled",
+    "file": "036_G_dead.png"
+  }
+]
