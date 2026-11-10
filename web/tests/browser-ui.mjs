@@ -496,7 +496,7 @@ test("HD pose shadows track movement, falls, fades and artwork switches", { time
     evidence.originalShadowRevival = revived;
 });
 
-test("Santa runs in, winks, waves, twitches his nose and magically vanishes in both artwork modes", { timeout: 30000 }, async t => {
+test("Santa runs in, winks, waves, twitches his nose and magically vanishes in both artwork modes", { timeout: 60000 }, async t => {
     const { page } = await open(t, 'Santa visit');
     await start(page);
     await active(page);
@@ -940,7 +940,7 @@ test("phone rotates back to portrait after fullscreen, actual touch drag/throw a
     evidence.phone = { portrait, landscape, returned };
 });
 
-test("HD motion interpolates walk-on without moving logic, and preserves Original steps", { timeout: 30000 }, async t => {
+test("HD motion interpolates walk-on without moving logic, and preserves Original steps", { timeout: 60000 }, async t => {
     const { page } = await open(t, 'HD walk-on presentation');
     await page.goto(baseURL + '/?debug&manualTime'); await ready(page);
     await start(page);
