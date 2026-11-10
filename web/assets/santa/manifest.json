@@ -1,0 +1,5375 @@
+{
+  "version": 4,
+  "timing": {
+    "firstDelayMs": 12000,
+    "peekMs": 2800,
+    "winkMs": 1000,
+    "waveMs": 1800,
+    "noseMs": 900,
+    "magicMs": 1700,
+    "flashAtMs": 520,
+    "entranceMs": 2400,
+    "gapMinMs": 35000,
+    "gapMaxMs": 50000
+  },
+  "points": {
+    "hidden": [
+      520,
+      76
+    ],
+    "peek": [
+      464,
+      76
+    ]
+  },
+  "cycles": {
+    "run": [
+      "run_0",
+      "run_1",
+      "run_2",
+      "run_3",
+      "run_4",
+      "run_5",
+      "run_6",
+      "run_7"
+    ],
+    "wave": [
+      "wave_a",
+      "wave_b",
+      "wave_c",
+      "wave_b"
+    ],
+    "nose": [
+      "nose_center",
+      "nose_left",
+      "nose_right",
+      "nose_left",
+      "nose_center",
+      "nose_right",
+      "nose_left",
+      "nose_center"
+    ]
+  },
+  "frames": [
+    {
+      "id": "peek",
+      "key": "santa_peek",
+      "file": "peek.png",
+      "w": 64,
+      "h": 64,
+      "reg": [
+        32,
+        58
+      ],
+      "versions": {
+        "classic": {
+          "pixelScale": 1,
+          "sha256": "fcac36e0c5d62c341e2fb586be6edd0579fe452e82fb35bb87d8ea4b41a9678a",
+          "masterFile": "artwork/santa-comes-to-town/v4/classic/all-poses.png",
+          "masterSha256": "2f5aad571217ca4b4f2f5b6a48f171811475672bf69ecc3247cfe1925679ba2e",
+          "placement": {
+            "bounds": [
+              26,
+              23,
+              221,
+              246
+            ],
+            "sourceSize": [
+              256,
+              256
+            ],
+            "sourceRect": [
+              1024,
+              512,
+              256,
+              256
+            ],
+            "fit": 0.18867924528301888,
+            "offset": [
+              8,
+              12
+            ],
+            "sourceFoot": [
+              125.37044145873321,
+              245
+            ],
+            "bodyCore": {
+              "span": 28.70133632709231,
+              "beltY": 46.70133632709231
+            },
+            "groundOffset": -1,
+            "contactPoints": [
+              {
+                "x": 4,
+                "y": -1,
+                "width": 11
+              },
+              {
+                "x": -8,
+                "y": -1,
+                "width": 8
+              }
+            ],
+            "contactFoot": [
+              4,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "pixelArt": {
+            "bitDepth": 8,
+            "palette": [
+              [
+                23,
+                27,
+                45
+              ],
+              [
+                216,
+                40,
+                40
+              ],
+              [
+                140,
+                32,
+                48
+              ],
+              [
+                255,
+                244,
+                220
+              ],
+              [
+                184,
+                184,
+                200
+              ],
+              [
+                244,
+                172,
+                120
+              ],
+              [
+                228,
+                120,
+                88
+              ],
+              [
+                232,
+                184,
+                64
+              ]
+            ],
+            "alpha": "binary",
+            "dither": false
+          },
+          "shadow": {
+            "key": "santa_shadow_classic_peek",
+            "file": "shadow_peek.png",
+            "w": 77,
+            "h": 28,
+            "reg": [
+              25,
+              8
+            ],
+            "pixelScale": 1,
+            "kind": "standing",
+            "sha256": "1f45453f10b59e31e83de9a7b365513afbbc11356e4cc105690cf89db7f75651"
+          }
+        },
+        "hd": {
+          "pixelScale": 8,
+          "sha256": "76b728c2ec2865e611e457ac93e9903817da02da3d38b5076bd12436c9a0b9c5",
+          "masterFile": "artwork/santa-comes-to-town/hd/peek.png",
+          "masterSha256": "e4a0c811ae01ab11bca6f756faeadee2a4a0d02b58d95c275ee32a18bb70aaf6",
+          "placement": {
+            "bounds": [
+              53,
+              64,
+              1022,
+              1382
+            ],
+            "sourceSize": [
+              1108,
+              1420
+            ],
+            "sourceRect": [
+              0,
+              0,
+              1108,
+              1420
+            ],
+            "fit": 0.030418250950570342,
+            "offset": [
+              13.272177423447854,
+              15.99239543726236
+            ],
+            "sourceFoot": [
+              615.6771672041518,
+              1381
+            ],
+            "bodyCore": {
+              "span": null,
+              "beltY": null
+            },
+            "groundOffset": -0.125,
+            "contactPoints": [
+              {
+                "x": -3.5,
+                "y": -0.125,
+                "width": 6.625
+              },
+              {
+                "x": 3.125,
+                "y": -0.125,
+                "width": 6.625
+              }
+            ],
+            "contactFoot": [
+              -3.5,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "shadow": {
+            "key": "santa_shadow_hd_peek",
+            "file": "shadow_peek.png",
+            "w": 71,
+            "h": 28,
+            "reg": [
+              24,
+              8
+            ],
+            "pixelScale": 8,
+            "kind": "standing",
+            "sha256": "b22a456d8ce0edf88ec9e233011f74c690f9ecd2e60d94fc3d363127ed0c5cba"
+          }
+        }
+      }
+    },
+    {
+      "id": "wink",
+      "key": "santa_wink",
+      "file": "wink.png",
+      "w": 64,
+      "h": 64,
+      "reg": [
+        32,
+        58
+      ],
+      "versions": {
+        "classic": {
+          "pixelScale": 1,
+          "sha256": "7f0354524e0808d700d4904db586015c105880fb8e442504e35071ea6205a31d",
+          "masterFile": "artwork/santa-comes-to-town/v4/classic/all-poses.png",
+          "masterSha256": "2f5aad571217ca4b4f2f5b6a48f171811475672bf69ecc3247cfe1925679ba2e",
+          "placement": {
+            "bounds": [
+              27,
+              23,
+              221,
+              246
+            ],
+            "sourceSize": [
+              256,
+              256
+            ],
+            "sourceRect": [
+              1280,
+              512,
+              256,
+              256
+            ],
+            "fit": 0.18867924528301888,
+            "offset": [
+              8,
+              12
+            ],
+            "sourceFoot": [
+              126.09176029962546,
+              245
+            ],
+            "bodyCore": {
+              "span": 28.684545261818954,
+              "beltY": 46.70133632709231
+            },
+            "groundOffset": -1,
+            "contactPoints": [
+              {
+                "x": 4,
+                "y": -1,
+                "width": 11
+              },
+              {
+                "x": -7,
+                "y": -1,
+                "width": 9
+              }
+            ],
+            "contactFoot": [
+              4,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "pixelArt": {
+            "bitDepth": 8,
+            "palette": [
+              [
+                23,
+                27,
+                45
+              ],
+              [
+                216,
+                40,
+                40
+              ],
+              [
+                140,
+                32,
+                48
+              ],
+              [
+                255,
+                244,
+                220
+              ],
+              [
+                184,
+                184,
+                200
+              ],
+              [
+                244,
+                172,
+                120
+              ],
+              [
+                228,
+                120,
+                88
+              ],
+              [
+                232,
+                184,
+                64
+              ]
+            ],
+            "alpha": "binary",
+            "dither": false
+          },
+          "shadow": {
+            "key": "santa_shadow_classic_wink",
+            "file": "shadow_wink.png",
+            "w": 77,
+            "h": 28,
+            "reg": [
+              25,
+              8
+            ],
+            "pixelScale": 1,
+            "kind": "standing",
+            "sha256": "47ab38fb357d79d13c3bb70b6c0c5e3d6c9a8874c5ba87e6557e62326fa792f7"
+          }
+        },
+        "hd": {
+          "pixelScale": 8,
+          "sha256": "e401aa29dc22a323ac5a933bc6a51ea82f1646ae374c8bf6e0a48f10d02c709b",
+          "masterFile": "artwork/santa-comes-to-town/hd/wink.png",
+          "masterSha256": "327ed3b305e2a218530ddd06edb3add731e7fab8adb76f60cdb184c0eb73709f",
+          "placement": {
+            "bounds": [
+              290,
+              349,
+              877,
+              1140
+            ],
+            "sourceSize": [
+              1254,
+              1254
+            ],
+            "sourceRect": [
+              0,
+              0,
+              1254,
+              1254
+            ],
+            "fit": 0.050697084917617236,
+            "offset": [
+              -0.011226446991592809,
+              0.25602027883396516
+            ],
+            "sourceFoot": [
+              631.4214416669092,
+              1139
+            ],
+            "bodyCore": {
+              "span": null,
+              "beltY": null
+            },
+            "groundOffset": -0.125,
+            "contactPoints": [
+              {
+                "x": -3.5625,
+                "y": -0.125,
+                "width": 6.75
+              },
+              {
+                "x": 3.1875,
+                "y": -0.125,
+                "width": 6.75
+              }
+            ],
+            "contactFoot": [
+              -3.5625,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "shadow": {
+            "key": "santa_shadow_hd_wink",
+            "file": "shadow_wink.png",
+            "w": 71,
+            "h": 28,
+            "reg": [
+              24,
+              8
+            ],
+            "pixelScale": 8,
+            "kind": "standing",
+            "sha256": "cac5ee7f2f07be7371d097536e1e1e3f6a7ae6b137337788a7e38131bfa9c26e"
+          }
+        }
+      }
+    },
+    {
+      "id": "wave_a",
+      "key": "santa_wave_a",
+      "file": "wave_a.png",
+      "w": 72,
+      "h": 64,
+      "reg": [
+        36,
+        58
+      ],
+      "versions": {
+        "classic": {
+          "pixelScale": 1,
+          "sha256": "affe650bc4b5486be0e1f1cf1f01952705e127cd04a036fec3cd40250ef4f38c",
+          "masterFile": "artwork/santa-comes-to-town/v4/classic/all-poses.png",
+          "masterSha256": "2f5aad571217ca4b4f2f5b6a48f171811475672bf69ecc3247cfe1925679ba2e",
+          "placement": {
+            "bounds": [
+              17,
+              23,
+              221,
+              246
+            ],
+            "sourceSize": [
+              256,
+              256
+            ],
+            "sourceRect": [
+              0,
+              768,
+              256,
+              256
+            ],
+            "fit": 0.18867924528301888,
+            "offset": [
+              12,
+              12
+            ],
+            "sourceFoot": [
+              125.55357142857143,
+              245
+            ],
+            "bodyCore": {
+              "span": 28.63993710691824,
+              "beltY": 46.70133632709231
+            },
+            "groundOffset": -1,
+            "contactPoints": [
+              {
+                "x": 4,
+                "y": -1,
+                "width": 11
+              },
+              {
+                "x": -7,
+                "y": -1,
+                "width": 9
+              }
+            ],
+            "contactFoot": [
+              4,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "pixelArt": {
+            "bitDepth": 8,
+            "palette": [
+              [
+                23,
+                27,
+                45
+              ],
+              [
+                216,
+                40,
+                40
+              ],
+              [
+                140,
+                32,
+                48
+              ],
+              [
+                255,
+                244,
+                220
+              ],
+              [
+                184,
+                184,
+                200
+              ],
+              [
+                244,
+                172,
+                120
+              ],
+              [
+                228,
+                120,
+                88
+              ],
+              [
+                232,
+                184,
+                64
+              ]
+            ],
+            "alpha": "binary",
+            "dither": false
+          },
+          "shadow": {
+            "key": "santa_shadow_classic_wave_a",
+            "file": "shadow_wave_a.png",
+            "w": 79,
+            "h": 28,
+            "reg": [
+              27,
+              8
+            ],
+            "pixelScale": 1,
+            "kind": "standing",
+            "sha256": "cb03edb8ac674b1ba6777da6a558f1564f08c9fb23082afcc8cf3e864ac2b21f"
+          }
+        },
+        "hd": {
+          "pixelScale": 8,
+          "sha256": "5a9d9f0bc317471dd9a1da9e9bfb07a75e8bb6f74c31767de239c3ef93c667a6",
+          "masterFile": "artwork/santa-comes-to-town/v2/hd/wave-cycle.png",
+          "masterSha256": "e1d35c83e8f4b2781f6b36140b20f204df8bcaf3b62aa58e03b34a8ea24f7e79",
+          "placement": {
+            "bounds": [
+              104,
+              48,
+              588,
+              680
+            ],
+            "sourceSize": [
+              724,
+              724
+            ],
+            "sourceRect": [
+              0,
+              0,
+              724,
+              724
+            ],
+            "fit": 0.06367438937170845,
+            "offset": [
+              10.65752259378861,
+              14.758680830804781
+            ],
+            "sourceFoot": [
+              398.00110619469024,
+              679
+            ],
+            "bodyCore": {
+              "span": 26,
+              "beltY": 43.878725910018495
+            },
+            "groundOffset": 0,
+            "contactPoints": [
+              {
+                "x": -3.09375,
+                "y": 0,
+                "width": 6.6875
+              },
+              {
+                "x": 3.59375,
+                "y": 0,
+                "width": 6.6875
+              }
+            ],
+            "contactFoot": [
+              -3.09375,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "shadow": {
+            "key": "santa_shadow_hd_wave_a",
+            "file": "shadow_wave_a.png",
+            "w": 72,
+            "h": 28,
+            "reg": [
+              25,
+              8
+            ],
+            "pixelScale": 8,
+            "kind": "standing",
+            "sha256": "b7bee0bff3a4fe54e11fd6e715491e9a580a2e2adec4e08fc746fbaf6dd65868"
+          }
+        }
+      }
+    },
+    {
+      "id": "wave_b",
+      "key": "santa_wave_b",
+      "file": "wave_b.png",
+      "w": 72,
+      "h": 64,
+      "reg": [
+        36,
+        58
+      ],
+      "versions": {
+        "classic": {
+          "pixelScale": 1,
+          "sha256": "60273fa42c98fa31ae27e5aa4071ed44ccdd0d541d5f5679f80aa951371f7b86",
+          "masterFile": "artwork/santa-comes-to-town/v4/classic/all-poses.png",
+          "masterSha256": "2f5aad571217ca4b4f2f5b6a48f171811475672bf69ecc3247cfe1925679ba2e",
+          "placement": {
+            "bounds": [
+              17,
+              23,
+              221,
+              246
+            ],
+            "sourceSize": [
+              256,
+              256
+            ],
+            "sourceRect": [
+              256,
+              768,
+              256,
+              256
+            ],
+            "fit": 0.18867924528301888,
+            "offset": [
+              12,
+              12
+            ],
+            "sourceFoot": [
+              125.57623762376238,
+              245
+            ],
+            "bodyCore": {
+              "span": 28.832804035120496,
+              "beltY": 46.70133632709231
+            },
+            "groundOffset": -1,
+            "contactPoints": [
+              {
+                "x": 4,
+                "y": -1,
+                "width": 11
+              },
+              {
+                "x": -7,
+                "y": -1,
+                "width": 9
+              }
+            ],
+            "contactFoot": [
+              4,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "pixelArt": {
+            "bitDepth": 8,
+            "palette": [
+              [
+                23,
+                27,
+                45
+              ],
+              [
+                216,
+                40,
+                40
+              ],
+              [
+                140,
+                32,
+                48
+              ],
+              [
+                255,
+                244,
+                220
+              ],
+              [
+                184,
+                184,
+                200
+              ],
+              [
+                244,
+                172,
+                120
+              ],
+              [
+                228,
+                120,
+                88
+              ],
+              [
+                232,
+                184,
+                64
+              ]
+            ],
+            "alpha": "binary",
+            "dither": false
+          },
+          "shadow": {
+            "key": "santa_shadow_classic_wave_b",
+            "file": "shadow_wave_b.png",
+            "w": 79,
+            "h": 28,
+            "reg": [
+              27,
+              8
+            ],
+            "pixelScale": 1,
+            "kind": "standing",
+            "sha256": "2e42901647dafc8d49b6c8ea47332976b3876cf31b255cfe860e72bd482ce6e0"
+          }
+        },
+        "hd": {
+          "pixelScale": 8,
+          "sha256": "27cc0ecc9652afcc77b525c25a27c2f021dc3aef4aacd27cf02d7adb0aaf02f7",
+          "masterFile": "artwork/santa-comes-to-town/v2/hd/wave-cycle.png",
+          "masterSha256": "e1d35c83e8f4b2781f6b36140b20f204df8bcaf3b62aa58e03b34a8ea24f7e79",
+          "placement": {
+            "bounds": [
+              120,
+              48,
+              588,
+              680
+            ],
+            "sourceSize": [
+              724,
+              724
+            ],
+            "sourceRect": [
+              724,
+              0,
+              724,
+              724
+            ],
+            "fit": 0.06374929018589147,
+            "offset": [
+              10.656877595420536,
+              14.75501069090981
+            ],
+            "sourceFoot": [
+              397.5436013590034,
+              679
+            ],
+            "bodyCore": {
+              "span": 26,
+              "beltY": 43.878725910018495
+            },
+            "groundOffset": 0,
+            "contactPoints": [
+              {
+                "x": -3.09375,
+                "y": 0,
+                "width": 6.6875
+              },
+              {
+                "x": 3.59375,
+                "y": 0,
+                "width": 6.6875
+              }
+            ],
+            "contactFoot": [
+              -3.09375,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "shadow": {
+            "key": "santa_shadow_hd_wave_b",
+            "file": "shadow_wave_b.png",
+            "w": 71,
+            "h": 28,
+            "reg": [
+              24,
+              8
+            ],
+            "pixelScale": 8,
+            "kind": "standing",
+            "sha256": "0ad4ab74eea596637d96ed5e1c6b8087163e12781b721fb34ab4631f34e94b8a"
+          }
+        }
+      }
+    },
+    {
+      "id": "wave_c",
+      "key": "santa_wave_c",
+      "file": "wave_c.png",
+      "w": 72,
+      "h": 64,
+      "reg": [
+        36,
+        58
+      ],
+      "versions": {
+        "classic": {
+          "pixelScale": 1,
+          "sha256": "e63b0a0e3313d35c2a91fd4fc10dfa1f5ef009dd21c6d5d2b8d5ddadf54dae93",
+          "masterFile": "artwork/santa-comes-to-town/v4/classic/all-poses.png",
+          "masterSha256": "2f5aad571217ca4b4f2f5b6a48f171811475672bf69ecc3247cfe1925679ba2e",
+          "placement": {
+            "bounds": [
+              18,
+              23,
+              221,
+              246
+            ],
+            "sourceSize": [
+              256,
+              256
+            ],
+            "sourceRect": [
+              512,
+              768,
+              256,
+              256
+            ],
+            "fit": 0.18867924528301888,
+            "offset": [
+              12,
+              12
+            ],
+            "sourceFoot": [
+              126.07854406130268,
+              245
+            ],
+            "bodyCore": {
+              "span": 28.649967469095643,
+              "beltY": 46.70133632709231
+            },
+            "groundOffset": -1,
+            "contactPoints": [
+              {
+                "x": 4,
+                "y": -1,
+                "width": 11
+              },
+              {
+                "x": -7,
+                "y": -1,
+                "width": 9
+              }
+            ],
+            "contactFoot": [
+              4,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "pixelArt": {
+            "bitDepth": 8,
+            "palette": [
+              [
+                23,
+                27,
+                45
+              ],
+              [
+                216,
+                40,
+                40
+              ],
+              [
+                140,
+                32,
+                48
+              ],
+              [
+                255,
+                244,
+                220
+              ],
+              [
+                184,
+                184,
+                200
+              ],
+              [
+                244,
+                172,
+                120
+              ],
+              [
+                228,
+                120,
+                88
+              ],
+              [
+                232,
+                184,
+                64
+              ]
+            ],
+            "alpha": "binary",
+            "dither": false
+          },
+          "shadow": {
+            "key": "santa_shadow_classic_wave_c",
+            "file": "shadow_wave_c.png",
+            "w": 78,
+            "h": 28,
+            "reg": [
+              26,
+              8
+            ],
+            "pixelScale": 1,
+            "kind": "standing",
+            "sha256": "818a0151efccde663d5d277291bde5e97837669a0e8e2c79032ee1d2c7638d4a"
+          }
+        },
+        "hd": {
+          "pixelScale": 8,
+          "sha256": "5eb3ab45e2699e3ae346a6ae23bff3205e5358c6f048374a5f507bad6f906a34",
+          "masterFile": "artwork/santa-comes-to-town/v2/hd/wave-cycle.png",
+          "masterSha256": "e1d35c83e8f4b2781f6b36140b20f204df8bcaf3b62aa58e03b34a8ea24f7e79",
+          "placement": {
+            "bounds": [
+              127,
+              48,
+              588,
+              680
+            ],
+            "sourceSize": [
+              724,
+              724
+            ],
+            "sourceRect": [
+              1448,
+              0,
+              724,
+              724
+            ],
+            "fit": 0.06368456204758968,
+            "offset": [
+              10.695013322206577,
+              14.758182369686601
+            ],
+            "sourceFoot": [
+              397.3488372093023,
+              679
+            ],
+            "bodyCore": {
+              "span": 26,
+              "beltY": 43.878725910018495
+            },
+            "groundOffset": 0,
+            "contactPoints": [
+              {
+                "x": -3.0625,
+                "y": 0,
+                "width": 6.75
+              },
+              {
+                "x": 3.6875,
+                "y": 0,
+                "width": 6.75
+              }
+            ],
+            "contactFoot": [
+              -3.0625,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "shadow": {
+            "key": "santa_shadow_hd_wave_c",
+            "file": "shadow_wave_c.png",
+            "w": 71,
+            "h": 28,
+            "reg": [
+              24,
+              8
+            ],
+            "pixelScale": 8,
+            "kind": "standing",
+            "sha256": "1c9ba455832df86536887959197071ac691275af9b5bfe4076bcf2d1c1916d85"
+          }
+        }
+      }
+    },
+    {
+      "id": "nose_left",
+      "key": "santa_nose_left",
+      "file": "nose_left.png",
+      "w": 72,
+      "h": 64,
+      "reg": [
+        36,
+        58
+      ],
+      "versions": {
+        "classic": {
+          "pixelScale": 1,
+          "sha256": "d82e9c5cdf4853d034c22b5858b12bbe2e499f3c03e9a558982f729cfe40638c",
+          "masterFile": "artwork/santa-comes-to-town/v4/classic/all-poses.png",
+          "masterSha256": "2f5aad571217ca4b4f2f5b6a48f171811475672bf69ecc3247cfe1925679ba2e",
+          "placement": {
+            "bounds": [
+              27,
+              23,
+              221,
+              246
+            ],
+            "sourceSize": [
+              256,
+              256
+            ],
+            "sourceRect": [
+              768,
+              768,
+              256,
+              256
+            ],
+            "fit": 0.18867924528301888,
+            "offset": [
+              12,
+              12
+            ],
+            "sourceFoot": [
+              125.94705882352942,
+              245
+            ],
+            "bodyCore": {
+              "span": 28.659637439881617,
+              "beltY": 46.70133632709231
+            },
+            "groundOffset": -1,
+            "contactPoints": [
+              {
+                "x": 4,
+                "y": -1,
+                "width": 11
+              },
+              {
+                "x": -7,
+                "y": -1,
+                "width": 9
+              }
+            ],
+            "contactFoot": [
+              4,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "pixelArt": {
+            "bitDepth": 8,
+            "palette": [
+              [
+                23,
+                27,
+                45
+              ],
+              [
+                216,
+                40,
+                40
+              ],
+              [
+                140,
+                32,
+                48
+              ],
+              [
+                255,
+                244,
+                220
+              ],
+              [
+                184,
+                184,
+                200
+              ],
+              [
+                244,
+                172,
+                120
+              ],
+              [
+                228,
+                120,
+                88
+              ],
+              [
+                232,
+                184,
+                64
+              ]
+            ],
+            "alpha": "binary",
+            "dither": false
+          },
+          "shadow": {
+            "key": "santa_shadow_classic_nose_left",
+            "file": "shadow_nose_left.png",
+            "w": 77,
+            "h": 28,
+            "reg": [
+              25,
+              8
+            ],
+            "pixelScale": 1,
+            "kind": "standing",
+            "sha256": "13abbcce4fabe59a215d732f23089445ed5342ee209e4880920db263a3dca31b"
+          }
+        },
+        "hd": {
+          "pixelScale": 8,
+          "sha256": "b3c5be963ddce97922d992832a237a6c8f9297bde96bd633ebf78bf0eabc5a8e",
+          "masterFile": "artwork/santa-comes-to-town/v3/hd/nose-cycle.png",
+          "masterSha256": "18e6d20c7e459024cb41ee87711129d58ac33688a3dac2b0d073f41ed12ac6b1",
+          "placement": {
+            "bounds": [
+              105,
+              15,
+              618,
+              708
+            ],
+            "sourceSize": [
+              724,
+              724
+            ],
+            "sourceRect": [
+              0,
+              0,
+              724,
+              724
+            ],
+            "fit": 0.056622891576681336,
+            "offset": [
+              14.359782824833356,
+              17.923096082367536
+            ],
+            "sourceFoot": [
+              382.1814211988885,
+              708
+            ],
+            "bodyCore": {
+              "span": 26,
+              "beltY": 44.82906234759444
+            },
+            "groundOffset": -0.125,
+            "contactPoints": [
+              {
+                "x": -2.65625,
+                "y": -0.125,
+                "width": 6.5625
+              },
+              {
+                "x": 3.90625,
+                "y": -0.125,
+                "width": 6.5625
+              }
+            ],
+            "contactFoot": [
+              -2.65625,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "shadow": {
+            "key": "santa_shadow_hd_nose_left",
+            "file": "shadow_nose_left.png",
+            "w": 70,
+            "h": 28,
+            "reg": [
+              22,
+              8
+            ],
+            "pixelScale": 8,
+            "kind": "standing",
+            "sha256": "15a791409e42f5eda0ea993b4361244ff103410a17ce4e6184d76c32ead3e586"
+          }
+        }
+      }
+    },
+    {
+      "id": "nose_center",
+      "key": "santa_nose_center",
+      "file": "nose_center.png",
+      "w": 72,
+      "h": 64,
+      "reg": [
+        36,
+        58
+      ],
+      "versions": {
+        "classic": {
+          "pixelScale": 1,
+          "sha256": "b3bbefabefb68b7dcf8c2adfd93d3e182c91afc55419d599f23f6ec59cad89f4",
+          "masterFile": "artwork/santa-comes-to-town/v4/classic/all-poses.png",
+          "masterSha256": "2f5aad571217ca4b4f2f5b6a48f171811475672bf69ecc3247cfe1925679ba2e",
+          "placement": {
+            "bounds": [
+              27,
+              23,
+              221,
+              246
+            ],
+            "sourceSize": [
+              256,
+              256
+            ],
+            "sourceRect": [
+              1024,
+              768,
+              256,
+              256
+            ],
+            "fit": 0.18867924528301888,
+            "offset": [
+              12,
+              12
+            ],
+            "sourceFoot": [
+              125.52390438247012,
+              245
+            ],
+            "bodyCore": {
+              "span": 28.875441629707588,
+              "beltY": 46.70133632709231
+            },
+            "groundOffset": -1,
+            "contactPoints": [
+              {
+                "x": 4,
+                "y": -1,
+                "width": 11
+              },
+              {
+                "x": -7,
+                "y": -1,
+                "width": 9
+              }
+            ],
+            "contactFoot": [
+              4,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "pixelArt": {
+            "bitDepth": 8,
+            "palette": [
+              [
+                23,
+                27,
+                45
+              ],
+              [
+                216,
+                40,
+                40
+              ],
+              [
+                140,
+                32,
+                48
+              ],
+              [
+                255,
+                244,
+                220
+              ],
+              [
+                184,
+                184,
+                200
+              ],
+              [
+                244,
+                172,
+                120
+              ],
+              [
+                228,
+                120,
+                88
+              ],
+              [
+                232,
+                184,
+                64
+              ]
+            ],
+            "alpha": "binary",
+            "dither": false
+          },
+          "shadow": {
+            "key": "santa_shadow_classic_nose_center",
+            "file": "shadow_nose_center.png",
+            "w": 77,
+            "h": 28,
+            "reg": [
+              25,
+              8
+            ],
+            "pixelScale": 1,
+            "kind": "standing",
+            "sha256": "95c28e806cdfa9354d7826744e7bb3c4c03371a65c0d375a090562f10717f441"
+          }
+        },
+        "hd": {
+          "pixelScale": 8,
+          "sha256": "0a74fc1712d6a99aecfaf5f17ce1cd1e59d7916d1a024a1ecb8552f25e6929bf",
+          "masterFile": "artwork/santa-comes-to-town/v3/hd/nose-cycle.png",
+          "masterSha256": "18e6d20c7e459024cb41ee87711129d58ac33688a3dac2b0d073f41ed12ac6b1",
+          "placement": {
+            "bounds": [
+              105,
+              15,
+              618,
+              708
+            ],
+            "sourceSize": [
+              724,
+              724
+            ],
+            "sourceRect": [
+              724,
+              0,
+              724,
+              724
+            ],
+            "fit": 0.05660540123179995,
+            "offset": [
+              14.355662376463414,
+              17.923375927885637
+            ],
+            "sourceFoot": [
+              382.3723028638682,
+              708
+            ],
+            "bodyCore": {
+              "span": 26,
+              "beltY": 44.82906234759444
+            },
+            "groundOffset": -0.125,
+            "contactPoints": [
+              {
+                "x": -2.65625,
+                "y": -0.125,
+                "width": 6.5625
+              },
+              {
+                "x": 3.90625,
+                "y": -0.125,
+                "width": 6.5625
+              }
+            ],
+            "contactFoot": [
+              -2.65625,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "shadow": {
+            "key": "santa_shadow_hd_nose_center",
+            "file": "shadow_nose_center.png",
+            "w": 70,
+            "h": 28,
+            "reg": [
+              22,
+              8
+            ],
+            "pixelScale": 8,
+            "kind": "standing",
+            "sha256": "40a97aebeb1e7b6eb7c5d9b59639c025206e88aace9a5ccb2d6a90c2489b048d"
+          }
+        }
+      }
+    },
+    {
+      "id": "nose_right",
+      "key": "santa_nose_right",
+      "file": "nose_right.png",
+      "w": 72,
+      "h": 64,
+      "reg": [
+        36,
+        58
+      ],
+      "versions": {
+        "classic": {
+          "pixelScale": 1,
+          "sha256": "8bb9048aa6d500f5efecc7e62d55973f8df2a275ffeef7acc4c3f356ea2c974a",
+          "masterFile": "artwork/santa-comes-to-town/v4/classic/all-poses.png",
+          "masterSha256": "2f5aad571217ca4b4f2f5b6a48f171811475672bf69ecc3247cfe1925679ba2e",
+          "placement": {
+            "bounds": [
+              27,
+              23,
+              221,
+              246
+            ],
+            "sourceSize": [
+              256,
+              256
+            ],
+            "sourceRect": [
+              1280,
+              768,
+              256,
+              256
+            ],
+            "fit": 0.18867924528301888,
+            "offset": [
+              12,
+              12
+            ],
+            "sourceFoot": [
+              126.10666666666667,
+              245
+            ],
+            "bodyCore": {
+              "span": 28.641868823000898,
+              "beltY": 46.70133632709231
+            },
+            "groundOffset": -1,
+            "contactPoints": [
+              {
+                "x": 4,
+                "y": -1,
+                "width": 11
+              },
+              {
+                "x": -7,
+                "y": -1,
+                "width": 9
+              }
+            ],
+            "contactFoot": [
+              4,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "pixelArt": {
+            "bitDepth": 8,
+            "palette": [
+              [
+                23,
+                27,
+                45
+              ],
+              [
+                216,
+                40,
+                40
+              ],
+              [
+                140,
+                32,
+                48
+              ],
+              [
+                255,
+                244,
+                220
+              ],
+              [
+                184,
+                184,
+                200
+              ],
+              [
+                244,
+                172,
+                120
+              ],
+              [
+                228,
+                120,
+                88
+              ],
+              [
+                232,
+                184,
+                64
+              ]
+            ],
+            "alpha": "binary",
+            "dither": false
+          },
+          "shadow": {
+            "key": "santa_shadow_classic_nose_right",
+            "file": "shadow_nose_right.png",
+            "w": 77,
+            "h": 28,
+            "reg": [
+              25,
+              8
+            ],
+            "pixelScale": 1,
+            "kind": "standing",
+            "sha256": "7bec081da4aa5188b21214f2fd810eac918bf464d2ac236bca1cc2d6118bafc3"
+          }
+        },
+        "hd": {
+          "pixelScale": 8,
+          "sha256": "9bb7748f6ee01597d572613cf7a63ca52090ed49f3a066d31c988a56477240bc",
+          "masterFile": "artwork/santa-comes-to-town/v3/hd/nose-cycle.png",
+          "masterSha256": "18e6d20c7e459024cb41ee87711129d58ac33688a3dac2b0d073f41ed12ac6b1",
+          "placement": {
+            "bounds": [
+              105,
+              15,
+              618,
+              708
+            ],
+            "sourceSize": [
+              724,
+              724
+            ],
+            "sourceRect": [
+              1448,
+              0,
+              724,
+              724
+            ],
+            "fit": 0.05660038851819709,
+            "offset": [
+              14.360818892663048,
+              17.923456131303283
+            ],
+            "sourceFoot": [
+              382.31506309148267,
+              708
+            ],
+            "bodyCore": {
+              "span": 26,
+              "beltY": 44.82906234759444
+            },
+            "groundOffset": -0.125,
+            "contactPoints": [
+              {
+                "x": -2.65625,
+                "y": -0.125,
+                "width": 6.5625
+              },
+              {
+                "x": 3.90625,
+                "y": -0.125,
+                "width": 6.5625
+              }
+            ],
+            "contactFoot": [
+              -2.65625,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "shadow": {
+            "key": "santa_shadow_hd_nose_right",
+            "file": "shadow_nose_right.png",
+            "w": 70,
+            "h": 28,
+            "reg": [
+              22,
+              8
+            ],
+            "pixelScale": 8,
+            "kind": "standing",
+            "sha256": "a238e7ddb517248d38b1a1a83b1e91f08be4a88bdf9088830ea68d12615d0c14"
+          }
+        }
+      }
+    },
+    {
+      "id": "run_0",
+      "key": "santa_run_0",
+      "file": "run_0.png",
+      "w": 72,
+      "h": 64,
+      "reg": [
+        36,
+        58
+      ],
+      "versions": {
+        "classic": {
+          "pixelScale": 1,
+          "sha256": "aa24a7efffad773d789057aeab73a9235e2cf9dad4435e780204c10fb164533c",
+          "masterFile": "artwork/santa-comes-to-town/v4/classic/all-poses.png",
+          "masterSha256": "2f5aad571217ca4b4f2f5b6a48f171811475672bf69ecc3247cfe1925679ba2e",
+          "placement": {
+            "bounds": [
+              40,
+              24,
+              223,
+              245
+            ],
+            "sourceSize": [
+              256,
+              256
+            ],
+            "sourceRect": [
+              0,
+              0,
+              256,
+              256
+            ],
+            "fit": 0.18867924528301888,
+            "offset": [
+              6,
+              12
+            ],
+            "sourceFoot": [
+              156.9226069246436,
+              244
+            ],
+            "bodyCore": {
+              "span": 28.5843292472044,
+              "beltY": 46.70133632709231
+            },
+            "groundOffset": -1,
+            "contactPoints": [
+              {
+                "x": 0,
+                "y": -1,
+                "width": 9
+              }
+            ],
+            "contactFoot": [
+              0,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "pixelArt": {
+            "bitDepth": 8,
+            "palette": [
+              [
+                23,
+                27,
+                45
+              ],
+              [
+                216,
+                40,
+                40
+              ],
+              [
+                140,
+                32,
+                48
+              ],
+              [
+                255,
+                244,
+                220
+              ],
+              [
+                184,
+                184,
+                200
+              ],
+              [
+                244,
+                172,
+                120
+              ],
+              [
+                228,
+                120,
+                88
+              ],
+              [
+                232,
+                184,
+                64
+              ]
+            ],
+            "alpha": "binary",
+            "dither": false
+          },
+          "shadow": {
+            "key": "santa_shadow_classic_run_0",
+            "file": "shadow_run_0.png",
+            "w": 74,
+            "h": 28,
+            "reg": [
+              28,
+              8
+            ],
+            "pixelScale": 1,
+            "kind": "standing",
+            "sha256": "bc58b4d3c73c0bd9be7326143a3020f845ec0eb62e76cbb37b155cf5a4494a09"
+          },
+          "shadowFlipped": {
+            "key": "santa_shadow_classic_run_0_left",
+            "file": "shadow_run_0_left.png",
+            "w": 74,
+            "h": 29,
+            "reg": [
+              18,
+              8
+            ],
+            "pixelScale": 1,
+            "kind": "standing",
+            "sha256": "a2ccddf59236de5794de14ece7eb966d6cbb619f4caa46701960b125a379e3b4"
+          }
+        },
+        "hd": {
+          "pixelScale": 8,
+          "sha256": "c1f8b7f3e57724ef4d756aa9d11694af964dc6f896cb2aad7c0d33555f4ce31b",
+          "masterFile": "artwork/santa-comes-to-town/v2/hd/run-cycle.png",
+          "masterSha256": "6bd38fdc695e0f0a4d6e4d52c2875aabba6ea8e1c0a4a756f3312d4b601890f1",
+          "placement": {
+            "bounds": [
+              87,
+              42,
+              393,
+              399
+            ],
+            "sourceSize": [
+              443,
+              444
+            ],
+            "sourceRect": [
+              0,
+              0,
+              443,
+              444
+            ],
+            "fit": 0.11785858493512827,
+            "offset": [
+              4.443413404033247,
+              11.16611038001287
+            ],
+            "sourceFoot": [
+              267.74957983193275,
+              397
+            ],
+            "bodyCore": {
+              "span": 26,
+              "beltY": 42.23402953222339
+            },
+            "groundOffset": 0,
+            "contactPoints": [
+              {
+                "x": 3,
+                "y": 0,
+                "width": 10.875
+              }
+            ],
+            "contactFoot": [
+              3,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "shadow": {
+            "key": "santa_shadow_hd_run_0",
+            "file": "shadow_run_0.png",
+            "w": 79,
+            "h": 29,
+            "reg": [
+              28,
+              8
+            ],
+            "pixelScale": 8,
+            "kind": "standing",
+            "sha256": "ef0ed5f57e9c7edd9d8f48e06914545d2024006dbe2d4ac96341d8c9ad4c6c6c"
+          },
+          "shadowFlipped": {
+            "key": "santa_shadow_hd_run_0_left",
+            "file": "shadow_run_0_left.png",
+            "w": 79,
+            "h": 29,
+            "reg": [
+              21,
+              8
+            ],
+            "pixelScale": 8,
+            "kind": "standing",
+            "sha256": "5c052f046196ce77a980f8848a546fdd8932da5be841d2993dc348c536893099"
+          }
+        }
+      }
+    },
+    {
+      "id": "run_1",
+      "key": "santa_run_1",
+      "file": "run_1.png",
+      "w": 72,
+      "h": 64,
+      "reg": [
+        36,
+        58
+      ],
+      "versions": {
+        "classic": {
+          "pixelScale": 1,
+          "sha256": "d4c8751bc418e3f12f5deaaf8f2c1ea81c004e967358f73859aa82da631ba300",
+          "masterFile": "artwork/santa-comes-to-town/v4/classic/all-poses.png",
+          "masterSha256": "2f5aad571217ca4b4f2f5b6a48f171811475672bf69ecc3247cfe1925679ba2e",
+          "placement": {
+            "bounds": [
+              52,
+              24,
+              223,
+              247
+            ],
+            "sourceSize": [
+              256,
+              256
+            ],
+            "sourceRect": [
+              256,
+              0,
+              256,
+              256
+            ],
+            "fit": 0.18867924528301888,
+            "offset": [
+              6,
+              12
+            ],
+            "sourceFoot": [
+              156.82774049217002,
+              246
+            ],
+            "bodyCore": {
+              "span": 28.56063484023469,
+              "beltY": 46.70133632709231
+            },
+            "groundOffset": 0,
+            "contactPoints": [
+              {
+                "x": -9,
+                "y": 0,
+                "width": 12
+              }
+            ],
+            "contactFoot": [
+              -9,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "pixelArt": {
+            "bitDepth": 8,
+            "palette": [
+              [
+                23,
+                27,
+                45
+              ],
+              [
+                216,
+                40,
+                40
+              ],
+              [
+                140,
+                32,
+                48
+              ],
+              [
+                255,
+                244,
+                220
+              ],
+              [
+                184,
+                184,
+                200
+              ],
+              [
+                244,
+                172,
+                120
+              ],
+              [
+                228,
+                120,
+                88
+              ],
+              [
+                232,
+                184,
+                64
+              ]
+            ],
+            "alpha": "binary",
+            "dither": false
+          },
+          "shadow": {
+            "key": "santa_shadow_classic_run_1",
+            "file": "shadow_run_1.png",
+            "w": 73,
+            "h": 29,
+            "reg": [
+              26,
+              8
+            ],
+            "pixelScale": 1,
+            "kind": "standing",
+            "sha256": "8e710d0e2f7d3e9ddd37b398553f9d8dc6baad77465ec7d6458b4a813f8e3600"
+          },
+          "shadowFlipped": {
+            "key": "santa_shadow_classic_run_1_left",
+            "file": "shadow_run_1_left.png",
+            "w": 73,
+            "h": 28,
+            "reg": [
+              18,
+              8
+            ],
+            "pixelScale": 1,
+            "kind": "standing",
+            "sha256": "80eb4069a827a86533293ae525cc81d87192b4f2b2eb9bf8c3cc26b782d6d71e"
+          }
+        },
+        "hd": {
+          "pixelScale": 8,
+          "sha256": "b516d1f6c70f8abdaf569221402fc6b0916f234f7910078e52ebfadefd63f5ea",
+          "masterFile": "artwork/santa-comes-to-town/v2/hd/run-cycle.png",
+          "masterSha256": "6bd38fdc695e0f0a4d6e4d52c2875aabba6ea8e1c0a4a756f3312d4b601890f1",
+          "placement": {
+            "bounds": [
+              104,
+              50,
+              387,
+              399
+            ],
+            "sourceSize": [
+              444,
+              444
+            ],
+            "sourceRect": [
+              443,
+              0,
+              444,
+              444
+            ],
+            "fit": 0.11876569520928187,
+            "offset": [
+              4.217098742892912,
+              10.058213381340728
+            ],
+            "sourceFoot": [
+              267.6101141924959,
+              397
+            ],
+            "bodyCore": {
+              "span": 26,
+              "beltY": 42.23402953222339
+            },
+            "groundOffset": -0.75,
+            "contactPoints": [
+              {
+                "x": 0.9375,
+                "y": -0.75,
+                "width": 10.75
+              }
+            ],
+            "contactFoot": [
+              0.9375,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "shadow": {
+            "key": "santa_shadow_hd_run_1",
+            "file": "shadow_run_1.png",
+            "w": 76,
+            "h": 28,
+            "reg": [
+              26,
+              8
+            ],
+            "pixelScale": 8,
+            "kind": "standing",
+            "sha256": "ca0ade5429f4dac7f8df1672326096b3d83995fe60b17950e1e570da9fa620e8"
+          },
+          "shadowFlipped": {
+            "key": "santa_shadow_hd_run_1_left",
+            "file": "shadow_run_1_left.png",
+            "w": 76,
+            "h": 29,
+            "reg": [
+              21,
+              8
+            ],
+            "pixelScale": 8,
+            "kind": "standing",
+            "sha256": "d89a6b6ec683cefb0804445c45f1e088a3cfcfd1df5fc6ff2333f96438157399"
+          }
+        }
+      }
+    },
+    {
+      "id": "run_2",
+      "key": "santa_run_2",
+      "file": "run_2.png",
+      "w": 72,
+      "h": 64,
+      "reg": [
+        36,
+        58
+      ],
+      "versions": {
+        "classic": {
+          "pixelScale": 1,
+          "sha256": "e16921c312f881365afdcf14b21961ee444eee21e9a71c7ede9dd6cacbda7b52",
+          "masterFile": "artwork/santa-comes-to-town/v4/classic/all-poses.png",
+          "masterSha256": "2f5aad571217ca4b4f2f5b6a48f171811475672bf69ecc3247cfe1925679ba2e",
+          "placement": {
+            "bounds": [
+              43,
+              24,
+              223,
+              243
+            ],
+            "sourceSize": [
+              256,
+              256
+            ],
+            "sourceRect": [
+              512,
+              0,
+              256,
+              256
+            ],
+            "fit": 0.18867924528301888,
+            "offset": [
+              6,
+              12
+            ],
+            "sourceFoot": [
+              156.6195652173913,
+              242
+            ],
+            "bodyCore": {
+              "span": 28.091058244462676,
+              "beltY": 46.70133632709231
+            },
+            "groundOffset": -1,
+            "contactPoints": [
+              {
+                "x": -18,
+                "y": -1,
+                "width": 4
+              }
+            ],
+            "contactFoot": [
+              -18,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "pixelArt": {
+            "bitDepth": 8,
+            "palette": [
+              [
+                23,
+                27,
+                45
+              ],
+              [
+                216,
+                40,
+                40
+              ],
+              [
+                140,
+                32,
+                48
+              ],
+              [
+                255,
+                244,
+                220
+              ],
+              [
+                184,
+                184,
+                200
+              ],
+              [
+                244,
+                172,
+                120
+              ],
+              [
+                228,
+                120,
+                88
+              ],
+              [
+                232,
+                184,
+                64
+              ]
+            ],
+            "alpha": "binary",
+            "dither": false
+          },
+          "shadow": {
+            "key": "santa_shadow_classic_run_2",
+            "file": "shadow_run_2.png",
+            "w": 74,
+            "h": 29,
+            "reg": [
+              28,
+              8
+            ],
+            "pixelScale": 1,
+            "kind": "standing",
+            "sha256": "0d5acb8eb08628b1994663a2adea5d26f341e6e90bb4170a30d1c41aecdebe17"
+          },
+          "shadowFlipped": {
+            "key": "santa_shadow_classic_run_2_left",
+            "file": "shadow_run_2_left.png",
+            "w": 74,
+            "h": 27,
+            "reg": [
+              18,
+              8
+            ],
+            "pixelScale": 1,
+            "kind": "standing",
+            "sha256": "b870145c24bfde9650453e9596f19df2aaf00540385213e3e4a35f950864dfba"
+          }
+        },
+        "hd": {
+          "pixelScale": 8,
+          "sha256": "16b5288a3a35d40fd8ae5645d33d119ef988259e2d13e8506cd3017cb124b791",
+          "masterFile": "artwork/santa-comes-to-town/v2/hd/run-cycle.png",
+          "masterSha256": "6bd38fdc695e0f0a4d6e4d52c2875aabba6ea8e1c0a4a756f3312d4b601890f1",
+          "placement": {
+            "bounds": [
+              101,
+              44,
+              368,
+              398
+            ],
+            "sourceSize": [
+              443,
+              444
+            ],
+            "sourceRect": [
+              887,
+              0,
+              443,
+              444
+            ],
+            "fit": 0.12073167603068317,
+            "offset": [
+              4.252683068660907,
+              10.680372434811964
+            ],
+            "sourceFoot": [
+              262.95764272559853,
+              397
+            ],
+            "bodyCore": {
+              "span": 26,
+              "beltY": 42.23402953222339
+            },
+            "groundOffset": 0.625,
+            "contactPoints": [
+              {
+                "x": -8.1875,
+                "y": 0.625,
+                "width": 9.5
+              }
+            ],
+            "contactFoot": [
+              -8.1875,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "shadow": {
+            "key": "santa_shadow_hd_run_2",
+            "file": "shadow_run_2.png",
+            "w": 76,
+            "h": 29,
+            "reg": [
+              26,
+              8
+            ],
+            "pixelScale": 8,
+            "kind": "standing",
+            "sha256": "f2b24104c6bfb6f2c9bd802150a2bcf9ac0b4297b72b9815a7c89f9a1e2add25"
+          },
+          "shadowFlipped": {
+            "key": "santa_shadow_hd_run_2_left",
+            "file": "shadow_run_2_left.png",
+            "w": 75,
+            "h": 29,
+            "reg": [
+              19,
+              8
+            ],
+            "pixelScale": 8,
+            "kind": "standing",
+            "sha256": "663043491742a7d5ab276dece4214955cef87ec7c812c72d17525ed01fc1712e"
+          }
+        }
+      }
+    },
+    {
+      "id": "run_3",
+      "key": "santa_run_3",
+      "file": "run_3.png",
+      "w": 72,
+      "h": 64,
+      "reg": [
+        36,
+        58
+      ],
+      "versions": {
+        "classic": {
+          "pixelScale": 1,
+          "sha256": "e671171261ab64af8527d5e32406d1f5f40a5df972c9a6b20b6a8fb8fea21814",
+          "masterFile": "artwork/santa-comes-to-town/v4/classic/all-poses.png",
+          "masterSha256": "2f5aad571217ca4b4f2f5b6a48f171811475672bf69ecc3247cfe1925679ba2e",
+          "placement": {
+            "bounds": [
+              31,
+              24,
+              224,
+              239
+            ],
+            "sourceSize": [
+              256,
+              256
+            ],
+            "sourceRect": [
+              768,
+              0,
+              256,
+              256
+            ],
+            "fit": 0.18867924528301888,
+            "offset": [
+              7,
+              13
+            ],
+            "sourceFoot": [
+              155.72233820459292,
+              239
+            ],
+            "bodyCore": {
+              "span": 27.88710757474298,
+              "beltY": 46.70133632709231
+            },
+            "groundOffset": 1,
+            "contactPoints": [],
+            "contactFoot": [
+              0,
+              0,
+              4
+            ],
+            "airborne": true,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "pixelArt": {
+            "bitDepth": 8,
+            "palette": [
+              [
+                23,
+                27,
+                45
+              ],
+              [
+                216,
+                40,
+                40
+              ],
+              [
+                140,
+                32,
+                48
+              ],
+              [
+                255,
+                244,
+                220
+              ],
+              [
+                184,
+                184,
+                200
+              ],
+              [
+                244,
+                172,
+                120
+              ],
+              [
+                228,
+                120,
+                88
+              ],
+              [
+                232,
+                184,
+                64
+              ]
+            ],
+            "alpha": "binary",
+            "dither": false
+          },
+          "shadow": {
+            "key": "santa_shadow_classic_run_3",
+            "file": "shadow_run_3.png",
+            "w": 76,
+            "h": 28,
+            "reg": [
+              28,
+              8
+            ],
+            "pixelScale": 1,
+            "kind": "standing",
+            "sha256": "36424b05b7aa40a4df86ef3c5b03f3cd79ef52815b35cd420efe623795bf595c"
+          },
+          "shadowFlipped": {
+            "key": "santa_shadow_classic_run_3_left",
+            "file": "shadow_run_3_left.png",
+            "w": 76,
+            "h": 29,
+            "reg": [
+              18,
+              8
+            ],
+            "pixelScale": 1,
+            "kind": "standing",
+            "sha256": "5b6c7c78d3e8405038344f2a6886f01aaf31d2ae7a4e87c916e000c1ff335f3b"
+          }
+        },
+        "hd": {
+          "pixelScale": 8,
+          "sha256": "ac63b3814b5082c398aeea105e6092e2669ba2beec0b3e3f34cd578a497c394b",
+          "masterFile": "artwork/santa-comes-to-town/v2/hd/run-cycle.png",
+          "masterSha256": "6bd38fdc695e0f0a4d6e4d52c2875aabba6ea8e1c0a4a756f3312d4b601890f1",
+          "placement": {
+            "bounds": [
+              90,
+              32,
+              382,
+              358
+            ],
+            "sourceSize": [
+              443,
+              444
+            ],
+            "sourceRect": [
+              1330,
+              0,
+              443,
+              444
+            ],
+            "fit": 0.12248412805619344,
+            "offset": [
+              3.558827502363904,
+              12.192053306369004
+            ],
+            "sourceFoot": [
+              264.86021505376345,
+              357
+            ],
+            "bodyCore": {
+              "span": 26,
+              "beltY": 42.23402953222339
+            },
+            "groundOffset": 1,
+            "contactPoints": [],
+            "contactFoot": [
+              0,
+              0,
+              4
+            ],
+            "airborne": true,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "shadow": {
+            "key": "santa_shadow_hd_run_3",
+            "file": "shadow_run_3.png",
+            "w": 77,
+            "h": 29,
+            "reg": [
+              25,
+              8
+            ],
+            "pixelScale": 8,
+            "kind": "standing",
+            "sha256": "91860deebcec08531f56170c5b4168bea589573d6c22d63fd3c4bc8047090245"
+          },
+          "shadowFlipped": {
+            "key": "santa_shadow_hd_run_3_left",
+            "file": "shadow_run_3_left.png",
+            "w": 77,
+            "h": 29,
+            "reg": [
+              19,
+              8
+            ],
+            "pixelScale": 8,
+            "kind": "standing",
+            "sha256": "25fb8be7a5aeb7afa71b390571468c34eda03d70513247ff5087c38574eb9441"
+          }
+        }
+      }
+    },
+    {
+      "id": "run_4",
+      "key": "santa_run_4",
+      "file": "run_4.png",
+      "w": 72,
+      "h": 64,
+      "reg": [
+        36,
+        58
+      ],
+      "versions": {
+        "classic": {
+          "pixelScale": 1,
+          "sha256": "b778f300c3848ccee0955d0031ae23d4d18a5bf7729f43373048fc8b553ef5b1",
+          "masterFile": "artwork/santa-comes-to-town/v4/classic/all-poses.png",
+          "masterSha256": "2f5aad571217ca4b4f2f5b6a48f171811475672bf69ecc3247cfe1925679ba2e",
+          "placement": {
+            "bounds": [
+              46,
+              25,
+              223,
+              246
+            ],
+            "sourceSize": [
+              256,
+              256
+            ],
+            "sourceRect": [
+              1024,
+              0,
+              256,
+              256
+            ],
+            "fit": 0.18867924528301888,
+            "offset": [
+              6,
+              12
+            ],
+            "sourceFoot": [
+              157.82102908277406,
+              245
+            ],
+            "bodyCore": {
+              "span": 28.17272381917184,
+              "beltY": 46.70133632709231
+            },
+            "groundOffset": -1,
+            "contactPoints": [
+              {
+                "x": -2,
+                "y": -1,
+                "width": 11
+              }
+            ],
+            "contactFoot": [
+              -2,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "pixelArt": {
+            "bitDepth": 8,
+            "palette": [
+              [
+                23,
+                27,
+                45
+              ],
+              [
+                216,
+                40,
+                40
+              ],
+              [
+                140,
+                32,
+                48
+              ],
+              [
+                255,
+                244,
+                220
+              ],
+              [
+                184,
+                184,
+                200
+              ],
+              [
+                244,
+                172,
+                120
+              ],
+              [
+                228,
+                120,
+                88
+              ],
+              [
+                232,
+                184,
+                64
+              ]
+            ],
+            "alpha": "binary",
+            "dither": false
+          },
+          "shadow": {
+            "key": "santa_shadow_classic_run_4",
+            "file": "shadow_run_4.png",
+            "w": 73,
+            "h": 28,
+            "reg": [
+              27,
+              8
+            ],
+            "pixelScale": 1,
+            "kind": "standing",
+            "sha256": "8381e02e465754262ec3f540d58713d2a20900c1ae1a9dea67d2da5a769778c1"
+          },
+          "shadowFlipped": {
+            "key": "santa_shadow_classic_run_4_left",
+            "file": "shadow_run_4_left.png",
+            "w": 73,
+            "h": 28,
+            "reg": [
+              18,
+              8
+            ],
+            "pixelScale": 1,
+            "kind": "standing",
+            "sha256": "3316067219be1c38005796a8dbf69a720934bb3d848859b33dbb7b80d0de44fd"
+          }
+        },
+        "hd": {
+          "pixelScale": 8,
+          "sha256": "9965d67ae6677e093e40753c531d3b53ddb2b0f71574b2c8f255ccd6815a6e73",
+          "masterFile": "artwork/santa-comes-to-town/v2/hd/run-cycle.png",
+          "masterSha256": "6bd38fdc695e0f0a4d6e4d52c2875aabba6ea8e1c0a4a756f3312d4b601890f1",
+          "placement": {
+            "bounds": [
+              85,
+              42,
+              389,
+              397
+            ],
+            "sourceSize": [
+              443,
+              443
+            ],
+            "sourceRect": [
+              0,
+              444,
+              443,
+              443
+            ],
+            "fit": 0.1183171967925683,
+            "offset": [
+              4.272631694572162,
+              11.14639007014295
+            ],
+            "sourceFoot": [
+              268.1551724137931,
+              396
+            ],
+            "bodyCore": {
+              "span": 26,
+              "beltY": 42.23402953222339
+            },
+            "groundOffset": 0,
+            "contactPoints": [
+              {
+                "x": 4.3125,
+                "y": 0,
+                "width": 11.25
+              }
+            ],
+            "contactFoot": [
+              4.3125,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "shadow": {
+            "key": "santa_shadow_hd_run_4",
+            "file": "shadow_run_4.png",
+            "w": 79,
+            "h": 28,
+            "reg": [
+              28,
+              8
+            ],
+            "pixelScale": 8,
+            "kind": "standing",
+            "sha256": "23f5dc5631aeb74827b9c74ff876957b264f4bd9c5ed577e75df26e484aa2892"
+          },
+          "shadowFlipped": {
+            "key": "santa_shadow_hd_run_4_left",
+            "file": "shadow_run_4_left.png",
+            "w": 79,
+            "h": 29,
+            "reg": [
+              21,
+              8
+            ],
+            "pixelScale": 8,
+            "kind": "standing",
+            "sha256": "087dd1c6b708cdeeff19ae587103acc799d4c0ba261692fe82c2f9b631473b57"
+          }
+        }
+      }
+    },
+    {
+      "id": "run_5",
+      "key": "santa_run_5",
+      "file": "run_5.png",
+      "w": 72,
+      "h": 64,
+      "reg": [
+        36,
+        58
+      ],
+      "versions": {
+        "classic": {
+          "pixelScale": 1,
+          "sha256": "f5f2875a9f461f0dc9615ff1804dd0ce153954dd3abe3dd2d8d813675644dfd1",
+          "masterFile": "artwork/santa-comes-to-town/v4/classic/all-poses.png",
+          "masterSha256": "2f5aad571217ca4b4f2f5b6a48f171811475672bf69ecc3247cfe1925679ba2e",
+          "placement": {
+            "bounds": [
+              52,
+              25,
+              223,
+              245
+            ],
+            "sourceSize": [
+              256,
+              256
+            ],
+            "sourceRect": [
+              1280,
+              0,
+              256,
+              256
+            ],
+            "fit": 0.18867924528301888,
+            "offset": [
+              6,
+              12
+            ],
+            "sourceFoot": [
+              158.954802259887,
+              244
+            ],
+            "bodyCore": {
+              "span": 28.1244003837544,
+              "beltY": 46.70133632709231
+            },
+            "groundOffset": -1,
+            "contactPoints": [
+              {
+                "x": -8,
+                "y": -1,
+                "width": 12
+              }
+            ],
+            "contactFoot": [
+              -8,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "pixelArt": {
+            "bitDepth": 8,
+            "palette": [
+              [
+                23,
+                27,
+                45
+              ],
+              [
+                216,
+                40,
+                40
+              ],
+              [
+                140,
+                32,
+                48
+              ],
+              [
+                255,
+                244,
+                220
+              ],
+              [
+                184,
+                184,
+                200
+              ],
+              [
+                244,
+                172,
+                120
+              ],
+              [
+                228,
+                120,
+                88
+              ],
+              [
+                232,
+                184,
+                64
+              ]
+            ],
+            "alpha": "binary",
+            "dither": false
+          },
+          "shadow": {
+            "key": "santa_shadow_classic_run_5",
+            "file": "shadow_run_5.png",
+            "w": 72,
+            "h": 28,
+            "reg": [
+              26,
+              8
+            ],
+            "pixelScale": 1,
+            "kind": "standing",
+            "sha256": "942d0872de9c5cb853f1d1dc6436b47ff46c06b206bd8fcd149b4319834f0d74"
+          },
+          "shadowFlipped": {
+            "key": "santa_shadow_classic_run_5_left",
+            "file": "shadow_run_5_left.png",
+            "w": 72,
+            "h": 28,
+            "reg": [
+              18,
+              8
+            ],
+            "pixelScale": 1,
+            "kind": "standing",
+            "sha256": "99f7410b0e3824d6d945affb69d1eefcf5785b9e723d7b863e1fdc0af8e51b0d"
+          }
+        },
+        "hd": {
+          "pixelScale": 8,
+          "sha256": "76a6301573d7b3e4890582f30b84974b61b478a92d0dadd6e3542688cc1583f5",
+          "masterFile": "artwork/santa-comes-to-town/v2/hd/run-cycle.png",
+          "masterSha256": "6bd38fdc695e0f0a4d6e4d52c2875aabba6ea8e1c0a4a756f3312d4b601890f1",
+          "placement": {
+            "bounds": [
+              103,
+              50,
+              387,
+              397
+            ],
+            "sourceSize": [
+              444,
+              443
+            ],
+            "sourceRect": [
+              443,
+              444,
+              444,
+              443
+            ],
+            "fit": 0.11939804114941319,
+            "offset": [
+              4.02970647354196,
+              10.0253313924539
+            ],
+            "sourceFoot": [
+              267.76229508196724,
+              396
+            ],
+            "bodyCore": {
+              "span": 26,
+              "beltY": 42.23402953222339
+            },
+            "groundOffset": -0.625,
+            "contactPoints": [
+              {
+                "x": 0,
+                "y": -0.625,
+                "width": 10.875
+              }
+            ],
+            "contactFoot": [
+              0,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "shadow": {
+            "key": "santa_shadow_hd_run_5",
+            "file": "shadow_run_5.png",
+            "w": 76,
+            "h": 29,
+            "reg": [
+              26,
+              8
+            ],
+            "pixelScale": 8,
+            "kind": "standing",
+            "sha256": "171a72cd5933967dc81c651d535fc6c85959e567f8600b2481622f842e67065a"
+          },
+          "shadowFlipped": {
+            "key": "santa_shadow_hd_run_5_left",
+            "file": "shadow_run_5_left.png",
+            "w": 77,
+            "h": 29,
+            "reg": [
+              21,
+              8
+            ],
+            "pixelScale": 8,
+            "kind": "standing",
+            "sha256": "2273f040297b4927cd8fcc7bdd6bf74696f29e8f3a679402b4e9159584b721a4"
+          }
+        }
+      }
+    },
+    {
+      "id": "run_6",
+      "key": "santa_run_6",
+      "file": "run_6.png",
+      "w": 72,
+      "h": 64,
+      "reg": [
+        36,
+        58
+      ],
+      "versions": {
+        "classic": {
+          "pixelScale": 1,
+          "sha256": "ebe2973cbc02e310301fd58d964ae40ff096dc17a99187f1b42ae6683b20dcb8",
+          "masterFile": "artwork/santa-comes-to-town/v4/classic/all-poses.png",
+          "masterSha256": "2f5aad571217ca4b4f2f5b6a48f171811475672bf69ecc3247cfe1925679ba2e",
+          "placement": {
+            "bounds": [
+              32,
+              24,
+              222,
+              245
+            ],
+            "sourceSize": [
+              256,
+              256
+            ],
+            "sourceRect": [
+              0,
+              256,
+              256,
+              256
+            ],
+            "fit": 0.18867924528301888,
+            "offset": [
+              7,
+              12
+            ],
+            "sourceFoot": [
+              154.99273607748185,
+              245
+            ],
+            "bodyCore": {
+              "span": 28.140161725067387,
+              "beltY": 46.70133632709231
+            },
+            "groundOffset": -1,
+            "contactPoints": [
+              {
+                "x": -7,
+                "y": -1,
+                "width": 11
+              }
+            ],
+            "contactFoot": [
+              -7,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "pixelArt": {
+            "bitDepth": 8,
+            "palette": [
+              [
+                23,
+                27,
+                45
+              ],
+              [
+                216,
+                40,
+                40
+              ],
+              [
+                140,
+                32,
+                48
+              ],
+              [
+                255,
+                244,
+                220
+              ],
+              [
+                184,
+                184,
+                200
+              ],
+              [
+                244,
+                172,
+                120
+              ],
+              [
+                228,
+                120,
+                88
+              ],
+              [
+                232,
+                184,
+                64
+              ]
+            ],
+            "alpha": "binary",
+            "dither": false
+          },
+          "shadow": {
+            "key": "santa_shadow_classic_run_6",
+            "file": "shadow_run_6.png",
+            "w": 76,
+            "h": 28,
+            "reg": [
+              29,
+              8
+            ],
+            "pixelScale": 1,
+            "kind": "standing",
+            "sha256": "c88237108d74ba3505eb303996dde95f25940433019e8f2c4a7c697286e214d8"
+          },
+          "shadowFlipped": {
+            "key": "santa_shadow_classic_run_6_left",
+            "file": "shadow_run_6_left.png",
+            "w": 76,
+            "h": 28,
+            "reg": [
+              19,
+              8
+            ],
+            "pixelScale": 1,
+            "kind": "standing",
+            "sha256": "2dce6d5975ab92a82001aacb174e7a1cd8fca21e7f9176c3a35990e318bacf45"
+          }
+        },
+        "hd": {
+          "pixelScale": 8,
+          "sha256": "d50f3b0b06ba9dc3b7bb4c757bbf4fd3971e39d7afeac02d7a69b3dc384142f3",
+          "masterFile": "artwork/santa-comes-to-town/v2/hd/run-cycle.png",
+          "masterSha256": "6bd38fdc695e0f0a4d6e4d52c2875aabba6ea8e1c0a4a756f3312d4b601890f1",
+          "placement": {
+            "bounds": [
+              101,
+              42,
+              369,
+              397
+            ],
+            "sourceSize": [
+              443,
+              443
+            ],
+            "sourceRect": [
+              887,
+              444,
+              443,
+              443
+            ],
+            "fit": 0.11967537449024912,
+            "offset": [
+              4.680114668712399,
+              10.968313054652427
+            ],
+            "sourceFoot": [
+              261.70701754385965,
+              396
+            ],
+            "bodyCore": {
+              "span": 26,
+              "beltY": 42.23402953222339
+            },
+            "groundOffset": 0.375,
+            "contactPoints": [
+              {
+                "x": -9.3125,
+                "y": 0.375,
+                "width": 9.5
+              }
+            ],
+            "contactFoot": [
+              -9.3125,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "shadow": {
+            "key": "santa_shadow_hd_run_6",
+            "file": "shadow_run_6.png",
+            "w": 76,
+            "h": 29,
+            "reg": [
+              26,
+              8
+            ],
+            "pixelScale": 8,
+            "kind": "standing",
+            "sha256": "f8214eb6e7d34245283768607891b500fe95f3099f0bf3338c2541e2cb26a285"
+          },
+          "shadowFlipped": {
+            "key": "santa_shadow_hd_run_6_left",
+            "file": "shadow_run_6_left.png",
+            "w": 75,
+            "h": 29,
+            "reg": [
+              19,
+              8
+            ],
+            "pixelScale": 8,
+            "kind": "standing",
+            "sha256": "d8f187acc68ad3007effaf31a9cd7569b20d2e9e32f5e56da1fcc190d7ad24ae"
+          }
+        }
+      }
+    },
+    {
+      "id": "run_7",
+      "key": "santa_run_7",
+      "file": "run_7.png",
+      "w": 72,
+      "h": 64,
+      "reg": [
+        36,
+        58
+      ],
+      "versions": {
+        "classic": {
+          "pixelScale": 1,
+          "sha256": "7202340f5ced8b3a0f74da44391b7476667735aea54d8880577d9673bb264182",
+          "masterFile": "artwork/santa-comes-to-town/v4/classic/all-poses.png",
+          "masterSha256": "2f5aad571217ca4b4f2f5b6a48f171811475672bf69ecc3247cfe1925679ba2e",
+          "placement": {
+            "bounds": [
+              36,
+              24,
+              226,
+              238
+            ],
+            "sourceSize": [
+              256,
+              256
+            ],
+            "sourceRect": [
+              256,
+              256,
+              256,
+              256
+            ],
+            "fit": 0.18867924528301888,
+            "offset": [
+              6,
+              12
+            ],
+            "sourceFoot": [
+              156.84061135371178,
+              237
+            ],
+            "bodyCore": {
+              "span": 28.176237950070036,
+              "beltY": 46.70133632709231
+            },
+            "groundOffset": 1,
+            "contactPoints": [],
+            "contactFoot": [
+              0,
+              0,
+              4
+            ],
+            "airborne": true,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "pixelArt": {
+            "bitDepth": 8,
+            "palette": [
+              [
+                23,
+                27,
+                45
+              ],
+              [
+                216,
+                40,
+                40
+              ],
+              [
+                140,
+                32,
+                48
+              ],
+              [
+                255,
+                244,
+                220
+              ],
+              [
+                184,
+                184,
+                200
+              ],
+              [
+                244,
+                172,
+                120
+              ],
+              [
+                228,
+                120,
+                88
+              ],
+              [
+                232,
+                184,
+                64
+              ]
+            ],
+            "alpha": "binary",
+            "dither": false
+          },
+          "shadow": {
+            "key": "santa_shadow_classic_run_7",
+            "file": "shadow_run_7.png",
+            "w": 76,
+            "h": 29,
+            "reg": [
+              27,
+              8
+            ],
+            "pixelScale": 1,
+            "kind": "standing",
+            "sha256": "ab167449a8e4618db67f16413da2ddc6c1ed9420f8e875b291ccf9b770dd9170"
+          },
+          "shadowFlipped": {
+            "key": "santa_shadow_classic_run_7_left",
+            "file": "shadow_run_7_left.png",
+            "w": 76,
+            "h": 29,
+            "reg": [
+              17,
+              8
+            ],
+            "pixelScale": 1,
+            "kind": "standing",
+            "sha256": "396ab231450614b1a6269a89b6182e0c97248d1a81e99950d84789ec7545659c"
+          }
+        },
+        "hd": {
+          "pixelScale": 8,
+          "sha256": "c26ad7da1b8b73d09fca9db2a89e49a430fe90b82e13fa91d6a8a5ea74b84852",
+          "masterFile": "artwork/santa-comes-to-town/v2/hd/run-cycle.png",
+          "masterSha256": "6bd38fdc695e0f0a4d6e4d52c2875aabba6ea8e1c0a4a756f3312d4b601890f1",
+          "placement": {
+            "bounds": [
+              91,
+              30,
+              382,
+              354
+            ],
+            "sourceSize": [
+              443,
+              443
+            ],
+            "sourceRect": [
+              1330,
+              444,
+              443,
+              443
+            ],
+            "fit": 0.12532021815000938,
+            "offset": [
+              2.350128979854148,
+              12.223782551423088
+            ],
+            "sourceFoot": [
+              268.5111111111111,
+              353
+            ],
+            "bodyCore": {
+              "span": 26,
+              "beltY": 42.23402953222339
+            },
+            "groundOffset": 1,
+            "contactPoints": [],
+            "contactFoot": [
+              0,
+              0,
+              4
+            ],
+            "airborne": true,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "shadow": {
+            "key": "santa_shadow_hd_run_7",
+            "file": "shadow_run_7.png",
+            "w": 78,
+            "h": 29,
+            "reg": [
+              27,
+              8
+            ],
+            "pixelScale": 8,
+            "kind": "standing",
+            "sha256": "3182e8173de989e85d2e4ca14addca45fdf237d13820f323e5fd1897cb521d98"
+          },
+          "shadowFlipped": {
+            "key": "santa_shadow_hd_run_7_left",
+            "file": "shadow_run_7_left.png",
+            "w": 78,
+            "h": 30,
+            "reg": [
+              19,
+              8
+            ],
+            "pixelScale": 8,
+            "kind": "standing",
+            "sha256": "db398af2e2f9a24d3b63e45efc9ccb7b7ae0420849ccee1ad83b9bc5e24eab7f"
+          }
+        }
+      }
+    },
+    {
+      "id": "turn_quarter_0",
+      "key": "santa_turn_quarter_0",
+      "file": "turn_quarter_0.png",
+      "w": 72,
+      "h": 64,
+      "reg": [
+        36,
+        58
+      ],
+      "versions": {
+        "classic": {
+          "pixelScale": 1,
+          "sha256": "90575e4c548d11bfe1a4be68b0ea7a3e31a767980c17daf567072f1f4cfc5acb",
+          "masterFile": "artwork/santa-comes-to-town/v4/classic/all-poses.png",
+          "masterSha256": "2f5aad571217ca4b4f2f5b6a48f171811475672bf69ecc3247cfe1925679ba2e",
+          "placement": {
+            "bounds": [
+              50,
+              24,
+              218,
+              246
+            ],
+            "sourceSize": [
+              256,
+              256
+            ],
+            "sourceRect": [
+              512,
+              256,
+              256,
+              256
+            ],
+            "fit": 0.18867924528301888,
+            "offset": [
+              7,
+              12
+            ],
+            "sourceFoot": [
+              154.35641547861508,
+              245
+            ],
+            "bodyCore": {
+              "span": 28.26999193021558,
+              "beltY": 46.70133632709231
+            },
+            "groundOffset": -1,
+            "contactPoints": [
+              {
+                "x": -12,
+                "y": -1,
+                "width": 8
+              },
+              {
+                "x": -3,
+                "y": -1,
+                "width": 6
+              }
+            ],
+            "contactFoot": [
+              -12,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "pixelArt": {
+            "bitDepth": 8,
+            "palette": [
+              [
+                23,
+                27,
+                45
+              ],
+              [
+                216,
+                40,
+                40
+              ],
+              [
+                140,
+                32,
+                48
+              ],
+              [
+                255,
+                244,
+                220
+              ],
+              [
+                184,
+                184,
+                200
+              ],
+              [
+                244,
+                172,
+                120
+              ],
+              [
+                228,
+                120,
+                88
+              ],
+              [
+                232,
+                184,
+                64
+              ]
+            ],
+            "alpha": "binary",
+            "dither": false
+          },
+          "shadow": {
+            "key": "santa_shadow_classic_turn_quarter_0",
+            "file": "shadow_turn_quarter_0.png",
+            "w": 71,
+            "h": 29,
+            "reg": [
+              25,
+              8
+            ],
+            "pixelScale": 1,
+            "kind": "standing",
+            "sha256": "2d667eb29b606d3537bfc0d6e711382444c176ff4f68332efcb8ddead1a3f959"
+          },
+          "shadowFlipped": {
+            "key": "santa_shadow_classic_turn_quarter_0_left",
+            "file": "shadow_turn_quarter_0_left.png",
+            "w": 71,
+            "h": 28,
+            "reg": [
+              18,
+              8
+            ],
+            "pixelScale": 1,
+            "kind": "standing",
+            "sha256": "57dadad2ef60829bac47a82a2deb573fc62927b82c51be8fb04d1b58e832d77f"
+          }
+        },
+        "hd": {
+          "pixelScale": 8,
+          "sha256": "d2805d7516364fdd8e3b0657fdf21f404a15944ed7a5b44fce894da449df444e",
+          "masterFile": "artwork/santa-comes-to-town/v2/hd/turn-cycle.png",
+          "masterSha256": "2eec981622c4802bbaee9b27cbe87185a575ff5dcc56bb809dab57fc2aed5a51",
+          "placement": {
+            "bounds": [
+              92,
+              34,
+              392,
+              411
+            ],
+            "sourceSize": [
+              444,
+              444
+            ],
+            "sourceRect": [
+              0,
+              0,
+              444,
+              444
+            ],
+            "fit": 0.11294161948437942,
+            "offset": [
+              5.299111045362235,
+              10.501003671603744
+            ],
+            "sourceFoot": [
+              271.8297213622291,
+              410
+            ],
+            "bodyCore": {
+              "span": 26,
+              "beltY": 40.45396035355702
+            },
+            "groundOffset": -1.25,
+            "contactPoints": [
+              {
+                "x": 2.125,
+                "y": -1.25,
+                "width": 10.125
+              }
+            ],
+            "contactFoot": [
+              2.125,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "shadow": {
+            "key": "santa_shadow_hd_turn_quarter_0",
+            "file": "shadow_turn_quarter_0.png",
+            "w": 77,
+            "h": 29,
+            "reg": [
+              27,
+              8
+            ],
+            "pixelScale": 8,
+            "kind": "standing",
+            "sha256": "523f29ad1eedf20417ff6510f034b6de63582dfebf0f6653b157a0744559310d"
+          },
+          "shadowFlipped": {
+            "key": "santa_shadow_hd_turn_quarter_0_left",
+            "file": "shadow_turn_quarter_0_left.png",
+            "w": 77,
+            "h": 29,
+            "reg": [
+              20,
+              8
+            ],
+            "pixelScale": 8,
+            "kind": "standing",
+            "sha256": "fcaac19f908eaec7c02d49cf72295d5744b2653776d76624c27bf081c909f2c5"
+          }
+        }
+      }
+    },
+    {
+      "id": "turn_quarter_1",
+      "key": "santa_turn_quarter_1",
+      "file": "turn_quarter_1.png",
+      "w": 72,
+      "h": 64,
+      "reg": [
+        36,
+        58
+      ],
+      "versions": {
+        "classic": {
+          "pixelScale": 1,
+          "sha256": "c6f442acb2cb049513aee7599b568c8cbf817bda77cd0dc6773d1d9d71508f2c",
+          "masterFile": "artwork/santa-comes-to-town/v4/classic/all-poses.png",
+          "masterSha256": "2f5aad571217ca4b4f2f5b6a48f171811475672bf69ecc3247cfe1925679ba2e",
+          "placement": {
+            "bounds": [
+              39,
+              23,
+              217,
+              246
+            ],
+            "sourceSize": [
+              256,
+              256
+            ],
+            "sourceRect": [
+              768,
+              256,
+              256,
+              256
+            ],
+            "fit": 0.18867924528301888,
+            "offset": [
+              9,
+              12
+            ],
+            "sourceFoot": [
+              142.0448028673835,
+              245
+            ],
+            "bodyCore": {
+              "span": 28.825657672279704,
+              "beltY": 46.70133632709231
+            },
+            "groundOffset": -1,
+            "contactPoints": [
+              {
+                "x": -11,
+                "y": -1,
+                "width": 8
+              },
+              {
+                "x": 0,
+                "y": -1,
+                "width": 8
+              }
+            ],
+            "contactFoot": [
+              -11,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "pixelArt": {
+            "bitDepth": 8,
+            "palette": [
+              [
+                23,
+                27,
+                45
+              ],
+              [
+                216,
+                40,
+                40
+              ],
+              [
+                140,
+                32,
+                48
+              ],
+              [
+                255,
+                244,
+                220
+              ],
+              [
+                184,
+                184,
+                200
+              ],
+              [
+                244,
+                172,
+                120
+              ],
+              [
+                228,
+                120,
+                88
+              ],
+              [
+                232,
+                184,
+                64
+              ]
+            ],
+            "alpha": "binary",
+            "dither": false
+          },
+          "shadow": {
+            "key": "santa_shadow_classic_turn_quarter_1",
+            "file": "shadow_turn_quarter_1.png",
+            "w": 73,
+            "h": 29,
+            "reg": [
+              25,
+              8
+            ],
+            "pixelScale": 1,
+            "kind": "standing",
+            "sha256": "a486fbd740ec337af6fb09a08714cffef672ef7a3ac3ebb8ba59c4c5be33eb7b"
+          },
+          "shadowFlipped": {
+            "key": "santa_shadow_classic_turn_quarter_1_left",
+            "file": "shadow_turn_quarter_1_left.png",
+            "w": 73,
+            "h": 28,
+            "reg": [
+              20,
+              8
+            ],
+            "pixelScale": 1,
+            "kind": "standing",
+            "sha256": "5059b50e3df11767bddf8991b12cac8dd74c43a6151097dc94d0a0bbf2c9ef84"
+          }
+        },
+        "hd": {
+          "pixelScale": 8,
+          "sha256": "de1645a65baf26a29afa8b9e09813de46ea82c87b78d9347782e41bd62547a1c",
+          "masterFile": "artwork/santa-comes-to-town/v2/hd/turn-cycle.png",
+          "masterSha256": "2eec981622c4802bbaee9b27cbe87185a575ff5dcc56bb809dab57fc2aed5a51",
+          "placement": {
+            "bounds": [
+              114,
+              30,
+              379,
+              408
+            ],
+            "sourceSize": [
+              443,
+              444
+            ],
+            "sourceRect": [
+              444,
+              0,
+              443,
+              444
+            ],
+            "fit": 0.11366547298533601,
+            "offset": [
+              5.329691298324491,
+              10.930330691011605
+            ],
+            "sourceFoot": [
+              269.82959641255604,
+              407
+            ],
+            "bodyCore": {
+              "span": 26,
+              "beltY": 40.45396035355702
+            },
+            "groundOffset": -0.875,
+            "contactPoints": [
+              {
+                "x": -1.9375,
+                "y": -0.875,
+                "width": 4.75
+              }
+            ],
+            "contactFoot": [
+              -1.9375,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "shadow": {
+            "key": "santa_shadow_hd_turn_quarter_1",
+            "file": "shadow_turn_quarter_1.png",
+            "w": 73,
+            "h": 29,
+            "reg": [
+              24,
+              8
+            ],
+            "pixelScale": 8,
+            "kind": "standing",
+            "sha256": "17d8b2732a284a24c21fc961d1849a1ccc47ef410329847ac20ca78e477361ed"
+          },
+          "shadowFlipped": {
+            "key": "santa_shadow_hd_turn_quarter_1_left",
+            "file": "shadow_turn_quarter_1_left.png",
+            "w": 74,
+            "h": 29,
+            "reg": [
+              19,
+              8
+            ],
+            "pixelScale": 8,
+            "kind": "standing",
+            "sha256": "000585ef22f9945361db0b47c5009085ca5ab1713d6d0ab50eb61574d2707bb5"
+          }
+        }
+      }
+    },
+    {
+      "id": "turn_quarter_2",
+      "key": "santa_turn_quarter_2",
+      "file": "turn_quarter_2.png",
+      "w": 72,
+      "h": 64,
+      "reg": [
+        36,
+        58
+      ],
+      "versions": {
+        "classic": {
+          "pixelScale": 1,
+          "sha256": "2020246b4830abe4d9df6118337002cd3932144c5dbaeb11e7cc6baff2abc406",
+          "masterFile": "artwork/santa-comes-to-town/v4/classic/all-poses.png",
+          "masterSha256": "2f5aad571217ca4b4f2f5b6a48f171811475672bf69ecc3247cfe1925679ba2e",
+          "placement": {
+            "bounds": [
+              41,
+              23,
+              218,
+              246
+            ],
+            "sourceSize": [
+              256,
+              256
+            ],
+            "sourceRect": [
+              1024,
+              256,
+              256,
+              256
+            ],
+            "fit": 0.18867924528301888,
+            "offset": [
+              11,
+              12
+            ],
+            "sourceFoot": [
+              132.66540642722117,
+              245
+            ],
+            "bodyCore": {
+              "span": 28.7587830367015,
+              "beltY": 46.70133632709231
+            },
+            "groundOffset": -1,
+            "contactPoints": [
+              {
+                "x": 3,
+                "y": -1,
+                "width": 9
+              },
+              {
+                "x": -8,
+                "y": -1,
+                "width": 7
+              }
+            ],
+            "contactFoot": [
+              3,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "pixelArt": {
+            "bitDepth": 8,
+            "palette": [
+              [
+                23,
+                27,
+                45
+              ],
+              [
+                216,
+                40,
+                40
+              ],
+              [
+                140,
+                32,
+                48
+              ],
+              [
+                255,
+                244,
+                220
+              ],
+              [
+                184,
+                184,
+                200
+              ],
+              [
+                244,
+                172,
+                120
+              ],
+              [
+                228,
+                120,
+                88
+              ],
+              [
+                232,
+                184,
+                64
+              ]
+            ],
+            "alpha": "binary",
+            "dither": false
+          },
+          "shadow": {
+            "key": "santa_shadow_classic_turn_quarter_2",
+            "file": "shadow_turn_quarter_2.png",
+            "w": 73,
+            "h": 28,
+            "reg": [
+              23,
+              8
+            ],
+            "pixelScale": 1,
+            "kind": "standing",
+            "sha256": "e328f0385ce24c6608f4482bc5446ed0961309cc92f643ea5aed4aefb334d483"
+          },
+          "shadowFlipped": {
+            "key": "santa_shadow_classic_turn_quarter_2_left",
+            "file": "shadow_turn_quarter_2_left.png",
+            "w": 73,
+            "h": 28,
+            "reg": [
+              22,
+              8
+            ],
+            "pixelScale": 1,
+            "kind": "standing",
+            "sha256": "6076031f415f867343a8953fad98411027f4ffc9a3afa266a0b0f8e0e764d50a"
+          }
+        },
+        "hd": {
+          "pixelScale": 8,
+          "sha256": "3663870531c20d2dbe36f93368ca38066e294f1389e0f9f3c60fbccc20833ab5",
+          "masterFile": "artwork/santa-comes-to-town/v2/hd/turn-cycle.png",
+          "masterSha256": "2eec981622c4802bbaee9b27cbe87185a575ff5dcc56bb809dab57fc2aed5a51",
+          "placement": {
+            "bounds": [
+              111,
+              32,
+              377,
+              411
+            ],
+            "sourceSize": [
+              444,
+              444
+            ],
+            "sourceRect": [
+              887,
+              0,
+              444,
+              444
+            ],
+            "fit": 0.11550673646271346,
+            "offset": [
+              4.587316570840127,
+              10.642238050287478
+            ],
+            "sourceFoot": [
+              271.9554234769688,
+              410
+            ],
+            "bodyCore": {
+              "span": 26,
+              "beltY": 40.45396035355702
+            },
+            "groundOffset": 0,
+            "contactPoints": [
+              {
+                "x": 1.8125,
+                "y": 0,
+                "width": 10.25
+              }
+            ],
+            "contactFoot": [
+              1.8125,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "shadow": {
+            "key": "santa_shadow_hd_turn_quarter_2",
+            "file": "shadow_turn_quarter_2.png",
+            "w": 75,
+            "h": 29,
+            "reg": [
+              25,
+              8
+            ],
+            "pixelScale": 8,
+            "kind": "standing",
+            "sha256": "e987b176647e69aa9cb317ed9eeb80f757d8f4b8e55c26061c1ef87651f1fd97"
+          },
+          "shadowFlipped": {
+            "key": "santa_shadow_hd_turn_quarter_2_left",
+            "file": "shadow_turn_quarter_2_left.png",
+            "w": 75,
+            "h": 30,
+            "reg": [
+              19,
+              8
+            ],
+            "pixelScale": 8,
+            "kind": "standing",
+            "sha256": "4368cfff3ec387f751a9bcbc7a8011f1e96b0189a399a4afa070d9651bcb94b3"
+          }
+        }
+      }
+    },
+    {
+      "id": "turn_quarter_3",
+      "key": "santa_turn_quarter_3",
+      "file": "turn_quarter_3.png",
+      "w": 72,
+      "h": 64,
+      "reg": [
+        36,
+        58
+      ],
+      "versions": {
+        "classic": {
+          "pixelScale": 1,
+          "sha256": "c97e97dead323f0d66b6767df55ebb7d273394f0934f8f205854f23af4dc4911",
+          "masterFile": "artwork/santa-comes-to-town/v4/classic/all-poses.png",
+          "masterSha256": "2f5aad571217ca4b4f2f5b6a48f171811475672bf69ecc3247cfe1925679ba2e",
+          "placement": {
+            "bounds": [
+              37,
+              22,
+              221,
+              246
+            ],
+            "sourceSize": [
+              256,
+              256
+            ],
+            "sourceRect": [
+              1280,
+              256,
+              256,
+              256
+            ],
+            "fit": 0.18867924528301888,
+            "offset": [
+              12,
+              12
+            ],
+            "sourceFoot": [
+              126.06159420289855,
+              245
+            ],
+            "bodyCore": {
+              "span": 28.752050861361777,
+              "beltY": 46.70133632709231
+            },
+            "groundOffset": -1,
+            "contactPoints": [
+              {
+                "x": 4,
+                "y": -1,
+                "width": 11
+              },
+              {
+                "x": -7,
+                "y": -1,
+                "width": 9
+              }
+            ],
+            "contactFoot": [
+              4,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "pixelArt": {
+            "bitDepth": 8,
+            "palette": [
+              [
+                23,
+                27,
+                45
+              ],
+              [
+                216,
+                40,
+                40
+              ],
+              [
+                140,
+                32,
+                48
+              ],
+              [
+                255,
+                244,
+                220
+              ],
+              [
+                184,
+                184,
+                200
+              ],
+              [
+                244,
+                172,
+                120
+              ],
+              [
+                228,
+                120,
+                88
+              ],
+              [
+                232,
+                184,
+                64
+              ]
+            ],
+            "alpha": "binary",
+            "dither": false
+          },
+          "shadow": {
+            "key": "santa_shadow_classic_turn_quarter_3",
+            "file": "shadow_turn_quarter_3.png",
+            "w": 75,
+            "h": 28,
+            "reg": [
+              23,
+              8
+            ],
+            "pixelScale": 1,
+            "kind": "standing",
+            "sha256": "e2353c87d2f1f747540a5aad371d2dbad32216e46651dfe94684e6e3dbfeffb9"
+          },
+          "shadowFlipped": {
+            "key": "santa_shadow_classic_turn_quarter_3_left",
+            "file": "shadow_turn_quarter_3_left.png",
+            "w": 75,
+            "h": 28,
+            "reg": [
+              24,
+              8
+            ],
+            "pixelScale": 1,
+            "kind": "standing",
+            "sha256": "eac5688fcfc35241ae5d0b7222d30b4eec4367ae15aa53004faf648523a38f1c"
+          }
+        },
+        "hd": {
+          "pixelScale": 8,
+          "sha256": "82182c0911bb5d260c0d7f52db55e7555a475b907c3637d204c8e232ba94da82",
+          "masterFile": "artwork/santa-comes-to-town/v2/hd/turn-cycle.png",
+          "masterSha256": "2eec981622c4802bbaee9b27cbe87185a575ff5dcc56bb809dab57fc2aed5a51",
+          "placement": {
+            "bounds": [
+              112,
+              30,
+              360,
+              409
+            ],
+            "sourceSize": [
+              443,
+              444
+            ],
+            "sourceRect": [
+              1331,
+              0,
+              443,
+              444
+            ],
+            "fit": 0.11521856277934511,
+            "offset": [
+              5.28329159666529,
+              10.882184907397324
+            ],
+            "sourceFoot": [
+              266.5951359084406,
+              407
+            ],
+            "bodyCore": {
+              "span": 26,
+              "beltY": 40.45396035355702
+            },
+            "groundOffset": -0.125,
+            "contactPoints": [
+              {
+                "x": -10.0625,
+                "y": -0.125,
+                "width": 4.5
+              }
+            ],
+            "contactFoot": [
+              -10.0625,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "shadow": {
+            "key": "santa_shadow_hd_turn_quarter_3",
+            "file": "shadow_turn_quarter_3.png",
+            "w": 72,
+            "h": 30,
+            "reg": [
+              24,
+              8
+            ],
+            "pixelScale": 8,
+            "kind": "standing",
+            "sha256": "068f999249fb52687e38a24b8cf0aef114e02c80d8f2a9ea958bc6f236dcffd0"
+          },
+          "shadowFlipped": {
+            "key": "santa_shadow_hd_turn_quarter_3_left",
+            "file": "shadow_turn_quarter_3_left.png",
+            "w": 72,
+            "h": 29,
+            "reg": [
+              17,
+              8
+            ],
+            "pixelScale": 8,
+            "kind": "standing",
+            "sha256": "b0fd3c7f8819564fc886befef0140d693d316f40c58dc711ae99332004edeb81"
+          }
+        }
+      }
+    },
+    {
+      "id": "turn_front_0",
+      "key": "santa_turn_front_0",
+      "file": "turn_front_0.png",
+      "w": 72,
+      "h": 64,
+      "reg": [
+        36,
+        58
+      ],
+      "versions": {
+        "classic": {
+          "pixelScale": 1,
+          "sha256": "8ca6e0faee00d9636c199699246a7e3625fbaf9420a05580278a376d49137876",
+          "masterFile": "artwork/santa-comes-to-town/v4/classic/all-poses.png",
+          "masterSha256": "2f5aad571217ca4b4f2f5b6a48f171811475672bf69ecc3247cfe1925679ba2e",
+          "placement": {
+            "bounds": [
+              37,
+              23,
+              221,
+              246
+            ],
+            "sourceSize": [
+              256,
+              256
+            ],
+            "sourceRect": [
+              0,
+              512,
+              256,
+              256
+            ],
+            "fit": 0.18867924528301888,
+            "offset": [
+              12,
+              12
+            ],
+            "sourceFoot": [
+              126.23452157598499,
+              245
+            ],
+            "bodyCore": {
+              "span": 28.725618605968354,
+              "beltY": 46.70133632709231
+            },
+            "groundOffset": -1,
+            "contactPoints": [
+              {
+                "x": 4,
+                "y": -1,
+                "width": 11
+              },
+              {
+                "x": -8,
+                "y": -1,
+                "width": 8
+              }
+            ],
+            "contactFoot": [
+              4,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "pixelArt": {
+            "bitDepth": 8,
+            "palette": [
+              [
+                23,
+                27,
+                45
+              ],
+              [
+                216,
+                40,
+                40
+              ],
+              [
+                140,
+                32,
+                48
+              ],
+              [
+                255,
+                244,
+                220
+              ],
+              [
+                184,
+                184,
+                200
+              ],
+              [
+                244,
+                172,
+                120
+              ],
+              [
+                228,
+                120,
+                88
+              ],
+              [
+                232,
+                184,
+                64
+              ]
+            ],
+            "alpha": "binary",
+            "dither": false
+          },
+          "shadow": {
+            "key": "santa_shadow_classic_turn_front_0",
+            "file": "shadow_turn_front_0.png",
+            "w": 75,
+            "h": 28,
+            "reg": [
+              23,
+              8
+            ],
+            "pixelScale": 1,
+            "kind": "standing",
+            "sha256": "ce2acb1226ae0f8ffe124e476dfee846b4016fc4bb447b819c645f1ef3da83c4"
+          }
+        },
+        "hd": {
+          "pixelScale": 8,
+          "sha256": "514a8a37b0544491a4b4b8e284cffba14c6f5703f72573828778de16e9cce177",
+          "masterFile": "artwork/santa-comes-to-town/v2/hd/turn-cycle.png",
+          "masterSha256": "2eec981622c4802bbaee9b27cbe87185a575ff5dcc56bb809dab57fc2aed5a51",
+          "placement": {
+            "bounds": [
+              97,
+              30,
+              346,
+              413
+            ],
+            "sourceSize": [
+              444,
+              443
+            ],
+            "sourceRect": [
+              0,
+              444,
+              444,
+              443
+            ],
+            "fit": 0.11405342475445583,
+            "offset": [
+              7.976471496291907,
+              10.91830418616889
+            ],
+            "sourceFoot": [
+              245.70527859237538,
+              412
+            ],
+            "bodyCore": {
+              "span": 26,
+              "beltY": 40.45396035355702
+            },
+            "groundOffset": -0.125,
+            "contactPoints": [
+              {
+                "x": 2,
+                "y": -0.125,
+                "width": 9.375
+              }
+            ],
+            "contactFoot": [
+              2,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "shadow": {
+            "key": "santa_shadow_hd_turn_front_0",
+            "file": "shadow_turn_front_0.png",
+            "w": 72,
+            "h": 29,
+            "reg": [
+              23,
+              8
+            ],
+            "pixelScale": 8,
+            "kind": "standing",
+            "sha256": "530ba8eaabbe0dd8b4b121f56ee03202ebf8034a2c6de6ddf68321f1932b932f"
+          }
+        }
+      }
+    },
+    {
+      "id": "turn_front_1",
+      "key": "santa_turn_front_1",
+      "file": "turn_front_1.png",
+      "w": 72,
+      "h": 64,
+      "reg": [
+        36,
+        58
+      ],
+      "versions": {
+        "classic": {
+          "pixelScale": 1,
+          "sha256": "88e6c854feae74c3386a1a503284d31d9900ab60c86d20d7331cbf03b0ac6d84",
+          "masterFile": "artwork/santa-comes-to-town/v4/classic/all-poses.png",
+          "masterSha256": "2f5aad571217ca4b4f2f5b6a48f171811475672bf69ecc3247cfe1925679ba2e",
+          "placement": {
+            "bounds": [
+              37,
+              23,
+              221,
+              246
+            ],
+            "sourceSize": [
+              256,
+              256
+            ],
+            "sourceRect": [
+              256,
+              512,
+              256,
+              256
+            ],
+            "fit": 0.18867924528301888,
+            "offset": [
+              12,
+              12
+            ],
+            "sourceFoot": [
+              125.45582329317268,
+              245
+            ],
+            "bodyCore": {
+              "span": 28.717890429643106,
+              "beltY": 46.70133632709231
+            },
+            "groundOffset": -1,
+            "contactPoints": [
+              {
+                "x": 4,
+                "y": -1,
+                "width": 11
+              },
+              {
+                "x": -7,
+                "y": -1,
+                "width": 9
+              }
+            ],
+            "contactFoot": [
+              4,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "pixelArt": {
+            "bitDepth": 8,
+            "palette": [
+              [
+                23,
+                27,
+                45
+              ],
+              [
+                216,
+                40,
+                40
+              ],
+              [
+                140,
+                32,
+                48
+              ],
+              [
+                255,
+                244,
+                220
+              ],
+              [
+                184,
+                184,
+                200
+              ],
+              [
+                244,
+                172,
+                120
+              ],
+              [
+                228,
+                120,
+                88
+              ],
+              [
+                232,
+                184,
+                64
+              ]
+            ],
+            "alpha": "binary",
+            "dither": false
+          },
+          "shadow": {
+            "key": "santa_shadow_classic_turn_front_1",
+            "file": "shadow_turn_front_1.png",
+            "w": 75,
+            "h": 28,
+            "reg": [
+              23,
+              8
+            ],
+            "pixelScale": 1,
+            "kind": "standing",
+            "sha256": "867f2ee655d58a5c13c6bd85e1da29a79ffcb5d0834ead792d173a6bb36dd2ec"
+          }
+        },
+        "hd": {
+          "pixelScale": 8,
+          "sha256": "b751ccc455a17df16c9c2b0d5cb92d849a1296e67e90a27520f2b4f844c94da3",
+          "masterFile": "artwork/santa-comes-to-town/v2/hd/turn-cycle.png",
+          "masterSha256": "2eec981622c4802bbaee9b27cbe87185a575ff5dcc56bb809dab57fc2aed5a51",
+          "placement": {
+            "bounds": [
+              104,
+              26,
+              350,
+              407
+            ],
+            "sourceSize": [
+              443,
+              443
+            ],
+            "sourceRect": [
+              444,
+              444,
+              443,
+              443
+            ],
+            "fit": 0.11640197848173033,
+            "offset": [
+              7.561658118878341,
+              11.311106934550303
+            ],
+            "sourceFoot": [
+              244.31149927219795,
+              406
+            ],
+            "bodyCore": {
+              "span": 26,
+              "beltY": 40.45396035355702
+            },
+            "groundOffset": 0.625,
+            "contactPoints": [
+              {
+                "x": 0.0625,
+                "y": 0.625,
+                "width": 4.75
+              }
+            ],
+            "contactFoot": [
+              0.0625,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "shadow": {
+            "key": "santa_shadow_hd_turn_front_1",
+            "file": "shadow_turn_front_1.png",
+            "w": 74,
+            "h": 29,
+            "reg": [
+              23,
+              8
+            ],
+            "pixelScale": 8,
+            "kind": "standing",
+            "sha256": "0c3dad9ea70c59b7d188b63323712978d99e19948ecced6ed7c9c17ceaa68cc3"
+          }
+        }
+      }
+    },
+    {
+      "id": "turn_front_2",
+      "key": "santa_turn_front_2",
+      "file": "turn_front_2.png",
+      "w": 72,
+      "h": 64,
+      "reg": [
+        36,
+        58
+      ],
+      "versions": {
+        "classic": {
+          "pixelScale": 1,
+          "sha256": "b8c72ca22f061f3b21cf7a6e0b0c2066302c06cd263319c19220d342647b2228",
+          "masterFile": "artwork/santa-comes-to-town/v4/classic/all-poses.png",
+          "masterSha256": "2f5aad571217ca4b4f2f5b6a48f171811475672bf69ecc3247cfe1925679ba2e",
+          "placement": {
+            "bounds": [
+              35,
+              23,
+              221,
+              246
+            ],
+            "sourceSize": [
+              256,
+              256
+            ],
+            "sourceRect": [
+              512,
+              512,
+              256,
+              256
+            ],
+            "fit": 0.18867924528301888,
+            "offset": [
+              12,
+              12
+            ],
+            "sourceFoot": [
+              126.01098901098901,
+              245
+            ],
+            "bodyCore": {
+              "span": 28.752159789895643,
+              "beltY": 46.70133632709231
+            },
+            "groundOffset": -1,
+            "contactPoints": [
+              {
+                "x": 4,
+                "y": -1,
+                "width": 11
+              },
+              {
+                "x": -7,
+                "y": -1,
+                "width": 9
+              }
+            ],
+            "contactFoot": [
+              4,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "pixelArt": {
+            "bitDepth": 8,
+            "palette": [
+              [
+                23,
+                27,
+                45
+              ],
+              [
+                216,
+                40,
+                40
+              ],
+              [
+                140,
+                32,
+                48
+              ],
+              [
+                255,
+                244,
+                220
+              ],
+              [
+                184,
+                184,
+                200
+              ],
+              [
+                244,
+                172,
+                120
+              ],
+              [
+                228,
+                120,
+                88
+              ],
+              [
+                232,
+                184,
+                64
+              ]
+            ],
+            "alpha": "binary",
+            "dither": false
+          },
+          "shadow": {
+            "key": "santa_shadow_classic_turn_front_2",
+            "file": "shadow_turn_front_2.png",
+            "w": 75,
+            "h": 28,
+            "reg": [
+              23,
+              8
+            ],
+            "pixelScale": 1,
+            "kind": "standing",
+            "sha256": "3a51f473e199bba7a1d3e8baaeedcc8d803e74248035828fe35348aca4ec32d6"
+          }
+        },
+        "hd": {
+          "pixelScale": 8,
+          "sha256": "41e29365b766c97a3008c3e059faa8c8c0791febb243eaa4471c1280b25134fe",
+          "masterFile": "artwork/santa-comes-to-town/v2/hd/turn-cycle.png",
+          "masterSha256": "2eec981622c4802bbaee9b27cbe87185a575ff5dcc56bb809dab57fc2aed5a51",
+          "placement": {
+            "bounds": [
+              107,
+              29,
+              354,
+              413
+            ],
+            "sourceSize": [
+              444,
+              443
+            ],
+            "sourceRect": [
+              887,
+              444,
+              444,
+              443
+            ],
+            "fit": 0.11565892992818805,
+            "offset": [
+              7.757714271709023,
+              10.98419245571138
+            ],
+            "sourceFoot": [
+              244.18595041322314,
+              412
+            ],
+            "bodyCore": {
+              "span": 26,
+              "beltY": 40.45396035355702
+            },
+            "groundOffset": 0.625,
+            "contactPoints": [
+              {
+                "x": 2.625,
+                "y": 0.625,
+                "width": 9.375
+              }
+            ],
+            "contactFoot": [
+              2.625,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "shadow": {
+            "key": "santa_shadow_hd_turn_front_2",
+            "file": "shadow_turn_front_2.png",
+            "w": 73,
+            "h": 29,
+            "reg": [
+              22,
+              8
+            ],
+            "pixelScale": 8,
+            "kind": "standing",
+            "sha256": "7168ec5e8e511cf91b98dcfca8a1d490b63fc548903242331025761f123aca69"
+          }
+        }
+      }
+    },
+    {
+      "id": "turn_front_3",
+      "key": "santa_turn_front_3",
+      "file": "turn_front_3.png",
+      "w": 72,
+      "h": 64,
+      "reg": [
+        36,
+        58
+      ],
+      "versions": {
+        "classic": {
+          "pixelScale": 1,
+          "sha256": "f863de26bbdd5d789f3796ea7680138dc0bbac628131e39f048c445c8c8a6a3d",
+          "masterFile": "artwork/santa-comes-to-town/v4/classic/all-poses.png",
+          "masterSha256": "2f5aad571217ca4b4f2f5b6a48f171811475672bf69ecc3247cfe1925679ba2e",
+          "placement": {
+            "bounds": [
+              36,
+              23,
+              221,
+              246
+            ],
+            "sourceSize": [
+              256,
+              256
+            ],
+            "sourceRect": [
+              768,
+              512,
+              256,
+              256
+            ],
+            "fit": 0.18867924528301888,
+            "offset": [
+              12,
+              12
+            ],
+            "sourceFoot": [
+              125.75329566854991,
+              245
+            ],
+            "bodyCore": {
+              "span": 28.700920299896957,
+              "beltY": 46.70133632709231
+            },
+            "groundOffset": -1,
+            "contactPoints": [
+              {
+                "x": 4,
+                "y": -1,
+                "width": 11
+              },
+              {
+                "x": -7,
+                "y": -1,
+                "width": 9
+              }
+            ],
+            "contactFoot": [
+              4,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "pixelArt": {
+            "bitDepth": 8,
+            "palette": [
+              [
+                23,
+                27,
+                45
+              ],
+              [
+                216,
+                40,
+                40
+              ],
+              [
+                140,
+                32,
+                48
+              ],
+              [
+                255,
+                244,
+                220
+              ],
+              [
+                184,
+                184,
+                200
+              ],
+              [
+                244,
+                172,
+                120
+              ],
+              [
+                228,
+                120,
+                88
+              ],
+              [
+                232,
+                184,
+                64
+              ]
+            ],
+            "alpha": "binary",
+            "dither": false
+          },
+          "shadow": {
+            "key": "santa_shadow_classic_turn_front_3",
+            "file": "shadow_turn_front_3.png",
+            "w": 75,
+            "h": 28,
+            "reg": [
+              23,
+              8
+            ],
+            "pixelScale": 1,
+            "kind": "standing",
+            "sha256": "3a51f473e199bba7a1d3e8baaeedcc8d803e74248035828fe35348aca4ec32d6"
+          }
+        },
+        "hd": {
+          "pixelScale": 8,
+          "sha256": "a0c0fcc5a0cdfe274d9dfa365fe692263945a6dca673dc4ea917548f870d8985",
+          "masterFile": "artwork/santa-comes-to-town/v2/hd/turn-cycle.png",
+          "masterSha256": "2eec981622c4802bbaee9b27cbe87185a575ff5dcc56bb809dab57fc2aed5a51",
+          "placement": {
+            "bounds": [
+              118,
+              26,
+              358,
+              410
+            ],
+            "sourceSize": [
+              443,
+              443
+            ],
+            "sourceRect": [
+              1331,
+              444,
+              443,
+              443
+            ],
+            "fit": 0.11429573363558372,
+            "offset": [
+              8.943497128830053,
+              11.367975545396263
+            ],
+            "sourceFoot": [
+              236.72364672364674,
+              409
+            ],
+            "bodyCore": {
+              "span": 26,
+              "beltY": 40.45396035355702
+            },
+            "groundOffset": 0.125,
+            "contactPoints": [
+              {
+                "x": 0.25,
+                "y": 0.125,
+                "width": 5.125
+              }
+            ],
+            "contactFoot": [
+              0.25,
+              0,
+              4
+            ],
+            "airborne": false,
+            "corners": [
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          "shadow": {
+            "key": "santa_shadow_hd_turn_front_3",
+            "file": "shadow_turn_front_3.png",
+            "w": 72,
+            "h": 29,
+            "reg": [
+              20,
+              8
+            ],
+            "pixelScale": 8,
+            "kind": "standing",
+            "sha256": "00424a66acdcd0b94f367645187b3682e0a31539863172d39f3fb7ec3ea64692"
+          }
+        }
+      }
+    }
+  ],
+  "grove": {
+    "classic": {
+      "file": "grove.png",
+      "w": 600,
+      "h": 320,
+      "pixelScale": 1,
+      "sha256": "ef910319b91dd7bfec23be48fd2b02913d42d1d20f672248c479ad0fde9cb781",
+      "sourceSha256": "072301678ebc20fe64da76472e6af19281ab0aaa5b53fb0fba81a2b62825d7f1",
+      "maskedPixels": 9478,
+      "silhouetteSource": "classic grove alpha, filled row spans"
+    },
+    "hd": {
+      "file": "grove.png",
+      "w": 600,
+      "h": 320,
+      "pixelScale": 4,
+      "sha256": "a29f219f0ca44a5bc3846fac580f4215d94513d983d1adfce25a92304ddcb98c",
+      "sourceSha256": "089e6437eb322e4d31f8cc9c04ce83d7b144f7c24171f765c65e9d6f84c99375",
+      "maskedPixels": 170842,
+      "outline": [
+        [
+          512,
+          0
+        ],
+        [
+          600,
+          0
+        ],
+        [
+          600,
+          100
+        ],
+        [
+          524,
+          100
+        ],
+        [
+          522,
+          95
+        ],
+        [
+          508,
+          91
+        ],
+        [
+          505,
+          85
+        ],
+        [
+          499,
+          81
+        ],
+        [
+          482,
+          80
+        ],
+        [
+          475,
+          76
+        ],
+        [
+          471,
+          72
+        ],
+        [
+          470,
+          68
+        ],
+        [
+          474,
+          62
+        ],
+        [
+          476,
+          56
+        ],
+        [
+          480,
+          50
+        ],
+        [
+          481,
+          45
+        ],
+        [
+          486,
+          40
+        ],
+        [
+          487,
+          35
+        ],
+        [
+          486,
+          32
+        ],
+        [
+          491,
+          29
+        ],
+        [
+          499,
+          27
+        ],
+        [
+          508,
+          20
+        ]
+      ],
+      "silhouetteSource": "continuous traced outer boughs"
+    }
+  }
+}

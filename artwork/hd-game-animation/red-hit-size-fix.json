@@ -1,0 +1,2483 @@
+{
+  "checkedAt": "2026-11-10T08:29:05.167052-05:00",
+  "examinedVideos": [
+    {
+      "path": "/Users/rich/Desktop/2026-11-10_06-40-34 (1).mp4",
+      "sha256": "7f7adb41b1595a67de6c164dc4ae99d1f882548a3c04ec3ed0917696c80d6ebd"
+    },
+    {
+      "path": "/Users/rich/Desktop/2026-11-10_08-02-05.mp4",
+      "sha256": "15bab638314589b45fde85c28f09b5b7c67b1c8306f5db524d3e700c8aa3a2ce"
+    }
+  ],
+  "before": {
+    "chargingBodyArea": 429.4375,
+    "stunnedBodyArea": 643.234375,
+    "growthPercent": 49.78532964633968
+  },
+  "fix": "Use same-scale grounded Red ready body while stunned; uniformly normalize historical hit/dead body geometry to that baseline and register body/shadow to terminal fall centre.",
+  "unitTests": {
+    "passed": 72
+  },
+  "browserGroups": {
+    "covered": 18,
+    "mainRunPassed": 15,
+    "failedGroupsPassedRecheck": 3,
+    "runtimeErrors": 0,
+    "note": "Santa fixture sampled0.001ms past flash boundary to avoid fractional-clock rounding; music/scales timeouts passed serialized rechecks."
+  },
+  "bodyMeasurements": [
+    {
+      "lethal": false,
+      "charging": {
+        "frame": "motion_R_cock",
+        "bodyArea": 429.4375,
+        "centre": [
+          378.01765342964694,
+          209.00791369524086
+        ],
+        "logical": [
+          380,
+          220
+        ],
+        "alive": true,
+        "hits": 0,
+        "dazed": false,
+        "dragging": true,
+        "contacts": 2,
+        "stars": false,
+        "originalWidth": 63,
+        "expectedOriginalWidth": 63
+      },
+      "poses": [
+        {
+          "frame": "motion_R_recoil",
+          "bodyArea": 420.875,
+          "centre": [
+            377.6672887149248,
+            208.995841995842
+          ],
+          "logical": [
+            380,
+            220
+          ],
+          "alive": true,
+          "hits": 1,
+          "dazed": true,
+          "dragging": false,
+          "contacts": 2,
+          "stars": false,
+          "originalWidth": 46,
+          "expectedOriginalWidth": 46
+        },
+        {
+          "frame": "motion_R_fall",
+          "bodyArea": 395.3125,
+          "centre": [
+            377.8374678107995,
+            207.08343036781136
+          ],
+          "logical": [
+            380,
+            220
+          ],
+          "alive": true,
+          "hits": 1,
+          "dazed": true,
+          "dragging": false,
+          "contacts": 0,
+          "stars": false,
+          "originalWidth": 46,
+          "expectedOriginalWidth": 46
+        },
+        {
+          "frame": "cast_009_R_hit__snowcraft_redrawn8x",
+          "bodyArea": 432.5,
+          "centre": [
+            380.5626805733547,
+            207.24926897480782
+          ],
+          "logical": [
+            380,
+            220
+          ],
+          "alive": true,
+          "hits": 1,
+          "dazed": true,
+          "dragging": false,
+          "contacts": 0,
+          "stars": false,
+          "originalWidth": 36,
+          "expectedOriginalWidth": 36
+        },
+        {
+          "frame": "motion_R_kneel",
+          "bodyArea": 408.1875,
+          "centre": [
+            373.8781835166556,
+            211.1169231358138
+          ],
+          "logical": [
+            380,
+            220
+          ],
+          "alive": true,
+          "hits": 1,
+          "dazed": true,
+          "dragging": false,
+          "contacts": 2,
+          "stars": false,
+          "originalWidth": 35,
+          "expectedOriginalWidth": 35
+        },
+        {
+          "frame": "motion_R_rise",
+          "bodyArea": 416.3125,
+          "centre": [
+            373.7672022165423,
+            209.11298979132263
+          ],
+          "logical": [
+            380,
+            220
+          ],
+          "alive": true,
+          "hits": 1,
+          "dazed": true,
+          "dragging": false,
+          "contacts": 2,
+          "stars": false,
+          "originalWidth": 36,
+          "expectedOriginalWidth": 36
+        },
+        {
+          "frame": "motion_R_ready",
+          "bodyArea": 432.5,
+          "centre": [
+            377.88807161498346,
+            208.73418804615653
+          ],
+          "logical": [
+            380,
+            220
+          ],
+          "alive": true,
+          "hits": 1,
+          "dazed": true,
+          "dragging": false,
+          "contacts": 2,
+          "stars": true,
+          "originalWidth": 35,
+          "expectedOriginalWidth": 35
+        },
+        {
+          "frame": "motion_R_ready",
+          "bodyArea": 432.5,
+          "centre": [
+            377.27130734933905,
+            208.75462382237222
+          ],
+          "logical": [
+            380,
+            220
+          ],
+          "alive": true,
+          "hits": 1,
+          "dazed": true,
+          "dragging": false,
+          "contacts": 2,
+          "stars": true,
+          "originalWidth": 35,
+          "expectedOriginalWidth": 35
+        },
+        {
+          "frame": "motion_R_ready",
+          "bodyArea": 432.0059369842463,
+          "centre": [
+            377.4525356007136,
+            208.76463124921216
+          ],
+          "logical": [
+            380,
+            220
+          ],
+          "alive": true,
+          "hits": 1,
+          "dazed": false,
+          "dragging": false,
+          "contacts": 2,
+          "stars": false,
+          "originalWidth": 26,
+          "expectedOriginalWidth": 26
+        }
+      ]
+    },
+    {
+      "lethal": true,
+      "charging": {
+        "frame": "motion_R_cock",
+        "bodyArea": 429.4375,
+        "centre": [
+          378.01765342964694,
+          209.00791369524086
+        ],
+        "logical": [
+          380,
+          220
+        ],
+        "alive": true,
+        "hits": 1,
+        "dazed": false,
+        "dragging": true,
+        "contacts": 2,
+        "stars": false,
+        "originalWidth": 63,
+        "expectedOriginalWidth": 63
+      },
+      "poses": [
+        {
+          "frame": "motion_R_recoil",
+          "bodyArea": 420.875,
+          "centre": [
+            377.6672887149248,
+            208.995841995842
+          ],
+          "logical": [
+            380,
+            220
+          ],
+          "alive": false,
+          "hits": 2,
+          "dazed": false,
+          "dragging": false,
+          "contacts": 2,
+          "stars": false,
+          "originalWidth": 71,
+          "expectedOriginalWidth": 71
+        },
+        {
+          "frame": "motion_R_fall",
+          "bodyArea": 395.3125,
+          "centre": [
+            378.9551720420614,
+            207.1006443097066
+          ],
+          "logical": [
+            380,
+            220
+          ],
+          "alive": false,
+          "hits": 2,
+          "dazed": false,
+          "dragging": false,
+          "contacts": 0,
+          "stars": false,
+          "originalWidth": 71,
+          "expectedOriginalWidth": 71
+        },
+        {
+          "frame": "motion_R_fall",
+          "bodyArea": 395.3125,
+          "centre": [
+            388.6522187169411,
+            210.53118755627224
+          ],
+          "logical": [
+            380,
+            220
+          ],
+          "alive": false,
+          "hits": 2,
+          "dazed": false,
+          "dragging": false,
+          "contacts": 0,
+          "stars": false,
+          "originalWidth": 71,
+          "expectedOriginalWidth": 71
+        },
+        {
+          "frame": "cast_014_R_dead__snowcraft_redrawn8x",
+          "bodyArea": 432.49999999999994,
+          "centre": [
+            389.0486160642148,
+            210.83078862355052
+          ],
+          "logical": [
+            380,
+            220
+          ],
+          "alive": false,
+          "hits": 2,
+          "dazed": false,
+          "dragging": false,
+          "contacts": 0,
+          "stars": false,
+          "originalWidth": 71,
+          "expectedOriginalWidth": 71
+        },
+        {
+          "frame": "cast_014_R_dead__snowcraft_redrawn8x",
+          "bodyArea": 432.49999999999994,
+          "centre": [
+            389.0486160642148,
+            210.83078862355052
+          ],
+          "logical": [
+            380,
+            220
+          ],
+          "alive": false,
+          "hits": 2,
+          "dazed": false,
+          "dragging": false,
+          "contacts": 0,
+          "stars": false,
+          "originalWidth": 71,
+          "expectedOriginalWidth": 71
+        }
+      ]
+    }
+  ],
+  "assets": {
+    "runtimeAssets": 112,
+    "sourceMasterHashes": 6,
+    "unchangedOriginalHdPngs": 35,
+    "independentPixelGeometryFrames": 91,
+    "cock": {
+      "bodyArea": 429.4375,
+      "bodyCentre": [
+        -0.10478824043079626,
+        -16.617086304759134
+      ],
+      "bodyHeight": 31.5
+    },
+    "ready": {
+      "bodyArea": 432.5,
+      "bodyCentre": [
+        -0.6699060693641634,
+        -16.378793352601157
+      ],
+      "bodyHeight": 32.25
+    },
+    "oldDaze": {
+      "bodyArea": 643.234375,
+      "bodyCentre": [
+        -3.5214886923992523,
+        -13.969335268540334
+      ],
+      "bodyHeight": 37
+    },
+    "oldDazeAreaRatioToCharge": 1.4978532964633968,
+    "newDazeAreaRatioToCharge": 1.007131421918207,
+    "injuries": [
+      {
+        "file": "009_R_hit.png",
+        "sourceBodyArea": 443.78125,
+        "effectiveBodyArea": 432.5,
+        "areaRatioToCharge": 1.007131421918207,
+        "uniformScale": 0.9872078073952026,
+        "bodyCentre": [
+          0.5626805733547515,
+          -12.75073102519219
+        ],
+        "target": [
+          0.5626805733547502,
+          -12.750731025192191
+        ],
+        "shadowScale": 0.9872078073952026,
+        "shadowOffset": [
+          -3.50698820085001,
+          -3.965213273122494
+        ]
+      },
+      {
+        "file": "010_R_hit2.png",
+        "sourceBodyArea": 429.171875,
+        "effectiveBodyArea": 432.50000000000006,
+        "areaRatioToCharge": 1.007131421918207,
+        "uniformScale": 1.0038698920964628,
+        "bodyCentre": [
+          0.5626805733547489,
+          -12.750731025192191
+        ],
+        "target": [
+          0.5626805733547502,
+          -12.750731025192191
+        ],
+        "shadowScale": 1.0038698920964628,
+        "shadowOffset": [
+          -3.150444728098382,
+          -4.316448601913262
+        ]
+      },
+      {
+        "file": "014_R_dead.png",
+        "sourceBodyArea": 556.828125,
+        "effectiveBodyArea": 432.49999999999994,
+        "areaRatioToCharge": 1.0071314219182068,
+        "uniformScale": 0.8813176634238299,
+        "bodyCentre": [
+          9.048616064214809,
+          -9.169211376449486
+        ],
+        "target": [
+          9.048616064214809,
+          -9.169211376449486
+        ],
+        "shadowScale": 0.8813176634238299,
+        "shadowOffset": [
+          -26.232833393138936,
+          -28.58397524283201
+        ]
+      },
+      {
+        "file": "015_R_dead.png",
+        "sourceBodyArea": 557.578125,
+        "effectiveBodyArea": 432.5,
+        "areaRatioToCharge": 1.007131421918207,
+        "uniformScale": 0.8807247324587739,
+        "bodyCentre": [
+          9.048616064214812,
+          -9.169211376449482
+        ],
+        "target": [
+          9.048616064214809,
+          -9.169211376449486
+        ],
+        "shadowScale": 0.8807247324587739,
+        "shadowOffset": [
+          -25.341830613443204,
+          -38.77923673200003
+        ]
+      },
+      {
+        "file": "016_R_dead.png",
+        "sourceBodyArea": 556.375,
+        "effectiveBodyArea": 432.5,
+        "areaRatioToCharge": 1.007131421918207,
+        "uniformScale": 0.8816764733900405,
+        "bodyCentre": [
+          9.048616064214805,
+          -9.169211376449496
+        ],
+        "target": [
+          9.048616064214809,
+          -9.169211376449486
+        ],
+        "shadowScale": 0.8816764733900405,
+        "shadowOffset": [
+          -16.74668212647355,
+          -29.658873196149393
+        ]
+      }
+    ],
+    "runtime": [
+      {
+        "file": "web/assets/hd/motion/R_walk_0.png",
+        "sha256": "35dbea227d080654e58e8457bfc7804db5a5e4b47ac8dd60cc272258db5d43c1",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_walk_0.png",
+        "sha256": "1f8ad1aaa093b8bd146aa86198229f9abf7c9551a867587e92e74c61e7a3bdd8",
+        "size": [
+          232,
+          100
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/R_walk_1.png",
+        "sha256": "f651eda92e098bdc112597f025305903d71eca274bb7db1ae7d5bbf46d091435",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_walk_1.png",
+        "sha256": "881d1ed85c1653e5d7f748951450d0c9028b9f787c5f4f5bb2806bd221724cfd",
+        "size": [
+          228,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/R_walk_2.png",
+        "sha256": "835c920f16a0cddbd74a8bad41589de112a5ad14c688b3c6987fc7a23447df5f",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_walk_2.png",
+        "sha256": "3d94968bf92983b8e2c50558a7d8969c6398ee3401881df05eca8951508f73a8",
+        "size": [
+          224,
+          100
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/R_walk_3.png",
+        "sha256": "b3ba047937b33a0d96b3259dc2f5fdb12b309207a3e910b0b29d8192f9f6da2b",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_walk_3.png",
+        "sha256": "061003576772837b1d90d113961625baf9ea8005ff75c22f61087ea6e047e3ef",
+        "size": [
+          228,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/R_walk_4.png",
+        "sha256": "a80ab610a817a7372873e374af89dce7b1cb22a0dd097553a3a0b4fc099cbb86",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_walk_4.png",
+        "sha256": "d71110b33fd028515ec9cfe869f1ffd8727439084e2820c334ac3940d4920f8f",
+        "size": [
+          232,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/R_walk_5.png",
+        "sha256": "0f787da46f937747b292432083b299e23720854bff7c0052e66678034e96ffe4",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_walk_5.png",
+        "sha256": "49c2e31d8a98cdb47b0b6563a955aa32de676f39e395836c7aefbd80ac720593",
+        "size": [
+          228,
+          100
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/R_walk_6.png",
+        "sha256": "620e9b100200895b5ee612af1c1107a0b5b935f9c59ede253ede57fbd9fc72f6",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_walk_6.png",
+        "sha256": "76047646f8951d181176bcd1a83e64f3f32a5d8b76b955db9e21d292fecf0f31",
+        "size": [
+          232,
+          100
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/R_walk_7.png",
+        "sha256": "ca22425ff80badde7482a87d159084783ca742610bc6104904ebc2c04fbb04f2",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_walk_7.png",
+        "sha256": "be4193fddfeea4d6f6ea8a6a757aa03180a70bf9cc93c24f26702ee39543c30d",
+        "size": [
+          240,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/R_strafe_0.png",
+        "sha256": "ea1e55f72ceb4719a2906307f306da2ced07e96f3cc033fc67d3e48b8a64453a",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_strafe_0.png",
+        "sha256": "61cb448a67d91c07992f0ec537aab7078e386cdd18361e88a94a646382cebae0",
+        "size": [
+          240,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/R_strafe_1.png",
+        "sha256": "2b4d4c2bcb5ad7b416bc8cab36b1bfcbeea145219d2cd9750e607f2d9187f9aa",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_strafe_1.png",
+        "sha256": "95010c6754c65963284b9dbed0c905d5a17b91cc312a4aee9dec627f56c71476",
+        "size": [
+          240,
+          100
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/R_strafe_2.png",
+        "sha256": "09f9db44d3d475be307b522a219509b23798d1d0c95d912a2e9f0f7e6d1904f6",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_strafe_2.png",
+        "sha256": "4c2ce062519b6010cd4051547c7c508f72edd13c31c398c892a6d246ea0e23f9",
+        "size": [
+          240,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/R_strafe_3.png",
+        "sha256": "0f22f3a0f0638535e01c06d21e9f4b75701b15b15eed384448aedce5cd090a02",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_strafe_3.png",
+        "sha256": "5416d4dffbc7f547cc69c01a953f90fa2bd8dd7a03509ce10dac7e65cb836e79",
+        "size": [
+          236,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/R_strafe_4.png",
+        "sha256": "c4b572da1fbf5aec779cd16f66cfb3b446437981cf6f82c322ca2afd561d85c1",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_strafe_4.png",
+        "sha256": "69b262570e1ca74309b561a5fa5e83c394ffbae8ab45319dce5369abc72329e5",
+        "size": [
+          236,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/R_strafe_5.png",
+        "sha256": "c33ae1bf01ac5339d68386e04c056a1ff273e86e0b4ae7dc2472543537724469",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_strafe_5.png",
+        "sha256": "2775a68c4743c63f31fd33c84ba0882ef4f7b281de7d4205152b574741fd883c",
+        "size": [
+          240,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/R_strafe_6.png",
+        "sha256": "9dc7cf0490b2c8059ee02f6a6c5a20ef600fb9c623db0c27ecea0d95de0bd5a9",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_strafe_6.png",
+        "sha256": "b76d4f57664ffcdefff3c65feedc5a23a9ef95e54680830c22a1da65152bcd9c",
+        "size": [
+          236,
+          100
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/R_strafe_7.png",
+        "sha256": "28f702da2061dd83a996d0c72f179e6dd6947e4350550b129a7b8333500cfa15",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_strafe_7.png",
+        "sha256": "f535a30d2493cec57c69171cfe3f743e768db061f2924e7336103e34bf8b62dc",
+        "size": [
+          244,
+          100
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/R_gather.png",
+        "sha256": "1acf295846ce0480928879b51ab2d01b0304d30c174e6819b46d84b1895f04e0",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_gather.png",
+        "sha256": "6824bec022aa1ba85c66d12aa824372d47d9d00fec2ab289302dcaea766a40fd",
+        "size": [
+          216,
+          100
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/R_cock.png",
+        "sha256": "545a00e96cca64eb8cd8f431c767a7e8ec2f7d701992f6991522876ebf1ac4da",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_cock.png",
+        "sha256": "b53207b269653f19a303f27a55d3d4d3f7e83cfb3f07c4d3ee6cbaef06c2d9d9",
+        "size": [
+          236,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/R_release.png",
+        "sha256": "b6ef1ba0c9c5b00e9e24b32e75e2cd86dec68394f3cfc35d6d1e55a804c77257",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_release.png",
+        "sha256": "74562b132e21cac28fbc6c9fb945d87b64d97c76d2a27fc068e6e436a3343a38",
+        "size": [
+          244,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/R_follow.png",
+        "sha256": "a1ae6562d278d34d21f53aab9d1df458a2e7e5ee97d486d5f12805beb176b190",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_follow.png",
+        "sha256": "c26a03c467e0e603332cd4879712cc17d783bd573d4b2934646ec9f0408e3810",
+        "size": [
+          236,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/R_recoil.png",
+        "sha256": "37e4f1cd3e3ff8be27344046d8ac82eb9458319dcb312d676ab669bbd5e48e11",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_recoil.png",
+        "sha256": "2e23f7373c939d723d8991d18ffbea27d5dc53e4c3d65f83b280c4f1fc0532c0",
+        "size": [
+          232,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/R_fall.png",
+        "sha256": "2be72d6f8442b01c39da24d4bf68f1d1cac2ef83978fdee5d80937974f6bd6bd",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_fall.png",
+        "sha256": "b569d5f181fa91a27c52287948c47f3848c37ccc62f41bb7f3b1c0368ce18657",
+        "size": [
+          256,
+          100
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/R_kneel.png",
+        "sha256": "840b23e387d4386d10ff77ad96305caa06dd461c0f92464f74cb2138bf60ed48",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_kneel.png",
+        "sha256": "cfa27c3fe0cfe603a27a97aacbaccdc161e39bc3a8d6dcd726e6f3143a518299",
+        "size": [
+          224,
+          100
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/R_rise.png",
+        "sha256": "78ce185da9c7bf72393a01359b347664db3bdec792151213d6dbd37141e3dbd7",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_rise.png",
+        "sha256": "cf5b60f74b50af74ad88ced36c9469f539ac379cce94502c6f3571612ee3aae2",
+        "size": [
+          224,
+          100
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/R_ready.png",
+        "sha256": "a6f2a27966e23e8965e7cc910a33a96d10c3d0906b94f770ef56e3cb2d211899",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_ready.png",
+        "sha256": "14f6971916c0eab99e00ceba488a5886188ae1da29c2c378f9fc404f9590c3a2",
+        "size": [
+          216,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/R_blink.png",
+        "sha256": "31beb897e56a0ce4c98fc193ab17731bb148595ad5f136a316ce587d39856899",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_blink.png",
+        "sha256": "16dcd0341c71854fab345ba0c91e261f5aa631dcb20176bf5531eaf2f7195aac",
+        "size": [
+          216,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/R_shift.png",
+        "sha256": "a51a7f010bab55c9429ead86055fc1da180a905980006709b7c55f6b21a1414a",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_shift.png",
+        "sha256": "647cb4d7f22d4d70de5455e2d42248d572b30c6fc9ff44cac0b37167dfa84a17",
+        "size": [
+          220,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/R_settle.png",
+        "sha256": "52d8a49b41001c945261ef7c161b75d1a0f33f1e828f6e29b749236a7b540dd4",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_settle.png",
+        "sha256": "632cad07c675acbe1a6849879601cb1cd1a127f4424c65deb6c7c88b309b3226",
+        "size": [
+          220,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/G_walk_0.png",
+        "sha256": "3b45f3278fe3041d3ca13b486412f2ec17cb5607d71aee3514fe5ee7e7d243ad",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_walk_0.png",
+        "sha256": "37236c2c8453debf8e9179ed683eff8cf9cd09849484204d542497d5c7052114",
+        "size": [
+          248,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/G_walk_1.png",
+        "sha256": "5925f0a6b9db2517d8a9fb0a9d7fcef092e10b6c06ced4a78ec7366cfd291d4d",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_walk_1.png",
+        "sha256": "256ecc92e21a436c5c598d02982fab418cd7a4008245ec8a0d9a0c7700962c9b",
+        "size": [
+          224,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/G_walk_2.png",
+        "sha256": "5d6ef128e28e646327beaad57470ee5940a473f44978236e65e7b975e113aa1e",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_walk_2.png",
+        "sha256": "23eef802cd78e4ce2070fd930f41595530e9c3e76a0ff94eb61bf20446ba5122",
+        "size": [
+          232,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/G_walk_3.png",
+        "sha256": "b0ead7395df7189cb2fa863c3891d4b6f177a29cfcffaf4a59af653e88c0c530",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_walk_3.png",
+        "sha256": "af6fde708797b26f398e153b21d7a19c5ef3e4e2dc691ec1c4f720a24ec43e60",
+        "size": [
+          232,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/G_walk_4.png",
+        "sha256": "3bebd14c8ba4f9c841426224417754caaa42209dc363719c3c56d28d48771e3d",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_walk_4.png",
+        "sha256": "539324b4b3455f66250529d35131defe62bbcf78f66703dfa105ac51677f107e",
+        "size": [
+          236,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/G_walk_5.png",
+        "sha256": "82fbbdc3b795b5d646b818bf67d39df55f19d1ff049fea113f7dfdeac5b16323",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_walk_5.png",
+        "sha256": "321fe1e48f53aa82902fd98a309014f3186a7bd971dd960b2c28ee4c2be6c657",
+        "size": [
+          228,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/G_walk_6.png",
+        "sha256": "1cfe893276a267f831fe0034f5caaceeabbe27afd09c258f86a5a2179263c74b",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_walk_6.png",
+        "sha256": "7a12f37891567c2090c6e9e5307c6db3984ef40b7f24e3f1342dc473f3f6218d",
+        "size": [
+          232,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/G_walk_7.png",
+        "sha256": "92622124e697d4b716f21d38a6855752bf8fd425e3821f71e6e693ca3bcc5740",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_walk_7.png",
+        "sha256": "9d0ff25f994559c9baa399d246f8aa05ec991abb02d06b141c4bf990a84be77b",
+        "size": [
+          236,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/G_strafe_0.png",
+        "sha256": "b38c10bdb87bfb41a7949b456b142c66e22a9086eb609627453517fe1a161f5b",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_strafe_0.png",
+        "sha256": "0eee7bc7556386cf2812a17b0fca174d9d4709d19b2716ca72e3c745fa400910",
+        "size": [
+          240,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/G_strafe_1.png",
+        "sha256": "46d66aad760bd849ffb032be937efc6e40cadc4ea0804c0b5ffefabb18177fb4",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_strafe_1.png",
+        "sha256": "8e87486f1dc7698e4517c8e018b1aababd8ec6ed5f8a26025f636247a5d205f6",
+        "size": [
+          248,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/G_strafe_2.png",
+        "sha256": "e982ce6548701244f3b893507aa4f99f0777de1923bf7ead7698a5edb0057a4c",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_strafe_2.png",
+        "sha256": "656ad5177ab836d34d70f6ebfa981fc2324554107c9ddac713636b9a46db25a6",
+        "size": [
+          252,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/G_strafe_3.png",
+        "sha256": "2e0a9497e650334a0f611fad63a2d23403c3927bef1ee912c855de1be9f0615e",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_strafe_3.png",
+        "sha256": "ef2e88929d6b1a9396b6b8598582e593fb7dfde1b1097e996c4386b94b13b3ba",
+        "size": [
+          248,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/G_strafe_4.png",
+        "sha256": "73c74c10b798c94711dd3655967890123f6686eb7d93f191478d7ce432072703",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_strafe_4.png",
+        "sha256": "248da668377f2b3bc752fbfe1fa62245987da4b95994aa66302646112fb7df53",
+        "size": [
+          244,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/G_strafe_5.png",
+        "sha256": "3e94ec0e96bd875a943409bf2e3ed805744bfd1d46603c43bffe9263cffe2078",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_strafe_5.png",
+        "sha256": "61372bdde25cc55b8e89c42e88b566252e5a4fb02a85a9509beec1634f969d58",
+        "size": [
+          240,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/G_strafe_6.png",
+        "sha256": "20ac52c8f49edf0c76c8b43bc3a971e088b30b3e917a7ae230d9b2aac94be478",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_strafe_6.png",
+        "sha256": "152f82a12613542a66c319bbbe32b4fee7d376d5a8860586cd06deeb21bb558e",
+        "size": [
+          244,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/G_strafe_7.png",
+        "sha256": "09b8ebe5df515b257383fab5e98501dde48b03eecafa82c3d882751c497538b3",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_strafe_7.png",
+        "sha256": "b870b1c3f44848600654c3221d82943779fc7bcb80e22899af37b0b3c506e179",
+        "size": [
+          244,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/G_gather.png",
+        "sha256": "db651dbd853612effd2fa42a030e5fe4b1405dc2244f549a77467746f154fe9d",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_gather.png",
+        "sha256": "4c75d788a0c8a7a09b949e018fff9590b3d3710ad584b5d25534fc534d24e8a5",
+        "size": [
+          232,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/G_cock.png",
+        "sha256": "c216d53d649fa008f2ae06ae217d0524f81cca715cc6485e03408b53c37c8763",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_cock.png",
+        "sha256": "64b6093acf9477a20186cd1a554471557e05571ad685759c27024afef6baeff7",
+        "size": [
+          248,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/G_release.png",
+        "sha256": "ab3788a26cb7e37b975b237afee37b1c5cdb50edc548fda0661510c68b821649",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_release.png",
+        "sha256": "c6b9697b75bf135e0d71181c62aa1448cc83a02959f26862b6c74da9252c71d4",
+        "size": [
+          248,
+          108
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/G_follow.png",
+        "sha256": "14d723ed2d4756f4369857cc8e714377d6a5c853b35152643f99318c3199fe30",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_follow.png",
+        "sha256": "1fca4aa23047bbc1ee32b7f995f1927fbcdb629a7734038977fe0a65b826e632",
+        "size": [
+          232,
+          100
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/G_recoil.png",
+        "sha256": "812fa9a3ba7fbfb97c3274ba440236070cfc12f3ced5bb4694b33b4fd5f5202d",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_recoil.png",
+        "sha256": "1333bb7263c57a126c9b13dc9a113626c3625f37c328af9e282fbbdb0232775b",
+        "size": [
+          236,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/G_fall.png",
+        "sha256": "73243914cb798a9eeb865d5b90825310d8c01874462c2be2c0115e0fa0d7862e",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_fall.png",
+        "sha256": "4ae42117be743e4708d343b6472b687c271deae746802ecbf6ffec24c1484699",
+        "size": [
+          260,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/G_kneel.png",
+        "sha256": "2bd07d0fe14a1e022d62589cd8ded678f8091a9e9b8cc0195e4658c42b8ae7c0",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_kneel.png",
+        "sha256": "86e95c0401275f325b578b9ee853a035b939fb7770b8043b2d12f7e106777629",
+        "size": [
+          236,
+          96
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/G_rise.png",
+        "sha256": "5e8d8e31ce8a39804dc47d2e6f4d94f9459ad25fda34b3229a6288561e4b767b",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_rise.png",
+        "sha256": "69260f045de111b4021a75a1b9023355e03d9d97c285a3d963a753cc6001df49",
+        "size": [
+          236,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/G_ready.png",
+        "sha256": "782e338a0bb5a57fb0b827808ff2406927b878f0eac2059d8a740c7831164f9f",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_ready.png",
+        "sha256": "c6dca3bfe68617e814f63104e8739fd6367663e7c4f00ab9d5eb8d1cde2c0519",
+        "size": [
+          232,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/G_blink.png",
+        "sha256": "bd37c523901defa4249603ccf93571443b35f30ea4373a932b4d877e6f627d1a",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_blink.png",
+        "sha256": "c0ecc92623e241a55055349dcefe5afa59bb01cf86da3ecebf139c672bd78e18",
+        "size": [
+          232,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/G_shift.png",
+        "sha256": "617c2c161e3282f3aedffc434cac34c3f809397d4c0bbde4ef31f81eb2a835e6",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_shift.png",
+        "sha256": "594d7b1afa6241671007430bd5c7d34c36ab79d2e25a5c0750d27835124d29f6",
+        "size": [
+          236,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/G_settle.png",
+        "sha256": "453788157fc9cfb0ca663439f1842ca5e260e2e8eb88b90228e59d245d343575",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_settle.png",
+        "sha256": "8c6ab88f5b343a6f0d29b3aa6022835d1920596d9840ea854b9eccc68b71ddea",
+        "size": [
+          232,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  "proof": "artwork/hd-game-animation/red-hit-size-fix.png",
+  "sourceSha256": {
+    "web/js/motion.js": "b7001b1a8548e41aa823b8046da7a59d38f7519a1df50d08ff3a6257afc3c068",
+    "tools/artwork/render-game-frame.mjs": "3132e2279d55aa1f53d99f193f38c08d7c96c0d934142b11a6b422b7726abc7c",
+    "tools/artwork/build-game-animation.mjs": "9979c8d491b13f065934caa7d255f2a9366e6045998f6c174ef4a3f368fbac8e",
+    "web/assets/hd/motion/manifest.json": "41adbf54ee7a0254e0a463b23969558064f53e9e70af71122d73b5d5d7bd1c51",
+    "web/tests/browser-ui.mjs": "62322f2eb7ea36f7d77ed8279561a74e16b3619c042fa0a9866e0ebfeed8a015",
+    "web/tests/motion.test.js": "d55b1e4326b8a30c5ce7b793126c5538658d80a733f0a76379f85efb1cb8784e"
+  },
+  "phone": {
+    "cases": [
+      {
+        "lethal": false,
+        "charging": {
+          "frame": "motion_R_cock",
+          "area": 429.4375,
+          "centre": [
+            378.01765342964694,
+            209.00791369524086
+          ],
+          "logical": [
+            380,
+            220
+          ],
+          "dragging": true,
+          "hits": 0,
+          "alive": true,
+          "dazed": false,
+          "stars": false,
+          "starCommands": 0,
+          "hdShadow": true,
+          "originalShadow": false,
+          "contacts": 2,
+          "canonicalWidth": 63,
+          "expectedWidth": 63
+        },
+        "impact": {
+          "frame": "motion_R_recoil",
+          "area": 420.875,
+          "centre": [
+            377.6672887149248,
+            208.995841995842
+          ],
+          "logical": [
+            380,
+            220
+          ],
+          "dragging": false,
+          "hits": 1,
+          "alive": true,
+          "dazed": true,
+          "stars": false,
+          "starCommands": 0,
+          "hdShadow": true,
+          "originalShadow": false,
+          "contacts": 2,
+          "canonicalWidth": 46,
+          "expectedWidth": 46
+        },
+        "samples": [
+          {
+            "at": 100,
+            "ratio": 0.9205355843399796,
+            "frame": "motion_R_fall",
+            "area": 395.3125,
+            "centre": [
+              377.8374678107995,
+              207.08343036781136
+            ],
+            "logical": [
+              380,
+              220
+            ],
+            "dragging": false,
+            "hits": 1,
+            "alive": true,
+            "dazed": true,
+            "stars": false,
+            "starCommands": 0,
+            "hdShadow": true,
+            "originalShadow": false,
+            "contacts": 0,
+            "canonicalWidth": 46,
+            "expectedWidth": 46
+          },
+          {
+            "at": 250,
+            "ratio": 1.007131421918207,
+            "frame": "cast_009_R_hit__snowcraft_redrawn8x",
+            "area": 432.5,
+            "centre": [
+              380.5626805733547,
+              207.24926897480782
+            ],
+            "logical": [
+              380,
+              220
+            ],
+            "dragging": false,
+            "hits": 1,
+            "alive": true,
+            "dazed": true,
+            "stars": false,
+            "starCommands": 0,
+            "hdShadow": true,
+            "originalShadow": false,
+            "contacts": 0,
+            "canonicalWidth": 36,
+            "expectedWidth": 36
+          },
+          {
+            "at": 370,
+            "ratio": 0.950516664241013,
+            "frame": "motion_R_kneel",
+            "area": 408.1875,
+            "centre": [
+              373.8781835166556,
+              211.1169231358138
+            ],
+            "logical": [
+              380,
+              220
+            ],
+            "dragging": false,
+            "hits": 1,
+            "alive": true,
+            "dazed": true,
+            "stars": false,
+            "starCommands": 0,
+            "hdShadow": true,
+            "originalShadow": false,
+            "contacts": 2,
+            "canonicalWidth": 35,
+            "expectedWidth": 35
+          },
+          {
+            "at": 520,
+            "ratio": 0.9694367632076845,
+            "frame": "motion_R_rise",
+            "area": 416.3125,
+            "centre": [
+              373.7672022165423,
+              209.11298979132263
+            ],
+            "logical": [
+              380,
+              220
+            ],
+            "dragging": false,
+            "hits": 1,
+            "alive": true,
+            "dazed": true,
+            "stars": false,
+            "starCommands": 0,
+            "hdShadow": true,
+            "originalShadow": false,
+            "contacts": 2,
+            "canonicalWidth": 36,
+            "expectedWidth": 36
+          },
+          {
+            "at": 700,
+            "ratio": 1.007131421918207,
+            "frame": "motion_R_ready",
+            "area": 432.5,
+            "centre": [
+              377.89481655707505,
+              208.73409298919327
+            ],
+            "logical": [
+              380,
+              220
+            ],
+            "dragging": false,
+            "hits": 1,
+            "alive": true,
+            "dazed": true,
+            "stars": true,
+            "starCommands": 78,
+            "hdShadow": true,
+            "originalShadow": false,
+            "contacts": 2,
+            "canonicalWidth": 35,
+            "expectedWidth": 35
+          }
+        ],
+        "cleanup": {
+          "original": {
+            "frame": "motion_R_ready",
+            "area": 432.5,
+            "centre": [
+              377.89481655707505,
+              208.73409298919327
+            ],
+            "logical": [
+              380,
+              220
+            ],
+            "dragging": false,
+            "hits": 1,
+            "alive": true,
+            "dazed": true,
+            "stars": false,
+            "starCommands": 78,
+            "hdShadow": false,
+            "originalShadow": true,
+            "contacts": 0,
+            "canonicalWidth": 35,
+            "expectedWidth": 35
+          },
+          "restored": {
+            "frame": "motion_R_ready",
+            "area": 432.5,
+            "centre": [
+              377.9028583899618,
+              208.73398328314937
+            ],
+            "logical": [
+              380,
+              220
+            ],
+            "dragging": false,
+            "hits": 1,
+            "alive": true,
+            "dazed": true,
+            "stars": true,
+            "starCommands": 78,
+            "hdShadow": true,
+            "originalShadow": false,
+            "contacts": 2,
+            "canonicalWidth": 35,
+            "expectedWidth": 35
+          },
+          "recovered": {
+            "frame": "motion_R_blink",
+            "area": 433.10548674169627,
+            "centre": [
+              377.3855786702221,
+              208.69603092678028
+            ],
+            "logical": [
+              380,
+              220
+            ],
+            "dragging": false,
+            "hits": 1,
+            "alive": true,
+            "dazed": false,
+            "stars": false,
+            "starCommands": 0,
+            "hdShadow": true,
+            "originalShadow": false,
+            "contacts": 2,
+            "canonicalWidth": 26,
+            "expectedWidth": 26
+          }
+        }
+      },
+      {
+        "lethal": true,
+        "charging": {
+          "frame": "motion_R_cock",
+          "area": 429.4375,
+          "centre": [
+            378.01765342964694,
+            209.00791369524086
+          ],
+          "logical": [
+            380,
+            220
+          ],
+          "dragging": true,
+          "hits": 1,
+          "alive": true,
+          "dazed": false,
+          "stars": false,
+          "starCommands": 0,
+          "hdShadow": true,
+          "originalShadow": false,
+          "contacts": 2,
+          "canonicalWidth": 63,
+          "expectedWidth": 63
+        },
+        "impact": {
+          "frame": "motion_R_recoil",
+          "area": 420.875,
+          "centre": [
+            377.6672887149248,
+            208.995841995842
+          ],
+          "logical": [
+            380,
+            220
+          ],
+          "dragging": false,
+          "hits": 2,
+          "alive": false,
+          "dazed": false,
+          "stars": false,
+          "starCommands": 0,
+          "hdShadow": true,
+          "originalShadow": false,
+          "contacts": 2,
+          "canonicalWidth": 71,
+          "expectedWidth": 71
+        },
+        "samples": [
+          {
+            "at": 100,
+            "ratio": 0.9205355843399796,
+            "frame": "motion_R_fall",
+            "area": 395.3125,
+            "centre": [
+              378.9551720420614,
+              207.1006443097066
+            ],
+            "logical": [
+              380,
+              220
+            ],
+            "dragging": false,
+            "hits": 2,
+            "alive": false,
+            "dazed": false,
+            "stars": false,
+            "starCommands": 0,
+            "hdShadow": true,
+            "originalShadow": false,
+            "contacts": 0,
+            "canonicalWidth": 71,
+            "expectedWidth": 71
+          },
+          {
+            "at": 205,
+            "ratio": 0.9205355843399796,
+            "frame": "motion_R_fall",
+            "area": 395.3125,
+            "centre": [
+              388.6522187169411,
+              210.53118755627224
+            ],
+            "logical": [
+              380,
+              220
+            ],
+            "dragging": false,
+            "hits": 2,
+            "alive": false,
+            "dazed": false,
+            "stars": false,
+            "starCommands": 0,
+            "hdShadow": true,
+            "originalShadow": false,
+            "contacts": 0,
+            "canonicalWidth": 71,
+            "expectedWidth": 71
+          },
+          {
+            "at": 220,
+            "ratio": 1.0071314219182068,
+            "frame": "cast_014_R_dead__snowcraft_redrawn8x",
+            "area": 432.49999999999994,
+            "centre": [
+              389.0486160642148,
+              210.83078862355052
+            ],
+            "logical": [
+              380,
+              220
+            ],
+            "dragging": false,
+            "hits": 2,
+            "alive": false,
+            "dazed": false,
+            "stars": false,
+            "starCommands": 0,
+            "hdShadow": true,
+            "originalShadow": false,
+            "contacts": 0,
+            "canonicalWidth": 71,
+            "expectedWidth": 71
+          },
+          {
+            "at": 600,
+            "ratio": 1.0071314219182068,
+            "frame": "cast_014_R_dead__snowcraft_redrawn8x",
+            "area": 432.49999999999994,
+            "centre": [
+              389.0486160642148,
+              210.83078862355052
+            ],
+            "logical": [
+              380,
+              220
+            ],
+            "dragging": false,
+            "hits": 2,
+            "alive": false,
+            "dazed": false,
+            "stars": false,
+            "starCommands": 0,
+            "hdShadow": true,
+            "originalShadow": false,
+            "contacts": 0,
+            "canonicalWidth": 71,
+            "expectedWidth": 71
+          }
+        ],
+        "cleanup": {
+          "fallToCorpseDistance": 0.496881934104986,
+          "revived": {
+            "frame": "motion_R_ready",
+            "area": 430.92664010358374,
+            "centre": [
+              377.4525356007136,
+              208.80488039685218
+            ],
+            "logical": [
+              380,
+              220
+            ],
+            "dragging": false,
+            "hits": 2,
+            "alive": true,
+            "dazed": false,
+            "stars": false,
+            "starCommands": 0,
+            "hdShadow": true,
+            "originalShadow": false,
+            "contacts": 2,
+            "canonicalWidth": 26,
+            "expectedWidth": 26
+          }
+        }
+      }
+    ],
+    "errors": []
+  }
+}

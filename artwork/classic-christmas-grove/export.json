@@ -1,0 +1,77 @@
+{
+  "source": "trees-source.png",
+  "sourceSha256": "6209c19fe4d9c25551570d5fc90f49666b9c6a675b80c6ec4f26b9b7f747c248",
+  "originalSha256": "28991c9a9add6f32e12c72a818675256675175960568eb8c0d2dd73a3b5c44eb",
+  "snowfieldSource": "artwork/classic-polish/snowfield-source.png",
+  "snowfieldSourceSha256": "df142f83a8b1c9603be935e4b547d611ee064e68b2de55c73a5fe758ef4bd091",
+  "output": "web/assets/classic/ground.png",
+  "sha256": "072301678ebc20fe64da76472e6af19281ab0aaa5b53fb0fba81a2b62825d7f1",
+  "width": 600,
+  "height": 320,
+  "bounds": [
+    472,
+    0,
+    1455,
+    793
+  ],
+  "placement": {
+    "x": 476,
+    "y": 0,
+    "w": 124,
+    "h": 100
+  },
+  "changedPixels": 8548,
+  "forts": [
+    {
+      "region": [
+        125,
+        65,
+        110,
+        75
+      ],
+      "originalBounds": [
+        136,
+        79,
+        213,
+        123
+      ],
+      "sourceBounds": [
+        135,
+        78,
+        214,
+        124
+      ],
+      "scale": [
+        0.975,
+        0.9574468085106383
+      ]
+    },
+    {
+      "region": [
+        345,
+        175,
+        115,
+        75
+      ],
+      "originalBounds": [
+        359,
+        188,
+        441,
+        235
+      ],
+      "sourceBounds": [
+        357,
+        187,
+        441,
+        236
+      ],
+      "scale": [
+        0.9764705882352941,
+        0.96
+      ]
+    }
+  ],
+  "bitDepth": 8,
+  "paletteColours": 256,
+  "dither": false
+}
