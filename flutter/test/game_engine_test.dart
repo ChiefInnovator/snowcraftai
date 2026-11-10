@@ -303,4 +303,196 @@ void main() {
     expect(engine.score, 0);
     expect(engine.levelIndex, 0);
   });
+
+  test('alive greens keep their distance while idle reds are hunted', () {
+    for (final level in [2, 6, 9]) {
+      final engine = GameEngine(recoveredLevels())..startGame();
+      engine.startLevel(level);
+      for (var t = 0.0; t < 13.4; t += 1 / 60) {
+        engine.advance(1 / 60);
+        if (engine.phase == GamePhase.intro) continue;
+        final alive = engine.greens.where((k) => k.alive).toList();
+        for (var i = 0; i < alive.length; i++) {
+          expect(GameEngine.onRedSide(alive[i].position), isFalse);
+          for (var j = i + 1; j < alive.length; j++) {
+            expect(
+              (alive[i].position - alive[j].position).length,
+              greaterThan(20),
+              reason:
+                  'level ${level + 1} at ${t.toStringAsFixed(2)} s: '
+                  'kids ${alive[i].id} and ${alive[j].id}',
+            );
+          }
+        }
+      }
+    }
+  });
+
+  test('a blocked green sidesteps along its lane instead of stacking', () {
+    final level = LevelSeed(
+      [const Vec(400, 250), const Vec(420, 260), const Vec(440, 270)],
+      [const Vec(200, 150), const Vec(244, 62)],
+    );
+    final engine = GameEngine([level])..startGame();
+    final settled = engine.greens.first;
+    final walker = engine.greens.last;
+    // Keep the lane holder where it is and stop both from throwing; the
+    // walker's straight path to the lane ends 9 px from the holder.
+    settled.timer = 100;
+    walker.decisionClock = 100;
+    for (var t = 0.0; t < 5.5; t += 0.01) {
+      engine.advance(0.01);
+      expect((walker.position - settled.position).length, greaterThan(21.9));
+    }
+    expect(
+      (engine.reds.first.position.lane - walker.position.lane).abs(),
+      lessThanOrEqualTo(10.5),
+      reason: 'the walker still reaches a throwing lane',
+    );
+  });
+
+  test('taps, cancelled drags and round ends never leave a frozen pose', () {
+    final engine = GameEngine(recoveredLevels())..startGame();
+    tick(engine, 1.5);
+    final kid = engine.reds.first;
+    expect(engine.grab(kid.position - const Vec(0, 14)), isTrue);
+    engine.advance(0.05);
+    expect(engine.power, 0);
+    expect(kid.pose, KidPose.windup);
+    engine.release();
+    expect(engine.balls, isEmpty);
+    expect(kid.pose, KidPose.ready);
+    tick(engine, 0.5);
+    expect(kid.pose, KidPose.ready);
+
+    expect(engine.grab(kid.position - const Vec(0, 14)), isTrue);
+    tick(engine, 0.6);
+    expect(kid.pose, KidPose.cock);
+    engine.cancelDrag();
+    expect(kid.pose, KidPose.ready);
+
+    final thrower = engine.reds.elementAt(1);
+    expect(engine.grab(thrower.position - const Vec(0, 14)), isTrue);
+    tick(engine, 0.3);
+    engine.release();
+    expect(thrower.pose, KidPose.toss);
+    engine.applyHit(kid);
+    expect(kid.pose, KidPose.hurt);
+    for (final green in engine.greens) {
+      while (green.alive) {
+        green.pose = KidPose.ready;
+        engine.applyHit(green);
+      }
+    }
+    expect(engine.phase, GamePhase.cleared);
+    expect(thrower.pose, KidPose.ready);
+    expect(kid.pose, KidPose.ready);
+    expect(kid.timer, 0);
+  });
+
+  test('the ten-ball cap ignores spent balls and stops a green wind-up', () {
+    final level = LevelSeed(
+      [const Vec(400, 250), const Vec(500, 280), const Vec(550, 260)],
+      [const Vec(200, 150)],
+    );
+    final engine = GameEngine([level], seed: 3)
+      ..startGame(difficulty: Difficulty.hard);
+    final red = engine.reds.first;
+    final green = engine.greens.single;
+    green.decisionClock = 100;
+    tick(engine, 1.5);
+    for (var i = 0; i < 10; i++) {
+      expect(engine.throwSnowball(red, 1), isTrue);
+    }
+    expect(engine.throwSnowball(red, 1), isFalse);
+    engine.balls.first.phase = BallPhase.splat;
+    expect(engine.throwSnowball(red, 1), isTrue);
+    engine.balls.first.phase = BallPhase.melting;
+    engine.balls[1].phase = BallPhase.melting;
+    expect(engine.throwSnowball(red, 1), isTrue);
+    expect(engine.throwSnowball(red, 1), isFalse);
+    tick(engine, 1);
+    expect(engine.balls, isEmpty);
+
+    // Power-1 balls fall short of the red and stay live for six ball ticks.
+    for (var i = 0; i < 10; i++) {
+      expect(engine.throwSnowball(green, 1), isTrue);
+    }
+    green.decisionClock = 0;
+    for (var t = 0.0; t < 0.24; t += 0.01) {
+      engine.advance(0.01);
+      expect(green.pose, isNot(KidPose.windup));
+      expect(green.timer, 0);
+    }
+    var woundUp = false;
+    for (var t = 0.0; t < 3 && !woundUp; t += 0.01) {
+      engine.advance(0.01);
+      woundUp = green.pose == KidPose.windup;
+    }
+    expect(
+      woundUp,
+      isTrue,
+      reason: 'the green throws again once below the cap',
+    );
+  });
+
+  test('a snowball reaches 2p-1 steps: the final fly step cannot hit', () {
+    final level = LevelSeed(
+      [const Vec(300, 200), const Vec(450, 250), const Vec(520, 280)],
+      [const Vec(100, 100)],
+    );
+    final engine = GameEngine([level])..startGame();
+    tick(engine, 1.5);
+    final red = engine.reds.first;
+    final green = engine.greens.single;
+    green.decisionClock = 100;
+    // Ten steps away: power 5 flies exactly ten steps and lands on the kid.
+    expect(engine.throwSnowball(red, 5), isTrue);
+    tick(engine, 1.2);
+    expect(green.hits, 0);
+    expect(engine.balls, isEmpty);
+    // Nine steps away is inside the 2p-1 reach.
+    red.position = const Vec(280, 190);
+    expect(engine.throwSnowball(red, 5), isTrue);
+    tick(engine, 0.5);
+    expect(green.hits, 1);
+  });
+
+  test('a downed green is hittable but cannot act for two recovery stages', () {
+    final level = LevelSeed(
+      [const Vec(400, 250), const Vec(500, 280), const Vec(550, 260)],
+      [const Vec(200, 150), const Vec(60, 60)],
+    );
+    final engine = GameEngine([level], seed: 3)
+      ..startGame(difficulty: Difficulty.hard);
+    tick(engine, 1.5);
+    final green = engine.greens.first;
+    green.hits = green.maxHits - 2;
+    engine.applyHit(green);
+    expect(green.pose, KidPose.down);
+    tick(engine, 2.52);
+    expect(green.pose, KidPose.hurt, reason: 'up and no longer immune');
+    final spot = green.position;
+    var throws = 0;
+    engine.onSound = (cue) {
+      if (cue == 'throw') throws++;
+    };
+    engine.greens.last.timer = 100;
+    tick(engine, 0.46);
+    expect(green.pose, KidPose.hurt);
+    tick(engine, 0.1);
+    expect(green.pose, KidPose.ready);
+    expect(green.timer, greaterThan(0));
+    tick(engine, 0.38);
+    expect(green.timer, greaterThan(0));
+    expect(green.position.x, spot.x);
+    expect(green.position.y, spot.y);
+    expect(throws, 0);
+    tick(engine, 0.1);
+    expect(green.timer, 0);
+    final hits = green.hits;
+    engine.applyHit(green);
+    expect(green.hits, hits + 1);
+    expect(green.alive, isFalse);
+  });
 }

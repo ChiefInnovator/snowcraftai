@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -14,17 +16,59 @@ Future<void> main() async {
     DeviceOrientation.landscapeRight,
   ]);
   await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-  final assets = await GameAssets.load();
-  final audio = GameAudio(NativeAudioPort(), LocalPreferences());
-  await audio.initialize();
   runApp(
-    SnowcraftApp(
-      assets: assets,
-      engine: GameEngine(
-        assets.levels,
-        seed: DateTime.now().millisecondsSinceEpoch,
+    await bootstrap(
+      GameAssets.load,
+      () => GameAudio(NativeAudioPort(), LocalPreferences()),
+    ),
+  );
+}
+
+/// Builds the game, or a plain error screen when the bundled game data cannot
+/// be loaded. Audio restores its preferences and prepares its players behind
+/// the first frame, so a slow or failed audio start never holds the splash.
+Future<Widget> bootstrap(
+  Future<GameAssets> Function() loadAssets,
+  GameAudio Function() createAudio,
+) async {
+  final GameAssets assets;
+  try {
+    assets = await loadAssets();
+  } catch (_) {
+    return const LoadFailedApp();
+  }
+  final audio = createAudio();
+  unawaited(audio.initialize());
+  return SnowcraftApp(
+    assets: assets,
+    engine: GameEngine(
+      assets.levels,
+      seed: DateTime.now().millisecondsSinceEpoch,
+    ),
+    audio: audio,
+  );
+}
+
+class LoadFailedApp extends StatelessWidget {
+  const LoadFailedApp({super.key});
+  @override
+  Widget build(BuildContext context) => const MaterialApp(
+    title: 'Snowcraft Reforged',
+    debugShowCheckedModeBanner: false,
+    home: Scaffold(
+      backgroundColor: Color(0xff0c1520),
+      body: Center(
+        child: Padding(
+          padding: EdgeInsets.all(28),
+          child: Text(
+            'Snowcraft could not load its game files.\n'
+            'Close the app and open it again. If this keeps happening, '
+            'reinstall it.',
+            textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.white, fontSize: 18, height: 1.4),
+          ),
+        ),
       ),
-      audio: audio,
     ),
   );
 }

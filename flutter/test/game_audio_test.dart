@@ -85,6 +85,22 @@ class DelayedPreferences extends MemoryPreferences {
   }
 }
 
+class FailingPreferences extends MemoryPreferences {
+  @override
+  Future<bool?> read(String key) async => throw StateError('no storage');
+}
+
+class FailingPrepareAudio extends RecordingAudio {
+  @override
+  Future<void> prepare() async => throw StateError('no audio device');
+}
+
+class StalledPrepareAudio extends RecordingAudio {
+  final gate = Completer<void>();
+  @override
+  Future<void> prepare() => gate.future;
+}
+
 GameEngine fixtureEngine() => GameEngine([
   LevelSeed(
     [const Vec(508, 192), const Vec(377, 268), const Vec(484, 282)],
@@ -318,5 +334,221 @@ void main() {
     await next.suspend(false);
     expect(port.calls.last, 'music:true');
     await next.close();
+  });
+
+  test(
+    'a stale throw/splat backlog is dropped but round-end cues always play',
+    () async {
+      final port = DelayedEffectAudio();
+      final audio = GameAudio(port, MemoryPreferences());
+      await audio.initialize();
+      audio.cue('start');
+      await Future<void>.delayed(Duration.zero);
+      audio.cue('hit'); // this start stalls while the fight carries on
+      await Future<void>.delayed(Duration.zero);
+      for (var i = 0; i < 20; i++) {
+        audio.cue(i.isEven ? 'throw' : 'splat');
+      }
+      audio.cue('green_ko');
+      audio.cue('clear');
+      port.gate.complete();
+      await audio.close();
+      final effects = port.calls.where((c) => c.startsWith('effect:')).toList();
+      expect(effects.first, 'effect:11_hit1.wav');
+      expect(effects.last, 'effect:04_ugly.wav');
+      expect(effects, contains('effect:09_kids2.wav'));
+      expect(
+        effects
+            .where((c) => c.contains('Whoosh') || c.contains('splat'))
+            .length,
+        lessThanOrEqualTo(2),
+      );
+      expect(effects.length, lessThanOrEqualTo(5));
+    },
+  );
+
+  test('cues that are not behind are all played in order', () async {
+    final port = RecordingAudio();
+    final audio = GameAudio(port, MemoryPreferences());
+    await audio.initialize();
+    audio.cue('start');
+    for (var i = 0; i < 6; i++) {
+      audio.cue('throw');
+      await Future<void>.delayed(Duration.zero);
+      audio.cue('splat');
+      await Future<void>.delayed(Duration.zero);
+    }
+    await audio.close();
+    expect(port.calls.where((c) => c.startsWith('effect:')).length, 12);
+  });
+
+  test(
+    'a preference failure still prepares playback and keeps defaults',
+    () async {
+      final port = RecordingAudio();
+      final audio = GameAudio(port, FailingPreferences());
+      await audio.initialize();
+      expect(port.calls, contains('prepare'));
+      expect(audio.muted, isFalse);
+      expect(audio.musicEnabled, isTrue);
+      expect(audio.lastError, isNotNull);
+      audio.cue('start');
+      await Future<void>.delayed(Duration.zero);
+      expect(port.calls.last, 'intro');
+      expect(port.calls, contains('music:true'));
+      await audio.close();
+    },
+  );
+
+  test('a prepare failure keeps saved preferences', () async {
+    final prefs = MemoryPreferences()
+      ..values['mute-all'] = true
+      ..values['music-enabled'] = false;
+    final audio = GameAudio(FailingPrepareAudio(), prefs);
+    await audio.initialize();
+    expect(audio.muted, isTrue);
+    expect(audio.musicEnabled, isFalse);
+    expect(audio.lastError, isNotNull);
+    await audio.close();
+  });
+
+  test('late preparation starts music for a running game and respects a choice made meanwhile', () async {
+    final port = StalledPrepareAudio();
+    final prefs = MemoryPreferences()..values['mute-all'] = true;
+    final audio = GameAudio(port, prefs);
+    var notified = 0;
+    audio.addListener(() => notified++);
+    final ready = audio.initialize();
+    await audio.setMuted(false); // chosen before the saved value arrives
+    await Future<void>.delayed(Duration.zero);
+    expect(audio.muted, isFalse);
+    expect(notified, greaterThanOrEqualTo(2));
+    audio.cue('start');
+    await Future<void>.delayed(Duration.zero);
+    port.calls.clear();
+    port.gate.complete();
+    await ready;
+    expect(port.calls, ['music:true']);
+    await audio.close();
+  });
+
+  test('a pause toggle or Resume during a background suspension resumes instead of adding a user pause', () async {
+    final port = RecordingAudio();
+    final audio = GameAudio(port, MemoryPreferences());
+    await audio.initialize();
+    final controller = GameController(fixtureEngine(), audio);
+    controller.start();
+    controller.suspend(true);
+    expect(controller.engine.paused, isTrue);
+    controller.resume();
+    expect(controller.engine.paused, isFalse);
+    expect(controller.userPaused, isFalse);
+
+    controller.suspend(true);
+    controller.pause();
+    expect(controller.engine.paused, isFalse);
+    expect(controller.userPaused, isFalse);
+
+    controller.pause();
+    expect(controller.userPaused, isTrue);
+    controller.suspend(true);
+    controller.resume();
+    expect(controller.engine.paused, isFalse);
+    expect(controller.userPaused, isFalse);
+    await Future<void>.delayed(Duration.zero);
+    expect(port.calls.where((c) => c.startsWith('music:')).last, 'music:true');
+    controller.dispose();
+    await audio.close();
+  });
+
+  test(
+    'the rotate prompt suspends play without clobbering a user pause',
+    () async {
+      final port = RecordingAudio();
+      final audio = GameAudio(port, MemoryPreferences());
+      await audio.initialize();
+      final controller = GameController(fixtureEngine(), audio);
+      controller.start();
+      controller.obscure(true);
+      expect(controller.engine.paused, isTrue);
+      expect(controller.userPaused, isFalse);
+      await Future<void>.delayed(Duration.zero);
+      expect(
+        port.calls.where((c) => c.startsWith('music:')).last,
+        'music:false',
+      );
+      controller.pause(); // nothing can resume play behind the prompt
+      expect(controller.engine.paused, isTrue);
+      controller.obscure(false);
+      expect(controller.engine.paused, isFalse);
+      await Future<void>.delayed(Duration.zero);
+      expect(
+        port.calls.where((c) => c.startsWith('music:')).last,
+        'music:true',
+      );
+
+      controller.setUserPaused(true);
+      controller.obscure(true);
+      controller.obscure(false);
+      expect(controller.engine.paused, isTrue);
+      expect(controller.userPaused, isTrue);
+      controller.dispose();
+      await audio.close();
+    },
+  );
+
+  test('frames tick only while something animates and chrome listeners hear only displayed changes', () async {
+    final audio = GameAudio(RecordingAudio(), MemoryPreferences());
+    await audio.initialize();
+    final controller = GameController(fixtureEngine(), audio);
+    var chrome = 0;
+    var frames = 0;
+    controller.addListener(() => chrome++);
+    controller.frame.addListener(() => frames++);
+    for (var i = 0; i < 30; i++) {
+      controller.advance(1 / 60);
+    }
+    expect(frames, 0, reason: 'the menu is a still picture');
+    expect(chrome, 0);
+
+    controller.start();
+    chrome = 0;
+    for (var i = 0; i < 30; i++) {
+      controller.advance(1 / 60);
+    }
+    expect(frames, 30);
+    expect(chrome, 0, reason: 'nothing the chrome shows changed mid-intro');
+    for (var i = 0; i < 90; i++) {
+      controller.advance(1 / 60);
+    }
+    expect(controller.engine.phase, GamePhase.playing);
+    expect(chrome, 1, reason: 'intro to playing is one displayed change');
+
+    controller.setUserPaused(true);
+    chrome = 0;
+    frames = 0;
+    for (var i = 0; i < 30; i++) {
+      controller.advance(1 / 60);
+    }
+    expect(frames, 0);
+    expect(chrome, 0);
+    controller.setUserPaused(false);
+
+    // A change made directly on the engine reaches the chrome on the next tick.
+    chrome = 0;
+    final green = controller.engine.greens.single;
+    while (green.alive) {
+      green.pose = KidPose.ready;
+      controller.engine.applyHit(green);
+    }
+    expect(controller.engine.phase, GamePhase.victory);
+    controller.advance(1 / 60);
+    expect(chrome, 1);
+    frames = 0;
+    controller.advance(1 / 60);
+    expect(frames, 0, reason: 'the victory screen is a still picture');
+    expect(chrome, 1);
+    controller.dispose();
+    await audio.close();
   });
 }
