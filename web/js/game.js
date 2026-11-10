@@ -737,6 +737,9 @@ class MainScene extends Phaser.Scene {
     showKidVictory(kid) {
         const frames = P.kidMembersNamed('G yea');
         if (!frames.length) return;
+        // Interrupted HD actions must not override the celebration frames.
+        kid.ai = 'victory';
+        this.motion.reset(kid);
         let i = 0;
         this.setKidMember(kid, 'G yea', 0);
         kid.victoryTimer = this.time.addEvent({

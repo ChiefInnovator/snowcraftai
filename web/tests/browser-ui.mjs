@@ -768,6 +768,70 @@ test("victory animates Congratulations then aligned greeting/replay; mouse repla
     evidence.victory = { congrats, end };
 });
 
+test("every surviving Green dances after a loss, including kids winding up a throw", { timeout: 60000 }, async t => {
+    const { page } = await open(t, "all survivors dance");
+    await page.goto(baseURL + '/?debug&manualTime');
+    await ready(page);
+    await start(page);
+    await page.evaluate(() => SnowcraftGame.getScene().jumpToLevel(1));
+    await active(page);
+    await page.evaluate(() => {
+        const scene = SnowcraftGame.getScene();
+        scene.game.loop.sleep();
+        scene.projectiles.forEach(ball => scene.destroyBall(ball));
+        scene.projectiles = [];
+        scene.greenTeam.forEach(kid => {
+            scene.setReady(kid);
+            scene.motion.reset(kid);
+        });
+        // Three throws would keep their HD charging poses after their queued
+        // releases are cancelled by the loss, leaving only two kids dancing.
+        scene.greenTeam.slice(0, 3).forEach(kid => scene.startGreenThrow(kid));
+        scene.redTeam.forEach(kid => scene.knockOut(kid, 'death_0'));
+    });
+    const samples = [];
+    for (const mode of ['high-resolution', 'original', 'high-resolution']) {
+        await page.locator('#artwork-select').selectOption(mode);
+        const cycle = await page.evaluate(() => {
+            const scene = SnowcraftGame.getScene();
+            const sample = () => {
+                scene.motion.update();
+                return scene.greenTeam.map(kid => ({
+                    alive: kid.isAlive,
+                    pose: kid.memberName,
+                    expected: scene.artwork.mode === 'original' ? kid.memberSpec.key
+                        : SnowcraftArtwork.characterTextureKey(kid.memberSpec.key),
+                    rendered: (kid.bodySprite.visible ? kid.bodySprite : kid.list.at(-1)).texture.key
+                }));
+            };
+            const frames = [sample()];
+            for (let i = 0; i < 3; i++) {
+                advanceTime(250);
+                frames.push(sample());
+            }
+            return frames;
+        });
+        for (const frame of cycle) {
+            assert.equal(frame.length, 5);
+            for (const [index, kid] of frame.entries()) {
+                assert.equal(kid.alive, true);
+                assert.equal(kid.pose, 'G yea');
+                assert.equal(kid.rendered, kid.expected, mode + ' kid ' + index + ' renders its dance frame');
+            }
+        }
+        for (let i = 0; i < 5; i++) {
+            assert.equal(new Set(cycle.map(frame => frame[i].rendered)).size, 3, 'each survivor cycles all dance frames');
+        }
+        samples.push({ mode, cycle });
+    }
+    await page.evaluate(() => {
+        SnowcraftGame.getScene().showLossScreen();
+        advanceTime(1000);
+    });
+    await screenshot(page, 'all-survivors-dancing');
+    evidence.survivorDances = samples;
+});
+
 test("loss score and queued audio reveal inset replay; keyboard activation resets the game", { timeout: 30000 }, async t => {
     const { page } = await open(t, "keyboard replay");
     await start(page);
