@@ -670,7 +670,7 @@ class MainScene extends Phaser.Scene {
         const spec = kid.memberSpec;
         if (!spec || !kid.shadow) return;
         const hd = this.artwork.mode === 'high-resolution';
-        const fallen = spec.name === 'R hit' || spec.name === 'R dead' || spec.name === 'G down' || spec.name === 'G dead';
+        const fallen = spec.name === 'R hit' || spec.name === 'R hit2' || spec.name === 'R dead' || spec.name === 'G down' || spec.name === 'G dead';
         kid.shadow.setPosition(kid.x, kid.y).setAlpha(kid.alpha).setVisible(!hd && kid.isAlive && !fallen);
         if (!kid.hdShadow) return;
         const shadow = this.hdShadowSpecs[spec.key];
@@ -678,6 +678,8 @@ class MainScene extends Phaser.Scene {
         if (shadow && kid.hdShadow.texture.key !== shadow.key) {
             kid.hdShadow.setTexture(shadow.key).setDisplaySize(shadow.w, shadow.h)
                 .setOrigin(shadow.reg[0] / shadow.w, shadow.reg[1] / shadow.h);
+            const filters = Phaser.Textures.FilterMode;
+            kid.hdShadow.texture.setFilter(filters ? filters.LINEAR : 0);
         }
     }
 

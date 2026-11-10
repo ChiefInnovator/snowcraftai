@@ -434,7 +434,7 @@ test("HD pose shadows track movement, falls, fades and artwork switches", { time
         const samples = [];
         for (const mode of ['original', 'high-resolution', 'original', 'high-resolution']) {
             scene.artwork.setMode(mode);
-            for (const pose of ['R ready', 'R cock', 'R toss', 'R hit', 'R dead']) {
+            for (const pose of ['R ready', 'R cock', 'R toss', 'R hit', 'R hit2', 'R dead']) {
                 scene.setKidMember(kid, pose);
                 kid.setPosition(kid.x - 1, kid.y - 1).setAlpha(0.6);
                 scene.update(0, 0);
@@ -445,7 +445,7 @@ test("HD pose shadows track movement, falls, fades and artwork switches", { time
                     backing: [kid.hdShadow.width, kid.hdShadow.height],
                     origin: [kid.hdShadow.originX, kid.hdShadow.originY], expectedOrigin: [spec.reg[0] / spec.w, spec.reg[1] / spec.h],
                     position: [kid.hdShadow.x, kid.hdShadow.y], expectedPosition: [kid.x, kid.y], alpha: kid.hdShadow.alpha,
-                    originalAlpha: kid.shadow.alpha });
+                    originalAlpha: kid.shadow.alpha, filter: kid.hdShadow.texture.source[0].scaleMode });
             }
         }
         scene.showKidIdle(kid); kid.setAlpha(1);
@@ -456,7 +456,7 @@ test("HD pose shadows track movement, falls, fades and artwork switches", { time
     });
     for (const sample of observations.samples) {
         assert.equal(sample.hd, sample.mode === 'high-resolution');
-        assert.equal(sample.original, sample.mode === 'original' && !['R hit', 'R dead'].includes(sample.pose));
+        assert.equal(sample.original, sample.mode === 'original' && !['R hit', 'R hit2', 'R dead'].includes(sample.pose));
         assert.equal(sample.texture, sample.expectedKey);
         assert.deepEqual(sample.dimensions, sample.expectedDimensions);
         assert.deepEqual(sample.backing, sample.expectedDimensions.map(n => n * 8));
@@ -464,6 +464,7 @@ test("HD pose shadows track movement, falls, fades and artwork switches", { time
         assert.deepEqual(sample.position, sample.expectedPosition);
         assert.equal(sample.alpha, 0.6);
         assert.equal(sample.originalAlpha, 0.6);
+        assert.equal(sample.filter, 0); // LINEAR sampling for reduced HD masks.
     }
     assert.deepEqual(observations.knockedOut, { original: false, hd: true, kind: 'grounded' });
     await page.locator('#artwork-select').selectOption('high-resolution');
