@@ -671,7 +671,7 @@ class MainScene extends Phaser.Scene {
         if (!spec || !kid.shadow) return;
         const hd = this.artwork.mode === 'high-resolution';
         const fallen = spec.name === 'R hit' || spec.name === 'R dead' || spec.name === 'G down' || spec.name === 'G dead';
-        kid.shadow.setPosition(kid.x, kid.y).setVisible(!hd && kid.isAlive && !fallen);
+        kid.shadow.setPosition(kid.x, kid.y).setAlpha(kid.alpha).setVisible(!hd && kid.isAlive && !fallen);
         if (!kid.hdShadow) return;
         const shadow = this.hdShadowSpecs[spec.key];
         kid.hdShadow.setVisible(hd && !!shadow).setPosition(kid.x, kid.y).setAlpha(kid.alpha);

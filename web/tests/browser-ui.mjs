@@ -444,7 +444,8 @@ test("HD pose shadows track movement, falls, fades and artwork switches", { time
                     dimensions: [kid.hdShadow.displayWidth, kid.hdShadow.displayHeight], expectedDimensions: [spec.w, spec.h],
                     backing: [kid.hdShadow.width, kid.hdShadow.height],
                     origin: [kid.hdShadow.originX, kid.hdShadow.originY], expectedOrigin: [spec.reg[0] / spec.w, spec.reg[1] / spec.h],
-                    position: [kid.hdShadow.x, kid.hdShadow.y], expectedPosition: [kid.x, kid.y], alpha: kid.hdShadow.alpha });
+                    position: [kid.hdShadow.x, kid.hdShadow.y], expectedPosition: [kid.x, kid.y], alpha: kid.hdShadow.alpha,
+                    originalAlpha: kid.shadow.alpha });
             }
         }
         scene.showKidIdle(kid); kid.setAlpha(1);
@@ -462,11 +463,27 @@ test("HD pose shadows track movement, falls, fades and artwork switches", { time
         assert.deepEqual(sample.origin, sample.expectedOrigin);
         assert.deepEqual(sample.position, sample.expectedPosition);
         assert.equal(sample.alpha, 0.6);
+        assert.equal(sample.originalAlpha, 0.6);
     }
     assert.deepEqual(observations.knockedOut, { original: false, hd: true, kind: 'grounded' });
     await page.locator('#artwork-select').selectOption('high-resolution');
     await screenshot(page, 'soft-pose-shadows');
     evidence.poseShadows = observations;
+    // Exercise the documented debug revival after the actual loss fade,
+    // including the separately tweened recovered Original shadow objects.
+    await page.locator('#artwork-select').selectOption('original');
+    await page.evaluate(() => {
+        const scene = SnowcraftGame.getScene();
+        scene.redTeam.filter(kid => kid.isAlive).forEach(kid => scene.knockOut(kid, 'death_0'));
+    });
+    await page.waitForFunction(() => SnowcraftGame.getScene().redTeam.every(kid => kid.alpha === 0 && kid.shadow.alpha === 0));
+    await page.waitForTimeout(50);
+    await page.keyboard.press('z');
+    const revived = await page.evaluate(() => SnowcraftGame.getScene().redTeam.map(kid => ({
+        alive: kid.isAlive, alpha: kid.alpha, shadow: kid.shadow.visible, shadowAlpha: kid.shadow.alpha, hd: kid.hdShadow.visible
+    })));
+    assert.ok(revived.every(kid => kid.alive && kid.alpha === 1 && kid.shadow && kid.shadowAlpha === 1 && !kid.hd));
+    evidence.originalShadowRevival = revived;
 });
 
 test("walk-on cancellation during Clock catch-up preserves dead kids and the next level's count", { timeout: 30000 }, async t => {
