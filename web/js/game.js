@@ -127,9 +127,13 @@ function changeMusic() {
 
 function changeArtwork() {
     GAME_ARTWORK = document.getElementById('artwork-select').value;
+    document.getElementById('game-container').dataset.artwork = GAME_ARTWORK;
     try { localStorage.setItem('snowcraft-artwork', GAME_ARTWORK); } catch (err) { /* private mode */ }
     const scene = window.SnowcraftGame.getScene();
-    if (scene && scene.artwork) scene.artwork.setMode(GAME_ARTWORK);
+    if (scene && scene.artwork) {
+        scene.artwork.setMode(GAME_ARTWORK);
+        scene.motion.refresh();
+    }
 }
 
 // Phones report the new size late after a rotation, so lay out twice: once
@@ -235,6 +239,7 @@ document.addEventListener('keydown', (e) => {
 function getConfig() {
     const layout = computeLayout();
     sizeContainer(layout);
+    document.getElementById('game-container').dataset.artwork = GAME_ARTWORK;
     return {
         type: Phaser.AUTO,
         width: STAGE_W * layout.renderScale,
@@ -280,10 +285,10 @@ class MainScene extends Phaser.Scene {
         this.load.image('melt_1', 'assets/cast/melt_1.png');
         this.load.image('melt_2', 'assets/cast/melt_2.png');
         this.load.image('melt_3', 'assets/cast/melt_3.png');
-        this.load.image('playfield', 'assets/playField.png');
-        this.load.image(P.CAST.ground.key, 'assets/cast/' + P.CAST.ground.file);
+        this.load.image('playfield', 'assets/classic/ground.png');
+        this.load.image(P.CAST.ground.key, 'assets/classic/ground.png');
         this.load.image(SnowcraftArtwork.sceneryTextureKey(P.CAST.ground.key), 'assets/hd/scenery/ground.png');
-        this.load.image('shadow', 'assets/shadow.png');
+        this.load.image('shadow', 'assets/cast/001_shadow.png');
         P.CAST.kids.forEach((m) => {
             this.load.image(m.key, 'assets/cast/' + m.file);
             if (m.name !== 'shadow') {
@@ -293,6 +298,18 @@ class MainScene extends Phaser.Scene {
         });
         this.load.json('walkon', 'assets/walkon.json');
         this.load.json('hd_characters', 'assets/hd/characters/manifest.json');
+        SnowcraftMotion.preload(this);
+        SnowcraftSanta.FRAMES.forEach(frame => {
+            this.load.image('santa_' + frame, 'assets/santa/classic/' + frame + '.png');
+            this.load.image(SnowcraftArtwork.characterTextureKey('santa_' + frame), 'assets/santa/hd/' + frame + '.png');
+            ['classic', 'hd'].forEach(style => {
+                this.load.image('santa_shadow_' + style + '_' + frame, 'assets/santa/' + style + '/shadow_' + frame + '.png');
+                if (SnowcraftSanta.canFlip(frame)) this.load.image('santa_shadow_' + style + '_' + frame + '_left', 'assets/santa/' + style + '/shadow_' + frame + '_left.png');
+            });
+        });
+        this.load.image('santa_grove', 'assets/santa/classic/grove.png');
+        this.load.image(SnowcraftArtwork.sceneryTextureKey('santa_grove'), 'assets/santa/hd/grove.png');
+        this.load.json('santa', 'assets/santa/manifest.json');
 
         // Original channel-1 WAVs (paths relative to src/). Intro/BGM are remake extras.
         Object.keys(P.SOUND_FILES).forEach((id) => {
@@ -308,7 +325,7 @@ class MainScene extends Phaser.Scene {
         this.artwork = SnowcraftArtwork.create(this, GAME_ARTWORK);
         this.events.once('shutdown', () => this.artwork.destroy());
 
-        // 1. Environment — original ground BITD, copy ink, loc (296,160).
+        // 1. Environment — classic ground with pixel-art grove, loc (296,160).
         if (DEBUG_MODE) {
             let debugLine = this.add.graphics();
             debugLine.lineStyle(2, 0xff0000, 1);
@@ -336,6 +353,8 @@ class MainScene extends Phaser.Scene {
 
         this.walkon = this.cache.json.get('walkon') || [];
         this.hdShadowSpecs = Object.fromEntries(this.cache.json.get('hd_characters').frames.map(frame => [frame.key, frame.shadow]));
+        this.santa = SnowcraftSanta.create(this, this.artwork, PARAMS.has('santa')
+            ? { firstDelayMs: 750, gapMinMs: 6000, gapMaxMs: 6000 } : undefined);
 
         // 3. Game Groups & State
         this.shadowGroup = this.add.group();
@@ -353,6 +372,7 @@ class MainScene extends Phaser.Scene {
         this.lastStepSound = 0;
         this.aiTimer = null;
         this.ballClock = 0;
+        this.motion = SnowcraftMotion.create(this, this.artwork);
 
         // 4. UI Elements
         this.subText = this.makeText(STAGE_W / 2, STAGE_H / 2 + 45, '', { fontSize: '16px', color: '#335', fontFamily: 'Arial', stroke: '#fff', strokeThickness: 4 })
@@ -505,6 +525,7 @@ class MainScene extends Phaser.Scene {
                 this.grabOffsetX = pointer.wasTouch ? 0 : pointer.worldX - kid.x;
                 this.grabOffsetY = pointer.wasTouch ? TOUCH_LIFT : pointer.worldY - kid.y;
                 this.showKidFrame(kid, 'throw_0');
+                this.motion.charge(kid);
                 this.showPowerMeter(kid);
             }
         });
@@ -755,6 +776,7 @@ class MainScene extends Phaser.Scene {
         this.projectiles.forEach(ball => this.destroyBall(ball));
         this.projectiles = [];
         this.ballClock = 0;
+        this.motion.clearEffects();
         if (this.isDragging) this.cancelDrag();
         this.hideSelectionUI();
         this.hoveredPlayer = null;
@@ -853,6 +875,7 @@ class MainScene extends Phaser.Scene {
         kid.isWalkingOntoField = false;
         if (wasWalking) this.walkingCount--;
         if (timer) timer.remove();
+        this.motion.stopWalk(kid);
         return wasWalking;
     }
 
@@ -903,6 +926,7 @@ class MainScene extends Phaser.Scene {
             kid.finalX = finalPos.x;
             kid.finalY = finalPos.y;
             kid.myDirection = { x: 0, y: 0 };
+            this.motion.addKid(kid, i);
 
             if (!path || path.length < 2) {
                 kid.isWalkingOntoField = false;
@@ -915,6 +939,7 @@ class MainScene extends Phaser.Scene {
             this.walkingCount++;
             let step = 0;
             const fps = P.scoreTempoFps(this.currentLevelIndex + 1);
+            this.motion.startWalk(kid, path, fps);
             kid.walkTimer = this.time.addEvent({
                 delay: 1000 / fps,
                 loop: true,
@@ -933,8 +958,9 @@ class MainScene extends Phaser.Scene {
                     }
                     kid.x = path[step].x;
                     kid.y = path[step].y;
+                    this.motion.walkStep(kid, step);
                     this.setKidMember(kid, path[step].member);
-                    this.stepSound();
+                    if (this.artwork.mode === 'original') this.stepSound();
                 }
             });
         }
@@ -953,6 +979,7 @@ class MainScene extends Phaser.Scene {
     }
 
     update(time, delta) {
+        this.santa.update(delta);
         if (this.isDragging && this.activePlayer) {
             this.activePower = this.currentPower();
             this.updatePowerMeter();
@@ -979,6 +1006,7 @@ class MainScene extends Phaser.Scene {
         });
 
         this.updateBalls(delta);
+        this.motion.update();
     }
 
     // --- SNOWBALLS ---
@@ -994,6 +1022,7 @@ class MainScene extends Phaser.Scene {
         const team = thrower.teamType;
 
         this.showKidFrame(thrower, team === 'player' ? 'throw_1' : 'throw_2');
+        this.motion.release(thrower);
         if (team === 'player') {
             this.time.delayedCall(100, () => {
                 if (thrower.isAlive && !thrower.isDazed) this.showKidIdle(thrower);
@@ -1019,6 +1048,7 @@ class MainScene extends Phaser.Scene {
             flyStep: P.ballStepForTeam(team),
             dropStep: P.dropStepForTeam(team)
         });
+        this.motion.addBall(this.projectiles[this.projectiles.length - 1]);
 
         this.playOriginalEvent('throw', { power });
     }
@@ -1043,6 +1073,7 @@ class MainScene extends Phaser.Scene {
     stepBalls() {
         const done = [];
         for (const b of this.projectiles) {
+            this.motion.ballTick(b);
             if (b.phase === 'fly') {
                 b.gx += b.flyStep.x;
                 b.gy += b.flyStep.y;
@@ -1079,6 +1110,7 @@ class MainScene extends Phaser.Scene {
                     b.phase = 'splat';
                     b.frame = 0;
                     this.playOriginalEvent('ground_land');
+                    this.motion.land(b);
                 }
                 this.setBallFrame(b);
             } else if (b.phase === 'splat') {
@@ -1109,6 +1141,7 @@ class MainScene extends Phaser.Scene {
     }
 
     destroyBall(b) {
+        this.motion.destroyBall(b);
         if (b.ball) b.ball.destroy();
         if (b.shadow) b.shadow.destroy();
     }
@@ -1141,6 +1174,7 @@ class MainScene extends Phaser.Scene {
         // Dazed: can't be grabbed, can still be hit
         this.playOriginalEvent('red_stun');
         kid.isDazed = true;
+        this.motion.hit(kid, false);
         this.showKidFrame(kid, 'hit_0');
         const cycle = ['hit_1', 'hit_2', 'hit_3'];
         let i = 0;
@@ -1169,6 +1203,7 @@ class MainScene extends Phaser.Scene {
         kid.hits = RULES.redHitsToKO;
         kid.isImmune = true;
         kid.setAlpha(1);
+        this.motion.reset(kid);
         this.showKidIdle(kid);
     }
 
@@ -1188,14 +1223,17 @@ class MainScene extends Phaser.Scene {
             // Knocked down: immune until back on their feet
             this.playOriginalEvent('green_second_hit');
             kid.isImmune = true;
+            this.motion.hit(kid, true);
             this.showKidFrame(kid, 'stunned');
             this.queueAction(kid, RULES.greenDownMs, () => {
                 kid.isImmune = false;
+                this.motion.recover(kid);
                 this.showKidFrame(kid, 'guard');
             }, true);
             this.queueAction(kid, RULES.greenDownMs + RULES.greenRecoverMs, () => this.showKidFrame(kid, 'brushOff'), true);
             this.queueAction(kid, RULES.greenDownMs + RULES.greenRecoverMs * 2, () => this.setReady(kid), true);
         } else {
+            this.motion.hit(kid, false);
             this.showKidFrame(kid, 'hit_0');
             this.queueAction(kid, RULES.greenOwMs, () => this.showKidFrame(kid, 'brushOff'), true);
             this.queueAction(kid, RULES.greenOwMs + RULES.greenRecoverMs, () => this.setReady(kid), true);
@@ -1209,6 +1247,7 @@ class MainScene extends Phaser.Scene {
         this.cancelActions(kid);
         const wasWalking = this.stopWalkOn(kid);
         this.showKidFrame(kid, frame);
+        this.motion.dead(kid);
         if (wasWalking) this.checkLevelReady();
         this.checkWinCondition();
     }
@@ -1252,6 +1291,7 @@ class MainScene extends Phaser.Scene {
     }
 
     stepGreen(kid) {
+        const from = { x: kid.x, y: kid.y };
         let dir = kid.myDirection || { x: 0, y: 0 };
         if (kid.ai === 'walk') {
             dir = P.edgeSteer(kid.x, kid.y, dir);
@@ -1266,10 +1306,11 @@ class MainScene extends Phaser.Scene {
         }
         kid.x = nx;
         kid.y = ny;
+        this.motion.move(kid, from, kid.ai, dir);
         const flip = kid.stepsLeft % 2;
         if (kid.ai === 'side') this.setKidMember(kid, flip ? 'G Walk H1' : 'G Walk H2');
         else this.setKidMember(kid, flip ? 'G Walk V1' : 'G Walk V2');
-        if (kid.ai === 'walk') this.stepSound();
+        if (kid.ai === 'walk' && this.artwork.mode === 'original') this.stepSound();
 
         kid.stepsLeft--;
         if (kid.stepsLeft <= 0) {
@@ -1287,6 +1328,7 @@ class MainScene extends Phaser.Scene {
         this.showKidFrame(kid, 'throw_0');
         const cock = Phaser.Math.Between(RULES.cockMs[0], RULES.cockMs[1]);
         const release = RULES.windupMs + cock;
+        this.motion.charge(kid, RULES.windupMs);
         this.queueAction(kid, RULES.windupMs, () => this.showKidFrame(kid, 'throw_1'));
         this.queueAction(kid, release, () => {
             const power = Phaser.Math.Between(RULES.greenThrowPower[0], RULES.greenThrowPower[1]);
@@ -1454,6 +1496,7 @@ class MainScene extends Phaser.Scene {
         this.cancelActions(k);
         this.stopDaze(k);
         this.stopWalkOn(k);
+        this.motion.destroyKid(k);
         if (k.shadow) k.shadow.destroy();
         if (k.hdShadow) k.hdShadow.destroy();
         if (k.debugLabel) k.debugLabel.destroy();
@@ -1595,13 +1638,15 @@ window.render_game_to_text = function () {
         level: (scene.currentLevelIndex || 0) + 1,
         score: scene.score,
         artwork: GAME_ARTWORK,
+        santa: scene.santa.snapshot(),
         audio: { muted: scene.audio.isMuted(), musicEnabled: scene.audio.isMusicEnabled() },
         text: scene.children.list.filter(o => o.node && o.visible && o.alpha > 0).map(o => o.node.textContent),
         dragging: scene.isDragging,
         power: scene.isDragging ? scene.currentPower() : 0,
         reds: scene.redTeam.map(k => ({ x: k.x, y: k.y, alive: k.isAlive, hits: k.hits, pose: k.memberName, dazed: k.isDazed })),
         greens: scene.greenTeam.map(k => ({ x: k.x, y: k.y, alive: k.isAlive, hits: k.hits, pose: k.memberName })),
-        snowballs: scene.projectiles.map(b => ({ x: b.gx, y: b.gy, team: b.team, phase: b.phase }))
+        snowballs: scene.projectiles.map(b => ({ x: b.gx, y: b.gy, team: b.team, phase: b.phase })),
+        presentation: scene.motion.snapshot()
     });
 };
 

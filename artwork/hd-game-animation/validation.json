@@ -1,0 +1,6334 @@
+{
+  "checkedAt": "2026-11-10T05:47:58.130872-05:00",
+  "scope": "HD web presentation only",
+  "unitTests": {
+    "passed": 71,
+    "failed": 0
+  },
+  "fullBrowserMatrix": {
+    "passed": 16,
+    "errors": 0,
+    "note": "Full matrix before final solid-fall visual correction; relevant animation, drag and touch groups repeated after correction."
+  },
+  "finalTargetedBrowserGroups": {
+    "passed": 4,
+    "failed": 0,
+    "errors": 0
+  },
+  "assets": {
+    "runtimeAssets": 112,
+    "sourceMasters": 6,
+    "opaqueBlueContacts": 94,
+    "contactMisses": [],
+    "releases": [
+      {
+        "file": "web/assets/hd/motion/R_release.png",
+        "pixel": [
+          67,
+          118
+        ],
+        "rgba": [
+          223,
+          213,
+          214,
+          253
+        ]
+      },
+      {
+        "file": "web/assets/hd/motion/G_release.png",
+        "pixel": [
+          179,
+          123
+        ],
+        "rgba": [
+          240,
+          237,
+          236,
+          253
+        ]
+      }
+    ],
+    "results": [
+      {
+        "file": "web/assets/hd/motion/R_walk_0.png",
+        "sha256": "35dbea227d080654e58e8457bfc7804db5a5e4b47ac8dd60cc272258db5d43c1",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": 4.75,
+              "y": -0.25,
+              "width": 7.5
+            },
+            "pixel": [
+              147,
+              191
+            ],
+            "rgba": [
+              31,
+              28,
+              48,
+              219
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": -7,
+              "y": -0.25,
+              "width": 3.75
+            },
+            "pixel": [
+              100,
+              191
+            ],
+            "rgba": [
+              34,
+              29,
+              52,
+              182
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_walk_0.png",
+        "sha256": "1f8ad1aaa093b8bd146aa86198229f9abf7c9551a867587e92e74c61e7a3bdd8",
+        "size": [
+          232,
+          100
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/R_walk_1.png",
+        "sha256": "f651eda92e098bdc112597f025305903d71eca274bb7db1ae7d5bbf46d091435",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -3.5,
+              "y": 0.25,
+              "width": 8
+            },
+            "pixel": [
+              114,
+              193
+            ],
+            "rgba": [
+              35,
+              31,
+              56,
+              196
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_walk_1.png",
+        "sha256": "881d1ed85c1653e5d7f748951450d0c9028b9f787c5f4f5bb2806bd221724cfd",
+        "size": [
+          228,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/R_walk_2.png",
+        "sha256": "835c920f16a0cddbd74a8bad41589de112a5ad14c688b3c6987fc7a23447df5f",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -0.25,
+              "y": 0,
+              "width": 8
+            },
+            "pixel": [
+              127,
+              192
+            ],
+            "rgba": [
+              36,
+              32,
+              55,
+              161
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_walk_2.png",
+        "sha256": "3d94968bf92983b8e2c50558a7d8969c6398ee3401881df05eca8951508f73a8",
+        "size": [
+          224,
+          100
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/R_walk_3.png",
+        "sha256": "b3ba047937b33a0d96b3259dc2f5fdb12b309207a3e910b0b29d8192f9f6da2b",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -5,
+              "y": 0,
+              "width": 3.5
+            },
+            "pixel": [
+              108,
+              192
+            ],
+            "rgba": [
+              34,
+              33,
+              53,
+              170
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": 4.25,
+              "y": -0.5,
+              "width": 1.75
+            },
+            "pixel": [
+              145,
+              190
+            ],
+            "rgba": [
+              32,
+              28,
+              42,
+              238
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_walk_3.png",
+        "sha256": "061003576772837b1d90d113961625baf9ea8005ff75c22f61087ea6e047e3ef",
+        "size": [
+          228,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/R_walk_4.png",
+        "sha256": "a80ab610a817a7372873e374af89dce7b1cb22a0dd097553a3a0b4fc099cbb86",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -5.25,
+              "y": 0,
+              "width": 6.25
+            },
+            "pixel": [
+              107,
+              192
+            ],
+            "rgba": [
+              24,
+              25,
+              49,
+              162
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": 3.25,
+              "y": -0.5,
+              "width": 3.25
+            },
+            "pixel": [
+              141,
+              190
+            ],
+            "rgba": [
+              26,
+              28,
+              46,
+              166
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_walk_4.png",
+        "sha256": "d71110b33fd028515ec9cfe869f1ffd8727439084e2820c334ac3940d4920f8f",
+        "size": [
+          232,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/R_walk_5.png",
+        "sha256": "0f787da46f937747b292432083b299e23720854bff7c0052e66678034e96ffe4",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": 3.25,
+              "y": 0,
+              "width": 7.5
+            },
+            "pixel": [
+              141,
+              192
+            ],
+            "rgba": [
+              32,
+              32,
+              56,
+              183
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_walk_5.png",
+        "sha256": "49c2e31d8a98cdb47b0b6563a955aa32de676f39e395836c7aefbd80ac720593",
+        "size": [
+          228,
+          100
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/R_walk_6.png",
+        "sha256": "620e9b100200895b5ee612af1c1107a0b5b935f9c59ede253ede57fbd9fc72f6",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": 2,
+              "y": 0,
+              "width": 7.75
+            },
+            "pixel": [
+              136,
+              192
+            ],
+            "rgba": [
+              28,
+              29,
+              53,
+              213
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_walk_6.png",
+        "sha256": "76047646f8951d181176bcd1a83e64f3f32a5d8b76b955db9e21d292fecf0f31",
+        "size": [
+          232,
+          100
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/R_walk_7.png",
+        "sha256": "ca22425ff80badde7482a87d159084783ca742610bc6104904ebc2c04fbb04f2",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -6.75,
+              "y": 0,
+              "width": 4
+            },
+            "pixel": [
+              101,
+              192
+            ],
+            "rgba": [
+              28,
+              29,
+              49,
+              165
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": 3.5,
+              "y": -0.5,
+              "width": 3.5
+            },
+            "pixel": [
+              142,
+              190
+            ],
+            "rgba": [
+              23,
+              24,
+              45,
+              177
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_walk_7.png",
+        "sha256": "be4193fddfeea4d6f6ea8a6a757aa03180a70bf9cc93c24f26702ee39543c30d",
+        "size": [
+          240,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/R_strafe_0.png",
+        "sha256": "ea1e55f72ceb4719a2906307f306da2ced07e96f3cc033fc67d3e48b8a64453a",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -4.5,
+              "y": -0.25,
+              "width": 8.5
+            },
+            "pixel": [
+              110,
+              191
+            ],
+            "rgba": [
+              31,
+              33,
+              56,
+              222
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": 3.5,
+              "y": -0.25,
+              "width": 7
+            },
+            "pixel": [
+              142,
+              191
+            ],
+            "rgba": [
+              30,
+              30,
+              52,
+              244
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_strafe_0.png",
+        "sha256": "61cb448a67d91c07992f0ec537aab7078e386cdd18361e88a94a646382cebae0",
+        "size": [
+          240,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/R_strafe_1.png",
+        "sha256": "2b4d4c2bcb5ad7b416bc8cab36b1bfcbeea145219d2cd9750e607f2d9187f9aa",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": 3.25,
+              "y": -0.25,
+              "width": 7
+            },
+            "pixel": [
+              141,
+              191
+            ],
+            "rgba": [
+              38,
+              39,
+              63,
+              249
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": -6,
+              "y": -1.25,
+              "width": 1
+            },
+            "pixel": [
+              104,
+              187
+            ],
+            "rgba": [
+              31,
+              31,
+              54,
+              190
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_strafe_1.png",
+        "sha256": "95010c6754c65963284b9dbed0c905d5a17b91cc312a4aee9dec627f56c71476",
+        "size": [
+          240,
+          100
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/R_strafe_2.png",
+        "sha256": "09f9db44d3d475be307b522a219509b23798d1d0c95d912a2e9f0f7e6d1904f6",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -8,
+              "y": -0.5,
+              "width": 8
+            },
+            "pixel": [
+              96,
+              190
+            ],
+            "rgba": [
+              33,
+              36,
+              62,
+              252
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": 4.25,
+              "y": -0.25,
+              "width": 7
+            },
+            "pixel": [
+              145,
+              191
+            ],
+            "rgba": [
+              35,
+              36,
+              59,
+              249
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_strafe_2.png",
+        "sha256": "4c2ce062519b6010cd4051547c7c508f72edd13c31c398c892a6d246ea0e23f9",
+        "size": [
+          240,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/R_strafe_3.png",
+        "sha256": "0f22f3a0f0638535e01c06d21e9f4b75701b15b15eed384448aedce5cd090a02",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -4.75,
+              "y": -0.25,
+              "width": 7.5
+            },
+            "pixel": [
+              109,
+              191
+            ],
+            "rgba": [
+              37,
+              39,
+              66,
+              249
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": 2.5,
+              "y": -0.75,
+              "width": 3.25
+            },
+            "pixel": [
+              138,
+              189
+            ],
+            "rgba": [
+              31,
+              30,
+              46,
+              204
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_strafe_3.png",
+        "sha256": "5416d4dffbc7f547cc69c01a953f90fa2bd8dd7a03509ce10dac7e65cb836e79",
+        "size": [
+          236,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/R_strafe_4.png",
+        "sha256": "c4b572da1fbf5aec779cd16f66cfb3b446437981cf6f82c322ca2afd561d85c1",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -3.75,
+              "y": -0.25,
+              "width": 14
+            },
+            "pixel": [
+              113,
+              191
+            ],
+            "rgba": [
+              31,
+              34,
+              62,
+              174
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_strafe_4.png",
+        "sha256": "69b262570e1ca74309b561a5fa5e83c394ffbae8ab45319dce5369abc72329e5",
+        "size": [
+          236,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/R_strafe_5.png",
+        "sha256": "c33ae1bf01ac5339d68386e04c056a1ff273e86e0b4ae7dc2472543537724469",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -4.5,
+              "y": -0.25,
+              "width": 8.75
+            },
+            "pixel": [
+              110,
+              191
+            ],
+            "rgba": [
+              28,
+              33,
+              57,
+              250
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": 3.75,
+              "y": -0.25,
+              "width": 6.75
+            },
+            "pixel": [
+              143,
+              191
+            ],
+            "rgba": [
+              34,
+              37,
+              65,
+              247
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_strafe_5.png",
+        "sha256": "2775a68c4743c63f31fd33c84ba0882ef4f7b281de7d4205152b574741fd883c",
+        "size": [
+          240,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/R_strafe_6.png",
+        "sha256": "9dc7cf0490b2c8059ee02f6a6c5a20ef600fb9c623db0c27ecea0d95de0bd5a9",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": 3,
+              "y": -0.25,
+              "width": 7.25
+            },
+            "pixel": [
+              140,
+              191
+            ],
+            "rgba": [
+              35,
+              40,
+              69,
+              249
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_strafe_6.png",
+        "sha256": "b76d4f57664ffcdefff3c65feedc5a23a9ef95e54680830c22a1da65152bcd9c",
+        "size": [
+          236,
+          100
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/R_strafe_7.png",
+        "sha256": "28f702da2061dd83a996d0c72f179e6dd6947e4350550b129a7b8333500cfa15",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": 4.25,
+              "y": -0.25,
+              "width": 6.75
+            },
+            "pixel": [
+              145,
+              191
+            ],
+            "rgba": [
+              38,
+              42,
+              73,
+              243
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": -8.25,
+              "y": -0.75,
+              "width": 6.25
+            },
+            "pixel": [
+              95,
+              189
+            ],
+            "rgba": [
+              33,
+              35,
+              57,
+              247
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_strafe_7.png",
+        "sha256": "f535a30d2493cec57c69171cfe3f743e768db061f2924e7336103e34bf8b62dc",
+        "size": [
+          244,
+          100
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/R_gather.png",
+        "sha256": "1acf295846ce0480928879b51ab2d01b0304d30c174e6819b46d84b1895f04e0",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -7,
+              "y": -0.5,
+              "width": 8.25
+            },
+            "pixel": [
+              100,
+              190
+            ],
+            "rgba": [
+              39,
+              36,
+              56,
+              251
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": 4,
+              "y": -1,
+              "width": 6.25
+            },
+            "pixel": [
+              144,
+              188
+            ],
+            "rgba": [
+              30,
+              28,
+              43,
+              241
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_gather.png",
+        "sha256": "6824bec022aa1ba85c66d12aa824372d47d9d00fec2ab289302dcaea766a40fd",
+        "size": [
+          216,
+          100
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/R_cock.png",
+        "sha256": "545a00e96cca64eb8cd8f431c767a7e8ec2f7d701992f6991522876ebf1ac4da",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -6,
+              "y": -0.75,
+              "width": 8.25
+            },
+            "pixel": [
+              104,
+              189
+            ],
+            "rgba": [
+              32,
+              29,
+              46,
+              228
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": 5.5,
+              "y": -1.5,
+              "width": 5.25
+            },
+            "pixel": [
+              150,
+              186
+            ],
+            "rgba": [
+              30,
+              27,
+              42,
+              242
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_cock.png",
+        "sha256": "b53207b269653f19a303f27a55d3d4d3f7e83cfb3f07c4d3ee6cbaef06c2d9d9",
+        "size": [
+          236,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/R_release.png",
+        "sha256": "b6ef1ba0c9c5b00e9e24b32e75e2cd86dec68394f3cfc35d6d1e55a804c77257",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -8.75,
+              "y": -1.25,
+              "width": 8.25
+            },
+            "pixel": [
+              93,
+              187
+            ],
+            "rgba": [
+              34,
+              31,
+              48,
+              164
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": 4.5,
+              "y": -2,
+              "width": 5.75
+            },
+            "pixel": [
+              146,
+              184
+            ],
+            "rgba": [
+              31,
+              29,
+              45,
+              243
+            ],
+            "blue": true
+          }
+        ],
+        "release": {
+          "pixel": [
+            67,
+            118
+          ],
+          "rgba": [
+            223,
+            213,
+            214,
+            253
+          ]
+        }
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_release.png",
+        "sha256": "74562b132e21cac28fbc6c9fb945d87b64d97c76d2a27fc068e6e436a3343a38",
+        "size": [
+          244,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/R_follow.png",
+        "sha256": "a1ae6562d278d34d21f53aab9d1df458a2e7e5ee97d486d5f12805beb176b190",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -8,
+              "y": -1,
+              "width": 8.25
+            },
+            "pixel": [
+              96,
+              188
+            ],
+            "rgba": [
+              36,
+              31,
+              48,
+              164
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": 4.75,
+              "y": -1.5,
+              "width": 6.25
+            },
+            "pixel": [
+              147,
+              186
+            ],
+            "rgba": [
+              31,
+              26,
+              41,
+              167
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_follow.png",
+        "sha256": "c26a03c467e0e603332cd4879712cc17d783bd573d4b2934646ec9f0408e3810",
+        "size": [
+          236,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/R_recoil.png",
+        "sha256": "37e4f1cd3e3ff8be27344046d8ac82eb9458319dcb312d676ab669bbd5e48e11",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -9,
+              "y": -1.25,
+              "width": 8.5
+            },
+            "pixel": [
+              92,
+              187
+            ],
+            "rgba": [
+              30,
+              27,
+              42,
+              190
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": 2.25,
+              "y": -1.75,
+              "width": 6.75
+            },
+            "pixel": [
+              137,
+              185
+            ],
+            "rgba": [
+              36,
+              33,
+              49,
+              248
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_recoil.png",
+        "sha256": "2e23f7373c939d723d8991d18ffbea27d5dc53e4c3d65f83b280c4f1fc0532c0",
+        "size": [
+          232,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/R_fall.png",
+        "sha256": "2be72d6f8442b01c39da24d4bf68f1d1cac2ef83978fdee5d80937974f6bd6bd",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_fall.png",
+        "sha256": "b569d5f181fa91a27c52287948c47f3848c37ccc62f41bb7f3b1c0368ce18657",
+        "size": [
+          256,
+          100
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/R_kneel.png",
+        "sha256": "840b23e387d4386d10ff77ad96305caa06dd461c0f92464f74cb2138bf60ed48",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -8.75,
+              "y": -2,
+              "width": 8.25
+            },
+            "pixel": [
+              93,
+              184
+            ],
+            "rgba": [
+              30,
+              25,
+              42,
+              202
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": 1.5,
+              "y": -2.25,
+              "width": 6.25
+            },
+            "pixel": [
+              134,
+              183
+            ],
+            "rgba": [
+              27,
+              26,
+              42,
+              229
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_kneel.png",
+        "sha256": "cfa27c3fe0cfe603a27a97aacbaccdc161e39bc3a8d6dcd726e6f3143a518299",
+        "size": [
+          224,
+          100
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/R_rise.png",
+        "sha256": "78ce185da9c7bf72393a01359b347664db3bdec792151213d6dbd37141e3dbd7",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -9.25,
+              "y": 1,
+              "width": 8.25
+            },
+            "pixel": [
+              91,
+              196
+            ],
+            "rgba": [
+              39,
+              33,
+              52,
+              162
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": 1,
+              "y": 0.25,
+              "width": 5.25
+            },
+            "pixel": [
+              132,
+              193
+            ],
+            "rgba": [
+              27,
+              25,
+              42,
+              248
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_rise.png",
+        "sha256": "cf5b60f74b50af74ad88ced36c9469f539ac379cce94502c6f3571612ee3aae2",
+        "size": [
+          224,
+          100
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/R_ready.png",
+        "sha256": "a6f2a27966e23e8965e7cc910a33a96d10c3d0906b94f770ef56e3cb2d211899",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -6,
+              "y": -0.25,
+              "width": 8.5
+            },
+            "pixel": [
+              104,
+              191
+            ],
+            "rgba": [
+              36,
+              36,
+              57,
+              243
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": 4,
+              "y": -0.5,
+              "width": 7
+            },
+            "pixel": [
+              144,
+              190
+            ],
+            "rgba": [
+              26,
+              26,
+              42,
+              199
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_ready.png",
+        "sha256": "14f6971916c0eab99e00ceba488a5886188ae1da29c2c378f9fc404f9590c3a2",
+        "size": [
+          216,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/R_blink.png",
+        "sha256": "31beb897e56a0ce4c98fc193ab17731bb148595ad5f136a316ce587d39856899",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -6,
+              "y": -0.25,
+              "width": 8.25
+            },
+            "pixel": [
+              104,
+              191
+            ],
+            "rgba": [
+              40,
+              39,
+              64,
+              247
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": 4,
+              "y": -0.75,
+              "width": 7
+            },
+            "pixel": [
+              144,
+              189
+            ],
+            "rgba": [
+              32,
+              32,
+              51,
+              248
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_blink.png",
+        "sha256": "16dcd0341c71854fab345ba0c91e261f5aa631dcb20176bf5531eaf2f7195aac",
+        "size": [
+          216,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/R_shift.png",
+        "sha256": "a51a7f010bab55c9429ead86055fc1da180a905980006709b7c55f6b21a1414a",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -7,
+              "y": -0.5,
+              "width": 8.25
+            },
+            "pixel": [
+              100,
+              190
+            ],
+            "rgba": [
+              25,
+              24,
+              41,
+              211
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": 3.75,
+              "y": -1.25,
+              "width": 5.5
+            },
+            "pixel": [
+              143,
+              187
+            ],
+            "rgba": [
+              30,
+              30,
+              48,
+              230
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_shift.png",
+        "sha256": "647cb4d7f22d4d70de5455e2d42248d572b30c6fc9ff44cac0b37167dfa84a17",
+        "size": [
+          220,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/R_settle.png",
+        "sha256": "52d8a49b41001c945261ef7c161b75d1a0f33f1e828f6e29b749236a7b540dd4",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -6.25,
+              "y": -0.5,
+              "width": 8.5
+            },
+            "pixel": [
+              103,
+              190
+            ],
+            "rgba": [
+              32,
+              31,
+              51,
+              220
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": 4,
+              "y": -0.75,
+              "width": 7
+            },
+            "pixel": [
+              144,
+              189
+            ],
+            "rgba": [
+              28,
+              28,
+              44,
+              216
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_R_settle.png",
+        "sha256": "632cad07c675acbe1a6849879601cb1cd1a127f4424c65deb6c7c88b309b3226",
+        "size": [
+          220,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/G_walk_0.png",
+        "sha256": "3b45f3278fe3041d3ca13b486412f2ec17cb5607d71aee3514fe5ee7e7d243ad",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -4.75,
+              "y": -1,
+              "width": 5.5
+            },
+            "pixel": [
+              109,
+              188
+            ],
+            "rgba": [
+              48,
+              51,
+              86,
+              243
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": 4,
+              "y": -0.25,
+              "width": 4.25
+            },
+            "pixel": [
+              144,
+              191
+            ],
+            "rgba": [
+              21,
+              24,
+              41,
+              242
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_walk_0.png",
+        "sha256": "37236c2c8453debf8e9179ed683eff8cf9cd09849484204d542497d5c7052114",
+        "size": [
+          248,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/G_walk_1.png",
+        "sha256": "5925f0a6b9db2517d8a9fb0a9d7fcef092e10b6c06ced4a78ec7366cfd291d4d",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": 0.25,
+              "y": -0.5,
+              "width": 8.5
+            },
+            "pixel": [
+              129,
+              190
+            ],
+            "rgba": [
+              65,
+              69,
+              109,
+              247
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_walk_1.png",
+        "sha256": "256ecc92e21a436c5c598d02982fab418cd7a4008245ec8a0d9a0c7700962c9b",
+        "size": [
+          224,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/G_walk_2.png",
+        "sha256": "5d6ef128e28e646327beaad57470ee5940a473f44978236e65e7b975e113aa1e",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -3,
+              "y": -0.5,
+              "width": 7.5
+            },
+            "pixel": [
+              116,
+              190
+            ],
+            "rgba": [
+              59,
+              61,
+              102,
+              251
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_walk_2.png",
+        "sha256": "23eef802cd78e4ce2070fd930f41595530e9c3e76a0ff94eb61bf20446ba5122",
+        "size": [
+          232,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/G_walk_3.png",
+        "sha256": "b0ead7395df7189cb2fa863c3891d4b6f177a29cfcffaf4a59af653e88c0c530",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": 5.75,
+              "y": -1.25,
+              "width": 3.75
+            },
+            "pixel": [
+              151,
+              187
+            ],
+            "rgba": [
+              24,
+              27,
+              46,
+              162
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": -2.75,
+              "y": -2.25,
+              "width": 1.5
+            },
+            "pixel": [
+              117,
+              183
+            ],
+            "rgba": [
+              30,
+              34,
+              56,
+              241
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_walk_3.png",
+        "sha256": "af6fde708797b26f398e153b21d7a19c5ef3e4e2dc691ec1c4f720a24ec43e60",
+        "size": [
+          232,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/G_walk_4.png",
+        "sha256": "3bebd14c8ba4f9c841426224417754caaa42209dc363719c3c56d28d48771e3d",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": 6.75,
+              "y": -0.75,
+              "width": 8
+            },
+            "pixel": [
+              155,
+              189
+            ],
+            "rgba": [
+              23,
+              26,
+              49,
+              223
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": -3.5,
+              "y": -1.75,
+              "width": 2.5
+            },
+            "pixel": [
+              114,
+              185
+            ],
+            "rgba": [
+              33,
+              36,
+              67,
+              243
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_walk_4.png",
+        "sha256": "539324b4b3455f66250529d35131defe62bbcf78f66703dfa105ac51677f107e",
+        "size": [
+          236,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/G_walk_5.png",
+        "sha256": "82fbbdc3b795b5d646b818bf67d39df55f19d1ff049fea113f7dfdeac5b16323",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": 3.5,
+              "y": -1,
+              "width": 8.75
+            },
+            "pixel": [
+              142,
+              188
+            ],
+            "rgba": [
+              57,
+              60,
+              98,
+              251
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_walk_5.png",
+        "sha256": "321fe1e48f53aa82902fd98a309014f3186a7bd971dd960b2c28ee4c2be6c657",
+        "size": [
+          228,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/G_walk_6.png",
+        "sha256": "1cfe893276a267f831fe0034f5caaceeabbe27afd09c258f86a5a2179263c74b",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -2.75,
+              "y": 0.5,
+              "width": 7.25
+            },
+            "pixel": [
+              117,
+              194
+            ],
+            "rgba": [
+              52,
+              54,
+              94,
+              248
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_walk_6.png",
+        "sha256": "7a12f37891567c2090c6e9e5307c6db3984ef40b7f24e3f1342dc473f3f6218d",
+        "size": [
+          232,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/G_walk_7.png",
+        "sha256": "92622124e697d4b716f21d38a6855752bf8fd425e3821f71e6e693ca3bcc5740",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": 6.5,
+              "y": -0.75,
+              "width": 3.75
+            },
+            "pixel": [
+              154,
+              189
+            ],
+            "rgba": [
+              21,
+              25,
+              46,
+              207
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_walk_7.png",
+        "sha256": "9d0ff25f994559c9baa399d246f8aa05ec991abb02d06b141c4bf990a84be77b",
+        "size": [
+          236,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/G_strafe_0.png",
+        "sha256": "b38c10bdb87bfb41a7949b456b142c66e22a9086eb609627453517fe1a161f5b",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -2.5,
+              "y": -0.25,
+              "width": 7.25
+            },
+            "pixel": [
+              118,
+              191
+            ],
+            "rgba": [
+              45,
+              46,
+              78,
+              245
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": 5.25,
+              "y": -0.75,
+              "width": 5.75
+            },
+            "pixel": [
+              149,
+              189
+            ],
+            "rgba": [
+              26,
+              26,
+              51,
+              249
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_strafe_0.png",
+        "sha256": "0eee7bc7556386cf2812a17b0fca174d9d4709d19b2716ca72e3c745fa400910",
+        "size": [
+          240,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/G_strafe_1.png",
+        "sha256": "46d66aad760bd849ffb032be937efc6e40cadc4ea0804c0b5ffefabb18177fb4",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -3,
+              "y": -0.25,
+              "width": 6.75
+            },
+            "pixel": [
+              116,
+              191
+            ],
+            "rgba": [
+              28,
+              30,
+              57,
+              206
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_strafe_1.png",
+        "sha256": "8e87486f1dc7698e4517c8e018b1aababd8ec6ed5f8a26025f636247a5d205f6",
+        "size": [
+          248,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/G_strafe_2.png",
+        "sha256": "e982ce6548701244f3b893507aa4f99f0777de1923bf7ead7698a5edb0057a4c",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": 4.5,
+              "y": -0.25,
+              "width": 8.75
+            },
+            "pixel": [
+              146,
+              191
+            ],
+            "rgba": [
+              26,
+              29,
+              53,
+              160
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": -7.25,
+              "y": -0.75,
+              "width": 3.5
+            },
+            "pixel": [
+              99,
+              189
+            ],
+            "rgba": [
+              30,
+              31,
+              58,
+              216
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_strafe_2.png",
+        "sha256": "656ad5177ab836d34d70f6ebfa981fc2324554107c9ddac713636b9a46db25a6",
+        "size": [
+          252,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/G_strafe_3.png",
+        "sha256": "2e0a9497e650334a0f611fad63a2d23403c3927bef1ee912c855de1be9f0615e",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": 3,
+              "y": 0.5,
+              "width": 8.75
+            },
+            "pixel": [
+              140,
+              194
+            ],
+            "rgba": [
+              24,
+              27,
+              53,
+              210
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_strafe_3.png",
+        "sha256": "ef2e88929d6b1a9396b6b8598582e593fb7dfde1b1097e996c4386b94b13b3ba",
+        "size": [
+          248,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/G_strafe_4.png",
+        "sha256": "73c74c10b798c94711dd3655967890123f6686eb7d93f191478d7ce432072703",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": 4.75,
+              "y": -0.25,
+              "width": 8.75
+            },
+            "pixel": [
+              147,
+              191
+            ],
+            "rgba": [
+              30,
+              31,
+              63,
+              245
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": -4.25,
+              "y": -0.5,
+              "width": 5.75
+            },
+            "pixel": [
+              111,
+              190
+            ],
+            "rgba": [
+              26,
+              27,
+              58,
+              186
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_strafe_4.png",
+        "sha256": "248da668377f2b3bc752fbfe1fa62245987da4b95994aa66302646112fb7df53",
+        "size": [
+          244,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/G_strafe_5.png",
+        "sha256": "3e94ec0e96bd875a943409bf2e3ed805744bfd1d46603c43bffe9263cffe2078",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -4.75,
+              "y": 0.25,
+              "width": 8.25
+            },
+            "pixel": [
+              109,
+              193
+            ],
+            "rgba": [
+              39,
+              39,
+              73,
+              248
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": 3,
+              "y": -0.75,
+              "width": 2.25
+            },
+            "pixel": [
+              140,
+              189
+            ],
+            "rgba": [
+              26,
+              27,
+              52,
+              250
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_strafe_5.png",
+        "sha256": "61372bdde25cc55b8e89c42e88b566252e5a4fb02a85a9509beec1634f969d58",
+        "size": [
+          240,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/G_strafe_6.png",
+        "sha256": "20ac52c8f49edf0c76c8b43bc3a971e088b30b3e917a7ae230d9b2aac94be478",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -6,
+              "y": -0.25,
+              "width": 5
+            },
+            "pixel": [
+              104,
+              191
+            ],
+            "rgba": [
+              26,
+              27,
+              58,
+              205
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_strafe_6.png",
+        "sha256": "152f82a12613542a66c319bbbe32b4fee7d376d5a8860586cd06deeb21bb558e",
+        "size": [
+          244,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/G_strafe_7.png",
+        "sha256": "09b8ebe5df515b257383fab5e98501dde48b03eecafa82c3d882751c497538b3",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -5.5,
+              "y": -0.5,
+              "width": 7.75
+            },
+            "pixel": [
+              106,
+              190
+            ],
+            "rgba": [
+              36,
+              35,
+              67,
+              247
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": 9,
+              "y": -1.5,
+              "width": 2.25
+            },
+            "pixel": [
+              164,
+              186
+            ],
+            "rgba": [
+              21,
+              22,
+              50,
+              216
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_strafe_7.png",
+        "sha256": "b870b1c3f44848600654c3221d82943779fc7bcb80e22899af37b0b3c506e179",
+        "size": [
+          244,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/G_gather.png",
+        "sha256": "db651dbd853612effd2fa42a030e5fe4b1405dc2244f549a77467746f154fe9d",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -6,
+              "y": -1.5,
+              "width": 6.25
+            },
+            "pixel": [
+              104,
+              186
+            ],
+            "rgba": [
+              55,
+              55,
+              89,
+              247
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": 6,
+              "y": -2,
+              "width": 5.75
+            },
+            "pixel": [
+              152,
+              184
+            ],
+            "rgba": [
+              23,
+              25,
+              45,
+              166
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_gather.png",
+        "sha256": "4c75d788a0c8a7a09b949e018fff9590b3d3710ad584b5d25534fc534d24e8a5",
+        "size": [
+          232,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/G_cock.png",
+        "sha256": "c216d53d649fa008f2ae06ae217d0524f81cca715cc6485e03408b53c37c8763",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -7,
+              "y": -0.25,
+              "width": 6.25
+            },
+            "pixel": [
+              100,
+              191
+            ],
+            "rgba": [
+              50,
+              50,
+              86,
+              249
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": 6,
+              "y": -0.75,
+              "width": 6
+            },
+            "pixel": [
+              152,
+              189
+            ],
+            "rgba": [
+              25,
+              23,
+              45,
+              164
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_cock.png",
+        "sha256": "64b6093acf9477a20186cd1a554471557e05571ad685759c27024afef6baeff7",
+        "size": [
+          248,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/G_release.png",
+        "sha256": "ab3788a26cb7e37b975b237afee37b1c5cdb50edc548fda0661510c68b821649",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -5.5,
+              "y": -0.25,
+              "width": 6
+            },
+            "pixel": [
+              106,
+              191
+            ],
+            "rgba": [
+              29,
+              30,
+              52,
+              248
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": 7.75,
+              "y": -1,
+              "width": 5.5
+            },
+            "pixel": [
+              159,
+              188
+            ],
+            "rgba": [
+              45,
+              45,
+              75,
+              238
+            ],
+            "blue": true
+          }
+        ],
+        "release": {
+          "pixel": [
+            179,
+            123
+          ],
+          "rgba": [
+            240,
+            237,
+            236,
+            253
+          ]
+        }
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_release.png",
+        "sha256": "c6b9697b75bf135e0d71181c62aa1448cc83a02959f26862b6c74da9252c71d4",
+        "size": [
+          248,
+          108
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/G_follow.png",
+        "sha256": "14d723ed2d4756f4369857cc8e714377d6a5c853b35152643f99318c3199fe30",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": 6,
+              "y": -0.5,
+              "width": 8.5
+            },
+            "pixel": [
+              152,
+              190
+            ],
+            "rgba": [
+              46,
+              46,
+              79,
+              243
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": -5,
+              "y": -0.25,
+              "width": 5.25
+            },
+            "pixel": [
+              108,
+              191
+            ],
+            "rgba": [
+              27,
+              30,
+              53,
+              201
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_follow.png",
+        "sha256": "1fca4aa23047bbc1ee32b7f995f1927fbcdb629a7734038977fe0a65b826e632",
+        "size": [
+          232,
+          100
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/G_recoil.png",
+        "sha256": "812fa9a3ba7fbfb97c3274ba440236070cfc12f3ced5bb4694b33b4fd5f5202d",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -0.25,
+              "y": -0.25,
+              "width": 6.5
+            },
+            "pixel": [
+              127,
+              191
+            ],
+            "rgba": [
+              42,
+              43,
+              70,
+              250
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": 11,
+              "y": -0.75,
+              "width": 6.5
+            },
+            "pixel": [
+              172,
+              189
+            ],
+            "rgba": [
+              49,
+              50,
+              85,
+              250
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_recoil.png",
+        "sha256": "1333bb7263c57a126c9b13dc9a113626c3625f37c328af9e282fbbdb0232775b",
+        "size": [
+          236,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/G_fall.png",
+        "sha256": "73243914cb798a9eeb865d5b90825310d8c01874462c2be2c0115e0fa0d7862e",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_fall.png",
+        "sha256": "4ae42117be743e4708d343b6472b687c271deae746802ecbf6ffec24c1484699",
+        "size": [
+          260,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/G_kneel.png",
+        "sha256": "2bd07d0fe14a1e022d62589cd8ded678f8091a9e9b8cc0195e4658c42b8ae7c0",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": 11,
+              "y": -2.25,
+              "width": 8.5
+            },
+            "pixel": [
+              172,
+              183
+            ],
+            "rgba": [
+              28,
+              30,
+              50,
+              163
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": -3,
+              "y": -2.5,
+              "width": 6.75
+            },
+            "pixel": [
+              116,
+              182
+            ],
+            "rgba": [
+              23,
+              22,
+              44,
+              249
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_kneel.png",
+        "sha256": "86e95c0401275f325b578b9ee853a035b939fb7770b8043b2d12f7e106777629",
+        "size": [
+          236,
+          96
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/G_rise.png",
+        "sha256": "5e8d8e31ce8a39804dc47d2e6f4d94f9459ad25fda34b3229a6288561e4b767b",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -3.5,
+              "y": 0,
+              "width": 7
+            },
+            "pixel": [
+              114,
+              192
+            ],
+            "rgba": [
+              28,
+              29,
+              43,
+              166
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": 8.5,
+              "y": -0.75,
+              "width": 5.75
+            },
+            "pixel": [
+              162,
+              189
+            ],
+            "rgba": [
+              45,
+              45,
+              76,
+              248
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_rise.png",
+        "sha256": "69260f045de111b4021a75a1b9023355e03d9d97c285a3d963a753cc6001df49",
+        "size": [
+          236,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/G_ready.png",
+        "sha256": "782e338a0bb5a57fb0b827808ff2406927b878f0eac2059d8a740c7831164f9f",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -4,
+              "y": -0.25,
+              "width": 7.25
+            },
+            "pixel": [
+              112,
+              191
+            ],
+            "rgba": [
+              43,
+              42,
+              75,
+              245
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": 5.5,
+              "y": -0.5,
+              "width": 7.25
+            },
+            "pixel": [
+              150,
+              190
+            ],
+            "rgba": [
+              31,
+              29,
+              58,
+              208
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_ready.png",
+        "sha256": "c6dca3bfe68617e814f63104e8739fd6367663e7c4f00ab9d5eb8d1cde2c0519",
+        "size": [
+          232,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/G_blink.png",
+        "sha256": "bd37c523901defa4249603ccf93571443b35f30ea4373a932b4d877e6f627d1a",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -3.75,
+              "y": -0.25,
+              "width": 6.5
+            },
+            "pixel": [
+              113,
+              191
+            ],
+            "rgba": [
+              27,
+              28,
+              56,
+              235
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": 5.75,
+              "y": -0.75,
+              "width": 6.25
+            },
+            "pixel": [
+              151,
+              189
+            ],
+            "rgba": [
+              42,
+              41,
+              78,
+              249
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_blink.png",
+        "sha256": "c0ecc92623e241a55055349dcefe5afa59bb01cf86da3ecebf139c672bd78e18",
+        "size": [
+          232,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/G_shift.png",
+        "sha256": "617c2c161e3282f3aedffc434cac34c3f809397d4c0bbde4ef31f81eb2a835e6",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": 4.25,
+              "y": 0,
+              "width": 7.75
+            },
+            "pixel": [
+              145,
+              192
+            ],
+            "rgba": [
+              26,
+              26,
+              54,
+              219
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": -4.75,
+              "y": 0.25,
+              "width": 6.5
+            },
+            "pixel": [
+              109,
+              193
+            ],
+            "rgba": [
+              37,
+              36,
+              63,
+              240
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_shift.png",
+        "sha256": "594d7b1afa6241671007430bd5c7d34c36ab79d2e25a5c0750d27835124d29f6",
+        "size": [
+          236,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/G_settle.png",
+        "sha256": "453788157fc9cfb0ca663439f1842ca5e260e2e8eb88b90228e59d245d343575",
+        "size": [
+          256,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": 4.75,
+              "y": -0.25,
+              "width": 7.75
+            },
+            "pixel": [
+              147,
+              191
+            ],
+            "rgba": [
+              30,
+              28,
+              56,
+              163
+            ],
+            "blue": true
+          },
+          {
+            "point": {
+              "x": -5.5,
+              "y": 0,
+              "width": 7.5
+            },
+            "pixel": [
+              106,
+              192
+            ],
+            "rgba": [
+              33,
+              33,
+              60,
+              230
+            ],
+            "blue": true
+          }
+        ],
+        "release": null
+      },
+      {
+        "file": "web/assets/hd/motion/shadow_G_settle.png",
+        "sha256": "8c6ab88f5b343a6f0d29b3aa6022835d1920596d9840ea854b9eccc68b71ddea",
+        "size": [
+          232,
+          104
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [],
+        "release": null
+      }
+    ]
+  },
+  "walkOn": {
+    "tested": 762,
+    "maxPerpendicular": 6.092853693307234e-15,
+    "minFraction": 0,
+    "maxFraction": 0.9375,
+    "violations": [],
+    "walkingCount": 0,
+    "active": false,
+    "errors": []
+  },
+  "aiMovement": {
+    "samples": 130,
+    "maxPerpendicular": 1.2710574864626037e-14,
+    "violations": [],
+    "cases": [
+      {
+        "kind": "walk",
+        "sign": 1,
+        "direction": {
+          "x": 2,
+          "y": 1
+        },
+        "phaseDeltas": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "records": [
+          {
+            "from": [
+              150,
+              120
+            ],
+            "to": [
+              152,
+              121
+            ],
+            "drawn": [
+              150.4,
+              120.2
+            ],
+            "fraction": 0.20000000000000284,
+            "phase": 0,
+            "frame": "G_walk_0"
+          },
+          {
+            "from": [
+              150,
+              120
+            ],
+            "to": [
+              152,
+              121
+            ],
+            "drawn": [
+              150.8,
+              120.4
+            ],
+            "fraction": 0.4000000000000057,
+            "phase": 1,
+            "frame": "G_walk_1"
+          },
+          {
+            "from": [
+              150,
+              120
+            ],
+            "to": [
+              152,
+              121
+            ],
+            "drawn": [
+              151.2,
+              120.6
+            ],
+            "fraction": 0.5999999999999943,
+            "phase": 1,
+            "frame": "G_walk_1"
+          },
+          {
+            "from": [
+              150,
+              120
+            ],
+            "to": [
+              152,
+              121
+            ],
+            "drawn": [
+              151.6,
+              120.8
+            ],
+            "fraction": 0.7999999999999972,
+            "phase": 1,
+            "frame": "G_walk_1"
+          },
+          {
+            "from": [
+              152,
+              121
+            ],
+            "to": [
+              154,
+              122
+            ],
+            "drawn": [
+              152.4,
+              121.2
+            ],
+            "fraction": 0.20000000000000284,
+            "phase": 1,
+            "frame": "G_walk_1"
+          },
+          {
+            "from": [
+              152,
+              121
+            ],
+            "to": [
+              154,
+              122
+            ],
+            "drawn": [
+              152.8,
+              121.4
+            ],
+            "fraction": 0.4000000000000057,
+            "phase": 1,
+            "frame": "G_walk_1"
+          },
+          {
+            "from": [
+              152,
+              121
+            ],
+            "to": [
+              154,
+              122
+            ],
+            "drawn": [
+              153.2,
+              121.6
+            ],
+            "fraction": 0.5999999999999943,
+            "phase": 1,
+            "frame": "G_walk_1"
+          },
+          {
+            "from": [
+              152,
+              121
+            ],
+            "to": [
+              154,
+              122
+            ],
+            "drawn": [
+              153.6,
+              121.8
+            ],
+            "fraction": 0.7999999999999972,
+            "phase": 1,
+            "frame": "G_walk_1"
+          },
+          {
+            "from": [
+              154,
+              122
+            ],
+            "to": [
+              156,
+              123
+            ],
+            "drawn": [
+              154.4,
+              122.2
+            ],
+            "fraction": 0.20000000000000284,
+            "phase": 2,
+            "frame": "G_walk_2"
+          },
+          {
+            "from": [
+              154,
+              122
+            ],
+            "to": [
+              156,
+              123
+            ],
+            "drawn": [
+              154.8,
+              122.4
+            ],
+            "fraction": 0.4000000000000057,
+            "phase": 2,
+            "frame": "G_walk_2"
+          },
+          {
+            "from": [
+              154,
+              122
+            ],
+            "to": [
+              156,
+              123
+            ],
+            "drawn": [
+              155.2,
+              122.6
+            ],
+            "fraction": 0.5999999999999943,
+            "phase": 2,
+            "frame": "G_walk_2"
+          },
+          {
+            "from": [
+              154,
+              122
+            ],
+            "to": [
+              156,
+              123
+            ],
+            "drawn": [
+              155.6,
+              122.8
+            ],
+            "fraction": 0.7999999999999972,
+            "phase": 2,
+            "frame": "G_walk_2"
+          },
+          {
+            "from": [
+              156,
+              123
+            ],
+            "to": [
+              158,
+              124
+            ],
+            "drawn": [
+              156.4,
+              123.2
+            ],
+            "fraction": 0.20000000000000284,
+            "phase": 2,
+            "frame": "G_walk_2"
+          },
+          {
+            "from": [
+              156,
+              123
+            ],
+            "to": [
+              158,
+              124
+            ],
+            "drawn": [
+              156.79999999999998,
+              123.39999999999999
+            ],
+            "fraction": 0.3999999999999915,
+            "phase": 2,
+            "frame": "G_walk_2"
+          },
+          {
+            "from": [
+              156,
+              123
+            ],
+            "to": [
+              158,
+              124
+            ],
+            "drawn": [
+              157.2,
+              123.6
+            ],
+            "fraction": 0.5999999999999943,
+            "phase": 3,
+            "frame": "G_walk_3"
+          },
+          {
+            "from": [
+              156,
+              123
+            ],
+            "to": [
+              158,
+              124
+            ],
+            "drawn": [
+              157.6,
+              123.8
+            ],
+            "fraction": 0.7999999999999972,
+            "phase": 3,
+            "frame": "G_walk_3"
+          },
+          {
+            "from": [
+              158,
+              124
+            ],
+            "to": [
+              160,
+              125
+            ],
+            "drawn": [
+              158.4,
+              124.2
+            ],
+            "fraction": 0.20000000000000284,
+            "phase": 3,
+            "frame": "G_walk_3"
+          },
+          {
+            "from": [
+              158,
+              124
+            ],
+            "to": [
+              160,
+              125
+            ],
+            "drawn": [
+              158.8,
+              124.4
+            ],
+            "fraction": 0.4000000000000057,
+            "phase": 3,
+            "frame": "G_walk_3"
+          },
+          {
+            "from": [
+              158,
+              124
+            ],
+            "to": [
+              160,
+              125
+            ],
+            "drawn": [
+              159.2,
+              124.6
+            ],
+            "fraction": 0.5999999999999943,
+            "phase": 3,
+            "frame": "G_walk_3"
+          },
+          {
+            "from": [
+              158,
+              124
+            ],
+            "to": [
+              160,
+              125
+            ],
+            "drawn": [
+              159.6,
+              124.8
+            ],
+            "fraction": 0.7999999999999972,
+            "phase": 3,
+            "frame": "G_walk_3"
+          },
+          {
+            "from": [
+              160,
+              125
+            ],
+            "to": [
+              162,
+              126
+            ],
+            "drawn": [
+              160.4,
+              125.2
+            ],
+            "fraction": 0.20000000000000284,
+            "phase": 4,
+            "frame": "G_walk_4"
+          },
+          {
+            "from": [
+              160,
+              125
+            ],
+            "to": [
+              162,
+              126
+            ],
+            "drawn": [
+              160.8,
+              125.4
+            ],
+            "fraction": 0.4000000000000057,
+            "phase": 4,
+            "frame": "G_walk_4"
+          },
+          {
+            "from": [
+              160,
+              125
+            ],
+            "to": [
+              162,
+              126
+            ],
+            "drawn": [
+              161.2,
+              125.6
+            ],
+            "fraction": 0.5999999999999943,
+            "phase": 4,
+            "frame": "G_walk_4"
+          },
+          {
+            "from": [
+              160,
+              125
+            ],
+            "to": [
+              162,
+              126
+            ],
+            "drawn": [
+              161.6,
+              125.8
+            ],
+            "fraction": 0.7999999999999972,
+            "phase": 4,
+            "frame": "G_walk_4"
+          },
+          {
+            "from": [
+              162,
+              126
+            ],
+            "to": [
+              164,
+              127
+            ],
+            "drawn": [
+              162.4,
+              126.2
+            ],
+            "fraction": 0.20000000000000284,
+            "phase": 4,
+            "frame": "G_walk_4"
+          },
+          {
+            "from": [
+              162,
+              126
+            ],
+            "to": [
+              164,
+              127
+            ],
+            "drawn": [
+              162.8,
+              126.4
+            ],
+            "fraction": 0.4000000000000057,
+            "phase": 4,
+            "frame": "G_walk_4"
+          },
+          {
+            "from": [
+              162,
+              126
+            ],
+            "to": [
+              164,
+              127
+            ],
+            "drawn": [
+              163.2,
+              126.6
+            ],
+            "fraction": 0.5999999999999943,
+            "phase": 5,
+            "frame": "G_walk_5"
+          },
+          {
+            "from": [
+              162,
+              126
+            ],
+            "to": [
+              164,
+              127
+            ],
+            "drawn": [
+              163.6,
+              126.8
+            ],
+            "fraction": 0.7999999999999972,
+            "phase": 5,
+            "frame": "G_walk_5"
+          },
+          {
+            "from": [
+              164,
+              127
+            ],
+            "to": [
+              166,
+              128
+            ],
+            "drawn": [
+              164.4,
+              127.2
+            ],
+            "fraction": 0.20000000000000284,
+            "phase": 5,
+            "frame": "G_walk_5"
+          },
+          {
+            "from": [
+              164,
+              127
+            ],
+            "to": [
+              166,
+              128
+            ],
+            "drawn": [
+              164.8,
+              127.4
+            ],
+            "fraction": 0.4000000000000057,
+            "phase": 5,
+            "frame": "G_walk_5"
+          },
+          {
+            "from": [
+              164,
+              127
+            ],
+            "to": [
+              166,
+              128
+            ],
+            "drawn": [
+              165.2,
+              127.6
+            ],
+            "fraction": 0.5999999999999943,
+            "phase": 5,
+            "frame": "G_walk_5"
+          },
+          {
+            "from": [
+              164,
+              127
+            ],
+            "to": [
+              166,
+              128
+            ],
+            "drawn": [
+              165.6,
+              127.8
+            ],
+            "fraction": 0.7999999999999972,
+            "phase": 5,
+            "frame": "G_walk_5"
+          }
+        ]
+      },
+      {
+        "kind": "walk",
+        "sign": -1,
+        "direction": {
+          "x": -2,
+          "y": -1
+        },
+        "phaseDeltas": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          7,
+          0,
+          0,
+          0,
+          0,
+          0,
+          7,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          7,
+          0,
+          0,
+          0,
+          0,
+          0,
+          7,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "records": [
+          {
+            "from": [
+              150,
+              120
+            ],
+            "to": [
+              148,
+              119
+            ],
+            "drawn": [
+              149.6,
+              119.8
+            ],
+            "fraction": 0.20000000000000284,
+            "phase": 2,
+            "frame": "G_walk_2"
+          },
+          {
+            "from": [
+              150,
+              120
+            ],
+            "to": [
+              148,
+              119
+            ],
+            "drawn": [
+              149.2,
+              119.6
+            ],
+            "fraction": 0.4000000000000057,
+            "phase": 2,
+            "frame": "G_walk_2"
+          },
+          {
+            "from": [
+              150,
+              120
+            ],
+            "to": [
+              148,
+              119
+            ],
+            "drawn": [
+              148.8,
+              119.4
+            ],
+            "fraction": 0.5999999999999943,
+            "phase": 2,
+            "frame": "G_walk_2"
+          },
+          {
+            "from": [
+              150,
+              120
+            ],
+            "to": [
+              148,
+              119
+            ],
+            "drawn": [
+              148.4,
+              119.2
+            ],
+            "fraction": 0.7999999999999972,
+            "phase": 2,
+            "frame": "G_walk_2"
+          },
+          {
+            "from": [
+              148,
+              119
+            ],
+            "to": [
+              146,
+              118
+            ],
+            "drawn": [
+              147.6,
+              118.8
+            ],
+            "fraction": 0.20000000000000284,
+            "phase": 2,
+            "frame": "G_walk_2"
+          },
+          {
+            "from": [
+              148,
+              119
+            ],
+            "to": [
+              146,
+              118
+            ],
+            "drawn": [
+              147.2,
+              118.6
+            ],
+            "fraction": 0.4000000000000057,
+            "phase": 2,
+            "frame": "G_walk_2"
+          },
+          {
+            "from": [
+              148,
+              119
+            ],
+            "to": [
+              146,
+              118
+            ],
+            "drawn": [
+              146.8,
+              118.4
+            ],
+            "fraction": 0.5999999999999943,
+            "phase": 2,
+            "frame": "G_walk_2"
+          },
+          {
+            "from": [
+              148,
+              119
+            ],
+            "to": [
+              146,
+              118
+            ],
+            "drawn": [
+              146.4,
+              118.2
+            ],
+            "fraction": 0.7999999999999972,
+            "phase": 1,
+            "frame": "G_walk_1"
+          },
+          {
+            "from": [
+              146,
+              118
+            ],
+            "to": [
+              144,
+              117
+            ],
+            "drawn": [
+              145.6,
+              117.8
+            ],
+            "fraction": 0.20000000000000284,
+            "phase": 1,
+            "frame": "G_walk_1"
+          },
+          {
+            "from": [
+              146,
+              118
+            ],
+            "to": [
+              144,
+              117
+            ],
+            "drawn": [
+              145.2,
+              117.6
+            ],
+            "fraction": 0.4000000000000057,
+            "phase": 1,
+            "frame": "G_walk_1"
+          },
+          {
+            "from": [
+              146,
+              118
+            ],
+            "to": [
+              144,
+              117
+            ],
+            "drawn": [
+              144.8,
+              117.4
+            ],
+            "fraction": 0.5999999999999943,
+            "phase": 1,
+            "frame": "G_walk_1"
+          },
+          {
+            "from": [
+              146,
+              118
+            ],
+            "to": [
+              144,
+              117
+            ],
+            "drawn": [
+              144.4,
+              117.2
+            ],
+            "fraction": 0.7999999999999972,
+            "phase": 1,
+            "frame": "G_walk_1"
+          },
+          {
+            "from": [
+              144,
+              117
+            ],
+            "to": [
+              142,
+              116
+            ],
+            "drawn": [
+              143.6,
+              116.8
+            ],
+            "fraction": 0.20000000000000284,
+            "phase": 1,
+            "frame": "G_walk_1"
+          },
+          {
+            "from": [
+              144,
+              117
+            ],
+            "to": [
+              142,
+              116
+            ],
+            "drawn": [
+              143.2,
+              116.6
+            ],
+            "fraction": 0.4000000000000057,
+            "phase": 0,
+            "frame": "G_walk_0"
+          },
+          {
+            "from": [
+              144,
+              117
+            ],
+            "to": [
+              142,
+              116
+            ],
+            "drawn": [
+              142.8,
+              116.4
+            ],
+            "fraction": 0.5999999999999943,
+            "phase": 0,
+            "frame": "G_walk_0"
+          },
+          {
+            "from": [
+              144,
+              117
+            ],
+            "to": [
+              142,
+              116
+            ],
+            "drawn": [
+              142.4,
+              116.2
+            ],
+            "fraction": 0.7999999999999972,
+            "phase": 0,
+            "frame": "G_walk_0"
+          },
+          {
+            "from": [
+              142,
+              116
+            ],
+            "to": [
+              140,
+              115
+            ],
+            "drawn": [
+              141.6,
+              115.8
+            ],
+            "fraction": 0.20000000000000284,
+            "phase": 0,
+            "frame": "G_walk_0"
+          },
+          {
+            "from": [
+              142,
+              116
+            ],
+            "to": [
+              140,
+              115
+            ],
+            "drawn": [
+              141.2,
+              115.6
+            ],
+            "fraction": 0.4000000000000057,
+            "phase": 0,
+            "frame": "G_walk_0"
+          },
+          {
+            "from": [
+              142,
+              116
+            ],
+            "to": [
+              140,
+              115
+            ],
+            "drawn": [
+              140.8,
+              115.4
+            ],
+            "fraction": 0.5999999999999943,
+            "phase": 0,
+            "frame": "G_walk_0"
+          },
+          {
+            "from": [
+              142,
+              116
+            ],
+            "to": [
+              140,
+              115
+            ],
+            "drawn": [
+              140.4,
+              115.2
+            ],
+            "fraction": 0.7999999999999972,
+            "phase": 0,
+            "frame": "G_walk_0"
+          },
+          {
+            "from": [
+              140,
+              115
+            ],
+            "to": [
+              138,
+              114
+            ],
+            "drawn": [
+              139.6,
+              114.8
+            ],
+            "fraction": 0.20000000000000284,
+            "phase": 7,
+            "frame": "G_walk_7"
+          },
+          {
+            "from": [
+              140,
+              115
+            ],
+            "to": [
+              138,
+              114
+            ],
+            "drawn": [
+              139.2,
+              114.6
+            ],
+            "fraction": 0.4000000000000057,
+            "phase": 7,
+            "frame": "G_walk_7"
+          },
+          {
+            "from": [
+              140,
+              115
+            ],
+            "to": [
+              138,
+              114
+            ],
+            "drawn": [
+              138.8,
+              114.4
+            ],
+            "fraction": 0.5999999999999943,
+            "phase": 7,
+            "frame": "G_walk_7"
+          },
+          {
+            "from": [
+              140,
+              115
+            ],
+            "to": [
+              138,
+              114
+            ],
+            "drawn": [
+              138.4,
+              114.2
+            ],
+            "fraction": 0.7999999999999972,
+            "phase": 7,
+            "frame": "G_walk_7"
+          },
+          {
+            "from": [
+              138,
+              114
+            ],
+            "to": [
+              136,
+              113
+            ],
+            "drawn": [
+              137.6,
+              113.8
+            ],
+            "fraction": 0.20000000000000284,
+            "phase": 7,
+            "frame": "G_walk_7"
+          },
+          {
+            "from": [
+              138,
+              114
+            ],
+            "to": [
+              136,
+              113
+            ],
+            "drawn": [
+              137.2,
+              113.6
+            ],
+            "fraction": 0.4000000000000057,
+            "phase": 7,
+            "frame": "G_walk_7"
+          },
+          {
+            "from": [
+              138,
+              114
+            ],
+            "to": [
+              136,
+              113
+            ],
+            "drawn": [
+              136.8,
+              113.4
+            ],
+            "fraction": 0.5999999999999943,
+            "phase": 6,
+            "frame": "G_walk_6"
+          },
+          {
+            "from": [
+              138,
+              114
+            ],
+            "to": [
+              136,
+              113
+            ],
+            "drawn": [
+              136.4,
+              113.2
+            ],
+            "fraction": 0.7999999999999972,
+            "phase": 6,
+            "frame": "G_walk_6"
+          },
+          {
+            "from": [
+              136,
+              113
+            ],
+            "to": [
+              134,
+              112
+            ],
+            "drawn": [
+              135.6,
+              112.8
+            ],
+            "fraction": 0.20000000000000284,
+            "phase": 6,
+            "frame": "G_walk_6"
+          },
+          {
+            "from": [
+              136,
+              113
+            ],
+            "to": [
+              134,
+              112
+            ],
+            "drawn": [
+              135.2,
+              112.6
+            ],
+            "fraction": 0.4000000000000057,
+            "phase": 6,
+            "frame": "G_walk_6"
+          },
+          {
+            "from": [
+              136,
+              113
+            ],
+            "to": [
+              134,
+              112
+            ],
+            "drawn": [
+              134.8,
+              112.4
+            ],
+            "fraction": 0.5999999999999943,
+            "phase": 6,
+            "frame": "G_walk_6"
+          },
+          {
+            "from": [
+              136,
+              113
+            ],
+            "to": [
+              134,
+              112
+            ],
+            "drawn": [
+              134.4,
+              112.2
+            ],
+            "fraction": 0.7999999999999972,
+            "phase": 6,
+            "frame": "G_walk_6"
+          }
+        ]
+      },
+      {
+        "kind": "side",
+        "sign": 1,
+        "direction": {
+          "x": 1,
+          "y": 2
+        },
+        "phaseDeltas": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "records": [
+          {
+            "from": [
+              150,
+              120
+            ],
+            "to": [
+              151,
+              122
+            ],
+            "drawn": [
+              150.2,
+              120.4
+            ],
+            "fraction": 0.2,
+            "phase": 3,
+            "frame": "G_strafe_3"
+          },
+          {
+            "from": [
+              150,
+              120
+            ],
+            "to": [
+              151,
+              122
+            ],
+            "drawn": [
+              150.4,
+              120.8
+            ],
+            "fraction": 0.4,
+            "phase": 3,
+            "frame": "G_strafe_3"
+          },
+          {
+            "from": [
+              150,
+              120
+            ],
+            "to": [
+              151,
+              122
+            ],
+            "drawn": [
+              150.6,
+              121.2
+            ],
+            "fraction": 0.6,
+            "phase": 3,
+            "frame": "G_strafe_3"
+          },
+          {
+            "from": [
+              150,
+              120
+            ],
+            "to": [
+              151,
+              122
+            ],
+            "drawn": [
+              150.8,
+              121.6
+            ],
+            "fraction": 0.8,
+            "phase": 3,
+            "frame": "G_strafe_3"
+          },
+          {
+            "from": [
+              151,
+              122
+            ],
+            "to": [
+              152,
+              124
+            ],
+            "drawn": [
+              151.2,
+              122.4
+            ],
+            "fraction": 0.2,
+            "phase": 3,
+            "frame": "G_strafe_3"
+          },
+          {
+            "from": [
+              151,
+              122
+            ],
+            "to": [
+              152,
+              124
+            ],
+            "drawn": [
+              151.4,
+              122.8
+            ],
+            "fraction": 0.4,
+            "phase": 3,
+            "frame": "G_strafe_3"
+          },
+          {
+            "from": [
+              151,
+              122
+            ],
+            "to": [
+              152,
+              124
+            ],
+            "drawn": [
+              151.6,
+              123.2
+            ],
+            "fraction": 0.6,
+            "phase": 4,
+            "frame": "G_strafe_4"
+          },
+          {
+            "from": [
+              151,
+              122
+            ],
+            "to": [
+              152,
+              124
+            ],
+            "drawn": [
+              151.8,
+              123.6
+            ],
+            "fraction": 0.8,
+            "phase": 4,
+            "frame": "G_strafe_4"
+          },
+          {
+            "from": [
+              152,
+              124
+            ],
+            "to": [
+              153,
+              126
+            ],
+            "drawn": [
+              152.2,
+              124.4
+            ],
+            "fraction": 0.2,
+            "phase": 4,
+            "frame": "G_strafe_4"
+          },
+          {
+            "from": [
+              152,
+              124
+            ],
+            "to": [
+              153,
+              126
+            ],
+            "drawn": [
+              152.4,
+              124.8
+            ],
+            "fraction": 0.4,
+            "phase": 4,
+            "frame": "G_strafe_4"
+          },
+          {
+            "from": [
+              152,
+              124
+            ],
+            "to": [
+              153,
+              126
+            ],
+            "drawn": [
+              152.6,
+              125.2
+            ],
+            "fraction": 0.6,
+            "phase": 4,
+            "frame": "G_strafe_4"
+          },
+          {
+            "from": [
+              152,
+              124
+            ],
+            "to": [
+              153,
+              126
+            ],
+            "drawn": [
+              152.8,
+              125.6
+            ],
+            "fraction": 0.8,
+            "phase": 4,
+            "frame": "G_strafe_4"
+          },
+          {
+            "from": [
+              153,
+              126
+            ],
+            "to": [
+              154,
+              128
+            ],
+            "drawn": [
+              153.2,
+              126.4
+            ],
+            "fraction": 0.2,
+            "phase": 5,
+            "frame": "G_strafe_5"
+          },
+          {
+            "from": [
+              153,
+              126
+            ],
+            "to": [
+              154,
+              128
+            ],
+            "drawn": [
+              153.4,
+              126.8
+            ],
+            "fraction": 0.4,
+            "phase": 5,
+            "frame": "G_strafe_5"
+          },
+          {
+            "from": [
+              153,
+              126
+            ],
+            "to": [
+              154,
+              128
+            ],
+            "drawn": [
+              153.6,
+              127.2
+            ],
+            "fraction": 0.6,
+            "phase": 5,
+            "frame": "G_strafe_5"
+          },
+          {
+            "from": [
+              153,
+              126
+            ],
+            "to": [
+              154,
+              128
+            ],
+            "drawn": [
+              153.8,
+              127.6
+            ],
+            "fraction": 0.8,
+            "phase": 5,
+            "frame": "G_strafe_5"
+          },
+          {
+            "from": [
+              154,
+              128
+            ],
+            "to": [
+              155,
+              130
+            ],
+            "drawn": [
+              154.2,
+              128.4
+            ],
+            "fraction": 0.2,
+            "phase": 5,
+            "frame": "G_strafe_5"
+          },
+          {
+            "from": [
+              154,
+              128
+            ],
+            "to": [
+              155,
+              130
+            ],
+            "drawn": [
+              154.4,
+              128.8
+            ],
+            "fraction": 0.4000000000000057,
+            "phase": 5,
+            "frame": "G_strafe_5"
+          },
+          {
+            "from": [
+              154,
+              128
+            ],
+            "to": [
+              155,
+              130
+            ],
+            "drawn": [
+              154.6,
+              129.2
+            ],
+            "fraction": 0.5999999999999943,
+            "phase": 5,
+            "frame": "G_strafe_5"
+          },
+          {
+            "from": [
+              154,
+              128
+            ],
+            "to": [
+              155,
+              130
+            ],
+            "drawn": [
+              154.8,
+              129.6
+            ],
+            "fraction": 0.8,
+            "phase": 6,
+            "frame": "G_strafe_6"
+          },
+          {
+            "from": [
+              155,
+              130
+            ],
+            "to": [
+              156,
+              132
+            ],
+            "drawn": [
+              155.2,
+              130.4
+            ],
+            "fraction": 0.2,
+            "phase": 6,
+            "frame": "G_strafe_6"
+          },
+          {
+            "from": [
+              155,
+              130
+            ],
+            "to": [
+              156,
+              132
+            ],
+            "drawn": [
+              155.4,
+              130.8
+            ],
+            "fraction": 0.4000000000000057,
+            "phase": 6,
+            "frame": "G_strafe_6"
+          },
+          {
+            "from": [
+              155,
+              130
+            ],
+            "to": [
+              156,
+              132
+            ],
+            "drawn": [
+              155.6,
+              131.2
+            ],
+            "fraction": 0.5999999999999943,
+            "phase": 6,
+            "frame": "G_strafe_6"
+          },
+          {
+            "from": [
+              155,
+              130
+            ],
+            "to": [
+              156,
+              132
+            ],
+            "drawn": [
+              155.8,
+              131.6
+            ],
+            "fraction": 0.8,
+            "phase": 6,
+            "frame": "G_strafe_6"
+          },
+          {
+            "from": [
+              156,
+              132
+            ],
+            "to": [
+              157,
+              134
+            ],
+            "drawn": [
+              156.2,
+              132.4
+            ],
+            "fraction": 0.2,
+            "phase": 6,
+            "frame": "G_strafe_6"
+          },
+          {
+            "from": [
+              156,
+              132
+            ],
+            "to": [
+              157,
+              134
+            ],
+            "drawn": [
+              156.4,
+              132.8
+            ],
+            "fraction": 0.4000000000000057,
+            "phase": 7,
+            "frame": "G_strafe_7"
+          },
+          {
+            "from": [
+              156,
+              132
+            ],
+            "to": [
+              157,
+              134
+            ],
+            "drawn": [
+              156.6,
+              133.2
+            ],
+            "fraction": 0.5999999999999943,
+            "phase": 7,
+            "frame": "G_strafe_7"
+          },
+          {
+            "from": [
+              156,
+              132
+            ],
+            "to": [
+              157,
+              134
+            ],
+            "drawn": [
+              156.8,
+              133.6
+            ],
+            "fraction": 0.8,
+            "phase": 7,
+            "frame": "G_strafe_7"
+          },
+          {
+            "from": [
+              157,
+              134
+            ],
+            "to": [
+              158,
+              136
+            ],
+            "drawn": [
+              157.2,
+              134.4
+            ],
+            "fraction": 0.2,
+            "phase": 7,
+            "frame": "G_strafe_7"
+          },
+          {
+            "from": [
+              157,
+              134
+            ],
+            "to": [
+              158,
+              136
+            ],
+            "drawn": [
+              157.4,
+              134.8
+            ],
+            "fraction": 0.4000000000000057,
+            "phase": 7,
+            "frame": "G_strafe_7"
+          },
+          {
+            "from": [
+              157,
+              134
+            ],
+            "to": [
+              158,
+              136
+            ],
+            "drawn": [
+              157.6,
+              135.2
+            ],
+            "fraction": 0.5999999999999943,
+            "phase": 7,
+            "frame": "G_strafe_7"
+          },
+          {
+            "from": [
+              157,
+              134
+            ],
+            "to": [
+              158,
+              136
+            ],
+            "drawn": [
+              157.8,
+              135.6
+            ],
+            "fraction": 0.8,
+            "phase": 7,
+            "frame": "G_strafe_7"
+          }
+        ]
+      },
+      {
+        "kind": "side",
+        "sign": -1,
+        "direction": {
+          "x": -1,
+          "y": -2
+        },
+        "phaseDeltas": [
+          0,
+          0,
+          0,
+          0,
+          7,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          7,
+          0,
+          0,
+          0,
+          0,
+          0,
+          7,
+          0,
+          0,
+          0,
+          0,
+          0,
+          7,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          7
+        ],
+        "records": [
+          {
+            "from": [
+              150,
+              120
+            ],
+            "to": [
+              149,
+              118
+            ],
+            "drawn": [
+              149.8,
+              119.6
+            ],
+            "fraction": 0.2,
+            "phase": 0,
+            "frame": "G_strafe_0"
+          },
+          {
+            "from": [
+              150,
+              120
+            ],
+            "to": [
+              149,
+              118
+            ],
+            "drawn": [
+              149.6,
+              119.2
+            ],
+            "fraction": 0.4,
+            "phase": 0,
+            "frame": "G_strafe_0"
+          },
+          {
+            "from": [
+              150,
+              120
+            ],
+            "to": [
+              149,
+              118
+            ],
+            "drawn": [
+              149.4,
+              118.8
+            ],
+            "fraction": 0.6,
+            "phase": 0,
+            "frame": "G_strafe_0"
+          },
+          {
+            "from": [
+              150,
+              120
+            ],
+            "to": [
+              149,
+              118
+            ],
+            "drawn": [
+              149.2,
+              118.4
+            ],
+            "fraction": 0.8,
+            "phase": 0,
+            "frame": "G_strafe_0"
+          },
+          {
+            "from": [
+              149,
+              118
+            ],
+            "to": [
+              148,
+              116
+            ],
+            "drawn": [
+              148.8,
+              117.6
+            ],
+            "fraction": 0.2,
+            "phase": 0,
+            "frame": "G_strafe_0"
+          },
+          {
+            "from": [
+              149,
+              118
+            ],
+            "to": [
+              148,
+              116
+            ],
+            "drawn": [
+              148.6,
+              117.2
+            ],
+            "fraction": 0.4,
+            "phase": 7,
+            "frame": "G_strafe_7"
+          },
+          {
+            "from": [
+              149,
+              118
+            ],
+            "to": [
+              148,
+              116
+            ],
+            "drawn": [
+              148.4,
+              116.8
+            ],
+            "fraction": 0.6,
+            "phase": 7,
+            "frame": "G_strafe_7"
+          },
+          {
+            "from": [
+              149,
+              118
+            ],
+            "to": [
+              148,
+              116
+            ],
+            "drawn": [
+              148.2,
+              116.4
+            ],
+            "fraction": 0.8,
+            "phase": 7,
+            "frame": "G_strafe_7"
+          },
+          {
+            "from": [
+              148,
+              116
+            ],
+            "to": [
+              147,
+              114
+            ],
+            "drawn": [
+              147.8,
+              115.6
+            ],
+            "fraction": 0.2,
+            "phase": 7,
+            "frame": "G_strafe_7"
+          },
+          {
+            "from": [
+              148,
+              116
+            ],
+            "to": [
+              147,
+              114
+            ],
+            "drawn": [
+              147.6,
+              115.2
+            ],
+            "fraction": 0.4,
+            "phase": 7,
+            "frame": "G_strafe_7"
+          },
+          {
+            "from": [
+              148,
+              116
+            ],
+            "to": [
+              147,
+              114
+            ],
+            "drawn": [
+              147.4,
+              114.8
+            ],
+            "fraction": 0.6,
+            "phase": 7,
+            "frame": "G_strafe_7"
+          },
+          {
+            "from": [
+              148,
+              116
+            ],
+            "to": [
+              147,
+              114
+            ],
+            "drawn": [
+              147.2,
+              114.4
+            ],
+            "fraction": 0.8,
+            "phase": 7,
+            "frame": "G_strafe_7"
+          },
+          {
+            "from": [
+              147,
+              114
+            ],
+            "to": [
+              146,
+              112
+            ],
+            "drawn": [
+              146.8,
+              113.6
+            ],
+            "fraction": 0.2,
+            "phase": 6,
+            "frame": "G_strafe_6"
+          },
+          {
+            "from": [
+              147,
+              114
+            ],
+            "to": [
+              146,
+              112
+            ],
+            "drawn": [
+              146.6,
+              113.2
+            ],
+            "fraction": 0.4,
+            "phase": 6,
+            "frame": "G_strafe_6"
+          },
+          {
+            "from": [
+              147,
+              114
+            ],
+            "to": [
+              146,
+              112
+            ],
+            "drawn": [
+              146.4,
+              112.8
+            ],
+            "fraction": 0.6,
+            "phase": 6,
+            "frame": "G_strafe_6"
+          },
+          {
+            "from": [
+              147,
+              114
+            ],
+            "to": [
+              146,
+              112
+            ],
+            "drawn": [
+              146.2,
+              112.4
+            ],
+            "fraction": 0.8,
+            "phase": 6,
+            "frame": "G_strafe_6"
+          },
+          {
+            "from": [
+              146,
+              112
+            ],
+            "to": [
+              145,
+              110
+            ],
+            "drawn": [
+              145.8,
+              111.6
+            ],
+            "fraction": 0.2,
+            "phase": 6,
+            "frame": "G_strafe_6"
+          },
+          {
+            "from": [
+              146,
+              112
+            ],
+            "to": [
+              145,
+              110
+            ],
+            "drawn": [
+              145.6,
+              111.2
+            ],
+            "fraction": 0.4,
+            "phase": 6,
+            "frame": "G_strafe_6"
+          },
+          {
+            "from": [
+              146,
+              112
+            ],
+            "to": [
+              145,
+              110
+            ],
+            "drawn": [
+              145.4,
+              110.8
+            ],
+            "fraction": 0.6,
+            "phase": 5,
+            "frame": "G_strafe_5"
+          },
+          {
+            "from": [
+              146,
+              112
+            ],
+            "to": [
+              145,
+              110
+            ],
+            "drawn": [
+              145.2,
+              110.4
+            ],
+            "fraction": 0.8,
+            "phase": 5,
+            "frame": "G_strafe_5"
+          },
+          {
+            "from": [
+              145,
+              110
+            ],
+            "to": [
+              144,
+              108
+            ],
+            "drawn": [
+              144.8,
+              109.6
+            ],
+            "fraction": 0.2,
+            "phase": 5,
+            "frame": "G_strafe_5"
+          },
+          {
+            "from": [
+              145,
+              110
+            ],
+            "to": [
+              144,
+              108
+            ],
+            "drawn": [
+              144.6,
+              109.2
+            ],
+            "fraction": 0.4,
+            "phase": 5,
+            "frame": "G_strafe_5"
+          },
+          {
+            "from": [
+              145,
+              110
+            ],
+            "to": [
+              144,
+              108
+            ],
+            "drawn": [
+              144.4,
+              108.8
+            ],
+            "fraction": 0.6,
+            "phase": 5,
+            "frame": "G_strafe_5"
+          },
+          {
+            "from": [
+              145,
+              110
+            ],
+            "to": [
+              144,
+              108
+            ],
+            "drawn": [
+              144.2,
+              108.4
+            ],
+            "fraction": 0.8,
+            "phase": 5,
+            "frame": "G_strafe_5"
+          },
+          {
+            "from": [
+              144,
+              108
+            ],
+            "to": [
+              143,
+              106
+            ],
+            "drawn": [
+              143.8,
+              107.6
+            ],
+            "fraction": 0.2,
+            "phase": 4,
+            "frame": "G_strafe_4"
+          },
+          {
+            "from": [
+              144,
+              108
+            ],
+            "to": [
+              143,
+              106
+            ],
+            "drawn": [
+              143.6,
+              107.2
+            ],
+            "fraction": 0.4,
+            "phase": 4,
+            "frame": "G_strafe_4"
+          },
+          {
+            "from": [
+              144,
+              108
+            ],
+            "to": [
+              143,
+              106
+            ],
+            "drawn": [
+              143.4,
+              106.8
+            ],
+            "fraction": 0.6,
+            "phase": 4,
+            "frame": "G_strafe_4"
+          },
+          {
+            "from": [
+              144,
+              108
+            ],
+            "to": [
+              143,
+              106
+            ],
+            "drawn": [
+              143.2,
+              106.4
+            ],
+            "fraction": 0.8,
+            "phase": 4,
+            "frame": "G_strafe_4"
+          },
+          {
+            "from": [
+              143,
+              106
+            ],
+            "to": [
+              142,
+              104
+            ],
+            "drawn": [
+              142.8,
+              105.6
+            ],
+            "fraction": 0.2,
+            "phase": 4,
+            "frame": "G_strafe_4"
+          },
+          {
+            "from": [
+              143,
+              106
+            ],
+            "to": [
+              142,
+              104
+            ],
+            "drawn": [
+              142.6,
+              105.2
+            ],
+            "fraction": 0.4,
+            "phase": 4,
+            "frame": "G_strafe_4"
+          },
+          {
+            "from": [
+              143,
+              106
+            ],
+            "to": [
+              142,
+              104
+            ],
+            "drawn": [
+              142.4,
+              104.8
+            ],
+            "fraction": 0.6,
+            "phase": 4,
+            "frame": "G_strafe_4"
+          },
+          {
+            "from": [
+              143,
+              106
+            ],
+            "to": [
+              142,
+              104
+            ],
+            "drawn": [
+              142.2,
+              104.4
+            ],
+            "fraction": 0.8,
+            "phase": 3,
+            "frame": "G_strafe_3"
+          }
+        ]
+      }
+    ],
+    "switches": [
+      {
+        "kind": "walk",
+        "from": [
+          162,
+          126
+        ],
+        "to": [
+          164,
+          127
+        ],
+        "drawn": [
+          162.5,
+          126.25
+        ],
+        "fraction": 0.25
+      },
+      {
+        "kind": "side",
+        "from": [
+          144,
+          108
+        ],
+        "to": [
+          143,
+          106
+        ],
+        "drawn": [
+          143.75,
+          107.49999999999999
+        ],
+        "fraction": 0.25000000000000566
+      }
+    ],
+    "errors": []
+  },
+  "finalRotationAndContactProbe": {
+    "results": [
+      {
+        "label": "R:recoil",
+        "frame": "R_recoil",
+        "angle": 1.4117647058823195,
+        "mainAlpha": 1,
+        "blendVisible": false,
+        "contacts": [
+          {
+            "point": {
+              "x": -9,
+              "y": -1.25,
+              "width": 8.5
+            },
+            "delta": 4.980355292829233e-06,
+            "rgba": [
+              30,
+              27,
+              42,
+              190
+            ],
+            "opaqueBlue": true
+          },
+          {
+            "point": {
+              "x": 2.25,
+              "y": -1.75,
+              "width": 6.75
+            },
+            "delta": 5.187630821318579e-06,
+            "rgba": [
+              36,
+              33,
+              49,
+              248
+            ],
+            "opaqueBlue": true
+          }
+        ]
+      },
+      {
+        "label": "R:fall",
+        "frame": "R_fall",
+        "angle": 2.7999999999999545,
+        "mainAlpha": 1,
+        "blendVisible": false,
+        "contacts": []
+      },
+      {
+        "label": "R:daze",
+        "frame": "cast_011_R_daze1__snowcraft_redrawn8x",
+        "angle": -0.799939858237849,
+        "mainAlpha": 1,
+        "blendVisible": false,
+        "contacts": [
+          {
+            "point": {
+              "x": -1.125,
+              "y": 4.875,
+              "width": 7.625
+            },
+            "delta": 3.873094689583265e-08,
+            "rgba": [
+              26,
+              25,
+              46,
+              247
+            ],
+            "opaqueBlue": true
+          }
+        ]
+      },
+      {
+        "label": "R:death-fall",
+        "frame": "R_fall",
+        "angle": 20.7999999999995,
+        "mainAlpha": 1,
+        "blendVisible": false,
+        "contacts": []
+      },
+      {
+        "label": "R:legacy-dead",
+        "frame": "cast_014_R_dead__snowcraft_redrawn8x",
+        "angle": 0,
+        "mainAlpha": 1,
+        "blendVisible": false,
+        "contacts": []
+      },
+      {
+        "label": "G:recoil",
+        "frame": "G_recoil",
+        "angle": -1.4117647058824332,
+        "mainAlpha": 1,
+        "blendVisible": false,
+        "contacts": [
+          {
+            "point": {
+              "x": -0.25,
+              "y": -0.25,
+              "width": 6.5
+            },
+            "delta": 4.531947794413486e-06,
+            "rgba": [
+              42,
+              43,
+              70,
+              250
+            ],
+            "opaqueBlue": true
+          },
+          {
+            "point": {
+              "x": 11,
+              "y": -0.75,
+              "width": 6.5
+            },
+            "delta": 4.73950412680077e-06,
+            "rgba": [
+              49,
+              50,
+              85,
+              250
+            ],
+            "opaqueBlue": true
+          }
+        ]
+      },
+      {
+        "label": "G:fall",
+        "frame": "G_fall",
+        "angle": -2.800000000000182,
+        "mainAlpha": 1,
+        "blendVisible": false,
+        "contacts": []
+      },
+      {
+        "label": "G:death-fall",
+        "frame": "G_fall",
+        "angle": -20.800000000000864,
+        "mainAlpha": 1,
+        "blendVisible": false,
+        "contacts": []
+      },
+      {
+        "label": "G:legacy-dead",
+        "frame": "cast_033_G_dead__snowcraft_redrawn8x",
+        "angle": 0,
+        "mainAlpha": 1,
+        "blendVisible": false,
+        "contacts": []
+      }
+    ],
+    "violations": [],
+    "errors": []
+  },
+  "preview": {
+    "file": "artwork/hd-game-animation/preview.mp4",
+    "fps": 60,
+    "frames": 420,
+    "errors": [],
+    "sha256": "23648262017f5eac3d23d1af5f21253a5753b4b6813d0a8db2d26a466d96d1f0"
+  },
+  "sha256": {
+    "web/js/motion.js": "329343e94217dca7e633b84a4adc6a4767c33cbd993b933a86947f44b5dedd5f",
+    "web/js/game.js": "a41326575b07f2e1e4f65426a1d9180c698878fdcd8ea1b4534bc226b9bb6c2b",
+    "web/tests/motion.test.js": "414f6b9563c018cf644e4fa305d6d5edba944ad6813d15c42f8220c009fc37ad",
+    "web/tests/browser-ui.mjs": "ecd9af1f4b08aa0ba09cb3e10e16d4bf6bde6e8c9d4e0c731cae7786bae74bb7",
+    "web/assets/hd/motion/manifest.json": "8c535d16fe4e253430974ed0fc29c925e8528e2e675f0ea9a5330a15f34d8c8b",
+    "tools/artwork/build-game-animation.mjs": "fcff43ac399c74fe417efcf89895e988fa5cbfd6c6e44e581ea268e7203ba67b",
+    "tools/artwork/render-game-frame.mjs": "b76b5699219c9205ba059e3467d1c70d62368284cdb91201f5bac63ddcd4c6fd"
+  },
+  "snowballVisibilityFix": {
+    "checkedAt": "2026-11-10T06:06:46.891281-05:00",
+    "cause": "3.5px HD ball replaced original10px sphere; pale rim lost against snow",
+    "fix": "11px logical canvas with10px shaded sphere and blue-gray outline; particles unchanged",
+    "unitTestsPassed": 71,
+    "priorBrowserGroupsRechecked": 4,
+    "compositedScreenshotCases": [
+      {
+        "phone": false,
+        "mode": "high-resolution",
+        "phase": "fly",
+        "contrast": [
+          {
+            "count": 234,
+            "width": 10.716993086905854,
+            "height": 10.716993086905854
+          },
+          {
+            "count": 187,
+            "width": 10.716993086905854,
+            "height": 10.716993086905854
+          }
+        ]
+      },
+      {
+        "phone": false,
+        "mode": "high-resolution",
+        "phase": "drop",
+        "contrast": [
+          {
+            "count": 270,
+            "width": 10.716993086905854,
+            "height": 10.28831336342962
+          },
+          {
+            "count": 332,
+            "width": 10.28831336342962,
+            "height": 10.716993086905854
+          }
+        ]
+      },
+      {
+        "phone": false,
+        "mode": "original",
+        "phase": "fly",
+        "contrast": [
+          {
+            "count": 205,
+            "width": 9.859633639953385,
+            "height": 10.28831336342962
+          },
+          {
+            "count": 207,
+            "width": 9.859633639953385,
+            "height": 10.28831336342962
+          }
+        ]
+      },
+      {
+        "phone": false,
+        "mode": "original",
+        "phase": "drop",
+        "contrast": [
+          {
+            "count": 202,
+            "width": 9.859633639953385,
+            "height": 9.859633639953385
+          },
+          {
+            "count": 257,
+            "width": 10.28831336342962,
+            "height": 9.859633639953385
+          }
+        ]
+      },
+      {
+        "phone": true,
+        "mode": "high-resolution",
+        "phase": "fly",
+        "contrast": [
+          {
+            "count": 66,
+            "width": 10.67452646179186,
+            "height": 11.495643881929695
+          },
+          {
+            "count": 46,
+            "width": 10.67452646179186,
+            "height": 9.853409041654025
+          }
+        ]
+      },
+      {
+        "phone": true,
+        "mode": "high-resolution",
+        "phase": "drop",
+        "contrast": [
+          {
+            "count": 78,
+            "width": 10.67452646179186,
+            "height": 10.67452646179186
+          },
+          {
+            "count": 87,
+            "width": 10.67452646179186,
+            "height": 9.853409041654025
+          }
+        ]
+      },
+      {
+        "phone": true,
+        "mode": "original",
+        "phase": "fly",
+        "contrast": [
+          {
+            "count": 57,
+            "width": 9.853409041654025,
+            "height": 9.853409041654025
+          },
+          {
+            "count": 58,
+            "width": 9.853409041654025,
+            "height": 9.853409041654025
+          }
+        ]
+      },
+      {
+        "phone": true,
+        "mode": "original",
+        "phase": "drop",
+        "contrast": [
+          {
+            "count": 59,
+            "width": 10.67452646179186,
+            "height": 9.853409041654025
+          },
+          {
+            "count": 69,
+            "width": 9.853409041654025,
+            "height": 10.67452646179186
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "sourceSha256": "329343e94217dca7e633b84a4adc6a4767c33cbd993b933a86947f44b5dedd5f",
+    "previewUpdated": true
+  }
+}

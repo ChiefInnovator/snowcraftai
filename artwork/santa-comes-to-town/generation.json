@@ -1,0 +1,149 @@
+{
+  "tool": "built-in image_gen",
+  "frames": [
+    {
+      "id": "peek",
+      "style": "hd",
+      "path": "/Users/rich/.codex/generated_images/01a1c270-a635-7151-b280-b0b1d7459f50/exec-35c6b8ce-ef59-4a7d-8b2f-1725fb96a556.png",
+      "prompt": "Use case: stylized-concept / game-sprite design.\nAsset: exactly ONE full-body SANTA CLAUS character on genuine transparent PNG alpha, for a winter snowball game. Image 1 is the rendering-style reference only (a red winter kid); image 2 shows the game's Christmas grove. Create a recognizable adult Santa, not another red child: warm friendly face, round rosy nose, expressive dark eyes, thick white eyebrows, large fluffy white beard and moustache, red Santa hat with white fur and pompom, broad red winter coat with white fur trim, black belt with brass buckle, white mittens, short dark trousers and stout black boots. Compact round toy-like proportions, large head, short body, Santa about 25% taller than the game's children. Smooth tactile 2.5D illustration with stitched fabric, soft fur and coherent gentle daylight. Slightly overhead camera matching the game.\nPOSE: Santa is standing with both boots together while leaning his upper body and head LEFT around an unseen Christmas tree, peeking at the viewer. Both eyes open with a friendly mischievous smile. His boots and hips stay planted on the RIGHT side of the pose; shoulders and face lean distinctly LEFT. His left mitten lightly rests as if on the unseen tree's edge; do NOT draw the tree. He should visibly look toward us/the camera, not toward an opponent. This will be the reference for wink, wave and running frames.\nFull body including boots and hat tip, generous transparent padding, no cast shadow or snow mound, no floor, no tree, no background, no scenery, no text/label/ring/border/watermark, no weapon or snowball. One Santa only."
+    },
+    {
+      "id": "run_a",
+      "style": "hd",
+      "path": "/Users/rich/.codex/generated_images/01a1c270-a635-7151-b280-b0b1d7459f50/exec-30aa3a51-cda5-4f76-a2be-d03b0e6b275d.png",
+      "prompt": "Use case: identity-preserve / Santa game animation frame. Exactly ONE Santa on genuine transparent PNG alpha. The reference is the final Santa design: preserve the exact friendly adult face, white eyebrows/moustache/fluffy beard, red fur-trimmed hat and stitched coat, brass belt buckle, white mittens, dark trousers and black boots, large head/compact toy proportions, overhead 2.5D camera, smooth tactile fabric and lighting. Keep body/head volume coherent across poses. Full character including boots and hat tip; generous transparent padding. No cast shadow, floor, snow mound, trees, background, scenery, props, labels, text, border, watermark, ring or extra Santa.\nTarget pose: Santa runs briskly toward the RIGHT side of the image, body turned into a right-facing three-quarter profile, knees bent, arms pumping and hat pompom trailing to the LEFT. Right boot reaches forward to the RIGHT; left boot kicks backward to the LEFT. His face looks toward the right with a playful smile. Keep compact body size. One distinct full running stride, not standing or walking."
+    },
+    {
+      "id": "wave_a",
+      "style": "hd",
+      "path": "/Users/rich/.codex/generated_images/01a1c270-a635-7151-b280-b0b1d7459f50/exec-adfff6e3-3209-4240-9512-007e99f9c571.png",
+      "prompt": "Edit this Santa animation sprite: put the WAVING MITTEN on the FAR LEFT SIDE OF THE IMAGE, to the LEFT of Santa's face. Raise that mitten above the head, open palm facing us. The other hand is lowered beside the belt. The waving arm must extend out to screen-left, into open space; no raised hand or arm on the screen-right side. Keep Santa's exact friendly face, BOTH eyes open, left-leaning head/body, boot placement, cap/beard/coat/belt/mitten/boot design, proportions, smooth tactile 2.5D shading and full transparent padded canvas. One full-body Santa, no background, tree, floor, shadow, text or extra props.",
+      "previous": {
+        "path": "/Users/rich/.codex/generated_images/01a1c270-a635-7151-b280-b0b1d7459f50/exec-8de04f0d-8d2a-4592-afe2-8d0ce4f5c670.png",
+        "prompt": "Use case: identity-preserve / Santa game animation frame. Exactly ONE Santa on genuine transparent PNG alpha. The reference is the final Santa design: preserve the exact friendly adult face, white eyebrows/moustache/fluffy beard, red fur-trimmed hat and stitched coat, brass belt buckle, white mittens, dark trousers and black boots, large head/compact toy proportions, overhead 2.5D camera, smooth tactile fabric and lighting. Keep body/head volume coherent across poses. Full character including boots and hat tip; generous transparent padding. No cast shadow, floor, snow mound, trees, background, scenery, props, labels, text, border, watermark, ring or extra Santa.\nTarget pose: Santa stays in the same left-leaning position with boots planted together, looking at us with BOTH eyes OPEN. Lift his LEFT-side mitten ABOVE his head with palm facing the viewer to wave hello. Other mitten stays near his belt. Keep the same happy face and body lean; this is the high position of a two-frame wave."
+      }
+    },
+    {
+      "id": "wave_b",
+      "style": "hd",
+      "path": "/Users/rich/.codex/generated_images/01a1c270-a635-7151-b280-b0b1d7459f50/exec-48188d3f-66dd-465a-a319-b1afa6be4ba1.png",
+      "prompt": "Edit this Santa animation sprite: put the WAVING MITTEN on the FAR LEFT SIDE OF THE IMAGE, to the LEFT of Santa's face, extended outward at cheek height with open palm facing us and bent elbow. This is the low/outward position of a hello wave. The other hand is lowered beside the belt. There must be no waving/raised arm on the screen-right side. Keep the exact friendly face, BOTH eyes open, left-leaning head/body, boot placement, Santa costume and proportions, tactile 2.5D materials and full transparent padded canvas. One Santa, no background, tree, floor, shadow or text.",
+      "previous": {
+        "path": "/Users/rich/.codex/generated_images/01a1c270-a635-7151-b280-b0b1d7459f50/exec-4a34334c-d0ba-449e-9936-dc9b95109863.png",
+        "prompt": "Use case: identity-preserve / Santa game animation frame. Exactly ONE Santa on genuine transparent PNG alpha. The reference is the final Santa design: preserve the exact friendly adult face, white eyebrows/moustache/fluffy beard, red fur-trimmed hat and stitched coat, brass belt buckle, white mittens, dark trousers and black boots, large head/compact toy proportions, overhead 2.5D camera, smooth tactile fabric and lighting. Keep body/head volume coherent across poses. Full character including boots and hat tip; generous transparent padding. No cast shadow, floor, snow mound, trees, background, scenery, props, labels, text, border, watermark, ring or extra Santa.\nTarget pose: Santa stays in the same left-leaning position and boots planted together, looking at us with BOTH eyes OPEN. His LEFT-side mitten is extended outward to the LEFT at about cheek height, palm facing the viewer, elbow bent: the low/outward position of a two-frame hello wave. Other mitten stays near his belt. The mitten must have a clearly different silhouette/position from a straight overhead wave."
+      }
+    },
+    {
+      "id": "run_b",
+      "style": "hd",
+      "path": "/Users/rich/.codex/generated_images/01a1c270-a635-7151-b280-b0b1d7459f50/exec-83f70108-2044-4859-81a8-f9ebcb689aca.png",
+      "prompt": "Repose this exact Santa for the PASSING/RECOIL phase of a run toward screen-RIGHT. Keep the same right-facing 3/4 body and face, cheerful expression, compact proportions, costume, beard, cap, tactile 2.5D shading. Make the legs visibly DIFFERENT from a long split stride: both knees flexed, front knee lifted under the belly, one black boot tucked beneath the body and the other boot kicking up behind; do not show a long extended boot reaching far to the right. Swap the arm swing, with the nearer white mitten drawn backward and the farther mitten forward. This is a clearly distinct running animation frame. Full body, generous transparent padding, true alpha. No snow, floor, shadow, background, tree, text, ring or extra Santa.",
+      "previous": {
+        "path": "/Users/rich/.codex/generated_images/01a1c270-a635-7151-b280-b0b1d7459f50/exec-be3d8c2f-f12b-4c41-9024-02bceb5e4a17.png",
+        "prompt": "Use case: identity-preserve / Santa game animation frame. Exactly ONE Santa on genuine transparent PNG alpha. The reference is the final Santa design: preserve the exact friendly adult face, white eyebrows/moustache/fluffy beard, red fur-trimmed hat and stitched coat, brass belt buckle, white mittens, dark trousers and black boots, large head/compact toy proportions, overhead 2.5D camera, smooth tactile fabric and lighting. Keep body/head volume coherent across poses. Full character including boots and hat tip; generous transparent padding. No cast shadow, floor, snow mound, trees, background, scenery, props, labels, text, border, watermark, ring or extra Santa.\nTarget pose: Santa runs briskly toward the RIGHT side of the image, body turned into a right-facing three-quarter profile, arms pumping and hat pompom trailing LEFT. The LEFT boot now reaches forward toward the RIGHT and the RIGHT boot kicks backward LEFT, swapping the stride and arm swing from the other running frame. Clearly distinct opposing full running stride. Keep compact body size and cheerful face."
+      }
+    },
+    {
+      "id": "peek",
+      "style": "classic",
+      "path": "/Users/rich/.codex/generated_images/01a1c270-a635-7151-b280-b0b1d7459f50/exec-0a4999ef-0327-47b8-8941-a5debe26070f.png",
+      "prompt": "Use case: style-transfer / classic game sprite. Create a LOW-RESOLUTION PIXEL-ART version of the exact Santa in image 1, matching the coarse crisp pixel style of the tiny original winter-game character in image 2.\nPreserve the Santa identity: friendly round rosy-nosed face, fluffy white beard/moustache/eyebrows, red fur-trimmed hat and pompom, red coat with white fur edging, black belt and gold buckle, white mittens and black boots. Preserve the full-body LEFT-LEANING peek pose and boot placement, BOTH eyes open looking at us, happy smile, one mitten out to screen-left. He is a compact Santa about44 logical pixels tall, meant for a 64x64-pixel transparent game frame. Render true chunky late-1990s pixel-art contours, limited colour ramps and small clustered/dithered shading; one-pixel eyes/features must be readable at that small size. You may show the pixel grid enlarged, but no smooth HD painting, antialiasing or blur.\nExactly one full Santa, generous transparent padding, genuine PNG alpha. No floor, cast shadow, snow, tree, background, border, labels, text, ring, extra person or props."
+    },
+    {
+      "id": "wave_a",
+      "style": "classic",
+      "path": "/Users/rich/.codex/generated_images/01a1c270-a635-7151-b280-b0b1d7459f50/exec-4a76dc6b-7c48-4231-ab7b-1ada419fe586.png",
+      "prompt": "Use case: identity-preserve / low-resolution pixel-art animation sprite.\nImage 1 is the exact finished PIXEL-ART Santa identity, proportions and palette. Image 2 is the target HD POSE and expression reference. Repose that same pixel Santa to match image 2 while preserving the crisp chunky pixel-grid style from image 1. Same rosy face, white eyebrows/beard/moustache, red Santa hat and coat with white fur, gold belt buckle, white mittens and black boots. He is intended to be about44 logical pixels tall in a64x64 game frame. True late-1990s pixel-art contours, limited colour ramps, readable tiny facial pixels and sparse clustered shading; no smooth painting, antialiasing or blur. Full body and hat, generous transparent padding, genuine PNG alpha. One Santa only; no floor, cast shadow, snow, tree, background, text, labels, border or props.\nTarget pose: Match the HD pose: BOTH eyes OPEN, face looking at us. The waving white mitten is raised high on the FAR LEFT side of the IMAGE, to the LEFT of Santa's face and above head height. Other mitten low at the belt. This is the high/up position of the wave."
+    },
+    {
+      "id": "wave_b",
+      "style": "classic",
+      "path": "/Users/rich/.codex/generated_images/01a1c270-a635-7151-b280-b0b1d7459f50/exec-a5eb8e1b-661a-400a-a24e-3e968b672c1c.png",
+      "prompt": "Use case: identity-preserve / low-resolution pixel-art animation sprite.\nImage 1 is the exact finished PIXEL-ART Santa identity, proportions and palette. Image 2 is the target HD POSE and expression reference. Repose that same pixel Santa to match image 2 while preserving the crisp chunky pixel-grid style from image 1. Same rosy face, white eyebrows/beard/moustache, red Santa hat and coat with white fur, gold belt buckle, white mittens and black boots. He is intended to be about44 logical pixels tall in a64x64 game frame. True late-1990s pixel-art contours, limited colour ramps, readable tiny facial pixels and sparse clustered shading; no smooth painting, antialiasing or blur. Full body and hat, generous transparent padding, genuine PNG alpha. One Santa only; no floor, cast shadow, snow, tree, background, text, labels, border or props.\nTarget pose: Match the HD pose: BOTH eyes OPEN, face looking at us. The waving mitten is extended outward at CHEEK HEIGHT on the FAR LEFT of the IMAGE, to the LEFT of the face, open palm toward us. Other mitten low at the belt. A distinctly lower/outward position than the overhead wave."
+    },
+    {
+      "id": "run_a",
+      "style": "classic",
+      "path": "/Users/rich/.codex/generated_images/01a1c270-a635-7151-b280-b0b1d7459f50/exec-40c44d56-ad99-4467-bf4f-dd2cc0ab7e67.png",
+      "prompt": "Use case: identity-preserve / low-resolution pixel-art animation sprite.\nImage 1 is the exact finished PIXEL-ART Santa identity, proportions and palette. Image 2 is the target HD POSE and expression reference. Repose that same pixel Santa to match image 2 while preserving the crisp chunky pixel-grid style from image 1. Same rosy face, white eyebrows/beard/moustache, red Santa hat and coat with white fur, gold belt buckle, white mittens and black boots. He is intended to be about44 logical pixels tall in a64x64 game frame. True late-1990s pixel-art contours, limited colour ramps, readable tiny facial pixels and sparse clustered shading; no smooth painting, antialiasing or blur. Full body and hat, generous transparent padding, genuine PNG alpha. One Santa only; no floor, cast shadow, snow, tree, background, text, labels, border or props.\nTarget pose: Match the HD running pose facing screen-RIGHT, body in right-facing three-quarter profile, arms pumping, hat trailing left. One black boot reaches far forward to screen-right and the other kicks back left: long extended running stride."
+    },
+    {
+      "id": "run_b",
+      "style": "classic",
+      "path": "/Users/rich/.codex/generated_images/01a1c270-a635-7151-b280-b0b1d7459f50/exec-5e987798-9c02-41de-be39-9d6716f151d8.png",
+      "prompt": "Use case: identity-preserve / low-resolution pixel-art animation sprite.\nImage 1 is the exact finished PIXEL-ART Santa identity, proportions and palette. Image 2 is the target HD POSE and expression reference. Repose that same pixel Santa to match image 2 while preserving the crisp chunky pixel-grid style from image 1. Same rosy face, white eyebrows/beard/moustache, red Santa hat and coat with white fur, gold belt buckle, white mittens and black boots. He is intended to be about44 logical pixels tall in a64x64 game frame. True late-1990s pixel-art contours, limited colour ramps, readable tiny facial pixels and sparse clustered shading; no smooth painting, antialiasing or blur. Full body and hat, generous transparent padding, genuine PNG alpha. One Santa only; no floor, cast shadow, snow, tree, background, text, labels, border or props.\nTarget pose: Match the HD passing/recoil running pose facing screen-RIGHT, both knees flexed, front knee lifted under the belly, one boot tucked beneath the body and the other kicking up behind. Opposite arm swing. No long split stride; this must look clearly different from the extended running frame."
+    },
+    {
+      "id": "run_contact",
+      "style": "hd",
+      "path": "/Users/rich/.codex/generated_images/01a1c270-a635-7151-b280-b0b1d7459f50/exec-f124a083-9cb6-473c-bb64-5b8f2acab6bf.png",
+      "prompt": "Use-case: game sprite animation pose. Match the supplied high-resolution softly shaded 3D storybook game sprite exactly: rounded forms, fabric detail, gentle upper-left lighting. Create a new RIGHT-FACING grounded running CONTACT pose. His forward black boot is firmly planted flat on the ground baseline, knee slightly flexed absorbing weight; the other leg trails behind with its heel lifted. Opposite mitten swings forward. Keep his head, red coat, white beard and gold belt buckle the same size as the supplied running reference. This is the grounded foot-strike frame of a run, not an airborne leap. Exactly two legs, two boots, two arms, two mittens. A clear, readable planted sole is essential. Preserve this same Santa identity, plump proportions, red suit, fluffy white trim, red pom-pom hat, white mittens, black boots, black belt and rectangular gold buckle. Isolated single full-body character with generous transparent margins. Transparent background with true alpha. No floor, scenery, shadows, detached props, text, frame, halo, glow, motion blur, checkerboard or extra characters.",
+      "references": [
+        "/Users/rich/.openclaw/projects/snowcraftai/web/assets/santa/hd/run_a.png",
+        "/Users/rich/.openclaw/projects/snowcraftai/web/assets/santa/hd/peek.png"
+      ]
+    },
+    {
+      "id": "run_pass",
+      "style": "hd",
+      "path": "/Users/rich/.codex/generated_images/01a1c270-a635-7151-b280-b0b1d7459f50/exec-4f35c601-3b5a-4154-b6f3-6bbd5bace759.png",
+      "prompt": "Use-case: game sprite animation pose. Match the supplied high-resolution softly shaded 3D storybook game sprite exactly: rounded forms, fabric detail, gentle upper-left lighting. Create a new RIGHT-FACING running PASSING pose. One support black boot is planted flat directly below his pelvis, bearing his weight; the other knee bends and passes forward, foot lifted close to the support knee. Arms pump in opposition. Keep the torso, head, red coat, beard and gold belt buckle the same size as the supplied running reference. This must be a compact supported stride, not an airborne jump or a wide split-leg leap. Exactly two legs, two boots, two arms, two mittens. Preserve this same Santa identity, plump proportions, red suit, fluffy white trim, red pom-pom hat, white mittens, black boots, black belt and rectangular gold buckle. Isolated single full-body character with generous transparent margins. Transparent background with true alpha. No floor, scenery, shadows, detached props, text, frame, halo, glow, motion blur, checkerboard or extra characters.",
+      "references": [
+        "/Users/rich/.openclaw/projects/snowcraftai/web/assets/santa/hd/run_a.png",
+        "/Users/rich/.openclaw/projects/snowcraftai/web/assets/santa/hd/peek.png"
+      ]
+    },
+    {
+      "id": "wink",
+      "style": "hd",
+      "path": "/Users/rich/.codex/generated_images/01a1c270-a635-7151-b280-b0b1d7459f50/exec-ba93a3e4-7c39-4184-bdee-c3fb073abd17.png",
+      "prompt": "Use-case: game sprite animation pose. Match the supplied high-resolution softly shaded 3D storybook game sprite exactly: rounded forms, fabric detail, gentle upper-left lighting. Edit only Santa's facial expression and a slight HEAD tilt in the supplied greeting pose. Make a very clear playful wink toward the viewer: the eye on SCREEN LEFT is squeezed fully shut as a bold curved eyelid, its cheek raised, the other eye open and bright, and a broad friendly smile. Tilt just the head about 7 degrees toward the winking side. Keep the torso, feet, hands, hat style, costume, overall size and exact greeting stance otherwise unchanged. This wink must read clearly on a small game sprite; avoid a subtle almost-open eye. Preserve this same Santa identity, plump proportions, red suit, fluffy white trim, red pom-pom hat, white mittens, black boots, black belt and rectangular gold buckle. Isolated single full-body character with generous transparent margins. Transparent background with true alpha. No floor, scenery, shadows, detached props, text, frame, halo, glow, motion blur, checkerboard or extra characters.",
+      "references": [
+        "/Users/rich/.openclaw/projects/snowcraftai/web/assets/santa/hd/peek.png",
+        "/Users/rich/.openclaw/projects/snowcraftai/web/assets/santa/hd/wink.png"
+      ],
+      "previous": {
+        "id": "wink",
+        "style": "hd",
+        "path": "/Users/rich/.codex/generated_images/01a1c270-a635-7151-b280-b0b1d7459f50/exec-71f69ae0-ce2f-42d7-80fc-6dbaa3c371da.png",
+        "prompt": "Use case: identity-preserve / Santa game animation frame. Exactly ONE Santa on genuine transparent PNG alpha. The reference is the final Santa design: preserve the exact friendly adult face, white eyebrows/moustache/fluffy beard, red fur-trimmed hat and stitched coat, brass belt buckle, white mittens, dark trousers and black boots, large head/compact toy proportions, overhead 2.5D camera, smooth tactile fabric and lighting. Keep body/head volume coherent across poses. Full character including boots and hat tip; generous transparent padding. No cast shadow, floor, snow mound, trees, background, scenery, props, labels, text, border, watermark, ring or extra Santa.\nTarget pose: Keep the reference's exact left-leaning peek pose, boot positions, mittens and happy expression. Close ONLY the eye on the LEFT side of the IMAGE into a clear friendly wink; the other eye stays open looking at the viewer. This must be unmistakably the same frame with one eyelid closed, not two closed eyes or a new head turn."
+      }
+    },
+    {
+      "id": "run_contact",
+      "style": "classic",
+      "path": "/Users/rich/.codex/generated_images/01a1c270-a635-7151-b280-b0b1d7459f50/exec-fd68ffa1-5324-4aff-af01-2e38d1f90d8e.png",
+      "prompt": "Use-case: game sprite animation pose. Match the supplied low-resolution pixel-art Santa exactly: deliberate chunky square pixels, crisp limited palette, no smooth gradients. Draw at the same small logical pixel scale, with no fine detail beyond the reference. Create a new RIGHT-FACING grounded running CONTACT pose. His forward black boot is firmly planted flat on the ground baseline, knee slightly flexed absorbing weight; the other leg trails behind with its heel lifted. Opposite mitten swings forward. Keep his head, red coat, white beard and gold belt buckle the same size as the supplied running reference. This is the grounded foot-strike frame of a run, not an airborne leap. Exactly two legs, two boots, two arms, two mittens. A clear, readable planted sole is essential. Preserve this same Santa identity, plump proportions, red suit, fluffy white trim, red pom-pom hat, white mittens, black boots, black belt and rectangular gold buckle. Isolated single full-body character with generous transparent margins. Transparent background with true alpha. No floor, scenery, shadows, detached props, text, frame, halo, glow, motion blur, checkerboard or extra characters.",
+      "references": [
+        "/Users/rich/.openclaw/projects/snowcraftai/web/assets/santa/classic/run_a.png",
+        "/Users/rich/.openclaw/projects/snowcraftai/web/assets/santa/classic/peek.png"
+      ]
+    },
+    {
+      "id": "run_pass",
+      "style": "classic",
+      "path": "/Users/rich/.codex/generated_images/01a1c270-a635-7151-b280-b0b1d7459f50/exec-ab793a85-c7d2-429f-a605-c58e3e5ebfe4.png",
+      "prompt": "Use-case: game sprite animation pose. Match the supplied low-resolution pixel-art Santa exactly: deliberate chunky square pixels, crisp limited palette, no smooth gradients. Draw at the same small logical pixel scale, with no fine detail beyond the reference. Create a new RIGHT-FACING running PASSING pose. One support black boot is planted flat directly below his pelvis, bearing his weight; the other knee bends and passes forward, foot lifted close to the support knee. Arms pump in opposition. Keep the torso, head, red coat, beard and gold belt buckle the same size as the supplied running reference. This must be a compact supported stride, not an airborne jump or a wide split-leg leap. Exactly two legs, two boots, two arms, two mittens. Preserve this same Santa identity, plump proportions, red suit, fluffy white trim, red pom-pom hat, white mittens, black boots, black belt and rectangular gold buckle. Isolated single full-body character with generous transparent margins. Transparent background with true alpha. No floor, scenery, shadows, detached props, text, frame, halo, glow, motion blur, checkerboard or extra characters.",
+      "references": [
+        "/Users/rich/.openclaw/projects/snowcraftai/web/assets/santa/classic/run_a.png",
+        "/Users/rich/.openclaw/projects/snowcraftai/web/assets/santa/classic/peek.png"
+      ]
+    },
+    {
+      "id": "wink",
+      "style": "classic",
+      "path": "/Users/rich/.codex/generated_images/01a1c270-a635-7151-b280-b0b1d7459f50/exec-82235ca2-2267-4208-b07a-b46963798747.png",
+      "prompt": "Use-case: game sprite animation pose. Match the supplied low-resolution pixel-art Santa exactly: deliberate chunky square pixels, crisp limited palette, no smooth gradients. Draw at the same small logical pixel scale, with no fine detail beyond the reference. Edit only Santa's facial expression and a slight HEAD tilt in the supplied greeting pose. Make a very clear playful wink toward the viewer: the eye on SCREEN LEFT is squeezed fully shut as a bold curved eyelid, its cheek raised, the other eye open and bright, and a broad friendly smile. Tilt just the head about 7 degrees toward the winking side. Keep the torso, feet, hands, hat style, costume, overall size and exact greeting stance otherwise unchanged. This wink must read clearly on a small game sprite; avoid a subtle almost-open eye. Preserve this same Santa identity, plump proportions, red suit, fluffy white trim, red pom-pom hat, white mittens, black boots, black belt and rectangular gold buckle. Isolated single full-body character with generous transparent margins. Transparent background with true alpha. No floor, scenery, shadows, detached props, text, frame, halo, glow, motion blur, checkerboard or extra characters.",
+      "references": [
+        "/Users/rich/.openclaw/projects/snowcraftai/web/assets/santa/classic/peek.png",
+        "/Users/rich/.openclaw/projects/snowcraftai/web/assets/santa/classic/wink.png"
+      ],
+      "previous": {
+        "id": "wink",
+        "style": "classic",
+        "path": "/Users/rich/.codex/generated_images/01a1c270-a635-7151-b280-b0b1d7459f50/exec-4c2d87d8-5c3f-44e5-b966-511c8d237668.png",
+        "prompt": "Use case: identity-preserve / low-resolution pixel-art animation sprite.\nImage 1 is the exact finished PIXEL-ART Santa identity, proportions and palette. Image 2 is the target HD POSE and expression reference. Repose that same pixel Santa to match image 2 while preserving the crisp chunky pixel-grid style from image 1. Same rosy face, white eyebrows/beard/moustache, red Santa hat and coat with white fur, gold belt buckle, white mittens and black boots. He is intended to be about44 logical pixels tall in a64x64 game frame. True late-1990s pixel-art contours, limited colour ramps, readable tiny facial pixels and sparse clustered shading; no smooth painting, antialiasing or blur. Full body and hat, generous transparent padding, genuine PNG alpha. One Santa only; no floor, cast shadow, snow, tree, background, text, labels, border or props.\nTarget pose: Same left-leaning peek pose and boots as the pixel reference. Close ONLY the eye on the LEFT side of the image into a clearly readable friendly wink; the right-side eye stays open looking at us."
+      }
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "style": "classic",
+    "prompt": "Make a production animation sprite atlas from this exact approved Santa game character. One row, exactly THREE equal cells, full-body Santa in every cell, identical scale, camera, proportions, tilted head, smile, open eyes, hat, beard, coat, belt, boots and raised hand. Copy the same body and face registration into all three cells; no pose, arm, head, or torso motion. ONLY the round pink nose twitches sideways: cell 1 nose displaced slightly left and squished on its left side; cell 2 nose relaxed in its original center; cell 3 nose displaced slightly right and squished on its right side. Make the nose movement clear but small (roughly one quarter of nose width), cheek and moustache unchanged. This is a playful magic nose wiggle before vanishing. Preserve the reference low-resolution pixel art, crisp pixel clusters and stepped edges, no smooth 3D shading. Genuine transparent alpha background. No glow, magic, sparkles, floor, shadow, text, borders, panels or extra objects. All three bodies must be complete and separated with enough transparent padding. Exact aligned 3-column/1-row grid.",
+    "path": "/Users/rich/.codex/generated_images/01a1c270-a635-7151-b280-b0b1d7459f50/exec-12f11cb3-6d2c-4938-9a89-ff90c57aacde.png",
+    "reference": "artwork/santa-comes-to-town/classic/peek.png",
+    "referenceSha256": "41f36bfa98a714411f34d74c9549727f2c9d23231609b61d542b66387c577230"
+  },
+  {
+    "style": "hd",
+    "prompt": "Make a production animation sprite atlas from this exact approved Santa game character. One row, exactly THREE equal cells, full-body Santa in every cell, identical scale, camera, proportions, tilted head, smile, open eyes, hat, beard, coat, belt, boots and raised hand. Copy the same body and face registration into all three cells; no pose, arm, head, or torso motion. ONLY the round pink nose twitches sideways: cell 1 nose displaced slightly left and squished on its left side; cell 2 nose relaxed in its original center; cell 3 nose displaced slightly right and squished on its right side. Make the nose movement clear but small (roughly one quarter of nose width), cheek and moustache unchanged. This is a playful magic nose wiggle before vanishing. Preserve the reference polished soft 3D HD toy-like fabric detail. Genuine transparent alpha background. No glow, magic, sparkles, floor, shadow, text, borders, panels or extra objects. All three bodies must be complete and separated with enough transparent padding. Exact aligned 3-column/1-row grid.",
+    "path": "/Users/rich/.codex/generated_images/01a1c270-a635-7151-b280-b0b1d7459f50/exec-1b6d19a2-eb34-439c-8930-5405dc99b826.png",
+    "reference": "artwork/santa-comes-to-town/hd/peek.png",
+    "referenceSha256": "e4a0c811ae01ab11bca6f756faeadee2a4a0d02b58d95c275ee32a18bb70aaf6"
+  }
+]

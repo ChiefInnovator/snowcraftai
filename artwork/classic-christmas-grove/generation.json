@@ -1,0 +1,9 @@
+{
+  "tool": "built-in image_gen",
+  "prompt": "Use case: style-transfer / game asset.\nMake a LOW-RESOLUTION PIXEL-ART version of ONLY the decorated Christmas evergreen grove in the TOP-RIGHT corner of image 1. Image 2 is the original game's low-resolution snowfield style reference; do not reproduce its forts or entire background.\nPreserve the SAME cluster: the small tree at left/back, taller decorated tree near the middle/back, small decorated tree at the front, and the largest tree cropped at the right/top boundary. Preserve the relative heights, overlap, camera angle, thick white snow on dark green branches, warm yellow string lights, red and gold baubles, garlands and golden star toppers. The largest right-hand tree stays partially cropped as in the source.\nRender it as convincing late-1990s isometric/slightly overhead game pixel art, intended to occupy about 130 by 96 logical pixels. Use crisp stepped pixel contours, small palette clusters and sparse dithering, with readable one-pixel warm lights and ornaments. No smooth HD shading, vector contours, painted blur or antialiasing. You may present the pixel grid enlarged, but the actual visible detail must read as a small classic game sprite.\nOutput exactly ONE isolated tree cluster on a GENUINELY TRANSPARENT PNG background. Include only a small close-fitting cool pixel-art contact shadow underneath the trees, fading with tight dithered edges. No white rectangle, snowfield, forts, surrounding scenery, circular mound, text, labels, borders, watermark, people, animals, extra standalone trees or interface. Keep the cluster aligned to the top and right edge like the reference.",
+  "generatedPath": "/Users/rich/.codex/generated_images/01a1c270-a635-7151-b280-b0b1d7459f50/exec-78eeb74c-3850-42d3-963d-e3f20918cc2c.png",
+  "references": [
+    "web/assets/hd/scenery/ground.png",
+    "web/assets/cast/069_ground.png"
+  ]
+}

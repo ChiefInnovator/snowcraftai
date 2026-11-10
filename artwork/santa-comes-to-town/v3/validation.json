@@ -1,0 +1,2468 @@
+{
+  "checkedAt": "2026-11-10T06:29:02.998275-05:00",
+  "units": {
+    "passed": 71,
+    "failed": 0
+  },
+  "browserGroups": {
+    "passed": 17,
+    "failed": 0
+  },
+  "assets": {
+    "runtimeAssets": 122,
+    "uniqueMasters": 12,
+    "noseContacts": 12,
+    "noseContactMisses": [],
+    "results": [
+      {
+        "file": "web/assets/santa/classic/peek.png",
+        "hash": "verified",
+        "size": [
+          64,
+          64
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/shadow_peek.png",
+        "hash": "verified",
+        "size": [
+          70,
+          28
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/peek.png",
+        "hash": "verified",
+        "size": [
+          512,
+          512
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/shadow_peek.png",
+        "hash": "verified",
+        "size": [
+          568,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/wink.png",
+        "hash": "verified",
+        "size": [
+          64,
+          64
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/shadow_wink.png",
+        "hash": "verified",
+        "size": [
+          69,
+          28
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/wink.png",
+        "hash": "verified",
+        "size": [
+          512,
+          512
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/shadow_wink.png",
+        "hash": "verified",
+        "size": [
+          568,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/wave_a.png",
+        "hash": "verified",
+        "size": [
+          72,
+          64
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/shadow_wave_a.png",
+        "hash": "verified",
+        "size": [
+          72,
+          28
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/wave_a.png",
+        "hash": "verified",
+        "size": [
+          576,
+          512
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/shadow_wave_a.png",
+        "hash": "verified",
+        "size": [
+          576,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/wave_b.png",
+        "hash": "verified",
+        "size": [
+          72,
+          64
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/shadow_wave_b.png",
+        "hash": "verified",
+        "size": [
+          72,
+          28
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/wave_b.png",
+        "hash": "verified",
+        "size": [
+          576,
+          512
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/shadow_wave_b.png",
+        "hash": "verified",
+        "size": [
+          568,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/wave_c.png",
+        "hash": "verified",
+        "size": [
+          72,
+          64
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/shadow_wave_c.png",
+        "hash": "verified",
+        "size": [
+          71,
+          28
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/wave_c.png",
+        "hash": "verified",
+        "size": [
+          576,
+          512
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/shadow_wave_c.png",
+        "hash": "verified",
+        "size": [
+          568,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/nose_left.png",
+        "hash": "verified",
+        "size": [
+          72,
+          64
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -3.25,
+              "y": -1,
+              "width": 6.5
+            },
+            "pixel": [
+              32.75,
+              57
+            ],
+            "rgba": [
+              54,
+              47,
+              59,
+              253
+            ],
+            "opaqueBoot": true
+          },
+          {
+            "point": {
+              "x": 3.25,
+              "y": -1,
+              "width": 6.5
+            },
+            "pixel": [
+              39.25,
+              57
+            ],
+            "rgba": [
+              54,
+              45,
+              60,
+              253
+            ],
+            "opaqueBoot": true
+          }
+        ]
+      },
+      {
+        "file": "web/assets/santa/classic/shadow_nose_left.png",
+        "hash": "verified",
+        "size": [
+          66,
+          27
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/nose_left.png",
+        "hash": "verified",
+        "size": [
+          576,
+          512
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -2.65625,
+              "y": -0.125,
+              "width": 6.5625
+            },
+            "pixel": [
+              266.75,
+              463
+            ],
+            "rgba": [
+              44,
+              38,
+              39,
+              251
+            ],
+            "opaqueBoot": true
+          },
+          {
+            "point": {
+              "x": 3.90625,
+              "y": -0.125,
+              "width": 6.5625
+            },
+            "pixel": [
+              319.25,
+              463
+            ],
+            "rgba": [
+              42,
+              38,
+              38,
+              251
+            ],
+            "opaqueBoot": true
+          }
+        ]
+      },
+      {
+        "file": "web/assets/santa/hd/shadow_nose_left.png",
+        "hash": "verified",
+        "size": [
+          560,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/nose_center.png",
+        "hash": "verified",
+        "size": [
+          72,
+          64
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -3.25,
+              "y": -1,
+              "width": 6.5
+            },
+            "pixel": [
+              32.75,
+              57
+            ],
+            "rgba": [
+              55,
+              46,
+              58,
+              253
+            ],
+            "opaqueBoot": true
+          },
+          {
+            "point": {
+              "x": 3.25,
+              "y": -1,
+              "width": 6.5
+            },
+            "pixel": [
+              39.25,
+              57
+            ],
+            "rgba": [
+              58,
+              48,
+              63,
+              253
+            ],
+            "opaqueBoot": true
+          }
+        ]
+      },
+      {
+        "file": "web/assets/santa/classic/shadow_nose_center.png",
+        "hash": "verified",
+        "size": [
+          66,
+          27
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/nose_center.png",
+        "hash": "verified",
+        "size": [
+          576,
+          512
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -2.65625,
+              "y": -0.125,
+              "width": 6.5625
+            },
+            "pixel": [
+              266.75,
+              463
+            ],
+            "rgba": [
+              41,
+              36,
+              36,
+              252
+            ],
+            "opaqueBoot": true
+          },
+          {
+            "point": {
+              "x": 3.90625,
+              "y": -0.125,
+              "width": 6.5625
+            },
+            "pixel": [
+              319.25,
+              463
+            ],
+            "rgba": [
+              39,
+              35,
+              35,
+              250
+            ],
+            "opaqueBoot": true
+          }
+        ]
+      },
+      {
+        "file": "web/assets/santa/hd/shadow_nose_center.png",
+        "hash": "verified",
+        "size": [
+          560,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/nose_right.png",
+        "hash": "verified",
+        "size": [
+          72,
+          64
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -3.5,
+              "y": -1,
+              "width": 6
+            },
+            "pixel": [
+              32.5,
+              57
+            ],
+            "rgba": [
+              32,
+              24,
+              32,
+              253
+            ],
+            "opaqueBoot": true
+          },
+          {
+            "point": {
+              "x": 2.5,
+              "y": -1,
+              "width": 6
+            },
+            "pixel": [
+              38.5,
+              57
+            ],
+            "rgba": [
+              24,
+              19,
+              26,
+              252
+            ],
+            "opaqueBoot": true
+          }
+        ]
+      },
+      {
+        "file": "web/assets/santa/classic/shadow_nose_right.png",
+        "hash": "verified",
+        "size": [
+          66,
+          27
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/nose_right.png",
+        "hash": "verified",
+        "size": [
+          576,
+          512
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": [
+          {
+            "point": {
+              "x": -2.65625,
+              "y": -0.125,
+              "width": 6.5625
+            },
+            "pixel": [
+              266.75,
+              463
+            ],
+            "rgba": [
+              39,
+              34,
+              34,
+              251
+            ],
+            "opaqueBoot": true
+          },
+          {
+            "point": {
+              "x": 3.90625,
+              "y": -0.125,
+              "width": 6.5625
+            },
+            "pixel": [
+              319.25,
+              463
+            ],
+            "rgba": [
+              41,
+              36,
+              37,
+              250
+            ],
+            "opaqueBoot": true
+          }
+        ]
+      },
+      {
+        "file": "web/assets/santa/hd/shadow_nose_right.png",
+        "hash": "verified",
+        "size": [
+          560,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/run_0.png",
+        "hash": "verified",
+        "size": [
+          72,
+          64
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/shadow_run_0.png",
+        "hash": "verified",
+        "size": [
+          78,
+          29
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/shadow_run_0_left.png",
+        "hash": "verified",
+        "size": [
+          78,
+          30
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/run_0.png",
+        "hash": "verified",
+        "size": [
+          576,
+          512
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/shadow_run_0.png",
+        "hash": "verified",
+        "size": [
+          632,
+          232
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/shadow_run_0_left.png",
+        "hash": "verified",
+        "size": [
+          632,
+          232
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/run_1.png",
+        "hash": "verified",
+        "size": [
+          72,
+          64
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/shadow_run_1.png",
+        "hash": "verified",
+        "size": [
+          76,
+          29
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/shadow_run_1_left.png",
+        "hash": "verified",
+        "size": [
+          76,
+          29
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/run_1.png",
+        "hash": "verified",
+        "size": [
+          576,
+          512
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/shadow_run_1.png",
+        "hash": "verified",
+        "size": [
+          608,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/shadow_run_1_left.png",
+        "hash": "verified",
+        "size": [
+          608,
+          232
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/run_2.png",
+        "hash": "verified",
+        "size": [
+          72,
+          64
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/shadow_run_2.png",
+        "hash": "verified",
+        "size": [
+          77,
+          30
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/shadow_run_2_left.png",
+        "hash": "verified",
+        "size": [
+          77,
+          30
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/run_2.png",
+        "hash": "verified",
+        "size": [
+          576,
+          512
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/shadow_run_2.png",
+        "hash": "verified",
+        "size": [
+          608,
+          232
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/shadow_run_2_left.png",
+        "hash": "verified",
+        "size": [
+          600,
+          232
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/run_3.png",
+        "hash": "verified",
+        "size": [
+          72,
+          64
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/shadow_run_3.png",
+        "hash": "verified",
+        "size": [
+          79,
+          30
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/shadow_run_3_left.png",
+        "hash": "verified",
+        "size": [
+          79,
+          30
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/run_3.png",
+        "hash": "verified",
+        "size": [
+          576,
+          512
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/shadow_run_3.png",
+        "hash": "verified",
+        "size": [
+          616,
+          232
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/shadow_run_3_left.png",
+        "hash": "verified",
+        "size": [
+          616,
+          232
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/run_4.png",
+        "hash": "verified",
+        "size": [
+          72,
+          64
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/shadow_run_4.png",
+        "hash": "verified",
+        "size": [
+          75,
+          29
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/shadow_run_4_left.png",
+        "hash": "verified",
+        "size": [
+          75,
+          30
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/run_4.png",
+        "hash": "verified",
+        "size": [
+          576,
+          512
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/shadow_run_4.png",
+        "hash": "verified",
+        "size": [
+          632,
+          224
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/shadow_run_4_left.png",
+        "hash": "verified",
+        "size": [
+          632,
+          232
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/run_5.png",
+        "hash": "verified",
+        "size": [
+          72,
+          64
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/shadow_run_5.png",
+        "hash": "verified",
+        "size": [
+          72,
+          28
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/shadow_run_5_left.png",
+        "hash": "verified",
+        "size": [
+          72,
+          29
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/run_5.png",
+        "hash": "verified",
+        "size": [
+          576,
+          512
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/shadow_run_5.png",
+        "hash": "verified",
+        "size": [
+          608,
+          232
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/shadow_run_5_left.png",
+        "hash": "verified",
+        "size": [
+          616,
+          232
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/run_6.png",
+        "hash": "verified",
+        "size": [
+          72,
+          64
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/shadow_run_6.png",
+        "hash": "verified",
+        "size": [
+          75,
+          30
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/shadow_run_6_left.png",
+        "hash": "verified",
+        "size": [
+          75,
+          29
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/run_6.png",
+        "hash": "verified",
+        "size": [
+          576,
+          512
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/shadow_run_6.png",
+        "hash": "verified",
+        "size": [
+          608,
+          232
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/shadow_run_6_left.png",
+        "hash": "verified",
+        "size": [
+          600,
+          232
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/run_7.png",
+        "hash": "verified",
+        "size": [
+          72,
+          64
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/shadow_run_7.png",
+        "hash": "verified",
+        "size": [
+          78,
+          30
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/shadow_run_7_left.png",
+        "hash": "verified",
+        "size": [
+          78,
+          30
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/run_7.png",
+        "hash": "verified",
+        "size": [
+          576,
+          512
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/shadow_run_7.png",
+        "hash": "verified",
+        "size": [
+          624,
+          232
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/shadow_run_7_left.png",
+        "hash": "verified",
+        "size": [
+          624,
+          240
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/turn_quarter_0.png",
+        "hash": "verified",
+        "size": [
+          72,
+          64
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/shadow_turn_quarter_0.png",
+        "hash": "verified",
+        "size": [
+          77,
+          29
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/shadow_turn_quarter_0_left.png",
+        "hash": "verified",
+        "size": [
+          77,
+          29
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/turn_quarter_0.png",
+        "hash": "verified",
+        "size": [
+          576,
+          512
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/shadow_turn_quarter_0.png",
+        "hash": "verified",
+        "size": [
+          616,
+          232
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/shadow_turn_quarter_0_left.png",
+        "hash": "verified",
+        "size": [
+          616,
+          232
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/turn_quarter_1.png",
+        "hash": "verified",
+        "size": [
+          72,
+          64
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/shadow_turn_quarter_1.png",
+        "hash": "verified",
+        "size": [
+          76,
+          30
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/shadow_turn_quarter_1_left.png",
+        "hash": "verified",
+        "size": [
+          75,
+          28
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/turn_quarter_1.png",
+        "hash": "verified",
+        "size": [
+          576,
+          512
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/shadow_turn_quarter_1.png",
+        "hash": "verified",
+        "size": [
+          584,
+          232
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/shadow_turn_quarter_1_left.png",
+        "hash": "verified",
+        "size": [
+          592,
+          232
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/turn_quarter_2.png",
+        "hash": "verified",
+        "size": [
+          72,
+          64
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/shadow_turn_quarter_2.png",
+        "hash": "verified",
+        "size": [
+          77,
+          29
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/shadow_turn_quarter_2_left.png",
+        "hash": "verified",
+        "size": [
+          77,
+          29
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/turn_quarter_2.png",
+        "hash": "verified",
+        "size": [
+          576,
+          512
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/shadow_turn_quarter_2.png",
+        "hash": "verified",
+        "size": [
+          600,
+          232
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/shadow_turn_quarter_2_left.png",
+        "hash": "verified",
+        "size": [
+          600,
+          240
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/turn_quarter_3.png",
+        "hash": "verified",
+        "size": [
+          72,
+          64
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/shadow_turn_quarter_3.png",
+        "hash": "verified",
+        "size": [
+          77,
+          30
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/shadow_turn_quarter_3_left.png",
+        "hash": "verified",
+        "size": [
+          75,
+          28
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/turn_quarter_3.png",
+        "hash": "verified",
+        "size": [
+          576,
+          512
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/shadow_turn_quarter_3.png",
+        "hash": "verified",
+        "size": [
+          576,
+          240
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/shadow_turn_quarter_3_left.png",
+        "hash": "verified",
+        "size": [
+          576,
+          232
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/turn_front_0.png",
+        "hash": "verified",
+        "size": [
+          72,
+          64
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/shadow_turn_front_0.png",
+        "hash": "verified",
+        "size": [
+          73,
+          29
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/turn_front_0.png",
+        "hash": "verified",
+        "size": [
+          576,
+          512
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/shadow_turn_front_0.png",
+        "hash": "verified",
+        "size": [
+          576,
+          232
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/turn_front_1.png",
+        "hash": "verified",
+        "size": [
+          72,
+          64
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/shadow_turn_front_1.png",
+        "hash": "verified",
+        "size": [
+          72,
+          29
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/turn_front_1.png",
+        "hash": "verified",
+        "size": [
+          576,
+          512
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/shadow_turn_front_1.png",
+        "hash": "verified",
+        "size": [
+          592,
+          232
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/turn_front_2.png",
+        "hash": "verified",
+        "size": [
+          72,
+          64
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/shadow_turn_front_2.png",
+        "hash": "verified",
+        "size": [
+          73,
+          29
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/turn_front_2.png",
+        "hash": "verified",
+        "size": [
+          576,
+          512
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/shadow_turn_front_2.png",
+        "hash": "verified",
+        "size": [
+          584,
+          232
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/turn_front_3.png",
+        "hash": "verified",
+        "size": [
+          72,
+          64
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/shadow_turn_front_3.png",
+        "hash": "verified",
+        "size": [
+          73,
+          29
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/turn_front_3.png",
+        "hash": "verified",
+        "size": [
+          576,
+          512
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/shadow_turn_front_3.png",
+        "hash": "verified",
+        "size": [
+          576,
+          232
+        ],
+        "corners": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/classic/grove.png",
+        "hash": "verified",
+        "size": [
+          600,
+          320
+        ],
+        "corners": [
+          0,
+          255,
+          0,
+          0
+        ],
+        "contacts": []
+      },
+      {
+        "file": "web/assets/santa/hd/grove.png",
+        "hash": "verified",
+        "size": [
+          2400,
+          1280
+        ],
+        "corners": [
+          0,
+          255,
+          0,
+          0
+        ],
+        "contacts": []
+      }
+    ]
+  },
+  "lifecycle": {
+    "desktop": {
+      "magicBefore": {
+        "phase": "magic",
+        "visible": true,
+        "frame": "nose_center",
+        "x": 464,
+        "y": 76,
+        "behindGrove": true,
+        "flipX": false,
+        "lift": 0,
+        "facing": 90,
+        "airborne": false,
+        "visits": 1,
+        "magicVisible": true,
+        "magicMs": 450,
+        "artwork": "high-resolution",
+        "magic": {
+          "visible": true,
+          "particles": 38,
+          "flash": true
+        }
+      },
+      "switches": [
+        {
+          "mode": "original",
+          "state": {
+            "phase": "magic",
+            "visible": true,
+            "frame": "nose_center",
+            "x": 464,
+            "y": 76,
+            "behindGrove": true,
+            "flipX": false,
+            "lift": 0,
+            "facing": 90,
+            "airborne": false,
+            "visits": 1,
+            "magicVisible": true,
+            "magicMs": 450,
+            "artwork": "original",
+            "magic": {
+              "visible": true,
+              "particles": 38,
+              "flash": true
+            }
+          },
+          "bodyTexture": "santa_nose_center",
+          "haloTexture": "santa_magic_glow_1",
+          "shadowTexture": "santa_shadow_classic_nose_center"
+        },
+        {
+          "mode": "high-resolution",
+          "state": {
+            "phase": "magic",
+            "visible": true,
+            "frame": "nose_center",
+            "x": 464,
+            "y": 76,
+            "behindGrove": true,
+            "flipX": false,
+            "lift": 0,
+            "facing": 90,
+            "airborne": false,
+            "visits": 1,
+            "magicVisible": true,
+            "magicMs": 450,
+            "artwork": "high-resolution",
+            "magic": {
+              "visible": true,
+              "particles": 38,
+              "flash": true
+            }
+          },
+          "bodyTexture": "santa_nose_center__snowcraft_redrawn8x",
+          "haloTexture": "santa_magic_glow_8",
+          "shadowTexture": "santa_shadow_hd_nose_center"
+        }
+      ],
+      "burst": {
+        "state": {
+          "phase": "magic",
+          "visible": false,
+          "frame": "nose_center",
+          "x": 464,
+          "y": 76,
+          "behindGrove": true,
+          "flipX": false,
+          "lift": 0,
+          "facing": 90,
+          "airborne": false,
+          "visits": 1,
+          "magicVisible": true,
+          "magicMs": 520,
+          "artwork": "high-resolution",
+          "magic": {
+            "visible": true,
+            "particles": 38,
+            "flash": true
+          }
+        },
+        "body": false,
+        "shadow": false,
+        "contacts": [
+          false,
+          false
+        ]
+      },
+      "startClear": {
+        "snapshot": {
+          "visible": false,
+          "particles": 0,
+          "flash": false
+        },
+        "halo": false,
+        "flash": false,
+        "ribbons": 0,
+        "sparks": 0
+      },
+      "gap": {
+        "state": {
+          "phase": "hidden",
+          "visible": false,
+          "frame": "peek",
+          "x": 520,
+          "y": 76,
+          "behindGrove": true,
+          "flipX": false,
+          "lift": 0,
+          "facing": 90,
+          "airborne": false,
+          "visits": 1,
+          "magicVisible": false,
+          "magicMs": null,
+          "artwork": "high-resolution",
+          "magic": {
+            "visible": false,
+            "particles": 0,
+            "flash": false
+          }
+        },
+        "body": false,
+        "shadow": false,
+        "contacts": [
+          false,
+          false
+        ],
+        "fx": {
+          "snapshot": {
+            "visible": false,
+            "particles": 0,
+            "flash": false
+          },
+          "halo": false,
+          "flash": false,
+          "ribbons": 0,
+          "sparks": 0
+        }
+      },
+      "gameplayAndRngUnchanged": true,
+      "interactive": false,
+      "desktopParticleCount": 38
+    },
+    "restart": {
+      "oldObjects": [
+        {
+          "active": false,
+          "inDisplayList": false,
+          "hasScene": false
+        },
+        {
+          "active": false,
+          "inDisplayList": false,
+          "hasScene": false
+        },
+        {
+          "active": false,
+          "inDisplayList": false,
+          "hasScene": false
+        },
+        {
+          "active": false,
+          "inDisplayList": false,
+          "hasScene": false
+        },
+        {
+          "active": false,
+          "inDisplayList": false,
+          "hasScene": false
+        },
+        {
+          "active": false,
+          "inDisplayList": false,
+          "hasScene": false
+        },
+        {
+          "active": false,
+          "inDisplayList": false,
+          "hasScene": false
+        },
+        {
+          "active": false,
+          "inDisplayList": false,
+          "hasScene": false
+        },
+        {
+          "active": false,
+          "inDisplayList": false,
+          "hasScene": false
+        }
+      ],
+      "newMagic": {
+        "visible": false,
+        "particles": 0,
+        "flash": false
+      },
+      "newHalo": false,
+      "newFlash": false
+    },
+    "phone": {
+      "coarse": true,
+      "counts": [
+        {
+          "mode": "original",
+          "ms": 0,
+          "visible": true,
+          "particles": 24,
+          "flash": false
+        },
+        {
+          "mode": "original",
+          "ms": 100,
+          "visible": true,
+          "particles": 24,
+          "flash": false
+        },
+        {
+          "mode": "original",
+          "ms": 300,
+          "visible": true,
+          "particles": 24,
+          "flash": false
+        },
+        {
+          "mode": "original",
+          "ms": 450,
+          "visible": true,
+          "particles": 26,
+          "flash": true
+        },
+        {
+          "mode": "original",
+          "ms": 519,
+          "visible": true,
+          "particles": 26,
+          "flash": true
+        },
+        {
+          "mode": "original",
+          "ms": 520,
+          "visible": true,
+          "particles": 26,
+          "flash": true
+        },
+        {
+          "mode": "original",
+          "ms": 550,
+          "visible": true,
+          "particles": 26,
+          "flash": true
+        },
+        {
+          "mode": "original",
+          "ms": 660,
+          "visible": true,
+          "particles": 26,
+          "flash": true
+        },
+        {
+          "mode": "original",
+          "ms": 900,
+          "visible": true,
+          "particles": 24,
+          "flash": false
+        },
+        {
+          "mode": "original",
+          "ms": 1200,
+          "visible": true,
+          "particles": 24,
+          "flash": false
+        },
+        {
+          "mode": "original",
+          "ms": 1699,
+          "visible": false,
+          "particles": 0,
+          "flash": false
+        },
+        {
+          "mode": "high-resolution",
+          "ms": 0,
+          "visible": true,
+          "particles": 24,
+          "flash": false
+        },
+        {
+          "mode": "high-resolution",
+          "ms": 100,
+          "visible": true,
+          "particles": 24,
+          "flash": false
+        },
+        {
+          "mode": "high-resolution",
+          "ms": 300,
+          "visible": true,
+          "particles": 24,
+          "flash": false
+        },
+        {
+          "mode": "high-resolution",
+          "ms": 450,
+          "visible": true,
+          "particles": 26,
+          "flash": true
+        },
+        {
+          "mode": "high-resolution",
+          "ms": 519,
+          "visible": true,
+          "particles": 26,
+          "flash": true
+        },
+        {
+          "mode": "high-resolution",
+          "ms": 520,
+          "visible": true,
+          "particles": 26,
+          "flash": true
+        },
+        {
+          "mode": "high-resolution",
+          "ms": 550,
+          "visible": true,
+          "particles": 26,
+          "flash": true
+        },
+        {
+          "mode": "high-resolution",
+          "ms": 660,
+          "visible": true,
+          "particles": 26,
+          "flash": true
+        },
+        {
+          "mode": "high-resolution",
+          "ms": 900,
+          "visible": true,
+          "particles": 24,
+          "flash": false
+        },
+        {
+          "mode": "high-resolution",
+          "ms": 1200,
+          "visible": true,
+          "particles": 24,
+          "flash": false
+        },
+        {
+          "mode": "high-resolution",
+          "ms": 1699,
+          "visible": false,
+          "particles": 0,
+          "flash": false
+        }
+      ],
+      "max": 26
+    },
+    "errors": []
+  },
+  "preview": {
+    "file": "artwork/santa-comes-to-town/preview.mp4",
+    "fps": 60,
+    "framesPerStyle": 504,
+    "styles": 2,
+    "duration": 8.4,
+    "errors": []
+  },
+  "sources": {
+    "web/js/santa.js": "6544a8044ad5c51a7ff44272ef13e3bc74d875cc57ea0ac47fbd6342f64c59e6",
+    "web/assets/santa/manifest.json": "7a9ac45a0c7c37ca7378714e390a0e32ff93f973f141c8b1a930db9085a1098f",
+    "tools/artwork/build-santa.mjs": "825c49bf5d32ddd83ab28faaa1fd377622ce6d599134be9c0cd99b00d7424cf3",
+    "tools/artwork/render-santa-frame.mjs": "cb6b4841a29e6f7d6d425593a71c899ce6ff97931c6e7f10d2792cfd2a4f78a1",
+    "web/tests/santa.test.js": "9d75ccfa2b298feb97e5f47f4217e088351cca6a5020dfaab8f4e92108db0d0d",
+    "web/tests/browser-ui.mjs": "2120a18228d97d0f215133e072d3d2b69291dd6a1c8f235b6f17d0cef82fd790"
+  }
+}

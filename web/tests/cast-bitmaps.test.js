@@ -5,6 +5,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 const crypto = require("node:crypto");
+const { assertIndexedCopy } = require("./png-pixels.cjs");
 
 function loadParity() {
     const src = fs.readFileSync(path.join(__dirname, "..", "js", "parity.js"), "utf8");
@@ -16,6 +17,7 @@ function loadParity() {
 
 const P = loadParity();
 const CAST_DIR = path.join(__dirname, "..", "assets", "cast");
+const ORIGINAL_DIR = path.join(__dirname, "..", "..", "flutter", "assets", "art");
 
 const FILES = {
     "power_0.png": { w: 4, h: 3, sha256: "e12b5007c39c857a3f67b1335ae2c368a605dab843aeb768af7627509e11c10e" },
@@ -45,13 +47,15 @@ function pngSize(buf) {
 }
 
 describe("recovered BITD cast members", () => {
-    it("keeps every power/snowball/drop/melt PNG byte-exact", () => {
+    it("preserves byte-exact power/snowball/drop/melt sources and exports identical indexed pixels", () => {
         Object.entries(FILES).forEach(([name, expected]) => {
             const buf = fs.readFileSync(path.join(CAST_DIR, name));
             const size = pngSize(buf);
             assert.equal(size.w, expected.w, name + " width");
             assert.equal(size.h, expected.h, name + " height");
-            assert.equal(crypto.createHash("sha256").update(buf).digest("hex"), expected.sha256, name);
+            const original = fs.readFileSync(path.join(ORIGINAL_DIR, name));
+            assert.equal(crypto.createHash("sha256").update(original).digest("hex"), expected.sha256, name);
+            assertIndexedCopy(original, buf, name);
         });
     });
 
@@ -69,7 +73,7 @@ describe("recovered BITD cast members", () => {
         assert.equal(P.kidMembersNamed("R dead").length, 3);
     });
 
-    it("keeps recovered kid/shadow BITDs byte-exact", () => {
+    it("preserves byte-exact kid/shadow sources and exports identical indexed pixels", () => {
         const meta = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "..", "docs/recovered/kid-bitmaps.json"), "utf8"));
         assert.equal(meta.length, 36);
         meta.forEach((rec) => {
@@ -77,7 +81,9 @@ describe("recovered BITD cast members", () => {
             const size = pngSize(buf);
             assert.equal(size.w, rec.w, rec.file + " width");
             assert.equal(size.h, rec.h, rec.file + " height");
-            assert.equal(crypto.createHash("sha256").update(buf).digest("hex"), rec.sha256, rec.file);
+            const original = fs.readFileSync(path.join(ORIGINAL_DIR, rec.file));
+            assert.equal(crypto.createHash("sha256").update(original).digest("hex"), rec.sha256, rec.file);
+            assertIndexedCopy(original, buf, rec.file);
         });
     });
 });

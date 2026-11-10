@@ -1,0 +1,16 @@
+{
+  "sourceVideo": "/Users/rich/Desktop/2026-11-10_06-11-47.mp4",
+  "sha256": "0da582f40bf5ca614cd5b9df4196787d30716318a0db917f80b47a4590105f5f",
+  "duration": 4.773333,
+  "dimensions": [
+    2056,
+    1116
+  ],
+  "encodedFPS": 120,
+  "wholeClipSamplesFPS": 5,
+  "detailSamplesFPS": 30,
+  "detailInterval": [
+    1.65,
+    3.45
+  ]
+}

@@ -1,0 +1,3924 @@
+{
+  "version": 1,
+  "pixelScale": 4,
+  "teams": {
+    "R": {
+      "foot": {
+        "x": -1.877558329922227,
+        "y": 4.875
+      }
+    },
+    "G": {
+      "foot": {
+        "x": -0.5331070357961565,
+        "y": 5.875
+      }
+    }
+  },
+  "frames": {
+    "R_walk_0": {
+      "id": "R_walk_0",
+      "key": "motion_R_walk_0",
+      "file": "R_walk_0.png",
+      "team": "R",
+      "group": "walk",
+      "index": 0,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -0.25,
+      "contactPoints": [
+        {
+          "x": 4.75,
+          "y": -0.25,
+          "width": 7.5
+        },
+        {
+          "x": -7,
+          "y": -0.25,
+          "width": 3.75
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 462.375,
+      "bodyCentre": [
+        -0.3589483644228153,
+        -16.314341713976752
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        0,
+        0,
+        444,
+        444
+      ],
+      "fit": 0.08002481389578164,
+      "coreY": 40.87779156327544,
+      "offset": [
+        13.365246516848021,
+        14.389578163771713
+      ],
+      "masterFile": "artwork/hd-game-animation/R/walk.png",
+      "masterSha256": "2c9b209715840e3971bf33ab53cf303ecec50668c101ee58df7590b424d5ef5d",
+      "sha256": "35dbea227d080654e58e8457bfc7804db5a5e4b47ac8dd60cc272258db5d43c1",
+      "shadow": {
+        "key": "hd_shadow_motion_R_walk_0",
+        "file": "shadow_R_walk_0.png",
+        "w": 58,
+        "h": 25,
+        "reg": [
+          18,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "1f8ad1aaa093b8bd146aa86198229f9abf7c9551a867587e92e74c61e7a3bdd8"
+      }
+    },
+    "R_walk_1": {
+      "id": "R_walk_1",
+      "key": "motion_R_walk_1",
+      "file": "R_walk_1.png",
+      "team": "R",
+      "group": "walk",
+      "index": 1,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": 0.25,
+      "contactPoints": [
+        {
+          "x": -3.5,
+          "y": 0.25,
+          "width": 8
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 439,
+      "bodyCentre": [
+        0.34631264236902126,
+        -16.687250854214124
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        444,
+        0,
+        443,
+        444
+      ],
+      "fit": 0.08002481389578164,
+      "coreY": 40.87779156327544,
+      "offset": [
+        14.092257430584482,
+        14.549627791563278
+      ],
+      "masterFile": "artwork/hd-game-animation/R/walk.png",
+      "masterSha256": "2c9b209715840e3971bf33ab53cf303ecec50668c101ee58df7590b424d5ef5d",
+      "sha256": "f651eda92e098bdc112597f025305903d71eca274bb7db1ae7d5bbf46d091435",
+      "shadow": {
+        "key": "hd_shadow_motion_R_walk_1",
+        "file": "shadow_R_walk_1.png",
+        "w": 57,
+        "h": 26,
+        "reg": [
+          17,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "881d1ed85c1653e5d7f748951450d0c9028b9f787c5f4f5bb2806bd221724cfd"
+      }
+    },
+    "R_walk_2": {
+      "id": "R_walk_2",
+      "key": "motion_R_walk_2",
+      "file": "R_walk_2.png",
+      "team": "R",
+      "group": "walk",
+      "index": 2,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": 0,
+      "contactPoints": [
+        {
+          "x": -0.25,
+          "y": 0,
+          "width": 8
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 435.75,
+      "bodyCentre": [
+        -0.9284279977051071,
+        -17.030263912794034
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        887,
+        0,
+        444,
+        444
+      ],
+      "fit": 0.08002481389578164,
+      "coreY": 40.87779156327544,
+      "offset": [
+        12.983476537906,
+        14.229528535980151
+      ],
+      "masterFile": "artwork/hd-game-animation/R/walk.png",
+      "masterSha256": "2c9b209715840e3971bf33ab53cf303ecec50668c101ee58df7590b424d5ef5d",
+      "sha256": "835c920f16a0cddbd74a8bad41589de112a5ad14c688b3c6987fc7a23447df5f",
+      "shadow": {
+        "key": "hd_shadow_motion_R_walk_2",
+        "file": "shadow_R_walk_2.png",
+        "w": 56,
+        "h": 25,
+        "reg": [
+          17,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "3d94968bf92983b8e2c50558a7d8969c6398ee3401881df05eca8951508f73a8"
+      }
+    },
+    "R_walk_3": {
+      "id": "R_walk_3",
+      "key": "motion_R_walk_3",
+      "file": "R_walk_3.png",
+      "team": "R",
+      "group": "walk",
+      "index": 3,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": 0,
+      "contactPoints": [
+        {
+          "x": -5,
+          "y": 0,
+          "width": 3.5
+        },
+        {
+          "x": 4.25,
+          "y": -0.5,
+          "width": 1.75
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 441.3125,
+      "bodyCentre": [
+        0.6266817731199552,
+        -16.688464806684607
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        1331,
+        0,
+        443,
+        444
+      ],
+      "fit": 0.08002481389578164,
+      "coreY": 40.87779156327544,
+      "offset": [
+        14.502904989012215,
+        14.549627791563278
+      ],
+      "masterFile": "artwork/hd-game-animation/R/walk.png",
+      "masterSha256": "2c9b209715840e3971bf33ab53cf303ecec50668c101ee58df7590b424d5ef5d",
+      "sha256": "b3ba047937b33a0d96b3259dc2f5fdb12b309207a3e910b0b29d8192f9f6da2b",
+      "shadow": {
+        "key": "hd_shadow_motion_R_walk_3",
+        "file": "shadow_R_walk_3.png",
+        "w": 57,
+        "h": 26,
+        "reg": [
+          16,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "061003576772837b1d90d113961625baf9ea8005ff75c22f61087ea6e047e3ef"
+      }
+    },
+    "R_walk_4": {
+      "id": "R_walk_4",
+      "key": "motion_R_walk_4",
+      "file": "R_walk_4.png",
+      "team": "R",
+      "group": "walk",
+      "index": 4,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": 0,
+      "contactPoints": [
+        {
+          "x": -5.25,
+          "y": 0,
+          "width": 6.25
+        },
+        {
+          "x": 3.25,
+          "y": -0.5,
+          "width": 3.25
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 458.0625,
+      "bodyCentre": [
+        -0.2410629008050229,
+        -16.50023877745941
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        0,
+        444,
+        444,
+        443
+      ],
+      "fit": 0.08002481389578164,
+      "coreY": 40.87779156327544,
+      "offset": [
+        13.486443977858368,
+        14.389578163771713
+      ],
+      "masterFile": "artwork/hd-game-animation/R/walk.png",
+      "masterSha256": "2c9b209715840e3971bf33ab53cf303ecec50668c101ee58df7590b424d5ef5d",
+      "sha256": "a80ab610a817a7372873e374af89dce7b1cb22a0dd097553a3a0b4fc099cbb86",
+      "shadow": {
+        "key": "hd_shadow_motion_R_walk_4",
+        "file": "shadow_R_walk_4.png",
+        "w": 58,
+        "h": 26,
+        "reg": [
+          18,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "d71110b33fd028515ec9cfe869f1ffd8727439084e2820c334ac3940d4920f8f"
+      }
+    },
+    "R_walk_5": {
+      "id": "R_walk_5",
+      "key": "motion_R_walk_5",
+      "file": "R_walk_5.png",
+      "team": "R",
+      "group": "walk",
+      "index": 5,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": 0,
+      "contactPoints": [
+        {
+          "x": 3.25,
+          "y": 0,
+          "width": 7.5
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 442.6875,
+      "bodyCentre": [
+        -0.5968163207680348,
+        -16.76323591698433
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        444,
+        444,
+        443,
+        443
+      ],
+      "fit": 0.08002481389578164,
+      "coreY": 40.87779156327544,
+      "offset": [
+        13.094990941585465,
+        14.389578163771713
+      ],
+      "masterFile": "artwork/hd-game-animation/R/walk.png",
+      "masterSha256": "2c9b209715840e3971bf33ab53cf303ecec50668c101ee58df7590b424d5ef5d",
+      "sha256": "0f787da46f937747b292432083b299e23720854bff7c0052e66678034e96ffe4",
+      "shadow": {
+        "key": "hd_shadow_motion_R_walk_5",
+        "file": "shadow_R_walk_5.png",
+        "w": 57,
+        "h": 25,
+        "reg": [
+          18,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "49c2e31d8a98cdb47b0b6563a955aa32de676f39e395836c7aefbd80ac720593"
+      }
+    },
+    "R_walk_6": {
+      "id": "R_walk_6",
+      "key": "motion_R_walk_6",
+      "file": "R_walk_6.png",
+      "team": "R",
+      "group": "walk",
+      "index": 6,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": 0,
+      "contactPoints": [
+        {
+          "x": 2,
+          "y": 0,
+          "width": 7.75
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 447.5625,
+      "bodyCentre": [
+        -0.49113252339058633,
+        -16.679444211702275
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        887,
+        444,
+        444,
+        443
+      ],
+      "fit": 0.08002481389578164,
+      "coreY": 40.87779156327544,
+      "offset": [
+        13.492154624341108,
+        14.389578163771713
+      ],
+      "masterFile": "artwork/hd-game-animation/R/walk.png",
+      "masterSha256": "2c9b209715840e3971bf33ab53cf303ecec50668c101ee58df7590b424d5ef5d",
+      "sha256": "620e9b100200895b5ee612af1c1107a0b5b935f9c59ede253ede57fbd9fc72f6",
+      "shadow": {
+        "key": "hd_shadow_motion_R_walk_6",
+        "file": "shadow_R_walk_6.png",
+        "w": 58,
+        "h": 25,
+        "reg": [
+          18,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "76047646f8951d181176bcd1a83e64f3f32a5d8b76b955db9e21d292fecf0f31"
+      }
+    },
+    "R_walk_7": {
+      "id": "R_walk_7",
+      "key": "motion_R_walk_7",
+      "file": "R_walk_7.png",
+      "team": "R",
+      "group": "walk",
+      "index": 7,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": 0,
+      "contactPoints": [
+        {
+          "x": -6.75,
+          "y": 0,
+          "width": 4
+        },
+        {
+          "x": 3.5,
+          "y": -0.5,
+          "width": 3.5
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 461.3125,
+      "bodyCentre": [
+        -0.19076005961251852,
+        -16.431208508332205
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        1331,
+        444,
+        443,
+        443
+      ],
+      "fit": 0.08002481389578164,
+      "coreY": 40.87779156327544,
+      "offset": [
+        13.753647858051593,
+        14.389578163771713
+      ],
+      "masterFile": "artwork/hd-game-animation/R/walk.png",
+      "masterSha256": "2c9b209715840e3971bf33ab53cf303ecec50668c101ee58df7590b424d5ef5d",
+      "sha256": "ca22425ff80badde7482a87d159084783ca742610bc6104904ebc2c04fbb04f2",
+      "shadow": {
+        "key": "hd_shadow_motion_R_walk_7",
+        "file": "shadow_R_walk_7.png",
+        "w": 60,
+        "h": 26,
+        "reg": [
+          19,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "be4193fddfeea4d6f6ea8a6a757aa03180a70bf9cc93c24f26702ee39543c30d"
+      }
+    },
+    "R_strafe_0": {
+      "id": "R_strafe_0",
+      "key": "motion_R_strafe_0",
+      "file": "R_strafe_0.png",
+      "team": "R",
+      "group": "strafe",
+      "index": 0,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -0.25,
+      "contactPoints": [
+        {
+          "x": -4.5,
+          "y": -0.25,
+          "width": 8.5
+        },
+        {
+          "x": 3.5,
+          "y": -0.25,
+          "width": 7
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 501.25,
+      "bodyCentre": [
+        0.020293017456360474,
+        -16.160816708229426
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        0,
+        0,
+        444,
+        444
+      ],
+      "fit": 0.083984375,
+      "coreY": 41.533203125,
+      "offset": [
+        12.34996384671005,
+        14.322265625
+      ],
+      "masterFile": "artwork/hd-game-animation/R/strafe.png",
+      "masterSha256": "a25cb7d740d91435680296821fdc0d823c708bab79dbd7a287849ca5b499448b",
+      "sha256": "ea1e55f72ceb4719a2906307f306da2ced07e96f3cc033fc67d3e48b8a64453a",
+      "shadow": {
+        "key": "hd_shadow_motion_R_strafe_0",
+        "file": "shadow_R_strafe_0.png",
+        "w": 60,
+        "h": 26,
+        "reg": [
+          19,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "61cb448a67d91c07992f0ec537aab7078e386cdd18361e88a94a646382cebae0"
+      }
+    },
+    "R_strafe_1": {
+      "id": "R_strafe_1",
+      "key": "motion_R_strafe_1",
+      "file": "R_strafe_1.png",
+      "team": "R",
+      "group": "strafe",
+      "index": 1,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -0.25,
+      "contactPoints": [
+        {
+          "x": 3.25,
+          "y": -0.25,
+          "width": 7
+        },
+        {
+          "x": -6,
+          "y": -1.25,
+          "width": 1
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 495.0625,
+      "bodyCentre": [
+        -0.5264171190506239,
+        -16.519031687918194
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        444,
+        0,
+        443,
+        444
+      ],
+      "fit": 0.083984375,
+      "coreY": 41.533203125,
+      "offset": [
+        11.980060389641359,
+        14.322265625
+      ],
+      "masterFile": "artwork/hd-game-animation/R/strafe.png",
+      "masterSha256": "a25cb7d740d91435680296821fdc0d823c708bab79dbd7a287849ca5b499448b",
+      "sha256": "2b4d4c2bcb5ad7b416bc8cab36b1bfcbeea145219d2cd9750e607f2d9187f9aa",
+      "shadow": {
+        "key": "hd_shadow_motion_R_strafe_1",
+        "file": "shadow_R_strafe_1.png",
+        "w": 60,
+        "h": 25,
+        "reg": [
+          19,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "95010c6754c65963284b9dbed0c905d5a17b91cc312a4aee9dec627f56c71476"
+      }
+    },
+    "R_strafe_2": {
+      "id": "R_strafe_2",
+      "key": "motion_R_strafe_2",
+      "file": "R_strafe_2.png",
+      "team": "R",
+      "group": "strafe",
+      "index": 2,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -0.25,
+      "contactPoints": [
+        {
+          "x": -8,
+          "y": -0.5,
+          "width": 8
+        },
+        {
+          "x": 4.25,
+          "y": -0.25,
+          "width": 7
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 504.4375,
+      "bodyCentre": [
+        -0.35714285714285765,
+        -16.18157601288564
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        887,
+        0,
+        444,
+        444
+      ],
+      "fit": 0.083984375,
+      "coreY": 41.533203125,
+      "offset": [
+        12.178011679777438,
+        14.23828125
+      ],
+      "masterFile": "artwork/hd-game-animation/R/strafe.png",
+      "masterSha256": "a25cb7d740d91435680296821fdc0d823c708bab79dbd7a287849ca5b499448b",
+      "sha256": "09f9db44d3d475be307b522a219509b23798d1d0c95d912a2e9f0f7e6d1904f6",
+      "shadow": {
+        "key": "hd_shadow_motion_R_strafe_2",
+        "file": "shadow_R_strafe_2.png",
+        "w": 60,
+        "h": 26,
+        "reg": [
+          19,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "4c2ce062519b6010cd4051547c7c508f72edd13c31c398c892a6d246ea0e23f9"
+      }
+    },
+    "R_strafe_3": {
+      "id": "R_strafe_3",
+      "key": "motion_R_strafe_3",
+      "file": "R_strafe_3.png",
+      "team": "R",
+      "group": "strafe",
+      "index": 3,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -0.25,
+      "contactPoints": [
+        {
+          "x": -4.75,
+          "y": -0.25,
+          "width": 7.5
+        },
+        {
+          "x": 2.5,
+          "y": -0.75,
+          "width": 3.25
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 481.25,
+      "bodyCentre": [
+        0.2592207792207759,
+        -16.749707792207793
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        1331,
+        0,
+        443,
+        444
+      ],
+      "fit": 0.083984375,
+      "coreY": 41.533203125,
+      "offset": [
+        12.90873480470307,
+        14.322265625
+      ],
+      "masterFile": "artwork/hd-game-animation/R/strafe.png",
+      "masterSha256": "a25cb7d740d91435680296821fdc0d823c708bab79dbd7a287849ca5b499448b",
+      "sha256": "0f22f3a0f0638535e01c06d21e9f4b75701b15b15eed384448aedce5cd090a02",
+      "shadow": {
+        "key": "hd_shadow_motion_R_strafe_3",
+        "file": "shadow_R_strafe_3.png",
+        "w": 59,
+        "h": 26,
+        "reg": [
+          18,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "5416d4dffbc7f547cc69c01a953f90fa2bd8dd7a03509ce10dac7e65cb836e79"
+      }
+    },
+    "R_strafe_4": {
+      "id": "R_strafe_4",
+      "key": "motion_R_strafe_4",
+      "file": "R_strafe_4.png",
+      "team": "R",
+      "group": "strafe",
+      "index": 4,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -0.25,
+      "contactPoints": [
+        {
+          "x": -3.75,
+          "y": -0.25,
+          "width": 14
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 486.6875,
+      "bodyCentre": [
+        0.2367086169256467,
+        -16.377552330807756
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        0,
+        444,
+        444,
+        443
+      ],
+      "fit": 0.083984375,
+      "coreY": 41.533203125,
+      "offset": [
+        12.661218692022263,
+        14.490234375
+      ],
+      "masterFile": "artwork/hd-game-animation/R/strafe.png",
+      "masterSha256": "a25cb7d740d91435680296821fdc0d823c708bab79dbd7a287849ca5b499448b",
+      "sha256": "c4b572da1fbf5aec779cd16f66cfb3b446437981cf6f82c322ca2afd561d85c1",
+      "shadow": {
+        "key": "hd_shadow_motion_R_strafe_4",
+        "file": "shadow_R_strafe_4.png",
+        "w": 59,
+        "h": 26,
+        "reg": [
+          18,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "69b262570e1ca74309b561a5fa5e83c394ffbae8ab45319dce5369abc72329e5"
+      }
+    },
+    "R_strafe_5": {
+      "id": "R_strafe_5",
+      "key": "motion_R_strafe_5",
+      "file": "R_strafe_5.png",
+      "team": "R",
+      "group": "strafe",
+      "index": 5,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -0.25,
+      "contactPoints": [
+        {
+          "x": -4.5,
+          "y": -0.25,
+          "width": 8.75
+        },
+        {
+          "x": 3.75,
+          "y": -0.25,
+          "width": 6.75
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 497.25,
+      "bodyCentre": [
+        0.03698466566113723,
+        -16.12562845651081
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        444,
+        444,
+        443,
+        443
+      ],
+      "fit": 0.083984375,
+      "coreY": 41.533203125,
+      "offset": [
+        12.445175795270998,
+        14.490234375
+      ],
+      "masterFile": "artwork/hd-game-animation/R/strafe.png",
+      "masterSha256": "a25cb7d740d91435680296821fdc0d823c708bab79dbd7a287849ca5b499448b",
+      "sha256": "c33ae1bf01ac5339d68386e04c056a1ff273e86e0b4ae7dc2472543537724469",
+      "shadow": {
+        "key": "hd_shadow_motion_R_strafe_5",
+        "file": "shadow_R_strafe_5.png",
+        "w": 60,
+        "h": 26,
+        "reg": [
+          19,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "2775a68c4743c63f31fd33c84ba0882ef4f7b281de7d4205152b574741fd883c"
+      }
+    },
+    "R_strafe_6": {
+      "id": "R_strafe_6",
+      "key": "motion_R_strafe_6",
+      "file": "R_strafe_6.png",
+      "team": "R",
+      "group": "strafe",
+      "index": 6,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -0.25,
+      "contactPoints": [
+        {
+          "x": 3,
+          "y": -0.25,
+          "width": 7.25
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 488.0625,
+      "bodyCentre": [
+        -0.4652324241260075,
+        -16.412408759124087
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        887,
+        444,
+        444,
+        443
+      ],
+      "fit": 0.083984375,
+      "coreY": 41.533203125,
+      "offset": [
+        11.93422899687263,
+        14.490234375
+      ],
+      "masterFile": "artwork/hd-game-animation/R/strafe.png",
+      "masterSha256": "a25cb7d740d91435680296821fdc0d823c708bab79dbd7a287849ca5b499448b",
+      "sha256": "9dc7cf0490b2c8059ee02f6a6c5a20ef600fb9c623db0c27ecea0d95de0bd5a9",
+      "shadow": {
+        "key": "hd_shadow_motion_R_strafe_6",
+        "file": "shadow_R_strafe_6.png",
+        "w": 59,
+        "h": 25,
+        "reg": [
+          19,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "b76d4f57664ffcdefff3c65feedc5a23a9ef95e54680830c22a1da65152bcd9c"
+      }
+    },
+    "R_strafe_7": {
+      "id": "R_strafe_7",
+      "key": "motion_R_strafe_7",
+      "file": "R_strafe_7.png",
+      "team": "R",
+      "group": "strafe",
+      "index": 7,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -0.25,
+      "contactPoints": [
+        {
+          "x": 4.25,
+          "y": -0.25,
+          "width": 6.75
+        },
+        {
+          "x": -8.25,
+          "y": -0.75,
+          "width": 6.25
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 507.0625,
+      "bodyCentre": [
+        -0.5413225687168755,
+        -16.060982373967708
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        1331,
+        444,
+        443,
+        443
+      ],
+      "fit": 0.083984375,
+      "coreY": 41.533203125,
+      "offset": [
+        12.107961323446858,
+        14.40625
+      ],
+      "masterFile": "artwork/hd-game-animation/R/strafe.png",
+      "masterSha256": "a25cb7d740d91435680296821fdc0d823c708bab79dbd7a287849ca5b499448b",
+      "sha256": "28f702da2061dd83a996d0c72f179e6dd6947e4350550b129a7b8333500cfa15",
+      "shadow": {
+        "key": "hd_shadow_motion_R_strafe_7",
+        "file": "shadow_R_strafe_7.png",
+        "w": 61,
+        "h": 25,
+        "reg": [
+          20,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "f535a30d2493cec57c69171cfe3f743e768db061f2924e7336103e34bf8b62dc"
+      }
+    },
+    "R_gather": {
+      "id": "R_gather",
+      "key": "motion_R_gather",
+      "file": "R_gather.png",
+      "team": "R",
+      "group": "actions",
+      "index": 0,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -0.5,
+      "contactPoints": [
+        {
+          "x": -7,
+          "y": -0.5,
+          "width": 8.25
+        },
+        {
+          "x": 4,
+          "y": -1,
+          "width": 6.25
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 415.5625,
+      "bodyCentre": [
+        -1.8712964355542177,
+        -16.313317792149196
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        0,
+        0,
+        362,
+        362
+      ],
+      "fit": 0.09923076923076923,
+      "coreY": 40.06153846153846,
+      "offset": [
+        10.104094674556212,
+        14.46
+      ],
+      "masterFile": "artwork/hd-game-animation/R/actions.png",
+      "masterSha256": "97e4afd83f072fc0dc157166325e257a6c64e08bf067908bea130c0e9a815588",
+      "sha256": "1acf295846ce0480928879b51ab2d01b0304d30c174e6819b46d84b1895f04e0",
+      "shadow": {
+        "key": "hd_shadow_motion_R_gather",
+        "file": "shadow_R_gather.png",
+        "w": 54,
+        "h": 25,
+        "reg": [
+          18,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "6824bec022aa1ba85c66d12aa824372d47d9d00fec2ab289302dcaea766a40fd"
+      }
+    },
+    "R_cock": {
+      "id": "R_cock",
+      "key": "motion_R_cock",
+      "file": "R_cock.png",
+      "team": "R",
+      "group": "actions",
+      "index": 1,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -0.75,
+      "contactPoints": [
+        {
+          "x": -6,
+          "y": -0.75,
+          "width": 8.25
+        },
+        {
+          "x": 5.5,
+          "y": -1.5,
+          "width": 5.25
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 429.4375,
+      "bodyCentre": [
+        -0.10478824043079626,
+        -16.617086304759134
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        362,
+        0,
+        362,
+        362
+      ],
+      "fit": 0.09923076923076923,
+      "coreY": 40.06153846153846,
+      "offset": [
+        12.974534104948305,
+        14.162307692307692
+      ],
+      "masterFile": "artwork/hd-game-animation/R/actions.png",
+      "masterSha256": "97e4afd83f072fc0dc157166325e257a6c64e08bf067908bea130c0e9a815588",
+      "sha256": "545a00e96cca64eb8cd8f431c767a7e8ec2f7d701992f6991522876ebf1ac4da",
+      "shadow": {
+        "key": "hd_shadow_motion_R_cock",
+        "file": "shadow_R_cock.png",
+        "w": 59,
+        "h": 26,
+        "reg": [
+          18,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "b53207b269653f19a303f27a55d3d4d3f7e83cfb3f07c4d3ee6cbaef06c2d9d9"
+      }
+    },
+    "R_release": {
+      "id": "R_release",
+      "key": "motion_R_release",
+      "file": "R_release.png",
+      "team": "R",
+      "group": "actions",
+      "index": 2,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -1.25,
+      "contactPoints": [
+        {
+          "x": -8.75,
+          "y": -1.25,
+          "width": 8.25
+        },
+        {
+          "x": 4.5,
+          "y": -2,
+          "width": 5.75
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 430.75,
+      "bodyCentre": [
+        -2.2202553685432385,
+        -17.09460243760882
+      ],
+      "releasePoint": {
+        "x": -15.232062780269057,
+        "y": -18.570627802690584
+      },
+      "sourceRect": [
+        724,
+        0,
+        362,
+        362
+      ],
+      "fit": 0.09923076923076923,
+      "coreY": 40.06153846153846,
+      "offset": [
+        10.859143728611816,
+        13.467692307692307
+      ],
+      "masterFile": "artwork/hd-game-animation/R/actions.png",
+      "masterSha256": "97e4afd83f072fc0dc157166325e257a6c64e08bf067908bea130c0e9a815588",
+      "sha256": "b6ef1ba0c9c5b00e9e24b32e75e2cd86dec68394f3cfc35d6d1e55a804c77257",
+      "shadow": {
+        "key": "hd_shadow_motion_R_release",
+        "file": "shadow_R_release.png",
+        "w": 61,
+        "h": 26,
+        "reg": [
+          24,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "74562b132e21cac28fbc6c9fb945d87b64d97c76d2a27fc068e6e436a3343a38"
+      }
+    },
+    "R_follow": {
+      "id": "R_follow",
+      "key": "motion_R_follow",
+      "file": "R_follow.png",
+      "team": "R",
+      "group": "actions",
+      "index": 3,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -1,
+      "contactPoints": [
+        {
+          "x": -8,
+          "y": -1,
+          "width": 8.25
+        },
+        {
+          "x": 4.75,
+          "y": -1.5,
+          "width": 6.25
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 427.1875,
+      "bodyCentre": [
+        -1.7128383321141172,
+        -16.816678858814925
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        1086,
+        0,
+        362,
+        362
+      ],
+      "fit": 0.09923076923076923,
+      "coreY": 40.06153846153846,
+      "offset": [
+        12.09313005088297,
+        13.963846153846152
+      ],
+      "masterFile": "artwork/hd-game-animation/R/actions.png",
+      "masterSha256": "97e4afd83f072fc0dc157166325e257a6c64e08bf067908bea130c0e9a815588",
+      "sha256": "a1ae6562d278d34d21f53aab9d1df458a2e7e5ee97d486d5f12805beb176b190",
+      "shadow": {
+        "key": "hd_shadow_motion_R_follow",
+        "file": "shadow_R_follow.png",
+        "w": 59,
+        "h": 26,
+        "reg": [
+          21,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "c26a03c467e0e603332cd4879712cc17d783bd573d4b2934646ec9f0408e3810"
+      }
+    },
+    "R_recoil": {
+      "id": "R_recoil",
+      "key": "motion_R_recoil",
+      "file": "R_recoil.png",
+      "team": "R",
+      "group": "actions",
+      "index": 4,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -1.25,
+      "contactPoints": [
+        {
+          "x": -9,
+          "y": -1.25,
+          "width": 8.5
+        },
+        {
+          "x": 2.25,
+          "y": -1.75,
+          "width": 6.75
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 420.875,
+      "bodyCentre": [
+        -0.45515295515295406,
+        -17.129158004158004
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        0,
+        362,
+        362,
+        362
+      ],
+      "fit": 0.09923076923076923,
+      "coreY": 40.06153846153846,
+      "offset": [
+        11.22765876111718,
+        14.162307692307692
+      ],
+      "masterFile": "artwork/hd-game-animation/R/actions.png",
+      "masterSha256": "97e4afd83f072fc0dc157166325e257a6c64e08bf067908bea130c0e9a815588",
+      "sha256": "37e4f1cd3e3ff8be27344046d8ac82eb9458319dcb312d676ab669bbd5e48e11",
+      "shadow": {
+        "key": "hd_shadow_motion_R_recoil",
+        "file": "shadow_R_recoil.png",
+        "w": 58,
+        "h": 26,
+        "reg": [
+          19,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "2e23f7373c939d723d8991d18ffbea27d5dc53e4c3d65f83b280c4f1fc0532c0"
+      }
+    },
+    "R_fall": {
+      "id": "R_fall",
+      "key": "motion_R_fall",
+      "file": "R_fall.png",
+      "team": "R",
+      "group": "actions",
+      "index": 5,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": 0,
+      "contactPoints": [],
+      "noContact": true,
+      "bodyArea": 395.3125,
+      "bodyCentre": [
+        -0.657509881422925,
+        -17.781699604743082
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        362,
+        362,
+        362,
+        362
+      ],
+      "fit": 0.09923076923076923,
+      "coreY": 40.06153846153846,
+      "offset": [
+        11.54322874493927,
+        13.169999999999998
+      ],
+      "masterFile": "artwork/hd-game-animation/R/actions.png",
+      "masterSha256": "97e4afd83f072fc0dc157166325e257a6c64e08bf067908bea130c0e9a815588",
+      "sha256": "2be72d6f8442b01c39da24d4bf68f1d1cac2ef83978fdee5d80937974f6bd6bd",
+      "shadow": {
+        "key": "hd_shadow_motion_R_fall",
+        "file": "shadow_R_fall.png",
+        "w": 64,
+        "h": 25,
+        "reg": [
+          22,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "b569d5f181fa91a27c52287948c47f3848c37ccc62f41bb7f3b1c0368ce18657"
+      }
+    },
+    "R_kneel": {
+      "id": "R_kneel",
+      "key": "motion_R_kneel",
+      "file": "R_kneel.png",
+      "team": "R",
+      "group": "actions",
+      "index": 6,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -2,
+      "contactPoints": [
+        {
+          "x": -8.75,
+          "y": -2,
+          "width": 8.25
+        },
+        {
+          "x": 1.5,
+          "y": -2.25,
+          "width": 6.25
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 408.1875,
+      "bodyCentre": [
+        -4.244258153422141,
+        -15.758076864186187
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        724,
+        362,
+        362,
+        362
+      ],
+      "fit": 0.09923076923076923,
+      "coreY": 40.06153846153846,
+      "offset": [
+        9.81042894241963,
+        13.666153846153847
+      ],
+      "masterFile": "artwork/hd-game-animation/R/actions.png",
+      "masterSha256": "97e4afd83f072fc0dc157166325e257a6c64e08bf067908bea130c0e9a815588",
+      "sha256": "840b23e387d4386d10ff77ad96305caa06dd461c0f92464f74cb2138bf60ed48",
+      "shadow": {
+        "key": "hd_shadow_motion_R_kneel",
+        "file": "shadow_R_kneel.png",
+        "w": 56,
+        "h": 25,
+        "reg": [
+          21,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "cfa27c3fe0cfe603a27a97aacbaccdc161e39bc3a8d6dcd726e6f3143a518299"
+      }
+    },
+    "R_rise": {
+      "id": "R_rise",
+      "key": "motion_R_rise",
+      "file": "R_rise.png",
+      "team": "R",
+      "group": "actions",
+      "index": 7,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": 1,
+      "contactPoints": [
+        {
+          "x": -9.25,
+          "y": 1,
+          "width": 8.25
+        },
+        {
+          "x": 1,
+          "y": 0.25,
+          "width": 5.25
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 416.3125,
+      "bodyCentre": [
+        -4.3552394535355035,
+        -14.762010208677374
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        1086,
+        362,
+        362,
+        362
+      ],
+      "fit": 0.09923076923076923,
+      "coreY": 40.06153846153846,
+      "offset": [
+        9.389793466807163,
+        16.345384615384614
+      ],
+      "masterFile": "artwork/hd-game-animation/R/actions.png",
+      "masterSha256": "97e4afd83f072fc0dc157166325e257a6c64e08bf067908bea130c0e9a815588",
+      "sha256": "78ce185da9c7bf72393a01359b347664db3bdec792151213d6dbd37141e3dbd7",
+      "shadow": {
+        "key": "hd_shadow_motion_R_rise",
+        "file": "shadow_R_rise.png",
+        "w": 56,
+        "h": 25,
+        "reg": [
+          21,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "cf5b60f74b50af74ad88ced36c9469f539ac379cce94502c6f3571612ee3aae2"
+      }
+    },
+    "R_ready": {
+      "id": "R_ready",
+      "key": "motion_R_ready",
+      "file": "R_ready.png",
+      "team": "R",
+      "group": "actions",
+      "index": 8,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -0.25,
+      "contactPoints": [
+        {
+          "x": -6,
+          "y": -0.25,
+          "width": 8.5
+        },
+        {
+          "x": 4,
+          "y": -0.5,
+          "width": 7
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 432.5,
+      "bodyCentre": [
+        -0.6699060693641634,
+        -16.378793352601157
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        0,
+        724,
+        362,
+        362
+      ],
+      "fit": 0.09923076923076923,
+      "coreY": 40.06153846153846,
+      "offset": [
+        12.052892129578094,
+        14.360769230769229
+      ],
+      "masterFile": "artwork/hd-game-animation/R/actions.png",
+      "masterSha256": "97e4afd83f072fc0dc157166325e257a6c64e08bf067908bea130c0e9a815588",
+      "sha256": "a6f2a27966e23e8965e7cc910a33a96d10c3d0906b94f770ef56e3cb2d211899",
+      "shadow": {
+        "key": "hd_shadow_motion_R_ready",
+        "file": "shadow_R_ready.png",
+        "w": 54,
+        "h": 26,
+        "reg": [
+          17,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "14f6971916c0eab99e00ceba488a5886188ae1da29c2c378f9fc404f9590c3a2"
+      }
+    },
+    "R_blink": {
+      "id": "R_blink",
+      "key": "motion_R_blink",
+      "file": "R_blink.png",
+      "team": "R",
+      "group": "actions",
+      "index": 9,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -0.25,
+      "contactPoints": [
+        {
+          "x": -6,
+          "y": -0.25,
+          "width": 8.25
+        },
+        {
+          "x": 4,
+          "y": -0.75,
+          "width": 7
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 432.9375,
+      "bodyCentre": [
+        -0.7368629998556386,
+        -16.42269380684279
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        362,
+        724,
+        362,
+        362
+      ],
+      "fit": 0.09923076923076923,
+      "coreY": 40.06153846153846,
+      "offset": [
+        12.011095604395603,
+        14.360769230769229
+      ],
+      "masterFile": "artwork/hd-game-animation/R/actions.png",
+      "masterSha256": "97e4afd83f072fc0dc157166325e257a6c64e08bf067908bea130c0e9a815588",
+      "sha256": "31beb897e56a0ce4c98fc193ab17731bb148595ad5f136a316ce587d39856899",
+      "shadow": {
+        "key": "hd_shadow_motion_R_blink",
+        "file": "shadow_R_blink.png",
+        "w": 54,
+        "h": 26,
+        "reg": [
+          17,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "16dcd0341c71854fab345ba0c91e261f5aa631dcb20176bf5531eaf2f7195aac"
+      }
+    },
+    "R_shift": {
+      "id": "R_shift",
+      "key": "motion_R_shift",
+      "file": "R_shift.png",
+      "team": "R",
+      "group": "actions",
+      "index": 10,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -0.5,
+      "contactPoints": [
+        {
+          "x": -7,
+          "y": -0.5,
+          "width": 8.25
+        },
+        {
+          "x": 3.75,
+          "y": -1.25,
+          "width": 5.5
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 428,
+      "bodyCentre": [
+        -1.24496203271028,
+        -16.515515478971963
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        724,
+        724,
+        362,
+        362
+      ],
+      "fit": 0.09923076923076923,
+      "coreY": 40.06153846153846,
+      "offset": [
+        11.569866482227699,
+        13.963846153846152
+      ],
+      "masterFile": "artwork/hd-game-animation/R/actions.png",
+      "masterSha256": "97e4afd83f072fc0dc157166325e257a6c64e08bf067908bea130c0e9a815588",
+      "sha256": "a51a7f010bab55c9429ead86055fc1da180a905980006709b7c55f6b21a1414a",
+      "shadow": {
+        "key": "hd_shadow_motion_R_shift",
+        "file": "shadow_R_shift.png",
+        "w": 55,
+        "h": 26,
+        "reg": [
+          18,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "647cb4d7f22d4d70de5455e2d42248d572b30c6fc9ff44cac0b37167dfa84a17"
+      }
+    },
+    "R_settle": {
+      "id": "R_settle",
+      "key": "motion_R_settle",
+      "file": "R_settle.png",
+      "team": "R",
+      "group": "actions",
+      "index": 11,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -0.5,
+      "contactPoints": [
+        {
+          "x": -6.25,
+          "y": -0.5,
+          "width": 8.5
+        },
+        {
+          "x": 4,
+          "y": -0.75,
+          "width": 7
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 428.5,
+      "bodyCentre": [
+        -0.8934509918319726,
+        -16.50441219369895
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        1086,
+        724,
+        362,
+        362
+      ],
+      "fit": 0.09923076923076923,
+      "coreY": 40.06153846153846,
+      "offset": [
+        12.355195173882187,
+        14.06307692307692
+      ],
+      "masterFile": "artwork/hd-game-animation/R/actions.png",
+      "masterSha256": "97e4afd83f072fc0dc157166325e257a6c64e08bf067908bea130c0e9a815588",
+      "sha256": "52d8a49b41001c945261ef7c161b75d1a0f33f1e828f6e29b749236a7b540dd4",
+      "shadow": {
+        "key": "hd_shadow_motion_R_settle",
+        "file": "shadow_R_settle.png",
+        "w": 55,
+        "h": 26,
+        "reg": [
+          18,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "632cad07c675acbe1a6849879601cb1cd1a127f4424c65deb6c7c88b309b3226"
+      }
+    },
+    "G_walk_0": {
+      "id": "G_walk_0",
+      "key": "motion_G_walk_0",
+      "file": "G_walk_0.png",
+      "team": "G",
+      "group": "walk",
+      "index": 0,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -0.25,
+      "contactPoints": [
+        {
+          "x": -4.75,
+          "y": -1,
+          "width": 5.5
+        },
+        {
+          "x": 4,
+          "y": -0.25,
+          "width": 4.25
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 407.25,
+      "bodyCentre": [
+        -0.7099447513812152,
+        -16.729627071823206
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        0,
+        0,
+        444,
+        444
+      ],
+      "fit": 0.08435960591133004,
+      "coreY": 37.8768472906404,
+      "offset": [
+        12.727934994823766,
+        12.653325123152715
+      ],
+      "masterFile": "artwork/hd-game-animation/G/walk.png",
+      "masterSha256": "6b4a936f1653e75262897a5915a0de0727fdebe6f1b0eefc4e0b1b8adf902f80",
+      "sha256": "3b45f3278fe3041d3ca13b486412f2ec17cb5607d71aee3514fe5ee7e7d243ad",
+      "shadow": {
+        "key": "hd_shadow_motion_G_walk_0",
+        "file": "shadow_G_walk_0.png",
+        "w": 62,
+        "h": 26,
+        "reg": [
+          19,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "37236c2c8453debf8e9179ed683eff8cf9cd09849484204d542497d5c7052114"
+      }
+    },
+    "G_walk_1": {
+      "id": "G_walk_1",
+      "key": "motion_G_walk_1",
+      "file": "G_walk_1.png",
+      "team": "G",
+      "group": "walk",
+      "index": 1,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -0.5,
+      "contactPoints": [
+        {
+          "x": 0.25,
+          "y": -0.5,
+          "width": 8.5
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 360.5,
+      "bodyCentre": [
+        -1.9685332871012484,
+        -17.940837378640776
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        444,
+        0,
+        443,
+        444
+      ],
+      "fit": 0.08435960591133004,
+      "coreY": 37.8768472906404,
+      "offset": [
+        11.485277653381104,
+        12.315886699507395
+      ],
+      "masterFile": "artwork/hd-game-animation/G/walk.png",
+      "masterSha256": "6b4a936f1653e75262897a5915a0de0727fdebe6f1b0eefc4e0b1b8adf902f80",
+      "sha256": "5925f0a6b9db2517d8a9fb0a9d7fcef092e10b6c06ced4a78ec7366cfd291d4d",
+      "shadow": {
+        "key": "hd_shadow_motion_G_walk_1",
+        "file": "shadow_G_walk_1.png",
+        "w": 56,
+        "h": 26,
+        "reg": [
+          16,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "256ecc92e21a436c5c598d02982fab418cd7a4008245ec8a0d9a0c7700962c9b"
+      }
+    },
+    "G_walk_2": {
+      "id": "G_walk_2",
+      "key": "motion_G_walk_2",
+      "file": "G_walk_2.png",
+      "team": "G",
+      "group": "walk",
+      "index": 2,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -0.5,
+      "contactPoints": [
+        {
+          "x": -3,
+          "y": -0.5,
+          "width": 7.5
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 340.875,
+      "bodyCentre": [
+        -1.0979097909790987,
+        -18.508342500916758
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        887,
+        0,
+        444,
+        444
+      ],
+      "fit": 0.08435960591133004,
+      "coreY": 37.8768472906404,
+      "offset": [
+        12.577682260920898,
+        12.400246305418726
+      ],
+      "masterFile": "artwork/hd-game-animation/G/walk.png",
+      "masterSha256": "6b4a936f1653e75262897a5915a0de0727fdebe6f1b0eefc4e0b1b8adf902f80",
+      "sha256": "5d6ef128e28e646327beaad57470ee5940a473f44978236e65e7b975e113aa1e",
+      "shadow": {
+        "key": "hd_shadow_motion_G_walk_2",
+        "file": "shadow_G_walk_2.png",
+        "w": 58,
+        "h": 26,
+        "reg": [
+          17,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "23eef802cd78e4ce2070fd930f41595530e9c3e76a0ff94eb61bf20446ba5122"
+      }
+    },
+    "G_walk_3": {
+      "id": "G_walk_3",
+      "key": "motion_G_walk_3",
+      "file": "G_walk_3.png",
+      "team": "G",
+      "group": "walk",
+      "index": 3,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -1.25,
+      "contactPoints": [
+        {
+          "x": 5.75,
+          "y": -1.25,
+          "width": 3.75
+        },
+        {
+          "x": -2.75,
+          "y": -2.25,
+          "width": 1.5
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 362.3125,
+      "bodyCentre": [
+        0.9156460238054152,
+        -18.272339140934967
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        1331,
+        0,
+        443,
+        444
+      ],
+      "fit": 0.08435960591133004,
+      "coreY": 37.8768472906404,
+      "offset": [
+        14.28531708439344,
+        12.147167487684737
+      ],
+      "masterFile": "artwork/hd-game-animation/G/walk.png",
+      "masterSha256": "6b4a936f1653e75262897a5915a0de0727fdebe6f1b0eefc4e0b1b8adf902f80",
+      "sha256": "b0ead7395df7189cb2fa863c3891d4b6f177a29cfcffaf4a59af653e88c0c530",
+      "shadow": {
+        "key": "hd_shadow_motion_G_walk_3",
+        "file": "shadow_G_walk_3.png",
+        "w": 58,
+        "h": 26,
+        "reg": [
+          16,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "af6fde708797b26f398e153b21d7a19c5ef3e4e2dc691ec1c4f720a24ec43e60"
+      }
+    },
+    "G_walk_4": {
+      "id": "G_walk_4",
+      "key": "motion_G_walk_4",
+      "file": "G_walk_4.png",
+      "team": "G",
+      "group": "walk",
+      "index": 4,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -0.75,
+      "contactPoints": [
+        {
+          "x": 6.75,
+          "y": -0.75,
+          "width": 8
+        },
+        {
+          "x": -3.5,
+          "y": -1.75,
+          "width": 2.5
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 381.625,
+      "bodyCentre": [
+        0.6158696364231915,
+        -17.33688175565018
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        0,
+        444,
+        444,
+        443
+      ],
+      "fit": 0.08435960591133004,
+      "coreY": 37.8768472906404,
+      "offset": [
+        14.22333947400562,
+        12.231527093596064
+      ],
+      "masterFile": "artwork/hd-game-animation/G/walk.png",
+      "masterSha256": "6b4a936f1653e75262897a5915a0de0727fdebe6f1b0eefc4e0b1b8adf902f80",
+      "sha256": "3bebd14c8ba4f9c841426224417754caaa42209dc363719c3c56d28d48771e3d",
+      "shadow": {
+        "key": "hd_shadow_motion_G_walk_4",
+        "file": "shadow_G_walk_4.png",
+        "w": 59,
+        "h": 26,
+        "reg": [
+          16,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "539324b4b3455f66250529d35131defe62bbcf78f66703dfa105ac51677f107e"
+      }
+    },
+    "G_walk_5": {
+      "id": "G_walk_5",
+      "key": "motion_G_walk_5",
+      "file": "G_walk_5.png",
+      "team": "G",
+      "group": "walk",
+      "index": 5,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -1,
+      "contactPoints": [
+        {
+          "x": 3.5,
+          "y": -1,
+          "width": 8.75
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 357.6875,
+      "bodyCentre": [
+        -0.029573650183468914,
+        -18.299449589376202
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        444,
+        444,
+        443,
+        443
+      ],
+      "fit": 0.08435960591133004,
+      "coreY": 37.8768472906404,
+      "offset": [
+        13.664084360935856,
+        12.062807881773406
+      ],
+      "masterFile": "artwork/hd-game-animation/G/walk.png",
+      "masterSha256": "6b4a936f1653e75262897a5915a0de0727fdebe6f1b0eefc4e0b1b8adf902f80",
+      "sha256": "82fbbdc3b795b5d646b818bf67d39df55f19d1ff049fea113f7dfdeac5b16323",
+      "shadow": {
+        "key": "hd_shadow_motion_G_walk_5",
+        "file": "shadow_G_walk_5.png",
+        "w": 57,
+        "h": 26,
+        "reg": [
+          15,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "321fe1e48f53aa82902fd98a309014f3186a7bd971dd960b2c28ee4c2be6c657"
+      }
+    },
+    "G_walk_6": {
+      "id": "G_walk_6",
+      "key": "motion_G_walk_6",
+      "file": "G_walk_6.png",
+      "team": "G",
+      "group": "walk",
+      "index": 6,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": 0.5,
+      "contactPoints": [
+        {
+          "x": -2.75,
+          "y": 0.5,
+          "width": 7.25
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 363.875,
+      "bodyCentre": [
+        -0.26425626932325486,
+        -16.749098248024733
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        887,
+        444,
+        444,
+        443
+      ],
+      "fit": 0.08435960591133004,
+      "coreY": 37.8768472906404,
+      "offset": [
+        13.33777394137033,
+        13.665640394088676
+      ],
+      "masterFile": "artwork/hd-game-animation/G/walk.png",
+      "masterSha256": "6b4a936f1653e75262897a5915a0de0727fdebe6f1b0eefc4e0b1b8adf902f80",
+      "sha256": "1cfe893276a267f831fe0034f5caaceeabbe27afd09c258f86a5a2179263c74b",
+      "shadow": {
+        "key": "hd_shadow_motion_G_walk_6",
+        "file": "shadow_G_walk_6.png",
+        "w": 58,
+        "h": 26,
+        "reg": [
+          16,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "7a12f37891567c2090c6e9e5307c6db3984ef40b7f24e3f1342dc473f3f6218d"
+      }
+    },
+    "G_walk_7": {
+      "id": "G_walk_7",
+      "key": "motion_G_walk_7",
+      "file": "G_walk_7.png",
+      "team": "G",
+      "group": "walk",
+      "index": 7,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -0.75,
+      "contactPoints": [
+        {
+          "x": 6.5,
+          "y": -0.75,
+          "width": 3.75
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 373.3125,
+      "bodyCentre": [
+        0.677800100452032,
+        -17.71676711870082
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        1331,
+        444,
+        443,
+        443
+      ],
+      "fit": 0.08435960591133004,
+      "coreY": 37.8768472906404,
+      "offset": [
+        14.03397762377891,
+        12.231527093596064
+      ],
+      "masterFile": "artwork/hd-game-animation/G/walk.png",
+      "masterSha256": "6b4a936f1653e75262897a5915a0de0727fdebe6f1b0eefc4e0b1b8adf902f80",
+      "sha256": "92622124e697d4b716f21d38a6855752bf8fd425e3821f71e6e693ca3bcc5740",
+      "shadow": {
+        "key": "hd_shadow_motion_G_walk_7",
+        "file": "shadow_G_walk_7.png",
+        "w": 59,
+        "h": 26,
+        "reg": [
+          16,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "9d0ff25f994559c9baa399d246f8aa05ec991abb02d06b141c4bf990a84be77b"
+      }
+    },
+    "G_strafe_0": {
+      "id": "G_strafe_0",
+      "key": "motion_G_strafe_0",
+      "file": "G_strafe_0.png",
+      "team": "G",
+      "group": "strafe",
+      "index": 0,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -0.25,
+      "contactPoints": [
+        {
+          "x": -2.5,
+          "y": -0.25,
+          "width": 7.25
+        },
+        {
+          "x": 5.25,
+          "y": -0.75,
+          "width": 5.75
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 401.5625,
+      "bodyCentre": [
+        0.6618677042801551,
+        -16.836964980544746
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        0,
+        0,
+        444,
+        444
+      ],
+      "fit": 0.08605527638190955,
+      "coreY": 40.16896984924623,
+      "offset": [
+        15.082669491852503,
+        13.061557788944725
+      ],
+      "masterFile": "artwork/hd-game-animation/G/strafe.png",
+      "masterSha256": "71f881b30e698f91da70499cd5a61f90c322bb8ab1da5d1bc166b36e60e69517",
+      "sha256": "b38c10bdb87bfb41a7949b456b142c66e22a9086eb609627453517fe1a161f5b",
+      "shadow": {
+        "key": "hd_shadow_motion_G_strafe_0",
+        "file": "shadow_G_strafe_0.png",
+        "w": 60,
+        "h": 26,
+        "reg": [
+          15,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "0eee7bc7556386cf2812a17b0fca174d9d4709d19b2716ca72e3c745fa400910"
+      }
+    },
+    "G_strafe_1": {
+      "id": "G_strafe_1",
+      "key": "motion_G_strafe_1",
+      "file": "G_strafe_1.png",
+      "team": "G",
+      "group": "strafe",
+      "index": 1,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -0.25,
+      "contactPoints": [
+        {
+          "x": -3,
+          "y": -0.25,
+          "width": 6.75
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 428.9375,
+      "bodyCentre": [
+        0.37578318519597786,
+        -16.66967798338919
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        444,
+        0,
+        443,
+        444
+      ],
+      "fit": 0.08605527638190955,
+      "coreY": 40.16896984924623,
+      "offset": [
+        14.420401579245787,
+        12.975502512562816
+      ],
+      "masterFile": "artwork/hd-game-animation/G/strafe.png",
+      "masterSha256": "71f881b30e698f91da70499cd5a61f90c322bb8ab1da5d1bc166b36e60e69517",
+      "sha256": "46d66aad760bd849ffb032be937efc6e40cadc4ea0804c0b5ffefabb18177fb4",
+      "shadow": {
+        "key": "hd_shadow_motion_G_strafe_1",
+        "file": "shadow_G_strafe_1.png",
+        "w": 62,
+        "h": 26,
+        "reg": [
+          17,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "8e87486f1dc7698e4517c8e018b1aababd8ec6ed5f8a26025f636247a5d205f6"
+      }
+    },
+    "G_strafe_2": {
+      "id": "G_strafe_2",
+      "key": "motion_G_strafe_2",
+      "file": "G_strafe_2.png",
+      "team": "G",
+      "group": "strafe",
+      "index": 2,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -0.25,
+      "contactPoints": [
+        {
+          "x": 4.5,
+          "y": -0.25,
+          "width": 8.75
+        },
+        {
+          "x": -7.25,
+          "y": -0.75,
+          "width": 3.5
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 423.5625,
+      "bodyCentre": [
+        -2.6707245093699292,
+        -16.557400029511584
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        887,
+        0,
+        444,
+        444
+      ],
+      "fit": 0.08605527638190955,
+      "coreY": 40.16896984924623,
+      "offset": [
+        11.331282519683764,
+        13.319723618090453
+      ],
+      "masterFile": "artwork/hd-game-animation/G/strafe.png",
+      "masterSha256": "71f881b30e698f91da70499cd5a61f90c322bb8ab1da5d1bc166b36e60e69517",
+      "sha256": "e982ce6548701244f3b893507aa4f99f0777de1923bf7ead7698a5edb0057a4c",
+      "shadow": {
+        "key": "hd_shadow_motion_G_strafe_2",
+        "file": "shadow_G_strafe_2.png",
+        "w": 63,
+        "h": 26,
+        "reg": [
+          21,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "656ad5177ab836d34d70f6ebfa981fc2324554107c9ddac713636b9a46db25a6"
+      }
+    },
+    "G_strafe_3": {
+      "id": "G_strafe_3",
+      "key": "motion_G_strafe_3",
+      "file": "G_strafe_3.png",
+      "team": "G",
+      "group": "strafe",
+      "index": 3,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": 0.5,
+      "contactPoints": [
+        {
+          "x": 3,
+          "y": 0.5,
+          "width": 8.75
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 404.5,
+      "bodyCentre": [
+        -3.6339230531520386,
+        -16.0528043881335
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        1331,
+        0,
+        443,
+        444
+      ],
+      "fit": 0.08605527638190955,
+      "coreY": 40.16896984924623,
+      "offset": [
+        10.040066606832898,
+        14.180276381909547
+      ],
+      "masterFile": "artwork/hd-game-animation/G/strafe.png",
+      "masterSha256": "71f881b30e698f91da70499cd5a61f90c322bb8ab1da5d1bc166b36e60e69517",
+      "sha256": "2e0a9497e650334a0f611fad63a2d23403c3927bef1ee912c855de1be9f0615e",
+      "shadow": {
+        "key": "hd_shadow_motion_G_strafe_3",
+        "file": "shadow_G_strafe_3.png",
+        "w": 62,
+        "h": 26,
+        "reg": [
+          21,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "ef2e88929d6b1a9396b6b8598582e593fb7dfde1b1097e996c4386b94b13b3ba"
+      }
+    },
+    "G_strafe_4": {
+      "id": "G_strafe_4",
+      "key": "motion_G_strafe_4",
+      "file": "G_strafe_4.png",
+      "team": "G",
+      "group": "strafe",
+      "index": 4,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -0.25,
+      "contactPoints": [
+        {
+          "x": 4.75,
+          "y": -0.25,
+          "width": 8.75
+        },
+        {
+          "x": -4.25,
+          "y": -0.5,
+          "width": 5.75
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 408.6875,
+      "bodyCentre": [
+        -1.8653463832390287,
+        -16.22633430188102
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        0,
+        444,
+        444,
+        443
+      ],
+      "fit": 0.08605527638190955,
+      "coreY": 40.16896984924623,
+      "offset": [
+        11.820783832457085,
+        13.66394472361809
+      ],
+      "masterFile": "artwork/hd-game-animation/G/strafe.png",
+      "masterSha256": "71f881b30e698f91da70499cd5a61f90c322bb8ab1da5d1bc166b36e60e69517",
+      "sha256": "73c74c10b798c94711dd3655967890123f6686eb7d93f191478d7ce432072703",
+      "shadow": {
+        "key": "hd_shadow_motion_G_strafe_4",
+        "file": "shadow_G_strafe_4.png",
+        "w": 61,
+        "h": 26,
+        "reg": [
+          19,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "248da668377f2b3bc752fbfe1fa62245987da4b95994aa66302646112fb7df53"
+      }
+    },
+    "G_strafe_5": {
+      "id": "G_strafe_5",
+      "key": "motion_G_strafe_5",
+      "file": "G_strafe_5.png",
+      "team": "G",
+      "group": "strafe",
+      "index": 5,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": 0.25,
+      "contactPoints": [
+        {
+          "x": -4.75,
+          "y": 0.25,
+          "width": 8.25
+        },
+        {
+          "x": 3,
+          "y": -0.75,
+          "width": 2.25
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 397.625,
+      "bodyCentre": [
+        -2.2646180446400486,
+        -16.50589437283873
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        444,
+        444,
+        443,
+        443
+      ],
+      "fit": 0.08605527638190955,
+      "coreY": 40.16896984924623,
+      "offset": [
+        12.124855182407398,
+        13.66394472361809
+      ],
+      "masterFile": "artwork/hd-game-animation/G/strafe.png",
+      "masterSha256": "71f881b30e698f91da70499cd5a61f90c322bb8ab1da5d1bc166b36e60e69517",
+      "sha256": "3e94ec0e96bd875a943409bf2e3ed805744bfd1d46603c43bffe9263cffe2078",
+      "shadow": {
+        "key": "hd_shadow_motion_G_strafe_5",
+        "file": "shadow_G_strafe_5.png",
+        "w": 60,
+        "h": 26,
+        "reg": [
+          18,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "61372bdde25cc55b8e89c42e88b566252e5a4fb02a85a9509beec1634f969d58"
+      }
+    },
+    "G_strafe_6": {
+      "id": "G_strafe_6",
+      "key": "motion_G_strafe_6",
+      "file": "G_strafe_6.png",
+      "team": "G",
+      "group": "strafe",
+      "index": 6,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -0.25,
+      "contactPoints": [
+        {
+          "x": -6,
+          "y": -0.25,
+          "width": 5
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 405.375,
+      "bodyCentre": [
+        -2.0463305581251916,
+        -16.840965155720014
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        887,
+        444,
+        444,
+        443
+      ],
+      "fit": 0.08605527638190955,
+      "coreY": 40.16896984924623,
+      "offset": [
+        12.212080433114679,
+        13.491834170854272
+      ],
+      "masterFile": "artwork/hd-game-animation/G/strafe.png",
+      "masterSha256": "71f881b30e698f91da70499cd5a61f90c322bb8ab1da5d1bc166b36e60e69517",
+      "sha256": "20ac52c8f49edf0c76c8b43bc3a971e088b30b3e917a7ae230d9b2aac94be478",
+      "shadow": {
+        "key": "hd_shadow_motion_G_strafe_6",
+        "file": "shadow_G_strafe_6.png",
+        "w": 61,
+        "h": 26,
+        "reg": [
+          19,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "152f82a12613542a66c319bbbe32b4fee7d376d5a8860586cd06deeb21bb558e"
+      }
+    },
+    "G_strafe_7": {
+      "id": "G_strafe_7",
+      "key": "motion_G_strafe_7",
+      "file": "G_strafe_7.png",
+      "team": "G",
+      "group": "strafe",
+      "index": 7,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -0.5,
+      "contactPoints": [
+        {
+          "x": -5.5,
+          "y": -0.5,
+          "width": 7.75
+        },
+        {
+          "x": 9,
+          "y": -1.5,
+          "width": 2.25
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 421.9375,
+      "bodyCentre": [
+        0.718634276403499,
+        -16.627795882091544
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        1331,
+        444,
+        443,
+        443
+      ],
+      "fit": 0.08605527638190955,
+      "coreY": 40.16896984924623,
+      "offset": [
+        14.98036100299591,
+        12.889447236180906
+      ],
+      "masterFile": "artwork/hd-game-animation/G/strafe.png",
+      "masterSha256": "71f881b30e698f91da70499cd5a61f90c322bb8ab1da5d1bc166b36e60e69517",
+      "sha256": "09b8ebe5df515b257383fab5e98501dde48b03eecafa82c3d882751c497538b3",
+      "shadow": {
+        "key": "hd_shadow_motion_G_strafe_7",
+        "file": "shadow_G_strafe_7.png",
+        "w": 61,
+        "h": 26,
+        "reg": [
+          16,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "b870b1c3f44848600654c3221d82943779fc7bcb80e22899af37b0b3c506e179"
+      }
+    },
+    "G_gather": {
+      "id": "G_gather",
+      "key": "motion_G_gather",
+      "file": "G_gather.png",
+      "team": "G",
+      "group": "actions",
+      "index": 0,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -1.5,
+      "contactPoints": [
+        {
+          "x": -6,
+          "y": -1.5,
+          "width": 6.25
+        },
+        {
+          "x": 6,
+          "y": -2,
+          "width": 5.75
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 352.875,
+      "bodyCentre": [
+        -0.4859192348565351,
+        -18.47972015586256
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        0,
+        0,
+        362,
+        362
+      ],
+      "fit": 0.10254491017964072,
+      "coreY": 39.89895209580838,
+      "offset": [
+        13.34198583964147,
+        11.186377245508982
+      ],
+      "masterFile": "artwork/hd-game-animation/G/actions.png",
+      "masterSha256": "01e62d863ff4ef5a7fc3edf153da53339174de00209df504c7202c67e171eaa1",
+      "sha256": "db651dbd853612effd2fa42a030e5fe4b1405dc2244f549a77467746f154fe9d",
+      "shadow": {
+        "key": "hd_shadow_motion_G_gather",
+        "file": "shadow_G_gather.png",
+        "w": 58,
+        "h": 26,
+        "reg": [
+          17,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "4c75d788a0c8a7a09b949e018fff9590b3d3710ad584b5d25534fc534d24e8a5"
+      }
+    },
+    "G_cock": {
+      "id": "G_cock",
+      "key": "motion_G_cock",
+      "file": "G_cock.png",
+      "team": "G",
+      "group": "actions",
+      "index": 1,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -0.25,
+      "contactPoints": [
+        {
+          "x": -7,
+          "y": -0.25,
+          "width": 6.25
+        },
+        {
+          "x": 6,
+          "y": -0.75,
+          "width": 6
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 410.8125,
+      "bodyCentre": [
+        -1.18682488970029,
+        -16.411303818652062
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        362,
+        0,
+        362,
+        362
+      ],
+      "fit": 0.10254491017964072,
+      "coreY": 39.89895209580838,
+      "offset": [
+        12.809016380548886,
+        12.41691616766467
+      ],
+      "masterFile": "artwork/hd-game-animation/G/actions.png",
+      "masterSha256": "01e62d863ff4ef5a7fc3edf153da53339174de00209df504c7202c67e171eaa1",
+      "sha256": "c216d53d649fa008f2ae06ae217d0524f81cca715cc6485e03408b53c37c8763",
+      "shadow": {
+        "key": "hd_shadow_motion_G_cock",
+        "file": "shadow_G_cock.png",
+        "w": 62,
+        "h": 26,
+        "reg": [
+          21,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "64b6093acf9477a20186cd1a554471557e05571ad685759c27024afef6baeff7"
+      }
+    },
+    "G_release": {
+      "id": "G_release",
+      "key": "motion_G_release",
+      "file": "G_release.png",
+      "team": "G",
+      "group": "actions",
+      "index": 2,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -0.25,
+      "contactPoints": [
+        {
+          "x": -5.5,
+          "y": -0.25,
+          "width": 6
+        },
+        {
+          "x": 7.75,
+          "y": -1,
+          "width": 5.5
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 386.5,
+      "bodyCentre": [
+        0.9153864812419172,
+        -16.41910575679172
+      ],
+      "releasePoint": {
+        "x": 12.835125448028677,
+        "y": -17.17652329749104
+      },
+      "sourceRect": [
+        724,
+        0,
+        362,
+        362
+      ],
+      "fit": 0.10254491017964072,
+      "coreY": 39.89895209580838,
+      "offset": [
+        14.345241129311624,
+        12.314371257485028
+      ],
+      "masterFile": "artwork/hd-game-animation/G/actions.png",
+      "masterSha256": "01e62d863ff4ef5a7fc3edf153da53339174de00209df504c7202c67e171eaa1",
+      "sha256": "ab3788a26cb7e37b975b237afee37b1c5cdb50edc548fda0661510c68b821649",
+      "shadow": {
+        "key": "hd_shadow_motion_G_release",
+        "file": "shadow_G_release.png",
+        "w": 62,
+        "h": 27,
+        "reg": [
+          16,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "c6b9697b75bf135e0d71181c62aa1448cc83a02959f26862b6c74da9252c71d4"
+      }
+    },
+    "G_follow": {
+      "id": "G_follow",
+      "key": "motion_G_follow",
+      "file": "G_follow.png",
+      "team": "G",
+      "group": "actions",
+      "index": 3,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -0.25,
+      "contactPoints": [
+        {
+          "x": 6,
+          "y": -0.5,
+          "width": 8.5
+        },
+        {
+          "x": -5,
+          "y": -0.25,
+          "width": 5.25
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 377.8125,
+      "bodyCentre": [
+        0.7703473945409414,
+        -16.3287841191067
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        1086,
+        0,
+        362,
+        362
+      ],
+      "fit": 0.10254491017964072,
+      "coreY": 39.89895209580838,
+      "offset": [
+        14.091011327099494,
+        12.62200598802395
+      ],
+      "masterFile": "artwork/hd-game-animation/G/actions.png",
+      "masterSha256": "01e62d863ff4ef5a7fc3edf153da53339174de00209df504c7202c67e171eaa1",
+      "sha256": "14d723ed2d4756f4369857cc8e714377d6a5c853b35152643f99318c3199fe30",
+      "shadow": {
+        "key": "hd_shadow_motion_G_follow",
+        "file": "shadow_G_follow.png",
+        "w": 58,
+        "h": 25,
+        "reg": [
+          16,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "1fca4aa23047bbc1ee32b7f995f1927fbcdb629a7734038977fe0a65b826e632"
+      }
+    },
+    "G_recoil": {
+      "id": "G_recoil",
+      "key": "motion_G_recoil",
+      "file": "G_recoil.png",
+      "team": "G",
+      "group": "actions",
+      "index": 4,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -0.25,
+      "contactPoints": [
+        {
+          "x": -0.25,
+          "y": -0.25,
+          "width": 6.5
+        },
+        {
+          "x": 11,
+          "y": -0.75,
+          "width": 6.5
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 389.375,
+      "bodyCentre": [
+        2.8456661316211864,
+        -15.814125200642053
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        0,
+        362,
+        362,
+        362
+      ],
+      "fit": 0.10254491017964072,
+      "coreY": 39.89895209580838,
+      "offset": [
+        15.828352680304917,
+        12.724550898203592
+      ],
+      "masterFile": "artwork/hd-game-animation/G/actions.png",
+      "masterSha256": "01e62d863ff4ef5a7fc3edf153da53339174de00209df504c7202c67e171eaa1",
+      "sha256": "812fa9a3ba7fbfb97c3274ba440236070cfc12f3ced5bb4694b33b4fd5f5202d",
+      "shadow": {
+        "key": "hd_shadow_motion_G_recoil",
+        "file": "shadow_G_recoil.png",
+        "w": 59,
+        "h": 26,
+        "reg": [
+          14,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "1333bb7263c57a126c9b13dc9a113626c3625f37c328af9e282fbbdb0232775b"
+      }
+    },
+    "G_fall": {
+      "id": "G_fall",
+      "key": "motion_G_fall",
+      "file": "G_fall.png",
+      "team": "G",
+      "group": "actions",
+      "index": 5,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": 0,
+      "contactPoints": [],
+      "noContact": true,
+      "bodyArea": 383,
+      "bodyCentre": [
+        2.7795365535248067,
+        -16.77235639686684
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        362,
+        362,
+        362,
+        362
+      ],
+      "fit": 0.10254491017964072,
+      "coreY": 39.89895209580838,
+      "offset": [
+        19.140364975570332,
+        11.186377245508982
+      ],
+      "masterFile": "artwork/hd-game-animation/G/actions.png",
+      "masterSha256": "01e62d863ff4ef5a7fc3edf153da53339174de00209df504c7202c67e171eaa1",
+      "sha256": "73243914cb798a9eeb865d5b90825310d8c01874462c2be2c0115e0fa0d7862e",
+      "shadow": {
+        "key": "hd_shadow_motion_G_fall",
+        "file": "shadow_G_fall.png",
+        "w": 65,
+        "h": 26,
+        "reg": [
+          16,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "4ae42117be743e4708d343b6472b687c271deae746802ecbf6ffec24c1484699"
+      }
+    },
+    "G_kneel": {
+      "id": "G_kneel",
+      "key": "motion_G_kneel",
+      "file": "G_kneel.png",
+      "team": "G",
+      "group": "actions",
+      "index": 6,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -2.25,
+      "contactPoints": [
+        {
+          "x": 11,
+          "y": -2.25,
+          "width": 8.5
+        },
+        {
+          "x": -3,
+          "y": -2.5,
+          "width": 6.75
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 370.625,
+      "bodyCentre": [
+        2.8468381112984815,
+        -15.969772344013492
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        724,
+        362,
+        362,
+        362
+      ],
+      "fit": 0.10254491017964072,
+      "coreY": 39.89895209580838,
+      "offset": [
+        15.645086821038774,
+        11.28892215568862
+      ],
+      "masterFile": "artwork/hd-game-animation/G/actions.png",
+      "masterSha256": "01e62d863ff4ef5a7fc3edf153da53339174de00209df504c7202c67e171eaa1",
+      "sha256": "2bd07d0fe14a1e022d62589cd8ded678f8091a9e9b8cc0195e4658c42b8ae7c0",
+      "shadow": {
+        "key": "hd_shadow_motion_G_kneel",
+        "file": "shadow_G_kneel.png",
+        "w": 59,
+        "h": 24,
+        "reg": [
+          16,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "86e95c0401275f325b578b9ee853a035b939fb7770b8043b2d12f7e106777629"
+      }
+    },
+    "G_rise": {
+      "id": "G_rise",
+      "key": "motion_G_rise",
+      "file": "G_rise.png",
+      "team": "G",
+      "group": "actions",
+      "index": 7,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": 0,
+      "contactPoints": [
+        {
+          "x": -3.5,
+          "y": 0,
+          "width": 7
+        },
+        {
+          "x": 8.5,
+          "y": -0.75,
+          "width": 5.75
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 386.625,
+      "bodyCentre": [
+        1.7296314258001928,
+        -16.07949401875202
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        1086,
+        362,
+        362,
+        362
+      ],
+      "fit": 0.10254491017964072,
+      "coreY": 39.89895209580838,
+      "offset": [
+        15.109350931867102,
+        12.724550898203592
+      ],
+      "masterFile": "artwork/hd-game-animation/G/actions.png",
+      "masterSha256": "01e62d863ff4ef5a7fc3edf153da53339174de00209df504c7202c67e171eaa1",
+      "sha256": "5e8d8e31ce8a39804dc47d2e6f4d94f9459ad25fda34b3229a6288561e4b767b",
+      "shadow": {
+        "key": "hd_shadow_motion_G_rise",
+        "file": "shadow_G_rise.png",
+        "w": 59,
+        "h": 26,
+        "reg": [
+          15,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "69260f045de111b4021a75a1b9023355e03d9d97c285a3d963a753cc6001df49"
+      }
+    },
+    "G_ready": {
+      "id": "G_ready",
+      "key": "motion_G_ready",
+      "file": "G_ready.png",
+      "team": "G",
+      "group": "actions",
+      "index": 8,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -0.25,
+      "contactPoints": [
+        {
+          "x": -4,
+          "y": -0.25,
+          "width": 7.25
+        },
+        {
+          "x": 5.5,
+          "y": -0.5,
+          "width": 7.25
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 392,
+      "bodyCentre": [
+        -0.24816645408163396,
+        -16.747648278061224
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        0,
+        724,
+        362,
+        362
+      ],
+      "fit": 0.10254491017964072,
+      "coreY": 39.89895209580838,
+      "offset": [
+        13.312104489831434,
+        12.62200598802395
+      ],
+      "masterFile": "artwork/hd-game-animation/G/actions.png",
+      "masterSha256": "01e62d863ff4ef5a7fc3edf153da53339174de00209df504c7202c67e171eaa1",
+      "sha256": "782e338a0bb5a57fb0b827808ff2406927b878f0eac2059d8a740c7831164f9f",
+      "shadow": {
+        "key": "hd_shadow_motion_G_ready",
+        "file": "shadow_G_ready.png",
+        "w": 58,
+        "h": 26,
+        "reg": [
+          16,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "c6dca3bfe68617e814f63104e8739fd6367663e7c4f00ab9d5eb8d1cde2c0519"
+      }
+    },
+    "G_blink": {
+      "id": "G_blink",
+      "key": "motion_G_blink",
+      "file": "G_blink.png",
+      "team": "G",
+      "group": "actions",
+      "index": 9,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": -0.25,
+      "contactPoints": [
+        {
+          "x": -3.75,
+          "y": -0.25,
+          "width": 6.5
+        },
+        {
+          "x": 5.75,
+          "y": -0.75,
+          "width": 6.25
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 390.0625,
+      "bodyCentre": [
+        -0.22248037173529767,
+        -16.85439032206377
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        362,
+        724,
+        362,
+        362
+      ],
+      "fit": 0.10254491017964072,
+      "coreY": 39.89895209580838,
+      "offset": [
+        13.29822036511528,
+        12.519461077844309
+      ],
+      "masterFile": "artwork/hd-game-animation/G/actions.png",
+      "masterSha256": "01e62d863ff4ef5a7fc3edf153da53339174de00209df504c7202c67e171eaa1",
+      "sha256": "bd37c523901defa4249603ccf93571443b35f30ea4373a932b4d877e6f627d1a",
+      "shadow": {
+        "key": "hd_shadow_motion_G_blink",
+        "file": "shadow_G_blink.png",
+        "w": 58,
+        "h": 26,
+        "reg": [
+          16,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "c0ecc92623e241a55055349dcefe5afa59bb01cf86da3ecebf139c672bd78e18"
+      }
+    },
+    "G_shift": {
+      "id": "G_shift",
+      "key": "motion_G_shift",
+      "file": "G_shift.png",
+      "team": "G",
+      "group": "actions",
+      "index": 10,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": 0.25,
+      "contactPoints": [
+        {
+          "x": 4.25,
+          "y": 0,
+          "width": 7.75
+        },
+        {
+          "x": -4.75,
+          "y": 0.25,
+          "width": 6.5
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 388.125,
+      "bodyCentre": [
+        -0.9546698872785839,
+        -16.291022544283415
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        724,
+        724,
+        362,
+        362
+      ],
+      "fit": 0.10254491017964072,
+      "coreY": 39.89895209580838,
+      "offset": [
+        12.638282679923172,
+        13.134730538922156
+      ],
+      "masterFile": "artwork/hd-game-animation/G/actions.png",
+      "masterSha256": "01e62d863ff4ef5a7fc3edf153da53339174de00209df504c7202c67e171eaa1",
+      "sha256": "617c2c161e3282f3aedffc434cac34c3f809397d4c0bbde4ef31f81eb2a835e6",
+      "shadow": {
+        "key": "hd_shadow_motion_G_shift",
+        "file": "shadow_G_shift.png",
+        "w": 59,
+        "h": 26,
+        "reg": [
+          17,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "594d7b1afa6241671007430bd5c7d34c36ab79d2e25a5c0750d27835124d29f6"
+      }
+    },
+    "G_settle": {
+      "id": "G_settle",
+      "key": "motion_G_settle",
+      "file": "G_settle.png",
+      "team": "G",
+      "group": "actions",
+      "index": 11,
+      "pixelScale": 4,
+      "w": 64,
+      "h": 56,
+      "reg": [
+        32,
+        48
+      ],
+      "groundOffset": 0,
+      "contactPoints": [
+        {
+          "x": 4.75,
+          "y": -0.25,
+          "width": 7.75
+        },
+        {
+          "x": -5.5,
+          "y": 0,
+          "width": 7.5
+        }
+      ],
+      "noContact": false,
+      "bodyArea": 392.25,
+      "bodyCentre": [
+        -1.5714228808158062,
+        -16.50354525175271
+      ],
+      "releasePoint": null,
+      "sourceRect": [
+        1086,
+        724,
+        362,
+        362
+      ],
+      "fit": 0.10254491017964072,
+      "coreY": 39.89895209580838,
+      "offset": [
+        11.896551830441258,
+        12.827095808383234
+      ],
+      "masterFile": "artwork/hd-game-animation/G/actions.png",
+      "masterSha256": "01e62d863ff4ef5a7fc3edf153da53339174de00209df504c7202c67e171eaa1",
+      "sha256": "453788157fc9cfb0ca663439f1842ca5e260e2e8eb88b90228e59d245d343575",
+      "shadow": {
+        "key": "hd_shadow_motion_G_settle",
+        "file": "shadow_G_settle.png",
+        "w": 58,
+        "h": 26,
+        "reg": [
+          17,
+          8
+        ],
+        "pixelScale": 4,
+        "kind": "standing",
+        "sha256": "8c6ab88f5b343a6f0d29b3aa6022835d1920596d9840ea854b9eccc68b71ddea"
+      }
+    }
+  },
+  "legacy": {
+    "cast_002_R_Auto_walk_1": {
+      "bodyArea": 487.828125,
+      "bodyCentre": [
+        -1.9691473687582075,
+        -11.29336424201659
+      ],
+      "contactPoints": [
+        {
+          "x": 2.125,
+          "y": 4.875,
+          "width": 6.5
+        }
+      ]
+    },
+    "cast_003_R_Auto_walk_2": {
+      "bodyArea": 592.6875,
+      "bodyCentre": [
+        -1.848366814299272,
+        -11.124818754613518
+      ],
+      "contactPoints": [
+        {
+          "x": 3.125,
+          "y": 5.875,
+          "width": 6
+        },
+        {
+          "x": -7.125,
+          "y": 5.5,
+          "width": 1.875
+        }
+      ]
+    },
+    "cast_004_R_rest": {
+      "bodyArea": 511.265625,
+      "bodyCentre": [
+        -0.7344022187585946,
+        -12.19983344029828
+      ],
+      "contactPoints": [
+        {
+          "x": 2.75,
+          "y": 3.875,
+          "width": 7
+        },
+        {
+          "x": -5.5,
+          "y": 3.625,
+          "width": 6.625
+        }
+      ]
+    },
+    "cast_005_R_ready": {
+      "bodyArea": 555.15625,
+      "bodyCentre": [
+        -1.7693252181255286,
+        -11.317073599774837
+      ],
+      "contactPoints": [
+        {
+          "x": 1.5,
+          "y": 4.875,
+          "width": 7.25
+        },
+        {
+          "x": -7.25,
+          "y": 4.25,
+          "width": 5.375
+        }
+      ]
+    },
+    "cast_006_R_pop": {
+      "bodyArea": 492.3125,
+      "bodyCentre": [
+        -2.5009323029071986,
+        -13.167774850831535
+      ],
+      "contactPoints": [
+        {
+          "x": 1.625,
+          "y": 4.875,
+          "width": 6.75
+        }
+      ]
+    },
+    "cast_007_R_cock": {
+      "bodyArea": 508.1875,
+      "bodyCentre": [
+        -1.7936715963596122,
+        -13.07809617513221
+      ],
+      "contactPoints": [
+        {
+          "x": 2.125,
+          "y": 3.875,
+          "width": 6.5
+        }
+      ]
+    },
+    "cast_008_R_toss": {
+      "bodyArea": 582.734375,
+      "bodyCentre": [
+        -3.0691882289851193,
+        -13.839817669928944
+      ],
+      "contactPoints": [
+        {
+          "x": -8.5,
+          "y": 3.875,
+          "width": 7.5
+        }
+      ]
+    },
+    "cast_009_R_hit": {
+      "bodyArea": 443.78125,
+      "bodyCentre": [
+        4.122403351876628,
+        -8.899360080276036
+      ],
+      "contactPoints": []
+    },
+    "cast_010_R_hit2": {
+      "bodyArea": 429.171875,
+      "bodyCentre": [
+        3.6988113008337287,
+        -8.401768485819346
+      ],
+      "contactPoints": []
+    },
+    "cast_011_R_daze1": {
+      "bodyArea": 643.234375,
+      "bodyCentre": [
+        -3.5214886923992523,
+        -13.969335268540334
+      ],
+      "contactPoints": [
+        {
+          "x": -1.125,
+          "y": 4.875,
+          "width": 7.625
+        }
+      ]
+    },
+    "cast_012_R_daze2": {
+      "bodyArea": 415.171875,
+      "bodyCentre": [
+        -5.5073200105378035,
+        -10.312521169696286
+      ],
+      "contactPoints": [
+        {
+          "x": -2.75,
+          "y": 4.875,
+          "width": 6.125
+        },
+        {
+          "x": -10,
+          "y": 4.375,
+          "width": 5.125
+        }
+      ]
+    },
+    "cast_013_R_daze3": {
+      "bodyArea": 705.03125,
+      "bodyCentre": [
+        -1.976948606001507,
+        -14.460310380745533
+      ],
+      "contactPoints": [
+        {
+          "x": -6.5,
+          "y": 4.875,
+          "width": 9.25
+        },
+        {
+          "x": 2.75,
+          "y": 4,
+          "width": 2.25
+        }
+      ]
+    },
+    "cast_014_R_dead": {
+      "bodyArea": 556.828125,
+      "bodyCentre": [
+        40.03261357577799,
+        22.02924628896933
+      ],
+      "contactPoints": []
+    },
+    "cast_015_R_dead": {
+      "bodyArea": 557.578125,
+      "bodyCentre": [
+        39.04789477371445,
+        33.62006795572369
+      ],
+      "contactPoints": []
+    },
+    "cast_016_R_dead": {
+      "bodyArea": 556.375,
+      "bodyCentre": [
+        29.257101634464167,
+        23.239433554257474
+      ],
+      "contactPoints": []
+    },
+    "cast_017_G_yea": {
+      "bodyArea": 424.421875,
+      "bodyCentre": [
+        1.208003534219344,
+        -9.102147222324486
+      ],
+      "contactPoints": [
+        {
+          "x": -3,
+          "y": 7.875,
+          "width": 5.875
+        }
+      ]
+    },
+    "cast_018_G_yea": {
+      "bodyArea": 453.578125,
+      "bodyCentre": [
+        -1.4152528505976782,
+        -11.680625409073684
+      ],
+      "contactPoints": [
+        {
+          "x": -3,
+          "y": 6.875,
+          "width": 6
+        }
+      ]
+    },
+    "cast_019_G_yea": {
+      "bodyArea": 452.171875,
+      "bodyCentre": [
+        -1.03220567400394,
+        -11.0887081447182
+      ],
+      "contactPoints": [
+        {
+          "x": -3.875,
+          "y": 6.875,
+          "width": 6.25
+        }
+      ]
+    },
+    "cast_020_G_Walk_H2": {
+      "bodyArea": 453.71875,
+      "bodyCentre": [
+        0.7958967559749297,
+        -11.828819133549143
+      ],
+      "contactPoints": [
+        {
+          "x": 3.125,
+          "y": 5.875,
+          "width": 3
+        }
+      ]
+    },
+    "cast_021_G_Walk_H1": {
+      "bodyArea": 444.953125,
+      "bodyCentre": [
+        -0.2680101485409274,
+        -11.627291322821925
+      ],
+      "contactPoints": [
+        {
+          "x": 4.625,
+          "y": 5.875,
+          "width": 6.375
+        }
+      ]
+    },
+    "cast_022_G_Walk_V1": {
+      "bodyArea": 429.71875,
+      "bodyCentre": [
+        -0.9036751872591076,
+        -12.043824085521052
+      ],
+      "contactPoints": [
+        {
+          "x": 2.25,
+          "y": 5.875,
+          "width": 3.625
+        }
+      ]
+    },
+    "cast_023_G_Walk_V2": {
+      "bodyArea": 368.640625,
+      "bodyCentre": [
+        0.18455686008561933,
+        -12.4049347264019
+      ],
+      "contactPoints": [
+        {
+          "x": 0.75,
+          "y": 4.875,
+          "width": 4.875
+        }
+      ]
+    },
+    "cast_024_G_ready": {
+      "bodyArea": 410.65625,
+      "bodyCentre": [
+        -0.41780971767749797,
+        -11.810706947720874
+      ],
+      "contactPoints": [
+        {
+          "x": -3.25,
+          "y": 5.875,
+          "width": 6
+        }
+      ]
+    },
+    "cast_025_G_windup": {
+      "bodyArea": 318.5,
+      "bodyCentre": [
+        2.6227249313186807,
+        -9.080712813971742
+      ],
+      "contactPoints": [
+        {
+          "x": -1.625,
+          "y": 6.875,
+          "width": 5.5
+        }
+      ]
+    },
+    "cast_026_G_cock": {
+      "bodyArea": 433.515625,
+      "bodyCentre": [
+        -3.9857406739953127,
+        -8.938781762479724
+      ],
+      "contactPoints": [
+        {
+          "x": -8.625,
+          "y": 7.875,
+          "width": 6
+        }
+      ]
+    },
+    "cast_027_G_toss": {
+      "bodyArea": 319.796875,
+      "bodyCentre": [
+        1.8542592954512145,
+        -7.469524111985148
+      ],
+      "contactPoints": [
+        {
+          "x": 4.125,
+          "y": 6.875,
+          "width": 6.625
+        },
+        {
+          "x": -4.625,
+          "y": 6,
+          "width": 3
+        }
+      ]
+    },
+    "cast_028_G_Hit": {
+      "bodyArea": 338.796875,
+      "bodyCentre": [
+        -2.599940045196698,
+        -9.450669879629203
+      ],
+      "contactPoints": [
+        {
+          "x": -4.5,
+          "y": 5.875,
+          "width": 6
+        }
+      ]
+    },
+    "cast_029_G_Hit2": {
+      "bodyArea": 357.515625,
+      "bodyCentre": [
+        -2.550680695773787,
+        -11.388411782701805
+      ],
+      "contactPoints": [
+        {
+          "x": -4.125,
+          "y": 5.875,
+          "width": 5.75
+        }
+      ]
+    },
+    "cast_030_G_ow": {
+      "bodyArea": 476.625,
+      "bodyCentre": [
+        2.051230986100183,
+        -12.26881310647784
+      ],
+      "contactPoints": [
+        {
+          "x": 5.25,
+          "y": 5.875,
+          "width": 6.375
+        }
+      ]
+    },
+    "cast_031_G_recover": {
+      "bodyArea": 428.015625,
+      "bodyCentre": [
+        0.8741649326470267,
+        -9.351307815865368
+      ],
+      "contactPoints": [
+        {
+          "x": 7.5,
+          "y": 5.875,
+          "width": 6.375
+        }
+      ]
+    },
+    "cast_032_G_down": {
+      "bodyArea": 413.9375,
+      "bodyCentre": [
+        -16.573876075796466,
+        -11.391811678997435
+      ],
+      "contactPoints": []
+    },
+    "cast_033_G_dead": {
+      "bodyArea": 412.15625,
+      "bodyCentre": [
+        -37.28253184471908,
+        -13.397229698991584
+      ],
+      "contactPoints": []
+    },
+    "cast_034_G_dead": {
+      "bodyArea": 409.25,
+      "bodyCentre": [
+        -29.199574297495417,
+        -9.666658712583995
+      ],
+      "contactPoints": []
+    },
+    "cast_035_G_dead": {
+      "bodyArea": 411.703125,
+      "bodyCentre": [
+        -37.539085923564464,
+        -4.619819537743368
+      ],
+      "contactPoints": []
+    },
+    "cast_036_G_dead": {
+      "bodyArea": 411.421875,
+      "bodyCentre": [
+        -32.615590938437585,
+        -13.035224640157988
+      ],
+      "contactPoints": []
+    }
+  }
+}

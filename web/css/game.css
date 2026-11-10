@@ -153,6 +153,9 @@ nav {
     box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.9), 0 0 0 6px rgba(238, 243, 247, 0.04);
 }
 #game-container canvas { display: block; }
+/* Keep the recovered 8-bit pixels crisp through the browser's final Fit scale. */
+#game-container[data-artwork="original"] canvas { image-rendering: pixelated !important; }
+#game-container[data-artwork="high-resolution"] canvas { image-rendering: auto !important; }
 /* Phaser already puts the label origin into its camera matrix. Applying a
    second CSS transform origin shifts centered/right-aligned text when zoomed. */
 .game-text { transform-origin: 0 0 !important; text-rendering: geometricPrecision; -webkit-font-smoothing: antialiased; }
