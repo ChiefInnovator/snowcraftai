@@ -16,17 +16,20 @@
         28
       ],
       "pixelScale": 8,
-      "sha256": "b599e484178164b9c6bff08fbc857b20c07d1a9ac581307b77a2e7f2f8b518e5",
+      "sha256": "3a7ad85d989730cb4e78bfd7c56e7c9cb4eaaa7eed13e83809bf5ffea41611bb",
       "originalSha256": "33fd2fd7a83a66920f7675e16497d167cfaaa5fdbaa78d683826309b502a25ff",
+      "masterFile": "artwork/hd-character-preview/animation-sources/002_R_Auto_walk_1.png",
       "masterSha256": "e9f077426fbc509d5ceb1be58ea429ee1e319979ede6bc88842581a95aeb76e0",
       "sourceSize": [
         1086,
         1448
       ],
+      "bodyArea": 487.828125,
       "placement": {
         "mode": "boots",
+        "sourceFlipX": true,
         "sourceAnchor": [
-          543,
+          542,
           1320
         ],
         "referenceAnchor": [
@@ -34,24 +37,24 @@
           33
         ],
         "targetAnchor": [
-          12.842165898617512,
+          12.129320276497698,
           33
         ],
         "scale": 0.028513824884792628,
         "offset": [
-          -2.640841013824885,
+          -3.325172811059908,
           -4.6382488479262705
         ],
         "sourceBounds": [
-          99,
+          123,
           220,
-          962,
+          986,
           1321
         ],
         "sourceCrop": [
-          97,
+          121,
           218,
-          964,
+          988,
           1323
         ]
       },
@@ -60,7 +63,20 @@
         0,
         0,
         0
-      ]
+      ],
+      "shadow": {
+        "key": "hd_shadow_cast_002_R_Auto_walk_1",
+        "file": "shadow_002_R_Auto_walk_1.png",
+        "w": 60,
+        "h": 26,
+        "reg": [
+          21,
+          4
+        ],
+        "pixelScale": 8,
+        "kind": "standing",
+        "sha256": "2832cec3f3f592d310e10f45e3f5e8ea2b156c2e034fb0234166efbb073f4bd8"
+      }
     },
     {
       "key": "cast_003_R_Auto_walk_2",
@@ -74,17 +90,20 @@
         28
       ],
       "pixelScale": 8,
-      "sha256": "76c8f537fdb5eacade2282d9fb7723ed694dcddd0dd0fdd4a7cc3c78bab985a8",
+      "sha256": "9befdcf5ea8370ba127e5e04885c90d62fe03304836b96f958b7ed5b321ce75e",
       "originalSha256": "48a9b3c9ab9aa3b67e38c23cd301c98158748bbd7292c3a60f1d604fd82320d4",
+      "masterFile": "artwork/hd-character-preview/animation-sources/003_R_Auto_walk_2.png",
       "masterSha256": "fb020c263f3f90e47460076d1825fab3dafa75661bee5e9628f4cae310e5b01a",
       "sourceSize": [
         1086,
         1448
       ],
+      "bodyArea": 592.6875,
       "placement": {
         "mode": "boots",
+        "sourceFlipX": true,
         "sourceAnchor": [
-          590.5,
+          494.5,
           1295
         ],
         "referenceAnchor": [
@@ -92,24 +111,24 @@
           34
         ],
         "targetAnchor": [
-          18.5,
+          14.838094682835822,
           34
         ],
         "scale": 0.03159981343283582,
         "offset": [
-          -0.15968983208955123,
+          -0.7880130597014912,
           -6.921758395522389
         ],
         "sourceBounds": [
-          86,
+          118,
           225,
-          967,
+          999,
           1296
         ],
         "sourceCrop": [
-          84,
+          116,
           223,
-          969,
+          1001,
           1298
         ]
       },
@@ -118,7 +137,20 @@
         0,
         0,
         0
-      ]
+      ],
+      "shadow": {
+        "key": "hd_shadow_cast_003_R_Auto_walk_2",
+        "file": "shadow_003_R_Auto_walk_2.png",
+        "w": 64,
+        "h": 27,
+        "reg": [
+          22,
+          3
+        ],
+        "pixelScale": 8,
+        "kind": "standing",
+        "sha256": "c49fb291b14263e219f6bd98a340606b01450553ad40a4994322ed96fe9adfdc"
+      }
     },
     {
       "key": "cast_004_R_rest",
@@ -132,17 +164,20 @@
         28
       ],
       "pixelScale": 8,
-      "sha256": "dd8f1b79d9d932c44aad522e3d857ce1e746dd959c8c9469c5c421d8c87e3a33",
+      "sha256": "644a25c31e26d1867fd46baf17ae51c9f461b39fe4657e63751cffd58c4fe099",
       "originalSha256": "00856f1b024181246573966ced2067b410c59845d3a6b062b365cbd90d749cb5",
+      "masterFile": "artwork/hd-character-preview/animation-sources/004_R_rest.png",
       "masterSha256": "6ccfb2dd6536e095cf55e5d4e45ac2252735c2fea64afd94098fc46a25f091b8",
       "sourceSize": [
         1086,
         1448
       ],
+      "bodyArea": 511.265625,
       "placement": {
         "mode": "boots",
+        "sourceFlipX": true,
         "sourceAnchor": [
-          529.5,
+          555.5,
           1301
         ],
         "referenceAnchor": [
@@ -150,24 +185,24 @@
           32
         ],
         "targetAnchor": [
-          13,
+          12.80154220779221,
           32
         ],
         "scale": 0.02956864564007421,
         "offset": [
-          -2.6565978664192933,
+          -3.623840445269014,
           -6.468807977736546
         ],
         "sourceBounds": [
-          158,
+          213,
           225,
-          872,
+          927,
           1302
         ],
         "sourceCrop": [
-          156,
+          211,
           223,
-          874,
+          929,
           1304
         ]
       },
@@ -176,7 +211,20 @@
         0,
         0,
         0
-      ]
+      ],
+      "shadow": {
+        "key": "hd_shadow_cast_004_R_rest",
+        "file": "shadow_004_R_rest.png",
+        "w": 57,
+        "h": 26,
+        "reg": [
+          18,
+          5
+        ],
+        "pixelScale": 8,
+        "kind": "standing",
+        "sha256": "cbe33c9776d46b9652dc39cf8913dc2985ed99e60ba4c16514825fb0bb996185"
+      }
     },
     {
       "key": "cast_005_R_ready",
@@ -190,17 +238,20 @@
         28
       ],
       "pixelScale": 8,
-      "sha256": "00ce3c0e777719b91e626d65c4df14aad445648ee4a096333d1895e43d4c32bb",
+      "sha256": "ec7c30af687b70a4b8bd88bf8d26188d330935e370459be1de43ddeab7ad93c3",
       "originalSha256": "cc33ad26a844b524855ac9a324c6c10449a6df5a5958077abda396bb83a8862d",
+      "masterFile": "artwork/hd-character-preview/animation-sources/005_R_ready.png",
       "masterSha256": "32649252b51bc69201af2953de9e0f5df4c0291a8935c63ec2142f9bf960185a",
       "sourceSize": [
         1086,
         1448
       ],
+      "bodyArea": 555.15625,
       "placement": {
         "mode": "boots",
+        "sourceFlipX": true,
         "sourceAnchor": [
-          584.5,
+          500.5,
           1298
         ],
         "referenceAnchor": [
@@ -208,24 +259,24 @@
           33
         ],
         "targetAnchor": [
-          14.832794117647058,
+          11.136911764705884,
           33
         ],
         "scale": 0.030294117647058822,
         "offset": [
-          -2.8741176470588234,
+          -4.025294117647057,
           -6.321764705882352
         ],
         "sourceBounds": [
-          101,
+          139,
           227,
-          946,
+          984,
           1299
         ],
         "sourceCrop": [
-          99,
+          137,
           225,
-          948,
+          986,
           1301
         ]
       },
@@ -234,7 +285,20 @@
         0,
         0,
         0
-      ]
+      ],
+      "shadow": {
+        "key": "hd_shadow_cast_005_R_ready",
+        "file": "shadow_005_R_ready.png",
+        "w": 61,
+        "h": 26,
+        "reg": [
+          21,
+          4
+        ],
+        "pixelScale": 8,
+        "kind": "standing",
+        "sha256": "e99922eaa17812b9173adb0ef212a3a3138629a30a0e7c1646c1ad75c6d0b7a6"
+      }
     },
     {
       "key": "cast_006_R_pop",
@@ -248,17 +312,20 @@
         29
       ],
       "pixelScale": 8,
-      "sha256": "192b271bff0948485728fc4e8f4414689f2a2ca6af19506347c3cefa05aa5808",
+      "sha256": "36084967c5b080b27ff26bd0cc288e8405070d534c906bae8476bcf7e74087a6",
       "originalSha256": "7967936de889c65a050ed21a658290d550dda282a58ff77466e1f0c122530eee",
+      "masterFile": "artwork/hd-character-preview/animation-sources/006_R_pop.png",
       "masterSha256": "3fd8c4b4da84da0e62b9fd9b04dea24bd032293d22e3676a362476802ef7e136",
       "sourceSize": [
         1312,
         1199
       ],
+      "bodyArea": 492.3125,
       "placement": {
         "mode": "boots",
+        "sourceFlipX": true,
         "sourceAnchor": [
-          615,
+          696,
           1118
         ],
         "referenceAnchor": [
@@ -271,19 +338,19 @@
         ],
         "scale": 0.03232347328244275,
         "offset": [
-          11.121063931297709,
+          8.502862595419849,
           -2.137643129770993
         ],
         "sourceBounds": [
-          322,
+          331,
           72,
-          980,
+          989,
           1119
         ],
         "sourceCrop": [
-          320,
+          329,
           70,
-          982,
+          991,
           1121
         ]
       },
@@ -292,7 +359,20 @@
         0,
         0,
         0
-      ]
+      ],
+      "shadow": {
+        "key": "hd_shadow_cast_006_R_pop",
+        "file": "shadow_006_R_pop.png",
+        "w": 58,
+        "h": 27,
+        "reg": [
+          20,
+          4
+        ],
+        "pixelScale": 8,
+        "kind": "standing",
+        "sha256": "f6f6d6fa5ebcb835023d30a774d719191f73a7c048a62fa9aec6966d59bb9c8c"
+      }
     },
     {
       "key": "cast_007_R_cock",
@@ -306,17 +386,20 @@
         29
       ],
       "pixelScale": 8,
-      "sha256": "a652389561f6bf4a6772e5c8809a3ade52ad5910436be462d4d82f3007d019fb",
+      "sha256": "f40b30e4c0b55f43338b32d29fda25f37e81ae96029b0c340af003dba4878e4f",
       "originalSha256": "e3c506cadfcad0a621bab8fbb3814acc338168469d0f825bf440d2785980fe2e",
+      "masterFile": "artwork/hd-character-preview/animation-sources/007_R_cock.png",
       "masterSha256": "7747852e721c5c2730eb92cbb894f11758752244090e53da7a7e1af12f0b5ab5",
       "sourceSize": [
         1312,
         1199
       ],
+      "bodyArea": 508.1875,
       "placement": {
         "mode": "boots",
+        "sourceFlipX": true,
         "sourceAnchor": [
-          618.5,
+          692.5,
           1120
         ],
         "referenceAnchor": [
@@ -329,19 +412,19 @@
         ],
         "scale": 0.031161137440758293,
         "offset": [
-          12.226836492890996,
+          9.920912322274884,
           -1.9004739336492875
         ],
         "sourceBounds": [
-          176,
+          185,
           67,
-          1126,
+          1135,
           1121
         ],
         "sourceCrop": [
-          174,
+          183,
           65,
-          1128,
+          1137,
           1123
         ]
       },
@@ -350,7 +433,20 @@
         0,
         0,
         0
-      ]
+      ],
+      "shadow": {
+        "key": "hd_shadow_cast_007_R_cock",
+        "file": "shadow_007_R_cock.png",
+        "w": 66,
+        "h": 27,
+        "reg": [
+          24,
+          5
+        ],
+        "pixelScale": 8,
+        "kind": "standing",
+        "sha256": "4539a7db74d21c90e6db7095734183d9a96bdbfe01032d9ba71046288bde4005"
+      }
     },
     {
       "key": "cast_008_R_toss",
@@ -366,13 +462,16 @@
       "pixelScale": 8,
       "sha256": "80bb013bf79b83d32ca21be230a7dca63c72c97be03c85b032b5ec5da1752e48",
       "originalSha256": "cdb29e603de89ae5ee30239e5ba5dd3420ef7d745ed2c6281ff63449a13bbd59",
+      "masterFile": "artwork/hd-character-preview/animation-sources/008_R_toss.png",
       "masterSha256": "ef9082def140e53770264800168235be9325148eb9272aa2911e99b4ce0a93f2",
       "sourceSize": [
         1394,
         1128
       ],
+      "bodyArea": 582.734375,
       "placement": {
         "mode": "boots",
+        "sourceFlipX": false,
         "sourceAnchor": [
           780,
           1066
@@ -408,7 +507,20 @@
         0,
         0,
         0
-      ]
+      ],
+      "shadow": {
+        "key": "hd_shadow_cast_008_R_toss",
+        "file": "shadow_008_R_toss.png",
+        "w": 68,
+        "h": 27,
+        "reg": [
+          27,
+          5
+        ],
+        "pixelScale": 8,
+        "kind": "standing",
+        "sha256": "fb3356d172f01b6905a30f52bea56317037887f57643a21853e9e7db393bca93"
+      }
     },
     {
       "key": "cast_009_R_hit",
@@ -422,18 +534,21 @@
         26
       ],
       "pixelScale": 8,
-      "sha256": "f81621be5dc3313c6f2f5e3ac4676c933d74d67fc67d44725e95eb9a242390fe",
+      "sha256": "e53ce303601eb095b416bbf4a9be81b3db580a9028003da0008eafa28d025997",
       "originalSha256": "ff3ee576646f18c15f69d8af88c21c4c5aafdadeb2244af13458f953b9e2684b",
-      "masterSha256": "463480312b97f0f6221a1a428a5182eecf34dc931e8330f96ddca947a29b9b8b",
+      "masterFile": "artwork/hd-character-preview/corrections/009_R_hit.png",
+      "masterSha256": "756871295d7ee2d92216bb216d58e3af645243f3ac853ada1c6b8b5ad83d9de3",
       "sourceSize": [
-        1480,
-        1062
+        1536,
+        1024
       ],
+      "bodyArea": 443.78125,
       "placement": {
-        "mode": "bounds",
+        "mode": "body-area",
+        "sourceFlipX": false,
         "sourceAnchor": [
-          735.5,
-          985
+          800.5,
+          907
         ],
         "referenceAnchor": [
           17.5,
@@ -443,22 +558,22 @@
           17.5,
           29.875
         ],
-        "scale": 0.027777777777777776,
+        "scale": 0.03262910798122066,
         "offset": [
-          -2.9305555555555536,
-          2.5138888888888893
+          -8.619600938967135,
+          0.2803990610328633
         ],
         "sourceBounds": [
+          270,
           112,
-          64,
-          1358,
-          982
+          1330,
+          904
         ],
         "sourceCrop": [
+          268,
           110,
-          62,
-          1360,
-          984
+          1332,
+          906
         ]
       },
       "corners": [
@@ -466,7 +581,20 @@
         0,
         0,
         0
-      ]
+      ],
+      "shadow": {
+        "key": "hd_shadow_cast_009_R_hit",
+        "file": "shadow_009_R_hit.png",
+        "w": 48,
+        "h": 39,
+        "reg": [
+          21,
+          28
+        ],
+        "pixelScale": 8,
+        "kind": "grounded",
+        "sha256": "961b7e2d4143499b77f5b11ece6c8cd14cf65d129ef17aaecdd8b7714dc5db83"
+      }
     },
     {
       "key": "cast_010_R_hit2",
@@ -480,18 +608,21 @@
         26
       ],
       "pixelScale": 8,
-      "sha256": "67b4e6f530f6f4d0fe42b018cc463a0f8e28b3b0bde7cb19440f7b133c4d9acb",
+      "sha256": "35b5f221249ab95a8d2c0421a08b90f5f99c7847f26e3095fc9b4e0951635431",
       "originalSha256": "ff3ee576646f18c15f69d8af88c21c4c5aafdadeb2244af13458f953b9e2684b",
-      "masterSha256": "5b0c398133366dd3b680c68669ee2a930b08d4df16c8dd15f6986e8d603dfdcd",
+      "masterFile": "artwork/hd-character-preview/corrections/010_R_hit2.png",
+      "masterSha256": "5446553b26cfda95245dc943e0a4f237f46b94ddf92fa69168e5a270b5ac73a1",
       "sourceSize": [
-        1480,
-        1062
+        1570,
+        1002
       ],
+      "bodyArea": 429.171875,
       "placement": {
-        "mode": "bounds",
+        "mode": "body-area",
+        "sourceFlipX": false,
         "sourceAnchor": [
-          705.5,
-          1036
+          792.5,
+          912
         ],
         "referenceAnchor": [
           17.5,
@@ -501,22 +632,22 @@
           17.5,
           29.875
         ],
-        "scale": 0.029310344827586206,
+        "scale": 0.031221922731356693,
         "offset": [
-          -3.178448275862067,
-          -0.4905172413793082
+          -7.243373764600179,
+          1.400606469002696
         ],
         "sourceBounds": [
-          151,
-          23,
-          1259,
-          1033
+          238,
+          105,
+          1346,
+          909
         ],
         "sourceCrop": [
-          149,
-          21,
-          1261,
-          1035
+          236,
+          103,
+          1348,
+          911
         ]
       },
       "corners": [
@@ -524,7 +655,20 @@
         0,
         0,
         0
-      ]
+      ],
+      "shadow": {
+        "key": "hd_shadow_cast_010_R_hit2",
+        "file": "shadow_010_R_hit2.png",
+        "w": 48,
+        "h": 38,
+        "reg": [
+          21,
+          27
+        ],
+        "pixelScale": 8,
+        "kind": "grounded",
+        "sha256": "5f1cc70aedb874751fbdd699021b93a8d4af50c10c7c7bc6b8f61debbae81b4b"
+      }
     },
     {
       "key": "cast_011_R_daze1",
@@ -538,17 +682,20 @@
         37
       ],
       "pixelScale": 8,
-      "sha256": "fa4811c443bd1aa59f77ccf5c88c04412195aa4baebfb271264a0f1b760c15a5",
+      "sha256": "b94ba3bb34e88654817b0d1d1a2e6c19699ff98a63e1a15eaa1b176965f4942f",
       "originalSha256": "49293ecf9510b2c11ac73da94b44828bff779c71f6ee4aba5cfa1a96eb750346",
+      "masterFile": "artwork/hd-character-preview/animation-sources/011_R_daze1.png",
       "masterSha256": "0880d8e1dc8e66333989fa18047742574612baf26009d7a06809a43fe6ff2616",
       "sourceSize": [
         1086,
         1448
       ],
+      "bodyArea": 643.234375,
       "placement": {
         "mode": "boots",
+        "sourceFlipX": true,
         "sourceAnchor": [
-          591,
+          494,
           1300
         ],
         "referenceAnchor": [
@@ -556,24 +703,24 @@
           42
         ],
         "targetAnchor": [
-          17.08188847235239,
+          14.5,
           42
         ],
         "scale": 0.03467666354264293,
         "offset": [
-          -3.4120196813495784,
+          -2.6302717900656063,
           -3.079662605435807
         ],
         "sourceBounds": [
-          104,
+          134,
           233,
-          951,
+          981,
           1301
         ],
         "sourceCrop": [
-          102,
+          132,
           231,
-          953,
+          983,
           1303
         ]
       },
@@ -582,7 +729,20 @@
         0,
         0,
         0
-      ]
+      ],
+      "shadow": {
+        "key": "hd_shadow_cast_011_R_daze1",
+        "file": "shadow_011_R_daze1.png",
+        "w": 68,
+        "h": 28,
+        "reg": [
+          25,
+          4
+        ],
+        "pixelScale": 8,
+        "kind": "standing",
+        "sha256": "b749bbc35c8d9a108a52ffe93e00e9862961bf99d52c034e1d578096ea1bf53d"
+      }
     },
     {
       "key": "cast_012_R_daze2",
@@ -596,17 +756,20 @@
         38
       ],
       "pixelScale": 8,
-      "sha256": "874e5fb6683e190c16cc51bb7a80c9c2ff04ba367df0d00180976096743ad671",
+      "sha256": "0f26d93542885b50ee71ae97ea28b453180c02fe477f8130ebc55be887a3450a",
       "originalSha256": "f4e9756021c6bbf1d5b4cdb69290a5d9bc4defc9bddb88063ea836ae39f24681",
+      "masterFile": "artwork/hd-character-preview/animation-sources/012_R_daze2.png",
       "masterSha256": "094f909578d574a30d7b488d4c969633dbce03d25ef4001d8c28fb7cd1fe3197",
       "sourceSize": [
         1086,
         1448
       ],
+      "bodyArea": 415.171875,
       "placement": {
         "mode": "boots",
+        "sourceFlipX": true,
         "sourceAnchor": [
-          597,
+          488,
           1309
         ],
         "referenceAnchor": [
@@ -619,19 +782,19 @@
         ],
         "scale": 0.027615062761506277,
         "offset": [
-          -2.4861924686192474,
+          0.5238493723849373,
           6.851882845188285
         ],
         "sourceBounds": [
-          124,
+          156,
           91,
-          929,
+          961,
           1310
         ],
         "sourceCrop": [
-          122,
+          154,
           89,
-          931,
+          963,
           1312
         ]
       },
@@ -640,7 +803,20 @@
         0,
         0,
         0
-      ]
+      ],
+      "shadow": {
+        "key": "hd_shadow_cast_012_R_daze2",
+        "file": "shadow_012_R_daze2.png",
+        "w": 59,
+        "h": 27,
+        "reg": [
+          24,
+          4
+        ],
+        "pixelScale": 8,
+        "kind": "standing",
+        "sha256": "00527e7060723999f48dd4119802ecab68a828490ba74c3544627d5bae08d707"
+      }
     },
     {
       "key": "cast_013_R_daze3",
@@ -654,17 +830,20 @@
         34
       ],
       "pixelScale": 8,
-      "sha256": "09d2216549e49b0aa0fad660ec51ce851c5570c8f81549165b84d9658e2c4ed8",
+      "sha256": "00da8dc8bd35d30337098020bac8c4cdeaa85ac6c0e74f4374242f99d8f4c692",
       "originalSha256": "10fc0f0db786ade9e3a5f1eb624e03b4e534b6f84e2830b771736c73b2e6d82e",
+      "masterFile": "artwork/hd-character-preview/animation-sources/013_R_daze3.png",
       "masterSha256": "9cb99a8e1b039cc953feff358dafe3632ddea53f9fce71dcd5cfa8631755819f",
       "sourceSize": [
         1086,
         1448
       ],
+      "bodyArea": 705.03125,
       "placement": {
         "mode": "boots",
+        "sourceFlipX": true,
         "sourceAnchor": [
-          624,
+          461,
           1287
         ],
         "referenceAnchor": [
@@ -672,24 +851,24 @@
           39
         ],
         "targetAnchor": [
-          19.000117370892017,
+          15.964201877934272,
           39
         ],
         "scale": 0.03568075117370892,
         "offset": [
-          -3.2646713615023475,
+          -0.4846244131455393,
           -6.921126760563382
         ],
         "sourceBounds": [
-          97,
+          103,
           222,
-          982,
+          988,
           1288
         ],
         "sourceCrop": [
-          95,
+          101,
           220,
-          984,
+          990,
           1290
         ]
       },
@@ -698,7 +877,20 @@
         0,
         0,
         0
-      ]
+      ],
+      "shadow": {
+        "key": "hd_shadow_cast_013_R_daze3",
+        "file": "shadow_013_R_daze3.png",
+        "w": 71,
+        "h": 28,
+        "reg": [
+          24,
+          4
+        ],
+        "pixelScale": 8,
+        "kind": "standing",
+        "sha256": "11e0ca4873e61fdda9d625a2cf1a0d29a0dc8639060b7bddc4bd0f7819b01a56"
+      }
     },
     {
       "key": "cast_014_R_dead",
@@ -712,18 +904,21 @@
         -4
       ],
       "pixelScale": 8,
-      "sha256": "bef28e8d76f6149e9d7736904cc3954953c662f1d787bb83dd9d7019ee168106",
+      "sha256": "e3cf4977c2cebf265409cc3bf276d9af212781ec8845b65e4c7695c372300aa4",
       "originalSha256": "f4d64741458849f1c567f039207f06a1ae2ab441e9f1a22c262d750e2f75d329",
-      "masterSha256": "42efe66699fea9168b670740413feccc72af5f9d113217fb60bb0dfadf9d4276",
+      "masterFile": "artwork/hd-character-preview/corrections/014_R_dead.png",
+      "masterSha256": "6db8392153b2959d337fc032ee20b1b43e9814312e449e3a96210a5dc2ae1def",
       "sourceSize": [
-        1840,
-        855
+        1570,
+        1001
       ],
+      "bodyArea": 556.828125,
       "placement": {
-        "mode": "bounds",
+        "mode": "body-area",
+        "sourceFlipX": false,
         "sourceAnchor": [
-          944,
-          776
+          737.5,
+          955
         ],
         "referenceAnchor": [
           35.5,
@@ -733,22 +928,22 @@
           35.5,
           32.875
         ],
-        "scale": 0.04685430463576159,
+        "scale": 0.03514621165155147,
         "offset": [
-          -8.73046357615894,
-          -3.4839403973509917
+          9.579668906980793,
+          -0.6896321272316541
         ],
         "sourceBounds": [
-          191,
-          102,
-          1696,
-          773
+          200,
+          63,
+          1274,
+          952
         ],
         "sourceCrop": [
-          189,
-          100,
-          1698,
-          775
+          198,
+          61,
+          1276,
+          954
         ]
       },
       "corners": [
@@ -756,7 +951,20 @@
         0,
         0,
         0
-      ]
+      ],
+      "shadow": {
+        "key": "hd_shadow_cast_014_R_dead",
+        "file": "shadow_014_R_dead.png",
+        "w": 50,
+        "h": 44,
+        "reg": [
+          -15,
+          0
+        ],
+        "pixelScale": 8,
+        "kind": "grounded",
+        "sha256": "084e51cc2a328ff6c0dc5e33dbe4bb63960f977a7b35b4c588715959f21df378"
+      }
     },
     {
       "key": "cast_015_R_dead",
@@ -770,18 +978,21 @@
         2
       ],
       "pixelScale": 8,
-      "sha256": "7a8964605b53fc2c1689cff937a1d02a958d7e7cd21d356d356b4cacac731610",
+      "sha256": "156ac3227a25ea85fa44b3f981e03e2b9dbd5e795ab4d4a352d6fa1967280174",
       "originalSha256": "14289fc0f57c68bd1abf6b5b1a6166d3775489dcf6f56eb1a2989f33da5f5371",
-      "masterSha256": "a0e85d69e82d9cf86cd1fdaacb17299834c142ae196da4d776685bc4bab7b181",
+      "masterFile": "artwork/hd-character-preview/corrections/015_R_dead.png",
+      "masterSha256": "18b7b6996ed3387751a87e32e2aa70baa5a39da65c2f5f090570704177cd56a5",
       "sourceSize": [
-        1477,
-        1065
+        1570,
+        1002
       ],
+      "bodyArea": 557.578125,
       "placement": {
-        "mode": "bounds",
+        "mode": "body-area",
+        "sourceFlipX": false,
         "sourceAnchor": [
-          731.5,
-          1018
+          775.5,
+          961
         ],
         "referenceAnchor": [
           34,
@@ -791,22 +1002,22 @@
           34,
           48.875
         ],
-        "scale": 0.048674821610601424,
+        "scale": 0.0338000377869603,
         "offset": [
-          -1.6056320081549416,
-          -0.6759683995922501
+          7.788070696212287,
+          16.39316368673115
         ],
         "sourceBounds": [
-          47,
-          39,
-          1415,
-          1015
+          101,
+          87,
+          1449,
+          958
         ],
         "sourceCrop": [
-          45,
-          37,
-          1417,
-          1017
+          99,
+          85,
+          1451,
+          960
         ]
       },
       "corners": [
@@ -814,7 +1025,20 @@
         0,
         0,
         0
-      ]
+      ],
+      "shadow": {
+        "key": "hd_shadow_cast_015_R_dead",
+        "file": "shadow_015_R_dead.png",
+        "w": 59,
+        "h": 42,
+        "reg": [
+          -10,
+          -12
+        ],
+        "pixelScale": 8,
+        "kind": "grounded",
+        "sha256": "ac182003ad15a0e89e23f30bd2ac20dbb1676bc4074b7f4ffd08277ff8a02aaf"
+      }
     },
     {
       "key": "cast_016_R_dead",
@@ -828,18 +1052,21 @@
         15
       ],
       "pixelScale": 8,
-      "sha256": "c8b20e6a4cef4fc07351352a1627ffac4c34bf9ab6b0bdcabb0906b60d4558bf",
+      "sha256": "8d3cdc9a6f0285c5265c6622bd8f742716b419ad1023a932f602da2d069bbd41",
       "originalSha256": "872446a7c74b2acadc7fbcd08c713013f5691f73d0051c95f893281e032ed170",
-      "masterSha256": "f9736d52b45ce8dfa59068c2d24ec57091c4ef6c122dfc56a60dc751fda55b41",
+      "masterFile": "artwork/hd-character-preview/corrections/016_R_dead.png",
+      "masterSha256": "0493e80979451e56b468f63d1cce2ebb57c2e9229cf73c289bdce751d149f99a",
       "sourceSize": [
-        1827,
-        861
+        1570,
+        1002
       ],
+      "bodyArea": 556.375,
       "placement": {
-        "mode": "bounds",
+        "mode": "body-area",
+        "sourceFlipX": false,
         "sourceAnchor": [
-          934.5,
-          820
+          778.5,
+          963
         ],
         "referenceAnchor": [
           25.5,
@@ -849,22 +1076,22 @@
           25.5,
           52.875
         ],
-        "scale": 0.03717948717948718,
+        "scale": 0.035539747939284105,
         "offset": [
-          -9.244230769230768,
-          22.387820512820515
+          -2.1676937707326758,
+          18.65022273446941
         ],
         "sourceBounds": [
-          254,
-          73,
-          1614,
-          817
+          268,
+          120,
+          1288,
+          960
         ],
         "sourceCrop": [
-          252,
-          71,
-          1616,
-          819
+          266,
+          118,
+          1290,
+          962
         ]
       },
       "corners": [
@@ -872,7 +1099,20 @@
         0,
         0,
         0
-      ]
+      ],
+      "shadow": {
+        "key": "hd_shadow_cast_016_R_dead",
+        "file": "shadow_016_R_dead.png",
+        "w": 49,
+        "h": 43,
+        "reg": [
+          -5,
+          -2
+        ],
+        "pixelScale": 8,
+        "kind": "grounded",
+        "sha256": "6db04c6b0bffd64c976ebd207bf2fb0fb33b5589681d1ea9a1984c42c77dccc9"
+      }
     },
     {
       "key": "cast_017_G_yea",
@@ -888,13 +1128,16 @@
       "pixelScale": 8,
       "sha256": "7eccbd61df46b33b529a43cafb802e9773f5d18fc821653a751ffb9d2bb13c94",
       "originalSha256": "36542a69e282e61aa20fc26662f14a18c4d782bcb2d7e0bdaae922e991fb32e3",
+      "masterFile": "artwork/hd-character-preview/animation-sources/017_G_yea.png",
       "masterSha256": "1df4bff5ec05dd0ef1fb2bb1ad12a8b6efcece52ce303777b55ece94cbfe38bc",
       "sourceSize": [
         1315,
         1196
       ],
+      "bodyArea": 424.421875,
       "placement": {
         "mode": "boots",
+        "sourceFlipX": false,
         "sourceAnchor": [
           609.5,
           1148
@@ -930,7 +1173,20 @@
         0,
         0,
         0
-      ]
+      ],
+      "shadow": {
+        "key": "hd_shadow_cast_017_G_yea",
+        "file": "shadow_017_G_yea.png",
+        "w": 64,
+        "h": 27,
+        "reg": [
+          18,
+          1
+        ],
+        "pixelScale": 8,
+        "kind": "standing",
+        "sha256": "337f8ecb729761f4074de9bbaad4f71dd92c3b110c7db1d75ab7c2d0d158de27"
+      }
     },
     {
       "key": "cast_018_G_yea",
@@ -946,13 +1202,16 @@
       "pixelScale": 8,
       "sha256": "90cbcc316e27dcdc68cab1830a5aa883636254a361feaef65fddf4984a9dd9f1",
       "originalSha256": "1cbb9de6f4f0029ff8e8099882c8a80eedbf8b9769a50b6664b1eb2a9a44e123",
+      "masterFile": "artwork/hd-character-preview/animation-sources/018_G_yea.png",
       "masterSha256": "0a94d59fa609f98c48f4e550f18d9fd664d6ebfdea31760aae333bed767209e3",
       "sourceSize": [
         1304,
         1206
       ],
+      "bodyArea": 453.578125,
       "placement": {
         "mode": "boots",
+        "sourceFlipX": false,
         "sourceAnchor": [
           694,
           1133
@@ -988,7 +1247,20 @@
         0,
         0,
         0
-      ]
+      ],
+      "shadow": {
+        "key": "hd_shadow_cast_018_G_yea",
+        "file": "shadow_018_G_yea.png",
+        "w": 67,
+        "h": 27,
+        "reg": [
+          22,
+          2
+        ],
+        "pixelScale": 8,
+        "kind": "standing",
+        "sha256": "207748b155ad020f29b5d7ebe62750a704685dcfaeb39ea5a28f36ddeca93bcf"
+      }
     },
     {
       "key": "cast_019_G_yea",
@@ -1004,13 +1276,16 @@
       "pixelScale": 8,
       "sha256": "f981cc70306632cfd090c8f0c8e05a05244a6ac475ff36e76f3a4e08d9202fb7",
       "originalSha256": "74380c95781fb76c8c4ea8d8b88467e760060141a975daa9458fd3e8b5817c10",
+      "masterFile": "artwork/hd-character-preview/animation-sources/019_G_yea.png",
       "masterSha256": "29e89ec8b7d7e1e1ea3ded73c9fa91cc3623d14d5cacdc394bd7420fa81f7d50",
       "sourceSize": [
         1045,
         1505
       ],
+      "bodyArea": 452.171875,
       "placement": {
         "mode": "boots",
+        "sourceFlipX": false,
         "sourceAnchor": [
           529.5,
           1315
@@ -1046,7 +1321,20 @@
         0,
         0,
         0
-      ]
+      ],
+      "shadow": {
+        "key": "hd_shadow_cast_019_G_yea",
+        "file": "shadow_019_G_yea.png",
+        "w": 66,
+        "h": 28,
+        "reg": [
+          21,
+          2
+        ],
+        "pixelScale": 8,
+        "kind": "standing",
+        "sha256": "52f9f7526a40c264ada8e9954c17c09fd9936f7738576b06d0ba0d6c0007612b"
+      }
     },
     {
       "key": "cast_020_G_Walk_H2",
@@ -1062,13 +1350,16 @@
       "pixelScale": 8,
       "sha256": "3158160841df05a3d586a2a7ed1bf340892baa5f2a2808d302876009b1b6cfbf",
       "originalSha256": "5612ceb2f514f412104132bbc74f8d7b1a79bb8b77b7b8bad1883a307866c502",
+      "masterFile": "artwork/hd-character-preview/animation-sources/020_G_Walk_H2.png",
       "masterSha256": "0a4562bbc32ff8555e98e6425d4b80d1ecfd4c96df3425d9282cb510c4b70bb0",
       "sourceSize": [
         1045,
         1505
       ],
+      "bodyArea": 453.71875,
       "placement": {
         "mode": "boots",
+        "sourceFlipX": false,
         "sourceAnchor": [
           523.5,
           1258
@@ -1104,7 +1395,20 @@
         0,
         0,
         0
-      ]
+      ],
+      "shadow": {
+        "key": "hd_shadow_cast_020_G_Walk_H2",
+        "file": "shadow_020_G_Walk_H2.png",
+        "w": 65,
+        "h": 27,
+        "reg": [
+          18,
+          3
+        ],
+        "pixelScale": 8,
+        "kind": "standing",
+        "sha256": "6319d1a49c56a60df2c2d67d103f19888df38a7a48ea4448a8ed1b355ce7121f"
+      }
     },
     {
       "key": "cast_021_G_Walk_H1",
@@ -1120,13 +1424,16 @@
       "pixelScale": 8,
       "sha256": "987a4f47196160b651361b7f849ec65bb3c854a4ef4de5b4ad9b4bfbd8c05cfe",
       "originalSha256": "bbc575f7480830897f01036fffcbe981230454c11c00470af42c860f468f0726",
+      "masterFile": "artwork/hd-character-preview/animation-sources/021_G_Walk_H1.png",
       "masterSha256": "86544cbabd369c3b2950b9c129bb3806af20d0861a94eefca34ee7541102f8df",
       "sourceSize": [
         1045,
         1505
       ],
+      "bodyArea": 444.953125,
       "placement": {
         "mode": "boots",
+        "sourceFlipX": false,
         "sourceAnchor": [
           526,
           1292
@@ -1162,7 +1469,20 @@
         0,
         0,
         0
-      ]
+      ],
+      "shadow": {
+        "key": "hd_shadow_cast_021_G_Walk_H1",
+        "file": "shadow_021_G_Walk_H1.png",
+        "w": 64,
+        "h": 27,
+        "reg": [
+          19,
+          3
+        ],
+        "pixelScale": 8,
+        "kind": "standing",
+        "sha256": "de935051219d9fef1606dcd7bdc1d7388b61d79c08106f60d1f80aa0d5fddf92"
+      }
     },
     {
       "key": "cast_022_G_Walk_V1",
@@ -1178,13 +1498,16 @@
       "pixelScale": 8,
       "sha256": "9853ae92cff3a3aa9d6ea7bc111eac275dd9cf2da020f02f4bb1884955f8084d",
       "originalSha256": "6451c00bd6b1281c9e43423088632bb7a6d4d6cf9537537b0c7ffb8c164e78b7",
+      "masterFile": "artwork/hd-character-preview/animation-sources/022_G_Walk_V1.png",
       "masterSha256": "f7aded5be3d1fef20fb49e71b3bf5edc654f502232360ff6f10df45531abf207",
       "sourceSize": [
         1045,
         1505
       ],
+      "bodyArea": 429.71875,
       "placement": {
         "mode": "boots",
+        "sourceFlipX": false,
         "sourceAnchor": [
           469,
           1304
@@ -1220,7 +1543,20 @@
         0,
         0,
         0
-      ]
+      ],
+      "shadow": {
+        "key": "hd_shadow_cast_022_G_Walk_V1",
+        "file": "shadow_022_G_Walk_V1.png",
+        "w": 64,
+        "h": 27,
+        "reg": [
+          19,
+          3
+        ],
+        "pixelScale": 8,
+        "kind": "standing",
+        "sha256": "d36c0494ab84571ee328251b77f11de2dfe637618cfc8169fb83637a2982e56d"
+      }
     },
     {
       "key": "cast_023_G_Walk_V2",
@@ -1236,13 +1572,16 @@
       "pixelScale": 8,
       "sha256": "0adedbfe44c42ebfb76851b3e30f6343f0602b65ad4db6f8ea2cbfdbc23e534a",
       "originalSha256": "504eb633ddee78dcb9d083c6a0fd838648b9b4ddd5009f412f6ee9d03ab52c7d",
+      "masterFile": "artwork/hd-character-preview/animation-sources/023_G_Walk_V2.png",
       "masterSha256": "0607ad7670f37834f2ca427b64c11adac779e8df4ad392c0f90bacadb4239ec4",
       "sourceSize": [
         1045,
         1505
       ],
+      "bodyArea": 368.640625,
       "placement": {
         "mode": "boots",
+        "sourceFlipX": false,
         "sourceAnchor": [
           555.5,
           1308
@@ -1278,7 +1617,20 @@
         0,
         0,
         0
-      ]
+      ],
+      "shadow": {
+        "key": "hd_shadow_cast_023_G_Walk_V2",
+        "file": "shadow_023_G_Walk_V2.png",
+        "w": 61,
+        "h": 27,
+        "reg": [
+          17,
+          4
+        ],
+        "pixelScale": 8,
+        "kind": "standing",
+        "sha256": "edc7048ad194b33edc2f7888545079f64dfa1e943a0f9fbceacca2d480f1ba55"
+      }
     },
     {
       "key": "cast_024_G_ready",
@@ -1294,13 +1646,16 @@
       "pixelScale": 8,
       "sha256": "994bebeeacd774dfa2e28cc6efde56c431c016fb7fbf55bb7b604f3c0ced8f6f",
       "originalSha256": "1b1259aaa309e104b1bc71da2d125adaf7f07229f133a063ea423a23ce2da06d",
+      "masterFile": "artwork/hd-character-preview/animation-sources/024_G_ready.png",
       "masterSha256": "7a435487ce58201f0d95fe4b31e1346bfde253560781bc3dcd9adf0a33fc710f",
       "sourceSize": [
         1045,
         1505
       ],
+      "bodyArea": 410.65625,
       "placement": {
         "mode": "boots",
+        "sourceFlipX": false,
         "sourceAnchor": [
           559.5,
           1315
@@ -1336,7 +1691,20 @@
         0,
         0,
         0
-      ]
+      ],
+      "shadow": {
+        "key": "hd_shadow_cast_024_G_ready",
+        "file": "shadow_024_G_ready.png",
+        "w": 62,
+        "h": 27,
+        "reg": [
+          17,
+          3
+        ],
+        "pixelScale": 8,
+        "kind": "standing",
+        "sha256": "be56d393772bf640d6b254a57ddcaf3417528e541497ec65783dc0f855a11cf4"
+      }
     },
     {
       "key": "cast_025_G_windup",
@@ -1352,13 +1720,16 @@
       "pixelScale": 8,
       "sha256": "f01f8c7795f06d74dacdaa4f350834c7f923ddf5a58204f6f5d64a622ecb97d0",
       "originalSha256": "168fafe825f15c63ee8b9580e17d7f97f8a54b5a50f1e2341a90827122a61e4d",
+      "masterFile": "artwork/hd-character-preview/animation-sources/025_G_windup.png",
       "masterSha256": "c1e2e6ec4aa9f9f03f5b630364a46ea7653f703d52a0b070dc6ae9accc2b1a4c",
       "sourceSize": [
         1045,
         1505
       ],
+      "bodyArea": 318.5,
       "placement": {
         "mode": "boots",
+        "sourceFlipX": false,
         "sourceAnchor": [
           470,
           1309
@@ -1394,7 +1765,20 @@
         0,
         0,
         0
-      ]
+      ],
+      "shadow": {
+        "key": "hd_shadow_cast_025_G_windup",
+        "file": "shadow_025_G_windup.png",
+        "w": 55,
+        "h": 26,
+        "reg": [
+          13,
+          2
+        ],
+        "pixelScale": 8,
+        "kind": "standing",
+        "sha256": "e8dceaf56ef3358c9a00d5e7042dce31153b9184ea5425526c550ec87c64e511"
+      }
     },
     {
       "key": "cast_026_G_cock",
@@ -1410,13 +1794,16 @@
       "pixelScale": 8,
       "sha256": "963601f4d0a1367ea15ec419c5f87b628d249f63372d1a123e075baa3c6a2b2b",
       "originalSha256": "396367ae71e2e11679a9e61f51b29794499e5a7082d1dfc7e12205966e3a875a",
+      "masterFile": "artwork/hd-character-preview/animation-sources/026_G_cock.png",
       "masterSha256": "0d9c444249c9f936019fe3e46fb65676cf8f583119765a38415a83476e6fd076",
       "sourceSize": [
         1045,
         1505
       ],
+      "bodyArea": 433.515625,
       "placement": {
         "mode": "boots",
+        "sourceFlipX": false,
         "sourceAnchor": [
           523,
           1300
@@ -1452,7 +1839,20 @@
         0,
         0,
         0
-      ]
+      ],
+      "shadow": {
+        "key": "hd_shadow_cast_026_G_cock",
+        "file": "shadow_026_G_cock.png",
+        "w": 68,
+        "h": 27,
+        "reg": [
+          26,
+          1
+        ],
+        "pixelScale": 8,
+        "kind": "standing",
+        "sha256": "a3b06fb793b0cd508996b45626be5ce51519b08dde07b56f9b22da831f78c38a"
+      }
     },
     {
       "key": "cast_027_G_toss",
@@ -1468,13 +1868,16 @@
       "pixelScale": 8,
       "sha256": "460ee67b0bd53db370b3b6f3f84ae8685200fec6e377d7c06b61e915dca797e3",
       "originalSha256": "c89e1b38a6e96993856a8cf55b0ddf07907b1451842e823f1a2c6e25864a820d",
+      "masterFile": "artwork/hd-character-preview/animation-sources/027_G_toss.png",
       "masterSha256": "b19baedf7be214690fd68b4adb5bcb5b3bf10f130141221623f0c265dd41fc9a",
       "sourceSize": [
         1045,
         1505
       ],
+      "bodyArea": 319.796875,
       "placement": {
         "mode": "boots",
+        "sourceFlipX": false,
         "sourceAnchor": [
           420.5,
           1295
@@ -1510,7 +1913,20 @@
         0,
         0,
         0
-      ]
+      ],
+      "shadow": {
+        "key": "hd_shadow_cast_027_G_toss",
+        "file": "shadow_027_G_toss.png",
+        "w": 57,
+        "h": 26,
+        "reg": [
+          14,
+          2
+        ],
+        "pixelScale": 8,
+        "kind": "standing",
+        "sha256": "ba8d7f497e060ac813f286fe95280ed6e6e18240fd70dd111f6f366804e7e308"
+      }
     },
     {
       "key": "cast_028_G_Hit",
@@ -1526,13 +1942,16 @@
       "pixelScale": 8,
       "sha256": "91bc87efed7c0620360085bb0be3db9d67e9c24244ecc49567a98b85f61c00d3",
       "originalSha256": "1f7061c320febabbefb31959a49d7931ad0e34cdb7f4a5de7345248f138c11b6",
+      "masterFile": "artwork/hd-character-preview/animation-sources/028_G_Hit.png",
       "masterSha256": "624902122037782393f08fe97295bc61f4560395e46982fd4bbb65ff4700b6f0",
       "sourceSize": [
         1045,
         1505
       ],
+      "bodyArea": 338.796875,
       "placement": {
         "mode": "boots",
+        "sourceFlipX": false,
         "sourceAnchor": [
           555.5,
           1314
@@ -1568,7 +1987,20 @@
         0,
         0,
         0
-      ]
+      ],
+      "shadow": {
+        "key": "hd_shadow_cast_028_G_Hit",
+        "file": "shadow_028_G_Hit.png",
+        "w": 59,
+        "h": 27,
+        "reg": [
+          18,
+          3
+        ],
+        "pixelScale": 8,
+        "kind": "standing",
+        "sha256": "cb7e8a0b54d608486751c1d68e1a645fd9f25049fea14ea4295c6c9a772439f5"
+      }
     },
     {
       "key": "cast_029_G_Hit2",
@@ -1584,13 +2016,16 @@
       "pixelScale": 8,
       "sha256": "f3199708a251694801ee9c6530a7d5b1db693f1c710a231c02daf17bf06ad5e9",
       "originalSha256": "1f7061c320febabbefb31959a49d7931ad0e34cdb7f4a5de7345248f138c11b6",
+      "masterFile": "artwork/hd-character-preview/animation-sources/029_G_Hit2.png",
       "masterSha256": "3c11c7de8a4b8984cbc86a907c31923a14d16e983f39d837fb8edc16958d3def",
       "sourceSize": [
         1045,
         1505
       ],
+      "bodyArea": 357.515625,
       "placement": {
         "mode": "boots",
+        "sourceFlipX": false,
         "sourceAnchor": [
           532.5,
           1316
@@ -1626,7 +2061,20 @@
         0,
         0,
         0
-      ]
+      ],
+      "shadow": {
+        "key": "hd_shadow_cast_029_G_Hit2",
+        "file": "shadow_029_G_Hit2.png",
+        "w": 61,
+        "h": 27,
+        "reg": [
+          19,
+          3
+        ],
+        "pixelScale": 8,
+        "kind": "standing",
+        "sha256": "29cdd1086241df53578c34ac2776f101e757601e9d95586fc21ec4f412b7bac7"
+      }
     },
     {
       "key": "cast_030_G_ow",
@@ -1642,13 +2090,16 @@
       "pixelScale": 8,
       "sha256": "3357ab567ca418ebe3bedb94ca367ec207fff408a4fcff4dededec2b74bf6a35",
       "originalSha256": "b65f81d907288c24ce4bcaabef4bab9048a06d6a45cdc7650c994e565cd95a45",
+      "masterFile": "artwork/hd-character-preview/animation-sources/030_G_ow.png",
       "masterSha256": "0c4cf02ad31bb0453d47657fd37ecfb1d313ba954c9bdb6de36445d7a36ba9bf",
       "sourceSize": [
         1045,
         1505
       ],
+      "bodyArea": 476.625,
       "placement": {
         "mode": "boots",
+        "sourceFlipX": false,
         "sourceAnchor": [
           518.5,
           1317
@@ -1684,7 +2135,20 @@
         0,
         0,
         0
-      ]
+      ],
+      "shadow": {
+        "key": "hd_shadow_cast_030_G_ow",
+        "file": "shadow_030_G_ow.png",
+        "w": 64,
+        "h": 27,
+        "reg": [
+          18,
+          3
+        ],
+        "pixelScale": 8,
+        "kind": "standing",
+        "sha256": "2ae2bccd5a40b0fb916b1daf5e78f2227426108689303b276169f507181889d8"
+      }
     },
     {
       "key": "cast_031_G_recover",
@@ -1700,13 +2164,16 @@
       "pixelScale": 8,
       "sha256": "a35a56b38dd13b40e051becf73f51f5a67704d1f371dcf42c803ec482d7f5802",
       "originalSha256": "f749588f90914f9dc55c6f2b430ee13958754f31e4c9c07f516db143854469b8",
+      "masterFile": "artwork/hd-character-preview/animation-sources/031_G_recover.png",
       "masterSha256": "6164219a4274a4bc0907df3f13f896ac87e2d16f131341b08c8106917f8ce253",
       "sourceSize": [
         1045,
         1505
       ],
+      "bodyArea": 428.015625,
       "placement": {
         "mode": "boots",
+        "sourceFlipX": false,
         "sourceAnchor": [
           559.5,
           1263
@@ -1742,7 +2209,20 @@
         0,
         0,
         0
-      ]
+      ],
+      "shadow": {
+        "key": "hd_shadow_cast_031_G_recover",
+        "file": "shadow_031_G_recover.png",
+        "w": 62,
+        "h": 25,
+        "reg": [
+          18,
+          3
+        ],
+        "pixelScale": 8,
+        "kind": "standing",
+        "sha256": "8c63d4f267970978493cc96927dc8e8e431b81d33785f5f9c8a4b31f38b83ccc"
+      }
     },
     {
       "key": "cast_032_G_down",
@@ -1756,15 +2236,18 @@
         29
       ],
       "pixelScale": 8,
-      "sha256": "2bf518fae7d61c1a30c240d88151289b1f399dd097a9c271f9d0acf070613291",
+      "sha256": "dcc031c57be477c3b9f87ae2f09c3f54e5152527212b6df734622a300f70a736",
       "originalSha256": "3fd51e83ccc81ebeb30862777d60ed0aaad4ed855c8197a96b0973bd9b6b81b9",
+      "masterFile": "artwork/hd-character-preview/animation-sources/032_G_down.png",
       "masterSha256": "08cabf6ff29f2c46f94128a0f9c58d81c5a5671bd373d5d12068a0d1883810cc",
       "sourceSize": [
         1272,
         1236
       ],
+      "bodyArea": 413.9375,
       "placement": {
-        "mode": "bounds",
+        "mode": "body-area",
+        "sourceFlipX": false,
         "sourceAnchor": [
           629,
           1137
@@ -1777,10 +2260,10 @@
           17.5,
           33.875
         ],
-        "scale": 0.032420749279538905,
+        "scale": 0.030849727675178094,
         "offset": [
-          -2.892651296829971,
-          -2.9873919308357344
+          -1.9044787076870229,
+          -1.2011403666774925
         ],
         "sourceBounds": [
           164,
@@ -1800,7 +2283,20 @@
         0,
         0,
         0
-      ]
+      ],
+      "shadow": {
+        "key": "hd_shadow_cast_032_G_down",
+        "file": "shadow_032_G_down.png",
+        "w": 42,
+        "h": 45,
+        "reg": [
+          36,
+          33
+        ],
+        "pixelScale": 8,
+        "kind": "grounded",
+        "sha256": "a60cfdf68c0bc84c3d1a89805c4e03efab85f764d3c604b1490aae4d36d9fa4f"
+      }
     },
     {
       "key": "cast_033_G_dead",
@@ -1814,15 +2310,18 @@
         40
       ],
       "pixelScale": 8,
-      "sha256": "85869ca5f1b549888bec0a125b672727048125f9b3f860d07080dc75907b0e67",
+      "sha256": "9a31a4b99207968143dde36f443ad7ad326eb78ce6fdfaecd242038099d49e92",
       "originalSha256": "d1ed9c2baf46067315fb5f3d7694e238cdf46967b45f3af9e0ddb378496abf56",
+      "masterFile": "artwork/hd-character-preview/animation-sources/033_G_dead.png",
       "masterSha256": "45fa7ee6f06ba8f7b41eb3a5588220eee206b4d5ae668a613e3bac2cd978446d",
       "sourceSize": [
         1571,
         1001
       ],
+      "bodyArea": 412.15625,
       "placement": {
-        "mode": "bounds",
+        "mode": "body-area",
+        "sourceFlipX": false,
         "sourceAnchor": [
           743,
           968
@@ -1835,10 +2334,10 @@
           33,
           41.875
         ],
-        "scale": 0.04572836801752465,
+        "scale": 0.03273324577759073,
         "offset": [
-          -0.9761774370208158,
-          -2.390060240963855
+          8.67919838725009,
+          10.189218087292176
         ],
         "sourceBounds": [
           124,
@@ -1858,7 +2357,20 @@
         0,
         0,
         0
-      ]
+      ],
+      "shadow": {
+        "key": "hd_shadow_cast_033_G_dead",
+        "file": "shadow_033_G_dead.png",
+        "w": 53,
+        "h": 42,
+        "reg": [
+          63,
+          33
+        ],
+        "pixelScale": 8,
+        "kind": "grounded",
+        "sha256": "0eb3095e9280f896edfce501d141441889cd87105f140203ddfe8fb73cea6b2b"
+      }
     },
     {
       "key": "cast_034_G_dead",
@@ -1872,15 +2384,18 @@
         39
       ],
       "pixelScale": 8,
-      "sha256": "0f65b9d70fae53b430e321d2cd63e07ca5ebf85e8279d80f6e6e2101d0424bb9",
+      "sha256": "46cd27e2f0f599005354f023241f57e4bf4ef67655681575a6cd9ebc34abcad6",
       "originalSha256": "966a1c80f535df4ae33fdcf15c87464a7f75f7f8885ad3b8cf496f0343b24b37",
+      "masterFile": "artwork/hd-character-preview/animation-sources/034_G_dead.png",
       "masterSha256": "554b4c04f51f315f83f1786cf630d6e8472947842d6561e19963972010ff24e9",
       "sourceSize": [
         1359,
         1158
       ],
+      "bodyArea": 409.25,
       "placement": {
-        "mode": "bounds",
+        "mode": "body-area",
+        "sourceFlipX": false,
         "sourceAnchor": [
           651,
           1084
@@ -1893,10 +2408,10 @@
           27,
           45.875
         ],
-        "scale": 0.04547713717693837,
+        "scale": 0.03392097901599229,
         "offset": [
-          -2.6056163021868777,
-          -3.42221669980119
+          4.917442660589021,
+          9.104658746664363
         ],
         "sourceBounds": [
           154,
@@ -1916,7 +2431,20 @@
         0,
         0,
         0
-      ]
+      ],
+      "shadow": {
+        "key": "hd_shadow_cast_034_G_dead",
+        "file": "shadow_034_G_dead.png",
+        "w": 47,
+        "h": 47,
+        "reg": [
+          56,
+          33
+        ],
+        "pixelScale": 8,
+        "kind": "grounded",
+        "sha256": "984e2f923c72b2a902eb791462665bcfa06a4f5a82e9675e4241da66a3d291f9"
+      }
     },
     {
       "key": "cast_035_G_dead",
@@ -1930,15 +2458,18 @@
         34
       ],
       "pixelScale": 8,
-      "sha256": "3b21c6136553406fcc186eb7d29b1144da1b6dceed974940b8472aa165d3bb0d",
+      "sha256": "859751b97bcd097e0b7efbf50a604e6c1e3f15cc7a75e75025ae0aa5e461dfe5",
       "originalSha256": "bdc046721c871b2209d7fcef4526fab7fca8506531f139641154040bc998051c",
+      "masterFile": "artwork/hd-character-preview/animation-sources/035_G_dead.png",
       "masterSha256": "4d251c3fb0da3b8614b9046a3452635f840ee0b18977d00613586e38f8813e6c",
       "sourceSize": [
         1607,
         979
       ],
+      "bodyArea": 411.703125,
       "placement": {
-        "mode": "bounds",
+        "mode": "body-area",
+        "sourceFlipX": false,
         "sourceAnchor": [
           757,
           872
@@ -1951,10 +2482,10 @@
           34.5,
           41.875
         ],
-        "scale": 0.04807692307692308,
+        "scale": 0.03563812724759724,
         "offset": [
-          -1.8942307692307736,
-          -0.0480769230769269
+          7.521937673568889,
+          10.798553040095207
         ],
         "sourceBounds": [
           44,
@@ -1974,7 +2505,20 @@
         0,
         0,
         0
-      ]
+      ],
+      "shadow": {
+        "key": "hd_shadow_cast_035_G_dead",
+        "file": "shadow_035_G_dead.png",
+        "w": 64,
+        "h": 40,
+        "reg": [
+          70,
+          25
+        ],
+        "pixelScale": 8,
+        "kind": "grounded",
+        "sha256": "92589265f8a1964cabac8b7077105c8318d0d7e1bf98888f6a22a398d949ba35"
+      }
     },
     {
       "key": "cast_036_G_dead",
@@ -1988,15 +2532,18 @@
         36
       ],
       "pixelScale": 8,
-      "sha256": "ed30291ec28ba4e2a892ef95d13f4e39654dbff3bc6ac4e171fe2ff5b9c49681",
+      "sha256": "3fcc83fc168b2b9b5f0d09ecaa57a3db22271257c9d9ef5653db713b94f4ef9d",
       "originalSha256": "10849d707660941a68ef85b38773c8ea19fc818b8abfaef93bb67bf31cf43c20",
+      "masterFile": "artwork/hd-character-preview/animation-sources/036_G_dead.png",
       "masterSha256": "6fd76f60cc249fd1edafd62e7a802d8a701ae574481989bc9adfce6f487e3c19",
       "sourceSize": [
         1424,
         1105
       ],
+      "bodyArea": 411.421875,
       "placement": {
-        "mode": "bounds",
+        "mode": "body-area",
+        "sourceFlipX": false,
         "sourceAnchor": [
           712,
           1028
@@ -2009,10 +2556,10 @@
           24.5,
           37.875
         ],
-        "scale": 0.039989406779661014,
+        "scale": 0.031293937852201414,
         "offset": [
-          -3.9724576271186436,
-          -3.2341101694915224
+          2.2187162492325925,
+          5.7048318879369475
         ],
         "sourceBounds": [
           186,
@@ -2032,7 +2579,20 @@
         0,
         0,
         0
-      ]
+      ],
+      "shadow": {
+        "key": "hd_shadow_cast_036_G_dead",
+        "file": "shadow_036_G_dead.png",
+        "w": 46,
+        "h": 42,
+        "reg": [
+          54,
+          33
+        ],
+        "pixelScale": 8,
+        "kind": "grounded",
+        "sha256": "cafbf676f2074cc5648480e6420f8ab0c00949d3a1839c60dd6ee215d9980f0e"
+      }
     }
   ]
 }

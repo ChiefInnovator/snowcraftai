@@ -39,8 +39,9 @@ The web edition uses **Phaser 4** to replay the 1999 Director rules: fixed-diago
 - Runs in modern browsers without the original Director player.
 - Mouse and touch controls, responsive sizing, landscape phone play and full screen.
 - Crisp browser-rendered lettering for every title, level number, score and replay control, aligned to the stage rather than bitmap registration offsets.
-- A choice of original artwork or **35 faithfully redrawn HD character frames**, based on the approved Red and Green designs. The HD pack exports at 8× logical resolution with original registration and collision masks. Scenery and effects retain smooth 4× versions of their recovered art.
+- A choice of original artwork or **35 redrawn HD character frames**, based on the approved Red and Green designs, plus a newly illustrated 4× snowfield. The HD pack exports at 8× logical resolution with original registration and collision masks. Reds face their opponents and fall backward; fallen bodies keep their standing scale. Effects retain smooth 4× versions of their recovered art.
 - Independent, saved background-music and mute-all controls; the remake includes intro and background music.
+- HD pose shadows with soft edges and grounded contact, plus an open snowfield with opposing forts and a decorated Christmas grove in the top-right corner.
 - Easy/Normal/Hard difficulty, clearer selection feedback, and a shadow that follows a dragged kid.
 - A cleaner menu with one visible page title, accessible controls and keyboard-operable replay.
 

@@ -2,6 +2,8 @@
 
 **Reference designs approved on 2026-11-09.** Rich approved the pair with “Yes, these are awesome”. The complete 35-frame pack now replaces the characters in web High resolution mode and the enhanced-only Flutter game. The original stage-1 screenshots below retain their review-time captions; reference-pair approval does not imply human approval of every animation frame.
 
+**Current corrections:** [backward Red falls, facing, body scale, shadows and the redrawn snowfield](corrections/README.md). These supersede the initial bounds-fit export and unchanged-HD-scenery descriptions below. Original recovered assets remain intact.
+
 - Baseline: `Prior-to-high-res-art`, commit `d0a7db7ea698613b75eaaf313d7998cf40099ed2`.
 - Candidate branch: `feature/hd-character-preview-codex`.
 - Candidate checkout: `/Users/rich/.openclaw/projects/snowcraftai-hd-preview-codex`.

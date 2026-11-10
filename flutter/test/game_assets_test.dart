@@ -32,6 +32,15 @@ ByteData _encode(Map<String, dynamic> data) =>
 
 class _RingCanvas implements ui.Canvas {
   final rings = <ui.Rect>[];
+  final sprites = <({ui.Image image, ui.Rect destination})>[];
+
+  @override
+  void drawImageRect(
+    ui.Image image,
+    ui.Rect src,
+    ui.Rect dst,
+    ui.Paint paint,
+  ) => sprites.add((image: image, destination: dst));
 
   @override
   void drawOval(ui.Rect rect, ui.Paint paint) => rings.add(rect);
@@ -42,6 +51,37 @@ class _RingCanvas implements ui.Canvas {
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+
+  test(
+    'pose shadows use registered HD masks for throwing, down and dead kids',
+    () async {
+      final assets = await GameAssets.load();
+      addTearDown(assets.dispose);
+      final engine = GameEngine(assets.levels)..startGame();
+      final red = engine.reds.first;
+      for (final pose in [KidPose.windup, KidPose.down, KidPose.dead]) {
+        red.pose = pose;
+        if (pose == KidPose.dead) red.hits = red.maxHits;
+        final frame = assets.kidFrame(red, engine.elapsed);
+        final shadow = assets.frames['hd_shadow_${frame.key}']!;
+        final canvas = _RingCanvas();
+        GamePainter(engine, assets).paint(canvas, const ui.Size(592, 320));
+        final draw = canvas.sprites.singleWhere(
+          (s) => identical(s.image, assets.images[shadow.key]),
+        );
+        expect(
+          draw.destination,
+          ui.Rect.fromLTWH(
+            red.position.x - shadow.regX,
+            red.position.y - shadow.regY,
+            shadow.width,
+            shadow.height,
+          ),
+        );
+        expect(assets.images[shadow.key]!.width, shadow.width * 8);
+      }
+    },
+  );
 
   test(
     'all 35 HD frames decode at 8x with original logical geometry',
