@@ -4,8 +4,8 @@ const DEBUG_MODE = PARAMS.has('debug'); // ?debug → coordinate labels + level-
 const START_LEVEL = 1; // Level to start on (1-10)
 let GAME_SCALE = 0; // 0 = fit the window; otherwise a fixed multiple of 600×320
 let GAME_DIFFICULTY = 2; // 1=Easy, 2=Normal, 3=Hard
-let GAME_ARTWORK = 'original';
-try { if (localStorage.getItem('snowcraft-artwork') === 'high-resolution') GAME_ARTWORK = 'high-resolution'; } catch (err) { /* private mode */ }
+let GAME_ARTWORK = 'high-resolution';
+try { if (localStorage.getItem('snowcraft-artwork') === 'original') GAME_ARTWORK = 'original'; } catch (err) { /* private mode */ }
 let game = null;
 let snowcraftAudio = null;
 

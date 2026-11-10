@@ -11,7 +11,7 @@ All values live in `RULES` at the top of `web/js/game.js` and `web/js/parity.js`
 * **HD shadows:** each of the 35 poses has an 8× translucent shadow projected from its actual character silhouette, with cool soft penumbra and darker boot contact. Light projects from upper-left toward lower-right. Down/out poses use close body contact shadows instead of a detached standing shadow; shadows follow movement, pose changes and fade-out. Web Original mode retains the recovered shadow artwork. Flutter uses the same HD masks.
 * **HD scenery:** the forts retain opposing orientations. The field has open, flat edges without a circular perimeter mound. One group of snow-covered evergreen trees, decorated with outdoor Christmas ornaments and lights, occupies the top-right corner; the other edges and central play area remain clear.
 
-Preferences for artwork, background music and mute-all persist independently. Disabling music leaves sound effects enabled; mute-all silences effects, intro and music, and unmuting respects the saved music choice. Artwork changes update existing objects without restarting a level.
+High resolution is the default artwork. An explicit Original choice is remembered. Preferences for artwork, background music and mute-all persist independently. Disabling music leaves sound effects enabled; mute-all silences effects, intro and music, and unmuting respects the saved music choice. Artwork changes update existing objects without restarting a level.
 
 ## Player (red team)
 

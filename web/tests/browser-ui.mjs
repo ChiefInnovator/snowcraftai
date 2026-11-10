@@ -178,6 +178,8 @@ async function audioState(page) {
 
 test("DOM text stays centered before/after fonts, resize and hide/show; title text does not intercept clicks", { timeout: 30000 }, async t => {
     const { page, releaseFonts } = await open(t, "font layout", {}, false);
+    assert.equal(await page.locator('#artwork-select').inputValue(), 'high-resolution');
+    assert.equal(await page.evaluate(() => SnowcraftGame.getScene().artwork.mode), 'high-resolution');
     const before = await geometry(page);
     assertAnchors(before);
     releaseFonts();
@@ -243,6 +245,7 @@ test("all level banners use aligned browser text in original and high-resolution
 
 test("real drag charges and throws; live artwork switching preserves score, pose and original collision matte", { timeout: 30000 }, async t => {
     const { page } = await open(t, "drag and artwork");
+    await page.locator('#artwork-select').selectOption('original');
     await start(page);
     await active(page);
     const canvas = await page.locator("canvas").boundingBox();
