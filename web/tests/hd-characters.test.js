@@ -16,7 +16,7 @@ const sha = buffer => crypto.createHash('sha256').update(buffer).digest('hex');
 
 // Decode the shipped RGBA PNG alpha independently of exporter metadata: a valid
 // canvas size/hash alone cannot detect a character accidentally shrunk inside it.
-function alphaBounds(png) {
+function pixelMetrics(png, red = true) {
     const w = png.readUInt32BE(16), h = png.readUInt32BE(20);
     assert.equal(png[24], 8);
     assert.equal(png[25], 6);
@@ -33,6 +33,9 @@ function alphaBounds(png) {
         return da <= db && da <= dc ? a : db <= dc ? b : c;
     };
     let left = w, top = h, right = -1, bottom = -1;
+    let bodyPixels = 0, skinX = 0, skinPixels = 0, teamX = 0, teamPixels = 0;
+    const alphaValues = new Set();
+    let maxAlpha = 0, edgeAlpha = 0;
     for (let y = 0; y < h; y++) {
         const filter = raw[y * (stride + 1)];
         assert.ok(filter <= 4);
@@ -41,15 +44,32 @@ function alphaBounds(png) {
             const a = x >= 4 ? pixels[i - 4] : 0, b = y ? pixels[i - stride] : 0, c = y && x >= 4 ? pixels[i - stride - 4] : 0;
             const prediction = [0, a, b, Math.floor((a + b) / 2), paeth(a, b, c)][filter];
             pixels[i] = (raw[y * (stride + 1) + x + 1] + prediction) & 255;
+            if (x % 4 === 3) {
+                const px = (x - 3) / 4;
+                alphaValues.add(pixels[i]);
+                maxAlpha = Math.max(maxAlpha, pixels[i]);
+                if (!px || !y || px === w - 1 || y === h - 1) edgeAlpha = Math.max(edgeAlpha, pixels[i]);
+            }
             if (x % 4 === 3 && pixels[i] > 16) {
                 const px = (x - 3) / 4;
                 left = Math.min(left, px); right = Math.max(right, px);
                 top = Math.min(top, y); bottom = Math.max(bottom, y);
+                if (pixels[i] >= 160) {
+                    const r = pixels[i - 3], g = pixels[i - 2], b = pixels[i - 1];
+                    const blue = b > 45 && b > r * 1.15 && b > g * 1.3;
+                    const team = red ? r > 45 && r > g * 1.25 && r > b * 1.1 : g > 45 && g > r * 1.25 && g > b * 1.1;
+                    if (team || blue) bodyPixels++;
+                    if (team) { teamX += px; teamPixels++; }
+                    if (r > 160 && g > 100 && b > 75 && r > g * 1.08 && g > b * 1.03 && r < g * 1.7) {
+                        skinX += px; skinPixels++;
+                    }
+                }
             }
         }
     }
     assert.ok(right >= left && bottom >= top, 'nonempty PNG');
-    return { width: right - left + 1, height: bottom - top + 1 };
+    return { width: right - left + 1, height: bottom - top + 1, bodyPixels, faceX: skinX / skinPixels, teamX: teamX / teamPixels,
+        maxAlpha, edgeAlpha, alphaLevels: alphaValues.size };
 }
 
 test('HD pack covers every character pose/variant and is byte-identical in web and Flutter', () => {
@@ -79,7 +99,7 @@ test('HD export retains original dimensions, unusual registrations, and placemen
         assert.deepEqual(frame.reg, original.reg, frame.file);
         const old = fs.readFileSync(path.join(root, 'web/assets/cast', frame.file));
         assert.equal(sha(old), frame.originalSha256);
-        const master = fs.readFileSync(path.join(root, 'artwork/hd-character-preview/animation-sources', frame.file));
+        const master = fs.readFileSync(path.join(root, frame.masterFile));
         assert.equal(sha(master), frame.masterSha256);
         const { sourceAnchor, targetAnchor, offset, scale, sourceCrop } = frame.placement;
         for (const axis of [0, 1]) {
@@ -92,14 +112,49 @@ test('HD export retains original dimensions, unusual registrations, and placemen
     }
 });
 
-test('hit and falling poses retain visible size instead of shrinking around a standing boot anchor', () => {
+test('fallen bodies stay the size of their standing teammates instead of filling scattered-prop bounds', () => {
     const falling = new Set([9, 10, 14, 15, 16, 32, 33, 34, 35, 36]);
     for (const frame of pack.frames.filter(frame => falling.has(frame.num))) {
-        const original = alphaBounds(fs.readFileSync(path.join(root, 'web/assets/cast', frame.file)));
-        const rendered = alphaBounds(fs.readFileSync(path.join(web, frame.file)));
-        const expectedExtent = Math.max(original.width, original.height);
-        const actualExtent = Math.max(rendered.width, rendered.height) / pack.pixelScale;
-        assert.ok(actualExtent >= expectedExtent * 0.75,
-            `${frame.file}: visible extent ${actualExtent} is too small for original extent ${expectedExtent}`);
+        const red = frame.name.startsWith('R ');
+        const standing = pack.frames.find(f => f.name === (red ? 'R ready' : 'G ready'));
+        const ready = pixelMetrics(fs.readFileSync(path.join(web, standing.file)), red);
+        const rendered = pixelMetrics(fs.readFileSync(path.join(web, frame.file)), red);
+        const ratio = rendered.bodyPixels / ready.bodyPixels;
+        // Compact hit frames may constrain the art, but cannot inflate it.
+        assert.ok(ratio > 0.7 && ratio < 1.15, `${frame.file}: body area ratio ${ratio}`);
+    }
+});
+
+test('HD Red standing faces left toward Green while Green continues facing right', () => {
+    for (const [name, red] of [['R ready', true], ['R cock', true], ['R toss', true], ['G ready', false]]) {
+        const frame = pack.frames.find(f => f.name === name);
+        const metrics = pixelMetrics(fs.readFileSync(path.join(web, frame.file)), red);
+        assert.ok(red ? metrics.faceX < metrics.teamX : metrics.faceX > metrics.teamX, name);
+    }
+});
+
+test('redrawn snowfield is shared by both platforms at 4x original geometry', () => {
+    const file = path.join(root, 'web/assets/hd/scenery/ground.png');
+    const png = fs.readFileSync(file);
+    assert.deepEqual(png, fs.readFileSync(path.join(root, 'flutter/assets/hd/scenery/ground.png')));
+    assert.equal(png.readUInt32BE(16), P.CAST.ground.w * 4);
+    assert.equal(png.readUInt32BE(20), P.CAST.ground.h * 4);
+    assert.notEqual(sha(png), sha(fs.readFileSync(path.join(root, 'web/assets/cast', P.CAST.ground.file))));
+});
+
+test('all HD poses have shared, softly feathered translucent shadows without clipped edges', () => {
+    for (const frame of pack.frames) {
+        const shadow = frame.shadow;
+        assert.equal(shadow.key, 'hd_shadow_' + frame.key);
+        const png = fs.readFileSync(path.join(web, shadow.file));
+        assert.deepEqual(png, fs.readFileSync(path.join(native, shadow.file)));
+        assert.equal(sha(png), shadow.sha256);
+        assert.equal(png.readUInt32BE(16), shadow.w * 8);
+        assert.equal(png.readUInt32BE(20), shadow.h * 8);
+        const metrics = pixelMetrics(png);
+        assert.ok(metrics.maxAlpha > 20 && metrics.maxAlpha < 140, frame.file + ' translucent shadow');
+        assert.ok(metrics.alphaLevels > 25, frame.file + ' soft penumbra');
+        assert.ok(metrics.edgeAlpha <= 2, frame.file + ' unclipped blur');
+        assert.equal(shadow.kind, frame.placement.mode === 'body-area' ? 'grounded' : 'standing');
     }
 });

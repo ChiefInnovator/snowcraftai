@@ -1,5 +1,5 @@
 /**
- * Redrawn HD character textures, plus 4x smoothing of recovered scenery/effects.
+ * Redrawn HD characters and snowfield, plus smoothing of recovered effects.
  * Source textures stay byte-for-byte intact, including those used for mattes.
  */
 (function (root, factory) {
@@ -12,6 +12,7 @@
     const SUFFIX = "__snowcraft_smooth4x";
     const caches = new WeakMap();
     const characterTextureKey = key => key + "__snowcraft_redrawn8x";
+    const sceneryTextureKey = key => key + "__snowcraft_redrawn4x";
 
     function checkedMode(mode) {
         if (mode !== "original" && mode !== "high-resolution") {
@@ -84,7 +85,8 @@
             }
             let key = record.key;
             if (mode === "high-resolution") {
-                const redrawn = characterTextureKey(record.key);
+                const character = characterTextureKey(record.key);
+                const redrawn = textures.exists(character) ? character : sceneryTextureKey(record.key);
                 key = textures.exists(redrawn) ? redrawn : derivedKey(record.key, spec);
                 if (key === redrawn) {
                     const filters = root.Phaser && root.Phaser.Textures && root.Phaser.Textures.FilterMode;
@@ -181,5 +183,5 @@
         return manager;
     }
 
-    return { create: create, characterTextureKey: characterTextureKey };
+    return { create: create, characterTextureKey: characterTextureKey, sceneryTextureKey: sceneryTextureKey };
 });

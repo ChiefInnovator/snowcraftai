@@ -40,9 +40,18 @@ class GamePainter extends CustomPainter {
     _sprite(canvas, assets.ground, const Vec(296, 160));
     final sorted = List<Kid>.of(engine.kids)
       ..sort((a, b) => a.position.y.compareTo(b.position.y));
-    final shadow = assets.named('shadow');
     for (final kid in sorted) {
-      _sprite(canvas, shadow, kid.position, opacity: kid.alive ? 0.6 : 0.3);
+      final frame = assets.kidFrame(
+        kid,
+        engine.elapsed,
+        celebrate: engine.phase == GamePhase.loss,
+      );
+      _sprite(
+        canvas,
+        assets.frames['hd_shadow_${frame.key}']!,
+        kid.position,
+        opacity: kid.alive ? 1 : 0.72,
+      );
       if (engine.phase == GamePhase.playing &&
           kid.alive &&
           (kid == engine.dragged ||

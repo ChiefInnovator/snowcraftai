@@ -18,5 +18,6 @@ flutter:
   assets:
     - assets/art/
     - assets/hd/characters/
+    - assets/hd/scenery/
     - assets/audio/
     - assets/data/

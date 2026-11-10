@@ -1,5 +1,7 @@
 # HD character integration validation — 2026-11-09
 
+This records the initial integration export. [The subsequent correction receipt](corrections/README.md) supersedes its asset sizes/hashes, bounds-fit policy, scenery description and test counts.
+
 ## Scope
 
 The web High resolution option and enhanced-only Flutter game use the same 35 redrawn character frames: 15 Red and 20 Green, exported at 8× their original logical canvas sizes. Original artwork mode, cast registrations, collision masks, scenery, audio and gameplay rules remain intact. The earlier vector study is preserved under `poc/` and is unused at runtime.

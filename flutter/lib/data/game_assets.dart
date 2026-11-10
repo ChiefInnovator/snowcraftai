@@ -49,7 +49,7 @@ class GameAssets {
   final List<ArtFrame> powers, drops, melts;
   final ArtFrame snowball, splat, ground;
 
-  /// Redrawn characters; recovered scenery/effects are smoothed at 4x.
+  /// Redrawn characters and snowfield; recovered effects are smoothed at 4x.
   static Future<GameAssets> load({AssetBundle? bundle}) async {
     final source = bundle ?? rootBundle;
     final data = jsonDecode(
@@ -106,26 +106,41 @@ class GameAssets {
     final splat = read(data['splat']);
     final melts = (data['melt'] as List).map(read).toList();
     final ground = read(data['ground']);
+    final shadowKeys = <String>{};
+    for (final character in hdFrames.values) {
+      final shadow = character['shadow'];
+      if (shadow is! Map<String, dynamic> ||
+          shadow['key'] != 'hd_shadow_${character['key']}' ||
+          shadow['file'] != 'shadow_${character['file']}' ||
+          shadow['pixelScale'] != 8) {
+        throw const FormatException('Missing HD pose shadow');
+      }
+      shadowKeys.add(read(shadow).key);
+    }
     final images = <String, ui.Image>{};
     try {
       for (final frame in frames.values) {
         final character = hdFrames[frame.key];
+        final isHd = character != null || shadowKeys.contains(frame.key);
+        final isGround = frame.key == ground.key;
         final bytes = await source.load(
-          character == null
-              ? 'assets/art/${frame.file}'
-              : 'assets/hd/characters/${character['file']}',
+          isGround
+              ? 'assets/hd/scenery/ground.png'
+              : isHd
+              ? 'assets/hd/characters/${frame.file}'
+              : 'assets/art/${frame.file}',
         );
         final codec = await ui.instantiateImageCodec(
           bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes),
           // Decode HD at its real size so a damaged export cannot be hidden by
           // upscaling. Recovered scenery/effects retain the existing 4x decode.
-          targetWidth: character == null ? (frame.width * 4).round() : null,
-          targetHeight: character == null ? (frame.height * 4).round() : null,
+          targetWidth: !isHd && !isGround ? (frame.width * 4).round() : null,
+          targetHeight: !isHd && !isGround ? (frame.height * 4).round() : null,
           allowUpscaling: true,
         );
         try {
           final image = (await codec.getNextFrame()).image;
-          if (character != null &&
+          if (isHd &&
               (image.width != frame.width * 8 ||
                   image.height != frame.height * 8)) {
             image.dispose();

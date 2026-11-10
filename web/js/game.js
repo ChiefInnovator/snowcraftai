@@ -4,8 +4,8 @@ const DEBUG_MODE = PARAMS.has('debug'); // ?debug → coordinate labels + level-
 const START_LEVEL = 1; // Level to start on (1-10)
 let GAME_SCALE = 0; // 0 = fit the window; otherwise a fixed multiple of 600×320
 let GAME_DIFFICULTY = 2; // 1=Easy, 2=Normal, 3=Hard
-let GAME_ARTWORK = 'original';
-try { if (localStorage.getItem('snowcraft-artwork') === 'high-resolution') GAME_ARTWORK = 'high-resolution'; } catch (err) { /* private mode */ }
+let GAME_ARTWORK = 'high-resolution';
+try { if (localStorage.getItem('snowcraft-artwork') === 'original') GAME_ARTWORK = 'original'; } catch (err) { /* private mode */ }
 let game = null;
 let snowcraftAudio = null;
 
@@ -282,14 +282,17 @@ class MainScene extends Phaser.Scene {
         this.load.image('melt_3', 'assets/cast/melt_3.png');
         this.load.image('playfield', 'assets/playField.png');
         this.load.image(P.CAST.ground.key, 'assets/cast/' + P.CAST.ground.file);
+        this.load.image(SnowcraftArtwork.sceneryTextureKey(P.CAST.ground.key), 'assets/hd/scenery/ground.png');
         this.load.image('shadow', 'assets/shadow.png');
         P.CAST.kids.forEach((m) => {
             this.load.image(m.key, 'assets/cast/' + m.file);
             if (m.name !== 'shadow') {
                 this.load.image(SnowcraftArtwork.characterTextureKey(m.key), 'assets/hd/characters/' + m.file);
+                this.load.image('hd_shadow_' + m.key, 'assets/hd/characters/shadow_' + m.file);
             }
         });
         this.load.json('walkon', 'assets/walkon.json');
+        this.load.json('hd_characters', 'assets/hd/characters/manifest.json');
 
         // Original channel-1 WAVs (paths relative to src/). Intro/BGM are remake extras.
         Object.keys(P.SOUND_FILES).forEach((id) => {
@@ -332,6 +335,7 @@ class MainScene extends Phaser.Scene {
         this.matteCache = {};
 
         this.walkon = this.cache.json.get('walkon') || [];
+        this.hdShadowSpecs = Object.fromEntries(this.cache.json.get('hd_characters').frames.map(frame => [frame.key, frame.shadow]));
 
         // 3. Game Groups & State
         this.shadowGroup = this.add.group();
@@ -659,6 +663,24 @@ class MainScene extends Phaser.Scene {
         P.applyOrigin(kid.bodySprite, spec);
         kid.memberName = spec.name;
         kid.memberSpec = spec;
+        this.updateKidShadow(kid);
+    }
+
+    updateKidShadow(kid) {
+        const spec = kid.memberSpec;
+        if (!spec || !kid.shadow) return;
+        const hd = this.artwork.mode === 'high-resolution';
+        const fallen = spec.name === 'R hit' || spec.name === 'R hit2' || spec.name === 'R dead' || spec.name === 'G down' || spec.name === 'G dead';
+        kid.shadow.setPosition(kid.x, kid.y).setAlpha(kid.alpha).setVisible(!hd && kid.isAlive && !fallen);
+        if (!kid.hdShadow) return;
+        const shadow = this.hdShadowSpecs[spec.key];
+        kid.hdShadow.setVisible(hd && !!shadow).setPosition(kid.x, kid.y).setAlpha(kid.alpha);
+        if (shadow && kid.hdShadow.texture.key !== shadow.key) {
+            kid.hdShadow.setTexture(shadow.key).setDisplaySize(shadow.w, shadow.h)
+                .setOrigin(shadow.reg[0] / shadow.w, shadow.reg[1] / shadow.h);
+            const filters = Phaser.Textures.FilterMode;
+            kid.hdShadow.texture.setFilter(filters ? filters.LINEAR : 0);
+        }
     }
 
     showKidFrame(kid, atlasFrame, variant) {
@@ -861,6 +883,9 @@ class MainScene extends Phaser.Scene {
             kid.teamType = type;
             kid.bodySprite = sprite;
             kid.shadow = shadow;
+            // updateKidShadow selects and registers the current HD pose mask.
+            kid.hdShadow = this.add.image(spawnX, spawnY, 'shadow').setVisible(false).setDepth(-5);
+            this.shadowGroup.add(kid.hdShadow);
             kid.hits = 0;
             kid.isDazed = false;   // red: hit once, can't be grabbed, still hittable
             kid.isImmune = false;  // green: knocked down
@@ -944,7 +969,7 @@ class MainScene extends Phaser.Scene {
         }
 
         [...this.redTeam, ...this.greenTeam].forEach(kid => {
-            if (kid.shadow && kid.isAlive) kid.shadow.setPosition(kid.x, kid.y);
+            this.updateKidShadow(kid);
             if (DEBUG_MODE && kid.debugLabel) {
                 const labelY = (kid.y - 45 < 10) ? kid.y + 35 : kid.y - 45;
                 kid.debugLabel.setPosition(kid.x, labelY);
@@ -1430,6 +1455,7 @@ class MainScene extends Phaser.Scene {
         this.stopDaze(k);
         this.stopWalkOn(k);
         if (k.shadow) k.shadow.destroy();
+        if (k.hdShadow) k.hdShadow.destroy();
         if (k.debugLabel) k.debugLabel.destroy();
         k.destroy();
     }

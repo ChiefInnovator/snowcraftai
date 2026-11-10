@@ -178,6 +178,8 @@ async function audioState(page) {
 
 test("DOM text stays centered before/after fonts, resize and hide/show; title text does not intercept clicks", { timeout: 30000 }, async t => {
     const { page, releaseFonts } = await open(t, "font layout", {}, false);
+    assert.equal(await page.locator('#artwork-select').inputValue(), 'high-resolution');
+    assert.equal(await page.evaluate(() => SnowcraftGame.getScene().artwork.mode), 'high-resolution');
     const before = await geometry(page);
     assertAnchors(before);
     releaseFonts();
@@ -243,6 +245,7 @@ test("all level banners use aligned browser text in original and high-resolution
 
 test("real drag charges and throws; live artwork switching preserves score, pose and original collision matte", { timeout: 30000 }, async t => {
     const { page } = await open(t, "drag and artwork");
+    await page.locator('#artwork-select').selectOption('original');
     await start(page);
     await active(page);
     const canvas = await page.locator("canvas").boundingBox();
@@ -367,6 +370,121 @@ test("all 35 HD poses retain logical geometry and one selection ring across artw
     await page.locator("#artwork-select").selectOption("high-resolution");
     await screenshot(page, "hd-hit-down-dead-poses");
     evidence.hdCharacters = observations;
+});
+
+test("knockout hides standing shadows, revival restores them, and HD uses the redrawn snowfield", { timeout: 30000 }, async t => {
+    const { page } = await open(t, "corrected artwork and shadows");
+    await start(page);
+    await active(page);
+    const observations = await page.evaluate(() => {
+        const scene = SnowcraftGame.getScene();
+        scene.stopAI();
+        const kid = scene.redTeam[0];
+        scene.handleHit(kid);
+        const hitShadow = kid.shadow.visible;
+        scene.handleHit(kid);
+        const deadShadow = kid.shadow.visible;
+        const groundKey = SnowcraftParity.CAST.ground.key;
+        const ground = scene.children.list.find(image => image.snowcraftOriginalTextureKey === groundKey);
+        const modes = [];
+        for (const mode of ['high-resolution', 'original', 'high-resolution']) {
+            scene.artwork.setMode(mode);
+            modes.push({ mode, texture: ground.texture.key, width: ground.displayWidth, height: ground.displayHeight,
+                backing: [ground.width, ground.height], deadShadow: kid.shadow.visible });
+        }
+        scene.reviveRed(kid);
+        kid.setPosition(kid.x - 10, kid.y - 5);
+        scene.update(0, 0);
+        const revived = { alive: kid.isAlive, shadow: kid.hdShadow.visible, position: [kid.hdShadow.x, kid.hdShadow.y], expected: [kid.x, kid.y] };
+        // Leave a real knockout and a recovering Green on screen for review.
+        scene.knockOut(scene.redTeam[1], 'death_0');
+        scene.setKidMember(scene.greenTeam[0], 'G down');
+        const downShadow = scene.greenTeam[0].shadow.visible;
+        scene.setKidMember(scene.greenTeam[0], 'G ready');
+        const recoveredShadow = scene.greenTeam[0].hdShadow.visible;
+        scene.setKidMember(scene.greenTeam[0], 'G down');
+        return { hitShadow, deadShadow, revived, downShadow, recoveredShadow, modes, state: JSON.parse(render_game_to_text()) };
+    });
+    assert.equal(observations.hitShadow, false);
+    assert.equal(observations.deadShadow, false);
+    assert.equal(observations.downShadow, false);
+    assert.equal(observations.recoveredShadow, true);
+    assert.equal(observations.revived.alive, true);
+    assert.equal(observations.revived.shadow, true);
+    assert.deepEqual(observations.revived.position, observations.revived.expected);
+    for (const sample of observations.modes) {
+        const hd = sample.mode === 'high-resolution';
+        assert.equal(sample.texture, 'cast_ground' + (hd ? '__snowcraft_redrawn4x' : ''));
+        assert.deepEqual(sample.backing, hd ? [2400, 1280] : [600, 320]);
+        assert.equal(sample.width, 600);
+        assert.equal(sample.height, 320);
+        assert.equal(sample.deadShadow, false);
+    }
+    await page.locator('#artwork-select').selectOption('high-resolution');
+    await screenshot(page, 'corrected-falls-shadows-snowfield');
+    evidence.artworkCorrections = observations;
+});
+
+test("HD pose shadows track movement, falls, fades and artwork switches", { timeout: 30000 }, async t => {
+    const { page } = await open(t, 'soft pose shadows');
+    await start(page);
+    await active(page);
+    const observations = await page.evaluate(() => {
+        const scene = SnowcraftGame.getScene(), kid = scene.redTeam[0];
+        const samples = [];
+        for (const mode of ['original', 'high-resolution', 'original', 'high-resolution']) {
+            scene.artwork.setMode(mode);
+            for (const pose of ['R ready', 'R cock', 'R toss', 'R hit', 'R hit2', 'R dead']) {
+                scene.setKidMember(kid, pose);
+                kid.setPosition(kid.x - 1, kid.y - 1).setAlpha(0.6);
+                scene.update(0, 0);
+                const spec = scene.hdShadowSpecs[kid.memberSpec.key];
+                samples.push({ mode, pose, original: kid.shadow.visible, hd: kid.hdShadow.visible,
+                    texture: kid.hdShadow.texture.key, expectedKey: spec.key,
+                    dimensions: [kid.hdShadow.displayWidth, kid.hdShadow.displayHeight], expectedDimensions: [spec.w, spec.h],
+                    backing: [kid.hdShadow.width, kid.hdShadow.height],
+                    origin: [kid.hdShadow.originX, kid.hdShadow.originY], expectedOrigin: [spec.reg[0] / spec.w, spec.reg[1] / spec.h],
+                    position: [kid.hdShadow.x, kid.hdShadow.y], expectedPosition: [kid.x, kid.y], alpha: kid.hdShadow.alpha,
+                    originalAlpha: kid.shadow.alpha, filter: kid.hdShadow.texture.source[0].scaleMode });
+            }
+        }
+        scene.showKidIdle(kid); kid.setAlpha(1);
+        scene.knockOut(scene.redTeam[1], 'death_0');
+        scene.update(0, 0);
+        return { samples, knockedOut: { original: scene.redTeam[1].shadow.visible, hd: scene.redTeam[1].hdShadow.visible,
+            kind: scene.hdShadowSpecs[scene.redTeam[1].memberSpec.key].kind } };
+    });
+    for (const sample of observations.samples) {
+        assert.equal(sample.hd, sample.mode === 'high-resolution');
+        assert.equal(sample.original, sample.mode === 'original' && !['R hit', 'R hit2', 'R dead'].includes(sample.pose));
+        assert.equal(sample.texture, sample.expectedKey);
+        assert.deepEqual(sample.dimensions, sample.expectedDimensions);
+        assert.deepEqual(sample.backing, sample.expectedDimensions.map(n => n * 8));
+        assert.deepEqual(sample.origin, sample.expectedOrigin);
+        assert.deepEqual(sample.position, sample.expectedPosition);
+        assert.equal(sample.alpha, 0.6);
+        assert.equal(sample.originalAlpha, 0.6);
+        assert.equal(sample.filter, 0); // LINEAR sampling for reduced HD masks.
+    }
+    assert.deepEqual(observations.knockedOut, { original: false, hd: true, kind: 'grounded' });
+    await page.locator('#artwork-select').selectOption('high-resolution');
+    await screenshot(page, 'soft-pose-shadows');
+    evidence.poseShadows = observations;
+    // Exercise the documented debug revival after the actual loss fade,
+    // including the separately tweened recovered Original shadow objects.
+    await page.locator('#artwork-select').selectOption('original');
+    await page.evaluate(() => {
+        const scene = SnowcraftGame.getScene();
+        scene.redTeam.filter(kid => kid.isAlive).forEach(kid => scene.knockOut(kid, 'death_0'));
+    });
+    await page.waitForFunction(() => SnowcraftGame.getScene().redTeam.every(kid => kid.alpha === 0 && kid.shadow.alpha === 0));
+    await page.waitForTimeout(50);
+    await page.keyboard.press('z');
+    const revived = await page.evaluate(() => SnowcraftGame.getScene().redTeam.map(kid => ({
+        alive: kid.isAlive, alpha: kid.alpha, shadow: kid.shadow.visible, shadowAlpha: kid.shadow.alpha, hd: kid.hdShadow.visible
+    })));
+    assert.ok(revived.every(kid => kid.alive && kid.alpha === 1 && kid.shadow && kid.shadowAlpha === 1 && !kid.hd));
+    evidence.originalShadowRevival = revived;
 });
 
 test("walk-on cancellation during Clock catch-up preserves dead kids and the next level's count", { timeout: 30000 }, async t => {
