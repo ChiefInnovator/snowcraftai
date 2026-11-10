@@ -16,7 +16,7 @@ function meta(key) {
 
 test("every link-preview tag is present and filled in", () => {
     for (const key of ["og:type", "og:site_name", "og:title", "og:description", "og:url", "og:image", "og:image:width",
-        "og:image:height", "og:image:alt", "twitter:card", "twitter:title", "twitter:description", "twitter:image", "twitter:image:alt"]) {
+        "og:image:height", "og:image:alt", "og:locale", "twitter:card", "twitter:title", "twitter:description", "twitter:image", "twitter:image:alt"]) {
         assert.ok(meta(key), key + " is missing or empty");
     }
     assert.equal(meta("og:url"), SITE);
