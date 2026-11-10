@@ -33,7 +33,7 @@ no ScummVM, no Flashpoint from an agent). Static parse only.
 | `SOURCE-PROVENANCE.json` | Original upload filenames, inner member names, roles, hashes. |
 | `COPYRIGHT-NOTICES.md` | Acknowledgments for Nicholson NY and Kevin. |
 | `SHA256MANIFEST.txt` | SHA-256 of every file under this folder except the manifest itself. |
-| `LOCAL-APPLY.md` | How this tree reaches a checkout of `feature/repo-restructure` at `ff39e410`. |
+| `LOCAL-APPLY.md` | Historical record of how this tree reached a checkout of `feature/repo-restructure` at `ff39e410`. |
 
 Root `reference/` (gitignored) remains a **local** Wine/decompile workspace. It
 is not the canonical copy.
@@ -72,7 +72,7 @@ From the EXE movie, static mmap/`KEY*`/`VWSC`/`BITD`/`Lscr` parse (never run):
 - Stage 592×320, 15 fps default, Event Loop tempo 500 fps, 328 score frames
 - Cast members 1–131: 82 bitmaps (kids 1–36 named in `source-evidence/recovered/dir-cast.txt`), 16 sounds, 23 scripts
 - Channel-1 `puppetSound` / `soundBusy(1)` event map in `docs/PARITY.md`
-- VWSC Event Loop layouts: `source-evidence/recovered/event-loop-layouts.json` (also `docs/recovered/`)
+- VWSC Event Loop layouts: `source-evidence/recovered/event-loop-layouts.json`
 - Kid BITD metadata: `source-evidence/recovered/kid-bitmaps.json`
 
 From the DCR, static Afterburner parse (never run): see

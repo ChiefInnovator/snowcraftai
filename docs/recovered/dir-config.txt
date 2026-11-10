@@ -1,7 +1,0 @@
-stage: (592, 320)
-stageRect: (208, 224, 800, 544)
-minMember: 1
-maxMember: 131
-frameRate: 15
-directorVersion: 1600
-score: 328 frames decoded (header says 328), framesVersion 13, spriteRecord 48, channels 1006

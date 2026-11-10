@@ -17,7 +17,7 @@ are **not** the same movie bytes. Neither file was executed.
 
 ## Cast / resource counts (static)
 
-EXE movie (`docs/recovered/dir-config.txt`, `dir-cast.txt`):
+EXE movie (`recovered/dir-config.txt`, `recovered/dir-cast.txt`):
 
 - Stage 592×320, default 15 fps, Director version 1600
 - Members 1–131: **82 bitmaps**, **16 sounds**, 23 scripts, 2 fields, 3 text Xtras, 1 palette

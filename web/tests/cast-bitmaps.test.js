@@ -74,7 +74,7 @@ describe("recovered BITD cast members", () => {
     });
 
     it("preserves byte-exact kid/shadow sources and exports identical indexed pixels", () => {
-        const meta = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "..", "docs/recovered/kid-bitmaps.json"), "utf8"));
+        const meta = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "..", "docs/reference/snowcraft-original/source-evidence/recovered/kid-bitmaps.json"), "utf8"));
         assert.equal(meta.length, 36);
         meta.forEach((rec) => {
             const buf = fs.readFileSync(path.join(CAST_DIR, rec.file));
