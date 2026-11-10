@@ -33,18 +33,34 @@ class NativeAudioPort implements AudioPort {
   final _effects = List.generate(4, (_) => AudioPlayer());
   var _next = 0;
   bool _musicPrepared = false;
+
+  // By default every Android player requests exclusive audio focus when it
+  // starts, which pauses the others: the first effect would pause the music.
+  // Only the music player keeps focus; the intro and effect voices request
+  // none and mix over it. iOS and the web already mix one app's players (and
+  // iOS applies a per-player context to the whole session), so they keep the
+  // package defaults.
+  static final _mixOverMusic = AudioContext(
+    android: const AudioContextAndroid(audioFocus: AndroidAudioFocus.none),
+  );
+
   @override
   Future<void> prepare() async {
+    // Voices first: a music source that fails to load must not leave the
+    // intro and effects unconfigured.
+    final mix = !kIsWeb && defaultTargetPlatform == TargetPlatform.android;
+    if (mix) await _intro.setAudioContext(_mixOverMusic);
+    await _intro.setReleaseMode(ReleaseMode.stop);
+    await _intro.setVolume(0.55);
+    for (final player in _effects) {
+      if (mix) await player.setAudioContext(_mixOverMusic);
+      await player.setReleaseMode(ReleaseMode.stop);
+      await player.setVolume(0.72);
+    }
     await _music.setReleaseMode(ReleaseMode.loop);
     await _music.setVolume(0.28);
     await _music.setSource(AssetSource('audio/musicAlt.mp3'));
     _musicPrepared = true;
-    await _intro.setReleaseMode(ReleaseMode.stop);
-    await _intro.setVolume(0.55);
-    for (final player in _effects) {
-      await player.setReleaseMode(ReleaseMode.stop);
-      await player.setVolume(0.72);
-    }
   }
 
   @override
@@ -91,19 +107,44 @@ class GameAudio extends ChangeNotifier {
   bool _suspended = false; // actual app background / lifecycle
   bool _paused = false; // in-game pause / settings only
   bool _closed = false;
+  bool _muteChosen = false;
+  bool _musicChosen = false;
+  int _cueSequence = 0;
   Future<void> _musicQueue = Future.value();
   Future<void> _preferenceQueue = Future.value();
   Future<void> _effectQueue = Future.value();
   int _effectGeneration = 0;
   String? lastError;
 
+  /// Restores saved preferences, then prepares playback. Each step fails on
+  /// its own: an unreadable preference keeps its default and never stops the
+  /// players from being prepared. Safe to run unawaited behind the first frame.
   Future<void> initialize() async {
+    final savedMute = await _saved('mute-all');
+    final savedMusic = await _saved('music-enabled');
+    if (_closed) return;
+    // A choice made while the reads were pending wins over the saved one.
+    final muteRestored = !_muteChosen && savedMute == true && !muted;
+    if (!_muteChosen) muted = savedMute ?? muted;
+    if (!_musicChosen) musicEnabled = savedMusic ?? musicEnabled;
+    notifyListeners();
+    if (muteRestored) {
+      // A round may have started while the reads were pending: silence the
+      // intro and effects it already began, exactly as setMuted does.
+      _effectGeneration++;
+      await _stopEffects();
+    }
+    await _safely(port.prepare);
+    // A game may have started before the players were ready.
+    await _syncMusic();
+  }
+
+  Future<bool?> _saved(String key) async {
     try {
-      muted = await preferences.read('mute-all') ?? false;
-      musicEnabled = await preferences.read('music-enabled') ?? true;
-      await port.prepare();
+      return await preferences.read(key);
     } catch (error) {
       lastError = '$error';
+      return null;
     }
   }
 
@@ -127,14 +168,20 @@ class GameAudio extends ChangeNotifier {
     return _musicQueue;
   }
 
-  void _queueCue(Future<void> Function() operation) {
+  /// Starts are serialised. When a slow start lets cues pile up, a
+  /// [droppable] cue that more than two newer cues are already waiting behind
+  /// is stale and is skipped, so the backlog stays short and a round-end cue
+  /// is not played late. Cues that are not droppable always play.
+  void _queueCue(Future<void> Function() operation, {bool droppable = false}) {
     final generation = _effectGeneration;
+    final sequence = ++_cueSequence;
     _effectQueue = _effectQueue.then((_) async {
       if (generation != _effectGeneration ||
           !_active ||
           muted ||
           _suspended ||
-          _paused) {
+          _paused ||
+          (droppable && _cueSequence - sequence > 2)) {
         return;
       }
       await _safely(operation);
@@ -157,6 +204,7 @@ class GameAudio extends ChangeNotifier {
 
   Future<void> setMuted(bool value) async {
     muted = value;
+    _muteChosen = true;
     if (value) _effectGeneration++;
     final saved = _persist('mute-all', value);
     notifyListeners();
@@ -165,6 +213,7 @@ class GameAudio extends ChangeNotifier {
 
   Future<void> setMusicEnabled(bool value) async {
     musicEnabled = value;
+    _musicChosen = true;
     final saved = _persist('music-enabled', value);
     notifyListeners();
     await Future.wait([_syncMusic(), saved]);
@@ -211,7 +260,12 @@ class GameAudio extends ChangeNotifier {
       'victory' => '16_halaluja.wav',
       _ => null,
     };
-    if (file != null) _queueCue(() => port.effect(file));
+    if (file != null) {
+      _queueCue(
+        () => port.effect(file),
+        droppable: cue == 'throw' || cue == 'splat',
+      );
+    }
   }
 
   Future<void> close() async {

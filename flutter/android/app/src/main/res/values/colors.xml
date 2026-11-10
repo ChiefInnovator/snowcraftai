@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Same navy as the legacy launcher icon and the web app icons. -->
+    <color name="ic_launcher_background">#0C1520</color>
+</resources>

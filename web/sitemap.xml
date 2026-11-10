@@ -3,13 +3,13 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
     <url>
         <loc>https://chiefinnovator.github.io/snowcraftai/</loc>
-        <lastmod>2026-04-14</lastmod>
+        <lastmod>2026-11-10</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
         <image:image>
-            <image:loc>https://chiefinnovator.github.io/snowcraftai/assets/playField.png</image:loc>
-            <image:title>Snowcraft Reforged battlefield</image:title>
-            <image:caption>Snowcraft Reforged snowy battlefield with red and green teams</image:caption>
+            <image:loc>https://chiefinnovator.github.io/snowcraftai/assets/images/social-card.jpg</image:loc>
+            <image:title>Snowcraft Reforged holiday card</image:title>
+            <image:caption>The Snowcraft snowball fight shown inside an open holiday card</image:caption>
         </image:image>
     </url>
 </urlset>

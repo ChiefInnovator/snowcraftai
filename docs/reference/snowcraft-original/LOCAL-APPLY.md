@@ -1,6 +1,6 @@
 # Applying onto the dirty `ff39e410` checkout
 
-**Historical record:** paths in the pinned-commit instructions below describe those original snapshots. The current browser edition lives in [`web/`](../../../web/), including [`web/index.html`](../../../web/index.html) and [`web/js/game.js`](../../../web/js/game.js).
+**Historical record:** paths in the pinned-commit instructions below describe those original snapshots. The current browser edition lives in [`web/`](../../../web/), including [`web/index.html`](../../../web/index.html) and [`web/js/game.js`](../../../web/js/game.js). The `.patch` files named below are not in this repository, so these steps cannot be run as written; they are kept only as a record of how the tree was assembled.
 
 Local tree this patch is built for:
 

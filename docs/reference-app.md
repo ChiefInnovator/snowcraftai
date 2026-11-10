@@ -169,7 +169,7 @@ Every 100 ms, a green in `G ready` rolls `random(10)`:
 |---|---|
 | 0 | 60 px |
 | 4 | 200 px |
-| 8 | **400 px** |
+| 8 | **360 px** |
 
   The formula is `20·max(2p,1) + 40`, and vertical distance is half that. The hit-active part of the flight is `(2p − 1)·20` px. Green throws cover 240–360 px.
   - **Observed** (`throwtest_tap/mid/full.png`):
@@ -256,7 +256,7 @@ There are no menus and no sound toggle.
 |---|---|---|---|
 | Start | Empty field, waits for mouse; walk-on; "SnowCraft" title; play | frames 3–35, `rollover(1)` | ✓ |
 | Throw direction | Always up-left on the diagonal, whatever the drag path | fixed (−20,−10) | ✓ |
-| Distance vs hold | ≈60 / ≈200 / ≥330 px for tap / 330 ms / 1 s | 60 / 200 / 400 | ✓ |
+| Distance vs hold | ≈60 / ≈200 / ≥330 px for tap / 330 ms / 1 s | 60 / 200 / 360 | ✓ |
 | Drag | Kid follows the cursor, stops at the centre line; shadow left behind until release | clamp `x ≥ 2(320−y)` | ✓ |
 | Hold freezes game? | **No.** AI and balls keep running | (earlier inference said yes) | ✗ (inference refuted) |
 | Red after 1 hit | Dazed and stays alive | 2 hits to die | ✓ (partial) |

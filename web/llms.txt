@@ -2,7 +2,7 @@
 
 > A free, browser-based remake of the classic 1999 SnowCraft snowball-fight game, built with Phaser 4. Click and hold to charge a throw, release to throw a snowball along a fixed diagonal, and defeat the opposing green team across ten progressively harder levels.
 
-Snowcraft Reforged is an HTML5 browser remake of SnowCraft (1999). It runs in the browser with no install, account, or ads. It uses original 1999 sprite art and sound plus recovered rules and timing, and adds three difficulty settings and a display that scales to any screen. Remake code is by Richard Crane / MILL5. Original SnowCraft remains with its rights holders; see NOTICE.md. Not affiliated with Nicholson NY, IconMedialab, Macromedia, or Adobe.
+Snowcraft Reforged is an HTML5 browser remake of SnowCraft (1999). It runs in the browser with no install, account, or ads. It defaults to redrawn high-resolution artwork with the original 1999 sprite art as a selectable mode, uses original 1999 sound plus recovered rules and timing, and adds three difficulty settings and a display that scales to any screen. Remake code is by Richard Crane / MILL5. Original SnowCraft remains with its rights holders; see NOTICE.md. Not affiliated with Nicholson NY, IconMedialab, Macromedia, or Adobe.
 
 ## Key facts
 
@@ -49,7 +49,7 @@ Snowcraft Reforged is an HTML5 browser remake of SnowCraft (1999). It runs in th
 
 **Is it free?** Yes — completely free, no account, no ads, no purchases.
 
-**Do I need to install anything?** No. It runs in any modern desktop browser.
+**Do I need to install anything?** No. It runs in any modern browser on desktop and phones.
 
 **How many levels are there?** Ten, each harder than the last.
 
