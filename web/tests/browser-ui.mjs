@@ -855,7 +855,7 @@ test("loss score and queued audio reveal inset replay; keyboard activation reset
     evidence.loss = end;
 });
 
-test("music and mute-all control actual playback independently and persist across rebuild/reload", { timeout: 45000 }, async t => {
+test("music and mute-all control actual playback independently and persist across rebuild/reload", { timeout: 90000 }, async t => {
     const { page } = await open(t, "audio preferences");
     const pendingUnlock = [];
     for (const gate of ["enabled", "music-off", "mute-all"]) {
@@ -1004,7 +1004,7 @@ test("phone rotates back to portrait after fullscreen, actual touch drag/throw a
     evidence.phone = { portrait, landscape, returned };
 });
 
-test("HD motion interpolates walk-on without moving logic, and preserves Original steps", { timeout: 60000 }, async t => {
+test("HD motion interpolates walk-on without moving logic, and preserves Original steps", { timeout: 90000 }, async t => {
     const { page } = await open(t, 'HD walk-on presentation');
     await page.goto(baseURL + '/?debug&manualTime'); await ready(page);
     await start(page);
@@ -1040,7 +1040,8 @@ test("HD motion interpolates walk-on without moving logic, and preserves Origina
     assert.equal(finish.count, 0); assert.equal(finish.active, finish.bannerComplete, 'activation still waits for the existing banner');
     finish.positions.forEach(p => assert.deepEqual(p.slice(0, 2), p.slice(2)));
     assert.ok(finish.contacts.every(n => n >= 1));
-    await screenshot(page, 'hd-planted-arrivals');
+    // Software-rendered CI can take longer to capture after manual stepping.
+    await page.screenshot({ path: path.join(output, 'hd-planted-arrivals.png'), timeout: 60000 });
     evidence.motionWalk = { samples, original, finish };
 });
 
