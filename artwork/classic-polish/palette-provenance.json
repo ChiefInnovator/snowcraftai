@@ -1,0 +1,14 @@
+{
+  "source": "docs/reference/snowcraft-original/extracted/SnowCraft.exe",
+  "sourceSha256": "2103bae31937095450962c91ec025e5e49eac920d2eccf1bdd89bcae2e130b8c",
+  "clutChunkSha256": "5f950eaf8460a2ff0bdc5808fddabf6963f0c5b6a42e3f3854943df35d7727bc",
+  "clutBytes": 1536,
+  "entries": 256,
+  "sourceTransparentIndex": 0,
+  "index0RGB": [
+    255,
+    255,
+    255
+  ],
+  "method": "Read-only static EXE mmap/CLUT parse; 16-bit channel components reduced with >>8, as canonical extractor"
+}

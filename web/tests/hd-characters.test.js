@@ -4,6 +4,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
 const { inflateSync } = require('node:zlib');
+const { assertIndexedCopy } = require('./png-pixels.cjs');
 const P = require('../js/parity.js');
 
 const root = path.resolve(__dirname, '../..');
@@ -97,8 +98,9 @@ test('HD export retains original dimensions, unusual registrations, and placemen
         assert.equal(frame.w, original.w);
         assert.equal(frame.h, original.h);
         assert.deepEqual(frame.reg, original.reg, frame.file);
-        const old = fs.readFileSync(path.join(root, 'web/assets/cast', frame.file));
+        const old = fs.readFileSync(path.join(root, 'flutter/assets/art', frame.file));
         assert.equal(sha(old), frame.originalSha256);
+        assertIndexedCopy(old, fs.readFileSync(path.join(root, 'web/assets/cast', frame.file)), frame.file);
         const master = fs.readFileSync(path.join(root, frame.masterFile));
         assert.equal(sha(master), frame.masterSha256);
         const { sourceAnchor, targetAnchor, offset, scale, sourceCrop } = frame.placement;

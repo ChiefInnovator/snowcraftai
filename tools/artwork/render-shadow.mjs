@@ -20,9 +20,9 @@ export async function renderShadow({ frame, png, scale }) {
   source.globalCompositeOperation = 'source-in';
   source.fillStyle = '#49647c'; source.fillRect(0, 0, mask.width, mask.height);
   const grounded = [9, 10, 14, 15, 16, 32, 33, 34, 35, 36].includes(frame.num);
-  const footX = (boots[0] + boots[2]) / (2 * scale) - frame.reg[0];
-  const footY = boots[3] / scale - frame.reg[1];
-  const radius = Math.max(5, Math.min(9, (boots[2] - boots[0]) / (2 * scale)));
+  const footX = frame.shadowFoot ? frame.shadowFoot[0] : (boots[0] + boots[2]) / (2 * scale) - frame.reg[0];
+  const footY = frame.shadowFoot ? frame.shadowFoot[1] : boots[3] / scale - frame.reg[1];
+  const radius = frame.shadowFoot ? frame.shadowFoot[2] : Math.max(5, Math.min(9, (boots[2] - boots[0]) / (2 * scale)));
   // Light comes from upper-left. Height projects right/down, with a darker
   // contact at the boots and a broad, faint penumbra farther from the body.
   const projection = grounded
@@ -46,9 +46,18 @@ export async function renderShadow({ frame, png, scale }) {
     ctx.transform(...projection);
     ctx.drawImage(mask, -frame.reg[0], -frame.reg[1], frame.w, frame.h); ctx.restore();
   }
-  if (!grounded) {
+  if (!grounded && !frame.noContact) {
     ctx.save(); ctx.filter = `blur(${0.7 * scale}px)`; ctx.globalAlpha = 0.22;
     ctx.fillStyle = '#334f67'; ctx.beginPath(); ctx.ellipse(footX, footY, radius, 1.7, 0, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+  }
+  if (frame.indexed) {
+    // Classic shadows have one ink and 32 opacity steps, fitting an 8-bit table.
+    const result = ctx.getImageData(0, 0, canvas.width, canvas.height), data = result.data;
+    for (let i = 0; i < data.length; i += 4) {
+      const alpha = Math.min(255, Math.round(data[i + 3] / 8) * 8);
+      data.set(alpha ? [73, 100, 124, alpha] : [0, 0, 0, 0], i);
+    }
+    ctx.putImageData(result, 0, 0);
   }
   return { png: canvas.toDataURL('image/png').split(',')[1], key: 'hd_shadow_' + frame.key,
     file: 'shadow_' + frame.file, w, h, reg: [-left, -top], pixelScale: scale, kind: grounded ? 'grounded' : 'standing' };
