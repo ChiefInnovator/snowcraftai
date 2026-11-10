@@ -1302,15 +1302,22 @@ test("intro jingle plays through footsteps and throws, stops on mute, and return
     const { page } = await open(t, "intro jingle", {}, true, { storage: { "snowcraft-artwork": "original" } });
     const playing = () => page.evaluate(() => SnowcraftGame.getScene().sound.getAllPlaying().map(sound => sound.key));
     await start(page);
-    await page.waitForFunction(() => SnowcraftGame.getScene().audio.getPlayLog().some(entry => entry.soundId === "step"));
-    assert.ok((await playing()).includes("sfx_intro"), "footsteps leave the intro playing");
-    await active(page);
-    await page.evaluate(() => {
+    // Sample inside the page, in the frame the first footstep plays: the jingle is
+    // only 5.4 s long, so waiting for the walk-on to finish can outlast it on a slow runner.
+    const during = await page.evaluate(() => new Promise(resolve => {
         const scene = SnowcraftGame.getScene();
-        scene.throwSnowball(scene.redTeam[0], 2);
-    });
-    const afterThrow = await playing();
+        const keys = () => scene.sound.getAllPlaying().map(sound => sound.key);
+        (function poll() {
+            if (!scene.audio.getPlayLog().some(entry => entry.soundId === "step")) { requestAnimationFrame(poll); return; }
+            const afterStep = keys();
+            scene.throwSnowball(scene.redTeam[0], 2);
+            resolve({ afterStep, afterThrow: keys() });
+        })();
+    }));
+    assert.ok(during.afterStep.includes("sfx_intro"), "footsteps leave the intro playing: " + JSON.stringify(during.afterStep));
+    const afterThrow = during.afterThrow;
     assert.ok(afterThrow.includes("sfx_intro") && afterThrow.includes("sfx_whoosh_percussive"), JSON.stringify(afterThrow));
+    await active(page);
     await page.locator("#mute-checkbox").check();
     assert.deepEqual(await playing(), []);
     await page.locator("#mute-checkbox").uncheck();
@@ -1319,8 +1326,15 @@ test("intro jingle plays through footsteps and throws, stops on mute, and return
         scene.isLevelActive = false;
         scene.showLossScreen();
     });
+    // Count intro starts on the sound manager (it outlives the scene restart) instead of
+    // catching the jingle while it is still playing.
+    await page.evaluate(() => {
+        const sound = SnowcraftGame.getScene().sound, play = sound.play.bind(sound);
+        window.introStarts = 0;
+        sound.play = (key, ...rest) => { if (key === "sfx_intro") window.introStarts++; return play(key, ...rest); };
+    });
     await replay(page, "mouse");
-    await page.waitForFunction(() => SnowcraftGame.getScene().sound.getAllPlaying().some(sound => sound.key === "sfx_intro"), null, { timeout: 5000 * SLOW });
+    await page.waitForFunction(() => window.introStarts === 1);
     const replayed = await page.evaluate(() => {
         const scene = SnowcraftGame.getScene();
         return { skipped: scene.audio.getSkippedLog().map(entry => entry.soundId + ":" + entry.reason),
