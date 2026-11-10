@@ -6,12 +6,15 @@ Checklist for matching Nicholson NY’s 1999 Macromedia Director 8 projector
 (`SnowCraft.exe` / embedded `SnowCraft.dir`). Evidence is **static**: mmap/`KEY*`
 parse, VWSC score decode (`tools/reference/inspect_movie.py`), BITD decode
 (`tools/reference/extract_bitmaps.py`), and Lingo recovered from `Lscr`.
-**The Windows EXE was never executed in this workstream.**
+**The Windows EXE was never executed in this static workstream.** The separate
+Wine playthrough of 2026-11-08, run from the gitignored root `reference/`
+workspace, is recorded in [`reference-app.md`](reference-app.md).
 
 This document is for the combined `web/` tree: `feature/repo-restructure`
-(`ff39e410`) + recovered BITD/VWSC/movement + original 16 WAVs + local
+(`ff39e410`) + recovered BITD/VWSC/movement + the 15 played original WAVs + local
 restructure edits (SEO copy, debug-revive immunity, `winctl.py` cursor notes).
-It does **not** merge into `develop` or `main`.
+That tree has since been merged into `develop` and `main`; the current branch
+model is in [`AGENTS.md`](../AGENTS.md).
 
 Status key:
 
@@ -19,11 +22,11 @@ Status key:
 - **Inferred** — follows verified rules plus movie structure, but a value was not uniquely decoded.
 - **Unverified / blocked** — needs a Director runtime playthrough, Wine capture, or bytes we could not expand.
 
-## Combined tree (this PR)
+## Combined tree (historical)
 
-Base `ff39e410` (`feature/repo-restructure`). Older develop-rooted PRs cannot
-absorb this without mixing deleted paths. Local uncommitted edits from that
-HEAD are **included** here (SEO/copy, `z` revive immunity, `winctl.py`).
+Base was `ff39e410` (`feature/repo-restructure`). Older develop-rooted PRs could
+not absorb this without mixing deleted paths. Local uncommitted edits from that
+HEAD were **included** (SEO/copy, `z` revive immunity, `winctl.py`).
 
 ## Audio
 
@@ -89,7 +92,7 @@ PNGs live in `web/assets/cast/`. They are original-derived, same class as
 ## Level layouts (VWSC Event Loop)
 
 Decoded from compressed VWSC delta frames (328 frames, 48-byte sprite records).
-Full dump: `docs/recovered/event-loop-layouts.json`.
+Full dump: `docs/reference/snowcraft-original/source-evidence/recovered/event-loop-layouts.json`.
 
 | Level | `#gd` | Notes |
 |---|---|---|
