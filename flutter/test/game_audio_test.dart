@@ -85,6 +85,15 @@ class DelayedPreferences extends MemoryPreferences {
   }
 }
 
+class SlowReadPreferences extends MemoryPreferences {
+  final gate = Completer<void>();
+  @override
+  Future<bool?> read(String key) async {
+    await gate.future;
+    return values[key];
+  }
+}
+
 class FailingPreferences extends MemoryPreferences {
   @override
   Future<bool?> read(String key) async => throw StateError('no storage');
@@ -409,6 +418,28 @@ void main() {
     expect(audio.muted, isTrue);
     expect(audio.musicEnabled, isFalse);
     expect(audio.lastError, isNotNull);
+    await audio.close();
+  });
+
+  test('a saved mute that arrives after a round started silences what already began', () async {
+    final port = RecordingAudio();
+    final prefs = SlowReadPreferences()..values['mute-all'] = true;
+    final audio = GameAudio(port, prefs);
+    final ready = audio.initialize();
+    audio.cue('start');
+    audio.cue('throw');
+    await Future<void>.delayed(Duration.zero);
+    expect(port.calls, containsAllInOrder(['intro', 'effect:06_Whoosh.wav']));
+    port.calls.clear();
+    prefs.gate.complete();
+    await ready;
+    expect(audio.muted, isTrue);
+    expect(port.calls.first, 'stopEffects');
+    expect(port.calls, contains('music:false'));
+    port.calls.clear();
+    audio.cue('throw');
+    await Future<void>.delayed(Duration.zero);
+    expect(port.calls, isEmpty);
     await audio.close();
   });
 

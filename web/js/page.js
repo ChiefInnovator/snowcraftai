@@ -126,6 +126,7 @@
         try {
             await navigator.clipboard.writeText(PAGE_URL);
             say(button, 'Link copied');
+            stamp();
         } catch (err) {
             // No clipboard access: leave the address selected so it can be copied by hand.
             const address = document.querySelector('.address');
@@ -137,9 +138,9 @@
                 selection.addRange(range);
                 address.scrollIntoView({ block: 'center', behavior: 'smooth' });
             }
+            // Nothing was sent, so the envelope stays unstamped.
             say(button, 'Copy the address');
         }
-        stamp();
     }
 
     async function share(button) {

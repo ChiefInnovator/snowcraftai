@@ -124,9 +124,16 @@ class GameAudio extends ChangeNotifier {
     final savedMusic = await _saved('music-enabled');
     if (_closed) return;
     // A choice made while the reads were pending wins over the saved one.
+    final muteRestored = !_muteChosen && savedMute == true && !muted;
     if (!_muteChosen) muted = savedMute ?? muted;
     if (!_musicChosen) musicEnabled = savedMusic ?? musicEnabled;
     notifyListeners();
+    if (muteRestored) {
+      // A round may have started while the reads were pending: silence the
+      // intro and effects it already began, exactly as setMuted does.
+      _effectGeneration++;
+      await _stopEffects();
+    }
     await _safely(port.prepare);
     // A game may have started before the players were ready.
     await _syncMusic();

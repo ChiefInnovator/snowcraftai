@@ -1476,6 +1476,19 @@ test("the game sits inside the card and inside the first screen at common sizes"
 test("sending the card copies the link and cancels the envelope with today's postmark", { timeout: 30000 * SLOW }, async t => {
     const { page, context } = await open(t, "send the card", {}, true, { query: "/" });
     await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+    // When the browser refuses the clipboard, the address is offered for a manual copy and nothing is stamped.
+    await page.evaluate(() => {
+        window.realWriteText = navigator.clipboard.writeText.bind(navigator.clipboard);
+        Object.defineProperty(navigator.clipboard, "writeText", { configurable: true, value: () => Promise.reject(new Error("denied")) });
+    });
+    await page.locator("[data-copy]").click();
+    await page.waitForFunction(() => document.querySelector("[data-copy] [data-share-label]").textContent === "Copy the address");
+    assert.deepEqual(await page.evaluate(() => ({
+        struck: document.querySelectorAll(".postmark-sent.is-struck").length,
+        selected: String(getSelection()).replace(/\s/g, "")
+    })), { struck: 0, selected: "chiefinnovator.github.io/snowcraftai" });
+    await page.evaluate(() => Object.defineProperty(navigator.clipboard, "writeText", { configurable: true, value: window.realWriteText }));
+    await page.evaluate(() => scrollTo(0, 0));
     await page.locator(".stamp-send").click();
     await page.waitForFunction(() => document.querySelector(".postmark-sent.is-struck"));
     const sent = await page.evaluate(async () => ({
