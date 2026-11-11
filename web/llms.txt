@@ -1,12 +1,12 @@
-# Snowcraft Reforged
+# SnowCraft Reforged
 
 > A free, browser-based remake of the classic 1999 SnowCraft snowball-fight game, built with Phaser 4. Click and hold to charge a throw, release to throw a snowball along a fixed diagonal, and defeat the opposing green team across ten progressively harder levels.
 
-Snowcraft Reforged is an HTML5 browser remake of SnowCraft (1999). It runs in the browser with no install, account, or ads. It defaults to redrawn high-resolution artwork with the original 1999 sprite art as a selectable mode, uses original 1999 sound plus recovered rules and timing, and adds three difficulty settings and a display that scales to any screen. Remake code is by Richard Crane / MILL5. Original SnowCraft remains with its rights holders; see NOTICE.md. Not affiliated with Nicholson NY, IconMedialab, Macromedia, or Adobe.
+SnowCraft Reforged is an HTML5 browser remake of SnowCraft (1999). It runs in the browser with no install, account, or ads. It defaults to redrawn high-resolution artwork with the original 1999 sprite art as a selectable mode, uses original 1999 sound plus recovered rules and timing, and adds three difficulty settings and a display that scales to any screen. Remake code is by Richard Crane / MILL5. Original SnowCraft remains with its rights holders; see NOTICE.md. Not affiliated with Nicholson NY, IconMedialab, Macromedia, or Adobe.
 
 ## Key facts
 
-- **Name**: Snowcraft Reforged
+- **Name**: SnowCraft Reforged
 - **Genre**: Action / Arcade / Casual snowball-fight game
 - **Platform**: Web browser (HTML5 canvas) on desktop and phones; installable to the home screen
 - **Engine**: Phaser 4.2
@@ -39,13 +39,13 @@ Snowcraft Reforged is an HTML5 browser remake of SnowCraft (1999). It runs in th
 
 ## Pages
 
-- [Play Snowcraft Reforged](https://chiefinnovator.github.io/snowcraftai/): The main game page.
+- [Play SnowCraft Reforged](https://chiefinnovator.github.io/snowcraftai/): The main game page.
 - [GitHub repository](https://github.com/ChiefInnovator/snowcraftai): Source code and issue tracker.
 - [README](https://github.com/ChiefInnovator/snowcraftai/blob/main/README.md): Project overview, controls, and technical notes.
 
 ## Frequently asked questions
 
-**What is Snowcraft Reforged?** A free browser remake of the 1999 SnowCraft snowball-fight game, built with Phaser 4.
+**What is SnowCraft Reforged?** A free browser remake of the 1999 SnowCraft snowball-fight game, built with Phaser 4.
 
 **Is it free?** Yes — completely free, no account, no ads, no purchases.
 

@@ -72,7 +72,7 @@ void main() {
     'landscape menu uses crisp widget text, one brand, and independent audio controls',
     (tester) async {
       final app = await launch(tester, const Size(900, 500));
-      expect(find.text('Snowcraft Reforged'), findsOneWidget);
+      expect(find.text('SnowCraft Reforged'), findsOneWidget);
       expect(find.text('Ready. Aim. Snow.'), findsOneWidget);
       expect(app.assets.images[app.assets.ground.key]!.width, 2400);
       expect(

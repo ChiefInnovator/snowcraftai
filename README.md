@@ -1,4 +1,4 @@
-# Snowcraft Reforged
+# SnowCraft Reforged
 
 Web and native Flutter recreations of the classic 1999 SnowCraft snowball fight.
 
@@ -95,7 +95,7 @@ was found. Credits are not permission. See [`NOTICE.md`](NOTICE.md) and
 - **Engine**: Phaser 4.2
 - **Browser text**: native HTML overlay, independent of sprite filtering and canvas resolution.
 - **Canvas**: 592×320 Director stage, scaled with the existing 600×320–1800×960 display options (ground BITD is 600×320 at loc 296,160)
-- **Assets**: Recovered original BITD sprites from the 1999 Snowcraft projector
+- **Assets**: Recovered original BITD sprites from the 1999 SnowCraft projector
 
 ## Gameplay Rules
 

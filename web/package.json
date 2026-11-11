@@ -1,7 +1,7 @@
 {
   "name": "snowcraftai",
   "private": true,
-  "description": "Snowcraft Reforged — Phaser remake of Nicholson NY SnowCraft (1999)",
+  "description": "SnowCraft Reforged — Phaser remake of Nicholson NY SnowCraft (1999)",
   "scripts": {
     "test": "node --test tests/*.test.js",
     "test:browser": "node --test tests/browser-ui.mjs",
