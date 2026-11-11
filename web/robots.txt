@@ -1,4 +1,4 @@
-# Snowcraft Reforged — robots.txt
+# SnowCraft Reforged — robots.txt
 # Allow all traditional search engines and AI/answer-engine crawlers.
 
 User-agent: *

@@ -53,7 +53,7 @@ class LoadFailedApp extends StatelessWidget {
   const LoadFailedApp({super.key});
   @override
   Widget build(BuildContext context) => const MaterialApp(
-    title: 'Snowcraft Reforged',
+    title: 'SnowCraft Reforged',
     debugShowCheckedModeBanner: false,
     home: Scaffold(
       backgroundColor: Color(0xff0c1520),
@@ -61,7 +61,7 @@ class LoadFailedApp extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.all(28),
           child: Text(
-            'Snowcraft could not load its game files.\n'
+            'SnowCraft could not load its game files.\n'
             'Close the app and open it again. If this keeps happening, '
             'reinstall it.',
             textAlign: TextAlign.center,
@@ -85,7 +85,7 @@ class SnowcraftApp extends StatelessWidget {
   final GameAudio audio;
   @override
   Widget build(BuildContext context) => MaterialApp(
-    title: 'Snowcraft Reforged',
+    title: 'SnowCraft Reforged',
     debugShowCheckedModeBanner: false,
     theme: ThemeData(
       useMaterial3: true,

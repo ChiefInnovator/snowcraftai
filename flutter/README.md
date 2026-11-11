@@ -1,4 +1,4 @@
-# Snowcraft Reforged — Flutter
+# SnowCraft Reforged — Flutter
 
 A native landscape snowball fight for Android and iOS, with a Flutter web target for development and validation. This is an enhanced edition; it contains no original-artwork or legacy-gameplay toggle and does not embed the Phaser website or a WebView.
 

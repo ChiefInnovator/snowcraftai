@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Snowcraft parity checks</title>
+    <title>SnowCraft parity checks</title>
     <style>
         body { font: 14px/1.45 system-ui, sans-serif; max-width: 760px; margin: 24px; color: #222; }
         a { color: #06c; }
@@ -13,7 +13,7 @@
     <script src="js/parity.js"></script>
 </head>
 <body>
-    <h1>Snowcraft parity checks</h1>
+    <h1>SnowCraft parity checks</h1>
     <p>Recovered Director constants used by the remake. Play the game with
         <a href="index.html?debug"><code>?debug</code></a> to jump levels
         (<code>1</code>–<code>9</code>, <code>0</code> = level 10).</p>
@@ -44,7 +44,7 @@
         const el = document.getElementById("out");
         el.textContent = rows.join("\n") + "\n\n" + (failed ? "FAILED" : "ALL PASSED");
         el.className = failed ? "fail" : "";
-        document.title = (failed ? "FAIL" : "PASS") + " — Snowcraft parity checks";
+        document.title = (failed ? "FAIL" : "PASS") + " — SnowCraft parity checks";
     </script>
     <p class="row"><a href="index.html">Back to the game</a></p>
 </body>

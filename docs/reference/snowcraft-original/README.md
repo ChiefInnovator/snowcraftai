@@ -1,7 +1,7 @@
 # Original SnowCraft archives (parity evidence)
 
 Permanent project copies of the user-supplied 1999 originals. These files are
-the evidence used to drive Snowcraft Reforged toward original parity. They are
+the evidence used to drive SnowCraft Reforged toward original parity. They are
 **not** the running game.
 
 Runtime copies:

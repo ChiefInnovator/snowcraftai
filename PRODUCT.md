@@ -15,7 +15,7 @@ Two audiences, weighted equally (confirmed 2026-11-10):
 
 ## Product Purpose
 
-Snowcraft Reforged is a free browser remake of SnowCraft, the 1999 holiday snowball-fight game by Nicholson NY. Three red kids against a growing green team across ten levels. It exists so the game can be played again without the dead Director plug-in, and so the recovery work has a public home.
+SnowCraft Reforged is a free browser remake of SnowCraft, the 1999 holiday snowball-fight game by Nicholson NY. Three red kids against a growing green team across ten levels. It exists so the game can be played again without the dead Director plug-in, and so the recovery work has a public home.
 
 Success: a visitor plays within seconds of arriving and shares the link. The owner's stated goal for the page is "viral and compelling".
 
@@ -42,7 +42,7 @@ A holiday tradition is back (owner's chosen claim). The proof behind the claim: 
 
 ## Brand Commitments
 
-- Name: Snowcraft Reforged. The original is "SnowCraft" (1999, Nicholson NY).
+- Name: SnowCraft Reforged. The original is "SnowCraft" (1999, Nicholson NY).
 - Credit: built by Rich Crane (Microsoft MVP, MILL5), part of Inventing Fire with AI. Real mark: `web/assets/images/inventing-fire-mark.png`. Never invent logos or brand marks.
 - Legal line stays: not affiliated with Nicholson NY, IconMedialab, Macromedia or Adobe; SnowCraft (1999) remains with its original rights holders; link to `NOTICE.md`.
 - Owner direction for the page: must not copy the previous page, must not fall back on generic minimal styling, and must not read as AI-made.

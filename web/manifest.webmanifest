@@ -1,6 +1,6 @@
 {
-  "name": "Snowcraft Reforged",
-  "short_name": "Snowcraft",
+  "name": "SnowCraft Reforged",
+  "short_name": "SnowCraft",
   "description": "Free browser snowball fight: pick a kid, charge, throw, and clear ten levels.",
   "start_url": "./",
   "scope": "./",

@@ -1,4 +1,4 @@
-# Snowcraft Reforged — agent guide
+# SnowCraft Reforged — agent guide
 
 Browser snowball-fight game (Phaser 4.2 via CDN, plain JS, no build step). Live at https://chiefinnovator.github.io/snowcraftai/.
 Native Flutter edition: enhanced-only gameplay and smooth graphics, landscape left/right, native text. Original-artwork mode belongs only to the web edition.

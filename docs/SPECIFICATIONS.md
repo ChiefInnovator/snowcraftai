@@ -1,4 +1,4 @@
-# Snowcraft Reforged — web specifications
+# SnowCraft Reforged — web specifications
 
 All values live in `RULES` at the top of `web/js/game.js` and `web/js/parity.js`. Stage is the original Director **592×320** (ground BITD 600×320 at loc 296,160). Times in ms.
 
