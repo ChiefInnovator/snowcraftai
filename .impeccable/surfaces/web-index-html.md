@@ -5,7 +5,7 @@ primary_target: "web/index.html"
 related_targets: []
 ---
 
-# Surface brief: Snowcraft Reforged home page (`web/index.html`)
+# Surface brief: SnowCraft Reforged home page (`web/index.html`)
 
 Mode: Persuade. Audience: players who want a snowball fight now, and Rich Crane's audience who want the recovery story; weighted equally. Action: play in the first viewport, then send the page to someone. Proof: the playable game, recovered 1999 sprites beside their redrawn versions. Constraints: game DOM hooks, CSP without inline script, browser test suite, real assets only.
 

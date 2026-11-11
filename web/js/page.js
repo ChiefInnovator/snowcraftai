@@ -146,7 +146,7 @@
     async function share(button) {
         if (navigator.share) {
             try {
-                await navigator.share({ title: 'Snowcraft Reforged', text: shareText(), url: PAGE_URL });
+                await navigator.share({ title: 'SnowCraft Reforged', text: shareText(), url: PAGE_URL });
                 say(button, 'Sent');
                 stamp();
             } catch (err) {

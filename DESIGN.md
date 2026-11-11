@@ -1,5 +1,5 @@
 ---
-name: Snowcraft Reforged
+name: SnowCraft Reforged
 description: A studio holiday card opened on a green desk blotter, with the 1999 snowball fight tipped inside.
 colors:
   blotter: "#1d4a3a"
@@ -230,7 +230,7 @@ components:
     padding: "10px 16px"
 ---
 
-# Design System: Snowcraft Reforged
+# Design System: SnowCraft Reforged
 
 ## Overview
 

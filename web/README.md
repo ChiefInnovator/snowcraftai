@@ -1,4 +1,4 @@
-# Snowcraft Reforged — web edition
+# SnowCraft Reforged — web edition
 
 This folder is the GitHub Pages site root. The game runs directly in the browser without a build step.
 

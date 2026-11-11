@@ -157,7 +157,7 @@ class _GamePageState extends State<GamePage>
           ),
           const SizedBox(height: 10),
           const Text(
-            'Snowcraft plays sideways. Rotate your screen to join the fight.',
+            'SnowCraft plays sideways. Rotate your screen to join the fight.',
             textAlign: TextAlign.center,
           ),
         ],
@@ -182,7 +182,7 @@ class _GamePageState extends State<GamePage>
         const SizedBox(width: 10),
         Expanded(
           child: Text(
-            'Snowcraft Reforged',
+            'SnowCraft Reforged',
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
